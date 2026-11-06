@@ -7,6 +7,10 @@
   "title": "织法之杖",
   "preview": "assets_src/mod_icon.png",
   "description": "docs/Steam创意工坊介绍.txt",
+  "workshop_languages": {
+    "schinese": {"title": "织法之杖", "description": "docs/Steam创意工坊介绍.txt"},
+    "english": {"title": "Spellwoven Wands", "description": "docs/Steam创意工坊介绍.en.txt"}
+  },
   "description_omit_headings": ["遇到 Bug 时，请这样取日志"],
   "site_url": "https://huangxxuuu.github.io/spellwoven-wands/"
 }

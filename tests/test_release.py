@@ -25,10 +25,12 @@ class ReleaseTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)
             (root / 'mod').mkdir()
-            (root / 'mod/modinfo.lua').write_text('version = "0.25.5"\n-- old 0.25.5\n', encoding='utf-8')
+            (root / 'mod/modinfo.lua').write_text('version = "0.25.5"\nlocal release_date = "2026-01-01"\n-- old 0.25.5\n', encoding='utf-8')
             (root / 'README.md').write_text('当前测试版为 **0.25.5**。历史 0.25.5。', encoding='utf-8')
             release.update_version(root, '0.25.6')
             self.assertEqual(release.current_version(root), '0.25.6')
+            self.assertIn(f'local release_date = "{release.date.today().isoformat()}"',
+                          (root / 'mod/modinfo.lua').read_text(encoding='utf-8'))
             self.assertIn('历史 0.25.5', (root / 'README.md').read_text(encoding='utf-8'))
             self.assertIn('-- old 0.25.5', (root / 'mod/modinfo.lua').read_text(encoding='utf-8'))
 
@@ -55,6 +57,52 @@ class ReleaseTests(unittest.TestCase):
                                              ('public', 'preserve', 'PRIVATE')]:
             with self.assertRaises(release.ReleaseError):
                 release.check_audience(audience, steam, {'visibility': repository})
+
+    def test_localized_release_does_not_overwrite_english_with_default_vdf_text(self):
+        config = dict(app_id=322330, publishedfileid='3834454416', title='织法之杖',
+                      workshop_languages={'schinese': {}, 'english': {}})
+        text = release.make_vdf(config, Path('/tmp/release'), '中文默认描述', 'notes')
+        self.assertNotIn('"description"', text)
+        self.assertNotIn('"title"', text)
+        self.assertNotIn('"visibility"', text)
+
+    def test_workshop_only_mode_does_not_bump_or_publish_content(self):
+        with patch.object(release, 'publish_metadata', return_value=True) as publish, \
+             patch.object(release, 'release_lock', return_value=release.nullcontext()), \
+             patch.object(release, 'prepare', side_effect=AssertionError('content release')):
+            release.main(['--mode', 'workshop'])
+            publish.assert_called_once_with(dll=None)
+
+    def test_metadata_failure_does_not_finish_release_and_resume_uses_frozen_text(self):
+        with tempfile.TemporaryDirectory() as d:
+            directory = Path(d)
+            checkout = directory / 'source'
+            checkout.mkdir()
+            (directory / 'content').mkdir()
+            exe = directory / 'steamcmd.exe'
+            exe.touch()
+            config = dict(repository='owner/repo', branch='main', publishedfileid='123',
+                          workshop_languages={'schinese': {}, 'english': {}})
+            state = dict(config=config, checkout=str(checkout), version='1.2.3', audience='private',
+                         steam_visibility='preserve', source_hashes={}, artifact_hashes={},
+                         steps=dict(commit='abc', push=True, github_draft=True, steam=True))
+            args = type('Args', (), dict(steamcmd=str(exe), steam_user='login', steam_api_dll='dll'))()
+            with patch.object(release, 'validate_checkout'), \
+                 patch.object(release, 'git', side_effect=lambda path, *a: '' if a[0] == 'ls-files' else 'abc'), \
+                 patch.object(release, 'gh_json', return_value={'visibility': 'PRIVATE'}), \
+                 patch.object(release, 'run', return_value=subprocess.CompletedProcess([], 0)), \
+                 patch.object(release, 'steam_upload', side_effect=AssertionError('duplicate content upload')), \
+                 patch.object(release, 'publish_metadata', side_effect=release.ReleaseError('metadata failed')) as metadata:
+                with self.assertRaises(release.ReleaseError):
+                    release.publish(directory, state, args)
+                self.assertNotIn('github_release', state['steps'])
+                self.assertNotIn('steam_metadata', state['steps'])
+                metadata.assert_called_once_with(directory / 'workshop-localizations.json', 'dll')
+                metadata.side_effect = None
+                metadata.return_value = True
+                release.publish(directory, state, args)
+                self.assertTrue(state['steps']['steam_metadata'])
+                self.assertTrue(state['steps']['github_release'])
 
     def test_default_plan_never_runs_commands_or_changes_files(self):
         with patch.object(release, 'run', side_effect=AssertionError('plan executed a command')), \

@@ -7,6 +7,7 @@ No credentials are saved; SteamCMD inherits the terminal for login/Steam Guard.
 from __future__ import annotations
 
 import argparse
+from datetime import date
 from contextlib import contextmanager, nullcontext
 import hashlib
 import json
@@ -106,6 +107,9 @@ def update_version(root, version):
     text = path.read_text(encoding='utf-8')
     text, count = VERSION.subn(lambda m: f'version = "{version}"', text)
     require(count == 1, 'Cannot locate modinfo version.')
+    text, count = re.subn(r'^local release_date\s*=\s*"\d{4}-\d{2}-\d{2}"',
+                          f'local release_date = "{date.today().isoformat()}"', text, flags=re.M)
+    require(count == 1, 'Cannot locate modinfo release date.')
     path.write_text(text, encoding='utf-8')
     readme = root / 'README.md'
     text = readme.read_text(encoding='utf-8')
@@ -133,8 +137,11 @@ def make_vdf(config, directory, description, notes, visibility='preserve'):
             'An existing Workshop item ID is required. Creating items is intentionally unsupported.')
     values = dict(appid=config['app_id'], publishedfileid=config['publishedfileid'],
                   contentfolder=(directory / 'content').as_posix(),
-                  previewfile=(directory / 'preview.png').as_posix(), title=config['title'],
-                  description=description, changenote=notes)
+                  previewfile=(directory / 'preview.png').as_posix(), changenote=notes)
+    # SteamCMD has no per-language metadata option. A default description would
+    # overwrite English; localized titles/descriptions have their own API stage.
+    if not config.get('workshop_languages'):
+        values.update(title=config['title'], description=description)
     if visibility != 'preserve':
         values['visibility'] = {'public': 0, 'friends': 1, 'hidden': 2, 'unlisted': 3}[visibility]
     return '"workshopitem"\n{\n' + ''.join(f'  {vdf_quote(k)} {vdf_quote(v)}\n' for k, v in values.items()) + '}\n'
@@ -213,6 +220,14 @@ def prepare(root, config, version, audience, visibility, notes):
     description = workshop_description((checkout / config['description']).read_text(encoding='utf-8-sig'),
                                       config['description_omit_headings'])
     (directory / 'description.txt').write_text(description, encoding='utf-8')
+    if config.get('workshop_languages'):
+        localized = {key: config[key] for key in ('app_id', 'publishedfileid')}
+        localized['languages'] = {language: {'title': row['title'],
+            'description': workshop_description((checkout / row['description']).read_text(encoding='utf-8-sig'), [])}
+            for language, row in config['workshop_languages'].items()}
+        save(directory / 'workshop-localizations.json', localized)
+        run([sys.executable, 'tools/steam_workshop_metadata.py', '--snapshot',
+             directory / 'workshop-localizations.json'], checkout)
     (directory / 'notes.txt').write_text(notes, encoding='utf-8')
     (directory / 'workshop.vdf').write_text(make_vdf(config, directory, description, notes, visibility), encoding='utf-8')
     source_paths = read_json(checkout / '.nw_public_export')['files']
@@ -288,10 +303,14 @@ def publish(directory, state, args):
     require(source_files == set(state['source_hashes']), 'Unexpected source files in the release checkout.')
     check_audience(state['audience'], state['steam_visibility'],
                    gh_json('repo', 'view', repo, '--json', 'visibility'))
+    native = getattr(args, 'steam_backend', 'steamcmd') == 'native'
     executable = args.steamcmd or shutil.which('steamcmd') or shutil.which('steamcmd.exe')
-    require(executable and Path(executable).is_file(), 'SteamCMD not found; pass --steamcmd PATH.')
-    executable = str(Path(executable).resolve())
-    require(args.steam_user, 'Pass --steam-user LOGIN (or set STEAM_USER). Passwords are never stored.')
+    if native:
+        require(state['steam_visibility'] == 'preserve', 'Native upload preserves current Steam visibility.')
+    else:
+        require(executable and Path(executable).is_file(), 'SteamCMD not found; pass --steamcmd PATH.')
+        executable = str(Path(executable).resolve())
+        require(args.steam_user, 'Pass --steam-user LOGIN (or set STEAM_USER). Passwords are never stored.')
     if state['audience'] == 'public':
         # Public Pages must already be deliberately enabled by the owner.
         pages = gh_json('api', f'repos/{repo}/pages')
@@ -341,7 +360,13 @@ def publish(directory, state, args):
         run(['gh', 'release', 'upload', tag, *assets, checksum, '--repo', repo, '--clobber'])
 
     step('github_draft', draft_release)
-    step('steam', lambda: steam_upload(executable, args.steam_user, directory, config, state['steam_visibility']))
+    if native:
+        step('steam', lambda: native_upload(directory, getattr(args, 'steam_api_dll', None)))
+    else:
+        step('steam', lambda: steam_upload(executable, args.steam_user, directory, config, state['steam_visibility']))
+    if config.get('workshop_languages'):
+        step('steam_metadata', lambda: publish_metadata(directory / 'workshop-localizations.json',
+                                                       getattr(args, 'steam_api_dll', None)))
     if state['audience'] == 'public':
         step('pages', lambda: pages_deploy(config, state['steps']['commit']))
     else:
@@ -352,9 +377,27 @@ def publish(directory, state, args):
           f'Steam: https://steamcommunity.com/sharedfiles/filedetails/?id={config["publishedfileid"]}', flush=True)
 
 
+def native_upload(directory, dll=None):
+    command = [sys.executable, ROOT / 'tools/steam_workshop_upload.py', '--directory', directory]
+    if dll:
+        command += ['--steam-api-dll', dll]
+    run(command)
+    return True
+
+
+def publish_metadata(snapshot=None, dll=None):
+    command = [sys.executable, ROOT / 'tools/steam_workshop_metadata.py', '--mode', 'publish']
+    if snapshot:
+        command += ['--snapshot', snapshot]
+    if dll:
+        command += ['--steam-api-dll', dll]
+    run(command)
+    return True
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--mode', choices=['plan', 'prepare', 'publish'], default='plan')
+    parser.add_argument('--mode', choices=['plan', 'prepare', 'publish', 'workshop'], default='plan')
     versions = parser.add_mutually_exclusive_group()
     versions.add_argument('--version')
     versions.add_argument('--bump', choices=['patch', 'minor', 'major'])
@@ -362,7 +405,9 @@ def main(argv=None):
     parser.add_argument('--audience', choices=['private', 'public'], default='private')
     parser.add_argument('--steam-visibility', choices=['preserve', 'hidden', 'friends', 'unlisted', 'public'], default='preserve')
     parser.add_argument('--steamcmd', default=os.environ.get('STEAMCMD_PATH'))
+    parser.add_argument('--steam-backend', choices=['steamcmd', 'native'], default='steamcmd')
     parser.add_argument('--steam-user', default=os.environ.get('STEAM_USER'))
+    parser.add_argument('--steam-api-dll', default=os.environ.get('STEAM_API_DLL'))
     parser.add_argument('--notes-file', type=Path)
     args = parser.parse_args(argv)
     with (nullcontext() if args.mode == 'plan' else release_lock(ROOT)):
@@ -371,6 +416,11 @@ def main(argv=None):
 
 def execute(args):
     config = read_json(ROOT / 'tools/release_config.json')
+    if args.mode == 'workshop':
+        require(not (args.version or args.bump or args.resume or args.notes_file) and args.steam_visibility == 'preserve',
+                'Workshop-only mode does not change version, content, notes or visibility.')
+        publish_metadata(dll=args.steam_api_dll)
+        return
     require(args.audience == 'public' or args.steam_visibility in ('preserve', 'hidden'),
             'Private releases cannot set public/friends/unlisted Steam visibility.')
     if args.resume:
@@ -390,17 +440,24 @@ def execute(args):
         if args.mode == 'plan':
             print(f'PLAN {current_version(ROOT)} -> {version}; {args.audience}; Steam visibility: {args.steam_visibility}\n'
                   f'GitHub: {config["repository"]}; Workshop: {config["publishedfileid"]}\n'
-                  'Version -> export -> tests -> ZIPs -> commit/tag/push -> draft GitHub release -> Steam -> website -> finish release\n'
+                  'Version -> export -> tests -> ZIPs -> commit/tag/push -> draft GitHub release -> Steam content -> Chinese/English metadata verification -> website -> finish release\n'
                   + ('Website: private downloadable ZIP only.' if args.audience == 'private' else 'Website: public GitHub Pages.')
                   + '\nNo files or remote services were changed. Use --mode prepare or --mode publish.')
             return
         # Fail before version changes if a live publish cannot run.
         if args.mode == 'publish':
             check_audience(args.audience, args.steam_visibility, gh_json('repo', 'view', config['repository'], '--json', 'visibility'))
-            executable = args.steamcmd or shutil.which('steamcmd') or shutil.which('steamcmd.exe')
-            require(executable and Path(executable).is_file(), 'Publishing requires an installed SteamCMD executable.')
-            require(args.steam_user and re.fullmatch(r'[A-Za-z0-9_@.\-]+', args.steam_user),
-                    'Supply --steam-user LOGIN (not the display name).')
+            if args.steam_backend == 'native':
+                require(args.steam_visibility == 'preserve', 'Native upload preserves current Steam visibility.')
+                command = [sys.executable, ROOT / 'tools/steam_workshop_metadata.py', '--mode', 'check']
+                if args.steam_api_dll:
+                    command += ['--steam-api-dll', args.steam_api_dll]
+                run(command)
+            else:
+                executable = args.steamcmd or shutil.which('steamcmd') or shutil.which('steamcmd.exe')
+                require(executable and Path(executable).is_file(), 'Publishing requires an installed SteamCMD executable.')
+                require(args.steam_user and re.fullmatch(r'[A-Za-z0-9_@.\-]+', args.steam_user),
+                        'Supply --steam-user LOGIN (not the display name).')
             if args.audience == 'public':
                 pages = gh_json('api', f'repos/{config["repository"]}/pages')
                 require(pages.get('build_type') == 'workflow', 'Enable GitHub Pages with source GitHub Actions first.')

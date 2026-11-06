@@ -1,5 +1,6 @@
 -- Chinese source strings are stable translation keys. Keep format arguments in order.
 return {
+    ["织法之杖资料站"]="Spellwoven Wands Field Guide",
     ["沿抛物线向施法点投出旋转的打火机，吸收沿途半径 3 内的火焰；命中或落地时烤熟半径 3 内的食物并点燃可燃物。"]="Lobs a spinning lighter toward the cast point, absorbing flames within radius 3 along its path. On impact or landing, cooks food and ignites flammable objects within radius 3.",
     ["生成一堆燃烧的原版火药，引线 3～6 秒，基础伤害 200，爆炸半径 3；不分敌我，使用原版破坏与点燃机制。被扑灭时直接消失，不能拾取。"]="Places native burning gunpowder: fuse 3-6 s, base damage 200, radius 3. Uses native destruction and ignition against all sides. Vanishes if extinguished; cannot be picked up.",
     ["旋斧攻击"]="Spinning Axe Attack",

@@ -8,9 +8,17 @@ Spellwoven Wands brings Noita's "string spell cards together inside a wand" appr
 
 [h2]Start with a Little Two-Slot Wand[/h2]
 
-By default, your first arrival in a world comes with a starter wand, with Spark Bolt already in the first slot. Equip it, right-click some open ground, and fire. That's it. Want another? Build an Arcane Workbench near an Alchemy Engine, grind gems into dust, and add twigs and gold to craft a wand. Once you find a second card, head back to the workbench and click it into a slot. Your first combo is born.
+You start with a Spark Bolt wand by default. Equip it and right-click to fire. To craft your own spells, [b]build the Arcane Workbench first![/b]
 
-Want a quick taste? Inscribe Damage Plus and put it before Spark Bolt. The next spark that hits a monster hurts 10 points more. Hover over new wands to compare slots, mana, and cast delay. [b]Choose a non-shuffle wand if you want your carefully planned order to stay intact[/b]—otherwise, the wand shuffles the deck itself. Pleasant surprises and nasty ones are only a card apart.
+At an [b]Alchemy Engine[/b], open [b]Prototypers & Stations / Magic[/b] or search these names:
+[list]
+[*][b]Arcane Workbench[/b]: 2 Boards, 2 Cut Stone, 4 Gold Nuggets, 2 Purple Gems. Grind gems into dust; craft wands and cards. Equip a wand nearby to install or rearrange cards.
+[*][b]Weapon Engraving Table[/b]: 2 Boards, 2 Cut Stone, 1 Purple Gem. Turn blank cards, weapons/tools and recipe materials into spells. Install them at the workbench.
+[*][b]Arcane Recycler[/b]: 2 Cut Stone, 1 Purple Gem, 4 Arcane Dust. Drop unwanted cards or wands beside it; right-click to recover dust. Store cards you want to keep first. Make its dust at the workbench.
+[/list]
+The workbench alone gets you started; add the others later. The wand editor's question mark opens the field guide.
+
+Try Damage Plus before Spark Bolt for 10 extra damage. Compare wand slots, mana and cast delay. [b]Choose a non-shuffle wand to preserve your card order[/b]—a shuffle wand brings surprises!
 
 [h2]Spells Aren't Just for Fighting[/h2]
 

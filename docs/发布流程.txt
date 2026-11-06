@@ -5,6 +5,27 @@
 配置：tools/release_config.json。现有 Steam 条目固定为 3834454416，禁止创建新条目。
 默认是只读计划，不修改版本、不提交、不推送、不上传。
 
+只更新创意工坊中英文标题与介绍：
+  .\release.ps1 --mode workshop
+
+此模式直接调用 Steam 的 ISteamUGC 接口，不需要 SteamCMD，不改版本、不上传 Mod 文件、
+不发布 GitHub/资料站，也不改变工坊可见性。需要 Windows、64 位 Python，Steam 客户端
+已登录该条目的作者账号，并已安装饥荒联机版。默认自动寻找游戏 bin64/steam_api64.dll；
+也可传 --steam-api-dll "完整路径"，或设置 STEAM_API_DLL。脚本不读取密码或浏览器 Cookie。
+
+中英文来源在 tools/release_config.json 的 workshop_languages 中：
+  schinese：docs/Steam创意工坊介绍.txt（标题：织法之杖）
+  english：docs/Steam创意工坊介绍.en.txt（标题：Spellwoven Wands）
+Steam 未指定语言时会写入英文栏，因此不能把中文描述作为无语言的默认描述上传。
+新发布的 workshop.vdf 不再写入 title/description；内容上传后，由独立步骤分别指定语言提交。
+提交后读取完整介绍，逐字核对，并核验可见性、文件和预览信息保持不变。
+旧描述备份与校验回执保存在 dist/workshop-metadata/，失败重试会跳过已经匹配的语言。
+
+仅查看两种语言是否与本地一致（只读）：
+  .venv\Scripts\python.exe tools/steam_workshop_metadata.py --mode check
+只预览字节数、不连接 Steam：
+  .venv\Scripts\python.exe tools/steam_workshop_metadata.py
+
 一、首次准备
 
 1. Python 3.12+，安装依赖：python -m pip install -r tools/requirements-dev.txt。
@@ -19,6 +40,14 @@
 
 二、当前推荐：隐藏测试发布
 
+本机已登录 Steam、已安装饥荒联机版时，也可以直接使用原生 Steam API 完整发布：
+  .\release.ps1 --mode publish --bump patch --steam-backend native --notes-file .\更新说明.txt
+该方式不需要 SteamCMD 或 --steam-user，保持当前工坊可见性，更新文件、预览图和版本标签，
+随后分别提交并核验中英文介绍。它只接受 --steam-visibility preserve。
+中断后使用同一版本恢复：
+  .\release.ps1 --mode publish --resume 0.25.8 --steam-backend native
+原生上传的成功回执与上传前状态保存在该版本目录的 steam-api-upload-*.json。
+
 在 PowerShell 中进入项目根目录，先预览：
   .\release.ps1 --version 0.25.6
 
@@ -26,6 +55,10 @@
   .\release.ps1 --mode prepare --version 0.25.6 --notes-file .\更新说明.txt
 
 检查 dist/releases/0.25.6 中的 Mod ZIP、资料站 ZIP、description.txt 和 workshop.vdf。
+新准备的版本还会冻结 workshop-localizations.json，包含中英文标题与完整介绍，并纳入哈希校验。
+完整发布在 Steam 内容上传之后执行 steam_metadata 步骤；两种语言全部回读匹配才继续后续流程。
+介绍更新失败时发布会停止，--resume 会保留已完成的内容上传并重试介绍，不能把上传内容成功当作介绍成功。
+历史发布快照没有此文件及步骤时，可用 --mode workshop 单独更新介绍，无需修改旧快照。
 然后使用冻结的同一份内容发布：
   .\release.ps1 --mode publish --resume 0.25.6 --steamcmd "D:\Tools\SteamCMD\steamcmd.exe" --steam-user YOUR_LOGIN
 
@@ -34,6 +67,7 @@
 
 STEAMCMD_PATH、STEAM_USER 环境变量可代替对应参数。不要把密码放进参数、环境变量或脚本。
 版本可指定 --version X.Y.Z，或使用 --bump patch / minor / major；默认增加 patch。
+准备发布时会同步更新 Mod 描述中的版本号和更新日期（使用执行机器的本地日期）；恢复发布沿用冻结内容中的日期。
 所有命令默认 --audience private：要求 GitHub 仓库为 PRIVATE，否则停止。
 Steam 默认 --steam-visibility preserve，VDF 不写 visibility，保留服务器上的隐藏状态。
 若明确需要重新设为隐藏，可传 --steam-visibility hidden；恢复时必须传同样的选项。

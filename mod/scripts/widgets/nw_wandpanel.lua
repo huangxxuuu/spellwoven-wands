@@ -12,6 +12,17 @@ local Panel=Class(Widget,function(self,bar)
     self.frame:SetPosition(0,16)
     self.row=self:AddChild(Row(Layout.slot,function(i,down) self:Slot(i,down) end))
     self.status=self:AddChild(require("widgets/nw_wandstatus")())
+    local Locale=require("nw/locale")
+    local T=Locale.t
+    self.guide=self:AddChild(require("widgets/imagebutton")("images/nw_hud.xml","ring_60.tex"))
+    self.guide.scale_on_focus=false
+    self.guide:ForceImageSize(20,20)
+    self.guide:SetText("?")
+    self.guide:SetTextSize(18)
+    self.guide:SetHoverText(T("织法之杖资料站"),{font_size=20,offset_y=-26})
+    self.guide:SetOnClick(function()
+        VisitURL("https://huangxxuuu.github.io/spellwoven-wands/"..(Locale.language=="en" and "en/" or ""))
+    end)
     self.count=2
     self:Hide()
     self.inst:DoPeriodicTask(.10,function() self:Refresh() end)
@@ -33,6 +44,7 @@ function Panel:Refresh()
     if self.count~=count or not self.frame_width then
         self.count=count;self.frame_width=count*Layout.slot+40
         self.frame:SetSize(self.frame_width,142)
+        self.guide:SetPosition(self.frame_width/2-12,75)
     end
     self:PlaceWindow()
     self.row:PlaceHover()
@@ -68,6 +80,7 @@ function Panel:PlaceWindow()
 end
 function Panel:BeginWindowDrag(x,y)
     if self.window_drag then return true end
+    if self.guide and self.guide.focus then return false end
     local p=ThePlayer
     if not self.shown or not self.focus or not p or not p.HUD or TheFrontEnd:GetActiveScreen()~=p.HUD then return false end
     local pos,scale=self:GetWorldPosition(),self:GetScale()

@@ -13,6 +13,8 @@ for i=1,#locales+1 do
     local rows=env.configuration_options
     assert(#rows==20 and rows[1].name=="language" and rows[2].name=="starting_wand")
     local chinese=i<=4
+    assert(env.description:find((chinese and "版本：" or "Version: ")..env.version,1,true))
+    assert(env.description:match("%d%d%d%d%-%d%d%-%d%d"))
     assert(rows[3].name==(chinese and "掉落率" or "Drop rates"))
     assert(rows[6].name==(chinese and "性能优化" or "Performance"))
     assert(rows[18].name==(chinese and "开发者设置" or "Developer settings"))

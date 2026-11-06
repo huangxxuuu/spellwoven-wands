@@ -40,6 +40,14 @@ function Widget:SetHoverText(text)
 end
 local Image=Class(Widget,function(self,atlas,texture) Widget._ctor(self);self.texture=texture end)
 package.loaded["widgets/widget"]=Widget;package.loaded["widgets/image"]=Image
+local Button=Class(Widget,function(self) Widget._ctor(self) end)
+function Button:ForceImageSize(w,h) self:SetSize(w,h) end
+function Button:SetText(text) self.text=text end
+function Button:SetTextSize(size) end
+function Button:SetOnClick(fn) self.onclick=fn end
+package.loaded["widgets/imagebutton"]=Button
+local visited
+VisitURL=function(url) visited=url end
 package.loaded["widgets/nineslice"]=Class(Widget,function(self)
     Widget._ctor(self);self.mid_center=self:AddChild(Widget())
 end)
@@ -73,12 +81,24 @@ local panel=root:AddChild(Panel({}));panel.focus=true
 load_cb(false,"");panel:Refresh();panel:OnUpdate(.1)
 assert(panel.status.edit.texture=="readonly.tex")
 assert(panel.status.state=="ready" and panel.status.target_mana==.5)
+panel.guide.onclick()
+assert(visited=="https://huangxxuuu.github.io/spellwoven-wands/")
+require("nw/locale").configure("en")
+panel.guide.onclick()
+assert(visited=="https://huangxxuuu.github.io/spellwoven-wands/en/")
+require("nw/locale").configure("zh")
+panel.guide.focus=true
+assert(not panel:BeginWindowDrag(0,0))
+panel.guide.focus=false
 local gauge_width=panel.status.mana.size[1]
 for count=2,12 do
     capacity=count;panel:Refresh();panel:OnUpdate(.1)
     assert(#panel.row.spells==count and panel.status.mana.size[1]==gauge_width)
     assert(#panel.frame.pieces==9)
     local width=count*76+40
+    assert(panel.guide.pos.x+10<width/2 and panel.guide.pos.y+10<87)
+    assert((panel.guide.pos.x-66)^2+(panel.guide.pos.y-56)^2>(14+10)^2,
+        "guide button overlaps cast indicator")
     for row=1,3 do
         local a,b,c=unpack(panel.frame.pieces,(row-1)*3+1,row*3)
         assert(a.size[1]==16 and c.size[1]==16 and b.size[1]==width-32)

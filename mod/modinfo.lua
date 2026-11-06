@@ -1,12 +1,17 @@
 local chinese = (locale and locale:lower():match("^zh") ~= nil) or locale == "chs" or locale == "cht"
 local function L(zh,en) return chinese and zh or en end
 name = L("织法之杖","Spellwoven Wands")
+version = "0.25.8"
+local release_date = "2026-11-06"
 description = L(
     "你的下一发法术，由你亲手编织。\n\n收集属性各异的随机法杖，自由排列法术卡：让火花追着敌人跑，让弹体命中后再释放一串法术，或用定时载荷打出层层展开的连招。改变顺序，试出新的搭配。\n\n把熟悉的武器刻成法术，发射会吸火的打火机，用飞旋镰刀收割植物。和朋友一起研究新组合、挑战首领，寻找更称手的法杖！\n\n灵感来自《Noita》，支持中文与 English。",
     "Weave your next spell.\n\nCollect wands with randomized traits and arrange spell cards to make them your own. Send sparks chasing enemies, release more spells on impact, or build timed chains that unfold in flight. Change the order and discover a new combination.\n\nTurn familiar weapons into spells: launch a lighter that absorbs flames or send a spinning scythe to harvest plants. Experiment with friends, challenge bosses, and find the wand that fits your next idea!\n\nInspired by Noita. Supports Chinese and English."
 )
+description = L("版本：", "Version: ")..version..L(" · 更新日期：", " · Updated: ")..release_date.."\n\n"..L(
+    "【从这里开始】\n靠近炼金引擎，在制作栏「原型工具和制作站」或「魔法」分类查找，也可搜索以下建筑名称：\n\n① 奥术台（先建它）：木板×2、石砖×2、金块×4、紫宝石×2。研磨宝石、制作法杖与法术卡；靠近它，装备法杖即可装卡、换卡。\n② 武器刻印台：木板×2、石砖×2、紫宝石×1。将配方指定的武器或工具刻成法术卡，再回奥术台装杖。\n③ 奥术分解炉：石砖×2、紫宝石×1、奥术粉尘×4。将不要的卡或法杖丢在炉边，右键炉子回收粉尘。粉尘先在奥术台制作；想保留的散卡请先收好。\n\n先建奥术台就能开始搭配，另外两座按需补建。想测试伤害，可在科学机器旁用草×3、木板×1制作「法术测试拳击袋」。装备法杖后，点击编辑框右上角的问号可打开资料站。",
+    "GETTING STARTED\nStand near an Alchemy Engine. Open Prototypers & Stations or Magic in the crafting menu, or search for these names:\n\n1. Arcane Workbench (build this first): 2 Boards, 2 Cut Stone, 4 Gold Nuggets, 2 Purple Gems. Grind gems, craft wands and cards, and equip a wand nearby to install or rearrange spells.\n2. Weapon Engraving Table: 2 Boards, 2 Cut Stone, 1 Purple Gem. Turn the recipe's weapons or tools into spell cards, then install them at the workbench.\n3. Arcane Recycler: 2 Cut Stone, 1 Purple Gem, 4 Arcane Dust. Drop unwanted cards or wands beside it and right-click to reclaim dust. Make dust at the workbench first; put cards you want to keep safely away.\n\nThe workbench is enough to start; add the others as needed. Test damage with a Spell Test Punching Bag: 3 Cut Grass and 1 Board at a Science Machine. Equip a wand and click the question mark at the top right of its editor to open the field guide."
+).."\n\n"..description
 author = "yuejian"
-version = "0.25.7"
 forumthread = ""
 api_version = 10
 dst_compatible = true

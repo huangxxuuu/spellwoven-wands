@@ -1,0 +1,85 @@
+实时法术素材预览（开发工具 v0.4）
+
+控制面板（推荐，不需要输入命令）
+启用客户端 Mod 并进入世界后，左上角自动显示“法术预览”。
+选择法术，点击“开始 / 重播”；用加减按钮调速度、世界方向和大小。
+播放中选择另一法术或调整参数会立即重播；停止后修改选择不会自动开始。
+“刷新素材”手动重新加载；保存源素材后的自动刷新仍需要 preview.cmd 保持运行。
+按住标题栏“法术预览 · 按住拖动”可用鼠标左键移动面板；位置会限制在屏幕内。
+右侧独立“收起/展开”按钮控制折叠，收起不会停止预览；“停止”会清理弹体和尾迹。
+标题栏“缩小/放大”即时调整界面大小，旁边显示实际缩放百分比，不影响法术弹体大小。
+默认225%（上一版150%的1.5倍），可调75%～300%；屏幕放不下时限制为可完整显示的大小。
+文字使用正文体与浅色高对比配色，选中法术以深绿色底标记；小屏自动缩小面板。
+面板不暂停世界。仍需完整的游戏画面来检查相机、投影、光照与尾迹。
+如果已经加载了旧版工具，本次新增面板需要退出并重新启动游戏加载一次；
+以后只修改素材仍然不需要重启。
+
+用途
+保持 DST 世界运行，修改素材后自动编译、加载新版本，并循环播放飞行效果。
+使用真正的游戏 AnimState 和相机，复用当前 flight_visual.lua 与 spark_trail.lua。
+独立客户端 Mod，名字为 Spellwoven Live Art Preview，不需要开启原 Mod 的开发者选项。
+第一版只预览外观：本地直线飞行，不产生伤害，不保存实体，不模拟碰撞、追踪和完整施法组合。
+本工具不是全部法术的完整模拟器：场地、云、晶体、近战和附加修饰暂未接入。
+
+首次准备
+1. 双击项目根目录 preview.cmd，保持终端窗口开着。
+   它使用项目已有 .venv，构建后安装独立 Mod 到：
+   E:/SteamLibrary/steamapps/common/Don't Starve Together/mods/nw_live_preview
+2. 启动 DST，在客户端 Mods 中启用 Spellwoven Live Art Preview，进入测试世界。
+   第一次安装工具需要让游戏发现并启用它；之后只改素材不需要重新进世界。
+3. 在左上角面板选“火花”，点击“开始 / 重播”。
+4. 让游戏正常运行。暂停时定时轮询也会暂停。
+
+命令
+nw_preview("spark")                  火花，默认速度20，高度1.4，前后12单位循环
+nw_preview("arrow", 20, 90, 1)        箭弹，速度20，世界方向90度，大小1倍
+nw_preview("fire", 10, 0, 2)          火弹，速度10，方向0度，大小2倍
+nw_preview_refresh()                 手动重新加载当前资源
+nw_preview_stop()                    停止，删除弹体/尾迹，卸载预览资源
+
+参数顺序：法术ID、速度、世界方向角、大小。方向不是相对于屏幕；可转动游戏镜头检查。
+速度范围0.1～60，大小1～5；参数是美术观察条件，不是自动读取卡牌的完整施法数值。
+循环开始时以玩家位置为中心；站在空旷区域观察，循环切回起点会清掉上一轮尾迹。
+
+已接入的ID
+spark, arrow, fire, frost, heavy, scatter, gust, slime, heal_bolt,
+land_hook, spore_ball, flint_lance, grow_orb, star_vortex, glass_disc,
+tri_electric, end_beam, soundwave, bee_swarm, fireflies
+不包含原版武器刻印。
+
+编辑入口
+火花弹头：docs/previews/spark-six/head-6x64.png（保持384×64）
+火花尾迹：docs/previews/spark-six/tail-3x48.png（保持144×24）
+普通弹体：assets_src/spell_revision/ 下对应源图片，具体映射见 tools/build_spell_world.py。
+保存后终端打印 BUILT / PUBLISHED，游戏控制台或 client_log.txt 打印 [NW preview] loaded r…。
+动画构建脚本和 flight_visual.lua、spark_trail.lua 的改动也会触发重建。
+不要编辑 dist 里的产物，它们会重新生成。
+
+首轮验证
+1. 正常火花能飞行且有尾迹。
+2. 备份源PNG，把弹头改成明显不同的颜色，保存。
+3. 等待 PUBLISHED 与 loaded；不退出世界，检查新颜色是否出现。
+4. 修改尾迹，再保存，检查尾迹是否同步变化。
+5. 连续更新至少三次；切换 arrow 和 fire；转动镜头；执行 stop 检查残留。
+6. 恢复素材备份；工具会再次刷新。记录终端耗时和任何报错。
+
+技术边界与诊断
+构建产物已检查，Lua生命周期使用模拟接口验证；真实客户端的动态资源加载仍需实机验证。
+每次改动使用新的ZIP路径及内部Bank/Build名称。内容没变的包复用编译缓存。
+新版本所有文件写完后才替换 current.txt；构建失败保留游戏正在使用的上一版本。
+轮询周期0.5秒，另有保存稳定等待和编译耗时；“几秒”是目标，不是已验证客户端承诺。
+游戏保持运行且最好保持前台；自动暂停、失去焦点后的暂停会影响更新。
+工具自身 modmain.lua 改动需要重新加载客户端Mod，本工具不热更自己的控制逻辑。
+加载报错时停止自动轮询；修复后用 nw_preview("spark") 重试。
+未知命令通常表示没有启用客户端Mod，或控制台处于“远程”。
+构建错误日志：dist/live_preview/work/<bank>/compile.log。
+游戏错误日志通常位于 Documents/Klei/DoNotStarveTogether/client_log.txt。
+版本文件保留供排错，不自动删除。长时间使用的引擎内存释放情况尚待观察。
+
+命令行
+.venv\Scripts\python.exe tools/live_preview.py                  只构建到dist，不安装
+.venv\Scripts\python.exe tools/live_preview.py --install        构建并安装一次
+.venv\Scripts\python.exe tools/live_preview.py --install --watch 持续监视
+安装路径不同可传 --game "游戏目录"；官方Mod Tools可传 --tools ".../mod_tools"。
+Ctrl+C停止监视；游戏里另执行 nw_preview_stop()。
+正式Mod和正式动画包不会被该构建流程覆盖。
