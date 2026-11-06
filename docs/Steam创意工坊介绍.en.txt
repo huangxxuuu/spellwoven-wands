@@ -1,6 +1,12 @@
 [h1]Spellwoven Wands[/h1]
 Inspired by [i]Noita[/i], Spellwoven Wands lets you build spells by arranging cards inside a wand. This mod was developed entirely with Codex. Feedback and bug reports are welcome.
 
+[h2]Field guide and source code[/h2]
+[list]
+[*][url=https://huangxxuuu.github.io/spellwoven-wands/en/]Online field guide: getting started, wand attributes and the full spell catalog[/url]. Available in English and Chinese, with searchable spell effects, stats and acquisition methods.
+[*][url=https://github.com/huangxxuuu/spellwoven-wands]GitHub repository: source code for the mod and field guide[/url]. Original code is MIT-licensed. Bug reports, suggestions and contributions are welcome; native game assets are excluded from the code license.
+[/list]
+
 Put Homing before Spark Bolt and a straight shot starts steering toward enemies. Place Explosion before a projectile to cause a blast on every hit, including piercing hits. Blasts can hurt allies and ignore target-selection modifiers. You can also thrust a spear through your wand, plant a Pod Sentry that fires at enemies, or place a Vitality Ring to heal injured teammates.
 
 [h2]Language and wand names[/h2]
