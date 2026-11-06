@@ -196,7 +196,8 @@ function M.direct(owner,e,p,dx,dz)
     if p.flags.knockback then knock(e,dx,dz,p.flags.knockback) end
 end
 function M.blast(owner,x,z,p)
-    local fx=M.fx("nw_blast_fx",x,z)
+    local crystal=p.id=="sleep_crystal" or p.id=="crystal_mine"
+    local fx=M.fx(crystal and "nw_crystal_burst_fx" or "nw_blast_fx",x,z)
     if fx then fx:SetRadius(p.radius) end
     for _,e in ipairs(M.scan(x,z,p.radius,p.flags)) do
         local egg=Target.breakable(e)

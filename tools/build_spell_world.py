@@ -29,8 +29,11 @@ def clip(name,poses,fps=24):
         f.attrib.update(x=str((min(xs)+max(xs))/2),y=str((min(ys)+max(ys))/2),
                         w=str(max(xs)-min(xs)+2),h=str(max(ys)-min(ys)+2))
 for name in ['gust','slime','heal_bolt','heavy','land_hook','spore_ball','flint_lance','grow_orb','star_vortex','glass_disc','tri_electric','end_beam','soundwave','bee_swarm']:
-    symbol('body_'+name,tile(name,118,84))
-for name,srcname,angle in [('arrow','arrow',45),('fire','fire',-135),('frost','frost',-135),('scatter','pellet',0)]:
+    # Heavy Energy Orb uses the same cracked-shell artwork as its spell card.
+    source=ORIGINALS/'heavy.png' if name=='heavy' else None
+    symbol('body_'+name,tile(name,118,84,source))
+# Frost's ice tip points northeast in the source, like the arrow, not the flame.
+for name,srcname,angle in [('arrow','arrow',45),('fire','fire',-135),('frost','frost',45),('scatter','pellet',0)]:
     im=tile(name,116,92,ORIGINALS/(srcname+'.png')).rotate(-angle,Image.Resampling.BICUBIC,expand=True)
     symbol('body_'+name,im.crop(im.getbbox()))
 symbol('body',images['body_gust'])

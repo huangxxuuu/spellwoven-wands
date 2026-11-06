@@ -18,7 +18,7 @@ return {
     {id="rain_cloud",aim_range=8,name=T("局部雨云"),kind="field",mana=16,tier=2,effect=T("半径 2，持续 3 秒，两次局部湿润与灭火。"),radius=2},
     {id="guard_ring",name=T("护卫环"),kind="field",mana=24,tier=3,effect=T("护盾环绕施法者 2 秒，每抵消一枚射向自己的敌方投射物消耗一面盾。"),radius=2},
     {id="wild_charge",name=T("散放快充"),kind="modifier",mana=4,tier=1,effect=T("同块随机半角 +10°，充能 −0.18 秒。"),spread_add=10,recharge=-.18},
-    {id="long_life",name=T("续航铭文"),kind="modifier",mana=8,tier=2,effect=T("飞行弹体寿命 ×1.35，多张相乘，无寿命上限；默认无累计射程限制，可由世界设置开启。不影响静态场与星体。"),lifetime_mult=1.35},
+    {id="long_life",name=T("续航铭文"),kind="modifier",mana=8,tier=2,effect=T("飞行弹体寿命 ×1.35，多张相乘，无寿命上限；默认无累计射程限制，可由世界设置开启。也延长火药引线；不影响其他静态场与星体。"),lifetime_mult=1.35},
     {id="reverse_path",name=T("往返弹道"),kind="modifier",mana=7,tier=2,effect=T("0.45 秒后反向一次，增寿 15%。"),flag="reverse",lifetime_mult=1.15},
     {id="return_path",name=T("返航弹道"),kind="modifier",mana=9,tier=2,effect=T("0.4 秒后掉头，再以最多 180°/秒转向施法者。"),flag="returning"},
     {id="light_shot",name=T("轻盈一击"),kind="modifier",mana=4,tier=1,effect=T("速度 ×1.35，伤害 ×0.75，半角 −1°。"),speed_mult=1.35,damage_mult=.75,spread_add=-1},

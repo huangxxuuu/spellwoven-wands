@@ -17,6 +17,8 @@ assert(cast("explosion").projectile_count==0)
 assert(cast("scatter_timer","spark").projectile_count==6)
 assert(cast("scatter_hit","scatter_timer","spark").projectile_count==21)
 assert(cast("repeat_2","scatter_timer","spark").projectile_count==12)
+local powder=cast("long_life","short_life","speed_up","homing","giant_shot","gunpowder").blocks[1].projectiles[1]
+assert(powder.fuse_mult==1.35*.5 and powder.speed==2 and powder.flags.homing and powder.size_mult==2.5)
 local Ground=require("nw/ground_fields")
 local boat={}
 TheWorld={Map={IsOceanAtPoint=function(_,x) return x>=1 end,

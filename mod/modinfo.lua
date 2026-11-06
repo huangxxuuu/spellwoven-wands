@@ -1,7 +1,7 @@
 local chinese = (locale and locale:lower():match("^zh") ~= nil) or locale == "chs" or locale == "cht"
 local function L(zh,en) return chinese and zh or en end
 name = L("织法之杖","Spellwoven Wands")
-version = "0.25.8"
+version = "0.25.9"
 local release_date = "2026-11-06"
 description = L(
     "你的下一发法术，由你亲手编织。\n\n收集属性各异的随机法杖，自由排列法术卡：让火花追着敌人跑，让弹体命中后再释放一串法术，或用定时载荷打出层层展开的连招。改变顺序，试出新的搭配。\n\n把熟悉的武器刻成法术，发射会吸火的打火机，用飞旋镰刀收割植物。和朋友一起研究新组合、挑战首领，寻找更称手的法杖！\n\n灵感来自《Noita》，支持中文与 English。",

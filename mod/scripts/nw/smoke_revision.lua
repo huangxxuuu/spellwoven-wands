@@ -69,6 +69,25 @@ function M.run()
     powder:Launch(a,p,x+8,z,1,0,function() end)
     assert(powder.components.burnable:IsBurning() and not powder.components.inventoryitem.canbepickedup)
     powder.components.burnable:Extinguish();assert(not powder:IsValid(),"NW_REVISION: extinguished powder removed")
+    local modified=plan("long_life","short_life","speed_up","homing","giant_shot","damage_up","gunpowder").blocks[1].projectiles[1]
+    powder=spawn("nw_gunpowder",x+8,z)
+    local base_fuse=powder.components.burnable.burntime
+    powder:Launch(a,modified,x+8,z,1,0,function() end)
+    assert(math.abs(powder.components.burnable.burntime-base_fuse*1.35*.5)<.001,"NW_REVISION: modified native fuse")
+    assert(powder._nw_motion and powder._nw_motion.p.flags.homing and modified.speed==2,"NW_REVISION: shared powder motion")
+    assert(powder.components.explosive.explosiverange==7.5 and powder.components.explosive.explosivedamage==TUNING.GUNPOWDER_DAMAGE+10,
+        "NW_REVISION: powder size/damage modifiers")
+    local saved=powder:GetSaveRecord()
+    local left=saved.data.nw_powder.remaining
+    powder:Remove()
+    local restored=assert(SpawnSaveRecord(saved));made[#made+1]=restored
+    TheWorld:DoTaskInTime(.1,function()
+        assert(restored:IsValid() and restored.components.burnable:IsBurning(),"NW_REVISION: restore burning powder")
+        assert(math.abs(restored.components.burnable.burntime-left)<.001,"NW_REVISION: saved fuse must not multiply twice")
+        assert(restored.components.explosive.explosiverange==7.5,"NW_REVISION: saved giant must not multiply twice")
+        restored.components.burnable:Extinguish()
+        assert(not restored:IsValid(),"NW_REVISION: restored powder extinguish")
+    end)
     -- Ocean placements must disappear without releasing their payload.
     local ox,oz
     for i=0,500,4 do if TheWorld.Map:IsOceanAtPoint(x+i,0,z) and not TheWorld.Map:GetPlatformAtPoint(x+i,z) then ox,oz=x+i,z;break end end
@@ -117,6 +136,12 @@ function M.run()
         fuse:Launch(a,p,pt[1],pt[2],1,0,function() end)
         local explosions=0
         TheWorld:ListenForEvent("explosion",function() explosions=explosions+1 end)
+        local short=spawn("nw_gunpowder",pt[1],pt[2])
+        local short_plan=plan("short_life","short_life","short_life","gunpowder").blocks[1].projectiles[1]
+        short:Launch(a,short_plan,pt[1],pt[2],1,0,function() end)
+        TheWorld:DoTaskInTime(1,function()
+            assert(not short:IsValid() and fuse:IsValid(),"NW_REVISION: short fuse explodes before unmodified fuse")
+        end)
         TheWorld:DoTaskInTime(7,function()
             assert(not fuse:IsValid() and explosions>0,"NW_REVISION: native fuse explosion")
             assert(not neutral:IsValid(),"NW_REVISION: neutral caster released")

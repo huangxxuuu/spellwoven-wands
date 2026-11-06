@@ -22,7 +22,9 @@ function M.stop(inst,x,z)
     inst.Physics:SetMotorVel(0,0,0)
     RemovePhysicsColliders(inst);inst._nw_ground_mask=true
     if s.task then s.task:Cancel();s.task=nil end
-    inst.entity:SetCanSleep(true)
+    -- A stopped spell bomb still has a live fuse; do not let native burnable's
+    -- coarse sleep catch-up explode it early.
+    inst.entity:SetCanSleep(inst._nw_fuse_deadline==nil)
     Cleanup.unwatch(inst)
 end
 local function owner(inst,s)

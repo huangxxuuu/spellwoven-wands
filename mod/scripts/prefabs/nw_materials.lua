@@ -11,7 +11,7 @@ local function material(id, spec)
         inst.AnimState:SetBank("nw_supplies")
         inst.AnimState:SetBuild("nw_supplies")
         inst.AnimState:PlayAnimation(id)
-        if id=="nw_dust" then inst.AnimState:SetRayTestOnBB(true) end
+        inst.AnimState:SetRayTestOnBB(true)
         MakeInventoryFloatable(inst,"small",.1,.8)
         inst.entity:SetPristine()
         if not TheWorld.ismastersim then return inst end

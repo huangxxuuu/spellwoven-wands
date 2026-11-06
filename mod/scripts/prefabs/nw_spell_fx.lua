@@ -106,7 +106,9 @@ local function effect(name,animation,seconds,light)
         if name=="nw_arc_fx" then
             setup_arc(inst)
         elseif animation=="blast" then
-            if name=="nw_lighter_burst_fx" then inst.AnimState:Hide("blast_extent") end
+            -- Explosion art never draws a gameplay radius guide. This runs on
+            -- both peers, including late-spawned replicated effects.
+            inst.AnimState:Hide("blast_extent")
             inst._radius=net_float(inst.GUID,"nw_blast.radius","nw_blastradiusdirty")
             local function resize()
                 local scale=layout.blast_scale(inst._radius:value())
@@ -134,6 +136,7 @@ local weapon_fx=require("nw/weapon_visual")
 local effects={Prefab("nw_ground_shock_fx",ground_shock,assets),
     effect("nw_arc_fx",nil,.22),effect("nw_heal_fx","heal",.3),
     effect("nw_blast_fx","blast",.32),effect("nw_lighter_burst_fx","blast",.32),effect("nw_afterlight",nil,3,true),
+    effect("nw_crystal_burst_fx","blast",.32),
     effect("nw_flyinglight",nil,nil,true)}
 local function reel_fx(name,build,symbol,anim)
     return Prefab(name,function()

@@ -46,4 +46,11 @@ actual_blast(attacker,0,0,{radius=3,flags={}})
 assert(hit==1 and require("nw/targeting").hittable(attacker,field,{}))
 require("nw/targeting").damage(attacker,field,1,{})
 assert(hit==2)
+local spawned,shown_radius,scanned_radius
+Effects.fx=function(name) spawned=name;return {SetRadius=function(_,r) shown_radius=r end} end
+Effects.scan=function(_,_,r) scanned_radius=r;return {} end
+for _,id in ipairs({"sleep_crystal","crystal_mine"}) do
+    actual_blast(attacker,0,0,{id=id,radius=7.5,flags={}})
+    assert(spawned=="nw_crystal_burst_fx" and shown_radius==7.5 and scanned_radius==7.5)
+end
 print("crystal attacks: weapon/blocked/explosion/area, exactly once, offline attribution, command pause")

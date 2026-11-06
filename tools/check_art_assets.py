@@ -78,19 +78,19 @@ for name,w,h in [('blast_extent',256,256),('blast_burst',256,256)]:
         assert (min(xs),max(xs),min(ys),max(ys))==(-128,128,-128,128)
 rimanims=ET.parse(RUNTIME/'nw_objects/animation.xml').find("anim[@name='blast']")
 assert all(f.find("element[@name='blast_extent']").attrib['m_a']=='1' for f in rimanims)
-# Check the visible triangles against the hit rectangle in the shipped dust animation.
+# All loose materials must share the ground origin and their actual hit rectangle.
 with zipfile.ZipFile(ROOT/'mod/anim/nw_supplies.zip') as supplies:
     stream=io.BytesIO(supplies.read('build.bin'))
     assert stream.read(4)==b'BILD'
     _,num_symbols,_=unpack('III')
     string()
     for _ in range(unpack('I')[0]): string()
-    dust_ranges={}
+    material_ranges={}
     for _ in range(num_symbols):
         key,n=unpack('II')
         for _ in range(n):
             *_,start,count=unpack('IIffffII')
-            dust_ranges[key]=(start,count)
+            material_ranges[key]=(start,count)
     vertices=[unpack('ffffff')[:2] for _ in range(unpack('I')[0])]
     keys={}
     for _ in range(unpack('I')[0]):
@@ -98,7 +98,8 @@ with zipfile.ZipFile(ROOT/'mod/anim/nw_supplies.zip') as supplies:
     stream=io.BytesIO(supplies.read('anim.bin'))
     assert stream.read(4)==b'ANIM'
     clips=unpack('IIIII')[-1]
-    tested=False
+    expected={'nw_dust','nw_beast_core','nw_overlord_core','nw_blank'}
+    tested=set()
     for _ in range(clips):
         clip=string()
         frames=unpack('BIfI')[-1]
@@ -107,15 +108,16 @@ with zipfile.ZipFile(ROOT/'mod/anim/nw_supplies.zip') as supplies:
             stream.read(4*unpack('I')[0])
             for _ in range(unpack('I')[0]):
                 sym,_,_,a,b,c,d,tx,ty,_=unpack('IIIfffffff')
-                if clip=='nw_dust':
-                    assert sym==keys['nw_dust']
-                    start,count=dust_ranges[sym]
+                if clip in expected:
+                    assert sym==keys[clip]
+                    start,count=material_ranges[sym]
                     xy=[(a*x+c*y+tx,b*x+d*y+ty) for x,y in vertices[start:start+count]]
-                    assert all(abs(x-cx)<=w/2+.01 and abs(y-cy)<=h/2+.01 for x,y in xy)
-                    assert abs(cx)<.01 and abs(cy+h/2)<=5 and w==h==128
-                    tested=True
-    assert tested
-    print("PASS: compiled dust mesh fits its 128px click bounds around a bottom-centred pivot")
+                    assert all(abs(x-cx)<=w/2+.01 and abs(y-cy)<=h/2+.01 for x,y in xy),clip
+                    assert abs(cx)<.01 and abs(cy+h/2)<=5 and w==h==128,clip+' ground/click bounds'
+                    assert abs(tx)<.01 and abs(ty)<.01,clip+' unexpected animation translation'
+                    tested.add(clip)
+    assert tested==expected
+    print("PASS: all four material meshes fit their 128px click bounds around bottom-centred pivots")
 # Read compiled part geometry as the engine does, including the actual sprite
 # dimensions rather than just the XML Frame w/h metadata.
 with zipfile.ZipFile(ROOT/'mod/anim/nw_parts.zip') as z:

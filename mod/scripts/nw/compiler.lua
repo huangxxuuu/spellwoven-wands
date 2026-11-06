@@ -222,6 +222,13 @@ function M.compile(wand, definitions, limits)
             if p.kind=="field" and p.id~="guard_ring" then
                 p.speed=math.min(30,(p.speed or 0)*m.speed_mult+m.speed_add)
                 p.field_drive=p.speed>0
+                if p.id=="gunpowder" then
+                    -- The native factory samples the base fuse and damage.
+                    -- Keep modifiers relative so they are applied exactly once.
+                    p.fuse_mult=m.lifetime_mult
+                    p.native_damage_add=m.damage_add
+                    p.native_damage_mult=m.damage_mult or 1
+                end
             end
             p.spread = travels and math.max(0, (p.halfangle or 6)*stats.spread/6 + m.spread_add) or 0
             p.flags = U.copy(m.flags)

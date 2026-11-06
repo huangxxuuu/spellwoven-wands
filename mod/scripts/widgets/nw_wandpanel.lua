@@ -16,9 +16,14 @@ local Panel=Class(Widget,function(self,bar)
     local T=Locale.t
     self.guide=self:AddChild(require("widgets/imagebutton")("images/nw_hud.xml","ring_60.tex"))
     self.guide.scale_on_focus=false
-    self.guide:ForceImageSize(20,20)
+    self.guide.move_on_click=false
+    self.guide:ForceImageSize(28,28)
+    self.guide:SetFont(UIFONT)
     self.guide:SetText("?")
-    self.guide:SetTextSize(18)
+    self.guide:SetTextSize(24)
+    -- Match ring_60.tex's gold (also used by the cooldown indicator).
+    self.guide:SetTextColour(232/255,190/255,100/255,1)
+    self.guide:SetTextFocusColour(232/255,190/255,100/255,1)
     self.guide:SetHoverText(T("织法之杖资料站"),{font_size=20,offset_y=-26})
     self.guide:SetOnClick(function()
         VisitURL("https://huangxxuuu.github.io/spellwoven-wands/"..(Locale.language=="en" and "en/" or ""))
@@ -42,9 +47,9 @@ function Panel:Refresh()
     self.row:SetCards(w._nw_cards:value())
     local count=#self.row.spells
     if self.count~=count or not self.frame_width then
-        self.count=count;self.frame_width=count*Layout.slot+40
+        self.count=count;self.frame_width=Layout.frame_width(count)
         self.frame:SetSize(self.frame_width,142)
-        self.guide:SetPosition(self.frame_width/2-12,75)
+        self.guide:SetPosition(self.frame_width/2-32,Layout.status_y)
     end
     self:PlaceWindow()
     self.row:PlaceHover()

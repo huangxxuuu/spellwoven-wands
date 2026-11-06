@@ -16,17 +16,13 @@ for path in sorted((ROOT / "assets_src/supplies").glob("*.svg")):
     encoded = resvg_py.svg_to_bytes(svg_path=str(path))
     sprite = Image.open(BytesIO(encoded)).convert("RGBA")
     images[path.stem] = sprite
-    if path.stem=="nw_dust":
-        # The compiler positions vertices using the actual PNG dimensions.
-        # Keep the existing 128px painting; anchor it at the bottom centre.
-        w,h=sprite.size
-        cy=4-h/2
-        frame(build,path.stem,path.stem,(w,h),(0,cy))
-        anim(animations,path.stem,"nw_supplies",[(path.stem,0,0)])
-        animations[-1][0].attrib.update(x="0",y=str(cy),w=str(w),h=str(h))
-    else:
-        frame(build,path.stem,path.stem,(42,42))
-        anim(animations,path.stem,"nw_supplies",[(path.stem,0,-18)])
+    # The compiler uses PNG dimensions for vertices; Frame w/h do not resize it.
+    # Anchor every material at the bottom centre and match its clickable bounds.
+    w,h=sprite.size
+    cy=4-h/2
+    frame(build,path.stem,path.stem,(w,h),(0,cy))
+    anim(animations,path.stem,"nw_supplies",[(path.stem,0,0)])
+    animations[-1][0].attrib.update(x="0",y=str(cy),w=str(w),h=str(h))
 compile_bank("nw_supplies",build,animations,images,tools)
 images["nw_workbench"] = resize("workbench",(64,64))
 sheet = Image.new("RGBA",(1024,256))

@@ -44,6 +44,9 @@ local Button=Class(Widget,function(self) Widget._ctor(self) end)
 function Button:ForceImageSize(w,h) self:SetSize(w,h) end
 function Button:SetText(text) self.text=text end
 function Button:SetTextSize(size) end
+function Button:SetFont(font) end
+function Button:SetTextColour(...) self.textcolour={...} end
+function Button:SetTextFocusColour(...) self.textfocuscolour={...} end
 function Button:SetOnClick(fn) self.onclick=fn end
 package.loaded["widgets/imagebutton"]=Button
 local visited
@@ -95,9 +98,11 @@ for count=2,12 do
     capacity=count;panel:Refresh();panel:OnUpdate(.1)
     assert(#panel.row.spells==count and panel.status.mana.size[1]==gauge_width)
     assert(#panel.frame.pieces==9)
-    local width=count*76+40
-    assert(panel.guide.pos.x+10<width/2 and panel.guide.pos.y+10<87)
-    assert((panel.guide.pos.x-66)^2+(panel.guide.pos.y-56)^2>(14+10)^2,
+    local width=require("nw/hud_layout").frame_width(count)
+    assert(panel.guide.pos.x+14<width/2-16 and panel.guide.pos.y+14<87-16,
+        "guide button overlaps decorative frame")
+    assert(panel.guide.pos.y==panel.status.mana.pos.y and panel.guide.pos.y==panel.status.cast.pos.y)
+    assert(panel.guide.pos.x-14>=panel.status.cast.pos.x+14+8,
         "guide button overlaps cast indicator")
     for row=1,3 do
         local a,b,c=unpack(panel.frame.pieces,(row-1)*3+1,row*3)
