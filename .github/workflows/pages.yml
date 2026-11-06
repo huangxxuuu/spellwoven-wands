@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      deploy_public:
+        description: 'Deploy the public field guide (public repository only)'
+        type: boolean
+        required: true
+        default: false
 
 permissions:
   contents: read
@@ -26,6 +32,8 @@ jobs:
         run: python -m pip install -r tools/requirements-dev.txt
       - name: Test Lua rules and restricted modinfo loader
         run: python tools/run_tests.py
+      - name: Test release safety and retry behavior
+        run: python -m unittest discover -s tests -p 'test_release*.py'
       - name: Build Chinese and English field guide
         run: python site/build_catalog.py --pages
       - name: Check translations and site links
@@ -33,13 +41,13 @@ jobs:
           python tools/check_localization.py
           python tools/check_site_links.py --directory site/public
       - name: Upload field guide
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'workflow_dispatch' && inputs.deploy_public && !github.event.repository.private
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
           path: site/public
 
   deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch' && inputs.deploy_public && !github.event.repository.private && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     permissions:

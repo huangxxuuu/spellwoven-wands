@@ -36,6 +36,11 @@ for name,srcname,angle in [('arrow','arrow',45),('fire','fire',-135),('frost','f
 symbol('body',images['body_gust'])
 for n in range(32):
     clip('dir_'+str(n),[[('body',0,0,n*math.tau/32,1,1)]])
+    # Keep the hoe's head above its handle in both horizontal directions.
+    # Left-facing artwork is already correct; reflect across the flight axis
+    # on the right instead of turning the whole cutout upside down.
+    a=n*math.tau/32
+    clip('hoe_dir_'+str(n),[[('body',0,0,a,1,-1 if math.cos(a)>0 else 1)]])
 symbol('hook_line',images['body_gust'])
 for n in range(32):
     a=n*math.tau/32
@@ -71,6 +76,7 @@ for name,w,h in [('shieldofterror',140,140),('lighter',85,100)]:
     symbol('body_'+name,im)
     # "_upright" is a reserved Klei facing suffix and is stripped on compile.
     clip(name+'_standing',[[('body_'+name,0,0,0,1,1)]])
+clip('lighter_spin',[[('body_lighter',0,0,i*math.tau/16,1,1)] for i in range(16)],fps=32)
 # Spin around the midpoint between the curved blade and the lower grip,
 # offset from the cutout's rectangular center. 12 frames at 30 fps = 2.5 turns/s.
 symbol('scythe',tile('scythe',128,128,ORIGINALS/'edge_voidcloth_scythe.png'))

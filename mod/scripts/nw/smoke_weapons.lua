@@ -20,13 +20,14 @@ function M.run(owner,x,z)
     local flame=torch._nw_flame;torch:Remove()
     assert(not flame:IsValid(),"NW_WEAPONS: torch fire cleanup")
     local lighter=shot("edge_lighter",8,0)
+    assert(lighter.components.complexprojectile and lighter._height:value()==0,"NW_WEAPONS: aimed airborne lighter body")
     assert(lighter._nw_flame and lighter._nw_flame:IsValid(),"NW_WEAPONS: lit lighter projectile")
     local food=spawn("carrot",8,0);food.components.stackable:SetStackSize(5)
     local fuel=spawn("log",8,1)
     fuel.components.burnable:Ignite()
     require("nw/engraved_fire").absorb(owner,x+6,z,x+10,z,3)
     assert(not fuel.components.burnable:IsBurning(),"NW_WEAPONS: swept fire absorption")
-    require("nw/engraved_impact").hit(lighter._shot,fuel,x+8,z)
+    require("nw/engraved_impact").finish(lighter._shot,x+8,z)
     assert(not food:IsValid() and fuel.components.burnable:IsBurning(),"NW_WEAPONS: lighter cooking and ignition")
     local cooked=0
     for _,e in ipairs(TheSim:FindEntities(x+8,0,z,3)) do
@@ -70,11 +71,27 @@ function M.run(owner,x,z)
     assert(lab:IsValid() and lab.components.workable.workleft==labwork and lab.components.burnable:IsBurning(),"NW_WEAPONS: structure protected but ignited")
     assert(wall.components.health.currenthealth==wallhealth and boat.components.health.currenthealth==boathealth and events==0 and docks==0,"NW_WEAPONS: wall/boat/dock protection")
     lab:Remove();wall:Remove();boat:Remove()
+    -- Straight lance motion must remain at its native motor speed, without
+    -- repeated physical bounces or forced horizontal position writes.
+    local lance=shot("edge_yoth_lance",0,12)
+    local lx,_,lz=lance.Transform:GetWorldPosition()
+    local corrections=0
+    local flight=require("nw/flight")
+    local ground=flight.ground
+    flight.ground=function(inst,px,py,pz)
+        if inst==lance and math.abs(py)>.0001 then corrections=corrections+1 end
+        return ground(inst,px,py,pz)
+    end
     local shield=shot("edge_shieldofterror")
     local sx,_,sz=shield.Transform:GetWorldPosition()
     -- Native physics object methods are not writable; movement is checked after
     -- several real server ticks, alongside unit coverage forbidding Teleport.
     TheWorld:DoTaskInTime(.4,function()
+        flight.ground=ground
+        assert(lance:IsValid(),"NW_WEAPONS: lance disappeared on empty ground")
+        local ex,ey,ez=lance.Transform:GetWorldPosition()
+        assert(ex-lx>5 and ex-lx<9 and math.abs(ez-lz)<.05 and math.abs(ey)<.001 and corrections==0,
+            "NW_WEAPONS: lance straight flight needs no height corrections")
         assert(shield:IsValid(),"NW_WEAPONS: orbit shield lifetime")
         local ex,_,ez=shield.Transform:GetWorldPosition()
         local ox,_,oz=owner.Transform:GetWorldPosition()

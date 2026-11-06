@@ -12,11 +12,25 @@ function M.run()
     for _,e in pairs(Ents) do if e:HasTag("multiplayer_portal") then x,_,z=e.Transform:GetWorldPosition();break end end
     local a,b=spawn("wilson",x,z),spawn("wilson",x+1,z)
     a.entity:SetCanSleep(false);b.entity:SetCanSleep(false)
+    -- Exercise the native new-character callback, not just a mocked event.
+    a.userid="NW_STARTER_REVISION_TEST"
+    a:OnNewSpawn({})
+    local starter=a.components.inventory:FindItem(function(item) return item.prefab=="nw_wand" end)
+    assert(starter and starter.components.nw_wand.data.cards[1].spell_id=="spark","NW_REVISION: enabled starting wand missing")
+    starter:Remove()
     local function plan(...)
         local w=require("nw/generator").starter();w.stats.mana_max=2000;w.stats.spread=0;w.cards={}
         for i,id in ipairs({...}) do w.cards[i]={spell_id=id,card_uid=tostring(i)} end
         w.runtime=C.initial(w.cards,w.stats,7)
         return assert(C.compile(w))
+    end
+    -- An unrelated character and native explosion can break dormant crystals.
+    for _,event in ipairs({"weapon","explosion"}) do
+        local crystal=spawn("nw_sleep_crystal",x+10,z+10)
+        crystal:Launch(a,Copy(D.sleep_crystal),x+10,z+10,1,0,function() end,1.4)
+        if event=="weapon" then crystal.components.combat:GetAttacked(b,1)
+        else crystal:PushEvent("explosion",{explosive=b}) end
+        assert(not crystal:IsValid(),"NW_REVISION: dormant crystal ignored "..event)
     end
     local function egg()
         local e=spawn("nw_payload_egg",x+4,z)

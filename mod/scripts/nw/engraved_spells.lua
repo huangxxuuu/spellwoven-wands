@@ -10,7 +10,7 @@ end
 
 -- speed, lifetime, damage, description. Effects marked utility never deal impact damage.
 local shots={
-    lighter={16,1.5,17,T("投出燃烧的打火机，吸收沿途半径 3 内的火焰；命中时烤熟半径 3 内的食物并点燃可燃物。")},
+    lighter={16,1.5,17,T("沿抛物线向施法点投出旋转的打火机，吸收沿途半径 3 内的火焰；命中或落地时烤熟半径 3 内的食物并点燃可燃物。")},
     chum={18,4,0,T("沿抛物线向施法点投掷鱼食，接触地面或海面后撒下饵屑并消失。海面诱鱼，陆地只有视觉效果。施法间隔增加 10 秒。")},
     fishingrod={14,1,0,T("沿飞行方向投出钓竿。命中可垂钓水源后收线，渔获落在朝向施法者的池塘边。")},
     oceanfishingrod={16,1.3,0,T("投出鱼钩。将钩中的海鱼或漂浮物朝施法者方向抛向最近的岸或船，最远 20 单位。")},
@@ -63,7 +63,7 @@ function M.configure(c,key)
         c.pose,c.damage,c.no_impact_damage,c.pillow,c.arc="atk_prop",0,true,1.5,360
         c.effect=T("挥动道具招牌击飞附近目标，不造成伤害。")
     elseif key=="hambat" then c.damage=c.native_base_damage;c.effect=T("以满新鲜度火腿棒的攻击力挥击。")
-    elseif key=="lighter" then c.fire_radius=3
+    elseif key=="lighter" then c.fire_radius=3;c.ballistic=true
     elseif key=="ruins_bat" then c.effect=c.effect..T(" 有概率在命中处召唤暗影触手。")
     elseif key=="fumaroleaxe" or key=="fumarolepickaxe" then c.effect=c.effect:gsub("75%%","100%%") end
 end

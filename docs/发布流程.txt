@@ -1,0 +1,100 @@
+织法之杖：版本发布脚本
+====================
+
+入口：项目根目录 release.ps1；跨平台入口：python tools/release.py。
+配置：tools/release_config.json。现有 Steam 条目固定为 3834454416，禁止创建新条目。
+默认是只读计划，不修改版本、不提交、不推送、不上传。
+
+一、首次准备
+
+1. Python 3.12+，安装依赖：python -m pip install -r tools/requirements-dev.txt。
+2. 安装 Git、GitHub CLI，执行 gh auth login，并配置 Git 提交者姓名和邮箱。
+3. 安装 Valve 官方 SteamCMD。下载与登录说明：
+   https://developer.valvesoftware.com/wiki/SteamCMD
+   用拥有本工坊条目的 Steam 账号登录；不是 anonymous。
+   脚本不会保存密码或验证码。首次运行会在 SteamCMD 终端要求输入。
+   如果 SteamCMD 的登录会话与正在运行的游戏冲突，先退出游戏。
+4. 首次公开网站前，在 GitHub 仓库 Settings / Pages 中选择 GitHub Actions。
+   私有测试不需要开启 Pages，也不会尝试开启它。
+
+二、当前推荐：隐藏测试发布
+
+在 PowerShell 中进入项目根目录，先预览：
+  .\release.ps1 --version 0.25.6
+
+只更新本地版本、验证并准备发布文件：
+  .\release.ps1 --mode prepare --version 0.25.6 --notes-file .\更新说明.txt
+
+检查 dist/releases/0.25.6 中的 Mod ZIP、资料站 ZIP、description.txt 和 workshop.vdf。
+然后使用冻结的同一份内容发布：
+  .\release.ps1 --mode publish --resume 0.25.6 --steamcmd "D:\Tools\SteamCMD\steamcmd.exe" --steam-user YOUR_LOGIN
+
+也可以一次完成准备与发布（使用新的版本号）：
+  .\release.ps1 --mode publish --bump patch --steamcmd "D:\Tools\SteamCMD\steamcmd.exe" --steam-user YOUR_LOGIN --notes-file .\更新说明.txt
+
+STEAMCMD_PATH、STEAM_USER 环境变量可代替对应参数。不要把密码放进参数、环境变量或脚本。
+版本可指定 --version X.Y.Z，或使用 --bump patch / minor / major；默认增加 patch。
+所有命令默认 --audience private：要求 GitHub 仓库为 PRIVATE，否则停止。
+Steam 默认 --steam-visibility preserve，VDF 不写 visibility，保留服务器上的隐藏状态。
+若明确需要重新设为隐藏，可传 --steam-visibility hidden；恢复时必须传同样的选项。
+
+隐藏测试时 GitHub Release 标记为 prerelease，只能被有私有仓库权限的人访问。
+资料站完整中英文静态文件作为 field-guide-X.Y.Z.zip 附件保存；不会部署公开网站。
+解压资料站后可用 python -m http.server 8765 --directory 解压目录 进行本地预览。
+私人账号的私有 GitHub 仓库不等于私有 Pages 网站；脚本不会借此假设网站受到访问限制。
+
+三、完成测试后正式公开
+
+1. 由你在 GitHub 设置中将仓库改为 Public；脚本从不自动切换仓库可见性。
+2. 由你启用 GitHub Pages（Source: GitHub Actions）。
+3. 为正式发布准备一个新的版本，例如：
+   .\release.ps1 --mode publish --version 0.26.0 --audience public --steam-visibility public --steamcmd "D:\Tools\SteamCMD\steamcmd.exe" --steam-user YOUR_LOGIN --notes-file .\正式更新说明.txt
+
+只有明确传入 --steam-visibility public 才会把工坊条目改成公开；否则继续保留现状。
+公开模式在 Steam 上传后触发 pages.yml 的 deploy_public=true，并等待该次部署成功。
+普通 push、Pull Request、未勾选 deploy_public 的手动工作流以及私有仓库都只构建检查，不部署 Pages。
+工作流需要仓库拥有者有 Actions/Pages 的相应权限；账户套餐限制按 GitHub 实际提示处理。
+
+四、流水线内容
+
+1. 验证独立发布 checkout 的来源、分支、干净状态及与 origin/main 的一致性。
+2. 修改 mod/modinfo.lua 的版本以及 README 的当前版本；历史版本记录不作全文替换。
+3. 刷新中英文图鉴/页面版本，按白名单导出源码到 dist/github-public。
+4. 执行 Lua 语法与规则测试、美术资源检查、翻译检查、资料站链接检查和发布流程测试。
+   这些检查不能替代双人游戏、存档兼容性等人工测试；已编译美术必须在发布前更新。
+5. 生成 Mod ZIP、资料站 ZIP、SHA256、Steam 内容快照、预览图、介绍及 VDF。
+6. 只在独立发布 checkout 提交 Release vX.Y.Z，建立 vX.Y.Z 标签，原子推送 main 和标签。
+   开发工作区的原有历史与暂存区不自动提交，避免把存档、日志和研究资料推送出去。
+7. 创建 GitHub 草稿 Release 并上传附件；调用 SteamCMD 更新现有工坊条目。
+8. 公开模式部署资料站；私有模式保留资料站 ZIP。全部成功后结束 GitHub 草稿状态。
+
+工坊中文介绍自动省略“遇到 Bug 时，请这样取日志”章节，以保持 UTF-8 正文小于 8000 字节。
+其他正文不会自动截断；仍超长时停止，让作者调整内容或配置省略章节。
+英文介绍原文仍随源码保存，SteamCMD 本流程只更新默认语言正文，不自动设置 Steam 独立语言翻译。
+预览图为 assets_src/mod_icon.png。上传脚本只更新已有条目，不调用创建条目功能。
+
+五、失败恢复与边界
+
+每完成一阶段，dist/releases/X.Y.Z/state.json 立即记录结果。
+脚本使用 dist/.release.lock 阻止两个发布进程同时工作；崩溃遗留锁时，确认记录的进程已结束再删除该锁文件。
+  .\release.ps1 --resume X.Y.Z
+可以只读查看阶段。
+  .\release.ps1 --mode publish --resume X.Y.Z --steamcmd "..." --steam-user YOUR_LOGIN
+继续未完成的阶段；非默认 audience / steam-visibility 需与准备阶段保持一致。
+
+恢复使用冻结内容，不读取后来改动的游戏源码。若发布 checkout、快照内容或标签被改动，脚本停止。
+网络断开恰好发生在远端成功、状态尚未写盘之间时，可能重新上传同一工坊条目；绝不会新建重复条目。
+GitHub 已推送、Steam 失败时，保留 GitHub 草稿；不要重新使用新版本重复准备，应修复登录/网络后恢复。
+SteamCMD 退出码为 0 不代表成功，脚本还要求本次 workshop_log.txt 中出现对应条目的 OK。
+如 Valve 改动日志格式或 SteamCMD 没有本游戏上传权限，脚本明确报错；可用官方 Mod Uploader
+手动更新同一条目，使用冻结的 content、preview.png、description.txt，勿点击 Add 新建条目。
+此时不要伪造 state.json 成功标记；保留记录，确认上传并排查后再恢复自动流程。
+
+准备阶段失败尚未生成 state.json 时，不自动回滚版本和源码，防止覆盖你的编辑。
+根据错误修复；检查失败产生的 dist/releases 目录与发布 checkout 后再准备新的版本。
+对独立发布 checkout 使用 git reset/clean 前必须确认其中没有需要保留的改动。
+这是一条多平台流水线，不能提供跨 Steam/GitHub/Pages 的事务回滚；任何失败都会明确停止。
+
+实现参考：
+https://partner.steamgames.com/doc/features/workshop/implementation#SteamCmd
+https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages

@@ -131,7 +131,7 @@ function M.step(inst,now,cache,timers)
             if t then
                 local wall=e:HasTag("wall") and e.components.health and not e.components.health:IsDead()
                 local ally=not s.placement and not (p and p.heal) and flags.heal_ally and Effects.ally(s.owner,e) and not s.group.healed[e]
-                local prop=require("nw/expanded_fields").can_break(e,s.owner) and (Targeting.egg(e) or not flags.targets or flags.targets.building)
+                local prop=require("nw/expanded_fields").can_break(e,s.owner) and (Targeting.breakable(e) or not flags.targets or flags.targets.building)
                 if p and p.id=="gust" and e._nw_stored and e._nw_stored.p.id~="payload_egg" then prop=false end
                 local selected=not (wall and flags.phase_wall) and flags.targets and (flags.targets.nature or flags.targets.building)
                     and Targeting.object(e) and Targeting.matches(s.owner,e,flags.targets)

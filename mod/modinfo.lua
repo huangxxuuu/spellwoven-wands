@@ -6,7 +6,7 @@ description = L(
     "Weave your next spell.\n\nCollect wands with randomized traits and arrange spell cards to make them your own. Send sparks chasing enemies, release more spells on impact, or build timed chains that unfold in flight. Change the order and discover a new combination.\n\nTurn familiar weapons into spells: launch a lighter that absorbs flames or send a spinning scythe to harvest plants. Experiment with friends, challenge bosses, and find the wand that fits your next idea!\n\nInspired by Noita. Supports Chinese and English."
 )
 author = "yuejian"
-version = "0.25.5"
+version = "0.25.7"
 forumthread = ""
 api_version = 10
 dst_compatible = true

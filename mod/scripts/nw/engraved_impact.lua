@@ -121,7 +121,9 @@ local function wet(owner,x,z,scale)
 end
 function M.finish(s,x,z)
     local key=s.p.engraving
-    if key=="chum" then
+    if key=="lighter" then
+        require("nw/engraved_fire").burst(s.inst,s.owner,x,z,(s.p.fire_radius or 3)*require("nw/projectile_size").factor(s.p))
+    elseif key=="chum" then
         at("splash_green",x,z)
         if TheWorld.Map:IsOceanAtPoint(x,0,z) then at("chum_aoe",x,z):SetThrower(s.owner) end
     elseif key=="trident" then wet(s.owner,x,z,require("nw/projectile_size").factor(s.p))

@@ -51,7 +51,7 @@ gust={"发射推开目标的气流，也能推动载荷卵而不击破它。","F
 spore_ball={"发射缓慢飘行、破裂时伤害附近目标的孢球。","Fires a drifting spore ball that bursts to hurt nearby targets."},
 flint_lance={"投出能够穿透目标的燧晶长枪。","Throws a flint lance that pierces targets."},
 crystal_mine={"放置感应附近目标后引爆的晶雷。","Places a crystal mine that detonates when targets approach."},
-sleep_crystal={"放置等待引爆的休眠晶体。","Places a dormant crystal waiting to be detonated."},
+sleep_crystal={"放置可受击引爆、也可用晶雷引爆令启动的晶体。","Places a crystal that detonates when attacked or activated by Detonate Crystals."},
 slime={"发射黏液，黏滞命中的目标。","Fires slime that slows its target."},
 grow_orb={"发射在飞行中逐渐变大的魔法球。","Fires a magic orb that grows as it travels."},
 heal_bolt={"发射为命中目标恢复生命的治疗弹。","Fires a bolt that heals its target."},
@@ -96,7 +96,7 @@ hex_cast={"将后续法术向周围各个方向展开施放。","Spreads the fol
 }
 local tools={NET={"捕捉","catch creatures"},CHOP={"砍伐","chop"},DIG={"挖掘","dig"},MINE={"采矿","mine"},HAMMER={"锤击","hammer"},SCYTHE={"采收","harvest"},TILL={"翻土","till soil"},TERRAFORM={"铲起地皮","remove turf"}}
 local weapons={
-lighter={"投出燃烧的打火机，吸收沿途火焰，命中时烤熟食物并点燃周围物品。","Throws a lit lighter that absorbs flames along its path, then cooks food and ignites nearby objects on impact."},
+lighter={"向施法点抛出旋转的打火机，吸收沿途火焰，命中或落地时烤熟食物并点燃周围物品。","Lobs a spinning lighter toward the cast point, absorbing flames along its path and cooking food and igniting nearby objects on impact or landing."},
 oceanfishingrod={"投出鱼钩，将钩中的海鱼或漂浮物拉向岸边或船上。","Casts a hook that reels ocean fish or floating objects toward shore or a boat."},
 fishingrod={"投出钓竿，从命中的池塘中钓出鱼。","Casts a fishing rod that catches a fish from a pond."},
 voidcloth_scythe={"发射旋转的巨大镰刀，持续采收沿途植物。","Fires a large spinning scythe that harvests plants along its path."},

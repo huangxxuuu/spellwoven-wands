@@ -31,12 +31,14 @@ CreateEntity=function()
     function e:Remove() self.valid=false;if self.events.onremove then self.events.onremove(self) end end
     return e
 end
-MakeInventoryPhysics=function(e) e.Physics={SetMotorVel=function(_,s) e.speed=s end,ClearCollisionMask=function() end} end
+MakeInventoryPhysics=function(e) e.Physics={SetMotorVel=function(_,s) e.speed=s end,ClearCollisionMask=function() end,
+    SetFriction=function(_,v) e.friction=v end,SetRestitution=function(_,v) e.restitution=v end} end
 local function net() return {v=0,set=function(self,v) self.v=v end,value=function(self) return self.v end} end
 net_byte=net;net_float=net
 ANIM_ORIENTATION={OnGround=1,BillBoard=2,Default=3};TheCamera={heading=0,pitch=35};DEGREES=math.pi/180
 local make=require("prefabs/nw_projectile")
 local client=make();local v=client._visual
+assert(client.friction==0 and client.restitution==0,"projectiles must not friction-brake or bounce on the ground")
 assert(v and v.parent==client.entity and not client.Launch)
 client._height:set(1.75);client._spell:set(require("nw/cards").codes.heavy)
 client.events.nw_projectiledirty(client)
@@ -71,7 +73,7 @@ for _,headless in ipairs({false,true}) do
 end
 assert(added==8 and attached==4)
 -- Every visible remote projectile takes its real spell-specific refresh path.
--- Four-faced lance artwork is upright native character art, not a ground quad.
+-- The lance uses a camera-facing cutout; the hoe has its own upright directions.
 dedicated=false;TheWorld.ismastersim=false
 for id,spell in pairs(require("nw/definitions").spells) do
     if spell.kind=="projectile" or spell.kind=="trigger" then
@@ -79,6 +81,8 @@ for id,spell in pairs(require("nw/definitions").spells) do
         shot._spell:set(require("nw/cards").codes[spell.base or id])
         shot._height:set(1.4);shot.events.nw_projectiledirty(shot)
         local art=shot._visual
+        if spell.engraving=="farm_hoe" then assert(art.anim:find("^hoe_dir_")) end
+        if spell.engraving=="lighter" then assert(art.anim=="lighter_spin" and art.loop) end
         assert(art.y==1.4 and art.orientation~=ANIM_ORIENTATION.OnGround,id)
         assert(art.hidden or art.orientation==ANIM_ORIENTATION.BillBoard or art.fourfaced,id)
         shot:Remove()

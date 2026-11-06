@@ -1,6 +1,6 @@
 -- Chinese source strings are stable translation keys. Keep format arguments in order.
 return {
-    ["投出燃烧的打火机，吸收沿途半径 3 内的火焰；命中时烤熟半径 3 内的食物并点燃可燃物。"]="Throws a lit lighter that absorbs flames within radius 3 along its path. On impact, cooks food and ignites flammable objects within radius 3.",
+    ["沿抛物线向施法点投出旋转的打火机，吸收沿途半径 3 内的火焰；命中或落地时烤熟半径 3 内的食物并点燃可燃物。"]="Lobs a spinning lighter toward the cast point, absorbing flames within radius 3 along its path. On impact or landing, cooks food and ignites flammable objects within radius 3.",
     ["生成一堆燃烧的原版火药，引线 3～6 秒，基础伤害 200，爆炸半径 3；不分敌我，使用原版破坏与点燃机制。被扑灭时直接消失，不能拾取。"]="Places native burning gunpowder: fuse 3-6 s, base damage 200, radius 3. Uses native destruction and ignition against all sides. Vanishes if extinguished; cannot be picked up.",
     ["旋斧攻击"]="Spinning Axe Attack",
     ["火药"]="Gunpowder",
@@ -261,7 +261,7 @@ return {
     ["近感晶雷"]="Proximity Crystal Mine",
     ["26 伤，0.7 秒武装，半径 1.6。不随时间消失，随世界存档；施法者离线、离开分片或变为幽灵时暂停触发。与休眠晶体共用可选数量上限。"]="26 damage; arms in 0.7 seconds; radius 1.6. Permanent and saved with the world. Pauses when the caster is offline, on another shard or a ghost. Shares an optional crystal cap with Dormant Crystal.",
     ["休眠晶体"]="Dormant Crystal",
-    ["22 伤，不随时间消失，随世界存档；只有本人击碎或晶雷引爆令可启动。施法者离线、离开分片或变为幽灵时保留并暂停。与近感晶雷共用可选数量上限。"]="22 damage; permanent and saved with the world. Only the owner's Detonate Crystals can trigger it. Pauses when the caster is offline, on another shard or a ghost. Shares an optional cap with Proximity Crystal Mine.",
+    ["22 伤，不随时间消失，随世界存档；受到攻击或被晶雷引爆令启动时爆炸。施法者离线、离开分片或变为幽灵时仍可被攻击引爆，移动暂停。与近感晶雷共用可选数量上限。"]="22 damage; permanent and saved with the world. Detonates when attacked or activated by Detonate Crystals. Movement pauses while the caster is offline, on another shard or a ghost, but attacks can still detonate it. Shares an optional cap with Proximity Crystal Mine.",
     ["黏液弹"]="Slime Bolt",
     ["10 伤，普通敌减速 25% 持续 1.5 秒；同源刷新。"]="10 damage; slows normal enemies by 25% for 1.5 seconds. The same source refreshes the duration.",
     ["蓄势光球"]="Growing Orb",

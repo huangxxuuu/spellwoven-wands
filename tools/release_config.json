@@ -1,0 +1,12 @@
+{
+  "repository": "huangxxuuu/spellwoven-wands",
+  "branch": "main",
+  "export_directory": "dist/github-public",
+  "app_id": 322330,
+  "publishedfileid": "3834454416",
+  "title": "织法之杖",
+  "preview": "assets_src/mod_icon.png",
+  "description": "docs/Steam创意工坊介绍.txt",
+  "description_omit_headings": ["遇到 Bug 时，请这样取日志"],
+  "site_url": "https://huangxxuuu.github.io/spellwoven-wands/"
+}

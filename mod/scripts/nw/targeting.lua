@@ -57,7 +57,7 @@ function M.allowed(owner,e,flags)
     return owner.components.combat:CanTarget(e)
 end
 function M.damage(owner,e,amount,flags)
-    if M.egg(e) then e._nw_break(owner);return true end
+    if M.breakable(e) then e._nw_break(owner);return true end
     if not M.allowed(owner,e,flags) then return false end
     e.components.combat:GetAttacked(owner,amount*require("nw/spell_effects").wet_mult(e,flags))
     return true
@@ -65,7 +65,11 @@ end
 function M.egg(e)
     return e:IsValid() and e._nw_break and e._nw_stored and e._nw_stored.p.id=="payload_egg"
 end
+function M.breakable(e)
+    return e:IsValid() and e._nw_break and e._nw_stored
+        and (e._nw_stored.p.id=="payload_egg" or e._nw_stored.p.id=="sleep_crystal")
+end
 function M.hittable(owner,e,flags)
-    return M.egg(e) or M.allowed(owner,e,flags)
+    return M.breakable(e) or M.allowed(owner,e,flags)
 end
 return M

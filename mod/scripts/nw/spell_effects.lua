@@ -180,7 +180,7 @@ function M.native_hit(owner,e,p,loss,dx,dz)
     end
 end
 function M.direct(owner,e,p,dx,dz)
-    if Target.egg(e) then e._nw_break(owner);return end
+    if Target.breakable(e) then e._nw_break(owner);return end
     local loss=deal(owner,e,p.damage,p.flags,p.burn_damage and "fire" or p.freeze and "ice" or nil)
     if not e:IsValid() or e.components.health and e.components.health:IsDead() then return end
     local still_wet=p.burn_damage and valid_hit(owner,e,p.flags) and M.evaporate(e,p.damage*M.wet_mult(e,p.flags))
@@ -199,7 +199,7 @@ function M.blast(owner,x,z,p)
     local fx=M.fx("nw_blast_fx",x,z)
     if fx then fx:SetRadius(p.radius) end
     for _,e in ipairs(M.scan(x,z,p.radius,p.flags)) do
-        local egg=e:IsValid() and e._nw_stored and e._nw_stored.p.id=="payload_egg" and e._nw_break
+        local egg=Target.breakable(e)
         if egg and e:GetDistanceSqToPoint(x,0,z)<=p.radius*p.radius then
             e._nw_break(owner)
         elseif (Target.allowed(owner,e,p.flags) or Target.selected_object(owner,e,p.flags)) and not (p.no_structures and e:HasTag("structure")) and e:GetDistanceSqToPoint(x,0,z)<=p.radius*p.radius then

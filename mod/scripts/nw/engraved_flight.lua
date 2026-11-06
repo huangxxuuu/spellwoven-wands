@@ -20,7 +20,7 @@ function M.visual(inst,key)
     if key=="shieldofterror" or key=="lighter" then
         v.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
         v.AnimState:SetBank("nw_spell_world");v.AnimState:SetBuild("nw_spell_world")
-        v.AnimState:PlayAnimation(key.."_standing",true)
+        v.AnimState:PlayAnimation(key=="lighter" and "lighter_spin" or key.."_standing",true)
         local scale=key=="shieldofterror" and .75 or 1
         v.Transform:SetScale(scale,scale,scale)
         return
@@ -61,7 +61,7 @@ function M.launch(inst,s)
     if key=="lighter" then
         local flame=SpawnPrefab("lighterfire")
         flame.entity:SetParent(inst.entity)
-        flame.Transform:SetPosition(0,s.height+.08*require("nw/projectile_size").factor(s.p),0)
+        flame.Transform:SetPosition(0,(s.p.ballistic and 0 or s.height)+.08*require("nw/projectile_size").factor(s.p),0)
         inst._nw_flame=flame
         inst:ListenForEvent("onremove",function() if flame:IsValid() then flame:Remove() end end)
     end
@@ -119,7 +119,9 @@ function M.launch(inst,s)
             end
         end)
         inst:StartUpdatingComponent(c)
-        s.hits_left=math.huge
+        -- Thrown tools pass through targets; the lighter still terminates on a
+        -- hit unless a piercing modifier explicitly grants additional impacts.
+        if key~="lighter" then s.hits_left=math.huge end
         inst.Physics:SetRestitution(0)
         M.aim_ground(inst,s,12)
     elseif key=="orangestaff" then s.hits_left=nil;s.bounces=0 end

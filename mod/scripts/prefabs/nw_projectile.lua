@@ -39,6 +39,10 @@ local function fn(breakable)
     -- server-side swept tests, so remove automatic physics collision response.
     MakeInventoryPhysics(inst)
     RemovePhysicsColliders(inst)
+    -- An inventory item's restitution causes ground micro-bounces, followed
+    -- by ground-height corrections. Flying spells must slide continuously.
+    inst.Physics:SetFriction(0)
+    inst.Physics:SetRestitution(0)
     inst._nw_ground_mask=true
     -- Short-lived physical shots must keep moving even without nearby players
     -- (dedicated server/offscreen). Lifetime and the projectile budget bound it.

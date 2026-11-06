@@ -67,6 +67,14 @@ inst.Physics.GetMotorVel=function() return 22.5,0,0 end
 flight.sync_native(inst,{native=native,native_height=1.4})
 assert(native.angle==-73 and native.speed==22.5)
 assert(defs.edge_lighter.kind=="projectile" and cast("giant_shot","edge_lighter").fire_radius==3)
+assert(cast("edge_lighter").ballistic,"lighter must use the same aimed arc as other thrown weapons")
+local burst=0
+local fire=require("nw/engraved_fire")
+local original=fire.burst
+fire.burst=function(_,_,x,z,r) assert(x==4 and z==6 and r==3);burst=burst+1 end
+require("nw/engraved_impact").finish({p={engraving="lighter",ballistic=true,fire_radius=3}},4,6)
+assert(burst==1,"landing must burst instead of entering the native dumbbell landing path")
+fire.burst=original
 local _,section=acquisition.card_section("explosion")
 assert(section=="法术效果修正")
 -- Orbit motors must move the body continuously; only the initial placement may teleport.

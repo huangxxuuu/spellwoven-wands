@@ -31,6 +31,7 @@ local drawn={gust=true,slime=true,heal_bolt=true,heavy=true,land_hook=true,
 -- owns the world heading; a reversal never swaps entities or reflects the art.
 function M.attach(inst,id,turn)
     inst._nw_art_turn=turn or 0
+    inst._nw_dir_prefix=id=="farm_hoe" and "hoe_dir_" or nil
     local visual=inst._visual
     local anim=visual.AnimState
     anim:SetOrientation(ANIM_ORIENTATION.BillBoard)

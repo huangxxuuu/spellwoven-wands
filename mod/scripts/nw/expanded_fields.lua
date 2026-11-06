@@ -6,7 +6,7 @@ local M={crystal_limit=0}
 
 function M.can_break(inst,actor)
     if not inst._nw_break then return false end
-    if inst._nw_stored and inst._nw_stored.p.id=="payload_egg" then return true end
+    if inst._nw_stored and (inst._nw_stored.p.id=="payload_egg" or inst._nw_stored.p.id=="sleep_crystal") then return true end
     local owner=inst._nw_stored and Stored.owner(inst) or inst._nw_owner
     return actor==owner and actor~=nil
 end
@@ -29,13 +29,13 @@ function M.attackable(inst)
     inst.components.health:SetInvincible(true)
     inst:AddComponent("combat")
     local function struck(_,data)
-        if data and M.can_break(inst,data.attacker) then inst._nw_break(data.attacker) end
+        if M.can_break(inst,data and data.attacker) then inst._nw_break(data and data.attacker,true) end
     end
     inst:ListenForEvent("attacked",struck)
     inst:ListenForEvent("blocked",struck)
     inst:ListenForEvent("explosion",function(_,data)
-        if inst._nw_stored and inst._nw_stored.p.id=="payload_egg" and inst._nw_break then
-            inst._nw_break(data and data.explosive)
+        if inst._nw_stored and M.can_break(inst,data and data.explosive) then
+            inst._nw_break(data and data.explosive,true)
         end
     end)
 end
@@ -49,12 +49,18 @@ local limits=require("nw/spell_limits")
 local function stop(inst,time) inst:DoTaskInTime(time,inst.Remove) end
 
 local function crystal(inst,owner,p,x,z)
-    inst._nw_break=function()
+    inst._nw_break=function(triggerer,attacked)
         if inst._nw_spent then return end
         local owner=Stored.owner(inst)
+        local x,_,z=inst.Transform:GetWorldPosition()
+        -- An unavailable placer only pauses autonomous/command activation.
+        -- A physical attack can still detonate a dormant crystal.
+        if not owner and p.id=="sleep_crystal" and (triggerer or attacked) then
+            local caster=require("nw/payload_caster")
+            owner=caster.resolve(triggerer) or caster.neutral(x,z)
+        end
         if not owner then return end
         inst._nw_spent=true
-        local x,_,z=inst.Transform:GetWorldPosition()
         Effects.blast(owner,x,z,p);inst:Remove()
     end
     if p.id=="crystal_mine" then

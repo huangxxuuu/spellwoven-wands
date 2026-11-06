@@ -21,7 +21,7 @@ function M.safe_move(e,dx,dz,distance)
 end
 
 function M.electric(owner,e,x,z,damage)
-    if Target.egg(e) then e._nw_break(owner);return end
+    if Target.breakable(e) then e._nw_break(owner);return end
     local tx,_,tz=e.Transform:GetWorldPosition()
     local fx=Effects.fx("nw_arc_fx",x,z,.65)
     if fx then

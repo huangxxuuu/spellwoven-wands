@@ -5,7 +5,7 @@ return {
     {id="spore_ball",name=T("蘑菇孢球"),kind="projectile",mana=14,tier=2,effect=T("16 伤，存活 2 秒；可击破，碎裂仅判一次。"),damage=16,speed=3,lifetime=2,halfangle=3,breakable=true},
     {id="flint_lance",name=T("燧晶投枪"),kind="projectile",mana=19,tier=2,effect=T("20 伤，先天最多穿 2 敌，可跨越海岸。"),damage=20,speed=24,lifetime=.95,halfangle=1,innate={pierce={hits=2}}},
     {id="crystal_mine",aim_range=8,name=T("近感晶雷"),kind="field",mana=18,tier=2,effect=T("26 伤，0.7 秒武装，半径 1.6。不随时间消失，随世界存档；施法者离线、离开分片或变为幽灵时暂停触发。与休眠晶体共用可选数量上限。"),damage=26,radius=1.6},
-    {id="sleep_crystal",aim_range=8,name=T("休眠晶体"),kind="field",mana=12,tier=2,effect=T("22 伤，不随时间消失，随世界存档；只有本人击碎或晶雷引爆令可启动。施法者离线、离开分片或变为幽灵时保留并暂停。与近感晶雷共用可选数量上限。"),damage=22,radius=1.8,breakable=true},
+    {id="sleep_crystal",aim_range=8,name=T("休眠晶体"),kind="field",mana=12,tier=2,effect=T("22 伤，不随时间消失，随世界存档；受到攻击或被晶雷引爆令启动时爆炸。施法者离线、离开分片或变为幽灵时仍可被攻击引爆，移动暂停。与近感晶雷共用可选数量上限。"),damage=22,radius=1.8,breakable=true},
     {id="slime",name=T("黏液弹"),kind="projectile",mana=12,tier=1,effect=T("10 伤，普通敌减速 25% 持续 1.5 秒；同源刷新。"),damage=10,speed=12,lifetime=1.2,halfangle=3},
     {id="grow_orb",name=T("蓄势光球"),kind="projectile",mana=18,tier=2,effect=T("12→26 伤，飞满 1 秒封顶，同时略增半径。"),damage=12,speed=14,lifetime=1.4,halfangle=4},
     {id="heal_bolt",name=T("愈合弹"),kind="projectile",mana=16,tier=1,effect=T("给命中目标回复 8 点生命。默认按普通弹体选取目标，可用目标卡指定友方。"),damage=0,speed=18,lifetime=1.1,halfangle=2,heal=8},
