@@ -1,0 +1,4 @@
+Tool: built-in image_gen
+Transparent background: true
+
+Create ONE isolated 2D game projectile sprite for a Don't Starve Together spell mod. True transparent background. A magical orange-gem-inspired ENERGY ORB, NOT a physical gemstone, NOT a faceted diamond or item icon. Hand-painted storybook / ink-brush game art, warm amber-orange swirling magical light, bright pale yellow luminous round core on the RIGHT, clear spherical volume from shading, a short curling tapered orange gold magical vapor tail pointing LEFT. Strong readable silhouette at 100 pixels wide, restrained glow with translucent edges, no border, no card frame, no text, no environment, no ground or cast shadow. Side view with the orb fully facing the viewer, horizontal +X flight. Center the complete sprite with generous transparent margin, width about twice its height.

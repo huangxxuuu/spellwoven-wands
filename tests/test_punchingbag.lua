@@ -1,0 +1,11 @@
+local Bag=require("nw/punchingbag")
+local s={}
+assert(Bag.accumulate(s,-18.5,0) and s.total==18.5)
+assert(Bag.accumulate(s,-18.5,.999) and s.total==37)
+assert(not Bag.accumulate(s,100,.9995) and s.total==37 and s.last_hit==.999)
+assert(not Bag.accumulate(s,0,1.2) and s.last_hit==.999)
+assert(Bag.accumulate(s,-7,1.999) and s.total==7,"exactly one second resets")
+assert(Bag.accumulate(s,-10000,2) and s.total==10007,"must not saturate at four digits")
+assert(Bag.accumulate(s,-4,4) and s.total==4)
+assert(not Bag.accumulate(s,-math.huge,4.5) and not Bag.accumulate(s,0/0,4.5))
+print("punching bag: fractional sums, continuous hits, exact one-second gap, healing/zero ignored and >9999")

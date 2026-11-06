@@ -1,0 +1,162 @@
+{
+  "style": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: ",
+  "spark": "Use case: stylized-concept. Asset type: single transparent inventory spell icon for a gothic hand-drawn survival game mod named Weave Wands. Subject: SPARK BOLT, a pale gold and ivory glowing seed of magical fire with three short ragged comet streaks, pointing diagonally upper-right. Style bible: original crooked storybook ink illustration, chunky near-black contour, sparse dry-brush hatching, flat muted mineral colors, one luminous accent, handmade imperfect silhouette. Legible at 64x64 pixels. One central silhouette occupies 75 percent of square canvas, generous clean transparent padding, no background, no square border, no card frame, no words, no lettering, no numbers, no watermark, no photorealism, no 3D, no UI mockup, no geometric placeholder. Thick outlines must remain visible at small scale. 1024x1024 composition. This is a production sprite, isolated on genuine alpha transparency.",
+  "assets": [
+    {
+      "id": "frost",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: FROST BOLT: a jagged icy-blue shard with curling frost feathers and a white crystalline heart. Distinct frozen spear silhouette."
+    },
+    {
+      "id": "speed_up",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: SPEED UP: a teal winged dart racing through two curved wind ribbons; forward speed, feather shapes."
+    },
+    {
+      "id": "speed_down",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: SLOW DOWN: an ochre snail shell curled around a tiny stopped blue dart, a heavy hanging tassel; deliberate slow motion."
+    },
+    {
+      "id": "sine",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: SINE TRAJECTORY: one turquoise serpent-like magical streak winding in two waves around a small ivory traveling seed."
+    },
+    {
+      "id": "spiral",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: SPIRAL TRAJECTORY: a violet curling nautilus shell of energy, clearly spiraling inward toward a white magical seed."
+    },
+    {
+      "id": "homing",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: HOMING: a red watchful eye above a bent hooked golden arrow pursuing a small dark creature-shaped silhouette; compact emblem."
+    },
+    {
+      "id": "bounce",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: BOUNCE: an ivory magic pebble ricocheting off a cracked moss-green stone slab, two bent lime streaks indicate the rebound."
+    },
+    {
+      "id": "pierce",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: PIERCING: a sharp ivory thorn spearing through two torn crimson leather scraps, the thorn protrudes beyond both."
+    },
+    {
+      "id": "explosion",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: EXPLOSION: a ragged orange and ivory blast flower from a cracked black alchemy bomb; thick smoky ink curls."
+    },
+    {
+      "id": "chain",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: CHAIN LIGHTNING: three small blue sparks connected by a broken jagged cyan lightning chain, branching into a compact zigzag."
+    },
+    {
+      "id": "knockback",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: KNOCKBACK: an ivory spectral fist pushing a small brown pebble away, burnt-orange pressure curls behind the fist."
+    },
+    {
+      "id": "leech",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: LIFE DRAIN: a crimson droplet held in a curling thorny vine shaped like a grasping claw, a small ivory glint."
+    },
+    {
+      "id": "light",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: LIGHT: a crooked brass lantern holding a soft pale-gold star, two delicate glowing rays, hanging loop, no background."
+    },
+    {
+      "id": "double",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: DOUBLE CAST: exactly two small pale-gold magic comets emerge from one forked violet twig gate, obvious paired silhouette."
+    },
+    {
+      "id": "triple",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: TRIPLE CAST: exactly three pale-gold magic comets emerge from a three-pronged violet twig gate, obvious triple silhouette."
+    },
+    {
+      "id": "trigger_hit",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: HIT TRIGGER: one cyan magical seed strikes a cracked little stone, and a smaller golden spark springs from the contact point."
+    },
+    {
+      "id": "trigger_timer",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: TIMER TRIGGER: a crooked tiny brass hourglass wrapped around a violet magic seed, a spark emerging from the lower glass bulb."
+    },
+    {
+      "id": "damage_up",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: DAMAGE UP: a crimson jagged dagger surrounded by three ivory thorn spikes, forceful aggressive silhouette."
+    },
+    {
+      "id": "precision",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: PRECISION: a single ivory needle arrow passing neatly through the pupil of a small teal owl-eye emblem."
+    },
+    {
+      "id": "weak_homing",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: WEAK HOMING: a sleepy small amber eye guiding one gently bent blue feather-shaped dart, softer than the red homing eye."
+    },
+    {
+      "id": "head_crystal",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: MODULAR WAND HEAD only, NOT whole staff: upright asymmetrical icy teal crystal cradled by two hooked blackwood twigs with brass binding at bottom. Frontal view, crystal tip at top, straight bottom joining neck centered. No handle or tail. Slightly elongated vertical silhouette."
+    },
+    {
+      "id": "head_fork",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: MODULAR WAND HEAD only, NOT whole staff: upright forked antler-like blackwood crown, two rugged ivory-tipped prongs, ember-orange inlay, no crystal. Frontal view, branches at top, straight bottom joining neck centered. No handle or tail."
+    },
+    {
+      "id": "body_short",
+      "prompt": "Stylized-concept wooden shaft sprite atlas, short column: russet hazel with one pronounced knot. Plain blunt centered sockets, vertical whittled solid wood, broad inked grain lines at 36 px. No wraps, metal, ornaments or gems. Transparent background."
+    },
+    {
+      "id": "body_medium",
+      "prompt": "Stylized-concept wooden shaft sprite atlas, medium column: honey ash with a sweeping split in the grain. Plain blunt centered sockets, vertical whittled solid wood, broad inked grain lines at 36 px. No wraps, metal, ornaments or gems. Transparent background."
+    },
+    {
+      "id": "body_long",
+      "prompt": "Stylized-concept wooden shaft sprite atlas, long column: umber oak with a healed branch scar and longitudinal grooves. Plain blunt centered sockets, vertical whittled solid wood, broad inked grain lines at 36 px. No wraps, metal, ornaments or gems. Transparent background."
+    },
+    {
+      "id": "tail_purple",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: MODULAR WAND POMMEL only: dark violet amethyst teardrop held by a little ragged leather knot and two dangling black feathers, straight small joining neck centered at TOP, downward pointing ornament at bottom. Upright frontal view, no staff shaft."
+    },
+    {
+      "id": "tail_gold",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: MODULAR WAND POMMEL only: a weathered brass acorn-shaped counterweight enclosing amber sap, two little curled copper leaves beneath, straight joining neck centered at TOP. Upright frontal view, no shaft."
+    },
+    {
+      "id": "workbench",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: WORLD OBJECT SPRITE: one squat crooked blackwood arcane workbench in three-quarter frontal view, sturdy splayed legs, a teal crystal in brass claw on the tabletop, open battered spellbook, a tiny hanging purple charm. Whole piece visible, readable silhouette. No ground plane, no surrounding scene, no cast ground shadow."
+    },
+    {
+      "id": "target_dummy",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: WORLD OBJECT SPRITE: one straw-filled burlap training dummy on a crooked wooden stake and tripod base, stitched patchwork sack head, mismatched wooden shoulders, a hand-painted faded red bullseye on its chest. Gothic handmade charm, whole object visible. No scene or ground plane."
+    },
+    {
+      "id": "wand_icon",
+      "prompt": "Use case: stylized-concept. Single production inventory spell sprite, square composition, genuine transparent alpha. Original gothic survival storybook illustration: bold crooked near-black ink contours, dry-brush hatching, muted mineral colors and ivory highlights, one clear luminous accent, deliberately handmade imperfect silhouette. Cohesive with an ink-drawn magic grimoire. Very readable at 64x64. Center the ONE requested emblem with 15 percent clear padding, no background, no frame, no text, no letters, no numbers, no watermarks, not a 3D render, not simple geometric placeholder. Subject: INVENTORY WAND: one complete short crooked blackwood magic wand diagonally lower-left to upper-right, teal crystal head held by hooked twigs, frayed red leather grip, brass collars, purple feathered pommel. Clear silhouette, one object."
+    },
+    {
+      "id": "mana_reduce",
+      "prompt": "One isolated inventory spell icon for a hand-inked gothic wilderness survival game. A tactile, carved magical trinket, chunky uneven near-black outlines, two-tone flat muted ochre parchment, a selective jewel accent, strong simple silhouette and readable at 64 pixels. Centered square canvas, genuine transparent background, margins, no letters, no numerals, no text, no border or cards, no glow outside silhouette. A squat turquoise teardrop-shaped mana flask with one curling antique brass siphon returning a big blue drop to its mouth."
+    },
+    {
+      "id": "recharge_down",
+      "prompt": "One isolated inventory spell icon for a hand-inked gothic wilderness survival game. A tactile, carved magical trinket, chunky uneven near-black outlines, two-tone flat muted ochre parchment, a selective jewel accent, strong simple silhouette and readable at 64 pixels. Centered square canvas, genuine transparent background, margins, no letters, no numerals, no text, no border or cards, no glow outside silhouette. A tipped over compact brass hourglass, ochre sand pouring through and one forward-swept red feather attached to its side."
+    },
+    {
+      "id": "repeat_2",
+      "prompt": "One isolated inventory spell icon for a hand-inked gothic wilderness survival game. A tactile, carved magical trinket, chunky uneven near-black outlines, two-tone flat muted ochre parchment, a selective jewel accent, strong simple silhouette and readable at 64 pixels. Centered square canvas, genuine transparent background, margins, no letters, no numerals, no text, no border or cards, no glow outside silhouette. A fanned pair of exactly two parallel long violet feather-shaped spell echoes joined at the base by an antique brass clasp. Visible distinct paired prongs, no third prong."
+    },
+    {
+      "id": "repeat_3",
+      "prompt": "One isolated inventory spell icon for a hand-inked gothic wilderness survival game. A tactile, carved magical trinket, chunky uneven near-black outlines, two-tone flat muted ochre parchment, a selective jewel accent, strong simple silhouette and readable at 64 pixels. Centered square canvas, genuine transparent background, margins, no letters, no numerals, no text, no border or cards, no glow outside silhouette. An eerie antique brass fan holding exactly three distinct turquoise green feather-shaped spell echoes in a trident silhouette. All three clearly visible."
+    },
+    {
+      "id": "phase_wall",
+      "prompt": "Single inventory icon, transparent cutout, for hand-inked gothic wilderness survival magic. A ghost-white and teal spectral arrow threading sideways straight through an intact miniature wall made of three staggered ochre stone blocks: visible tail entering at left, bright arrowhead emerging at right, ghost shimmer at exit, no explosion. Bold crooked black ink contours, sparse dry brush hatching, pale gold highlights. Designed to read at 64 by 64 pixels. Centered square with transparent margins, no card frame, no lettering, no numbers."
+    },
+    {
+      "id": "blast_fx",
+      "prompt": "Production combat VFX sprite for a hand-inked gothic wilderness survival game. One overhead perfectly centered magical impact explosion viewed straight down, spreading equally in every direction. Bright ivory-hot tiny epicenter exactly in canvas center, radial golden flame teeth and russet-orange inked streaks and a few curling coal smoke tufts. Rounded irregular outer shockwave silhouette, airy transparent gaps between the rays. No bomb, grenade, projectile, ground, cast shadow, letters, border or UI. Chunky black ink outlines like a woodcut, original hand-drawn mineral pigment palette, legible in motion. Square composition, true transparent background around the entire blast, 6 percent margin."
+    },
+    {
+      "id": "arc_fragment",
+      "prompt": "Game combat VFX sprite, single horizontal segmented chain-lightning TILE. Thin jagged blue-white ink lightning made of three separate crooked streaks with small natural transparent breaks plus one tiny offshoot. Overall left and right tips centered on same horizontal axis. Irregular hand-drawn tapered forks, warm ivory core, electric cyan outline, near-black ink accent matching Don't Starve gothic hand ink. Asymmetric and airy, gaps are organic; not a solid bar, no text, no background, no glow cloud, isolated on real transparency, a wide strip at least 4:1 width to height centered in canvas."
+    },
+    {
+      "id": "ornaments",
+      "prompt": "3×2 transparent sprite atlas. Top row wand heads with bottom sockets: ruby spearpoint, twin sapphire, three-pronged jade crown. Bottom row pommels with top collars: red teardrop, round moonstone, diamond jade cage. Upright front view, no shafts, shadows, labels or dividers. Crooked near-black ink, aged brass and chunky facets readable at small sizes."
+    },
+    {
+      "id": "plain_heads",
+      "prompt": "Create a production GAME SPRITE ATLAS of three separate small no-gem wand head ornaments. Transparent background. One horizontal row of three equal-sized cells, with large transparent gutters. Three isolated objects centered on x=1/6,1/2,5/6 of the canvas, aligned to the same baseline, equal height. Hand-inked dark survival storybook style, heavily outlined, dry ink, matte worn wood, antique brass ferrule, bold readable at 32px. FRONT ORTHOGRAPHIC view, vertical. Every head ends at the bottom in a short centered brass collar that connects to a wand shaft. Do NOT draw any shaft. Left ONE single tall slightly curved carved wood spike, right up to its only point. Middle TWO distinct widely separated upward prongs, like a fork with an empty open notch. Right THREE widely spaced unbranched prongs like a trident, center spike taller. Count the sharp endpoints 1, 2, 3 from left to right. No extra barbs or thorn branches. Each wood spike has a generous area of MATTE crimson RED lacquer with curved woodgrain/brush hatching; collar is neutral aged brass. Absolutely NO gemstones, no crystal facets, no cut diamonds, no orbs, no bright highlights that could look crystalline. Tips look like painted wood not red crystals. Minimize embellishment. No text or shadows. Keep outlines separate with at least 10% cell margins."
+    }
+  ]
+}

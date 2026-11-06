@@ -1,0 +1,8 @@
+local G=require("nw/geometry")
+assert(math.abs(G.hit(0,0,10,0,5,0,1)-.4)<1e-9)
+assert(G.hit(0,0,10,0,5,2,1)==nil)
+assert(G.hit(0,0,0,0,0,0,1)==0)
+assert(G.hit(0,0,0,0,5,0,1)==nil)
+assert(G.hit(0,0,1,0,5,0,1)==nil)
+assert(G.hit(0,0,10,0,5,1,1)==.5)
+print("geometry: fast sweep, miss, tangent, zero motion, beyond endpoint")

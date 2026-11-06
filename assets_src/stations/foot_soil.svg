@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 20" width="160" height="40">
+  <!-- Low chips pushed out from beneath the foot, with ink catching the lower edges. -->
+  <g stroke="#241e1a" stroke-width="1.3" stroke-linejoin="round">
+    <path fill="#655444" d="m9 12 6-4 6 1 5-4 6 2 6-1 3 4 7-1 7-3 5 2 7 1 3 3-10 2-9-1-10 2-12-2-8 1z"/>
+    <path fill="#9b8265" d="m17 10 6-3 4 2-3 2zM45 13l7-3 6 1-4 2z"/>
+    <path fill="#806d55" d="m2 15 5-2 4 1-3 2zm65 0 4-2 5 1-3 2z"/>
+  </g>
+  <path fill="#29231c" d="m12 16 11-1-4 2zm16-3 7-1 4 1-5 1zm31 3 8-1-2 1.5z"/>
+</svg>

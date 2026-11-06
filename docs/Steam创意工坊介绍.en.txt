@@ -1,0 +1,61 @@
+[h1]Spellwoven Wands[/h1]
+Inspired by [i]Noita[/i], Spellwoven Wands lets you build spells by arranging cards inside a wand. This mod was developed entirely with Codex. Feedback and bug reports are welcome.
+
+Put Homing before Spark Bolt and a straight shot starts steering toward enemies. Place Explosion before a projectile to cause a blast on every hit, including piercing hits. Blasts can hurt allies and ignore target-selection modifiers. You can also thrust a spear through your wand, plant a Pod Sentry that fires at enemies, or place a Vitality Ring to heal injured teammates.
+
+[h2]Language and wand names[/h2]
+Choose [b]Auto / 中文 / English[/b] in the mod settings. Auto follows your local game language: Chinese for Chinese locales, English otherwise. Each player can choose independently; rejoin the world after changing the setting. Cards, panels, crafting categories and their text icons all follow your choice. The field guide has its own language selector.
+
+Use a Feather Pencil on a wand to rename it. Confirming a different, nonempty name uses one pencil; canceling or keeping the same name costs nothing. Player-written names remain exactly as written in both languages.
+
+[h2]Your first wand[/h2]
+This is a server mod: the host enables it for the world, and joining players also need it installed. [b]Starting wand[/b] is on by default. On your first visit to a world, you receive a two-slot Starter Wand with Spark Bolt installed. Equip it and right-click to try it. If this option is disabled, or you want another wand:
+[olist]
+[*]At an [b]Alchemy Engine[/b], build an [b]Arcane Workbench[/b] with 2 Boards, 2 Cut Stone, 4 Gold Nuggets and 2 Purple Gems.
+[*]At the workbench, grind 1 Red, Blue or Purple Gem with 1 Gold Nugget into 4 Arcane Dust. Use that dust, 4 Twigs and 2 Gold Nuggets to craft a [b]Starter Wand[/b]: two slots, no shuffle, and one installed Spark Bolt.
+[*]Equip the wand and [b]right-click open ground[/b]. Click once to fire, or stand still and hold the button to keep casting. Mana regenerates; successful casts also cost a little sanity. Spell cards are reusable.
+[*]Bring the equipped wand back to the workbench to change cards. With an empty cursor, click a slot above the equipment bar to remove its card. Pick up a card from inventory and click or drag it into a slot to install it. You can view slots anywhere, but editing requires the workbench.
+[/olist]
+
+Try your first combination: at the workbench, 1 Papyrus, 2 Charcoal and 2 Dust make two Blank Spell Cards. Use one blank with 2 Hound's Teeth and 1 Nightmare Fuel to inscribe Damage Plus. Arrange [b]Damage Plus → Spark Bolt[/b] to add 10 damage to the spark. When comparing new wands, hover to check capacity, mana, cast delay and shuffle. Choose no shuffle for combinations that need a particular order.
+
+[h2]Tools, traps and moving stars[/h2]
+Engravings are useful outside combat too. Cast Fishing Rod at a pond to bring a catch to the bank nearest you. Send a spinning Shadow Reaper through plants to harvest along its path, with nearby drops going to your inventory first. Lob Chum into the ocean to attract fish or a Garden Hoe onto farmland to till it. In combat, throw a Shadow Boomerang toward enemies or orbit a Shield of Terror to intercept attacks.
+
+Proximity Crystal Mines, Dormant Crystals and Hollow Payload Eggs do not expire and persist in world saves. Mines wait for enemies; Dormant Crystals can be detonated remotely. A valid attacker who breaks an egg becomes the caster of its stored payload, even if the placer is offline. Moving fields pause while their caster is offline, on another shard or a ghost, and can resume on return. Both crystal types share an optional host-configured count limit. Gusts push eggs without releasing their payloads and cannot push crystals.
+
+Star Caller's Staff and Moon Caller's Staff engravings create native Dwarf Stars and Polar Lights at the release point. Their minimum cast cooldowns are 4 minutes and 1 minute respectively. Add movement and homing modifiers to move them toward selected targets. Speed Up supplies an initial push; Homing and Short-Range Homing can start stationary entities moving, while Rotate Toward Enemies only changes direction. Moving entities share the normal projectile trajectory system. They stop and remain on collision, with piercing and bounce modifiers able to change that outcome. Permanent entities have drag; stars retain their own lifetime.
+
+Giant Shot enlarges ranged and static projectiles, explosions and melee attacks, including their effective areas, without increasing damage. Its multipliers add: one card ×2.5, two ×5, three ×7.5. It also enlarges a star's light, temperature and sanity radii.
+
+Lifetime Inscription extends flight with no upper lifetime cap. Shorter Lifetime halves it; multiple cards multiply. Use these to control travel distance or orbit duration. Projectile travel and payload nesting are unlimited by default. Optional travel limits, nesting limits and extra entity cleanup can be enabled in settings; they are off by default. Stars and permanent traps keep their own persistence rules.
+
+When a collision or timer carrier expires normally without ever releasing its payload, it releases once at its final position. It does not release again on expiry after a successful trigger. Piercing projectiles can still release collision payloads on multiple valid hits. Shorter Lifetime lets you bring the fallback release point closer.
+
+[h2]Where to find spell cards[/h2]
+[list]
+[*][b]Arcane Workbench[/b] — Combine blanks with the listed materials to inscribe projectiles, trajectory modifiers, multicasts, notes and more.
+[*][b]Weapon Engraving Table[/b] — Build it near an Alchemy Engine, then bring blank cards and the specified weapons, tools and materials. For example, two Spears, one Nightmare Fuel and one blank make Spear Thrust. Install finished cards at the Arcane Workbench.
+[*][b]Hunting[/b] — Creatures may drop completed cards. Regular card pools relate to their natural loot: spiders may drop Double Spell, and adult MacTusks may drop Speed Up. Some creatures and bosses have additional signature drops.
+[*][b]Boss wands[/b] — Certain bosses drop random wands with cards installed. Use them as they are, or remove their cards at the workbench for your own builds. Some spells are available only as loot.
+[/list]
+
+Use one card on another dropped card to collect them into a pile of up to 25 cards. To recover dust, drop unwanted cards or wands beside an Arcane Recycler and right-click it to begin. It processes nearby items, so put cards you want to keep in your inventory first.
+
+[h2]Test your spells and earn a first-boss bonus[/h2]
+The Spell Test Punching Bag keeps the native appearance, equipment and hit animations, with a spark above its head. It totals damage when successive hits are less than 1 second apart; a gap of at least 1 second starts a new count on the next hit. Totals above 9999 remain fully visible. Craft it at a Science Machine with 3 Cut Grass and 1 Board. Each player within 12 units of their first eligible boss victory adds one extra collision card drop: 5% Collision Trigger Modifier, otherwise an equal choice among six basic collision variants. No last hit is required. This is separate from normal card drops, and the receipt persists with the player through saves and character changes.
+
+[h2]Reporting bugs[/h2]
+Copy logs [b]after the problem happens and before restarting the game[/b]. Include the log text or a file link, mod version, whether you hosted or joined, whether you were on the surface or in caves, and the actions leading to the problem. For casting issues, list cards from left to right. For language issues, include your game language and mod language setting.
+[list]
+[*][b]Your client log[/b] — On Windows, open Documents\Klei\DoNotStarveTogether and copy client_log.txt. On macOS, use ~/Documents/Klei/DoNotStarveTogether; on Linux, ~/.klei/DoNotStarveTogether.
+[*][b]World freezes, disconnections or server errors[/b] — Ask the host for server_log.txt as well. For local worlds, look under the numeric account folder, then Cluster_number, then Master (surface) or Caves. Include both shard logs for cave-transition issues and label them.
+[*][b]Cloud saves or dedicated servers[/b] — Cloud saves may be under CloudSaves in the numeric account folder; extract server_log.txt from Master.zip or Caves.zip. Dedicated-server admins should use the actual configured cluster save directory and the affected shard's log.
+[/list]
+[url=https://support.klei.com/hc/en-us/articles/360029881191-Logs-and-Useful-Information-for-Bug-Reports-for-Don-t-Starve-Together]Klei: Logs and useful information for bug reports[/url]
+
+[h2]Short descriptions and Gunpowder[/h2]
+In-game cards and the field guide show basic stats such as damage, mana cost, cast delay and recharge, alongside concise descriptions. Detailed data expands the technical explanation. Native mouse-action hints remain after the item name. Craft Gunpowder at the Arcane Workbench to place native burning gunpowder; extinguishing it makes it disappear, and it cannot be picked up. Each Scatter Shot projectile independently releases its collision or timed payload. Weapons, creatures, area damage and explosions can break Hollow Payload Eggs. Ground eggs and crystals stop at shores and boat edges, and sink if spawned on open water.
+
+[h2]Random wands[/h2]
+Wands no longer use stat points. Each rarity defines a range and typical value for every stat, while six archetypes add strengths and moderate weaknesses. Common/Fine/Rare/Epic wands have 3–7/4–9/6–11/8–12 slots. New crafts and drops use these rules; existing wands retain their stats.

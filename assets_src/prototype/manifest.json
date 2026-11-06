@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "purpose": "diagnostic geometry, not final artwork",
+  "parts": {
+    "anchor": {
+      "symbol": "anchor",
+      "image": "anchor.png",
+      "size": [
+        4,
+        4
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head": {
+      "symbol": "head",
+      "image": "head.png",
+      "size": [
+        24,
+        28
+      ],
+      "center": [
+        0,
+        -12
+      ]
+    },
+    "head_crystal": {
+      "symbol": "head_crystal",
+      "image": "head_crystal.png",
+      "size": [
+        24,
+        28
+      ],
+      "center": [
+        0,
+        -12
+      ]
+    },
+    "head_fork": {
+      "symbol": "head_fork",
+      "image": "head_fork.png",
+      "size": [
+        28,
+        28
+      ],
+      "center": [
+        0,
+        -12
+      ]
+    },
+    "body": {
+      "symbol": "body",
+      "image": "body.png",
+      "size": [
+        12,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_short": {
+      "symbol": "body_short",
+      "image": "body_short.png",
+      "size": [
+        12,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_medium": {
+      "symbol": "body_medium",
+      "image": "body_medium.png",
+      "size": [
+        12,
+        80
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_long": {
+      "symbol": "body_long",
+      "image": "body_long.png",
+      "size": [
+        12,
+        112
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "tail": {
+      "symbol": "tail",
+      "image": "tail.png",
+      "size": [
+        16,
+        20
+      ],
+      "center": [
+        0,
+        8
+      ]
+    },
+    "tail_purple": {
+      "symbol": "tail_purple",
+      "image": "tail_purple.png",
+      "size": [
+        16,
+        20
+      ],
+      "center": [
+        0,
+        8
+      ]
+    },
+    "tail_gold": {
+      "symbol": "tail_gold",
+      "image": "tail_gold.png",
+      "size": [
+        16,
+        20
+      ],
+      "center": [
+        0,
+        8
+      ]
+    }
+  },
+  "layouts": {
+    "short": {
+      "head": [
+        0,
+        -24
+      ],
+      "body": [
+        0,
+        0
+      ],
+      "tail": [
+        0,
+        24
+      ]
+    },
+    "medium": {
+      "head": [
+        0,
+        -38
+      ],
+      "body": [
+        0,
+        0
+      ],
+      "tail": [
+        0,
+        38
+      ]
+    },
+    "long": {
+      "head": [
+        0,
+        -54
+      ],
+      "body": [
+        0,
+        0
+      ],
+      "tail": [
+        0,
+        54
+      ]
+    }
+  }
+}

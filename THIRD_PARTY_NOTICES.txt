@@ -1,0 +1,34 @@
+Spellwoven Wands / 织法之杖
+
+The MIT license in LICENSE covers the project's original source code and
+documentation contributed by yuejian and contributors. It does not relicense
+third-party game assets, trademarks, or bundled/extracted reference material.
+
+Don't Starve Together
+--------------------
+Don't Starve Together, its original item artwork, animations, sounds, character
+and item designs, and other game assets belong to Klei Entertainment and their
+respective rights holders. This project is a community mod, not an official
+Klei product. A separately obtained copy of the game is required to play it.
+
+The mod uses native game prefabs, animation banks and sounds at runtime.
+Weapon engraving icons and some item cutouts are derived from native game
+artwork, including assets_src/art_v1/originals/edge_*.png and corresponding
+compiled icons/atlases under mod/ and site/dist/assets/. Mixed compiled atlases
+may include both original project artwork and native game-derived images.
+Do not treat those third-party images or mixed atlases as MIT-licensed artwork.
+
+Noita
+-----
+Noita is a game by Nolla Games and is credited as the inspiration for the
+wand/card composition mechanics. No affiliation or endorsement is implied.
+Downloaded Noita reference collections and original game scripts are excluded
+from the public source snapshot.
+
+Project artwork and dependencies
+--------------------------------
+Original project artwork is provided with the mod; the MIT code license is not
+a blanket license for all image, animation, font or audio files in this tree.
+Contact the author before reusing artwork independently of this project.
+Python packages, GitHub Actions and other external development tools retain
+their own licenses and are installed separately rather than vendored here.

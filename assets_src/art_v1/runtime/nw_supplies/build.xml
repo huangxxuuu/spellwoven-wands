@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Build name="nw_supplies"><Symbol name="nw_beast_core"><Frame framenum="0" duration="1" image="nw_beast_core" x="0" y="0" w="42" h="42" /></Symbol><Symbol name="nw_blank"><Frame framenum="0" duration="1" image="nw_blank" x="0" y="0" w="42" h="42" /></Symbol><Symbol name="nw_dust"><Frame framenum="0" duration="1" image="nw_dust" x="0" y="-60.0" w="128" h="128" /></Symbol><Symbol name="nw_overlord_core"><Frame framenum="0" duration="1" image="nw_overlord_core" x="0" y="0" w="42" h="42" /></Symbol></Build>

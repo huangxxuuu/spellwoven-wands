@@ -1,0 +1,858 @@
+{
+  "version": 1,
+  "purpose": "generated hand-inked art, compiled at game sizes",
+  "inventory_pixels": [
+    64,
+    64
+  ],
+  "parts": {
+    "anchor": {
+      "pixels": [
+        4,
+        4
+      ],
+      "world_size": [
+        2,
+        2
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "contact_shadow": {
+      "pixels": [
+        76,
+        24
+      ],
+      "world_size": [
+        38,
+        12
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_1_red": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_1_blue": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_1_green": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_1_red": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_1_blue": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_1_green": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "tail_drop_red": {
+      "pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "tail_drop_blue": {
+      "pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "tail_drop_green": {
+      "pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_2_red": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_2_blue": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_2_green": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_2_red": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_2_blue": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_2_green": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "tail_round_red": {
+      "pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "tail_round_blue": {
+      "pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "tail_round_green": {
+      "pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_3_red": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_3_blue": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_3_green": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_3_red": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_3_blue": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_3_green": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "tail_diamond_red": {
+      "pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "tail_diamond_blue": {
+      "pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "tail_diamond_green": {
+      "pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_01_short": {
+      "pixels": [
+        72,
+        48
+      ],
+      "world_size": [
+        36,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_01_medium": {
+      "pixels": [
+        72,
+        104
+      ],
+      "world_size": [
+        36,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_01_long": {
+      "pixels": [
+        72,
+        168
+      ],
+      "world_size": [
+        36,
+        84
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_02_short": {
+      "pixels": [
+        72,
+        48
+      ],
+      "world_size": [
+        36,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_02_medium": {
+      "pixels": [
+        72,
+        104
+      ],
+      "world_size": [
+        36,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_02_long": {
+      "pixels": [
+        72,
+        168
+      ],
+      "world_size": [
+        36,
+        84
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_03_short": {
+      "pixels": [
+        72,
+        48
+      ],
+      "world_size": [
+        36,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_03_medium": {
+      "pixels": [
+        72,
+        104
+      ],
+      "world_size": [
+        36,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_03_long": {
+      "pixels": [
+        72,
+        168
+      ],
+      "world_size": [
+        36,
+        84
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_04_short": {
+      "pixels": [
+        72,
+        48
+      ],
+      "world_size": [
+        36,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_04_medium": {
+      "pixels": [
+        72,
+        104
+      ],
+      "world_size": [
+        36,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_04_long": {
+      "pixels": [
+        72,
+        168
+      ],
+      "world_size": [
+        36,
+        84
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_05_short": {
+      "pixels": [
+        72,
+        48
+      ],
+      "world_size": [
+        36,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_05_medium": {
+      "pixels": [
+        72,
+        104
+      ],
+      "world_size": [
+        36,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_05_long": {
+      "pixels": [
+        72,
+        168
+      ],
+      "world_size": [
+        36,
+        84
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_06_short": {
+      "pixels": [
+        72,
+        48
+      ],
+      "world_size": [
+        36,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_06_medium": {
+      "pixels": [
+        72,
+        104
+      ],
+      "world_size": [
+        36,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_06_long": {
+      "pixels": [
+        72,
+        168
+      ],
+      "world_size": [
+        36,
+        84
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_07_short": {
+      "pixels": [
+        72,
+        48
+      ],
+      "world_size": [
+        36,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_07_medium": {
+      "pixels": [
+        72,
+        104
+      ],
+      "world_size": [
+        36,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_07_long": {
+      "pixels": [
+        72,
+        168
+      ],
+      "world_size": [
+        36,
+        84
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_08_short": {
+      "pixels": [
+        72,
+        48
+      ],
+      "world_size": [
+        36,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_08_medium": {
+      "pixels": [
+        72,
+        104
+      ],
+      "world_size": [
+        36,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_08_long": {
+      "pixels": [
+        72,
+        168
+      ],
+      "world_size": [
+        36,
+        84
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_09_short": {
+      "pixels": [
+        72,
+        48
+      ],
+      "world_size": [
+        36,
+        24
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_09_medium": {
+      "pixels": [
+        72,
+        104
+      ],
+      "world_size": [
+        36,
+        52
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "body_09_long": {
+      "pixels": [
+        72,
+        168
+      ],
+      "world_size": [
+        36,
+        84
+      ],
+      "center": [
+        0,
+        0
+      ]
+    }
+  },
+  "layouts": {
+    "short": {
+      "head": [
+        0,
+        -44.0
+      ],
+      "body": [
+        0,
+        0
+      ],
+      "tail": [
+        0,
+        20.0
+      ]
+    },
+    "medium": {
+      "head": [
+        0,
+        -58.0
+      ],
+      "body": [
+        0,
+        0
+      ],
+      "tail": [
+        0,
+        34.0
+      ]
+    },
+    "long": {
+      "head": [
+        0,
+        -74.0
+      ],
+      "body": [
+        0,
+        0
+      ],
+      "tail": [
+        0,
+        50.0
+      ]
+    }
+  },
+  "workbench": {
+    "pixels": [
+      256,
+      256
+    ],
+    "world_size": [
+      256,
+      256
+    ]
+  },
+  "target_dummy": {
+    "pixels": [
+      128,
+      192
+    ],
+    "world_size": [
+      80,
+      120
+    ]
+  }
+}

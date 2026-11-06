@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+test_reports/*.log
+test_reports/noita_reference/
+/dist/
+/site/public/
+test_worlds/
+/backups/
+/research/
+/test_reports/*
+!/test_reports/*.md
+.env
+.env.*
+cluster_token.txt
+*.dmp
+.nw_public_export
