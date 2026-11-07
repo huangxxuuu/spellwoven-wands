@@ -25,7 +25,7 @@ SpawnPrefab=function(name)
         self.x,self.z,self.cleanup=x,z,cleanup
         self._shot={owner=caster,p=p,damage=p.damage,speed=p.speed,remaining=p.lifetime,
             x=x,z=z,dx=dx,dz=dz,time=0,age=0,travelled=0,hit={},
-            hits_left=p.flags.pierce_all and math.huge or nil}
+            hits_left=p.flags.pierce_all and math.huge or p.flags.pierce and p.flags.pierce.hits}
         require("nw/flight").reset(self._shot,dx,dz)
     end
     objects[#objects+1]=obj;return obj
@@ -49,6 +49,48 @@ local function target(x)
     function e:GetPhysicsRadius() return .5 end
     return e
 end
+-- Compile actual spark + pierce cards, then sweep eggs and a creature in one
+-- frame. Breaking props must consume the same hit budget as ordinary targets.
+local function egg(x,onbreak)
+    local e=target(x)
+    e.GUID=1000+x;e.valid=true;e.opened=0
+    e._nw_stored={p={id="payload_egg"}}
+    function e:IsValid() return self.valid end
+    function e:HasTag(tag) return tag=="nw_breakable" end
+    function e._nw_break(attacker)
+        assert(attacker==owner and e.valid)
+        e.opened=e.opened+1;e.valid=false
+        if onbreak then onbreak() end
+    end
+    return e
+end
+for _,mode in ipairs({"none","pierce","pierce_all"}) do
+    local e=mode=="none" and cast("spark") or cast(mode,"spark")
+    local a,b,c=egg(2),egg(4),egg(6)
+    local behind=target(8);local damage=0
+    behind.components.combat.GetAttacked=function(_,_,amount) damage=damage+amount end
+    candidates={behind,c,b,a};e.x=9;P.step(e,.1,{})
+    assert(a.opened==1)
+    assert(b.opened==(mode=="none" and 0 or 1) and c.opened==(mode=="none" and 0 or 1))
+    assert(e.valid==(mode=="pierce_all"))
+    assert(damage==(mode=="pierce_all" and e._shot.damage or 0))
+    if mode=="pierce" then assert(e._shot.hits_left==0) end
+end
+local through=cast("pierce","spark")
+local opened=egg(2);local behind=target(4);local damage=0
+behind.components.combat.GetAttacked=function(_,_,amount) damage=damage+amount end
+candidates={behind,opened};through.x=5;P.step(through,.1,{})
+assert(opened.opened==1 and through.valid and through._shot.hits_left==1 and damage==through._shot.damage)
+-- A surviving carrier still releases its own hit payload once for each contact.
+through=cast("pierce","spark_hit","chain")
+opened=egg(2);candidates={opened,target(4)};through.x=5;P.step(through,.1,{})
+assert(opened.opened==1 and through.valid and #blasts==2)
+-- Egg payloads may destroy the incoming shot synchronously; do not continue
+-- into the next target or release a new hit payload from an invalid carrier.
+through=cast("pierce_all","spark_hit","chain")
+opened=egg(2,function() through:Remove() end)
+candidates={opened,target(4)};through.x=5;P.step(through,.1,{})
+assert(not through.valid and opened.opened==1 and #blasts==0 and E.stats()==0)
 for _,event in ipairs({"hit","timer"}) do
     local e=cast("short_life","short_life","arrow_"..event,"chain")
     e.x=10;P.step(e,.4,{})

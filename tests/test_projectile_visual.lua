@@ -99,6 +99,15 @@ for _,headless in ipairs({false,true}) do
     end
 end
 assert(added==10 and attached==4)
+dedicated=false
+for _,heading in ipairs({0,math.pi/2,-math.pi/2,math.pi}) do
+    local hook=make()
+    hook:Launch({}, {id="land_hook",damage=0,speed=20,lifetime=1},4,5,
+        math.cos(heading),math.sin(heading),function() end,1.6)
+    assert(math.abs(hook._launch_heading:value()-4-heading)<.00001)
+    assert(hook._visual.anim=="land_hook_dir_"..require("nw/elemental_flight").direction(heading,"land_hook"))
+    hook:Remove()
+end
 -- A breakable spore uses one visual cue plus its original one blast. The cue
 -- cannot manufacture a second damage path or execute an on-hit payload.
 local _,make_spore=assert(loadfile("mod/scripts/prefabs/nw_projectile.lua"))()
@@ -123,10 +132,25 @@ Fields.attackable,Effects.blast,Triggers.finish,Projectiles.contact_fx=attackabl
 -- Every visible remote projectile takes its real spell-specific refresh path.
 -- The lance uses a camera-facing cutout; the hoe has its own upright directions.
 dedicated=false;TheWorld.ismastersim=false
+-- Spell and initial heading can arrive separately, before transform rotation.
+-- No wrong-facing hook may be displayed during that replication window.
+local Flight=require("nw/elemental_flight")
+for _,heading in ipairs({0,math.pi/2,-math.pi/2,math.pi}) do
+    local hook=make()
+    hook._spell:set(require("nw/cards").codes.land_hook)
+    hook.events.nw_projectiledirty(hook)
+    assert(not hook._visual.anim,"wait for launch direction before showing hook")
+    hook._launch_heading:set(heading+4)
+    hook.events.nw_projectiledirty(hook)
+    assert(hook.Transform:GetRotation()==0)
+    assert(hook._visual.anim=="land_hook_dir_"..Flight.direction(heading,"land_hook"))
+    hook:Remove()
+end
 for id,spell in pairs(require("nw/definitions").spells) do
     if spell.kind=="projectile" or spell.kind=="trigger" then
         local shot=make()
         shot._spell:set(require("nw/cards").codes[spell.base or id])
+        shot._launch_heading:set(4)
         shot._height:set(1.4);shot.events.nw_projectiledirty(shot)
         local art=shot._visual
         if require("nw/tool_flight").supports(spell.engraving) then

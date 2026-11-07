@@ -21,12 +21,13 @@ for i,card in ipairs(require("nw/expansion")) do
 end
 local previous
 for _,c in ipairs(require("nw/arsenal").cards) do
-    if not require("nw/engraved_spells").retired[c.id] then
+    if not require("nw/engraved_spells").retired[c.id] and not require("nw/arsenal").legacy_notes[c.id] then
     local group=c.source_weapon and "武器刻印" or c.select_target and "目标选择" or "乐谱"
     if previous~=group or #M.pages[#M.pages][2]==9 then M.pages[#M.pages+1]={group,{}} end
     previous=group;table.insert(M.pages[#M.pages][2],c.id)
     end
 end
+M.pages[#M.pages+1]={"乐谱",{"kantele_f","kantele_b"}}
 M.presets={
     weather={"double","rain_cloud","wet_weak","arrow"},
     ambush={"arrow_hit","sleep_crystal","detonate"},

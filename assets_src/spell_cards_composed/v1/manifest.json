@@ -9299,15 +9299,115 @@
       "album": "album/pitch_semitone_down.png",
       "inventory": "inventory_64/pitch_semitone_down.png",
       "ground": "ground/pitch_semitone_down.png"
+    },
+    {
+      "id": "kantele_f",
+      "name": "弦琴 F",
+      "primary_class": "basic",
+      "mechanism_badge": null,
+      "source": "assets_src/spell_card_subjects/v9_music_octave/kantele_f.png",
+      "source_sha256": "08cc9e4a4a0d39f627391b055439fea942c70e9bf3d42e6b0a2dd736cdb08c53",
+      "origin": "selected_extension",
+      "layout": {
+        "source_bbox": [
+          68,
+          90,
+          1154,
+          1185
+        ],
+        "position": [
+          146,
+          143
+        ],
+        "fitted_size": [
+          733,
+          739
+        ],
+        "uniform_scale": 0.6746311804366438,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "inventory_layout": {
+        "source_bbox": [
+          68,
+          90,
+          1154,
+          1185
+        ],
+        "position": [
+          121,
+          118
+        ],
+        "fitted_size": [
+          782,
+          789
+        ],
+        "uniform_scale": 0.7201442101883563,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "album": "album/kantele_f.png",
+      "inventory": "inventory_64/kantele_f.png",
+      "ground": "ground/kantele_f.png"
+    },
+    {
+      "id": "kantele_b",
+      "name": "弦琴 B",
+      "primary_class": "basic",
+      "mechanism_badge": null,
+      "source": "assets_src/spell_card_subjects/v9_music_octave/kantele_b.png",
+      "source_sha256": "adc57207c980d51e48d427e3869796f79e274b2812a0d3bd4fb90c1a70ab3f56",
+      "origin": "selected_extension",
+      "layout": {
+        "source_bbox": [
+          68,
+          90,
+          1154,
+          1185
+        ],
+        "position": [
+          145,
+          142
+        ],
+        "fitted_size": [
+          735,
+          741
+        ],
+        "uniform_scale": 0.6766077161815068,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "inventory_layout": {
+        "source_bbox": [
+          68,
+          90,
+          1154,
+          1185
+        ],
+        "position": [
+          111,
+          108
+        ],
+        "fitted_size": [
+          802,
+          808
+        ],
+        "uniform_scale": 0.7382756314212326,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "album": "album/kantele_b.png",
+      "inventory": "inventory_64/kantele_b.png",
+      "ground": "ground/kantele_b.png"
     }
   ],
   "counts": {
-    "basic": 125,
+    "basic": 127,
     "control": 12,
     "modifier": 49
   },
   "badges": {
-    "none": 172,
+    "none": 174,
     "hit": 6,
     "timer": 7,
     "break": 1

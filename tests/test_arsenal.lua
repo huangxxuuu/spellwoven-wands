@@ -12,11 +12,11 @@ end
 local tones={}
 for id,note in pairs(A.notes) do
     local bank,p=A.tone(id,0)
-    local midi=tonumber(bank:match("/m(%d+)$"))
+    local midi=tonumber(bank:match("_m(%d+)$"))
     assert(midi==note.pitch+48 and next(p)==nil)
     tones[id]=true
 end
-local total=0;for _ in pairs(tones) do total=total+1 end;assert(total==14)
+local total=0;for _ in pairs(tones) do total=total+1 end;assert(total==16)
 local scale=cast({"speed_up","speed_up","speed_down","note_c"})
 assert((scale.blocks[1].projectiles[1].pitch or 0)==0)
 local outer=cast({"target_nature","target_building","arrow_hit","whirl"})

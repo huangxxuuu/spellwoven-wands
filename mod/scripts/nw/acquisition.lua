@@ -103,7 +103,9 @@ for _,c in ipairs(arsenal.cards) do
     end
 end
 for id,note in pairs(arsenal.notes) do
-    ink[id]=note.instrument=="kantele" and {{"slurtle_shellpieces",2},{"cutreeds",3}} or {{"cutreeds",3},{"goldnugget",1}}
+    if not arsenal.legacy_notes[id] then
+        ink[id]=note.instrument=="kantele" and {{"slurtle_shellpieces",2},{"cutreeds",3}} or {{"cutreeds",3},{"goldnugget",1}}
+    end
 end
 M.by_material={}
 local weapons=require("nw/arsenal").weapons

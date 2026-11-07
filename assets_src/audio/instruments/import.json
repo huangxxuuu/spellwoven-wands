@@ -1,5 +1,6 @@
 {
-  "archive": "DST_Instrument_WAVs.zip",
-  "sha256": "0cc78cbc139be7bd383c88779f4f05e246886acc479db2bee7388d11a11a74f3",
-  "samples_modified": false
+  "directory": "DST_Instrument_WAVs_CorrectedBeats_22050",
+  "samples_modified": false,
+  "sample_rate": 22050,
+  "sample_count": 216
 }

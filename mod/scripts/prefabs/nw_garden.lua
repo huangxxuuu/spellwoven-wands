@@ -90,7 +90,7 @@ local function note(inst,owner,p,x,z)
     inst.AnimState:PlayAnimation("chord_note")
     local now=GetTime()
     -- A separate emitter outlives the brief note visual and preserves the sampled decay.
-    require("nw/expanded_fields").sound(owner,x,z,p.id,p.pitch)
+    require("nw/expanded_fields").sound(owner,x,z,p.id,p.pitch,p.beats)
     for _,e in ipairs(Effects.scan(x,z,p.radius)) do
         if e:HasTag("player") and Effects.live(e) and e.components.sanity and not e:HasTag("playerghost")
             and e:GetDistanceSqToPoint(x,0,z)<=p.radius^2 and now+.001>=(e._nw_chord_next or 0) then

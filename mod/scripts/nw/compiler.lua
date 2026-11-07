@@ -110,6 +110,8 @@ function M.compile(wand, definitions, limits)
         m.speed_add = m.speed_add + (d.speed_add or 0)
         m.lifetime_mult = m.lifetime_mult * (d.lifetime_mult or 1)
         if d.pitch_shift then m.pitch=(m.pitch or 0)+d.pitch_shift end
+        if d.id=="speed_up" then m.tempo=(m.tempo or 0)+1 end
+        if d.id=="speed_down" then m.tempo=(m.tempo or 0)-1 end
         if d.flag then
             local old = m.flags[d.flag]
             local value = U.copy(d)
@@ -241,7 +243,10 @@ function M.compile(wand, definitions, limits)
                     if p[key] then p[key]=p[key]*p.size_mult end
                 end
             end
-            p.pitch=m.pitch
+            p.pitch=m.pitch and math.max(-12,math.min(12,m.pitch))
+            if require("nw/arsenal").notes[p.id] then
+                p.beats=(m.tempo or 0)>0 and .5 or (m.tempo or 0)<0 and 2 or 1
+            end
             for key,v in pairs(p.innate or {}) do p.flags[key]=p.flags[key] or U.copy(v) end
             if (travels or p.kind=="field") and p.flags.harmless then p.damage,p.burn_damage,p.freeze,p.planar=0,nil,nil,nil end
             total = total + (p.count or 1)

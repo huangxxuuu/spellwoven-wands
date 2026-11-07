@@ -16,7 +16,7 @@ manifest=json.loads((ART/'manifest.json').read_text())
 atlas=Image.open(RUNTIME/'nw_icons.png').convert('RGBA')
 assert atlas.size==(2048,2048)
 elements=ET.parse(ROOT/'mod/images/inventoryimages/nw_icons.xml').findall('./Elements/Element')
-assert len(elements)==221 and len({e.attrib['name'] for e in elements})==221
+assert len(elements)==223 and len({e.attrib['name'] for e in elements})==223
 inventory_count=len(elements)
 rects=set();hashes={}
 for e in elements:

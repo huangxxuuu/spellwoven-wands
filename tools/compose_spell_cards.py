@@ -203,11 +203,11 @@ def sheet(items, filename, cols=4, cell=(270,320)):
 def main(only_badges=False,only_cards=None):
  OUT.mkdir(parents=True,exist_ok=True)
  roster=json.loads((CAT/'roster.json').read_text(encoding='utf8'))
- extension=SUBJECTS/'v7_pitch_modifiers/cards.json'
- if extension.exists():
-  extra=json.loads(extension.read_text(encoding='utf8'))
-  if extra.get('runtime_registered'):
-   roster += [dict(r,base=None,event=None,status='selected_extension',group='music_targets') for r in extra['cards']]
+ for extension in (SUBJECTS/'v7_pitch_modifiers/cards.json',SUBJECTS/'v9_music_octave/cards.json'):
+  if extension.exists():
+   extra=json.loads(extension.read_text(encoding='utf8'))
+   if extra.get('runtime_registered'):
+    roster += [dict(r,base=None,event=None,status='selected_extension',group='music_targets') for r in extra['cards']]
  entries={x['id']:x for x in json.loads((CAT/'catalog.json').read_text(encoding='utf8'))['items']}
  # Art-review labels can differ from historical runtime IDs without changing audio.
  label_file=SUBJECTS/'selected_labels.json'

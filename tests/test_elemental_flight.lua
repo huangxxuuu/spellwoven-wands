@@ -44,13 +44,14 @@ local function sprite()
     return fx
 end
 function CreateEntity() created=created+1;return sprite() end
-local function shot(id,guid,scale)
+local function shot(id,guid,scale,heading)
     local s={GUID=guid or #heads+1,valid=true,x=0,z=0,vx=0,vz=0,rotation=0,scale=scale or 1}
     s.Transform={GetWorldPosition=function() return s.x,0,s.z end,GetRotation=function() return s.rotation end}
     s.Physics={GetVelocity=function() return s.vx,0,s.vz end}
     s._visual=sprite()
     s._height={value=function() return 1.6 end}
     s._size={value=function() return s.scale end}
+    if heading then s._launch_heading={value=function() return heading+4 end} end
     s.IsValid=function() return s.valid end
     heads[#heads+1]=s
     Flight.attach(s,id)
@@ -418,9 +419,16 @@ for _,kind in ipairs(specials) do
 end
 -- Hook and authored rope keep turning together without detached trail entities,
 -- including after a replicated giant-size change and camera rotation.
-local hook=shot("land_hook",229)
+local hook=shot("land_hook",229,1,math.pi/2)
 local hook_created,hook_tails=created,tail_plays
 assert(Flight.direction_count("land_hook")==64)
+assert(hook._visual.anim=="land_hook_dir_"..Flight.direction(math.pi/2,"land_hook"))
+for _=1,3 do
+    TheCamera.heading=TheCamera.heading+15
+    advance()
+    assert(hook._visual.anim=="land_hook_dir_"..Flight.direction(math.pi/2,"land_hook"),
+        "initial heading must survive stationary samples and camera changes before motion arrives")
+end
 for _,scale in ipairs({1,2.5,1}) do
     hook.scale=scale
     for step=1,24 do

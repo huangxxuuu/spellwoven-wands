@@ -86,6 +86,32 @@ for _,flags in ipairs({{homing=Copy(D.homing)}, {homing_short=Copy(D.near_homing
 end
 
 -- All paths use exactly the same steering function for a moving native star.
+-- Guidance must see the same attackable egg/crystal props as collisions do,
+-- regardless of creature/team selectors. Test real steering, not only selection.
+for _,id in ipairs({"payload_egg","sleep_crystal"}) do
+    local prop=entity(1,1,{nw_breakable=true})
+    prop._nw_stored={p={id=id}};prop._nw_break=function() error("seeking cannot activate a prop") end
+    for _,scope in ipairs({false,{friendly=true},{neutral=true},{building=true},
+        {friendly=true,neutral=true,building=true}}) do
+        for _,card in ipairs({D.homing,D.near_homing,D.weak_homing,D.homing_rotate}) do
+            TheWorld._nw_scans=nil;candidates={prop}
+            local guided=velocity({[card.flag]=Copy(card),targets=scope or nil},6,FRAMES,1)
+            assert(guided.vz>0,id.." must attract "..card.id)
+            assert(F.seek(guided,card)==prop)
+            guided.hit[prop]=guided.age+.1
+            assert(not F.seek(guided,card),"recent piercing contacts respect their cooldown")
+            guided.hit[prop]=nil;prop.valid=false
+            assert(not F.seek(guided,card),"removed props cannot attract shots")
+            prop.valid=true
+            prop._nw_motion=guided
+            assert(not F.seek(guided,card),"moving spell props cannot home on themselves")
+            prop._nw_motion=nil
+            guided.p.id="gust"
+            assert((F.seek(guided,card)==prop)==(id=="payload_egg"),"gust only interacts with eggs")
+        end
+    end
+end
+TheWorld._nw_scans=nil
 candidates={}
 for _,id in ipairs({"sine","spiral","orbit","reverse_path","return_path","accelerate"}) do
     local card=D[id];local flags={[card.flag]=Copy(card)}

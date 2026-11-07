@@ -1,0 +1,15 @@
+{
+  "runtime_registered": true,
+  "cards": [
+    {
+      "id": "kantele_f",
+      "name": "弦琴 F",
+      "kind": "note"
+    },
+    {
+      "id": "kantele_b",
+      "name": "弦琴 B",
+      "kind": "note"
+    }
+  ]
+}

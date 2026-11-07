@@ -742,5 +742,13 @@
   "pitch_semitone_down": {
     "primary_class": "modifier",
     "mechanism_badge": null
+  },
+  "kantele_f": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "kantele_b": {
+    "primary_class": "basic",
+    "mechanism_badge": null
   }
 }

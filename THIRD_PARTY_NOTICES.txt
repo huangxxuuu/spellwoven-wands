@@ -40,7 +40,7 @@ and Cithara Barbarica (medieval lyre) samples, supplied under CC0 1.0.
 The original notices and CC0 texts are preserved in
 assets_src/audio/instruments/licenses/ and mod/sound/licenses/.
 Source/derivation manifests are retained in assets_src/audio/instruments/.
-The 76 WAVs are packed without resampling, pitch randomization or PCM changes
-into mod/sound/nw_instruments.fsb; nw_instruments.fev maps individual pitches.
+The 216 supplied CorrectedBeats_22050 WAVs (C3-B5, three beat lengths per instrument) are packed without resampling, pitch randomization or PCM changes
+into mod/sound/nw_instruments.fsb; nw_instruments.fev maps instrument, beat length and pitch combinations.
 These audio assets retain their supplied CC0 terms, independently of the
 project's code license. The FMOD compiler/runtime is not redistributed.

@@ -1,0 +1,1211 @@
+{
+  "instrument": "lyre",
+  "beats": 2,
+  "sample_rate": 22050,
+  "channels": 1,
+  "encoding": "PCM_16",
+  "beat_definition": "Ocarina: prior~0.57s files are1beat; original~1.14s files2beats. Lyre:1.5s files2beats.",
+  "notes": [
+    {
+      "midi": 48,
+      "note": "C3",
+      "frequency_hz": 130.81278265,
+      "filename": "lyre_m048_C3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m048_C3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m048_C3.wav",
+      "source_wav_sha256": "3ed0a03ae98fea965fd67f0bcf0ba6fd3cc8a40f08fe7ac5a917b491efaa108e",
+      "sha256": "3ed0a03ae98fea965fd67f0bcf0ba6fd3cc8a40f08fe7ac5a917b491efaa108e",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 49,
+      "note": "C#3",
+      "frequency_hz": 138.591315488,
+      "filename": "lyre_m049_Cs3.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m049_Cs3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m049_Cs3.wav",
+      "source_wav_sha256": "5945c606a9f2c520e272276be65b25fcb7db085776a982feb2aa8f7f9c925539",
+      "sha256": "5945c606a9f2c520e272276be65b25fcb7db085776a982feb2aa8f7f9c925539",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 50,
+      "note": "D3",
+      "frequency_hz": 146.832383959,
+      "filename": "lyre_m050_D3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m050_D3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m050_D3.wav",
+      "source_wav_sha256": "b8521dda6f4b658cc0ded4c3bf0e9f2f6db362848230e56f0d97fa3d3f7310f4",
+      "sha256": "b8521dda6f4b658cc0ded4c3bf0e9f2f6db362848230e56f0d97fa3d3f7310f4",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 51,
+      "note": "D#3",
+      "frequency_hz": 155.563491861,
+      "filename": "lyre_m051_Ds3.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m051_Ds3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m051_Ds3.wav",
+      "source_wav_sha256": "639b26e9852967c61a3b02bb7c5d08dc9aa2746f82edfd68285430d7547a05f6",
+      "sha256": "639b26e9852967c61a3b02bb7c5d08dc9aa2746f82edfd68285430d7547a05f6",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 52,
+      "note": "E3",
+      "frequency_hz": 164.813778456,
+      "filename": "lyre_m052_E3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m052_E3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m052_E3.wav",
+      "source_wav_sha256": "1bbd68a4450b786f1cb77264bbae24ff5bb0effd576f2caf344c41aca6beea5d",
+      "sha256": "1bbd68a4450b786f1cb77264bbae24ff5bb0effd576f2caf344c41aca6beea5d",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 53,
+      "note": "F3",
+      "frequency_hz": 174.614115717,
+      "filename": "lyre_m053_F3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m053_F3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m053_F3.wav",
+      "source_wav_sha256": "6f9d6ad554bab085afbdb18e3e15da3b96c42a9ba29abe58f83b4577376f3381",
+      "sha256": "6f9d6ad554bab085afbdb18e3e15da3b96c42a9ba29abe58f83b4577376f3381",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 54,
+      "note": "F#3",
+      "frequency_hz": 184.997211356,
+      "filename": "lyre_m054_Fs3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m054_Fs3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m054_Fs3.wav",
+      "source_wav_sha256": "2536b54bf198f6521e1adb9ba8a6348b89e4fbefe95b422f6cc78d2e5097d60b",
+      "sha256": "2536b54bf198f6521e1adb9ba8a6348b89e4fbefe95b422f6cc78d2e5097d60b",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 55,
+      "note": "G3",
+      "frequency_hz": 195.997717991,
+      "filename": "lyre_m055_G3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m055_G3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m055_G3.wav",
+      "source_wav_sha256": "fa2dadf3013b7123459efad94ebb9931be73563dcd00a3f6bafa4f8ad72664ba",
+      "sha256": "fa2dadf3013b7123459efad94ebb9931be73563dcd00a3f6bafa4f8ad72664ba",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 56,
+      "note": "G#3",
+      "frequency_hz": 207.65234879,
+      "filename": "lyre_m056_Gs3.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        },
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m056_Gs3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m056_Gs3.wav",
+      "source_wav_sha256": "e930de1785f2a355eca06be42c2874b33c874ca0b7329eb30a083f04f1bf9f75",
+      "sha256": "e930de1785f2a355eca06be42c2874b33c874ca0b7329eb30a083f04f1bf9f75",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 57,
+      "note": "A3",
+      "frequency_hz": 220.0,
+      "filename": "lyre_m057_A3.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m057_A3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m057_A3.wav",
+      "source_wav_sha256": "7b56d6f22fcd255f73d9f155e7e0b796965693152223509586b2f18028c85268",
+      "sha256": "7b56d6f22fcd255f73d9f155e7e0b796965693152223509586b2f18028c85268",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 58,
+      "note": "A#3",
+      "frequency_hz": 233.081880759,
+      "filename": "lyre_m058_As3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m058_As3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m058_As3.wav",
+      "source_wav_sha256": "bce700db5cb3dbb88141eb371be63dc9235831f3716503a4bfd555bce033ab49",
+      "sha256": "bce700db5cb3dbb88141eb371be63dc9235831f3716503a4bfd555bce033ab49",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 59,
+      "note": "B3",
+      "frequency_hz": 246.941650628,
+      "filename": "lyre_m059_B3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m059_B3.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m059_B3.wav",
+      "source_wav_sha256": "fbe70b47343d180415f58cf0c33d1e4575d3a03b2fd785c7a71a0a88f3f1ea96",
+      "sha256": "fbe70b47343d180415f58cf0c33d1e4575d3a03b2fd785c7a71a0a88f3f1ea96",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 60,
+      "note": "C4",
+      "frequency_hz": 261.625565301,
+      "filename": "lyre_m060_C4.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m060_C4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m060_C4.wav",
+      "source_wav_sha256": "2a51048f8850528f9aca7570c5deb5af7697638abb9346d876240219962036da",
+      "sha256": "2a51048f8850528f9aca7570c5deb5af7697638abb9346d876240219962036da",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 61,
+      "note": "C#4",
+      "frequency_hz": 277.182630977,
+      "filename": "lyre_m061_Cs4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m061_Cs4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m061_Cs4.wav",
+      "source_wav_sha256": "390858d0eece3142d57446d437361fc731160124b22416371669574177f7d466",
+      "sha256": "390858d0eece3142d57446d437361fc731160124b22416371669574177f7d466",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 62,
+      "note": "D4",
+      "frequency_hz": 293.664767917,
+      "filename": "lyre_m062_D4.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m062_D4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m062_D4.wav",
+      "source_wav_sha256": "2ed7bb04bb818b0af466b877d5a3611f77aa0af8c19798600c0180634dafd078",
+      "sha256": "2ed7bb04bb818b0af466b877d5a3611f77aa0af8c19798600c0180634dafd078",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 63,
+      "note": "D#4",
+      "frequency_hz": 311.126983722,
+      "filename": "lyre_m063_Ds4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m063_Ds4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m063_Ds4.wav",
+      "source_wav_sha256": "a5ca185dc5367a0a1e6ae43aa70a5769a5051dddfcdae06f612b5041f1beb951",
+      "sha256": "a5ca185dc5367a0a1e6ae43aa70a5769a5051dddfcdae06f612b5041f1beb951",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 64,
+      "note": "E4",
+      "frequency_hz": 329.627556913,
+      "filename": "lyre_m064_E4.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m064_E4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m064_E4.wav",
+      "source_wav_sha256": "036e02223accd5a8c6bffbcd730d3ade8d9414599c8e5881e24c7c60601f7bbf",
+      "sha256": "036e02223accd5a8c6bffbcd730d3ade8d9414599c8e5881e24c7c60601f7bbf",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 65,
+      "note": "F4",
+      "frequency_hz": 349.228231433,
+      "filename": "lyre_m065_F4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m065_F4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m065_F4.wav",
+      "source_wav_sha256": "ba1833f6c88ddd6995c84acc3756d10323d3b0a575033f7ac7b8b3e7af6614ab",
+      "sha256": "ba1833f6c88ddd6995c84acc3756d10323d3b0a575033f7ac7b8b3e7af6614ab",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 66,
+      "note": "F#4",
+      "frequency_hz": 369.994422712,
+      "filename": "lyre_m066_Fs4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m066_Fs4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m066_Fs4.wav",
+      "source_wav_sha256": "afb7c8442737b0b9ad3b4472b099306d2e15630c2c475c8d23c9598cf28bc561",
+      "sha256": "afb7c8442737b0b9ad3b4472b099306d2e15630c2c475c8d23c9598cf28bc561",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 67,
+      "note": "G4",
+      "frequency_hz": 391.995435982,
+      "filename": "lyre_m067_G4.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m067_G4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m067_G4.wav",
+      "source_wav_sha256": "6a3141934cab77609cb1f618e201bff7d815f7946a315794e19e5576b4cf7481",
+      "sha256": "6a3141934cab77609cb1f618e201bff7d815f7946a315794e19e5576b4cf7481",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 68,
+      "note": "G#4",
+      "frequency_hz": 415.30469758,
+      "filename": "lyre_m068_Gs4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        },
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m068_Gs4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m068_Gs4.wav",
+      "source_wav_sha256": "863c314a34be2bc061a1f3e4332936aca037e3c1ae154ee42b972520f6b60897",
+      "sha256": "863c314a34be2bc061a1f3e4332936aca037e3c1ae154ee42b972520f6b60897",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 69,
+      "note": "A4",
+      "frequency_hz": 440.0,
+      "filename": "lyre_m069_A4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m069_A4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m069_A4.wav",
+      "source_wav_sha256": "47ee57b12024b33191e3973c0bdeb16ac77134da149934daaa6533fccc435ad5",
+      "sha256": "47ee57b12024b33191e3973c0bdeb16ac77134da149934daaa6533fccc435ad5",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 70,
+      "note": "A#4",
+      "frequency_hz": 466.163761518,
+      "filename": "lyre_m070_As4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m070_As4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m070_As4.wav",
+      "source_wav_sha256": "45bebc76d2c0e0df73c3977bcf0fb6b19cab3c7fb6e756df6937364c4060edfd",
+      "sha256": "45bebc76d2c0e0df73c3977bcf0fb6b19cab3c7fb6e756df6937364c4060edfd",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 71,
+      "note": "B4",
+      "frequency_hz": 493.883301256,
+      "filename": "lyre_m071_B4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m071_B4.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m071_B4.wav",
+      "source_wav_sha256": "e86ee22700076f534d1c4bee3e071cfeee44e66d47e4945af51685f5b5600332",
+      "sha256": "e86ee22700076f534d1c4bee3e071cfeee44e66d47e4945af51685f5b5600332",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 72,
+      "note": "C5",
+      "frequency_hz": 523.251130601,
+      "filename": "lyre_m072_C5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m072_C5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m072_C5.wav",
+      "source_wav_sha256": "29d9b8eeb2705243fd8868251d7276aa5e2d8e39a6de3856c8fdba8c53c2bd0f",
+      "sha256": "29d9b8eeb2705243fd8868251d7276aa5e2d8e39a6de3856c8fdba8c53c2bd0f",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 73,
+      "note": "C#5",
+      "frequency_hz": 554.365261954,
+      "filename": "lyre_m073_Cs5.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m073_Cs5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m073_Cs5.wav",
+      "source_wav_sha256": "7db026306c9761d61dcbf8493609fc59aac8e1966cd987283f3b8fc2a25020a9",
+      "sha256": "7db026306c9761d61dcbf8493609fc59aac8e1966cd987283f3b8fc2a25020a9",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 74,
+      "note": "D5",
+      "frequency_hz": 587.329535835,
+      "filename": "lyre_m074_D5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m074_D5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m074_D5.wav",
+      "source_wav_sha256": "5a93e49bdd598487c0a9b8c504c33dfae8875bd70c1bb833eb50ab72363ceca3",
+      "sha256": "5a93e49bdd598487c0a9b8c504c33dfae8875bd70c1bb833eb50ab72363ceca3",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 75,
+      "note": "D#5",
+      "frequency_hz": 622.253967444,
+      "filename": "lyre_m075_Ds5.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m075_Ds5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m075_Ds5.wav",
+      "source_wav_sha256": "d2fc377b990049534c3aa2bd37af976a2db84f144b9831c39bfac1494ec38915",
+      "sha256": "d2fc377b990049534c3aa2bd37af976a2db84f144b9831c39bfac1494ec38915",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 76,
+      "note": "E5",
+      "frequency_hz": 659.255113826,
+      "filename": "lyre_m076_E5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m076_E5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m076_E5.wav",
+      "source_wav_sha256": "ad990f6e1fc1180b129a0b624aef47b0edb2264489032db7af30105b530a284a",
+      "sha256": "ad990f6e1fc1180b129a0b624aef47b0edb2264489032db7af30105b530a284a",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 77,
+      "note": "F5",
+      "frequency_hz": 698.456462866,
+      "filename": "lyre_m077_F5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m077_F5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m077_F5.wav",
+      "source_wav_sha256": "811636aa765d6b35ef45b2aefb6fb8315d9f96363e4bfe5f1c28adfd88ce07f3",
+      "sha256": "811636aa765d6b35ef45b2aefb6fb8315d9f96363e4bfe5f1c28adfd88ce07f3",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 78,
+      "note": "F#5",
+      "frequency_hz": 739.988845423,
+      "filename": "lyre_m078_Fs5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m078_Fs5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m078_Fs5.wav",
+      "source_wav_sha256": "ca05bb6d6464a8faa7eb2c5ed6fb4cfcdddac51537349a969d19ef9bb663f995",
+      "sha256": "ca05bb6d6464a8faa7eb2c5ed6fb4cfcdddac51537349a969d19ef9bb663f995",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 79,
+      "note": "G5",
+      "frequency_hz": 783.990871963,
+      "filename": "lyre_m079_G5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m079_G5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m079_G5.wav",
+      "source_wav_sha256": "74b2ce17cbb263cb9e8fde9f925996a2a42924e6948d1faa0d491f08a6fd06b2",
+      "sha256": "74b2ce17cbb263cb9e8fde9f925996a2a42924e6948d1faa0d491f08a6fd06b2",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 80,
+      "note": "G#5",
+      "frequency_hz": 830.60939516,
+      "filename": "lyre_m080_Gs5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        }
+      ],
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m080_Gs5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m080_Gs5.wav",
+      "source_wav_sha256": "393528d37dba8e09b05066ea9b9ca2855cbb3ac56122b3c4a2e1e7c4a5b95b1f",
+      "sha256": "393528d37dba8e09b05066ea9b9ca2855cbb3ac56122b3c4a2e1e7c4a5b95b1f",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 81,
+      "note": "A5",
+      "frequency_hz": 880.0,
+      "filename": "lyre_m081_A5.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m081_A5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m081_A5.wav",
+      "source_wav_sha256": "cef9a0a7a475fb04e461df4baee6d886804b71f1b0f1df17996ca37c1df0a374",
+      "sha256": "cef9a0a7a475fb04e461df4baee6d886804b71f1b0f1df17996ca37c1df0a374",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 82,
+      "note": "A#5",
+      "frequency_hz": 932.3275230361799,
+      "filename": "lyre_m082_As5.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m082_As5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m082_As5.wav",
+      "source_wav_sha256": "5548ca343cb09bd2000c783216aed9bb3d871f7c756ff9979ac66a1d3c80faf5",
+      "sha256": "5548ca343cb09bd2000c783216aed9bb3d871f7c756ff9979ac66a1d3c80faf5",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    },
+    {
+      "midi": 83,
+      "note": "B5",
+      "frequency_hz": 987.7666025122483,
+      "filename": "lyre_m083_B5.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "lyre",
+      "beats": 2,
+      "relative_path": "lyre_two_beats/lyre_m083_B5.wav",
+      "frames": 33075,
+      "duration_seconds": 1.5,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "lyre_1p5s/lyre_m083_B5.wav",
+      "source_wav_sha256": "7067e20dbf858f0394e113b9a8383b3b1a837c32fd3caaaf9c541287614c6253",
+      "sha256": "7067e20dbf858f0394e113b9a8383b3b1a837c32fd3caaaf9c541287614c6253",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 33075
+      }
+    }
+  ],
+  "midi_range": [
+    48,
+    83
+  ],
+  "note_range": [
+    "C3",
+    "B5"
+  ],
+  "note_count": 36
+}

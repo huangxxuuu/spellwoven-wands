@@ -1,6 +1,6 @@
 local T=require("nw/locale").t
 local Samples=require("nw/instrument_samples")
-local M={cards={},notes={},weapons={}}
+local M={cards={},notes={},weapons={},extra_notes={},legacy_notes={ocarina_gsharp=true,ocarina_a2=true}}
 local function add(card)
     M.cards[#M.cards+1]=card
     return card
@@ -50,8 +50,8 @@ for _,v in ipairs(selections) do
 end
 -- Absolute semitones above C3; kantele uses the supplied lyre samples.
 for _,inst in ipairs({"ocarina","kantele"}) do
-    local notes=inst=="ocarina" and {{"A",21},{"B",23},{"C",24},{"D",26},{"E",28},{"F",29},{"G#",32},{"A2",33}}
-        or {{"A",9},{"D",14},{"D#",12},{"E",16},{"G",19}}
+    local notes=inst=="ocarina" and {{"A",21},{"B",23},{"C",12},{"D",14},{"E",16},{"F",17},{"G#",20},{"A2",21}}
+        or {{"A",21},{"D",14},{"D#",12},{"E",16},{"G",19}}
     for _,pair in ipairs(notes) do
         local name,pitch=unpack(pair)
         local prefix=inst=="ocarina" and T("陶笛") or T("弦琴")
@@ -59,7 +59,7 @@ for _,inst in ipairs({"ocarina","kantele"}) do
         local new=not id
         id=id or (inst.."_"..name:lower():gsub("#","sharp"))
         -- Keep legacy IDs; the former D# card is now the selected C4 base note.
-        local label=({ocarina_a2="A5",kantele_dsharp="C"})[id] or name
+        local label=({ocarina_a2="A",kantele_dsharp="C"})[id] or name
         M.notes[id]={instrument=inst,pitch=pitch,label=label}
         if new then
             local harp=inst=="kantele"
@@ -77,21 +77,29 @@ for _,row in ipairs(engraving.extra) do
     engraving.configure(c,row[1])
     M.weapons[c.id]=c
 end
-M.notes.ocarina_g={instrument="ocarina",pitch=31,label="G"}
-function M.resolve_tone(id,shift)
+M.notes.ocarina_g={instrument="ocarina",pitch=19,label="G"}
+-- Definitions append these after existing cards so saved/network codes stay stable.
+for _,row in ipairs({{"kantele_f","F",17},{"kantele_b","B",23}}) do
+    local id,label,pitch=unpack(row)
+    M.notes[id]={instrument="kantele",pitch=pitch,label=label}
+    M.extra_notes[#M.extra_notes+1]={id=id,name=T("弦琴").." "..label,kind="note",tier=2,mana=10,delay=.03,radius=3,
+        effect=T("奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。")}
+end
+function M.resolve_tone(id,shift,beats)
     local note=M.notes[id]
     if note then
-        local pitch=note.pitch+(shift or 0)
+        local pitch=note.pitch+math.max(-12,math.min(12,shift or 0))
         local bank=Samples[note.instrument]
-        local sample=bank.samples[pitch]
+        local beat=beats==.5 and "half" or beats==2 and "two" or "one"
+        local sample=bank.variants[beat][pitch]
         return {instrument=note.instrument,pitch=pitch,base_pitch=note.pitch,
             octave=3+math.floor(pitch/12),semitone=pitch%12,supported=sample~=nil,
-            event=sample and sample.event,duration=sample and sample.duration,
+            event=sample and sample.event,duration=sample and sample.duration,beats=beats==.5 and .5 or beats==2 and 2 or 1,
             range=bank.range,min_pitch=bank.min,max_pitch=bank.max}
     end
 end
-function M.tone(id,shift)
-    local tone=M.resolve_tone(id,shift)
+function M.tone(id,shift,beats)
+    local tone=M.resolve_tone(id,shift,beats)
     -- Select an exact recorded note. Never substitute a boundary note or alter playback speed.
     if not tone then return nil,"unknown_note" end
     if not tone.supported then return nil,"unsupported_pitch" end
@@ -102,6 +110,6 @@ function M.tone_description(id)
     if not tone then return "" end
     local names={"C","C#","D","D#","E","F","F#","G","G#","A","A#","B"}
     local base=names[tone.semitone+1]..tone.octave
-    return string.format(T("基础音 %s；可调音域 %s（含全部半音）。超出音域时静音，法术效果照常。"),base,tone.range)
+    return string.format(T("基础音 %s；可调音域 %s（含全部半音），音高最多升降一个八度。默认一拍，加速半拍、减速两拍；多张先抵消，再限制为三档。"),base,tone.range)
 end
 return M

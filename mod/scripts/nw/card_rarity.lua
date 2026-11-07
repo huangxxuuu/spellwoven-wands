@@ -24,11 +24,12 @@ add("trident_cast",2)
 add("chord_d",2)
 add("repeat_4",4)
 for _,card in ipairs(require("nw/expansion")) do add(card.id,card.tier) end
-for _,c in ipairs(require("nw/arsenal").cards) do if not require("nw/engraved_spells").retired[c.id] then add(c.id,c.tier) end end
+for _,c in ipairs(require("nw/arsenal").cards) do if not require("nw/engraved_spells").retired[c.id] and not require("nw/arsenal").legacy_notes[c.id] then add(c.id,c.tier) end end
 add("giant_shot",3)
 add("short_life",2)
 add("homing_rotate",2)
 add("gunpowder",2)
 add("ocarina_g",1)
 for _,c in ipairs(require("nw/pitch_modifiers").cards) do add(c.id,c.tier) end
+for _,c in ipairs(require("nw/arsenal").extra_notes) do add(c.id,c.tier) end
 return M

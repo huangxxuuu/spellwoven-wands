@@ -1,0 +1,1315 @@
+{
+  "instrument": "ocarina",
+  "beats": 1,
+  "sample_rate": 22050,
+  "channels": 1,
+  "encoding": "PCM_16",
+  "beat_definition": "Ocarina: prior~0.57s files are1beat; original~1.14s files2beats. Lyre:1.5s files2beats.",
+  "notes": [
+    {
+      "midi": 48,
+      "note": "C3",
+      "frequency_hz": 130.8127826502993,
+      "filename": "ocarina_m048_C3.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m048_C3.wav",
+      "frames": 12637,
+      "duration_seconds": 0.5731065759637188,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m048_C3.wav",
+      "source_wav_sha256": "9145c4e52d73739f51b4a5d8efa3a9345ebc4d19825f7f10ddab5ff17213bba6",
+      "sha256": "9145c4e52d73739f51b4a5d8efa3a9345ebc4d19825f7f10ddab5ff17213bba6",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12637
+      }
+    },
+    {
+      "midi": 49,
+      "note": "C#3",
+      "frequency_hz": 138.59131548843604,
+      "filename": "ocarina_m049_Cs3.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m049_Cs3.wav",
+      "frames": 12658,
+      "duration_seconds": 0.5740589569160998,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m049_Cs3.wav",
+      "source_wav_sha256": "e65f2de94f9fda2e2f46afbd1cc2b4ae01de2f57293aeb7d5688d831037810df",
+      "sha256": "e65f2de94f9fda2e2f46afbd1cc2b4ae01de2f57293aeb7d5688d831037810df",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12658
+      }
+    },
+    {
+      "midi": 50,
+      "note": "D3",
+      "frequency_hz": 146.8323839587038,
+      "filename": "ocarina_m050_D3.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m050_D3.wav",
+      "frames": 12638,
+      "duration_seconds": 0.5731519274376418,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m050_D3.wav",
+      "source_wav_sha256": "26cac51be90278bda66b83ff7e691dfd691cea760773168a99b7ae62b25ec44c",
+      "sha256": "26cac51be90278bda66b83ff7e691dfd691cea760773168a99b7ae62b25ec44c",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12638
+      }
+    },
+    {
+      "midi": 51,
+      "note": "D#3",
+      "frequency_hz": 155.56349186104046,
+      "filename": "ocarina_m051_Ds3.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m051_Ds3.wav",
+      "frames": 12653,
+      "duration_seconds": 0.5738321995464852,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m051_Ds3.wav",
+      "source_wav_sha256": "cb867dcceeb50e378e982ac6d085ca343b1166d1e865b3904c0180bdb2c1a8db",
+      "sha256": "cb867dcceeb50e378e982ac6d085ca343b1166d1e865b3904c0180bdb2c1a8db",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12653
+      }
+    },
+    {
+      "midi": 52,
+      "note": "E3",
+      "frequency_hz": 164.81377845643496,
+      "filename": "ocarina_m052_E3.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m052_E3.wav",
+      "frames": 12693,
+      "duration_seconds": 0.5756462585034013,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m052_E3.wav",
+      "source_wav_sha256": "052d6a3253e519edb02ba6cb3f54126f19ecefe0b78384e188ddd422be18e96a",
+      "sha256": "052d6a3253e519edb02ba6cb3f54126f19ecefe0b78384e188ddd422be18e96a",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12693
+      }
+    },
+    {
+      "midi": 53,
+      "note": "F3",
+      "frequency_hz": 174.61411571650194,
+      "filename": "ocarina_m053_F3.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m053_F3.wav",
+      "frames": 12616,
+      "duration_seconds": 0.5721541950113379,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m053_F3.wav",
+      "source_wav_sha256": "e8e499c4dc1a2e7cd832dec74525837d925bf9db5563f977ad26e51253e7b106",
+      "sha256": "e8e499c4dc1a2e7cd832dec74525837d925bf9db5563f977ad26e51253e7b106",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12616
+      }
+    },
+    {
+      "midi": 54,
+      "note": "F#3",
+      "frequency_hz": 184.9972113558172,
+      "filename": "ocarina_m054_Fs3.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m054_Fs3.wav",
+      "frames": 12635,
+      "duration_seconds": 0.573015873015873,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m054_Fs3.wav",
+      "source_wav_sha256": "7dd57fa16d0a975df08cf7ed830e9d644ffa05dd457cc8fe8fe9fa75117294d1",
+      "sha256": "7dd57fa16d0a975df08cf7ed830e9d644ffa05dd457cc8fe8fe9fa75117294d1",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12635
+      }
+    },
+    {
+      "midi": 55,
+      "note": "G3",
+      "frequency_hz": 195.99771799087463,
+      "filename": "ocarina_m055_G3.wav",
+      "is_base_note": false,
+      "route_count": 0,
+      "routes": [],
+      "added_for": "C3-B5 chromatic completion",
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m055_G3.wav",
+      "frames": 12618,
+      "duration_seconds": 0.5722448979591837,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m055_G3.wav",
+      "source_wav_sha256": "64025188fbce06fc68b6cccef9b7d7aa8154831aa9147efdc61148a4c8518e10",
+      "sha256": "64025188fbce06fc68b6cccef9b7d7aa8154831aa9147efdc61148a4c8518e10",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12618
+      }
+    },
+    {
+      "midi": 56,
+      "note": "G#3",
+      "frequency_hz": 207.65234879,
+      "filename": "ocarina_m056_Gs3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m056_Gs3.wav",
+      "frames": 12601,
+      "duration_seconds": 0.5714739229024943,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m056_Gs3.wav",
+      "source_wav_sha256": "8fe5fccc8253f9f8a346754b6a94f3248728828bb50cb20cda19fae778b602ea",
+      "sha256": "8fe5fccc8253f9f8a346754b6a94f3248728828bb50cb20cda19fae778b602ea",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12601
+      }
+    },
+    {
+      "midi": 57,
+      "note": "A3",
+      "frequency_hz": 220.0,
+      "filename": "ocarina_m057_A3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m057_A3.wav",
+      "frames": 12661,
+      "duration_seconds": 0.5741950113378684,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m057_A3.wav",
+      "source_wav_sha256": "24938bb4f7371eeb303f1d3148327b552116101d122b90321677449932c044a9",
+      "sha256": "24938bb4f7371eeb303f1d3148327b552116101d122b90321677449932c044a9",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12661
+      }
+    },
+    {
+      "midi": 58,
+      "note": "A#3",
+      "frequency_hz": 233.081880759,
+      "filename": "ocarina_m058_As3.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m058_As3.wav",
+      "frames": 12680,
+      "duration_seconds": 0.5750566893424036,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m058_As3.wav",
+      "source_wav_sha256": "40536d14db0623c3b08c0fba14e6e4d2db244ff486e94900125e146325eb4e05",
+      "sha256": "40536d14db0623c3b08c0fba14e6e4d2db244ff486e94900125e146325eb4e05",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12680
+      }
+    },
+    {
+      "midi": 59,
+      "note": "B3",
+      "frequency_hz": 246.941650628,
+      "filename": "ocarina_m059_B3.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m059_B3.wav",
+      "frames": 12697,
+      "duration_seconds": 0.5758276643990929,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m059_B3.wav",
+      "source_wav_sha256": "0b23cfb89cae6fdaa9f9252f20dbfc928b8c1c7713836e9949518ecc9f68bfa8",
+      "sha256": "0b23cfb89cae6fdaa9f9252f20dbfc928b8c1c7713836e9949518ecc9f68bfa8",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12697
+      }
+    },
+    {
+      "midi": 60,
+      "note": "C4",
+      "frequency_hz": 261.625565301,
+      "filename": "ocarina_m060_C4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m060_C4.wav",
+      "frames": 12678,
+      "duration_seconds": 0.5749659863945579,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m060_C4.wav",
+      "source_wav_sha256": "58a7f775242f6eb73fd5f7faf63a16c7573dc46b440e4ef05c390f6d02342e68",
+      "sha256": "58a7f775242f6eb73fd5f7faf63a16c7573dc46b440e4ef05c390f6d02342e68",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12678
+      }
+    },
+    {
+      "midi": 61,
+      "note": "C#4",
+      "frequency_hz": 277.182630977,
+      "filename": "ocarina_m061_Cs4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m061_Cs4.wav",
+      "frames": 12682,
+      "duration_seconds": 0.5751473922902495,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m061_Cs4.wav",
+      "source_wav_sha256": "5c0d86be797d456bbc010418b3ae2335afe9df3f601058ce5666dab56a9f8fb7",
+      "sha256": "5c0d86be797d456bbc010418b3ae2335afe9df3f601058ce5666dab56a9f8fb7",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12682
+      }
+    },
+    {
+      "midi": 62,
+      "note": "D4",
+      "frequency_hz": 293.664767917,
+      "filename": "ocarina_m062_D4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m062_D4.wav",
+      "frames": 12664,
+      "duration_seconds": 0.5743310657596372,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m062_D4.wav",
+      "source_wav_sha256": "0a10927cda229f9201f7b639fa018c2605a8e50442732030b53de333c7956b73",
+      "sha256": "0a10927cda229f9201f7b639fa018c2605a8e50442732030b53de333c7956b73",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12664
+      }
+    },
+    {
+      "midi": 63,
+      "note": "D#4",
+      "frequency_hz": 311.126983722,
+      "filename": "ocarina_m063_Ds4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m063_Ds4.wav",
+      "frames": 12713,
+      "duration_seconds": 0.5765532879818595,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m063_Ds4.wav",
+      "source_wav_sha256": "cb351fa9b170b84da6456af8f3347c9df1690ccd94141cfede4865f5a650c643",
+      "sha256": "cb351fa9b170b84da6456af8f3347c9df1690ccd94141cfede4865f5a650c643",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12713
+      }
+    },
+    {
+      "midi": 64,
+      "note": "E4",
+      "frequency_hz": 329.627556913,
+      "filename": "ocarina_m064_E4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        },
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m064_E4.wav",
+      "frames": 12685,
+      "duration_seconds": 0.5752834467120181,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m064_E4.wav",
+      "source_wav_sha256": "e6dbf0ba9907f63f544dfc22b977eb1b114d030471bcf645d8771b35200d49cf",
+      "sha256": "e6dbf0ba9907f63f544dfc22b977eb1b114d030471bcf645d8771b35200d49cf",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12685
+      }
+    },
+    {
+      "midi": 65,
+      "note": "F4",
+      "frequency_hz": 349.228231433,
+      "filename": "ocarina_m065_F4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m065_F4.wav",
+      "frames": 12670,
+      "duration_seconds": 0.5746031746031746,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m065_F4.wav",
+      "source_wav_sha256": "143114be9a438c54ada059d43ef6d40e19262197a9d233ee5f6c24963b634215",
+      "sha256": "143114be9a438c54ada059d43ef6d40e19262197a9d233ee5f6c24963b634215",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12670
+      }
+    },
+    {
+      "midi": 66,
+      "note": "F#4",
+      "frequency_hz": 369.994422712,
+      "filename": "ocarina_m066_Fs4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m066_Fs4.wav",
+      "frames": 12688,
+      "duration_seconds": 0.5754195011337868,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m066_Fs4.wav",
+      "source_wav_sha256": "a9d1fd5db7b036e75d094e7b784fd265bf0f73f13954044da522a8de18c9c928",
+      "sha256": "a9d1fd5db7b036e75d094e7b784fd265bf0f73f13954044da522a8de18c9c928",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12688
+      }
+    },
+    {
+      "midi": 67,
+      "note": "G4",
+      "frequency_hz": 391.995435982,
+      "filename": "ocarina_m067_G4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m067_G4.wav",
+      "frames": 12667,
+      "duration_seconds": 0.5744671201814059,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m067_G4.wav",
+      "source_wav_sha256": "7e2437f11db228b6ee167de16d8b59ecea4a75d9342fc4c3e74b171fea994740",
+      "sha256": "7e2437f11db228b6ee167de16d8b59ecea4a75d9342fc4c3e74b171fea994740",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12667
+      }
+    },
+    {
+      "midi": 68,
+      "note": "G#4",
+      "frequency_hz": 415.30469758,
+      "filename": "ocarina_m068_Gs4.wav",
+      "is_base_note": false,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        },
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m068_Gs4.wav",
+      "frames": 12636,
+      "duration_seconds": 0.5730612244897959,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m068_Gs4.wav",
+      "source_wav_sha256": "d132c15e47ef9d4c631cd94e9b65817228fd9925477f299b199796d70e85e117",
+      "sha256": "d132c15e47ef9d4c631cd94e9b65817228fd9925477f299b199796d70e85e117",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12636
+      }
+    },
+    {
+      "midi": 69,
+      "note": "A4",
+      "frequency_hz": 440.0,
+      "filename": "ocarina_m069_A4.wav",
+      "is_base_note": true,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        },
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m069_A4.wav",
+      "frames": 12680,
+      "duration_seconds": 0.5750566893424036,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m069_A4.wav",
+      "source_wav_sha256": "ae78f5d39ff4b922e5cac63da7dd010bb3b8b80ecb4c2bc24118ed418700d8f8",
+      "sha256": "ae78f5d39ff4b922e5cac63da7dd010bb3b8b80ecb4c2bc24118ed418700d8f8",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12680
+      }
+    },
+    {
+      "midi": 70,
+      "note": "A#4",
+      "frequency_hz": 466.163761518,
+      "filename": "ocarina_m070_As4.wav",
+      "is_base_note": false,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m070_As4.wav",
+      "frames": 12695,
+      "duration_seconds": 0.5757369614512472,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m070_As4.wav",
+      "source_wav_sha256": "88a2ebff0c2f6122797a26d12d89cb5e5e61b8cd8cf31f69edacc4df39a00432",
+      "sha256": "88a2ebff0c2f6122797a26d12d89cb5e5e61b8cd8cf31f69edacc4df39a00432",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12695
+      }
+    },
+    {
+      "midi": 71,
+      "note": "B4",
+      "frequency_hz": 493.883301256,
+      "filename": "ocarina_m071_B4.wav",
+      "is_base_note": true,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m071_B4.wav",
+      "frames": 12681,
+      "duration_seconds": 0.5751020408163265,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m071_B4.wav",
+      "source_wav_sha256": "2a60cce3a7b67eeebafabd7bf398269d56f912bcae78a355b5e95c6a9684f2f5",
+      "sha256": "2a60cce3a7b67eeebafabd7bf398269d56f912bcae78a355b5e95c6a9684f2f5",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12681
+      }
+    },
+    {
+      "midi": 72,
+      "note": "C5",
+      "frequency_hz": 523.251130601,
+      "filename": "ocarina_m072_C5.wav",
+      "is_base_note": true,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m072_C5.wav",
+      "frames": 12671,
+      "duration_seconds": 0.5746485260770975,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m072_C5.wav",
+      "source_wav_sha256": "cb565450c056d19b51f44be5449b63f3b1c0e9d666a9238ace79672cadd2093c",
+      "sha256": "cb565450c056d19b51f44be5449b63f3b1c0e9d666a9238ace79672cadd2093c",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12671
+      }
+    },
+    {
+      "midi": 73,
+      "note": "C#5",
+      "frequency_hz": 554.365261954,
+      "filename": "ocarina_m073_Cs5.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m073_Cs5.wav",
+      "frames": 12687,
+      "duration_seconds": 0.575374149659864,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m073_Cs5.wav",
+      "source_wav_sha256": "b05412b1e31cba3d90d9e8faded6d81bf4b2f21614c5532ccca72505f69d93be",
+      "sha256": "b05412b1e31cba3d90d9e8faded6d81bf4b2f21614c5532ccca72505f69d93be",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12687
+      }
+    },
+    {
+      "midi": 74,
+      "note": "D5",
+      "frequency_hz": 587.329535835,
+      "filename": "ocarina_m074_D5.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m074_D5.wav",
+      "frames": 12713,
+      "duration_seconds": 0.5765532879818595,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m074_D5.wav",
+      "source_wav_sha256": "482f573c2c39a6e89dc8f3bd254fc3b47366728c824dfc0e2af3721480f3d3ed",
+      "sha256": "482f573c2c39a6e89dc8f3bd254fc3b47366728c824dfc0e2af3721480f3d3ed",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12713
+      }
+    },
+    {
+      "midi": 75,
+      "note": "D#5",
+      "frequency_hz": 622.253967444,
+      "filename": "ocarina_m075_Ds5.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m075_Ds5.wav",
+      "frames": 12671,
+      "duration_seconds": 0.5746485260770975,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m075_Ds5.wav",
+      "source_wav_sha256": "2f0759b7906b51259fbdac177d5687ba9f4bc90bdcdcd88fe8b7b9cb2ca1c61c",
+      "sha256": "2f0759b7906b51259fbdac177d5687ba9f4bc90bdcdcd88fe8b7b9cb2ca1c61c",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12671
+      }
+    },
+    {
+      "midi": 76,
+      "note": "E5",
+      "frequency_hz": 659.255113826,
+      "filename": "ocarina_m076_E5.wav",
+      "is_base_note": true,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        },
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m076_E5.wav",
+      "frames": 12579,
+      "duration_seconds": 0.5704761904761905,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m076_E5.wav",
+      "source_wav_sha256": "55ce3dc2ea210b19fb6ca66f0e6953eac9af92ff856ec44aa55ac996badcd67d",
+      "sha256": "55ce3dc2ea210b19fb6ca66f0e6953eac9af92ff856ec44aa55ac996badcd67d",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12579
+      }
+    },
+    {
+      "midi": 77,
+      "note": "F5",
+      "frequency_hz": 698.456462866,
+      "filename": "ocarina_m077_F5.wav",
+      "is_base_note": true,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m077_F5.wav",
+      "frames": 12677,
+      "duration_seconds": 0.5749206349206349,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m077_F5.wav",
+      "source_wav_sha256": "df88de954c781141348579a7f13569baa7448d191c0e4aa7ef36d51480b9162a",
+      "sha256": "df88de954c781141348579a7f13569baa7448d191c0e4aa7ef36d51480b9162a",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12677
+      }
+    },
+    {
+      "midi": 78,
+      "note": "F#5",
+      "frequency_hz": 739.988845423,
+      "filename": "ocarina_m078_Fs5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m078_Fs5.wav",
+      "frames": 12582,
+      "duration_seconds": 0.5706122448979591,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m078_Fs5.wav",
+      "source_wav_sha256": "e20aa627ac45ebbd841379da221d031a13783a6bb9cd412656c31fe6e7b4f182",
+      "sha256": "e20aa627ac45ebbd841379da221d031a13783a6bb9cd412656c31fe6e7b4f182",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12582
+      }
+    },
+    {
+      "midi": 79,
+      "note": "G5",
+      "frequency_hz": 783.990871963,
+      "filename": "ocarina_m079_G5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m079_G5.wav",
+      "frames": 12683,
+      "duration_seconds": 0.5751927437641723,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m079_G5.wav",
+      "source_wav_sha256": "204fb76610e0333c7e7afdc182166b035b67ab7c6242cfa1b3942ea69d6b8f82",
+      "sha256": "204fb76610e0333c7e7afdc182166b035b67ab7c6242cfa1b3942ea69d6b8f82",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12683
+      }
+    },
+    {
+      "midi": 80,
+      "note": "G#5",
+      "frequency_hz": 830.60939516,
+      "filename": "ocarina_m080_Gs5.wav",
+      "is_base_note": true,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        },
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m080_Gs5.wav",
+      "frames": 12651,
+      "duration_seconds": 0.5737414965986395,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m080_Gs5.wav",
+      "source_wav_sha256": "e01084c3ac48790368aacf21df785506d3ede95b5ba0c20648ca51908db65769",
+      "sha256": "e01084c3ac48790368aacf21df785506d3ede95b5ba0c20648ca51908db65769",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12651
+      }
+    },
+    {
+      "midi": 81,
+      "note": "A5",
+      "frequency_hz": 880.0,
+      "filename": "ocarina_m081_A5.wav",
+      "is_base_note": true,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        },
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m081_A5.wav",
+      "frames": 12673,
+      "duration_seconds": 0.5747392290249433,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m081_A5.wav",
+      "source_wav_sha256": "7f7e4b7951d608e315c300b25f23690e1b4cd9445d53053adae556145d5f8f2d",
+      "sha256": "7f7e4b7951d608e315c300b25f23690e1b4cd9445d53053adae556145d5f8f2d",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12673
+      }
+    },
+    {
+      "midi": 82,
+      "note": "A#5",
+      "frequency_hz": 932.327523036,
+      "filename": "ocarina_m082_As5.wav",
+      "is_base_note": false,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m082_As5.wav",
+      "frames": 12633,
+      "duration_seconds": 0.5729251700680272,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m082_As5.wav",
+      "source_wav_sha256": "661bf2bd2c1c75639ff0a0ca7776e8b278e7dd1dbb7536ab707972b48a998119",
+      "sha256": "661bf2bd2c1c75639ff0a0ca7776e8b278e7dd1dbb7536ab707972b48a998119",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12633
+      }
+    },
+    {
+      "midi": 83,
+      "note": "B5",
+      "frequency_hz": 987.766602512,
+      "filename": "ocarina_m083_B5.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "instrument": "ocarina",
+      "beats": 1,
+      "relative_path": "ocarina_one_beat/ocarina_m083_B5.wav",
+      "frames": 12666,
+      "duration_seconds": 0.574421768707483,
+      "source_edition": "DST_Instrument_WAVs_BeatVariants_22050",
+      "source_relative_path": "ocarina_half_beat/ocarina_m083_B5.wav",
+      "source_wav_sha256": "7588f1ad970b1f19af684b2b37397503da018452cb215131e65c355326e833db",
+      "sha256": "7588f1ad970b1f19af684b2b37397503da018452cb215131e65c355326e833db",
+      "newly_generated": false,
+      "processing_details": {
+        "processing": "Byte-identical copy with corrected beat label",
+        "source_frames": 12666
+      }
+    }
+  ],
+  "midi_range": [
+    48,
+    83
+  ],
+  "note_range": [
+    "C3",
+    "B5"
+  ],
+  "note_count": 36
+}

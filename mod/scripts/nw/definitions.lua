@@ -78,6 +78,7 @@ add("gunpowder","field",20,.12,{tier=2})
 add("ocarina_g","projectile",6,.03,{tier=1,damage=0,speed=14,lifetime=.45,halfangle=1})
 -- Append tuning cards after all existing IDs, including compatibility-only cards.
 for _,c in ipairs(require("nw/pitch_modifiers").cards) do add(c.id,c.kind,c.mana,c.delay,c) end
+for _,c in ipairs(require("nw/arsenal").extra_notes) do add(c.id,c.kind,c.mana,c.delay,c) end
 M.spells.thrust.source_weapon="spear";M.spells.slash.source_weapon="glasscutter"
 M.spells.whirl.source_weapon="axe";M.spells.whirl.work={"CHOP"};M.spells.whirl.work_radius=M.spells.whirl.reach
 M.trajectory={sine=true,spiral=true,precision=true,homing=true,bounce=true,orbit=true}

@@ -8,7 +8,6 @@ import tempfile
 import uuid
 import wave
 import xml.etree.ElementTree as ET
-import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,33 +32,41 @@ def guid(parent, name):
     node(parent, 'guid', '{' + str(uuid.uuid5(uuid.NAMESPACE_URL, NAME + '/' + name)) + '}')
 
 
-def import_zip(path):
-    with zipfile.ZipFile(path) as archive:
-        for entry in archive.namelist():
-            if entry.endswith('/'):
-                continue
-            relative = Path(entry).relative_to('DST_Instrument_WAVs')
-            # Import only reusable samples, manifests and provenance, not preview/SF2 files.
-            if '..' in relative.parts or relative.is_absolute():
-                raise ValueError(entry)
-            if not (relative.suffix == '.json' and len(relative.parts) == 1
-                    or relative.parts[0] in ('ocarina', 'lyre', 'licenses')
-                    or relative.parts[0] == 'sources' and relative.suffix in ('.txt', '.json')):
-                continue
-            target = SOURCE / relative
-            target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(archive.read(entry))
-    (SOURCE / 'import.json').write_text(json.dumps({
-        'archive': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
-        'samples_modified': False,
-    }, indent=2) + '\n', encoding='utf8')
+def import_directory(path):
+    """Import exact supplied beat variants with unique bank sample filenames."""
+    groups = []
+    for instrument in ('ocarina', 'lyre'):
+        variants = []
+        for beat, suffix, beats in [('half', 'half_beat', .5), ('one', 'one_beat', 1), ('two', 'two_beats', 2)]:
+            manifest_path = path / f'{instrument}_{suffix}_manifest.json'
+            manifest = json.loads(manifest_path.read_text(encoding='utf-8-sig'))
+            notes = []
+            assert [n['midi'] for n in manifest['notes']] == list(range(48, 84))
+            for note in manifest['notes']:
+                original = path / note['relative_path']
+                assert original.resolve().is_relative_to(path.resolve())
+                data = original.read_bytes()
+                assert hashlib.sha256(data).hexdigest() == note['sha256']
+                filename = f"{instrument}_{suffix}/{instrument}_{beat}_" + original.name.split('_', 1)[1]
+                target = SOURCE / filename
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(data)
+                notes.append(dict(note, relative_path=filename, original_path=note['relative_path']))
+            variants.append(dict(beat=beat, beats=beats, notes=notes))
+            shutil.copy2(manifest_path, SOURCE / manifest_path.name)
+        groups.append(dict(instrument=instrument, midi_min=48, midi_max=83, note_min='C3', note_max='B5', variants=variants))
+    for source in (path / 'licenses').iterdir():
+        (SOURCE / 'licenses').mkdir(exist_ok=True)
+        shutil.copy2(source, SOURCE / 'licenses' / source.name)
+    (SOURCE / 'note_map.json').write_text(json.dumps({'instruments': groups}, ensure_ascii=False, indent=2)+'\n', encoding='utf8')
+    (SOURCE / 'import.json').write_text(json.dumps({'directory':path.name,'samples_modified':False,'sample_rate':22050,'sample_count':216},indent=2)+'\n',encoding='utf8')
 
 
 def build(designer):
     mapping = json.loads((SOURCE / 'note_map.json').read_text(encoding='utf8'))
     project = ET.Element('project')
     props(project, name=NAME, version=4, eventgroup_nextid=2, soundbank_nextid=1,
-          sounddef_nextid=76, build_project=1, build_continue_on_error=0,
+          sounddef_nextid=216, build_project=1, build_continue_on_error=0,
           currentbank=NAME, currentlanguage='default', primarylanguage='default', language='default')
     guid(project, 'project')
     folder = node(project, 'sounddeffolder')
@@ -74,26 +81,25 @@ def build(designer):
     for instrument in mapping['instruments']:
         source_name = instrument['instrument']
         runtime_name = 'kantele' if source_name == 'lyre' else source_name
-        manifest = json.loads((SOURCE / (source_name + '_manifest.json')).read_text(encoding='utf8'))
-        expected = {n['midi']: n for n in manifest['notes']}
-        assert [n['midi'] for n in instrument['notes']] == list(range(instrument['midi_min'], instrument['midi_max'] + 1))
+        notes = [dict(n, beat=v['beat'], beats=v['beats']) for v in instrument['variants'] for n in v['notes']]
         group = node(project, 'eventgroup')
-        props(group, name=runtime_name, event_nextid=instrument['note_count'], eventgroup_nextid=0)
+        props(group, name=runtime_name, event_nextid=len(notes), eventgroup_nextid=0)
         guid(group, runtime_name)
-        lua.append('    %s={min=%d,max=%d,range="%s–%s",samples={' % (
+        lua.append('    %s={min=%d,max=%d,range="%s–%s",variants={' % (
             runtime_name, instrument['midi_min'] - 48, instrument['midi_max'] - 48,
             instrument['note_min'], instrument['note_max']))
         entries = []
-        for note in instrument['notes']:
+        for note in notes:
+            if note['midi']==48: lua.append('        %s={' % note['beat'])
             midi = note['midi']
             filename = note['relative_path']
             sample = SOURCE / filename
             digest = hashlib.sha256(sample.read_bytes()).hexdigest()
-            assert digest == expected[midi]['sha256'], sample
+            assert digest == note['sha256'], sample
             with wave.open(str(sample)) as wav:
-                assert (wav.getnchannels(), wav.getsampwidth(), wav.getframerate()) == (1, 2, 44100)
+                assert (wav.getnchannels(), wav.getsampwidth(), wav.getframerate()) == (1, 2, 22050)
                 duration = wav.getnframes() / wav.getframerate()
-            event_name = 'm%03d' % midi
+            event_name = '%s_m%03d' % (note['beat'], midi)
             event_path = '/'.join((NAME, runtime_name, event_name))
             sound_name = runtime_name + '_' + event_name
             sounddef = node(folder, 'sounddef')
@@ -123,7 +129,8 @@ def build(designer):
             props(simple, playcount=1, loopcount=0, queuedsounds=1, polyphony=1,
                   totalgrains=0, bankname=NAME, _PC_resamplemode='Off')
             lua.append('        [%d]={event="%s",duration=%.6f},' % (midi - 48, event_path, duration))
-            entries.append(dict(midi=midi, note=note['note'], event=event_path,
+            if midi==83: lua.append('        },')
+            entries.append(dict(midi=midi, note=note['note'], beat=note['beat'], beats=note['beats'], event=event_path,
                                 file=filename, duration=duration, sha256=digest))
         lua.append('    }},')
         output['instruments'][runtime_name] = entries
@@ -149,16 +156,16 @@ def build(designer):
         shutil.copyfile(license_file, target)
     (ROOT / 'mod/scripts/nw/instrument_samples.lua').write_text('\n'.join(lua) + '\n', encoding='utf8')
     (SOURCE / 'events.json').write_text(json.dumps(output, indent=2) + '\n', encoding='utf8')
-    print('Built 76 PCM events; original WAV hashes and format verified.')
+    print('Built 216 PCM events (2 instruments x 3 beat lengths x 36 notes); original 22050 Hz WAV hashes verified.')
     for ext in ('.fev', '.fsb'):
         print(destination / (NAME + ext), (destination / (NAME + ext)).stat().st_size)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--import-zip', type=Path)
+    parser.add_argument('--import-directory', type=Path)
     parser.add_argument('--designer', type=Path, default=DEFAULT_DESIGNER)
     args = parser.parse_args()
-    if args.import_zip:
-        import_zip(args.import_zip)
+    if args.import_directory:
+        import_directory(args.import_directory)
     build(args.designer)

@@ -61,7 +61,7 @@ w=wand({"spark"});w.always_cast="speed_up";p=cast(w)
 eq(p.mana_spent,5);eq(p.blocks[1].projectiles[1].speed,28.25)
 w=wand({"spark"});w.runtime.discard={"1"};failed,err=C.compile(w)
 eq(err,"INVALID_DECK")
-eq(#D.order,219)
+eq(#D.order,221)
 print("rules: 17 scenarios + 102 standard/legacy definitions")
 
 -- Conservation across repeated casts, including shuffle, skipped cards and wraps.

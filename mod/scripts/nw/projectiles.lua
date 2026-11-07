@@ -263,7 +263,17 @@ function M.step(inst,now,cache,timers)
                 if invalid or not s.hits_left or s.hits_left<=0 then finish(inst,s,ix,iz,true);return end
             elseif c.prop and not (p and p.heal) and c.e:IsValid() and c.e._nw_break then
                 c.e._nw_break(s.owner)
-                impact(s,c.e,ix,iz);finish(inst,s,ix,iz,true);return
+                -- Opening an egg/crystal is a hit, not an unconditional stop.
+                -- Its payload may synchronously remove this shot or its owner.
+                if not inst:IsValid() then return end
+                if not Effects.live(s.owner) then inst:Remove();return end
+                impact(s,c.e,ix,iz)
+                if not inst:IsValid() then return end
+                if not Effects.live(s.owner) then inst:Remove();return end
+                if s.hits_left then
+                    s.hit[c.e]=s.age+.10;s.hits_left=s.hits_left-1
+                end
+                if not s.hits_left or s.hits_left<=0 then finish(inst,s,ix,iz,true);return end
             elseif c.wall and not c.selected then
                 impact(s,c.e,ix,iz)
                 if rebound(inst,s,c,ix,iz,length,fraction) then return end

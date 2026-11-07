@@ -16,7 +16,7 @@ assert(shift({"pitch_octave_up","pitch_semitone_down","note_a"})==11)
 assert(A.resolve_tone("note_a",11).pitch==32) -- A4 -> G#5
 assert(shift({"pitch_semitone_down","pitch_octave_up","note_a"})==11)
 assert(shift({"pitch_octave_up","pitch_octave_down","pitch_semitone_up","pitch_semitone_down","note_a"})==0)
-assert(shift({"pitch_octave_up","pitch_octave_up","note_a"})==24)
+assert(shift({"pitch_octave_up","pitch_octave_up","note_a"})==12)
 assert(shift({"speed_up","speed_down","note_a"})==0)
 local group=cast({"double","note_a","pitch_semitone_up","note_c"}).blocks[1]
 assert(#group.projectiles==2)
@@ -38,23 +38,63 @@ assert(first({"pitch_semitone_up","ocarina_b"}).id=="ocarina_b")
 local harp=first({"chord_d"});local shifted=first({"pitch_semitone_down","chord_d"})
 assert(shifted.radius==harp.radius and shifted.kind==harp.kind and shifted.mana==harp.mana)
 assert(A.resolve_tone("kantele_dsharp",0).pitch==12) -- Stable old ID, now actual C4.
-assert(A.resolve_tone("ocarina_a2",12).pitch==45)
-assert(A.tone("ocarina_a2",12)=="nw_instruments/ocarina/m093")
-local path,reason=A.tone("ocarina_a2",14);assert(path==nil and reason=="unsupported_pitch")
-assert(A.tone("kantele_a",-12)=="nw_instruments/kantele/m045")
+assert(A.resolve_tone("ocarina_a2",12).pitch==33)
+assert(A.tone("ocarina_a2",12)=="nw_instruments/ocarina/one_m081")
+assert(A.tone("ocarina_a2",99)==A.tone("ocarina_a2",12))
+assert(A.tone("kantele_a",-12)=="nw_instruments/kantele/one_m057")
 assert(A.tone("note_a",11)~=nil)
--- Unsupported sound must not ask the engine to play a nil or substituted event.
+-- All three exact recorded beat lengths are selected; no pitch/speed DSP.
 local Effects=require("nw/spell_effects");local oldfx=Effects.fx;local calls=0
+local played,duration
 Effects.fx=function()
     calls=calls+1
-    return {SoundEmitter={PlaySoundWithParams=function(_,event,params) assert(event and next(params)==nil) end},
-        Remove=function() end,DoTaskInTime=function(_,duration) assert(duration>1 and duration<25) end}
+    return {SoundEmitter={PlaySoundWithParams=function(_,event,params) assert(event and next(params)==nil);played=event end},
+        Remove=function() end,DoTaskInTime=function(_,time) duration=time end}
 end
 local Fields=require("nw/expanded_fields")
-assert(Fields.sound(nil,0,0,"ocarina_a2",14)==false and calls==0)
-assert(Fields.sound(nil,0,0,"note_a",0)==true and calls==1)
-assert(Fields.sound(nil,0,0,"kantele_a",0)==true and calls==2)
+assert(Fields.sound(nil,0,0,"unknown",14)==false and calls==0)
+for _,id in ipairs({"note_a","kantele_a"}) do
+    for _,beats in ipairs({.5,1,2}) do
+        assert(Fields.sound(nil,0,0,id,0,beats))
+        local tone=A.resolve_tone(id,0,beats)
+        assert(played==tone.event and math.abs(duration-tone.duration-.1)<.000001)
+    end
+end
+assert(calls==6)
 Effects.fx=oldfx
+-- Sum first, then saturate: duplicates cannot exceed half/two beats, and
+-- surplus Speed Up cards still cancel against Slow Down in either order.
+for _,id in ipairs({"note_c","kantele_f"}) do
+    for _,row in ipairs({{{},1},{{"speed_up"},.5},{{"speed_down"},2},
+        {{"speed_up","speed_up"},.5},{{"speed_down","speed_down"},2},
+        {{"speed_up","speed_down"},1},{{"speed_up","speed_up","speed_down"},.5},
+        {{"speed_down","speed_up","speed_up"},.5},{{"speed_down","speed_down","speed_up"},2}}) do
+        local ids={};for _,v in ipairs(row[1]) do ids[#ids+1]=v end;ids[#ids+1]=id
+        assert(first(ids).beats==row[2])
+    end
+end
+assert(shift({"pitch_octave_up","pitch_octave_up","pitch_octave_down","note_a"})==12)
+assert(shift({"pitch_octave_down","pitch_octave_down","pitch_octave_up","note_a"})==-12)
+local score=cast({"speed_up","arrow_hit","speed_down","kantele_b"})
+local carrier=score.blocks[1].projectiles[1]
+assert(not carrier.beats and score.blocks[carrier.payload].projectiles[1].beats==2)
+local group=cast({"speed_up","double","note_c","kantele_f"}).blocks[1]
+assert(#group.projectiles==2 and group.projectiles[1].beats==.5 and group.projectiles[2].beats==.5)
+local recipes=require("nw/acquisition")
+for _,instrument in ipairs({"ocarina","kantele"}) do
+    local found={}
+    for _,recipe in ipairs(recipes.recipes) do
+        local note=A.notes[recipe.card]
+        if note and note.instrument==instrument then found[#found+1]=note end
+    end
+    assert(#found==7)
+    for i,pitch in ipairs({12,14,16,17,19,21,23}) do
+        assert(found[i].pitch==pitch)
+        local id
+        for key,note in pairs(A.notes) do if note==found[i] then id=key end end
+        assert(A.resolve_tone(id,-99).pitch==pitch-12 and A.resolve_tone(id,99).pitch==pitch+12)
+    end
+end
 local recipes=require("nw/acquisition");local rarity=require("nw/card_rarity")
 for _,card in ipairs(require("nw/pitch_modifiers").cards) do
     local r=assert(recipes.by_name["nw_inscribe_"..card.id])
@@ -64,5 +104,5 @@ for _,card in ipairs(require("nw/pitch_modifiers").cards) do
     assert(Cards.codes[card.id]>Cards.codes.ocarina_g)
     assert(require("nw/hover_data").card_details(card.id,false).effect)
 end
-assert(#Cards.order==220 and Cards.codes.pitch_octave_up==218 and Cards.codes.pitch_semitone_down==221)
+assert(#Cards.order==222 and Cards.codes.pitch_octave_up==218 and Cards.codes.pitch_semitone_down==221)
 print("pitch cards: accumulation, cancellation, multicast, cast/payload isolation, note identity, audio bounds and recipes passed")

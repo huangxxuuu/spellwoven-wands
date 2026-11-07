@@ -18,8 +18,8 @@ M.effects={
     scatter=T("同时发射三枚向不同方向散开的弹丸。"),
     fire=T("命中后造成火焰伤害，并施加持续灼烧。"),
     frost=T("命中后造成伤害，并累积冰冻效果。"),
-    speed_up=T("同组初速度 ×1.5，另加 2 单位/秒初速度；多张倍率相乘、初速度增量相加。"),
-    speed_down=T("飞行速度乘以 0.65，寿命乘以 1.4。"),
+    speed_up=T("同组初速度 ×1.5，另加 2 单位/秒初速度；多张倍率相乘、初速度增量相加。 乐器改为半拍；与减速按数量抵消，只保留半拍、一拍、两拍三档。"),
+    speed_down=T("飞行速度乘以 0.65，寿命乘以 1.4。 乐器改为两拍；与加速按数量抵消，只保留半拍、一拍、两拍三档。"),
     sine=T("弹丸左右各摆动 1.2 单位，每秒 1.6 次波动。"),
     spiral=T("以半径 1.45 单位绕圈前进，每秒 2.4 圈。"),
     homing=T("使弹体逐渐转向附近可攻击目标。"),
@@ -59,6 +59,7 @@ local more={
 }
 for _,card in ipairs(require("nw/expansion")) do more[card.id]={card.name,card.name,card.effect} end
 for _,c in ipairs(require("nw/arsenal").cards) do more[c.id]={c.name,c.name,c.effect} end
+for _,c in ipairs(require("nw/arsenal").extra_notes) do more[c.id]={c.name,c.name,c.effect} end
 for _,c in ipairs(require("nw/pitch_modifiers").cards) do more[c.id]={c.name,c.name,c.effect} end
 for id,v in pairs(more) do M.names[id],M.short[id],M.effects[id]=v[1],v[2],v[3] end
 M.names.giant_shot=T("弹体巨化");M.short.giant_shot=T("巨化")

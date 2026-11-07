@@ -40,8 +40,8 @@ function M.attackable(inst)
     end)
 end
 
-function M.sound(owner,x,z,id,shift)
-    local sound,params,duration=require("nw/arsenal").tone(id,shift)
+function M.sound(owner,x,z,id,shift,beats)
+    local sound,params,duration=require("nw/arsenal").tone(id,shift,beats)
     if not sound then return false end
     local fx=Effects.fx("nw_note_sound",x,z)
     if fx then

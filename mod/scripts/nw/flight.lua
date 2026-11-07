@@ -41,11 +41,17 @@ function M.seek(s,f)
     local filter=impact.filters[key] and not (s.p.flags and s.p.flags.targets) and impact.filters[key]
     local candidates=filter and TheSim:FindEntities(s.x,0,s.z,f.radius,{filter},{"INLIMBO","FX"}) or Effects.scan(s.x,s.z,f.radius,s.p and s.p.flags)
     for _,e in ipairs(candidates) do
-        if (e~=s.owner or s.p and s.p.flags and s.p.flags.targets) and e:IsValid() and (not s.hit[e] or s.age+.000001>=s.hit[e]) then
+        if e._nw_motion~=s and e._shot~=s
+            and (e~=s.owner or s.p and s.p.flags and s.p.flags.targets) and e:IsValid()
+            and not (s.p and s.p.id=="gust" and Targeting.breakable(e) and not Targeting.egg(e))
+            and (not s.hit[e] or s.age+.000001>=s.hit[e]) then
             local x,_,z=e.Transform:GetWorldPosition()
             local rx,rz=x-s.x,z-s.z
             local d2=rx*rx+rz*rz
-            if d2<=f.radius*f.radius and (filter and impact.accepts(key,e) or not filter and (Targeting.allowed(s.owner,e,s.p and s.p.flags) or Targeting.selected_object(s.owner,e,s.p and s.p.flags))) then
+            -- Eggs and dormant crystals are hittable spell props even though
+            -- ordinary creature filters exclude nw_breakable. Use the same
+            -- exception as collision/area attacks, without broadening teams.
+            if d2<=f.radius*f.radius and (filter and impact.accepts(key,e) or not filter and (Targeting.hittable(s.owner,e,s.p and s.p.flags) or Targeting.selected_object(s.owner,e,s.p and s.p.flags))) then
                 local dist=math.sqrt(d2)
                 local dot=dist>.001 and clamp((hx*rx+hz*rz)/dist,-1,1) or 1
                 -- Prefer a forward intercept. Within each hemisphere rank by

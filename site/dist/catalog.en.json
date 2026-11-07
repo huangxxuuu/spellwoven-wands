@@ -2079,8 +2079,8 @@
       "subgroup": null,
       "groupOrder": 4,
       "rarity": "Fine",
-      "effect": "Increases projectile launch speed and sets stationary spells in motion.",
-      "detailedEffect": "Initial speed ×1.5, plus 2 units/s in this group. Multipliers multiply; added initial speeds add together. Gives static projectiles forward velocity without changing note pitch.",
+      "effect": "Increases launch speed and sets stationary spells in motion. Instruments use half a beat; Speed Up and Slow Down cancel by count, leaving half, one or two beats.",
+      "detailedEffect": "Initial speed in the same cast group is multiplied by 1.5, then increased by 2 units/s; multiple multipliers multiply and increments add. Instruments use half a beat. Speed Up and Slow Down cancel by count, leaving only half, one or two beats. Gives static projectiles forward velocity without changing note pitch.",
       "mana": 3,
       "delay": 0,
       "recharge": 0,
@@ -2101,8 +2101,8 @@
       "subgroup": null,
       "groupOrder": 4,
       "rarity": "Common",
-      "effect": "Slows projectiles and extends their flight time.",
-      "detailedEffect": "Flight speed ×0.65 and lifetime ×1.4. Does not change note pitch.",
+      "effect": "Slows projectiles and extends flight time. Instruments use two beats; Speed Up and Slow Down cancel by count, leaving half, one or two beats.",
+      "detailedEffect": "Multiplies flight speed by 0.65 and lifetime by 1.4. Instruments use two beats. Speed Up and Slow Down cancel by count, leaving only half, one or two beats. Does not change note pitch.",
       "mana": 3,
       "delay": 0,
       "recharge": 0,
@@ -3094,36 +3094,14 @@
       "iconIndex": 193
     },
     {
-      "id": "kantele_a",
-      "name": "Kantele A",
-      "category": "Basics",
-      "subgroup": null,
-      "groupOrder": 8,
-      "rarity": "Fine",
-      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note: A3; playable range: G#2–G#5 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays this note. Nearby players regain 1 sanity; all Kantele notes share a 3-second interval per player. Base note: A3; playable range: G#2–G#5 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "mana": 10,
-      "delay": 0.03,
-      "recharge": 0,
-      "stats": [
-        "Base pitch A3"
-      ],
-      "sources": [
-        "Arcane Workbench inscription · Blank Spell Card ×1 + Broken Shell ×2 + Cut Reeds ×3",
-        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
-      ],
-      "station": "Arcane Workbench",
-      "iconIndex": 200
-    },
-    {
       "id": "kantele_dsharp",
       "name": "Kantele C",
       "category": "Basics",
       "subgroup": null,
       "groupOrder": 8,
       "rarity": "Fine",
-      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note: C4; playable range: G#2–G#5 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays this note. Nearby players regain 1 sanity; all Kantele notes share a 3-second interval per player. Base note: C4; playable range: G#2–G#5 (all semitones). Out-of-range notes are silent; spell effects still work.",
+      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note C4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays this note. Nearby players regain 1 sanity; all Kantele notes share a 3-second interval per player. Base note C4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
       "mana": 10,
       "delay": 0.03,
       "recharge": 0,
@@ -3144,8 +3122,8 @@
       "subgroup": null,
       "groupOrder": 8,
       "rarity": "Fine",
-      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note: D4; playable range: G#2–G#5 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays D at the release point. Nearby players regain 1 sanity, at most once every 3 seconds per player. Base note: D4; playable range: G#2–G#5 (all semitones). Out-of-range notes are silent; spell effects still work.",
+      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note D4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays D at the release point. Nearby players regain 1 sanity, at most once every 3 seconds per player. Base note D4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
       "mana": 10,
       "delay": 0.03,
       "recharge": 0,
@@ -3166,8 +3144,8 @@
       "subgroup": null,
       "groupOrder": 8,
       "rarity": "Fine",
-      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note: E4; playable range: G#2–G#5 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays this note. Nearby players regain 1 sanity; all Kantele notes share a 3-second interval per player. Base note: E4; playable range: G#2–G#5 (all semitones). Out-of-range notes are silent; spell effects still work.",
+      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note E4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays this note. Nearby players regain 1 sanity; all Kantele notes share a 3-second interval per player. Base note E4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
       "mana": 10,
       "delay": 0.03,
       "recharge": 0,
@@ -3182,14 +3160,36 @@
       "iconIndex": 202
     },
     {
+      "id": "kantele_f",
+      "name": "Kantele F",
+      "category": "Basics",
+      "subgroup": null,
+      "groupOrder": 8,
+      "rarity": "Fine",
+      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note F4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays this note. Nearby players regain 1 sanity; all Kantele notes share a 3-second interval per player. Base note F4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "mana": 10,
+      "delay": 0.03,
+      "recharge": 0,
+      "stats": [
+        "Base pitch F4"
+      ],
+      "sources": [
+        "Arcane Workbench inscription · Blank Spell Card ×1 + Broken Shell ×2 + Cut Reeds ×3",
+        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
+      ],
+      "station": "Arcane Workbench",
+      "iconIndex": 220
+    },
+    {
       "id": "kantele_g",
       "name": "Kantele G",
       "category": "Basics",
       "subgroup": null,
       "groupOrder": 8,
       "rarity": "Fine",
-      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note: G4; playable range: G#2–G#5 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays this note. Nearby players regain 1 sanity; all Kantele notes share a 3-second interval per player. Base note: G4; playable range: G#2–G#5 (all semitones). Out-of-range notes are silent; spell effects still work.",
+      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note G4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays this note. Nearby players regain 1 sanity; all Kantele notes share a 3-second interval per player. Base note G4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
       "mana": 10,
       "delay": 0.03,
       "recharge": 0,
@@ -3204,14 +3204,193 @@
       "iconIndex": 203
     },
     {
+      "id": "kantele_a",
+      "name": "Kantele A",
+      "category": "Basics",
+      "subgroup": null,
+      "groupOrder": 8,
+      "rarity": "Fine",
+      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note A4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays this note. Nearby players regain 1 sanity; all Kantele notes share a 3-second interval per player. Base note A4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "mana": 10,
+      "delay": 0.03,
+      "recharge": 0,
+      "stats": [
+        "Base pitch A4"
+      ],
+      "sources": [
+        "Arcane Workbench inscription · Blank Spell Card ×1 + Broken Shell ×2 + Cut Reeds ×3",
+        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
+      ],
+      "station": "Arcane Workbench",
+      "iconIndex": 200
+    },
+    {
+      "id": "kantele_b",
+      "name": "Kantele B",
+      "category": "Basics",
+      "subgroup": null,
+      "groupOrder": 8,
+      "rarity": "Fine",
+      "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note B4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays this note. Nearby players regain 1 sanity; all Kantele notes share a 3-second interval per player. Base note B4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "mana": 10,
+      "delay": 0.03,
+      "recharge": 0,
+      "stats": [
+        "Base pitch B4"
+      ],
+      "sources": [
+        "Arcane Workbench inscription · Blank Spell Card ×1 + Broken Shell ×2 + Cut Reeds ×3",
+        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
+      ],
+      "station": "Arcane Workbench",
+      "iconIndex": 221
+    },
+    {
+      "id": "note_c",
+      "name": "Ocarina C · Answer",
+      "category": "Basics",
+      "subgroup": null,
+      "groupOrder": 8,
+      "rarity": "Common",
+      "effect": "Fires a responding note that triggers an echo on marked targets.\nBase note C4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Hits on a Call mark trigger one 8-damage echo. Base note C4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "mana": 5,
+      "delay": 0,
+      "recharge": 0,
+      "stats": [
+        "Base damage 0",
+        "Speed 14 units/s",
+        "Lifetime 0.45 s",
+        "Base straight-line range 6.3 units (no extra travel limit by default)",
+        "Base spread ±1° (with a 6° wand)",
+        "Base pitch C4"
+      ],
+      "sources": [
+        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
+        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
+      ],
+      "station": "Arcane Workbench",
+      "iconIndex": 102
+    },
+    {
+      "id": "ocarina_d",
+      "name": "Ocarina D",
+      "category": "Basics",
+      "subgroup": null,
+      "groupOrder": 8,
+      "rarity": "Common",
+      "effect": "Fires a short note that marks its target for an echo.\nBase note D4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays this note. A short-range sound wave marks its target for 2 seconds; Ocarina C can trigger an echo. Base note D4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "mana": 6,
+      "delay": 0.03,
+      "recharge": 0,
+      "stats": [
+        "Base damage 0",
+        "Speed 14 units/s",
+        "Lifetime 0.45 s",
+        "Base straight-line range 6.3 units (no extra travel limit by default)",
+        "Base spread ±1° (with a 6° wand)",
+        "Base pitch D4"
+      ],
+      "sources": [
+        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
+        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
+      ],
+      "station": "Arcane Workbench",
+      "iconIndex": 195
+    },
+    {
+      "id": "ocarina_e",
+      "name": "Ocarina E",
+      "category": "Basics",
+      "subgroup": null,
+      "groupOrder": 8,
+      "rarity": "Common",
+      "effect": "Fires a short note that marks its target for an echo.\nBase note E4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays this note. A short-range sound wave marks its target for 2 seconds; Ocarina C can trigger an echo. Base note E4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "mana": 6,
+      "delay": 0.03,
+      "recharge": 0,
+      "stats": [
+        "Base damage 0",
+        "Speed 14 units/s",
+        "Lifetime 0.45 s",
+        "Base straight-line range 6.3 units (no extra travel limit by default)",
+        "Base spread ±1° (with a 6° wand)",
+        "Base pitch E4"
+      ],
+      "sources": [
+        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
+        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
+      ],
+      "station": "Arcane Workbench",
+      "iconIndex": 196
+    },
+    {
+      "id": "ocarina_f",
+      "name": "Ocarina F",
+      "category": "Basics",
+      "subgroup": null,
+      "groupOrder": 8,
+      "rarity": "Common",
+      "effect": "Fires a short note that marks its target for an echo.\nBase note F4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays this note. A short-range sound wave marks its target for 2 seconds; Ocarina C can trigger an echo. Base note F4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "mana": 6,
+      "delay": 0.03,
+      "recharge": 0,
+      "stats": [
+        "Base damage 0",
+        "Speed 14 units/s",
+        "Lifetime 0.45 s",
+        "Base straight-line range 6.3 units (no extra travel limit by default)",
+        "Base spread ±1° (with a 6° wand)",
+        "Base pitch F4"
+      ],
+      "sources": [
+        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
+        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
+      ],
+      "station": "Arcane Workbench",
+      "iconIndex": 197
+    },
+    {
+      "id": "ocarina_g",
+      "name": "Ocarina G",
+      "category": "Basics",
+      "subgroup": null,
+      "groupOrder": 8,
+      "rarity": "Common",
+      "effect": "Fires a short note that marks its target for an echo.\nBase note G4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays G with a short-range wave that leaves an echo mark. Base note G4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "mana": 6,
+      "delay": 0.03,
+      "recharge": 0,
+      "stats": [
+        "Base damage 0",
+        "Speed 14 units/s",
+        "Lifetime 0.45 s",
+        "Base straight-line range 6.3 units (no extra travel limit by default)",
+        "Base spread ±1° (with a 6° wand)",
+        "Base pitch G4"
+      ],
+      "sources": [
+        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
+        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
+      ],
+      "station": "Arcane Workbench",
+      "iconIndex": 215
+    },
+    {
       "id": "note_a",
       "name": "Ocarina A · Call",
       "category": "Basics",
       "subgroup": null,
       "groupOrder": 8,
       "rarity": "Common",
-      "effect": "Fires a short note that marks its target for an echo.\nBase note: A4; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "A short-range sound wave marks the first enemy for 2 seconds. Base direct damage is 0; damage modifiers can add one direct hit. Base note: A4; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
+      "effect": "Fires a short note that marks its target for an echo.\nBase note A4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "A short-range sound wave marks the first enemy for 2 seconds. Base direct damage is 0; damage modifiers can add one direct hit. Base note A4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
       "mana": 6,
       "delay": 0,
       "recharge": 0,
@@ -3237,8 +3416,8 @@
       "subgroup": null,
       "groupOrder": 8,
       "rarity": "Common",
-      "effect": "Fires a short note that marks its target for an echo.\nBase note: B4; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays this note. A short-range sound wave marks its target for 2 seconds; Ocarina C can trigger an echo. Base note: B4; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
+      "effect": "Fires a short note that marks its target for an echo.\nBase note B4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays this note. A short-range sound wave marks its target for 2 seconds; Ocarina C can trigger an echo. Base note B4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
       "mana": 6,
       "delay": 0.03,
       "recharge": 0,
@@ -3258,203 +3437,14 @@
       "iconIndex": 194
     },
     {
-      "id": "note_c",
-      "name": "Ocarina C · Answer",
-      "category": "Basics",
-      "subgroup": null,
-      "groupOrder": 8,
-      "rarity": "Common",
-      "effect": "Fires a responding note that triggers an echo on marked targets.\nBase note: C5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Hits on a Call mark trigger one 8-damage echo. Base note: C5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "mana": 5,
-      "delay": 0,
-      "recharge": 0,
-      "stats": [
-        "Base damage 0",
-        "Speed 14 units/s",
-        "Lifetime 0.45 s",
-        "Base straight-line range 6.3 units (no extra travel limit by default)",
-        "Base spread ±1° (with a 6° wand)",
-        "Base pitch C5"
-      ],
-      "sources": [
-        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
-        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
-      ],
-      "station": "Arcane Workbench",
-      "iconIndex": 102
-    },
-    {
-      "id": "ocarina_d",
-      "name": "Ocarina D",
-      "category": "Basics",
-      "subgroup": null,
-      "groupOrder": 8,
-      "rarity": "Common",
-      "effect": "Fires a short note that marks its target for an echo.\nBase note: D5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays this note. A short-range sound wave marks its target for 2 seconds; Ocarina C can trigger an echo. Base note: D5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "mana": 6,
-      "delay": 0.03,
-      "recharge": 0,
-      "stats": [
-        "Base damage 0",
-        "Speed 14 units/s",
-        "Lifetime 0.45 s",
-        "Base straight-line range 6.3 units (no extra travel limit by default)",
-        "Base spread ±1° (with a 6° wand)",
-        "Base pitch D5"
-      ],
-      "sources": [
-        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
-        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
-      ],
-      "station": "Arcane Workbench",
-      "iconIndex": 195
-    },
-    {
-      "id": "ocarina_e",
-      "name": "Ocarina E",
-      "category": "Basics",
-      "subgroup": null,
-      "groupOrder": 8,
-      "rarity": "Common",
-      "effect": "Fires a short note that marks its target for an echo.\nBase note: E5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays this note. A short-range sound wave marks its target for 2 seconds; Ocarina C can trigger an echo. Base note: E5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "mana": 6,
-      "delay": 0.03,
-      "recharge": 0,
-      "stats": [
-        "Base damage 0",
-        "Speed 14 units/s",
-        "Lifetime 0.45 s",
-        "Base straight-line range 6.3 units (no extra travel limit by default)",
-        "Base spread ±1° (with a 6° wand)",
-        "Base pitch E5"
-      ],
-      "sources": [
-        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
-        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
-      ],
-      "station": "Arcane Workbench",
-      "iconIndex": 196
-    },
-    {
-      "id": "ocarina_f",
-      "name": "Ocarina F",
-      "category": "Basics",
-      "subgroup": null,
-      "groupOrder": 8,
-      "rarity": "Common",
-      "effect": "Fires a short note that marks its target for an echo.\nBase note: F5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays this note. A short-range sound wave marks its target for 2 seconds; Ocarina C can trigger an echo. Base note: F5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "mana": 6,
-      "delay": 0.03,
-      "recharge": 0,
-      "stats": [
-        "Base damage 0",
-        "Speed 14 units/s",
-        "Lifetime 0.45 s",
-        "Base straight-line range 6.3 units (no extra travel limit by default)",
-        "Base spread ±1° (with a 6° wand)",
-        "Base pitch F5"
-      ],
-      "sources": [
-        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
-        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
-      ],
-      "station": "Arcane Workbench",
-      "iconIndex": 197
-    },
-    {
-      "id": "ocarina_g",
-      "name": "Ocarina G",
-      "category": "Basics",
-      "subgroup": null,
-      "groupOrder": 8,
-      "rarity": "Common",
-      "effect": "Fires a short note that marks its target for an echo.\nBase note: G5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays G with a short-range wave that leaves an echo mark. Base note: G5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "mana": 6,
-      "delay": 0.03,
-      "recharge": 0,
-      "stats": [
-        "Base damage 0",
-        "Speed 14 units/s",
-        "Lifetime 0.45 s",
-        "Base straight-line range 6.3 units (no extra travel limit by default)",
-        "Base spread ±1° (with a 6° wand)",
-        "Base pitch G5"
-      ],
-      "sources": [
-        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
-        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
-      ],
-      "station": "Arcane Workbench",
-      "iconIndex": 215
-    },
-    {
-      "id": "ocarina_gsharp",
-      "name": "Ocarina G#",
-      "category": "Basics",
-      "subgroup": null,
-      "groupOrder": 8,
-      "rarity": "Common",
-      "effect": "Fires a short note that marks its target for an echo.\nBase note: G#5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays this note. A short-range sound wave marks its target for 2 seconds; Ocarina C can trigger an echo. Base note: G#5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "mana": 6,
-      "delay": 0.03,
-      "recharge": 0,
-      "stats": [
-        "Base damage 0",
-        "Speed 14 units/s",
-        "Lifetime 0.45 s",
-        "Base straight-line range 6.3 units (no extra travel limit by default)",
-        "Base spread ±1° (with a 6° wand)",
-        "Base pitch G♯5"
-      ],
-      "sources": [
-        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
-        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
-      ],
-      "station": "Arcane Workbench",
-      "iconIndex": 198
-    },
-    {
-      "id": "ocarina_a2",
-      "name": "Ocarina A5",
-      "category": "Basics",
-      "subgroup": null,
-      "groupOrder": 8,
-      "rarity": "Common",
-      "effect": "Fires a short note that marks its target for an echo.\nBase note: A5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "detailedEffect": "Plays this note. A short-range sound wave marks its target for 2 seconds; Ocarina C can trigger an echo. Base note: A5; playable range: G#3–A#6 (all semitones). Out-of-range notes are silent; spell effects still work.",
-      "mana": 6,
-      "delay": 0.03,
-      "recharge": 0,
-      "stats": [
-        "Base damage 0",
-        "Speed 14 units/s",
-        "Lifetime 0.45 s",
-        "Base straight-line range 6.3 units (no extra travel limit by default)",
-        "Base spread ±1° (with a 6° wand)",
-        "Base pitch A5"
-      ],
-      "sources": [
-        "Arcane Workbench inscription · Blank Spell Card ×1 + Cut Reeds ×3 + Gold Nugget ×1",
-        "Very rare random drop · Eligible creatures with over 200 maximum health have a 0.01% chance at normal settings to draw uniformly from all cards except Mini Sign, if they dropped neither a loose card nor a loaded wand."
-      ],
-      "station": "Arcane Workbench",
-      "iconIndex": 199
-    },
-    {
       "id": "pitch_octave_up",
       "name": "Octave Up",
       "category": "Basics",
       "subgroup": null,
       "groupOrder": 8,
       "rarity": "Common",
-      "effect": "Raises this group's instrument notes by one octave; stacks.",
-      "detailedEffect": "Shifts this group's instrument notes by +12 semitones. Shifts add and opposite shifts cancel; payloads are independent. Affects sound only, not speed, lifetime or note identity. Ocarina range: G#3–A#6; lyre range: G#2–G#5, including all semitones. Out-of-range notes are silent; spell effects still work.",
+      "effect": "Raises this group's notes by an octave; shifts cancel before clamping to one octave up or down.",
+      "detailedEffect": "Shifts instrument notes in this cast group by +12 semitones. Sum and cancel modifiers first, then clamp to +/-12 semitones; payloads are independent. Both instruments use C4-B4 base notes and the chromatic C3-B5 range. Only the sound changes; projectile speed, lifetime and note gameplay stay unchanged.",
       "mana": 1,
       "delay": 0,
       "recharge": 0,
@@ -3473,8 +3463,8 @@
       "subgroup": null,
       "groupOrder": 8,
       "rarity": "Common",
-      "effect": "Lowers this group's instrument notes by one octave; stacks.",
-      "detailedEffect": "Shifts this group's instrument notes by -12 semitones. Shifts add and opposite shifts cancel; payloads are independent. Affects sound only, not speed, lifetime or note identity. Ocarina range: G#3–A#6; lyre range: G#2–G#5, including all semitones. Out-of-range notes are silent; spell effects still work.",
+      "effect": "Lowers this group's notes by an octave; shifts cancel before clamping to one octave up or down.",
+      "detailedEffect": "Shifts instrument notes in this cast group by -12 semitones. Sum and cancel modifiers first, then clamp to +/-12 semitones; payloads are independent. Both instruments use C4-B4 base notes and the chromatic C3-B5 range. Only the sound changes; projectile speed, lifetime and note gameplay stay unchanged.",
       "mana": 1,
       "delay": 0,
       "recharge": 0,
@@ -3493,8 +3483,8 @@
       "subgroup": null,
       "groupOrder": 8,
       "rarity": "Common",
-      "effect": "Raises this group's instrument notes by one semitone; stacks.",
-      "detailedEffect": "Shifts this group's instrument notes by +1 semitones. Shifts add and opposite shifts cancel; payloads are independent. Affects sound only, not speed, lifetime or note identity. Ocarina range: G#3–A#6; lyre range: G#2–G#5, including all semitones. Out-of-range notes are silent; spell effects still work.",
+      "effect": "Raises this group's notes by a semitone; shifts cancel before clamping to one octave up or down.",
+      "detailedEffect": "Shifts instrument notes in this cast group by +1 semitones. Sum and cancel modifiers first, then clamp to +/-12 semitones; payloads are independent. Both instruments use C4-B4 base notes and the chromatic C3-B5 range. Only the sound changes; projectile speed, lifetime and note gameplay stay unchanged.",
       "mana": 1,
       "delay": 0,
       "recharge": 0,
@@ -3513,8 +3503,8 @@
       "subgroup": null,
       "groupOrder": 8,
       "rarity": "Common",
-      "effect": "Lowers this group's instrument notes by one semitone; stacks.",
-      "detailedEffect": "Shifts this group's instrument notes by -1 semitones. Shifts add and opposite shifts cancel; payloads are independent. Affects sound only, not speed, lifetime or note identity. Ocarina range: G#3–A#6; lyre range: G#2–G#5, including all semitones. Out-of-range notes are silent; spell effects still work.",
+      "effect": "Lowers this group's notes by a semitone; shifts cancel before clamping to one octave up or down.",
+      "detailedEffect": "Shifts instrument notes in this cast group by -1 semitones. Sum and cancel modifiers first, then clamp to +/-12 semitones; payloads are independent. Both instruments use C4-B4 base notes and the chromatic C3-B5 range. Only the sound changes; projectile speed, lifetime and note gameplay stay unchanged.",
       "mana": 1,
       "delay": 0,
       "recharge": 0,

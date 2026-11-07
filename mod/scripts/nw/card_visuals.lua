@@ -220,5 +220,7 @@ local M={page_size=48,cards={
     ["pitch_octave_down"]={shape="H",primary_class="modifier"},
     ["pitch_semitone_up"]={shape="H",primary_class="modifier"},
     ["pitch_semitone_down"]={shape="H",primary_class="modifier"},
+    ["kantele_f"]={shape="R",primary_class="basic"},
+    ["kantele_b"]={shape="R",primary_class="basic"},
 }}
 return M

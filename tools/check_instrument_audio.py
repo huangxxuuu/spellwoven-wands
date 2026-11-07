@@ -22,25 +22,26 @@ def check(game=None):
     samples = lua.eval('require("nw/instrument_samples")')
     for note in notes:
         instrument = note['event'].split('/')[1]
-        sample = samples[instrument]['samples'][note['midi'] - 48]
+        sample = samples[instrument]['variants'][note['beat']][note['midi'] - 48]
         assert sample['event'] == note['event']
         assert abs(sample['duration'] - note['duration']) < .000001
         assert hashlib.sha256((source / note['file']).read_bytes()).hexdigest() == note['sha256']
     for card, base in arsenal['notes'].items():
         bank = samples[base['instrument']]
-        for target in range(bank['min'] - 1, bank['max'] + 2):
-            tone = arsenal['resolve_tone'](card, target - base['pitch'])
-            assert tone['pitch'] == target
-            assert tone['supported'] == (bank['min'] <= target <= bank['max'])
-            if tone['supported']:
-                assert tone['event'] == 'nw_instruments/%s/m%03d' % (base['instrument'], target + 48)
+        for shift in range(-36, 37):
+            for beat, beats in [('half', .5), ('one', 1), ('two', 2)]:
+                target = base['pitch'] + max(-12, min(12, shift))
+                tone = arsenal['resolve_tone'](card, shift, beats)
+                assert tone['pitch'] == target and tone['beats'] == beats
+                assert tone['supported'] and 0 <= target <= 35
+                assert tone['event'] == 'nw_instruments/%s/%s_m%03d' % (base['instrument'], beat, target + 48)
     for language in ('zh', 'en'):
         lua.eval('require("nw/locale").configure')(language, language)
         for card, base in arsenal['notes'].items():
             text = lua.eval('require("nw/spell_briefs").get')(card)
             assert samples[base['instrument']]['range'] in text
             assert ('playable range' if language == 'en' else '可调音域') in text
-    print('PASS: 76 source hashes, event mappings/durations, 14 cards across all notes/bounds, bilingual tooltips')
+    print(f'PASS: {len(notes)} source hashes, three beat variants, clamped octave shifts and bilingual tooltips')
     if game is None:
         return
     with os.add_dll_directory(str(game / 'bin64')):
@@ -73,7 +74,7 @@ def check(game=None):
             core = c.c_void_p()
             call(event, 'FMOD_EventSystem_GetSystemObject', system, c.byref(core))
             call(low, 'FMOD_System_SetOutput', core, 2)  # NOSOUND; no game or speakers needed.
-            call(event, 'FMOD_EventSystem_Init', system, 128, 0, None, 0)
+            call(event, 'FMOD_EventSystem_Init', system, 256, 0, None, 0)
             media = str(ROOT / 'mod/sound') + '/'
             call(event, 'FMOD_EventSystem_SetMediaPath', system, media.encode())
             project = c.c_void_p()
@@ -96,7 +97,7 @@ def check(game=None):
                 assert repeats.value == 0, (note['event'], 'sample repeats', repeats.value)
                 frequency = c.c_float()
                 call(low, 'FMOD_Channel_GetFrequency', channel, c.byref(frequency))
-                assert frequency.value == 44100, note['event']
+                assert frequency.value == 22050, note['event']
                 current = c.c_void_p()
                 call(low, 'FMOD_Channel_GetCurrentSound', channel, c.byref(current))
                 frames = verify_pcm(current, note)
@@ -131,7 +132,7 @@ def check(game=None):
                 checked.add(key)
             assert len(checked) == len(notes)
             call(low, 'FMOD_Sound_Release', sound)
-            print('PASS: 76 native events each play exactly their matching single-note WAV once, at original pitch, and end automatically; bank PCM matches all sources')
+            print('PASS: 216 native events each play exactly their matching single-note WAV once, at original pitch, and end automatically; bank PCM matches all sources')
         finally:
             call(event, 'FMOD_EventSystem_Release', system)
 

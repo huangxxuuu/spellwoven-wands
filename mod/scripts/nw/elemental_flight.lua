@@ -94,7 +94,7 @@ function M.direction(heading,id)
 end
 
 local function face_head(s,now,heading)
-    heading=heading or -s.inst.Transform:GetRotation()*math.pi/180
+    heading=heading or s.launch_heading or -s.inst.Transform:GetRotation()*math.pi/180
     local direction=M.direction(heading,s.id)
     if direction~=s.direction then
         s.direction=direction
@@ -250,6 +250,7 @@ local function update(pool,s,now)
             and distance<=math.max(60,expected)*dt*2+.1
         -- Directional bodies face the segment actually travelled, just like
         -- their new trails. Motor rotation may already describe the next turn.
+        if continuous then s.launch_heading=nil end
         face_head(s,now,profiles[s.id].motion_heading and continuous and math.atan2(dz,dx) or nil)
         if profiles[s.id].trail~=false and continuous and s.visual.entity:IsVisible() then
             if profiles[s.id].spatial then
@@ -332,6 +333,9 @@ function M.attach(inst,id)
         slots=profile.spatial and ARROW_SLOTS or math.ceil((profile.life or BASE_TRAIL_LIFE)*profile.rate),
         next_emit=now+interval*(profile.stagger and ((inst.GUID or 0)%3+1)/3 or 1),next=1,parts={}}
     inst._nw_elemental_flight=s
+    if id=="land_hook" and inst._launch_heading and inst._launch_heading:value()~=0 then
+        s.launch_heading=inst._launch_heading:value()-4
+    end
     pool.shots[#pool.shots+1]=s
     face_head(s,now)
 end

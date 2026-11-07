@@ -20,6 +20,9 @@ local function refresh(inst)
     if not inst._visual then return end
     local id=Cards.bycode[inst._spell:value()]
     if not id then return end -- Wait for the replicated spell before choosing art.
+    -- A remote transform may still have its default rotation on the first dirty
+    -- event. Do not display the hook until its launch direction has arrived.
+    if id=="land_hook" and inst._launch_heading:value()==0 then return end
     inst._visual.Transform:SetPosition(0,inst._height:value(),0)
     local function size() Size.visual(inst._visual,math.max(1,inst._size:value())) end
     if inst._visual_id==id then size();return end
@@ -68,6 +71,8 @@ local function fn(breakable,beam)
     inst._spell=net_byte(inst.GUID,"nw_projectile.spell","nw_projectiledirty")
     inst._height=net_float(inst.GUID,"nw_projectile.height","nw_projectiledirty")
     inst._size=net_float(inst.GUID,"nw_projectile.size","nw_projectiledirty")
+    -- Radians + 4 reserves zero for 'not received', including shots aimed at 0.
+    inst._launch_heading=net_float(inst.GUID,"nw_projectile.launch_heading","nw_projectiledirty")
     if beam then
         inst._beam_path=net_string(inst.GUID,"nw_beam.path","nw_beamdirty")
         inst._beam_ended=net_bool(inst.GUID,"nw_beam.ended","nw_beamdirty")
@@ -113,7 +118,7 @@ local function fn(breakable,beam)
     function inst:Launch(owner, descriptor, x,z, dx,dz, onremove,height)
         descriptor.flags=descriptor.flags or {}
         if require("nw/arsenal").notes[descriptor.id] then
-            require("nw/expanded_fields").sound(owner,x,z,descriptor.id,descriptor.pitch)
+            require("nw/expanded_fields").sound(owner,x,z,descriptor.id,descriptor.pitch,descriptor.beats)
         end
         if breakable then
             self._nw_owner=owner
@@ -127,6 +132,7 @@ local function fn(breakable,beam)
                 self:Remove()
             end
         end
+        self._launch_heading:set(math.atan2(dz,dx)+4)
         self._spell:set(Cards.codes[descriptor.base or descriptor.id] or 1)
         height=height or Muzzle.default_height
         self._height:set(height)
