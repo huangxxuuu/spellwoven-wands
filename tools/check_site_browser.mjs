@@ -101,11 +101,17 @@ try{
     assert(await mobile.evaluate('document.documentElement.scrollWidth<=innerWidth'),'Mobile overflow');
     await mobile.evaluate(`document.querySelector('#q').value='homing';document.querySelector('#filters').dispatchEvent(new Event('input'));`);
     assert(await mobile.evaluate(`document.querySelector('#count').textContent.startsWith('Showing ') && document.querySelectorAll('.spell-card').length>0`));
-    await mobile.evaluate(`document.querySelector('#q').value='';document.querySelector('#tag').value='music';document.querySelector('#filters').dispatchEvent(new Event('input'));`);
+    await mobile.evaluate(`document.querySelector('#q').value='';document.querySelector('#tags input[value=music]').click();`);
     assert(await mobile.evaluate(`document.querySelectorAll('.spell-card').length>0`),'Music tag must have results');
     assert(await mobile.evaluate(`(async()=>{const {cards}=await (await fetch('../catalog.en.json')).json();const names=[...document.querySelectorAll('.spell-card')].map(n=>n.textContent);return names.length===cards.filter(c=>c.tagIds.includes('music')).length && names.every(n=>cards.find(c=>c.name===n)?.tagIds.includes('music'));})()`),'Tag results differ from mod data');
     await mobile.evaluate(`document.querySelector('#category').selectedIndex=2;document.querySelector('#filters').dispatchEvent(new Event('input'));`);
     assert(await mobile.evaluate(`(async()=>{const {cards}=await (await fetch('../catalog.en.json')).json();const category=document.querySelector('#category').value;const names=[...document.querySelectorAll('.spell-card')].map(n=>n.textContent);const expected=cards.filter(c=>c.tagIds.includes('music')&&c.category===category);return names.length===expected.length && names.every(n=>expected.some(c=>c.name===n));})()`),'Combined category/tag filter differs from mod data');
+    assert(await mobile.evaluate(`!document.querySelector('select#tag') && document.querySelectorAll('#tags input:checked').length===1`),'Tags must be visible single-choice controls');
+    await mobile.evaluate(`document.querySelector('#tags input[value=homing]').click()`);
+    assert(await mobile.evaluate(`document.querySelectorAll('#tags input:checked').length===1 && document.querySelector('#tags input:checked').value==='homing'`),'Selecting another tag must replace the previous selection');
+    await mobile.evaluate(`document.querySelector('#filters button[type=reset]').click()`);
+    await mobile.until(`document.querySelector('#tags input:checked').value==='' && document.querySelectorAll('.spell-card').length===186`);
+    assert(await mobile.evaluate(`document.documentElement.scrollWidth<=innerWidth && [...document.querySelectorAll('.tag-option')].every(n=>n.getBoundingClientRect().right<=innerWidth)`),'Tag list must wrap on mobile');
     const mobileShot=await mobile.call('Page.captureScreenshot',{format:'png'});
     await fs.writeFile(path.join(report,'site_locale_mobile.png'),Buffer.from(mobileShot.data,'base64'));
     assert.equal(errors.length,0,JSON.stringify(errors));

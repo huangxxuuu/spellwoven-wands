@@ -5,7 +5,7 @@ const t = (zh, en) => english ? en : zh;
 const form = document.querySelector("#filters");
 const query = document.querySelector("#q");
 const category = document.querySelector("#category");
-const tagFilter = document.querySelector("#tag");
+const tagFilters = document.querySelector("#tags");
 const station = document.querySelector("#station");
 const fuzzy = document.querySelector("#fuzzy");
 const descriptions = document.querySelector("#descriptions");
@@ -125,7 +125,17 @@ async function loadCatalog() {
     const response = await fetch(english ? "../catalog.en.json" : "catalog.json");
     if (!response.ok) throw new Error("catalog unavailable");
     const {cards, tags} = await response.json();
-    for (const tag of tags) tagFilter.add(new Option(tag.text, tag.id));
+    for (const tag of [{id: "", text: t("全部标签", "All tags")}, ...tags]) {
+        const label = element("label", undefined, "tag-option");
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "spell-tag";
+        radio.value = tag.id;
+        radio.setAttribute("form", "filters");
+        radio.defaultChecked = tag.id === "";
+        label.append(radio, element("span", tag.text));
+        tagFilters.querySelector(".tag-options").append(label);
+    }
     const categories = [...new Set(cards.map(card => card.category))];
     for (const value of categories) {
         category.add(new Option(value, value));
@@ -151,10 +161,11 @@ async function loadCatalog() {
 
     function render() {
         const term = normalize(query.value.trim());
+        const selectedTag = tagFilters.querySelector("input:checked").value;
         const filtered = rows.filter(({card}) => (!category.value || category.value === card.category ||
             category.value === card.category + "/" + card.subgroup) &&
             (!station.value || station.value === (card.station || noRecipe)) &&
-            (!tagFilter.value || card.tagIds.includes(tagFilter.value)));
+            (!selectedTag || card.tagIds.includes(selectedTag)));
         let groups;
         let total;
         if (term) {
@@ -186,6 +197,7 @@ async function loadCatalog() {
     }
 
     form.addEventListener("input", render);
+    tagFilters.addEventListener("input", render);
     form.addEventListener("submit", event => event.preventDefault());
     form.addEventListener("reset", () => requestAnimationFrame(render));
     const requested = new URLSearchParams(location.search).get("card");

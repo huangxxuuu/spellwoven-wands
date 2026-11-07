@@ -88,3 +88,13 @@ footer{margin-top:38px;border-top:1px solid var(--rule)}.foot{min-height:64px;fo
 .language-picker{display:flex;align-items:center;gap:.4rem;font-size:.8rem;white-space:nowrap}.language-picker select{max-width:8rem;padding:.3rem;border:1px solid #b8ad91;border-radius:4px;background:#fbf8ef;color:#393a2b}html[lang="en"] .top{flex-wrap:wrap}html[lang="en"] .brand{font-size:1.15rem}html[lang="en"] .hero h1{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.12}html[lang="en"] .attrs dt{line-height:1.6}@media(max-width:700px){.language-picker{margin-bottom:.6rem}html[lang="en"] nav{flex-wrap:wrap;gap:.8rem}}
 
 .feature-grid{row-gap:28px}.card-tags{color:var(--accent);font-size:13px}.actions{flex-wrap:wrap}
+
+.tag-filters{min-width:0;margin:20px 0 12px;padding:0;border:0}
+.tag-filters legend{padding:0;margin-bottom:9px;color:var(--muted);font-size:13px;font-weight:600}
+.tag-options{display:flex;flex-wrap:wrap;gap:8px}
+.tag-option{position:relative;display:block;cursor:pointer;font-weight:normal}
+.tag-option input{position:absolute;width:1px;height:1px;padding:0;margin:0;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+.tag-option span{display:block;padding:5px 13px;border:1px solid var(--rule);border-radius:18px;background:#faf8f0;line-height:1.6}
+.tag-option:hover span{border-color:var(--accent)}
+.tag-option input:checked+span{background:var(--accent);color:#fff9e9;border-color:var(--accent)}
+.tag-option input:focus-visible+span{outline:2px solid var(--accent);outline-offset:3px}
