@@ -8,6 +8,22 @@ local function cast(...)
 end
 local p=cast("recharge_down","recharge_down","spark")
 assert(p.next_state.remaining_recharge==0)
+-- Modifiers may cancel both waits, while a small positive delay remains exact.
+p=cast("recharge_down","recharge_down","recharge_down","recharge_down","spark")
+assert(p.next_state.remaining_cast==0 and p.next_state.remaining_recharge==0 and p.cooldown==0)
+local zero=require("nw/generator").starter()
+zero.stats.cast_delay,zero.stats.recharge=0,0
+zero.cards={{card_uid="zero_spark",spell_id="spark"}}
+zero.runtime=C.initial(zero.cards,zero.stats,31)
+p=assert(C.compile(zero));assert(p.cooldown==0)
+zero.stats.cast_delay=.11
+p=assert(C.compile(zero));assert(math.abs(p.next_state.remaining_cast-.04)<1e-8)
+for _,case in ipairs({{"edge_yellowstaff",240},{"edge_opalstaff",60}}) do
+    p=cast("recharge_down","recharge_down",case[1])
+    assert(p.next_state.remaining_cast==case[2] and p.cooldown==case[2])
+    p=cast("recharge_down","arrow_hit",case[1])
+    assert(p.next_state.remaining_cast==case[2],"payload spell retains its explicit cooldown")
+end
 assert(D.homing.acceleration==36 and D.near_homing.acceleration==72)
 assert(D.homing.acceleration/D.homing.damping==50 and D.near_homing.acceleration/D.near_homing.damping==50)
 assert(D.homing.turn_rate==360 and D.homing_rotate.turn_rate==360)

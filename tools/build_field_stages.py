@@ -16,6 +16,7 @@ from xml.etree import ElementTree as ET
 from PIL import Image, ImageChops, ImageOps
 
 from build_art_assets import ROOT, RUNTIME, compile_bank
+from spore_stage_art import add_spore_stages
 
 BANK = "nw_field_stages"
 FPS = 30
@@ -26,6 +27,7 @@ KINDS = (
 )
 PERIODS = {"spawn": .2, "idle": 1.2, "pulse": .2, "end": .3,
            "warning": .3, "fall": .24}
+STORM_PERIODS = {"spawn": .5, "end": .8}
 # The world anchor is the centre of the painted contact patch. The foreground
 # edge of an isometric base extends below it; anchoring its lowest pixel at
 # zero makes the whole base read as sitting behind/above its placement point.
@@ -153,6 +155,7 @@ class FieldBank:
                     "placement_baseline_pixels": PLACEMENT_BASELINE,
                     "pixels_per_world_unit": 150, "sources": self.sources,
                     "packing": self.packing,
+                    "spore_sentry": self.spore_metadata,
                     "sprite_sizes": {key: im.size for key, im in self.sprites.items()},
                     "clips": {key: {k: v for k, v in clip.items() if k != "poses"}
                               | {"frames": len(clip["poses"])} for key, clip in self.clips.items()},
@@ -161,6 +164,7 @@ class FieldBank:
                               "Moon warning uses a separate native soft shadow, without a range circle",
                               "Deer uses four idle poses and a single eight-pose spin followed by dissolution",
                               "Guard and vital rings use independent client members, never a composite ring",
+                              "Storm lobes gather for .5 s before the first warning and disperse for .8 s in a separate visual effect",
                               "Eight alpha levels are baked into existing painted textures"]}
         return manifest
 
@@ -224,7 +228,7 @@ def build_bank():
         bank.sprite(key, opened(path), str(path.relative_to(ROOT)))
     for key, size in (("moon_fall", (165, 200)), ("delay_seal", (150, 150)),
                       ("detonate", (150, 150)), ("shock_ring", (200, 200)),
-                      ("vortex", (220, 220)), ("storm_cloud", (240, 240))):
+                      ("vortex", (220, 220))):
         path = ORIGINALS / f"{key}.png"
         bank.sprite(key, opened(path, size), str(path.relative_to(ROOT)))
     ring = opened(RUNTIME / "nw_objects/blast_extent.png", (240, 240))
@@ -248,26 +252,38 @@ def build_bank():
     mote = main_piece(mote)
     mote = ImageOps.contain(mote.crop(mote.getchannel("A").getbbox()), (27, 27), Image.Resampling.LANCZOS)
     bank.sprite("vital_mote", mote, "nw_objects/garden_ring.png: one complete pale green spore")
-    for pose in ("bud", "sprout", "idle", "aim", "fire", "wilt"):
-        path = RUNTIME / "nw_objects" / f"plant_{pose}.png"
-        bank.sprite("spore_" + pose, opened(path), str(path.relative_to(ROOT)))
-    plant = bank.sprites["spore_idle"]
-    bank.sprite("spore_head", plant.crop((0, 0, plant.width, 93)), "plant_idle: thorn head")
-    bank.sprite("spore_root", plant.crop((0, 88, plant.width, plant.height)), "plant_idle: fixed stem/root")
     # The painted objects stay rooted. These masks contain their existing bright
     # facets only, so the pulsing layer does not stretch the stones or egg shell.
     for key in ("crystal_mine", "sleep_crystal", "payload_egg", "delay_seal", "detonate", "shock_ring"):
         image = bank.sprites[key]
         shine = select(image, lambda x, y, r, g, b: max(0, (max(r, g, b) - 165) / 90))
         bank.sprite(key + "_shine", shine, key + ": existing bright painted facets")
-    # Cloud body stays painted; actual strikes now use native shock_fx strokes
-    # between cloud and target. A facet shimmer gives the warning its own cue.
-    storm = bank.sprites["storm_cloud"]
-    cloud = select(storm, lambda x, y, r, g, b: 0 if y > storm.height*.43 and b>r+18 and b>155
-                   else 1 if y < storm.height*.60 else max(0, 1-(y/storm.height-.60)/.10))
-    shine = select(cloud, lambda x, y, r, g, b: max(0, (min(r, g, b)-120)/135))
-    bank.sprite("storm_body", cloud, "storm_cloud: cloud portion")
-    bank.sprite("storm_shine", shine, "storm_cloud: existing bright cloud facets")
+    # Four complete inked silhouettes, not rectangular fragments or copies of
+    # the card's embedded lightning. Keep their registration across all phases.
+    storm_path = SOURCE / "storm_lobes_v2.png"
+    storm_sheet = Image.open(storm_path).convert("RGBA")
+    assert storm_sheet.getchannel("A").getextrema()[0] == 0, "Storm lobes need transparency"
+    for index, (key, size) in enumerate((("storm_back", (214, 84)),
+                                        ("storm_crown", (176, 134)),
+                                        ("storm_left", (134, 66)),
+                                        ("storm_right", (128, 64)))):
+        column, row = index % 2, index // 2
+        piece = storm_sheet.crop((column*storm_sheet.width//2, row*storm_sheet.height//2,
+                                  (column+1)*storm_sheet.width//2, (row+1)*storm_sheet.height//2))
+        piece.putalpha(piece.getchannel("A").point(lambda a: a if a > 8 else 0))
+        piece = ImageOps.contain(piece.crop(piece.getchannel("A").getbbox()), size,
+                                Image.Resampling.LANCZOS)
+        bank.sprite(key, piece, f"{storm_path.relative_to(ROOT)}: quadrant {index+1}")
+        if key in ("storm_left", "storm_right"):
+            # Runtime-composited light on the existing paint, confined to a few
+            # inner facets. It has no bolt silhouette and disappears before end.
+            light = select(piece, lambda x, y, r, g, b:
+                           max(0, (min(r, g, b)-130)/125)
+                           * max(0, 1-abs(x/piece.width-.5)*2)
+                           * max(0, 1-abs(y/piece.height-.52)*2))
+            glow = Image.new("RGBA", piece.size, (197, 215, 231, 0))
+            glow.putalpha(light.getchannel("A"))
+            bank.sprite(key+"_shine", glow, key+": cool light on inner painted facets")
     vortex = bank.sprites["vortex"]
     center = (vortex.width / 2, vortex.height / 2)
     radius = min(vortex.size) * .34
@@ -323,6 +339,42 @@ def build_bank():
                             angle=angle+dx*t*.45, opacity=1-t))
         return layers
 
+    def smooth(value):
+        value = max(0, min(1, value))
+        return value*value*(3-2*value)
+
+    def storm_pose(phase, t):
+        # A broad thunderhead rolls in from both sides. Its lowest billows
+        # surround y=-330, where the existing native lightning starts.
+        lobes = (("storm_back", 0, -323, -28, -5, 0, .10),
+                 ("storm_crown", 7, -368, 22, -10, .12, .18),
+                 ("storm_left", -58, -320, -65, -7, .06, 0),
+                 ("storm_right", 61, -315, 60, -9, .20, .08))
+        layers = []
+        for key, x, y, dx, dy, arrival, departure in lobes:
+            angle, sx, sy, opacity = 0, 1, 1, 1
+            if phase == "spawn":
+                gather = smooth((t-arrival)/(1-arrival))
+                x += dx*(1-gather)
+                y += dy*(1-gather)
+                angle = (1 if dx > 0 else -1)*.075*(1-gather)
+                sx = .88+.12*gather
+                sy = .92+.08*gather
+                opacity = smooth((t-arrival)/.48)
+            elif phase == "end":
+                scatter = smooth((t-departure)/(1-departure))
+                x += dx*1.25*scatter
+                y -= (25 if key == "storm_crown" else 14)*scatter
+                angle = (1 if dx > 0 else -1)*.10*scatter
+                sx = 1+.12*scatter
+                sy = 1-.17*scatter
+                opacity = 1-smooth((t-departure)/(1-departure))
+            layers.append(L(key, x, y, angle=angle, sx=sx, sy=sy, opacity=opacity))
+            if key in ("storm_left", "storm_right") and phase in ("warning", "pulse"):
+                light = smooth(t) if phase == "warning" else 1-smooth(t)
+                layers.append(L(key+"_shine", x, y, opacity=light))
+        return layers
+
     def posed(kind, phase, t, index, shields=2):
         alpha = t if phase == "spawn" else 1-t if phase == "end" else 1
         pulse = math.sin(t * math.pi) if phase in ("pulse", "warning") else 0
@@ -351,10 +403,10 @@ def build_bank():
             return [ground(t, alpha*(.25+.4*pulse), .65+.25*pulse),
                     L(kind, y=y, opacity=alpha),
                     L(kind+"_shine", y=y, opacity=alpha*(.2+.8*pulse+.15*wave))]
-        if kind in ("rain_cloud", "storm_cloud"):
-            storm = kind == "storm_cloud"
-            key = "storm_body" if storm else "rain_cloud"
-            y = -330 if storm else -370
+        if kind == "storm_cloud":
+            return storm_pose(phase, t)
+        if kind == "rain_cloud":
+            key, y = "rain_cloud", -370
             # Body position does not bob; detached rain/bolt layers own motion.
             layers = [L(key, y=y, opacity=alpha)]
             if phase == "end":
@@ -362,15 +414,10 @@ def build_bank():
                     layers.append(L(key, n*t*45, y-15*t, sx=.55, sy=.85,
                                     opacity=(1-t)*.35))
                 return layers
-            if storm:
-                if phase in ("warning", "pulse"):
-                    layers.append(L("storm_shine", y=y,
-                                    opacity=alpha*(.28+.72*pulse if phase=="warning" else 1)))
-            else:
-                for n in range(14):
-                    u = (t*2+n*.371) % 1
-                    layers.append(L("drop", ((n*79)%302)-151-u*13, -320+u*315,
-                                    sx=.7, sy=1, opacity=alpha*(1-u*.3)))
+            for n in range(14):
+                u = (t*2+n*.371) % 1
+                layers.append(L("drop", ((n*79)%302)-151-u*13, -320+u*315,
+                                sx=.7, sy=1, opacity=alpha*(1-u*.3)))
             return layers
         if kind in ("guard_ring", "vital_ring", "spore_sentry"):
             # Root clips are transparent placeholders only. The runtime owns
@@ -402,6 +449,8 @@ def build_bank():
     for kind in KINDS:
         for phase in ("spawn", "idle", "pulse", "end"):
             seconds = .5 if kind=="deer_decoy" and phase=="end" else PERIODS[phase]
+            if kind == "storm_cloud":
+                seconds = STORM_PERIODS.get(phase, seconds)
             bank.clip(f"{kind}_{phase}", seconds,
                       lambda t, index, kind=kind, phase=phase: posed(kind, phase, t, index), phase=="idle")
     for phase in ("warning", "fall"):
@@ -436,27 +485,7 @@ def build_bank():
               lambda t, index: [L("vital_mote", sx=1.2+.8*math.sin(t*math.pi),
                                   opacity=.8+.2*math.sin(t*math.pi))])
 
-    def plant_pose(phase, t, index):
-        if phase == "idle":
-            # Roots stay fixed. The thorn head moves around the stem attachment,
-            # with a tiny breathing displacement rather than swaying the soil.
-            angle = .018*math.sin(t*math.tau)
-            return [L("spore_root", y=-bank.sprites["spore_root"].height/2),
-                    L("spore_head", x=2*math.sin(t*math.tau), y=-91.5,
-                      angle=angle)]
-        if phase == "grow":
-            key = "spore_" + ("bud" if t < 5/18 else "sprout" if t < 12/18 else "idle")
-            return [L(key, y=-bank.sprites[key].height/2, opacity=min(1, t*5+.2))]
-        if phase == "fire":
-            key = "spore_" + ("aim" if t < .5 else "fire" if t < .8 else "idle")
-            recoil = -4*math.sin((t-.5)*math.pi*2) if .5 < t < 1 else 0
-            return [L(key, x=recoil, y=-bank.sprites[key].height/2)]
-        return [L("spore_wilt", y=-bank.sprites["spore_wilt"].height/2,
-                  opacity=1-t)]
-
-    for phase, seconds in (("grow", .6), ("idle", 1.2), ("fire", .4), ("wilt", .3)):
-        bank.clip("spore_"+phase, seconds,
-                  lambda t, index, phase=phase: plant_pose(phase, t, index), phase=="idle")
+    bank.spore_metadata = add_spore_stages(bank, SOURCE / "spore_sentry_v2.png")
     bank.prune_unused_frames()
     return bank
 

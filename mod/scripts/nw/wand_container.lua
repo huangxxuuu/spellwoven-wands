@@ -117,6 +117,9 @@ function M.setup(inst)
     inst:AddComponent("container")
     local c=inst.components.container
     c:WidgetSetup("nw_wand")
+    -- Like slingshot ammo, these slots are opened by the equipment UI only.
+    -- Replicates to clients: suppress RUMMAGE and exclude backpack overflow.
+    c.canbeopened=false
     c.skipopensnd=true;c.skipclosesnd=true
     c.excludefromcrafting=true
     -- The existing wand save remains authoritative, including old saves.

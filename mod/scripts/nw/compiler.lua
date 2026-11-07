@@ -278,7 +278,9 @@ function M.compile(wand, definitions, limits)
     end
     for _, id in ipairs(hand) do state.discard[#state.discard+1] = id end
     local recharge = wrapped or #state.deck == 0
-    state.remaining_cast = math.max(.2, cooldown_floor, stats.cast_delay + root.delay)
+    -- Zero adds no wand wait; native attack states still gate real casts.
+    -- Explicit spell cooldowns apply even when modifiers cancel the delay.
+    state.remaining_cast = math.max(0, cooldown_floor, stats.cast_delay + root.delay)
     state.remaining_recharge = recharge and math.max(0, stats.recharge + state.reload_delta) or 0
     if recharge then
         for _, id in ipairs(state.deck) do state.discard[#state.discard+1] = id end

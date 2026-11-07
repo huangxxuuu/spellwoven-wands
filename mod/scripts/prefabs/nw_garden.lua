@@ -23,24 +23,33 @@ local function sentry(inst,owner,p,x,z)
     inst.components.follower:StopLeashing()
     local limits=require("nw/spell_limits")
     limits.track(inst,owner,"_nw_sentries",limits.sentries)
-    local shots,closing=0,false
+    local shots,closing,fire_until=0,false,0
+    local lifetime=require("nw/field_effects").time(p,5.7)
+    local deadline=GetTime()+lifetime
     local function wilt()
         if closing then return end
         closing=true
-        inst.AnimState:PlayAnimation("spore_wilt")
-        inst:DoTaskInTime(.3,inst.Remove)
+        local function finish()
+            inst.AnimState:PlayAnimation("spore_wilt")
+            inst:DoTaskInTime(.3,inst.Remove)
+        end
+        -- Stop gameplay immediately, but let the last shot finish its recoil
+        -- before wilting. The expiry callback cannot schedule a second tail.
+        local remaining=fire_until-GetTime()
+        if remaining>0 then inst:DoTaskInTime(remaining,finish) else finish() end
     end
     local function seek()
-        if closing then return end
+        if closing or GetTime()>=deadline then return end
         local x,_,z=inst.Transform:GetWorldPosition()
         local e=nearest(owner,x,z,p.radius,p.flags)
         if not e then inst:DoTaskInTime(.3,seek);return end
         local tx,_,tz=e.Transform:GetWorldPosition()
         inst.AnimState:SetScale(tx<x and -1 or 1,1)
+        fire_until=GetTime()+.4
         inst.AnimState:PlayAnimation("spore_fire")
         inst.AnimState:PushAnimation("spore_idle",true)
         inst:DoTaskInTime(.2,function()
-            if closing then return end
+            if closing or GetTime()>=deadline then return end
             local x,_,z=inst.Transform:GetWorldPosition()
             if Target.allowed(owner,e,p.flags) then
                 tx,_,tz=e.Transform:GetWorldPosition()
@@ -66,7 +75,7 @@ local function sentry(inst,owner,p,x,z)
     inst.AnimState:PlayAnimation("spore_grow")
     inst.AnimState:PushAnimation("spore_idle",true)
     inst:DoTaskInTime(.6,seek)
-    inst:DoTaskInTime(require("nw/field_effects").time(p,5.7),wilt)
+    inst:DoTaskInTime(lifetime,wilt)
 end
 
 local function ring(inst,owner,p,x,z)

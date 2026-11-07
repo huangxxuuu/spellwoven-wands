@@ -1,0 +1,13 @@
+远程控制台整行执行。仅使用现有卡牌和法杖属性，不修改演奏逻辑。
+local rows={{11,12},{13,12,13,15},{-12,7,7},{-11,7,6,7,5},{5},{-6,-11,12,11},{12,12}}; local notes={"kantele_dsharp","chord_d","kantele_e","kantele_f","kantele_g","kantele_a","kantele_b"}; for j,row in ipairs(rows) do local ids={}; for _,v in ipairs(row) do local n=math.abs(v); ids[#ids+1]=v<0 and "mana_reduce" or "speed_up"; if n>10 then ids[#ids+1]="pitch_octave_up" end; ids[#ids+1]=notes[n%10] end; local w=nw_combo(unpack(ids)); if w then local c=w.components.nw_wand; local d=c.data; d.stats.capacity=math.max(2,#ids); d.stats.draw_count=1; d.stats.shuffle=false; d.stats.cast_delay=60/98-7/30-.03-.17; d.stats.recharge=0; d.stats.mana_max=1200; d.stats.mana_regen=320; for i=d.stats.capacity+1,12 do d.cards[i]=nil end; d.runtime=require("nw/compiler").initial(d.cards,d.stats,d.seed); d.config_revision=d.config_revision+1; c:Sync(); w.components.named:SetName("乐谱"..j.."·C调98近似") end end
+
+按乐谱1至7依次演奏，每把出完指定音数后松开右键，避免循环。
+1：高1 高2（2音；开头手动空3拍）
+2：高3 高2 高3 高5（4音）
+3：高2 7 7（3音；首音整拍）
+4：高1 7 6 7 5（5音；首音整拍）
+5：5（1音；4和5之间手动留半拍休止）
+6：6 高1 高2 高1（4音；前两音整拍）
+7：高2 高2（2音）
+
+98 BPM：整拍0.612秒，半拍0.306秒。原版动作限制使半拍段偏慢，换杖也会增加停顿。本配置仅近似，不保证实际98 BPM。mana_reduce的+0.17秒间隔用于区分整拍；speed_up只选半拍音色，不加速施法动作。未在游戏内实测。

@@ -84,6 +84,7 @@ local w={data=d,UpdateTime=function() end,Sync=function() M.sync(inst) end}
 inst.components.nw_wand=w
 M.setup(inst);M.sync(inst)
 local c=inst.components.container
+assert(c.canbeopened==false,"spell slots must not offer RUMMAGE or backpack overflow")
 local original=c:GetItemInSlot(1)
 assert(original.card_uid=="old:1" and original.source=="legacy")
 assert(c:OnSave()==nil and c.excludefromcrafting)

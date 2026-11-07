@@ -52,6 +52,30 @@ local function manaprobe(player)
     print("NW_MANA_PROBE: equipped wand mana set to zero; stats, cards and cooldown unchanged")
 end
 
+local function recharge()
+    if not TheWorld or not TheWorld.ismastersim then
+        report("NW: 请在远程控制台执行 nw_recharge()。")
+        return 0
+    end
+    local count = 0
+    -- Ents includes equipped, inventory, container and sleeping entities.
+    for _, inst in pairs(Ents or {}) do
+        local cmp = inst.components and inst.components.nw_wand
+        if cmp and inst:IsValid() and cmp.data and cmp.data.runtime then
+            cmp:UpdateTime()
+            -- Star/moon spell cooldown floors are stored in remaining_cast.
+            cmp.data.runtime.remaining_cast = 0
+            cmp.data.runtime.remaining_recharge = 0
+            cmp.cool_total = 0
+            cmp._ready_cache = nil
+            cmp:Sync()
+            count = count + 1
+        end
+    end
+    report(string.format("NW: 已清零当前分片 %d 根法杖的施放与充能倒计时。", count))
+    return count
+end
+
 local function saveprobe(player)
     local wand = Cast.hand(player or ConsoleCommandPlayer())
     if not wand then return end
@@ -74,11 +98,13 @@ commands = {
     {name="nw_combo", args="...", description='领取预设组合杖，或按顺序装入最多 12 张卡。无参数给空杖，例如 nw_combo("burst") 或 nw_combo("arrow_hit","chain")。', run=Kit.wand},
     {name="nw_rollwand", args="稀有度[, 种子]", description="领取装满火花弹的随机杖；稀有度 1～4，例如 nw_rollwand(4,1062)。", run=Kit.rollwand},
     {name="nw_range", args="", description="在前方布置一排测试靶、侧靶和半血友方治疗靶。", run=Kit.range},
+    {name="nw_arena", args="[半径格数]", description="清除场内物品、建筑与生物，保留玩家和随身物品；铺大理石、地毯外框与十字分区。默认17×17格，仅测试世界使用。", run=require("nw/photo_arena").build},
     {name="nw_lookkit", args='[颜色[, 杖身编号]]', description='领取六把外观试杖、三张卡和奥术台。颜色选 red/blue/green，杖身选 1～9，例如 nw_lookkit("blue",5)。', run=Kit.lookkit},
     {name="nw_hudkit", args="", description="领取 2、7、12 格 HUD 试杖、火焰弹卡和奥术台。", run=Kit.hudkit},
     {name="nw_editkit", args="", description="领取前十种法术卡并放置奥术台，用于测试编辑。", run=editkit},
     {name="nw_testkit", args="", description="领取基础、双重、回绕、加速四把试杖，并放置一个测试靶。", run=testkit},
     {name="nw_manaprobe", args="", description="清空手持法杖的法力，用于观察回蓝和缺蓝状态。", run=manaprobe},
+    {name="nw_recharge", args="", description="立即清零当前分片所有已加载法杖的施放与充能倒计时，包括手持、背包、箱内及地面法杖。", run=recharge},
     {name="nw_saveprobe", args="", description="将手持法杖的剩余充能设为 30 秒，用于测试冷却显示与存档。", run=saveprobe},
 }
 

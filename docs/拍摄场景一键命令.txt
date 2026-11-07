@@ -1,0 +1,33 @@
+织法之杖 · 拍摄场景一键命令
+
+当前版本可直接使用，无需安装新脚本。独立测试世界开启「开发者选项」，房主/管理员在远程控制台执行。每段命令只执行一次，新法杖手动装备；重复执行会追加道具和目标。找平坦空地，背包至少留出 6 格。
+
+1. 连招对比：生成四把命名法杖和一组测试靶。
+local names={"拍摄1·直线火花","拍摄2·追踪火花","拍摄3·三向齐射","拍摄4·碰撞闪电"}; for i,ids in ipairs({{"long_life","spark"},{"homing","long_life","spark"},{"trident_cast","fire","arrow","frost"},{"arrow_hit","chain"}}) do local w=nw_combo(unpack(ids)); if w then w.components.named:SetName(names[i]) end end; nw_range()
+按名字顺序装备，前两把朝靶侧面发射，比较直射与转弯；第三把拍三向发射，第四把直接击中前排。目标按人物当前朝向布置，里面有一只友方治疗靶，不要对它测试敌人追踪。
+
+2. 远程近战：生成碰撞旋斧、定时旋斧两把杖和测试靶。
+local names={"拍摄·碰撞旋斧","拍摄·定时旋斧"}; for i,ids in ipairs({{"arrow_hit","whirl"},{"arrow_timer","whirl"}}) do local w=nw_combo(unpack(ids)); if w then w.components.named:SetName(names[i]) end end; nw_range()
+第一把直接射靶，第二把朝空地发射，录箭飞出后在远处旋斩。请换一处空地执行，避免叠加上一组靶。
+
+3. 编辑器与三建筑：生成一把预装追踪火花的杖、三座设施及四张散卡。
+local p=ConsoleCommandPlayer(); local x,y,z=p.Transform:GetWorldPosition(); for _,v in ipairs({{"nw_workbench",0,2},{"nw_engraver",-4,2},{"nw_disassembler",4,2}}) do local e=SpawnPrefab(v[1]); e.Transform:SetPosition(x+v[2],0,z+v[3]) end; local w=nw_combo("homing","spark"); if w then w.components.named:SetName("拍摄·我的第一组追踪") end; for _,id in ipairs({"damage_up","double","arrow_hit","chain"}) do nw_card(id) end
+站在中间奥术台旁装备法杖，拍清楚卡序和界面。散卡可手动丢下一张，再拿另一张右键地面卡叠成牌堆；分解炉先不要启动。
+
+4. 镰刀收草：生成采收杖和六株草。
+nw_combo("target_nature","edge_voidcloth_scythe"); local p=ConsoleCommandPlayer(); local x,y,z=p.Transform:GetWorldPosition(); for i=1,6 do local e=SpawnPrefab("grass"); e.Transform:SetPosition(x+1+i,0,z) end
+装备新杖，沿草排方向施放一次，录飞出、连续采收与收获。草沿世界 X 正方向排列，按实际位置瞄准。保留背包空位。
+
+5. 淡水钓鱼：生成钓鱼杖和前方一处池塘。
+nw_combo("edge_fishingrod"); local p=ConsoleCommandPlayer(); local x,y,z=p.Transform:GetWorldPosition(); local a=-p.Transform:GetRotation()*DEGREES; local e=SpawnPrefab("pond"); e.Transform:SetPosition(x+6*math.cos(a),0,z+6*math.sin(a))
+在宽阔陆地执行；装备新杖射向池塘，录渔获落到朝向玩家的一侧岸边。
+
+6. 星体：生成螺旋矮星、普通极光、巨化极光三把命名杖。
+local names={"拍摄·螺旋矮星","拍摄·普通极光","拍摄·巨化极光"}; for i,ids in ipairs({{"speed_up","spiral","edge_yellowstaff"},{"edge_opalstaff"},{"giant_shot","edge_opalstaff"}}) do local w=nw_combo(unpack(ids)); if w then w.components.named:SetName(names[i]) end end
+在黄昏或夜晚的空地拍；第一把朝空地释放，后两把在相同机位分别拍。不同星体不要挤在同一场景，以免光照叠加。矮星最低冷却240秒、极光60秒；各拍一次即可。
+
+7. 音乐：生成弦琴、陶笛、升八度弦琴三把命名杖。
+local names={"拍摄·弦琴乐句","拍摄·陶笛乐句","拍摄·弦琴升八度"}; for i,ids in ipairs({{"kantele_dsharp","kantele_e","kantele_g","kantele_b","kantele_g","kantele_e"},{"note_c","ocarina_d","ocarina_e","ocarina_g","ocarina_e","ocarina_d"},{"pitch_octave_up","kantele_dsharp"}}) do local w=nw_combo(unpack(ids)); if w then w.components.named:SetName(names[i]) end end
+依次装备，站定按住右键演奏或逐次单击控制节奏。录屏保留游戏声音。kantele_dsharp 是兼容旧存档的ID，实际为弦琴C4。
+
+所有 nw_combo 都是开发试杖，展示实际卡组效果，不代表正常获取的法杖属性。以上命令不改变时间、不清空场景、不自动攻击；施法由你右键控制，便于录制。靶可被打坏，重新生成会追加新靶。

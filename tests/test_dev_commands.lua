@@ -16,7 +16,7 @@ TheNet={GetUserID=function() return "host" end,IsDedicated=function() return ded
 ThePlayer={userid="remote-admin"}
 local listing=globals.nw_help()
 assert(table.concat(printed,"\n")==listing and sent[1]=="remote-admin" and sent[2]==listing)
-assert(#printed==17)
+assert(#printed==19)
 local names={}
 for name in listing:gmatch("\n(nw_%w+)%(") do
     assert(not names[name] and type(globals[name])=="function")
@@ -24,7 +24,7 @@ for name in listing:gmatch("\n(nw_%w+)%(") do
 end
 local count=0
 for name in pairs(globals) do assert(names[name]);count=count+1 end
-assert(count==16 and globals.nw_rollwand==Kit.rollwand and globals.nw_combo==Kit.wand)
+assert(count==18 and globals.nw_rollwand==Kit.rollwand and globals.nw_combo==Kit.wand)
 printed={};sent=nil
 listing=globals.nw_testscene()
 assert(#printed==19 and table.concat(printed,"\n")==listing)

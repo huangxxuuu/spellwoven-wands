@@ -43,7 +43,7 @@ return {
     {id="searing_halo",name=T("灼光环"),kind="modifier",mana=16,tier=3,effect=T("半径 0.8，每目标每 0.5 秒最多 3 伤。"),flag="halo"},
     {id="twin_arc",name=T("双弹电弧"),kind="modifier",mana=16,tier=3,effect=T("同一施法两弹间距离不超过 3；每目标每 0.5 秒最多一次电伤。"),flag="twin_arc"},
     {id="side_embers",name=T("双侧余烬"),kind="modifier",mana=14,tier=3,effect=T("母弹经过 3 单位向两侧各发 1 枚，最多 2 组。"),flag="side_embers"},
-    {id="near_homing",name=T("短距离追踪"),kind="modifier",mana=6,tier=2,effect=T("半径 3 内向目标推进，加速度 24，速度阻尼 0.48；持续同向追踪时速度趋近 50 单位/秒，永久实体额外阻力会降低此速度。可推动静止实体，与普通追踪独立叠加。"),flag="homing_short",acceleration=72,damping=1.44,turn_rate=360,radius=3},
+    {id="near_homing",name=T("短距离追踪"),kind="modifier",mana=6,tier=2,effect=T("半径 3 内向目标推进，加速度 72，速度阻尼 1.44；持续同向追踪时速度趋近 50 单位/秒，移动场地实体的额外阻力会降低此速度。可推动静止实体，与普通追踪独立叠加。"),flag="homing_short",acceleration=72,damping=1.44,turn_rate=360,radius=3},
     {id="crit_rune",name=T("暴击铭文"),kind="modifier",mana=9,tier=2,effect=T("直击 +15 个百分点暴击率，暴击 ×1.5。"),flag="crit"},
     {id="cast_four",name=T("四重施法"),kind="multicast",mana=8,tier=3,effect=T("抽 4 张，额外充能 +0.12 秒。"),draws=4,recharge=.12},
     {id="hex_cast",name=T("六角阵"),kind="multicast",mana=12,tier=3,effect=T("抽 6 张，按 60° 隔开。"),draws=6,fan={0,60,120,180,240,300}},

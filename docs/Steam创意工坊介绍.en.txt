@@ -1,77 +1,87 @@
-Getting started, the full spell catalog, and where to find each spell: visit the [url=https://huangxxuuu.github.io/spellwoven-wands/en/]online field guide[/url], available in English and Chinese. Source code and bug reports live on [url=https://github.com/huangxxuuu/spellwoven-wands]GitHub[/url]. Suggestions are always welcome.
+[h1]Spellwoven Wands: Weave Your Next Spell[/h1]
+[b]Version 1.0.0 is out now[/b]
+[url=https://huangxxuuu.github.io/spellwoven-wands/en/]English field guide & full spell catalog[/url] | [url=https://github.com/huangxxuuu/spellwoven-wands/issues]Report an issue[/url]
 
-[h1]Spellwoven Wands: Bringing Noita's Madness to Don't Starve[/h1]
+Put Homing before a Spark Bolt and watch it turn toward an enemy. Load a spinning axe into an impact payload and let an arrow deliver your melee attack from afar. After the fight, swap a few cards to harvest, fish, or play a melody at camp.
 
-Picture this: your Spark Bolt wand only knows how to shoot straight ahead. Then you slot Homing in front of it—and the next spark takes a turn and plants a kiss right on a spider's face. Add Explosion before that, and every hit becomes a little firework with absolutely no regard for friend or foe. Congratulations! You've learned this mod's first lesson: [b]the order of your spells IS your spell.[/b]
+Inspired by Noita, Spellwoven Wands brings wand building to Don't Starve Together. [b]Collect wands and spell cards, arrange their order, and create your own attacks, tools, and musical phrases.[/b]
 
-Spellwoven Wands brings Noita's "string spell cards together inside a wand" approach to Don't Starve. It's a [b]playground for combinations[/b]: the cards you own, their order, and your choice of wand decide whether your next move neatly harvests a patch of grass or sends you and your teammates sky-high.
-
-[h2]Start with a Little Two-Slot Wand[/h2]
-
-You start with a Spark Bolt wand by default. Equip it and right-click to fire. To craft your own spells, [b]build the Arcane Workbench first![/b]
-
-At an [b]Alchemy Engine[/b], open [b]Prototypers & Stations / Magic[/b] or search these names:
+[h2]1. Different Cards, Different Spells[/h2]
 [list]
-[*][b]Arcane Workbench[/b]: 2 Boards, 2 Cut Stone, 4 Gold Nuggets, 2 Purple Gems. Grind gems into dust; craft wands and cards. Equip a wand nearby to install or rearrange cards.
-[*][b]Weapon Engraving Table[/b]: 2 Boards, 2 Cut Stone, 1 Purple Gem. Turn blank cards, weapons/tools and recipe materials into spells. Install them at the workbench.
-[*][b]Arcane Recycler[/b]: 2 Cut Stone, 1 Purple Gem, 4 Arcane Dust. Drop unwanted cards or wands beside it; right-click to recover dust. Store cards you want to keep first. Make its dust at the workbench.
+[*][b]Homing → Spark Bolt[/b]: make a straight-flying spark turn toward its target.
+[*][b]Double Spell → Spark Bolt → Magic Arrow[/b]: release two different spells in one cast.
+[*][b]Trident Cast[/b]: send a group of spells in different directions. Then experiment with piercing, bouncing, or orbiting.
 [/list]
-The workbench alone gets you started; add the others later. The wand editor's question mark opens the field guide.
+Slots, maximum mana, regeneration, cast delay, and recharge all affect how a wand feels. [b]Non-shuffle wands follow card order; shuffle wands randomize it.[/b] A good build needs a wand that suits it.
 
-Try Damage Plus before Spark Bolt for 10 extra damage. Compare wand slots, mana and cast delay. [b]Choose a non-shuffle wand to preserve your card order[/b]—a shuffle wand brings surprises!
+[img]https://images.steamusercontent.com/ugc/11171490399105963216/E590C6967A155BB63DFEC178656974985A049A34/[/img]
 
-[h2]Spells Aren't Just for Fighting[/h2]
+[h2]2. Save the Next Spell for an Impact or a Timer[/h2]
+[b]Magic Arrow · Collision → Spinning Axe Attack[/b] releases a spinning axe where the arrow hits. Switch to a timed payload to change when it activates. The same payload can play differently with a different trigger.
+Explosion is an on-hit modifier: put it before a projectile to make its impacts explode. You can also prepare Proximity Crystal Mines, Dormant Crystals, and Hollow Payload Eggs to leave spells waiting in the world.
 
-This is the part I most want you to explore. The same engraving system can turn into a set of everyday survival tools:
+[img]https://images.steamusercontent.com/ugc/15118734145080234800/DD32D4BC40C47FC2C7425A9B5ADD4E1D9381E50B/[/img]
 
-[list]
-[*]Throw a [b]Freshwater Fishing Rod[/b] toward a pond and let the fish come to your feet.
-[*]Send a [b]Shadow Reaper[/b] through a row of grass. The scythe harvests along its path, with nearby grass going straight into your inventory when possible.
-[*]Lob [b]Chum[/b] into the sea to attract fish, or a [b]Garden Hoe[/b] onto farmland to till it. Fishing and farming, all from your wand.
-[/list]
+[h2]3. Turn Familiar Weapons into Spells[/h2]
+At the Weapon Engraving Table, combine blank cards with the weapons, tools, and materials listed in a recipe. Spears, axes, and Glass Cutters gain a new way to strike.
+A [b]Shadow Reaper[/b] can harvest grass and saplings along its path, collecting nearby yields into your inventory when possible. Swap your cards, and your fighting wand becomes a helping hand.
 
-When trouble arrives, throw a [b]Shadow Boomerang[/b] at it, or let a [b]Shield of Terror[/b] orbit you and block incoming blows. You can also prepare traps: Proximity Crystal Mines wait for enemies, Dormant Crystals can be detonated remotely, and Hollow Payload Eggs hold spells until a valid attacker cracks them open. [b]Your placements are saved with the world and remain there after you log off[/b]—though their activity pauses while the caster is away and resumes when they return.
+[img]https://images.steamusercontent.com/ugc/14707989744641070350/A874713288E0285ADC1C71C6271CAAEF89DCC094/[/img]
 
-[h2]Weird Things Worth Trying on Purpose[/h2]
+[h2]4. Take Your Wand Ocean Fishing[/h2]
+Throw [b]Chum[/b] into the sea to attract fish, then cast an [b]Ocean Fishing Rod[/b] spell. Its hook brings caught ocean fish or floating objects toward a nearby shore or boat in the caster's direction.
+Other tools include a Freshwater Fishing Rod for ponds and a Garden Hoe for farmland. Pack the right cards for your destination.
 
-[list]
-[*][b]Giant Shot[/b]: enlarges both the visuals and actual reach of flying projectiles, static projectiles, explosions, and melee attacks, without increasing damage. One card gives 2.5× size, two give 5×, and three give 7.5×. Stars get larger light, temperature, and sanity-effect ranges too.
-[*][b]Lifetime Inscription[/b]: extends flying-projectile lifetime, with [b]no upper time limit[/b]. Shorter Lifetime halves it per card, with multiple cards multiplying together. Fine-tune how far a shot travels or how long it orbits.
-[*][b]Star Caller's Staff / Moon Caller's Staff[/b]: create a vanilla Dwarf Star or Polar Light at the release point. Movement and homing modifiers let them follow a selected target. Yes, you can make a star chase Deerclops.
-[*][b]Collision and Timer Carriers[/b]: spells don't have to fire directly. Load melee attacks or explosions into a collision or timer carrier, and the payload goes off when the projectile hits or its timer runs out. [b]Even melee damage can be delivered right to an enemy's face.[/b] Piercing shots can release payloads on multiple hits; Shorter Lifetime lets you calculate where they'll go off. [b]A toy for people who like doing the math.[/b]
-[/list]
+[img]https://images.steamusercontent.com/ugc/9826035569134835751/BFCB0B4E96A0E274E2B64262B96531CC7D941F6C/[/img]
 
-[h2]Where Do the Cards Come From?[/h2]
+[h2]5. Take the Starlight with You[/h2]
+Star Caller's Staff and Moon Caller's Staff spells create vanilla Dwarf Stars and Polar Lights. Movement, homing, and target-selection cards can make them follow the player.
+[img]https://images.steamusercontent.com/ugc/15595512404166230674/D5F63D9EFFA3B91957BD16992B15AF9F7A7EF759/[/img]
 
-Four ways:
+Add [b]Giant Shot[/b] to enlarge a star and the reach of its light, temperature, and sanity effects. It also enlarges applicable spells and their effective reach, [b]without directly increasing damage[/b]. Star spells retain their dedicated minimum cooldowns.
 
+[img]https://images.steamusercontent.com/ugc/10479249389854033689/F11DA360F9753BEAB4B950611E0A6176709655C3/[/img]
+
+[h2]6. Collect, Arrange, Rearrange[/h2]
 [olist]
-[*][b]Arcane Workbench inscriptions[/b]—blank cards plus materials. Check the recipes.
-[*][b]Weapon Engraving Table[/b]—blank cards plus weapons or tools. For example: two spears + Nightmare Fuel + a blank card = Spear Thrust.
-[*][b]Hunting creatures[/b]—spiders may drop Double Spell, adult MacTusks may drop Speed Up, and some bosses have exclusive drops.
-[*][b]Collecting boss wands[/b]—some spells can only be found in loot.
+[*][b]Pick up your Starter Wand.[/b] By default, your first arrival in a world grants a two-slot wand loaded with Spark Bolt. Equip it and right-click to cast. Hold right-click while standing still to keep casting.
+[*][b]Build an Arcane Workbench.[/b] Near an Alchemy Engine, search for the station by name. It costs 2 Boards, 2 Cut Stone, 4 Gold Nuggets, and 2 Purple Gems.
+[*][b]Start changing cards.[/b] Equip your wand near the workbench, then click or drag cards to edit it. Try Damage Plus → Spark Bolt before adding more cards.
 [/olist]
+Each station has a different job:
+[list]
+[*][b]Arcane Workbench[/b]: grind gems, craft wands and cards, and edit your wand.
+[*][b]Weapon Engraving Table[/b]: turn recipe weapons and tools into spell cards.
+[*][b]Arcane Recycler[/b]: recover Arcane Dust from unwanted cards, piles, and wands lying nearby. Put anything you want to keep safely away first.
+[/list]
+[img]https://images.steamusercontent.com/ugc/9463565764347824291/6C4F2133ED5C287970A12E01F87D30D2A6C091D8/[/img]
+[i]Left to right: Arcane Workbench, Weapon Engraving Table, Arcane Recycler.[/i]
 
-Right-click spare cards together to make a pile of up to 25. Drop unwanted cards near an Arcane Recycler and right-click it to reclaim dust. Put any loose cards you want to keep safely in your inventory first!
+Collect cards through crafting, engraving, creature drops, and boss rewards. Some are loot-only. Wands have different rarities and randomized stats. Stack loose cards into piles of up to [b]25[/b], and name your wands with a Feather Pencil.
+To compare damage, craft a [b]Spell Test Punching Bag[/b] at a Science Machine with 3 Cut Grass and 1 Board. Consecutive hits add to its displayed damage total.
 
-[h2]A Few Handy Features[/h2]
+[img]https://images.steamusercontent.com/ugc/17915763130818327811/845B364A802483D4788F7642CE2477FF45928F4C/[/img]
 
-The [b]Spell Test Punching Bag[/b] costs 3 Cut Grass and 1 Board at a Science Machine. Hits less than one second apart add to a running damage total, with full numbers displayed even above 9999. Test combos without volunteering your teammates as targets. Each player [b]within 12 units of their first boss victory[/b] earns an extra collision card: a 5% chance of Collision Trigger Modifier, or a 95% chance split equally among the collision variants of the six basic projectiles. No last hit required, no use of the normal card-drop allowance, and the record persists through character changes.
+[h2]7. Your Wand Can Be an Instrument[/h2]
+Arrange [b]ocarina or kantele notes[/b] in your wand and play a musical phrase for camp. Both instruments have base notes covering C, D, E, F, G, A, and B. Semitone and octave modifiers adjust pitch.
+Speed Up and Speed Down select half-beat and two-beat note samples. [b]They do not automatically synchronize repeated casts to a musical tempo.[/b] Timing still depends on wand stats, casting animations, and manual wand changes.
+The gameplay demonstration uses kantele cards to play a short excerpt of [b]Deep Sea Girl (Shinkai Shoujo)[/b]. The card order forms the melody; the casts produce the in-game sound.
 
-Language options are Auto / 中文 / English. Each player chooses independently; rejoin the world to apply changes. Right-click a wand with a Feather Pencil to rename it. A successful rename consumes one pencil; cancelling or keeping the same name costs nothing.
+[img]https://images.steamusercontent.com/ugc/17730996828616896639/74EF5B1824FC47AF7B1A499B3EC56A3E8A63D802/[/img]
+
+[url=https://www.bilibili.com/video/BV1Ki4H6GEWb/][b]▶ Watch: Deep Sea Girl played with kantele spell cards (Bilibili, in-game audio)[/b][/url]
+
+[h2]Try Your Ideas with Friends[/h2]
+[list]
+[*]The host enables the mod for the world; all participating players need it installed.
+[*]Choose [b]English / 中文 / Auto[/b] independently for each player. Rejoin the world to apply a language change.
+[*]Drop rates and several performance limits are configurable. Try increasingly complex builds as your server allows.
+[*]Some spells can hurt you or your teammates, especially explosions. Leave yourself some room when trying a new build.
+[/list]
+[i]Demonstrations use test wands; their stats do not represent normal drops or crafted wands. The timed-axe demonstration is shown at 0.5x speed. The ocean-fishing demonstration contains cuts.[/i]
 
 [hr][/hr]
+[b]Subscribe and try your first build. Will your next wand fight monsters, harvest crops, or start a concert at camp?[/b]
+Share builds and feedback in the Workshop comments. For bugs, include the mod version, host/client role, surface/caves, reproduction steps, and cards in left-to-right order. Keep the relevant client_log.txt or server_log.txt when an error occurs.
 
-[b]So go experiment.[/b] Put Homing before Explosion. Stack three Giant Shots and see how many screens a star can light up. Leave a Payload Egg at your doorstep for uninvited guests. The fun is discovering whatever ridiculous thing your next wand turns out to do.
-
-Found a bug? Copy client_log.txt [b]after the problem happens, before restarting the game[/b]. For a frozen world, disconnect, or server error, include the host's server_log.txt too. Tell me the mod version, whether you were hosting or joining, whether it happened on the surface or in the caves, and what you did just before it happened. For casting issues, list the cards from left to right.
-
-[list]
-[*][b]Player log[/b]: on Windows, open Documents → Klei\DoNotStarveTogether and copy client_log.txt. On macOS, use ~/Documents/Klei/DoNotStarveTogether; on Linux, ~/.klei/DoNotStarveTogether.
-[*][b]World logs[/b]: for local worlds, open the numbered account folder → Cluster_NUMBER → Master (surface) or Caves. If the problem happens while travelling between shards, include both logs and label them.
-[*][b]Cloud saves / dedicated servers[/b]: for Steam Cloud saves, find the world under CloudSaves and extract server_log.txt from Master.zip or Caves.zip. For a dedicated server, find the same file in the relevant shard folder under its configured world-save directory.
-[/list]
-
-See [url=https://support.klei.com/hc/en-us/articles/360029881191-Logs-and-Useful-Information-for-Bug-Reports-for-Don-t-Starve-Together]Klei's official guide to log locations[/url] for more information.
-
-[i](Developed entirely with Codex. Have fun. Make a glorious bang.)[/i]
+[i]By yuejian. Developed with Codex. Inspired by Noita.[/i]

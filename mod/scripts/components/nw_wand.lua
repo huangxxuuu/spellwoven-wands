@@ -200,7 +200,7 @@ function Wand:OnLoad(saved)
     if s.capacity < 2 or s.capacity > 12 or s.capacity ~= math.floor(s.capacity)
         or s.mana_max < 24 or s.mana_max > 1200 or s.mana_regen < 2 or s.mana_regen > 320
         or s.draw_count < 1 or s.draw_count > 6 or s.draw_count ~= math.floor(s.draw_count)
-        or s.cast_delay < .08 or s.cast_delay > 2.4 or s.recharge < .10 or s.recharge > 6
+        or s.cast_delay < 0 or s.cast_delay > 2.4 or s.recharge < 0 or s.recharge > 6
         or s.spread < 0 or s.spread > 15 or type(s.shuffle) ~= "boolean" then return end
     if not U.finite(r.mana) or not U.finite(r.remaining_cast) or not U.finite(r.remaining_recharge)
         or not U.finite(r.reload_delta) or not U.finite(r.rng_state)

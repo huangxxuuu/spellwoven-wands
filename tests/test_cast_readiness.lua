@@ -112,6 +112,18 @@ sanity.current=.02
 setup({"spark"},5);assert(cmp:Cast(player,{x=4,z=0}) and sanity.current==0)
 setup({"spark"},5);assert(cmp:Cast(player,{x=4,z=0}) and sanity.current==0)
 sanity.current=3
+-- A zero-wait wand is ready after casting, but cannot replay its accepted plan.
+cmp.data.stats.cast_delay=0;cmp.data.stats.recharge=0
+setup({"spark"},120)
+ok,why,plan=cmp:CanCast(player);assert(ok)
+local before_shots=shots
+assert(cmp:Cast(player,{x=4,z=0},plan) and shots==before_shots+1)
+assert(cmp.data.runtime.remaining_cast==0 and cmp.data.runtime.remaining_recharge==0)
+assert(cmp:CanCast(player))
+local after_mana=cmp.data.runtime.mana
+ok,why=cmp:Cast(player,{x=4,z=0},plan)
+assert(not ok and why=="STALE_CAST" and shots==before_shots+1 and cmp.data.runtime.mana==after_mana)
+sanity.current=3
 setup({"heavy"},0);assert(not cmp:Cast(player,{x=4,z=0}) and sanity.current==3)
 setup({"spark"},120)
 package.loaded['nw/executor'].execute=function() return false,"LIMIT" end

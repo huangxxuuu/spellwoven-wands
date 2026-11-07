@@ -134,7 +134,8 @@ def field_timeline(kind, now):
             "crystal_mine": 2.3, "sleep_crystal": 2.3, "payload_egg": 2.3, "spore_sentry": 3}
     end = ends[kind]
     if now >= end:
-        return ("spore_wilt" if kind=="spore_sentry" else kind+"_end", now-end, now < end+(.5 if kind=="deer_decoy" else .3))
+        tail = .8 if kind=="storm_cloud" else .5 if kind=="deer_decoy" else .3
+        return ("spore_wilt" if kind=="spore_sentry" else kind+"_end", now-end, now < end+tail)
     if kind=="spore_sentry":
         if now < .6: return "spore_grow", now, True
         for start in (1, 1.9, 2.6):
@@ -142,7 +143,8 @@ def field_timeline(kind, now):
         return "spore_idle", now, True
     if kind=="moon_fall":
         return (kind+"_fall", now-.56, True) if now >= .56 else (kind+"_warning", now, True)
-    if now < .2:
+    spawn = .5 if kind=="storm_cloud" else .2
+    if now < spawn:
         return kind+"_spawn", now, True
     pulses = {"rain_cloud": (.3, 1.8), "storm_cloud": (.8, 1.6, 2.4), "shock_ring": (.85, 1.85)}
     for at in pulses.get(kind, ()):

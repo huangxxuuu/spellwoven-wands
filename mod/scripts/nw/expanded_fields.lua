@@ -205,7 +205,10 @@ local function electricity(inst,owner,p,x,z)
     end
     for i=1,cloud and 3 or 2 do
         local when=Field.time(p,cloud and i*.8 or i-.15)
-        if cloud then inst:DoTaskInTime(math.max(0,when-.30),function() Stages.warning(inst) end) end
+        if cloud then
+            local warning=Stages.duration("storm_cloud","warning")*Stages.storm_time_scale(p)
+            inst:DoTaskInTime(math.max(0,when-warning),function() Stages.warning(inst) end)
+        end
         inst:DoTaskInTime(when,function()
             Stages.pulse(inst)
             local x,y,z=inst.Transform:GetWorldPosition()

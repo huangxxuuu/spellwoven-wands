@@ -52,7 +52,7 @@ assert(migrated:OnSave().wand.cards[1].spell_id=="target_players_other")
 local snapshot=U.copy(b.data)
 assert(b:PreviewCast())
 assert(b.data.runtime.mana==snapshot.runtime.mana) -- preview does not spend
-for _,extreme in ipairs({{24,320,.08,.10},{1200,2,2.4,6}}) do
+for _,extreme in ipairs({{24,320,0,0},{24,320,.04,.05},{24,320,.08,.10},{1200,2,2.4,6}}) do
     local fixture=U.copy(saved)
     local s=fixture.wand.stats
     s.draw_count=6
@@ -61,6 +61,13 @@ for _,extreme in ipairs({{24,320,.08,.10},{1200,2,2.4,6}}) do
     restored:OnLoad(fixture)
     assert(restored.data.stats.draw_count==6 and restored.data.stats.recharge==s.recharge)
     assert(restored.data.stats.mana_regen==s.mana_regen and restored.inst._nw_ready.current)
+    local roundtrip=Component(entity());roundtrip:OnLoad(restored:OnSave())
+    assert(roundtrip.data.stats.cast_delay==s.cast_delay and roundtrip.data.stats.recharge==s.recharge)
+end
+for _,key in ipairs({"cast_delay","recharge"}) do
+    local negative=U.copy(saved);negative.wand.stats[key]=-.01
+    local rejected=Component(entity());rejected:OnLoad(negative)
+    assert(rejected.data==nil,"negative base timing must not load")
 end
 print("component: save/load, offline time, invalid input, deck repair, preview isolation")
 

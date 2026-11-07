@@ -1,8 +1,8 @@
 local chinese = (locale and locale:lower():match("^zh") ~= nil) or locale == "chs" or locale == "cht"
 local function L(zh,en) return chinese and zh or en end
 name = L("织法之杖","Spellwoven Wands")
-version = "0.25.18"
-local release_date = "2026-11-07"
+version = "1.0.0"
+local release_date = "2026-11-08"
 description = L("版本：", "Version: ")..version..L(" · 更新：", " · Updated: ")..release_date.."\n\n"..L(
     "【从这里开始】\n靠近炼金引擎，在「原型工具和制作站」「魔法」分类或直接搜索建筑名。\n奥术台（先建）：木板×2、石砖×2、金块×4、紫宝石×2。研磨宝石、制作法杖和卡；靠近并装备法杖即可装卡、换卡。\n武器刻印台：木板×2、石砖×2、紫宝石×1。将配方指定的武器或工具刻成卡，回奥术台装杖。\n奥术分解炉：石砖×2、紫宝石×1、奥术粉尘×4。粉尘先在奥术台制作。废卡、废杖丢炉边，右键炉子回收；要保留的散卡先收好。\n\n先建奥术台，其余按需补建。科学机器旁用草×3、木板×1制作「法术测试拳击袋」。装备法杖，点编辑框右上角「？」打开资料站。\n\n自由排列法术卡，编织连招！灵感来自《Noita》，支持中文与 English。",
     "GETTING STARTED\nNear an Alchemy Engine, find these stations under Prototypers & Stations or Magic, or search by name.\nArcane Workbench (build first): 2 Boards, 2 Cut Stone, 4 Gold Nuggets, 2 Purple Gems. Grind gems and craft wands/cards. Equip a wand nearby to edit its cards.\nWeapon Engraving Table: 2 Boards, 2 Cut Stone, 1 Purple Gem. Engrave the recipe's weapons/tools into cards; install at the workbench.\nArcane Recycler: 2 Cut Stone, 1 Purple Gem, 4 Arcane Dust (craft dust at the workbench). Drop unwanted cards/wands nearby and right-click to recycle. Store cards you want to keep safely away.\n\nAdd the last two stations as needed. At a Science Machine, craft a Spell Test Punching Bag with 3 Cut Grass and 1 Board. Equip a wand and click the editor's top-right ? for the field guide.\n\nArrange spell cards and weave combos! Inspired by Noita. Chinese and English supported."

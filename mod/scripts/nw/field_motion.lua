@@ -57,8 +57,8 @@ function M.prepare(inst,s,now)
 end
 function M.settle(inst,s)
     local f=s.p.flags
-    -- Guidance may keep supplying force. Pure inertia settles, but an impulse
-    -- can wake the placement again. Finite-lived stars have no added drag.
+    -- Guidance may keep supplying force. Pure inertia settles for all moving
+    -- placements, including finite-lived stars; an impulse can wake an egg.
     if s.drag and not (f.homing or f.homing_short or f.orbit or f.sine or f.spiral)
         and (not f.accelerate or s.age>=.7) and s.vx*s.vx+s.vz*s.vz<M.stop_speed^2 then
         M.stop(inst)
@@ -79,7 +79,7 @@ function M.start(inst,caster,p,dx,dz,age,saved)
             or p.id=="storm_cloud" or p.id=="fireflies" or p.id=="delay_seal",
         bounces=f.bounce and f.bounce.bounces,
         hits_left=f.pierce_all and math.huge or f.pierce and f.pierce.hits,
-        drag=inst._nw_stored and M.drag or nil}
+        drag=M.drag}
     Flight.reset(s,dx,dz)
     if saved then for _,key in ipairs(saved_keys) do if saved[key]~=nil then s[key]=saved[key] end end end
     inst._nw_motion=s

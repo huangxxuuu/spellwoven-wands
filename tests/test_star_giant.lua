@@ -56,5 +56,6 @@ local star={entity={SetCanSleep=function() end},Transform={GetWorldPosition=func
     DoPeriodicTask=function(_,_,fn) task=fn;return {Cancel=function() end} end}
 require("nw/field_motion").start(star,nil,cast("speed_up","edge_yellowstaff"),1,0)
 assert(motor==0);time=1;task();assert(star._nw_motion.age==0)
-active=true;time=2;task();assert(motor==2 and star._nw_motion.age==1)
+active=true;time=2;task()
+assert(math.abs(motor-2*math.exp(-require("nw/field_motion").drag))<1e-9 and star._nw_motion.age==1)
 print("stars and giant: native placements, cooldown in payloads, steering, selective scale, no double scale and offline motion")

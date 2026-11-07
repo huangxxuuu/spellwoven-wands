@@ -1,0 +1,13 @@
+Generated with the built-in image_gen tool on 2026-11-08.
+Reference: assets_src/art_v1/originals/storm_cloud.png (style reference only).
+
+Use case: stylized-concept
+Asset type: transparent 2x2 sprite component sheet for a Don't Starve Together mod storm-cloud lifecycle animation.
+Input image: reference ONLY for the existing hand-inked grey-purple cloud palette and charcoal linework. Do not copy its lightning bolts or rain strokes.
+Primary request: create FOUR separate complete storm cloud lobes, one in each equal quadrant of a square sprite sheet. Each lobe must be fully isolated and surrounded by generous transparent margins, no contact with another quadrant. They will overlap and move independently in game to form and disperse a thunderhead like the clouds of Red Alert 2's lightning storm, but drawn in Don't Starve's crooked ink and dry-brush illustration style.
+Top-left: a wide low dark backing cloud, width about twice height, heavy ink underside.
+Top-right: a large asymmetrical rounded main thunderhead with three irregular billows, slightly taller at the left.
+Bottom-left: a smaller windswept cloud lobe with a curled left tip and flattened underside.
+Bottom-right: a different smaller windswept cloud lobe with a curled right tip and flattened underside.
+Style: thick uneven charcoal contour, muted desaturated charcoal/grey violet, coarse hatching and restrained paper-brush texture INSIDE the cloud. Strong dark silhouettes with a few dusty grey highlights, readable at small game scale. Ominous but whimsical, hand-drawn, not realistic smoke and not glossy.
+Constraints: actual transparent background; fully complete organic outlines, no rectangles, no cut edges. Four separated cloudy pieces only. No lightning, no rain, no sparks, no halo, no ground, no text, no grid, no frame, no checkerboard pattern. No bright white fluffy fair-weather clouds.

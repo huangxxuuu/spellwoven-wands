@@ -40,27 +40,22 @@
     "detonate": "assets_src\\art_v1\\originals\\detonate.png",
     "shock_ring": "assets_src\\art_v1\\originals\\shock_ring.png",
     "vortex": "assets_src\\art_v1\\originals\\vortex.png",
-    "storm_cloud": "assets_src\\art_v1\\originals\\storm_cloud.png",
     "ground_ring": "nw_objects/blast_extent.png",
     "vital_cap": "nw_objects/garden_ring.png: single upper mushroom cap",
     "vital_stem": "nw_objects/garden_ring.png: single upper mushroom stem/ground",
     "vital_mote": "nw_objects/garden_ring.png: one complete pale green spore",
-    "spore_bud": "assets_src\\art_v1\\runtime\\nw_objects\\plant_bud.png",
-    "spore_sprout": "assets_src\\art_v1\\runtime\\nw_objects\\plant_sprout.png",
-    "spore_idle": "assets_src\\art_v1\\runtime\\nw_objects\\plant_idle.png",
-    "spore_aim": "assets_src\\art_v1\\runtime\\nw_objects\\plant_aim.png",
-    "spore_fire": "assets_src\\art_v1\\runtime\\nw_objects\\plant_fire.png",
-    "spore_wilt": "assets_src\\art_v1\\runtime\\nw_objects\\plant_wilt.png",
-    "spore_head": "plant_idle: thorn head",
-    "spore_root": "plant_idle: fixed stem/root",
     "crystal_mine_shine": "crystal_mine: existing bright painted facets",
     "sleep_crystal_shine": "sleep_crystal: existing bright painted facets",
     "payload_egg_shine": "payload_egg: existing bright painted facets",
     "delay_seal_shine": "delay_seal: existing bright painted facets",
     "detonate_shine": "detonate: existing bright painted facets",
     "shock_ring_shine": "shock_ring: existing bright painted facets",
-    "storm_body": "storm_cloud: cloud portion",
-    "storm_shine": "storm_cloud: existing bright cloud facets",
+    "storm_back": "assets_src\\fields\\stages_v1\\storm_lobes_v2.png: quadrant 1",
+    "storm_crown": "assets_src\\fields\\stages_v1\\storm_lobes_v2.png: quadrant 2",
+    "storm_left": "assets_src\\fields\\stages_v1\\storm_lobes_v2.png: quadrant 3",
+    "storm_left_shine": "storm_left: cool light on inner painted facets",
+    "storm_right": "assets_src\\fields\\stages_v1\\storm_lobes_v2.png: quadrant 4",
+    "storm_right_shine": "storm_right: cool light on inner painted facets",
     "vortex_core": "vortex: inner swirl",
     "vortex_rocks": "vortex: outer rocks",
     "deer_pose_0": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 1, column 1",
@@ -94,13 +89,52 @@
     "moon_fall_piece_0": "moon_fall: breakup quadrant",
     "moon_fall_piece_1": "moon_fall: breakup quadrant",
     "moon_fall_piece_2": "moon_fall: breakup quadrant",
-    "moon_fall_piece_3": "moon_fall: breakup quadrant"
+    "moon_fall_piece_3": "moon_fall: breakup quadrant",
+    "spore_root_v2": "assets_src/fields/stages_v1/spore_sentry_v2.png: fixed root foot from mature pose",
+    "spore_pose_0": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 1, column 1, registered upper body",
+    "spore_pose_1": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 1, column 2, registered upper body",
+    "spore_pose_2": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 1, column 3, registered upper body",
+    "spore_pose_3": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 1, column 4, registered upper body",
+    "spore_pose_4": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 2, column 1, registered upper body",
+    "spore_pose_5": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 2, column 2, registered upper body",
+    "spore_pose_7": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 2, column 4, registered upper body",
+    "spore_pose_8": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 3, column 1, registered upper body",
+    "spore_pose_9": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 3, column 2, registered upper body",
+    "spore_pose_11": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 3, column 4, registered upper body",
+    "spore_pose_12": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 4, column 1, registered upper body",
+    "spore_pose_13": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 4, column 2, registered upper body",
+    "spore_pose_14": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 4, column 3, registered upper body",
+    "spore_pose_15": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 4, column 4, registered upper body"
   },
   "packing": {
-    "candidate_images": 536,
-    "referenced_images": 324,
+    "candidate_images": 616,
+    "referenced_images": 360,
     "max_atlas_pages": 2,
     "source_pixels_unchanged": true
+  },
+  "spore_sentry": {
+    "source": "assets_src/fields/stages_v1/spore_sentry_v2.png",
+    "grid": [
+      4,
+      4
+    ],
+    "authored_poses": 16,
+    "registered_cell_pixels": 208,
+    "ground_y": 191,
+    "shared_root_top": 178,
+    "durations": {
+      "grow": 0.6,
+      "idle": 1.2,
+      "fire": 0.4,
+      "wilt": 0.3
+    },
+    "fire_release_frame": 6,
+    "fire_release_seconds": 0.2,
+    "notes": [
+      "Fixed root pixels shared across all stages",
+      "Single opaque silhouettes use rooted 30 Hz inbetweens",
+      "Fire and wilt start from the same mature idle pose"
+    ]
   },
   "sprite_sizes": {
     "crystal_mine": [
@@ -151,10 +185,6 @@
       220,
       184
     ],
-    "storm_cloud": [
-      240,
-      213
-    ],
     "ground_ring": [
       240,
       240
@@ -170,38 +200,6 @@
     "vital_mote": [
       27,
       22
-    ],
-    "spore_bud": [
-      123,
-      57
-    ],
-    "spore_sprout": [
-      122,
-      102
-    ],
-    "spore_idle": [
-      131,
-      138
-    ],
-    "spore_aim": [
-      151,
-      140
-    ],
-    "spore_fire": [
-      174,
-      139
-    ],
-    "spore_wilt": [
-      156,
-      108
-    ],
-    "spore_head": [
-      131,
-      93
-    ],
-    "spore_root": [
-      131,
-      50
     ],
     "crystal_mine_shine": [
       138,
@@ -227,13 +225,29 @@
       191,
       200
     ],
-    "storm_body": [
-      240,
-      213
+    "storm_back": [
+      213,
+      84
     ],
-    "storm_shine": [
-      240,
-      213
+    "storm_crown": [
+      176,
+      133
+    ],
+    "storm_left": [
+      128,
+      66
+    ],
+    "storm_left_shine": [
+      128,
+      66
+    ],
+    "storm_right": [
+      128,
+      53
+    ],
+    "storm_right_shine": [
+      128,
+      53
     ],
     "vortex_core": [
       220,
@@ -370,6 +384,66 @@
     "moon_fall_piece_3": [
       83,
       79
+    ],
+    "spore_root_v2": [
+      62,
+      13
+    ],
+    "spore_pose_0": [
+      118,
+      43
+    ],
+    "spore_pose_1": [
+      127,
+      68
+    ],
+    "spore_pose_2": [
+      129,
+      94
+    ],
+    "spore_pose_3": [
+      145,
+      120
+    ],
+    "spore_pose_4": [
+      149,
+      127
+    ],
+    "spore_pose_5": [
+      156,
+      128
+    ],
+    "spore_pose_7": [
+      125,
+      127
+    ],
+    "spore_pose_8": [
+      169,
+      120
+    ],
+    "spore_pose_9": [
+      156,
+      128
+    ],
+    "spore_pose_11": [
+      126,
+      114
+    ],
+    "spore_pose_12": [
+      111,
+      91
+    ],
+    "spore_pose_13": [
+      109,
+      68
+    ],
+    "spore_pose_14": [
+      113,
+      40
+    ],
+    "spore_pose_15": [
+      111,
+      17
     ]
   },
   "clips": {
@@ -542,10 +616,10 @@
       "frames": 9
     },
     "storm_cloud_spawn": {
-      "seconds": 0.2,
+      "seconds": 0.5,
       "fps": 30,
       "loop": false,
-      "frames": 6
+      "frames": 15
     },
     "storm_cloud_idle": {
       "seconds": 1.2,
@@ -560,10 +634,10 @@
       "frames": 6
     },
     "storm_cloud_end": {
-      "seconds": 0.3,
+      "seconds": 0.8,
       "fps": 30,
       "loop": false,
-      "frames": 9
+      "frames": 24
     },
     "guard_ring_spawn": {
       "seconds": 0.2,
@@ -823,6 +897,7 @@
     "Moon warning uses a separate native soft shadow, without a range circle",
     "Deer uses four idle poses and a single eight-pose spin followed by dissolution",
     "Guard and vital rings use independent client members, never a composite ring",
+    "Storm lobes gather for .5 s before the first warning and disperse for .8 s in a separate visual effect",
     "Eight alpha levels are baked into existing painted textures"
   ]
 }

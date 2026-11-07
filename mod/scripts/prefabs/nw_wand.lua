@@ -88,6 +88,8 @@ local function fn()
     inst.components.inventoryitem.atlasname=Visual.atlas(0)
     inst.components.inventoryitem:ChangeImageName(require("nw/visual").icon(0))
     inst:AddComponent("equippable")
+    -- Extra equipment-slot mods must classify the wand as a hand item.
+    inst.components.equippable.equipslot=EQUIPSLOTS.HANDS
     inst.components.equippable:SetOnEquip(equip)
     inst.components.equippable:SetOnUnequip(unequip)
     inst:AddComponent("nw_wand")

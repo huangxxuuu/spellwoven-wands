@@ -18,8 +18,21 @@ function M.orientation(id)
     return (id=="vortex" or id=="shock_ring") and ANIM_ORIENTATION.OnGround or ANIM_ORIENTATION.BillBoard
 end
 function M.duration(id,phase)
+    if id=="storm_cloud" then
+        -- Base timings; short-lived storms accelerate their live animations.
+        -- The dispersed tail always lives in a separate normal-speed prefab.
+        if phase=="spawn" then return .5 end
+        if phase=="warning" then return .3 end
+        if phase=="end" then return .8 end
+    end
     if phase=="end" then return id=="deer_decoy" and .5 or M.end_time end
     return phase=="spawn" and M.spawn_time or M.pulse_time
+end
+function M.storm_time_scale(p)
+    local lifetime=p and p.field_lifetime_mult or 1
+    -- Preserve positive short lifetimes exactly: a minimum visual duration
+    -- could outlast the next strike when several short-life cards are stacked.
+    return lifetime>0 and math.min(1,lifetime) or 1
 end
 local function fit(inst,id,size,radius)
     local width=footprint[id]
@@ -142,6 +155,9 @@ function M.start(inst,id,p,loading)
     inst._nw_field_stages={id=id,size=Size.factor(p),radius=p.radius or 1,
         count=id=="guard_ring" and 2 or 20,started=GetTime(),seq=0,seed=(inst.GUID or 0)%65535+1}
     local s=inst._nw_field_stages
+    if id=="storm_cloud" then
+        inst.AnimState:SetDeltaTimeMultiplier(1/M.storm_time_scale(p))
+    end
     fit(inst,id,s.size,s.radius)
     if inst._nw_moon_radius then
         inst._nw_moon_radius:set(s.radius/s.size)
@@ -183,6 +199,7 @@ function M.effect_state(inst,id,phase,size,radius,count,age,seed)
     else
         inst.Transform:SetScale(size or 1,size or 1,size or 1)
         fit(inst,id,size or 1,radius or 1)
+        if id=="storm_cloud" then inst.AnimState:SetDeltaTimeMultiplier(1) end
         if id=="deer_decoy" then inst.AnimState:SetLightOverride(.4) end
         inst.AnimState:PlayAnimation(id.."_"..phase,false)
     end

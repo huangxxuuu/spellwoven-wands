@@ -44,7 +44,10 @@ function M.seek(s,f)
         if e._nw_motion~=s and e._shot~=s
             and (e~=s.owner or s.p and s.p.flags and s.p.flags.targets) and e:IsValid()
             and not (s.p and s.p.id=="gust" and Targeting.breakable(e) and not Targeting.egg(e))
-            and (not s.hit[e] or s.age+.000001>=s.hit[e]) then
+            -- Moving placements keep navigating during contact cooldown.
+            -- Collision still owns repeat-hit timing and the piercing budget;
+            -- ordinary projectiles retain their preference for fresh targets.
+            and (s.placement or not s.hit[e] or s.age+.000001>=s.hit[e]) then
             local x,_,z=e.Transform:GetWorldPosition()
             local rx,rz=x-s.x,z-s.z
             local d2=rx*rx+rz*rz

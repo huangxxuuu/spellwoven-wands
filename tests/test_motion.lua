@@ -100,6 +100,9 @@ for _,id in ipairs({"payload_egg","sleep_crystal"}) do
             assert(F.seek(guided,card)==prop)
             guided.hit[prop]=guided.age+.1
             assert(not F.seek(guided,card),"recent piercing contacts respect their cooldown")
+            guided.placement=true
+            assert(F.seek(guided,card)==prop,"placement navigation must retain a target during contact cooldown")
+            guided.placement=nil
             guided.hit[prop]=nil;prop.valid=false
             assert(not F.seek(guided,card),"removed props cannot attract shots")
             prop.valid=true
@@ -116,7 +119,7 @@ candidates={}
 for _,id in ipairs({"sine","spiral","orbit","reverse_path","return_path","accelerate"}) do
     local card=D[id];local flags={[card.flag]=Copy(card)}
     local e=field(descriptor(flags,6),false)
-    local s={owner=owner,p=descriptor(flags,6),speed=6,age=0,x=0,z=0,hit={}}
+    local s={owner=owner,p=descriptor(flags,6),speed=6,age=0,x=0,z=0,hit={},drag=Motion.drag}
     local bullet=entity();F.reset(s,1,0)
     for i=1,20 do
         e.x,e.z=0,0;s.x,s.z=0,0
@@ -127,18 +130,31 @@ for _,id in ipairs({"sine","spiral","orbit","reverse_path","return_path","accele
     e:Remove()
 end
 
--- Permanent inertia halves in four seconds, saves velocity, and eventually
--- stops. A finite star retains its speed. Motion state is plain save data.
-local inert=field(descriptor({},8),true)
-for i=1,120 do frame(inert,FRAMES) end
-close(inert.motor,4)
-local saved=Motion.save(inert);assert(saved.vx==inert._nw_motion.vx and not saved.stopped)
-local restored=entity();restored._nw_stored={p=inert._nw_motion.p};restored._nw_owner=owner
-Motion.start(restored,owner,inert._nw_motion.p,1,0,inert._nw_motion.age,saved)
-close(restored.motor,inert.motor)
-for i=1,900 do if not restored._nw_motion.stopped then frame(restored,FRAMES) end end
-assert(restored.valid and restored.motor==0 and restored._nw_motion.stopped and restored.can_sleep)
-local star=field(descriptor({},8),false);frame(star,4);close(star.motor,8)
+-- Every moving placement halves unpowered inertia in four seconds, saves its
+-- current velocity, and eventually settles. Finite lifetime is not an opt-out;
+-- ordinary projectile propulsion retains its original undamped inertia.
+local free_shot,free_body=velocity({},8,FRAMES,120)
+close(free_body.motor,8);assert(free_shot.drag==nil)
+for _,case in ipairs({{"sleep_crystal",true},{"payload_egg",true},
+    {"edge_yellowstaff",false},{"edge_opalstaff",false},{"rain_cloud",false}}) do
+    local inert=field(descriptor({},8,case[1]),case[2])
+    for i=1,120 do frame(inert,FRAMES) end
+    close(inert.motor,4)
+    local saved=Motion.save(inert)
+    assert(saved.vx==inert._nw_motion.vx and not saved.stopped)
+    local restored=entity(inert.x,inert.z)
+    if case[2] then restored._nw_stored={p=inert._nw_motion.p};restored._nw_owner=owner end
+    Motion.start(restored,owner,inert._nw_motion.p,1,0,inert._nw_motion.age,saved)
+    close(restored.motor,inert.motor)
+    for i=1,900 do if not restored._nw_motion.stopped then frame(restored,FRAMES) end end
+    assert(restored.valid and restored.motor==0 and restored._nw_motion.stopped and restored.can_sleep,
+        case[1].." must settle without removing the placement")
+    local settled=entity(restored.x,restored.z)
+    if case[2] then settled._nw_stored={p=inert._nw_motion.p};settled._nw_owner=owner end
+    Motion.start(settled,owner,inert._nw_motion.p,1,0,restored._nw_motion.age,Motion.save(restored))
+    assert(settled.motor==0 and settled._nw_motion.stopped,"loading cannot relaunch a settled placement")
+    inert:Remove();restored:Remove();settled:Remove()
+end
 
 -- Persist a partially entered orbit so loading a moving placement continues
 -- the same smooth radius and phase instead of restarting its entry.
@@ -197,6 +213,59 @@ for _,id in ipairs({"edge_yellowstaff","edge_opalstaff"}) do
     assert(floating._nw_motion.stopped,"stars still stop on non-wall targets")
 end
 
+-- Reproduce a self-targeted native star: its birth overlap is ignored, then
+-- the first return contact ends movement unless pierce still permits it.
+-- Contact cooldown suppresses repeated collisions, not placement steering.
+local owner_x,owner_z=owner.x,owner.z
+for _,piercing in ipairs({false,true}) do
+    owner.x,owner.z=0,0;candidates={owner};TheWorld._nw_scans=nil
+    local flags={targets={self=true},homing=Copy(D.homing),pierce_all=piercing and {} or nil}
+    local following=field(descriptor(flags,0,"edge_yellowstaff"),false)
+    local motion=following._nw_motion
+    frame(following,FRAMES)
+    assert(not motion.stopped and not motion.hit[owner],"initial self overlap is not a hit")
+    owner.x=2
+    for _=1,90 do
+        frame(following,FRAMES)
+        if motion.hit[owner] then break end
+    end
+    assert(motion.hit[owner],"the star must catch and contact its selected owner")
+    if not piercing then
+        assert(motion.stopped and following.motor==0 and motion.task==nil)
+        owner.x=4;frame(following,FRAMES)
+        assert(motion.stopped and following.motor==0,"spent contact budget must not restart homing")
+    else
+        assert(not motion.stopped and motion.hits_left==math.huge)
+        local hit_until=motion.hit[owner]
+        -- Sweep past the owner while the .5 s collision cooldown is active.
+        -- Force another search after the .1 s guidance-cache interval.
+        following.x=owner.x+1
+        now=now+.12;P.step(following,now,{})
+        assert(motion.age<hit_until and motion.hit[owner]==hit_until)
+        assert(motion.seek_states.homing.target==owner and math.abs(motion.vz)>0,
+            "after passing its target, a piercing placement must turn back during contact cooldown")
+        assert(F.seek(motion,D.homing)==owner)
+        local ordinary=Copy(motion);ordinary.placement=nil;ordinary.owner=owner
+        ordinary.hit={[owner]=hit_until}
+        assert(not F.seek(ordinary,D.homing),"ordinary piercing shots still skip cooling-down contacts")
+        -- Keep the body overlapping to verify that continued steering did not
+        -- shorten the independent half-second collision settlement interval.
+        local function overlap_at(age)
+            following.x,following.z=owner.x,owner.z
+            motion.x,motion.z=owner.x,owner.z
+            now=now+age-motion.age
+            P.step(following,now,{})
+        end
+        overlap_at(hit_until-.01)
+        close(motion.hit[owner],hit_until)
+        overlap_at(hit_until)
+        close(motion.hit[owner],hit_until+.5)
+        assert(not motion.stopped and motion.hits_left==math.huge)
+    end
+    following:Remove()
+end
+owner.x,owner.z=owner_x,owner_z
+
 -- Gust pushes an egg without opening it, accumulates actual momentum, can
 -- wake a stopped egg, and passes through crystals without pushing them.
 SpawnPrefab=function(name)
@@ -236,4 +305,4 @@ F.ground(probe,0,0,3);assert(writes==0 and clears==0)
 F.ground(probe,12,-.02,3);assert(writes==1 and clears==1 and not probe._nw_ground_mask)
 F.ground(probe,12,0,3);assert(writes==1 and clears==1)
 F.ground(probe,0,0,3);assert(probe._nw_ground_mask)
-print("motion: force/rotate/short guidance, frame-rate independence, shared paths, drag/save/restart, collision stop/pierce/bounce and selective gust impulses")
+print("motion: force/rotate/short guidance, frame-rate independence, shared paths, placement drag/save/settle, independent guidance/contact cooldowns, stop/pierce/bounce and selective gust impulses")

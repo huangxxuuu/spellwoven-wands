@@ -1,0 +1,29 @@
+Use case: stylized-concept.
+Asset type: production 2D game animation sprite sheet for a Don't Starve Together mod, a small stationary spore sentry plant.
+Create ONE transparent PNG sprite sheet, square 2048 x 2048, with EXACTLY 16 poses in a precise invisible 4 by 4 grid. Each cell is 512 x 512. No visible grid, no labels, no letters, no background, no drop shadows. Genuine transparent alpha between and around sprites.
+
+Character: a small quirky and eerie but charming plant turret. Three broad curled moss-green leaves, a thin crooked dark-brown woody stem, and a lopsided dark olive seed-pod head with a short sideways seed-spitting nozzle pointing right. The mouth is a dry hollow botanical opening, NOT a human mouth. Small angular leaf tips like a tattered paper crown. A simple branching root foot is planted at the ground. No eyeballs required. The silhouette must read at 130 pixels tall.
+
+Art direction: unmistakably hand-drawn 2D survival-game illustration compatible with Don't Starve. Flat muted olive green, moss grey and dark brown color blocks, rough near-black ink outlines of uneven width, sparse short hatch marks and small patches of dry brush. Simplify the forms. Strong asymmetry and whimsical crooked botanical shapes. Very shallow shading, at most two flat tones per material. Absolutely NO sculpted 3D appearance, no glossy highlights, no soft airbrushing, no painterly volume, no photorealism, no gradients. Weird, never gross: no flesh, gums, teeth, slime, gore, wet tissue, exposed organs or realistic fungus pustules.
+
+Registration: every cell contains the SAME character at the SAME scale and view: a three-quarter side view pointing right, fixed camera. Root contact sits at local pixel (256, 445) in every cell. The mature plant fits approximately x=95..410, y=105..445. Keep root foot and lower stem exactly registered throughout; let the head and leaves animate above the root. Keep at least 55 px transparent gutter at left/right and 55 px below contact. No part crosses cell boundaries.
+
+Read cells left-to-right, then top-to-bottom:
+1 tiny closed seed bud between two low leaves, emerging from the planted root.
+2 bud raised a little, short stem growing, first leaf unfolding.
+3 half-height plant, stem extending, pod still small and folded.
+4 three-quarter-height plant, leaves opening and head tilting up.
+5 nearly mature plant, head and nozzle unfolding, leaves settling.
+6 mature relaxed idle pose, nozzle pointing right, broad leaves open.
+7 EXACT same mature idle starting pose as cell 6.
+8 anticipation: rooted stem steady, seed pod draws slightly left and compresses gently, nozzle narrows, front leaf pulls inward.
+9 firing pose: pod leans forward slightly, dry nozzle opens, leaf tips stretch; no projectile, no particles, no external effect.
+10 relaxed recovery pose, visually almost identical to mature idle cell 6.
+11 EXACT same mature idle starting pose as cell 6.
+12 leaves begin folding down and pod tips down, root stays planted.
+13 pod folds further inward and stem bends into a low hooked shape.
+14 plant shrivels into a half-height curled bundle of dry leaves, no gross decay.
+15 small low closed seed husk with dry leaves close to ground.
+16 tiny remaining root curl and two small dry leaf scraps close to ground, enough shape to fade cleanly.
+
+Make animation differences gradual and coherent. Preserve exact identity, palette, outline thickness and proportions in every pose. Prioritize clean cell registration and flatter inked cartoon art over intricate details.

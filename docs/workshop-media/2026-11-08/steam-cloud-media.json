@@ -1,0 +1,65 @@
+{
+  "01-combos.gif": {
+    "sha1": "E590C6967A155BB63DFEC178656974985A049A34",
+    "bytes": 2139718,
+    "handle": 11171490399105963216,
+    "url": "https://images.steamusercontent.com/ugc/11171490399105963216/E590C6967A155BB63DFEC178656974985A049A34/",
+    "verified": true
+  },
+  "02-payloads.gif": {
+    "sha1": "DD32D4BC40C47FC2C7425A9B5ADD4E1D9381E50B",
+    "bytes": 881880,
+    "handle": 15118734145080234800,
+    "url": "https://images.steamusercontent.com/ugc/15118734145080234800/DD32D4BC40C47FC2C7425A9B5ADD4E1D9381E50B/",
+    "verified": true
+  },
+  "03-cardpile.jpg": {
+    "sha1": "845B364A802483D4788F7642CE2477FF45928F4C",
+    "bytes": 146030,
+    "handle": 17915763130818327811,
+    "url": "https://images.steamusercontent.com/ugc/17915763130818327811/845B364A802483D4788F7642CE2477FF45928F4C/",
+    "verified": true
+  },
+  "03-stations.png": {
+    "sha1": "6C4F2133ED5C287970A12E01F87D30D2A6C091D8",
+    "bytes": 223149,
+    "handle": 9463565764347824291,
+    "url": "https://images.steamusercontent.com/ugc/9463565764347824291/6C4F2133ED5C287970A12E01F87D30D2A6C091D8/",
+    "verified": true
+  },
+  "04-harvest.gif": {
+    "sha1": "A874713288E0285ADC1C71C6271CAAEF89DCC094",
+    "bytes": 1585842,
+    "handle": 14707989744641070350,
+    "url": "https://images.steamusercontent.com/ugc/14707989744641070350/A874713288E0285ADC1C71C6271CAAEF89DCC094/",
+    "verified": true
+  },
+  "05-ocean-fishing.gif": {
+    "sha1": "BFCB0B4E96A0E274E2B64262B96531CC7D941F6C",
+    "bytes": 4477464,
+    "handle": 9826035569134835751,
+    "url": "https://images.steamusercontent.com/ugc/9826035569134835751/BFCB0B4E96A0E274E2B64262B96531CC7D941F6C/",
+    "verified": true
+  },
+  "06-homing-star.gif": {
+    "sha1": "D5F63D9EFFA3B91957BD16992B15AF9F7A7EF759",
+    "bytes": 7770070,
+    "handle": 15595512404166230674,
+    "url": "https://images.steamusercontent.com/ugc/15595512404166230674/D5F63D9EFFA3B91957BD16992B15AF9F7A7EF759/",
+    "verified": true
+  },
+  "07-giant-star.gif": {
+    "sha1": "F11DA360F9753BEAB4B950611E0A6176709655C3",
+    "bytes": 5792721,
+    "handle": 10479249389854033689,
+    "url": "https://images.steamusercontent.com/ugc/10479249389854033689/F11DA360F9753BEAB4B950611E0A6176709655C3/",
+    "verified": true
+  },
+  "08-music.jpg": {
+    "sha1": "74EF5B1824FC47AF7B1A499B3EC56A3E8A63D802",
+    "bytes": 172403,
+    "handle": 17730996828616896639,
+    "url": "https://images.steamusercontent.com/ugc/17730996828616896639/74EF5B1824FC47AF7B1A499B3EC56A3E8A63D802/",
+    "verified": true
+  }
+}

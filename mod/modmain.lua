@@ -95,6 +95,7 @@ AddClientModRPCHandler("nw_weave","edit_result",GLOBAL.require("nw/editor_client
 AddClientModRPCHandler("nw_weave","edit_status",GLOBAL.require("nw/editor_client").status)
 AddClientModRPCHandler("nw_weave","dev_help",GLOBAL.require("nw/dev_output").print_lines)
 if not GLOBAL.TheNet:IsDedicated() then
+    AddClassPostConstruct("widgets/redux/craftingmenu_pinbar",GLOBAL.require("nw/station_sounds").install)
     AddClassPostConstruct("widgets/image",GLOBAL.require("nw/card_icon").install)
     GLOBAL.require("nw/crafting_filter").install(env,GLOBAL)
     AddComponentPostInit("playercontroller",GLOBAL.require("nw/hold_cast").install)

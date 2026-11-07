@@ -38,7 +38,7 @@ def inputs():
     files += list((ROOT / 'assets_src/art_v1/originals').glob('*.png'))
     files += [ROOT / 'tools' / name for name in (
         'build_spell_world.py', 'build_spark_flight.py', 'build_elemental_flight.py',
-        'build_tool_flight.py', 'build_field_stages.py', 'build_electric_arc.py', 'native_animation.py', 'build_art_assets.py', 'animation_atlas.py')]
+        'build_tool_flight.py', 'build_field_stages.py', 'spore_stage_art.py', 'build_electric_arc.py', 'native_animation.py', 'build_art_assets.py', 'animation_atlas.py')]
     files += [ROOT / 'mod/scripts/nw' / name for name in (
         'flight_visual.lua', 'spark_trail.lua', 'elemental_flight.lua', 'beam_path.lua', 'beam_visual.lua',
         'tool_flight.lua', 'field_stages.lua', 'field_member_visual.lua', 'electric_visual.lua')]

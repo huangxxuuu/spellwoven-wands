@@ -165,12 +165,9 @@ for id,spell in pairs(require("nw/definitions").spells) do
             assert(shot._spell:value()==require("nw/cards").codes[base],"visual aliases must preserve the replicated card identity")
         end
         assert(art.y==1.4,id)
-        if spell.engraving=="voidcloth_scythe" then
-            assert(art.orientation==ANIM_ORIENTATION.OnGround and art.anim=="scythe_spin")
-        else
-            assert(art.orientation~=ANIM_ORIENTATION.OnGround,id)
-            assert(art.hidden or art.orientation==ANIM_ORIENTATION.BillBoard or art.fourfaced,id)
-        end
+        assert(art.orientation~=ANIM_ORIENTATION.OnGround,id)
+        assert(art.hidden or art.orientation==ANIM_ORIENTATION.BillBoard or art.fourfaced,id)
+        if spell.engraving=="voidcloth_scythe" then assert(art.anim=="scythe_spin") end
         if id=="land_hook" then
             assert(require("nw/elemental_flight").direction_count(id)==64 and art.anim:find("^land_hook_dir_"))
         end

@@ -79,9 +79,10 @@ local function entity()
         SetBank=function(_,name) e.bank=name end,
         SetScale=function(_,x,y) e.artscale={x,y} end,
         SetOrientation=function(_,orientation) e.orientation=orientation end,
-        PlayAnimation=function(_,name,loop) e.anim=name;e.clips[#e.clips+1]={name=name,at=now,loop=loop} end,
+        PlayAnimation=function(_,name,loop) e.anim=name;e.clips[#e.clips+1]={name=name,at=now,loop=loop,playback=e.playback or 1} end,
         PushAnimation=function(_,name,loop) e.queued=name end,
         SetTime=function(_,t) e.animtime=t end,
+        SetDeltaTimeMultiplier=function(_,speed) assert(speed>0 and speed<math.huge);e.playback=speed end,
     },{__index=function() return noop end})
     return e
 end
@@ -416,7 +417,13 @@ advance(launched+6.5);assert(not tail.valid and damage[target]==1 and damage[pla
 Effects.direct=original_direct
 Effects.scan=function() return {} end
 
--- Storm prewarnings and two shock pulses retain their actual gameplay times.
+-- Cloud gathering completes at the first warning, and its longer dispersed
+-- tail retires independently of gameplay, even with long-life/giant modifiers.
+near(Stages.duration("storm_cloud","spawn"),.5)
+near(Stages.duration("storm_cloud","warning"),.3)
+near(Stages.duration("storm_cloud","end"),.8)
+near(Stages.duration("rain_cloud","spawn"),.2)
+near(Stages.duration("rain_cloud","end"),.3)
 local electric_hits={}
 local original_electric=Hits.electric
 Hits.electric=function(caster,e,x,z,damage,p,base_only,height,lift)
@@ -424,24 +431,52 @@ Hits.electric=function(caster,e,x,z,damage,p,base_only,height,lift)
     electric_hits[#electric_hits+1]={at=now,height=height,lift=lift}
 end
 Effects.scan=function() return {target} end
-local storm,sp=field("storm_cloud",{id="storm_cloud",damage=7,radius=7.5,size_mult=2.5,field_lifetime_mult=2,flags={}})
-storm.Transform:SetPosition(0,.4,0)
-local launched=now
-Fields.actions.storm_cloud(storm,owner,sp,0,0)
-advance(launched+5.1)
-local warns,pulses={},{}
-for _,clip in ipairs(storm.clips) do
-    if clip.name=="storm_cloud_warning" then warns[#warns+1]=clip.at
-    elseif clip.name=="storm_cloud_pulse" then pulses[#pulses+1]=clip.at end
-end
-assert(#warns==3 and #pulses==3 and not storm.valid)
-assert(#electric_hits==3)
-for i=1,3 do
-    near(pulses[i],launched+i*1.6);near(warns[i],pulses[i]-.3)
-    near(electric_hits[i].at,pulses[i]);near(electric_hits[i].height,.4);near(electric_hits[i].lift,5.5)
+for _,lifetime in ipairs({1,2,.5,.25,1/64}) do
+    electric_hits={}
+    target._nw_storm_next=nil
+    local visual_scale=math.min(1,lifetime)
+    local storm,sp=field("storm_cloud",{id="storm_cloud",damage=7,radius=7.5,size_mult=2.5,field_lifetime_mult=lifetime,flags={}})
+    storm.Transform:SetPosition(0,.4,0)
+    local launched=now
+    Fields.actions.storm_cloud(storm,owner,sp,0,0)
+    near(storm.playback,1/visual_scale)
+    advance(launched+.49*visual_scale)
+    assert(storm.anim=="storm_cloud_spawn" and #electric_hits==0,"gathering must not be interrupted or strike early")
+    advance(launched+2.55*lifetime)
+    local warns,pulses={},{}
+    for _,clip in ipairs(storm.clips) do
+        if clip.name=="storm_cloud_warning" then
+            warns[#warns+1]=clip.at;near(clip.playback,1/visual_scale)
+        elseif clip.name=="storm_cloud_pulse" then
+            pulses[#pulses+1]=clip.at;near(clip.playback,1/visual_scale)
+        end
+    end
+    assert(#warns==3 and #pulses==3 and not storm.valid)
+    assert(warns[1]>=launched+Stages.duration("storm_cloud","spawn")/storm.playback-1e-6,
+        "even stacked short-life modifiers must finish gathering before warning")
+    local expected_hits,next_hit={},-math.huge
+    for i=1,3 do
+        near(pulses[i],launched+i*.8*lifetime);near(warns[i],pulses[i]-.3*visual_scale)
+        -- Preserve the existing per-target .45 s cooldown, which intentionally
+        -- suppresses repeat damage from tightly spaced short-lived strikes.
+        if pulses[i]>=next_hit then expected_hits[#expected_hits+1]=pulses[i];next_hit=pulses[i]+.45 end
+    end
+    assert(#electric_hits==#expected_hits)
+    for i,at in ipairs(expected_hits) do
+        near(electric_hits[i].at,at);near(electric_hits[i].height,.4);near(electric_hits[i].lift,5.5)
+    end
+    local tail=fxs[#fxs]
+    assert(tail.valid and tail.anim=="storm_cloud_end" and not tail.components.health and not tail.components.combat)
+    near(tail.scale,2.5)
+    near(tail.playback,1)
+    advance(launched+2.55*lifetime+.79)
+    assert(tail.valid and #electric_hits==#expected_hits,"dispersal must remain visual only")
+    advance(launched+2.55*lifetime+.8)
+    assert(not tail.valid and #electric_hits==#expected_hits,"dispersal must retire with its final frame")
 end
 Hits.electric=original_electric
 Effects.scan=function() return {} end
+-- The two shock pulses retain their existing gameplay times.
 local shock,sp=field("shock_ring",{id="shock_ring",radius=2,flags={}})
 local launched=now
 Fields.actions.shock_ring(shock,owner,sp,0,0)
