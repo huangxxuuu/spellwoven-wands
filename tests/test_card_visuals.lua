@@ -23,7 +23,7 @@ local state={SetBuild=function(self,b) self.build=b end,SetOrientation=function(
     OverrideSymbol=function(self,s,b,source) assert(s=="face");self.facebank=b;self.face=source end,
     SetBankAndPlayAnimation=function(self,b,clip) assert(b==self.build);self.clip=clip end}
 for _,id in ipairs(Cards.order) do
-    assert(V.cards[id] and V.cards[id].album)
+    assert(V.cards[id] and V.cards[id].shape)
     for _,n in ipairs({1,2,3,4,8,9,25}) do
         for bits=0,26 do
             G.show({AnimState=state},Cards.codes[id],n,bits)

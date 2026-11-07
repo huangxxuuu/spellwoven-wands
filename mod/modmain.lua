@@ -1,7 +1,7 @@
 local T=GLOBAL.require("nw/locale").t
 GLOBAL.require("nw/locale").install(env,GLOBAL)
 PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_gunpowder" }
-Assets={Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
+Assets={Asset("ATLAS","images/nw_guide.xml"),Asset("IMAGE","images/nw_guide.tex"),Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
     Asset("SOUNDPACKAGE","sound/nw_instruments.fev"),Asset("SOUND","sound/nw_instruments.fsb"),
     Asset("ATLAS","images/nw_hud.xml"),Asset("IMAGE","images/nw_hud.tex"),
     Asset("ATLAS","images/nw_frame.xml"),Asset("IMAGE","images/nw_frame.tex")}
@@ -15,7 +15,10 @@ limits.permanent_motion_cleanup=GetModConfigData("permanent_motion_cleanup") == 
 GLOBAL.require("nw/executor").set_projectile_limit(GetModConfigData("limit_projectiles"))
 RegisterInventoryItemAtlas("images/inventoryimages/nw_icons.xml", "nw_wand.tex")
 local Visual=GLOBAL.require("nw/visual")
-for code=0,Visual.count-1 do RegisterInventoryItemAtlas(Visual.atlas(code),Visual.icon(code)..".tex") end
+for code=0,Visual.count-1 do
+    RegisterInventoryItemAtlas(Visual.atlas(code),Visual.icon(code)..".tex")
+    RegisterInventoryItemAtlas(Visual.atlas(code),Visual.icon(code,true)..".tex")
+end
 for _,id in GLOBAL.ipairs(GLOBAL.require("nw/cards").order) do
     RegisterInventoryItemAtlas("images/inventoryimages/nw_icons.xml", "nw_spell_"..id..".tex")
 end

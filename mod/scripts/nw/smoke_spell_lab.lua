@@ -734,7 +734,7 @@ function M.run(x,z,done)
     stages[#stages+1]=function()
         local a,b,c,d,e=target(2,0),target(7.9,0),target(12,0),target(12,2),target(12,3)
         cast({"chain"})
-        return .4,function()
+        return .65,function()
             compare_electric_hops(a,b,c,d)
             assert(e.components.health.currenthealth==1000,"NW_LAB: fifth arc target was attacked")
         end

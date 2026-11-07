@@ -24,7 +24,7 @@ SPECIAL_SOURCE = ROOT / "assets_src/projectiles/special_v1"
 MOD_TOOLS = Path("E:/SteamLibrary/steamapps/common/Don't Starve Mod Tools/mod_tools")
 FPS = 30
 DIRECTIONS = 32
-DIRECTION_COUNTS = {"arrow": 128, "flint_lance": 128, "end_beam": 128}
+DIRECTION_COUNTS = {"land_hook": 64, "arrow": 128, "flint_lance": 128, "end_beam": 128}
 FRAMES = 6
 GROUPS = {
     "head": {"cells": (0, 1, 2, 3, 4, 5), "frames": (0, 1, 2, 3, 4, 5),
@@ -53,7 +53,7 @@ DISPLAY_SIZES = {
     "tri_electric": {"head": (165, 165), "tail": (90, 97.5), "hit": (165, 165)},
     "end_beam": {"head": (245, 145), "tail": (110, 110), "hit": (140, 110)},
     "spore_ball": {"head": (170, 170), "tail": (65, 65), "hit": (140, 120)},
-    "land_hook": {"head": (1120, 1064), "tail": (126, 112), "hit": (266, 224)},
+    "land_hook": {"head": (560, 532), "tail": (63, 56), "hit": (133, 112)},
     "soundwave": {"head": (195, 195), "tail": (120, 150), "hit": (210, 210)},
     "bee_swarm": {"head": (110, 115), "tail": (32, 25), "hit": (65, 65)},
     # Base size matches 80% of the previous single-giant (2.5x) appearance.

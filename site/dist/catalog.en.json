@@ -180,7 +180,7 @@
       "groupOrder": 1,
       "rarity": "Rare",
       "effect": "Releases lightning that jumps between nearby targets; it may backfire when you are wet in the rain.",
-      "detailedEffect": "Discharges from the wand tip or trigger point. First hit favors enemies ahead; collision triggers favor the hit target. Four jumps, up to 6 units each; first hit 15 damage, later hits 10. Without a target, jumps 6 units within ±85° of the launch direction and searches again. Uses native electric weapon rules. In rain, a wet caster within 6 units of the current jump has a 20% backfire chance on each later hop, at most once per chain.",
+      "detailedEffect": "Discharges from the wand tip or trigger point. First hit favors enemies ahead; collision triggers favor the hit target. Four strike points, 0.15 seconds between jumps, up to 6 units each; first hit 15 damage, later hits 10. Without a target, jumps 6 units within ±85° of the launch direction and searches again. Uses native electric weapon rules. In rain, a wet caster within 6 units of the current jump has a 20% backfire chance on each later hop, at most once per chain.",
       "mana": 14,
       "delay": 0.05,
       "recharge": 0,

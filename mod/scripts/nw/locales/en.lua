@@ -1,5 +1,7 @@
 -- Chinese source strings are stable translation keys. Keep format arguments in order.
 return {
+    ["向导"]="Guide",
+    ["织法之杖 · 向导"]="Spellwoven Wands · Guide",
     ["元素"]="Element",
     ["恢复"]="Recovery",
     ["触发"]="Trigger",
@@ -636,7 +638,7 @@ return {
     ["实际造成的可归属生命损失的 5% 回复给施法者。"]="Restores 5% of attributable health loss actually dealt to the caster.",
     ["最多命中三次；重复命中同一敌人至少相隔 0.10 秒。"]="Up to three hits; at least 0.10 seconds between hits on the same enemy.",
     ["从杖头或载体触发点立即爆炸一次，半径 3，每个敌人受 25 点基础伤害。"]="Immediately explodes once at the wand tip or carrier trigger point. Radius 3; 25 base damage per enemy.",
-    ["从杖头或触发点放电。首击优先前方敌人，碰撞触发优先命中对象。共 4 跳，每跳最多 6 单位，首跳 15、后续 10。无目标时沿发射方向 ±85° 空跳 6 单位，再从落点索敌。按原版电武器结算。"]="Discharges from the wand tip or trigger point. First hit favors enemies ahead; collision triggers favor the hit target. Four jumps, up to 6 units each; first hit 15 damage, later hits 10. Without a target, jumps 6 units within ±85° of the launch direction and searches again. Uses native electric weapon rules.",
+    ["从杖头或触发点放电。首击优先前方敌人，碰撞触发优先命中对象。共 4 个攻击落点，逐跳间隔 0.15 秒，每跳最多 6 单位，首跳 15、后续 10。无目标时沿发射方向 ±85° 空跳 6 单位，再从落点索敌。按原版电武器结算。"]="Discharges from the wand tip or trigger point. First hit favors enemies ahead; collision triggers favor the hit target. Four strike points, 0.15 seconds between jumps, up to 6 units each; first hit 15 damage, later hits 10. Without a target, jumps 6 units within ±85° of the launch direction and searches again. Uses native electric weapon rules.",
     ["沿命中时弹道方向击退约 1 单位，由目标的原生击退动作结算。"]="Knocks the target back about 1 unit along the impact direction, using its native knockback state.",
     ["弹体照明半径 2，终止时留光 3 秒，残光数量由世界设置控制。"]="Projectile light radius 2. Leaves light for 3 seconds on expiry; world settings control lingering-light counts.",
     ["碰"]=" Hit",

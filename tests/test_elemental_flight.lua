@@ -379,7 +379,7 @@ retire()
 -- Special bullets use travelled facing, retain several independently aged
 -- fragments, and share the same bounded giant lifetime / cleanup rules.
 local specials={"gust","spore_ball","flint_lance","slime","grow_orb","heal_bolt",
-    "star_vortex","glass_disc","land_hook","tri_electric","end_beam","soundwave","bee_swarm","fireflies"}
+    "star_vortex","glass_disc","tri_electric","end_beam","soundwave","bee_swarm","fireflies"}
 for _,kind in ipairs(specials) do
     local s=shot(kind,220,2.5)
     local state=s._nw_elemental_flight
@@ -416,6 +416,27 @@ for _,kind in ipairs(specials) do
     end
     retire()
 end
+-- Hook and authored rope keep turning together without detached trail entities,
+-- including after a replicated giant-size change and camera rotation.
+local hook=shot("land_hook",229)
+local hook_created,hook_tails=created,tail_plays
+assert(Flight.direction_count("land_hook")==64)
+for _,scale in ipairs({1,2.5,1}) do
+    hook.scale=scale
+    for step=1,24 do
+        local heading=step*math.pi/12
+        TheCamera.heading=step*7
+        advance({{hook,.5*math.cos(heading),.5*math.sin(heading)}})
+        assert(hook._visual.anim=="land_hook_dir_"..Flight.direction(heading,"land_hook"))
+        assert(hook._visual.loop)
+        assert(not next(hook._nw_elemental_flight.parts))
+        assert(TheWorld._nw_elemental_flights.count==0)
+        assert(created==hook_created and tail_plays==hook_tails,"hook must never spawn detached trails")
+    end
+end
+assert(hook._visual.plays>1,"hook and rope must retain directional animation updates")
+retire()
+
 for _,id in ipairs({"note_a","ocarina_b","note_c","ocarina_d","ocarina_e","ocarina_f",
     "ocarina_gsharp","ocarina_a2","ocarina_g"}) do
     assert(Flight.resolve(id)=="soundwave" and Flight.supports(id))

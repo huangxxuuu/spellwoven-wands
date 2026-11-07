@@ -224,7 +224,11 @@ end
 function M.chain(owner,first,x,z,p,aim_x,aim_z,prefer_front)
     local seen={}
     local source_height=.75
-    for hop=1,p.max_targets do
+    p=require("nw/util").copy(p)
+    local hop=0
+    local function step()
+        if not M.live(owner) or not owner.components.combat then return end
+        hop=hop+1
         local e
         if hop==1 and first and Target.allowed(owner,first,p.flags) and
             first:GetDistanceSqToPoint(x,0,z)<=p.radius*p.radius then
@@ -236,9 +240,6 @@ function M.chain(owner,first,x,z,p,aim_x,aim_z,prefer_front)
             and owner.GetIsWet and owner:GetIsWet() and owner:GetDistanceSqToPoint(x,0,z)<=p.radius*p.radius
             and math.random()<.2
         if rain_backfire then e=owner end
-        if hop==1 and (not e or e~=first and e:GetDistanceSqToPoint(x,0,z)>e:GetPhysicsRadius(.5)^2) then
-            M.fx("nw_ground_shock_fx",x,z)
-        end
         local tx,_,tz
         local target_height=.05
         if e then
@@ -268,7 +269,9 @@ function M.chain(owner,first,x,z,p,aim_x,aim_z,prefer_front)
         end
         x,z=tx,tz
         source_height=target_height
+        if hop<math.min(4,p.max_targets) then TheWorld:DoTaskInTime(.15,step) end
     end
+    step()
 end
 function M.afterlight(owner,x,z)
     local light=M.fx("nw_afterlight",x,z)

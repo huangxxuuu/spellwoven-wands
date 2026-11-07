@@ -43,6 +43,32 @@ local function line(body,y)
     img:SetSize(INNER,1);img:SetTint(.59,.46,.30,.75)
     img:SetPosition(INNER/2,-y);img:SetClickable(false)
 end
+local function badges(body,items,x,top,width)
+    local dx,dy,rowheight=0,0,0
+    for _,str in ipairs(items) do
+        local badge=body:AddChild(Widget("hint_badge"))
+        badge:SetClickable(false)
+        local border=badge:AddChild(Image("images/global.xml","square.tex"))
+        local fill=badge:AddChild(Image("images/global.xml","square.tex"))
+        local text=badge:AddChild(Text(UIFONT,16))
+        border:SetClickable(false);fill:SetClickable(false);text:SetClickable(false)
+        border:SetTint(.57,.43,.25,.95)
+        fill:SetTint(.19,.15,.10,1)
+        text:SetColour(unpack(VALUE))
+        text:SetString(str)
+        local measured=text:GetRegionSize()
+        local w=math.min(width,measured+14)
+        local lines=text:SetMultilineTruncatedString(str,32,w-14,nil,false)
+        local h=lines*21+6
+        if dx>0 and dx+w>width then dx=0;dy=dy+rowheight+5;rowheight=0 end
+        badge.width,badge.height=w,h
+        badge:SetPosition(x+dx+w/2,-top-dy-h/2)
+        border:SetSize(w,h);fill:SetSize(w-2,h-2)
+        text:SetRegionSize(w-14,h-6)
+        dx=dx+w+5;rowheight=math.max(rowheight,h)
+    end
+    return dy+rowheight
+end
 function Panel:Display(data)
     local body=self.body
     body:KillAllChildren()
@@ -51,23 +77,33 @@ function Panel:Display(data)
         local art=body:AddChild(UIAnim())
         art:SetClickable(false)
         local state=art:GetAnimState()
-        require("nw/visual").apply({AnimState=state},data.wand_look,"ground")
-        state:HideSymbol("contact_shadow")
-        state:HideSymbol("contact_grass")
-        -- Keep a common scale so shaft lengths stay distinct, but center the
-        -- animation bounds rather than its ground-contact anchor (scrapbook UI).
-        art:SetScale(.28)
-        top=label(body,data.title,84,0,INNER-84,23,VALUE,true)
-        top=math.max(84,top+label(body,data.subtitle,84,top,INNER-84,16,LABEL))
-        local x1,y1,x2,y2=state:GetVisualBB()
-        art:SetPosition(42-(x1+x2)*.14,-top/2-(y1+y2)*.14)
+        -- Preview clips share the ground artwork, centered into 88 x 100 pixels
+        -- without grass or shadow. Their placement needs no first-frame bounds.
+        require("nw/visual").apply({AnimState=state},data.wand_look,"preview",data.wand_broken)
+        art:SetPosition(48,-54)
+        top=label(body,data.title,104,0,INNER-104,23,VALUE,true)
+        if data.wand_broken then
+            top=top+label(body,data.subtitle,104,top,INNER-104,16,LABEL,true)
+        else
+            top=top+5+badges(body,{data.subtitle},104,top+5,INNER-104)
+        end
+        top=math.max(108,top)
     elseif data.icon then
         local art=body:AddChild(Image(data.atlas,data.icon))
         art:SetSize(50,50);art:SetPosition(25,-25);art:SetClickable(false)
-        top=label(body,data.title,62,0,INNER-62,23,VALUE,true)
-        top=math.max(50,top+label(body,data.subtitle,62,top,INNER-62,16,LABEL))
+        local tagwidth=152
+        top=label(body,data.title,62,0,INNER-62-tagwidth-12,23,VALUE,true)
+        local tags=0
+        if data.tags then
+            tags=badges(body,data.tags,INNER-tagwidth,0,tagwidth)
+        end
+        top=math.max(50,top,tags)
     else
         top=label(body,data.title,0,0,INNER,21,VALUE)
+    end
+    if data.effect then
+        top=top+10
+        top=top+label(body,data.effect,0,top,INNER,18,VALUE,true)
     end
     if data.fields then
         top=top+9;line(body,top);top=top+8
@@ -85,8 +121,8 @@ function Panel:Display(data)
             label(body,data.innate,100,top,INNER-100,18,VALUE)
             top=top+25
         end
-        line(body,top+6);top=top+12
         if data.slots then
+            line(body,top+6);top=top+12
             label(body,T("已装法术"),0,top,100,17,LABEL)
             label(body,data.count,INNER-62,top,62,17,LABEL)
             top=top+25
@@ -94,9 +130,6 @@ function Panel:Display(data)
             row:SetCards(data.slots)
             row:SetPosition(row.width/2,-top-SLOT/2)
             top=top+SLOT
-        else
-            top=top+label(body,T("效果"),0,top,INNER,17,LABEL)+2
-            top=top+label(body,data.effect,0,top,INNER,18,VALUE,true)
         end
     end
     self.height=top+PAD*2

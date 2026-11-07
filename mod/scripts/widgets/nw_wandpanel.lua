@@ -28,7 +28,7 @@ local Panel=Class(Widget,function(self,bar)
         VisitURL("https://huangxxuuu.github.io/spellwoven-wands/"..(Locale.language=="en" and "en/" or ""),false)
     end)
     self.manual=self:AddChild(require("widgets/textbutton")())
-    self.manual:SetFont(UIFONT);self.manual:SetTextSize(18);self.manual:SetText(T("入门"))
+    self.manual:SetFont(UIFONT);self.manual:SetTextSize(18);self.manual:SetText(T("向导"))
     self.manual:SetHoverText(T("三个建筑，开始织法"))
     self.manual:SetOnClick(function() require("nw/quickguide").open() end)
     self.count=2

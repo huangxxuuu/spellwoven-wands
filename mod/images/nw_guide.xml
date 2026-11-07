@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf8'?>
+<Atlas><Texture filename="nw_guide.tex" /><Elements><Element name="nw_workbench.tex" u1="0.0" u2="0.5" v1="0.5" v2="1.0" /><Element name="nw_engraver.tex" u1="0.5" u2="1.0" v1="0.5" v2="1.0" /><Element name="nw_disassembler.tex" u1="0.0" u2="0.5" v1="0.0" v2="0.5" /></Elements></Atlas>

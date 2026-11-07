@@ -19,7 +19,7 @@
     "tri_electric": 32,
     "end_beam": 128,
     "spore_ball": 32,
-    "land_hook": 32,
+    "land_hook": 64,
     "soundwave": 32,
     "bee_swarm": 32,
     "fireflies": 32
@@ -1457,8 +1457,8 @@
             256
           ],
           "display_size": [
-            1120,
-            1064
+            560,
+            532
           ],
           "frames": 6,
           "period": 0.2,
@@ -1505,8 +1505,8 @@
             64
           ],
           "display_size": [
-            126,
-            112
+            63,
+            56
           ],
           "frames": 6,
           "period": 0.2
@@ -1527,8 +1527,8 @@
             96
           ],
           "display_size": [
-            266,
-            224
+            133,
+            112
           ],
           "frames": 6,
           "period": 0.2

@@ -8855,44 +8855,44 @@
       "name": "弹体巨化",
       "primary_class": "modifier",
       "mechanism_badge": null,
-      "source": "assets_src/spell_card_subjects/v3_full_catalog/modifiers/giant_shot.png",
-      "source_sha256": "c0e8f469776d4332ca54596640c23e1117a1edaed52d5cb7ad195ec988210f82",
+      "source": "assets_src/spell_card_subjects/v8_giant_shot/giant_shot.png",
+      "source_sha256": "7d3bd9746688174fc02724f0e4cb3ff46c19739180d5e08d8d71e752329c2185",
       "origin": "needs_generation",
       "layout": {
         "source_bbox": [
-          89,
-          72,
-          1238,
-          1199
+          103,
+          57,
+          1142,
+          1150
         ],
         "position": [
-          237,
-          243
+          249,
+          235
         ],
         "fitted_size": [
-          550,
-          539
+          526,
+          554
         ],
-        "uniform_scale": 0.47834504528394256,
+        "uniform_scale": 0.5064437936013266,
         "reserve_badge": false,
         "inside_safe_mask": true
       },
       "inventory_layout": {
         "source_bbox": [
-          89,
-          72,
-          1238,
-          1199
+          103,
+          57,
+          1142,
+          1150
         ],
         "position": [
-          222,
-          227
+          234,
+          220
         ],
         "fitted_size": [
-          581,
-          570
+          556,
+          585
         ],
-        "uniform_scale": 0.5057708979275457,
+        "uniform_scale": 0.5353012154763265,
         "reserve_badge": false,
         "inside_safe_mask": true
       },

@@ -13,8 +13,7 @@ M.per_style=head_count*#M.lengths*tail_count
 M.count=M.styles*M.per_style
 M.cosmetic_rolls=18*M.styles
 function M.atlas(code)
-    local page=math.floor(code/M.per_style)+1
-    return "images/inventoryimages/nw_wands"..(page==1 and "" or "_"..page)..".xml"
+    return "images/inventoryimages/nw_wand_parts.xml"
 end
 function M.parts(code)
     local style=math.floor(code/M.per_style)+1
@@ -27,6 +26,10 @@ function M.parts(code)
         string.format("body_%02d_%s",style,M.lengths[length+1])
 end
 function M.icon(code,broken) return "nw_wand_"..code..(broken and "_broken" or "") end
+function M.icon_parts(code,broken)
+    local head,length,tail,body=M.parts(code)
+    return {body..".tex",tail.."_"..length..".tex",head..(broken and "_broken" or "").."_"..length..".tex"}
+end
 function M.apply(inst, code, pose, broken)
     local head,length,tail,body=M.parts(code)
     inst.AnimState:SetBank("nw_parts")

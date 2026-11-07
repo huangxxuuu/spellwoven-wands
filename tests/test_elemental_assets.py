@@ -74,7 +74,7 @@ class ElementalAssetTests(unittest.TestCase):
                 expected_sources[element] = str(path)
             build, animations, images, manifest = elemental.make_bank(
                 elemental_source, basic_source, special_source)
-            self.assertEqual(len(animations), 2688)
+            self.assertEqual(len(animations), 2784)
             self.assertEqual(len(build), 19 * 3 * 6 + 6)
             self.assertEqual(len(images), 348)
             clips = {clip.get("name"): clip for clip in animations}
@@ -109,7 +109,7 @@ class ElementalAssetTests(unittest.TestCase):
                          "Generated atlases are not present yet")
     def test_project_atlases_have_transparent_complete_frames(self):
         _, animations, images, _ = elemental.make_bank()
-        self.assertEqual(len(animations), 2688)
+        self.assertEqual(len(animations), 2784)
         for name, image in images.items():
             alpha = image.getchannel("A")
             self.assertEqual(alpha.getextrema()[0], 0, name)

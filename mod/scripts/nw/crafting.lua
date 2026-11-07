@@ -57,6 +57,7 @@ function M.install(env)
         env.AddRecipe2(row.name, ingredients, TECH.LOST, {product=row.product, nounlock=true,
             station_tag=row.station, numtogive=row.count, nameoverride=row.name, description=row.name, canbuild=at_station,
             image=image..".tex", atlas=atlas,
+            layeredimagefn=row.tier and require("nw/wand_icon").recipe(row.tier) or nil,
             no_deconstruction=true}, {})
     end
     for _,row in ipairs(Rules.recipes) do register_product(row) end

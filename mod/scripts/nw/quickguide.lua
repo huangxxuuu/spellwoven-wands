@@ -4,7 +4,7 @@ function M.open()
     local Popup=require("screens/popupdialog")
     local Image=require("widgets/image")
     local Text=require("widgets/text")
-    local screen=Popup(T("织法之杖 · 入门"),"",{
+    local screen=Popup(T("织法之杖 · 向导"),"",{
         {text=T("资料站"),cb=function() VisitURL("https://huangxxuuu.github.io/spellwoven-wands/"..(require("nw/locale").language=="en" and "en/" or ""),false) end},
         {text=T("关闭"),cb=function() TheFrontEnd:PopScreen() end},
     },nil,nil,"dark")
@@ -13,9 +13,9 @@ function M.open()
     screen.bg:SetScale(.90,.92)
     screen.menu:SetPosition(-100,-145)
     local rows={
-        {"nw_workbench","images/inventoryimages/nw_supplies.xml",T("奥术台"),T("制杖、刻卡、装配法术\n炼金引擎旁制作")},
-        {"nw_engraver","images/inventoryimages/nw_stations.xml",T("武器刻印台"),T("把武器和工具刻成法术卡\n炼金引擎旁制作")},
-        {"nw_disassembler","images/inventoryimages/nw_stations.xml",T("奥术分解炉"),T("回收地面卡牌与法杖\n炼金引擎旁制作")},
+        {"nw_workbench","images/nw_guide.xml",T("奥术台"),T("制杖、刻卡、装配法术\n炼金引擎旁制作")},
+        {"nw_engraver","images/nw_guide.xml",T("武器刻印台"),T("把武器和工具刻成法术卡\n炼金引擎旁制作")},
+        {"nw_disassembler","images/nw_guide.xml",T("奥术分解炉"),T("回收地面卡牌与法杖\n炼金引擎旁制作")},
     }
     for i,row in ipairs(rows) do
         local x=(i-2)*185

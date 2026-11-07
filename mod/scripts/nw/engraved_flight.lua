@@ -24,7 +24,7 @@ function M.visual(inst,key)
         v.Transform:SetScale(scale,scale,scale)
         return
     end
-    v.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
+    v.AnimState:SetOrientation(key=="voidcloth_scythe" and ANIM_ORIENTATION.OnGround or ANIM_ORIENTATION.BillBoard)
     local skin=skins[key]
     local bank=skin and skin[1] or key
     local anim=skin and skin[2] or "spin_loop"

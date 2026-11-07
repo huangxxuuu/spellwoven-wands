@@ -174,6 +174,23 @@ for length,layout in manifest['layouts'].items():
         assert all(abs(a-b)<.001 for a,b in zip(planted[names[slot]],expected)),(slot,length)
     assert planted[names['contact_grass']][2]==2.5
     assert abs(planted[names['contact_grass']][3]+2.15)<.001
+    preview_height,preview=clips['preview_'+length]
+    assert set(preview)=={names[k] for k in layout},'preview must omit grass and shadow'
+    assert preview_height<=100.001
+    # Check actual compiled vertices for every interchangeable part, including
+    # broken crowns: all must fit the centered 88 x 100 header cell.
+    for slot in layout:
+        a,d,x,y,b,c=preview[names[slot]]
+        ga,gd,gx,gy,gb,gc=planted[names[slot]]
+        ratio=a/ga
+        assert all(abs(v-w*ratio)<.001 for v,w in ((b,gb),(c,gc),(d,gd)))
+        variants=[name for name in names if name.startswith(slot+'_')
+                  and (slot!='body' or name.endswith('_'+length))]
+        for name in variants:
+            start,count=ranges[names[name]]
+            for vx,vy in verts[start:start+count]:
+                px,py=a*vx+c*vy+x,b*vx+d*vy+y
+                assert -44.01<=px<=44.01 and -50.01<=py<=50.01,(length,name,px,py)
     for pose in ['floating','held']:
         height,elements=clips[pose+'_'+length]
         sx=sy=1 if pose=='floating' else scale*1.2
@@ -206,22 +223,8 @@ for length,layout in manifest['layouts'].items():
                 ga,_,_,_,gb,_=planted[names[sym]]
                 assert abs(1.2*math.hypot(ga,gb)-elements[names[sym]][0])<.001,(length,sym,'held/ground scale')
             print('Compiled',pose,length,'height',round(bottom-top,1))
-digests=set()
-for style in range(1,10):
-    page='nw_wands' if style==1 else f'nw_wands_{style}'
-    wands=Image.open(RUNTIME/(page+'.png'))
-    xml=ET.parse(ROOT/f'mod/images/inventoryimages/{page}.xml')
-    assert xml.find('Texture').get('filename')==page+'.tex'
-    assert (ROOT/f'mod/images/inventoryimages/{page}.tex').read_bytes()[:4]==b'KTEX'
-    we=xml.findall('./Elements/Element')
-    assert len(we)==len(heads)*len(tails)*3*2
-    for i,el in enumerate(we):
-        per=len(we)//2
-        suffix='_broken' if i>=per else ''
-        assert el.get('name')==f'nw_wand_{(style-1)*per+i%per}{suffix}.tex'
-        x=int(float(el.get('u1'))*wands.width);y=round((1-float(el.get('v2')))*wands.height)
-        digests.add(hashlib.sha256(wands.crop((x,y,x+64,y+64)).tobytes()).hexdigest())
-assert len(digests)==8748
+from check_wand_icons import check as check_wand_icons
+check_wand_icons()
 # Each three-wand group holds colour constant; compare material across rows.
 sheet=Image.new('RGBA',(840,790),(55,49,43,255));draw=ImageDraw.Draw(sheet)
 for i,shape in enumerate(shapes):
@@ -245,7 +248,7 @@ for i,tail in enumerate(tails):
     sheet.alpha_composite(im,(x-im.width//2,693))
     draw.text((x-20,758),tail.split('_')[1],fill='white')
 sheet.convert('RGB').save(ART/'assembly_review.png')
-print('PASS:',inventory_count,'inventory tiles;',len(digests),'wand icons; compiled sockets and both poses')
+print('PASS:',inventory_count,'inventory tiles;',8748,'composed wand icons; compiled sockets and both poses')
 
 # Render one matched pair per shaft from the shipped matrices at the same zoom.
 held_review=Image.new('RGBA',(780,382),(218,211,193,255))

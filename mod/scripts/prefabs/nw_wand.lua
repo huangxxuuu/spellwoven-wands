@@ -8,8 +8,8 @@ local assets = {
     Asset("ANIM", "anim/swap_staffs.zip"),
     Asset("ANIM", "anim/ui_board_5x3.zip"),
 }
-for code=0,Visual.count-1,Visual.per_style do
-    local atlas=Visual.atlas(code)
+do
+    local atlas=Visual.atlas(0)
     table.insert(assets,Asset("ATLAS",atlas))
     table.insert(assets,Asset("IMAGE",(atlas:gsub("%.xml$",".tex"))))
 end
@@ -53,6 +53,7 @@ local function fn()
     inst._nw_maxmana=net_ushortint(inst.GUID,"nw_wand.maxmana","nw_wanddirty")
     inst._nw_cooldown=net_ushortint(inst.GUID,"nw_wand.cooldown","nw_wanddirty")
     inst._nw_cooltotal=net_ushortint(inst.GUID,"nw_wand.cooltotal","nw_wanddirty")
+    require("nw/wand_icon").install(inst)
     require("nw/visual").apply(inst, 0, "ground")
     MakeInventoryFloatable(inst, "med", .1)
     local function refresh() require("nw/visual").apply_dropped(inst, inst._nw_look:value()) end

@@ -89,6 +89,7 @@ function M.install(tile,wand)
         if actions~="" then title=title.."\n"..actions end
         if moved or stats~=last_stats or slots~=last_slots or look~=last_look or title~=last_title then
             local data=Data.wand(stats,slots,look,title)
+            data.wand_broken=broken
             if broken then data.icon=require("nw/visual").icon(look,true)..".tex";data.subtitle=T("无法施法：用 5 份奥术粉尘修复") end
             panel:Display(data)
             last_stats,last_slots,last_look,last_title=stats,slots,look,title

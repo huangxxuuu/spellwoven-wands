@@ -16,6 +16,10 @@ end
 assert(not D.wand(D.encode(wand),"0",0,"试杖").fields)
 for _,id in ipairs(Cards.order) do
     local basic=D.card(id)
+    local Tags=require("nw/card_tags")
+    local labels={}
+    for _,tag in ipairs(Tags.options(Tags.for_card(id))) do labels[#labels+1]=tag.text end
+    assert(basic.subtitle==table.concat(labels," · "),"hover must list every public tag: "..id)
     assert(#basic.fields>=3 and not basic.effect:match("^[^\n]*"):find("%d"))
     if require("nw/arsenal").notes[id] then
         assert(basic.effect:find("\n基础音 ",1,true) and basic.effect:find("可调音域",1,true))
@@ -84,9 +88,15 @@ local Text=Class(Widget,function(self,font,size) Widget._ctor(self,"text");self.
 function Text:SetColour() end
 function Text:SetHAlign() end
 function Text:SetString(str) self.str=str end
+function Text:GetRegionSize() return self.str:utf8len()*self.fontsize,self.fontsize end
 function Text:SetRegionSize(w,h) self.w,self.h=w,h end
 function Text:SetMultilineTruncatedString(str,lines,width)
-    self:SetString(str);return math.ceil(str:utf8len()*self.fontsize/width)
+    self:SetString(str)
+    local count=0
+    for row in (str.."\n"):gmatch("(.-)\n") do
+        count=count+math.max(1,math.ceil(row:utf8len()*self.fontsize/width))
+    end
+    return count
 end
 function string:utf8len() local _,n=self:gsub("[^\128-\191]","");return n end
 package.loaded["widgets/widget"]=Widget;package.loaded["widgets/image"]=Image;package.loaded["widgets/text"]=Text
@@ -136,14 +146,10 @@ local function hover(wand_item)
         assert(not row.cells[1].icon.shown and row.cells[2].icon.texture=="nw_spell_scatter.tex")
         item._nw_look.v=Visual.per_style
         events.nw_lookdirty()
-        local plate=panel.body.children[1]
-        local expected=UIAnim()
-        Visual.apply({AnimState=expected.state},Visual.per_style,"ground")
-        assert(plate.state.bank=="nw_parts" and plate.state.build=="nw_parts")
-        assert(plate.state.animation==expected.state.animation and plate.scale==.28)
-        for k,v in pairs(expected.state.symbols) do assert(plate.state.symbols[k][2]==v[2]) end
-        assert(plate.state.hidden.contact_shadow and plate.state.hidden.contact_grass)
-        assert(plate.x==42-20*.14)
+        local art=panel.body.children[1]
+        assert(art.name=="uianim" and art.state.bank=="nw_parts")
+        assert(art.state.animation=="preview_short" and art.x==48 and art.y==-54)
+        assert(art.state.symbols.body[2]=="body_02_short")
     else
         cursor=card_cursor;events.newactiveitem();assert(root.shown)
         events.nw_carddirty();task.tick();assert(root.shown)
@@ -152,10 +158,15 @@ local function hover(wand_item)
         cursor=nil;events.newactiveitem();assert(root.shown)
         cursor={HasTag=function() return false end};events.newactiveitem();assert(root.shown)
         cursor=nil
-        local effect=panel.body.children[#panel.body.children]
+        local function effect_label()
+            for _,child in ipairs(panel.body.children) do
+                if child.str==D.card(Cards.bycode[item._spell:value()]).effect then return child end
+            end
+        end
+        local effect=effect_label()
         assert(effect.str:find("载荷",1,true))
         item._spell.v=Cards.codes.chain;events.nw_carddirty()
-        effect=panel.body.children[#panel.body.children]
+        effect=effect_label()
         assert(effect.str==D.card("chain").effect and effect.h>=23)
     end
     local content=panel.body.children
@@ -178,4 +189,48 @@ end
 local first,wand_panel=hover(true)
 local second,card_panel=hover(false)
 assert(wand_panel==card_panel and #first.children==0 and #second.children==1)
+-- Tags stay in the upper-right header; effects precede the attributes, which
+-- end without a trailing divider. Cover every card in both interface languages.
+local Locale=require("nw/locale")
+local language=Locale.language
+for _,lang in ipairs({"zh","en"}) do
+    Locale.language=lang
+    for _,id in ipairs(Cards.order) do
+        local data=D.card_details(id)
+        data.title=data.title.."\nInspect"
+        card_panel:Display(data)
+        local effect,divider,dividers
+        local badges={}
+        dividers=0
+        for _,child in ipairs(card_panel.body.children) do
+            if child.str==data.effect then effect=child end
+            if child.name=="hint_badge" then badges[#badges+1]=child end
+            assert(child.str~=Locale.t("效果"),"effect heading must be omitted")
+            if child.texture=="square.tex" then divider=child;dividers=dividers+1 end
+        end
+        assert(effect and dividers==1)
+        assert(effect.y-effect.h/2>divider.y,"effects precede the property divider")
+        assert(#badges==#data.tags)
+        for i,tag in ipairs(badges) do
+            assert(tag.children[3].str==data.tags[i])
+            assert(tag.x-tag.width/2>=284 and tag.x+tag.width/2<=436)
+            assert(tag.y+tag.height/2<=0)
+            assert(tag.y-tag.height/2>effect.y+effect.h/2,"wrapped tags cannot overlap effects")
+        end
+        assert(card_panel.body.children[#card_panel.body.children].name=="text")
+    end
+end
+Locale.language=language
+for _,length in ipairs({"short","medium","long"}) do
+    local index=length=="short" and 0 or length=="medium" and 1 or 2
+    local data=D.wand(D.encode(wand),Cards.encode(slots,12),Visual.per_style+index*9,"试杖")
+    card_panel:Display(data)
+    local status=card_panel.body.children[3]
+    assert(status.name=="hint_badge" and status.children[3].str==data.subtitle)
+    data.wand_broken=true
+    card_panel:Display(data)
+    local art=card_panel.body.children[1]
+    assert(art.state.animation=="preview_"..length)
+    assert(art.state.symbols.head[2]:find("_broken$"))
+end
 print("inventory hover: real panel + frame, replicated rows, lifecycle, all spell IDs and HUD edge placement")

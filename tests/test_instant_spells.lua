@@ -7,7 +7,11 @@ Vector3=function(x,y,z) return {x=x,y=y,z=z} end
 local landings,spans={},{}
 local now,targets,arcs,blasts,carriers=0,{},{},{},{}
 GetTime=function() return now end
-TheWorld={}
+local tasks={}
+TheWorld={DoTaskInTime=function(_,delay,fn) tasks[#tasks+1]={at=now+delay,fn=fn} end}
+local function drain()
+    while #tasks>0 do local t=table.remove(tasks,1);now=t.at;t.fn() end
+end
 TheSim={FindEntities=function() return targets end}
 local owner={GUID=99,IsValid=function() return true end,components={combat={}}}
 function owner.components.combat:CanTarget() return true end
@@ -45,7 +49,7 @@ SpawnPrefab=function(name)
     end
     return fx
 end
-local function cast(ids,x,z)
+local function cast(ids,x,z,no_drain)
     now=now+1
     local w=require("nw/generator").starter()
     w.stats.mana_max=600;w.stats.spread=0;w.cards={}
@@ -53,6 +57,7 @@ local function cast(ids,x,z)
     w.runtime=Compiler.initial(w.cards,w.stats,1)
     local plan=assert(Compiler.compile(w))
     assert(Executor.execute(plan,owner,x,z,1,0))
+    if not no_drain then drain() end
     return plan
 end
 target(-1,0)
@@ -68,11 +73,11 @@ math.random=function() return .5 end
 landings={}
 local distant=target(6.01,0);cast({"chain"},0,0)
 assert(#arcs==1 and arcs[1][2]==10 and distant.components.health.currenthealth==190)
-assert(#landings==4 and landings[1].x==0 and landings[2].x==6 and Executor.stats()==0)
+assert(#landings==3 and landings[1].x==6 and Executor.stats()==0)
 targets={};arcs={};landings={};spans={}
 math.random=function() return 1 end
 cast({"chain"},0,0)
-assert(#landings==5 and #spans==4)
+assert(#landings==4 and #spans==4)
 for _,span in ipairs(spans) do
     assert(math.abs(math.atan2(span[2],span[1])/DEGREES-85)<.001)
     assert(math.abs(span[1]^2+span[2]^2-36)<.001 and span[3]==nil)
@@ -83,10 +88,10 @@ assert(#arcs==1 and single.components.health.currenthealth==185)
 targets={};arcs={};local closest=target(11,0);local hit=target(12,0)
 cast({"pierce","arrow_hit","chain"},0,0)
 local carrier=carriers[1]
-carrier._shot.fire(11,0,1,0,hit)
+carrier._shot.fire(11,0,1,0,hit);drain()
 assert(arcs[1][1]==hit.GUID and arcs[2][1]==closest.GUID)
 hit.components.health.currenthealth=0
-carrier._shot.fire(11,0,1,0,hit)
+carrier._shot.fire(11,0,1,0,hit);drain()
 assert(#arcs==3 and arcs[3][1]==closest.GUID)
 carrier.cleanup();assert(Executor.stats()==0)
 -- Explosion is now a modifier and cannot be emitted as an instant payload.
@@ -109,3 +114,25 @@ require("nw/expanded_hits").electric(owner,airborne,0,0,7,nil,true,0,2.2)
 assert(spans[1][4]==3.75 and spans[1][5]==2.2 and spans[1][6]==0)
 assert(airborne.components.health.currenthealth==193,"height correction does not change damage")
 print("instant spells: lightning target priority, 3D hop heights, separate cloud lift and unchanged damage")
+
+-- Each damage application is delayed along with its visual, with no fifth flash.
+targets={};arcs={};landings={};spans={}
+for x=6,30,6 do target(x,0) end
+cast({"chain"},0,0,true)
+assert(#arcs==1 and #spans==1 and #tasks==1)
+local started=now
+for i=2,4 do
+    local pending=table.remove(tasks,1)
+    assert(math.abs(pending.at-(started+(i-1)*.15))<1e-6)
+    assert(#arcs==i-1)
+    now=pending.at;pending.fn()
+    assert(#arcs==i and #spans==i)
+end
+assert(#tasks==0 and #landings==0 and targets[5].components.health.currenthealth==200)
+-- Pending hops must stop when the caster disappears, without touching targets.
+targets={};arcs={};spans={}
+for x=6,24,6 do target(x,0) end
+cast({"chain"},0,0,true)
+owner.IsValid=function() return false end
+drain();assert(#arcs==1 and #tasks==0)
+owner.IsValid=function() return true end

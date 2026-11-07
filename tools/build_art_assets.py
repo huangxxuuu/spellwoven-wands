@@ -247,6 +247,18 @@ def planted_clip(animations,length,layout,scale):
     for el in f.findall('element'):
         if el.get('name') in layout:
             el.attrib.update(m_a=str(c/2),m_b=str(s/2),m_c=str(-s/2),m_d=str(c/2))
+    # UI preview reuses the exact ground artwork and angle, without contact
+    # effects. Bake the centering so first-frame engine bounds cannot shift it.
+    left,top=min(b[0] for b in bounds[1:]),min(b[1] for b in bounds[1:])
+    right,bottom=max(b[2] for b in bounds[1:]),max(b[3] for b in bounds[1:])
+    cx,cy=(left+right)/2,(top+bottom)/2
+    fit=min(88/(right-left),100/(bottom-top))
+    anim(animations,'preview_'+length,'nw_parts',
+         [(slot,(x-cx)*fit,(y-cy)*fit) for slot,x,y in parts])
+    preview=animations[-1].find('frame')
+    preview.attrib.update(w=str((right-left)*fit),h=str((bottom-top)*fit))
+    for el in preview.findall('element'):
+        el.attrib.update(m_a=str(c/2*fit),m_b=str(s/2*fit),m_c=str(-s/2*fit),m_d=str(c/2*fit))
 
 def wand_parts(vm,manifest,tools):
     v=vm.eval('require("nw/visual")')
@@ -310,39 +322,9 @@ def wand_parts(vm,manifest,tools):
             for el in f.findall('element'):
                 el.set('m_a',str(.5*factor));el.set('m_d',str(.5*factor))
     compile_bank('nw_parts',build,animations,images,tools)
-    for start in range(0,v.count,v.per_style):
-        wand_icon_page(v,start,images,specs,manifest['layouts'],tools)
+    from build_wand_icons import build as build_wand_icons
+    build_wand_icons(tools,images,specs,manifest['layouts'])
 
-def wand_icon_page(v,start,images,specs,layouts,tools):
-    page=Path(v.atlas(start)).stem
-    atlas=Image.new('RGBA',(2048,2048))
-    xml=ET.Element('Atlas');ET.SubElement(xml,'Texture',filename=page+'.tex');els=ET.SubElement(xml,'Elements')
-    for i in range(v.per_style*2):
-        code=start+i%v.per_style
-        broken=i>=v.per_style
-        head,length,tail,body=v.parts(code)
-        if broken: head+="_broken"
-        im=Image.new('RGBA',(192,256))
-        for slot,part in [('head',head),('tail',tail),('body',body)]:
-            sprite=images[part].resize(specs[part]['world_size'],Image.Resampling.LANCZOS)
-            dx,dy=layouts[length][slot]
-            im.alpha_composite(sprite,(round(96+dx-sprite.width/2),round(128+dy-sprite.height/2)))
-        # Thicken perpendicular to the shaft, before rotating into the slot.
-        im=im.crop(im.getchannel('A').getbbox())
-        im=im.resize((round(im.width*1.32),im.height),Image.Resampling.LANCZOS)
-        im=im.rotate(-36,Image.Resampling.BICUBIC,expand=True)
-        im=im.crop(im.getchannel('A').getbbox())
-        extent={'short':56,'medium':60,'long':63}[length]
-        im=ImageOps.contain(im,(extent,extent),Image.Resampling.LANCZOS)
-        x=(i%32)*64;y=(i//32)*64
-        atlas.alpha_composite(im,(x+(64-im.width)//2,y+(64-im.height)//2))
-        ET.SubElement(els,'Element',name=v.icon(code,broken)+'.tex',u1=str(x/atlas.width),u2=str((x+64)/atlas.width),
-                      v1=str(1-(y+64)/atlas.height),v2=str(1-y/atlas.height))
-    dest=ROOT/'mod/images/inventoryimages'
-    atlas.save(RUNTIME/(page+'.png'))
-    ET.ElementTree(xml).write(dest/(page+'.xml'),encoding='utf-8',xml_declaration=True)
-    subprocess.run([str(tools/'tools/bin/TextureConverter.exe'),'--swizzle','--format','bc3','--platform','opengl',
-        '--premultiply','-i',str(RUNTIME/(page+'.png')),'-o',str(dest/(page+'.tex'))],check=True,capture_output=True)
 
 GARDEN_NAMES=('spore_sentry','vital_ring','heavy_shot','trident_cast','chord_d','repeat_4',
               'bud','sprout','idle','aim','fire','wilt')
@@ -468,7 +450,7 @@ def main():
     ET.ElementTree(xml).write(dest/'nw_icons.xml',encoding='utf-8',xml_declaration=True)
     subprocess.run([str(args.tools/'tools/bin/TextureConverter.exe'),'--swizzle','--format','bc3','--platform','opengl','--premultiply','-i',str(RUNTIME/'nw_icons.png'),'-o',str(dest/'nw_icons.tex')],check=True,capture_output=True,timeout=30)
     build=ET.Element('Build',name='nw_objects');anims=ET.Element('Anims');images={}
-    build_ground_cards(vm.eval('require("nw/cards")'),args.tools)
+    # Ground cards are built by build_card_resources.py using shared paper layers.
     for id in ids:
         name='nw_spell_'+id;images[name]=glyphs[id];frame(build,name,name,(32,32))
     images['nw_pellet']=resize('pellet',(96,40));frame(build,'nw_pellet','nw_pellet',(38,16))

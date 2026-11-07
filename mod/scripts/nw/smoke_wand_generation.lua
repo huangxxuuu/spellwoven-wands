@@ -16,6 +16,8 @@ function M.run()
     local retained={}
     for _,name in ipairs({"nw_starter","nw_roll_1","nw_roll_2","nw_roll_3"}) do
         local row=rules.by_name[name]
+        local recipe_layers=assert(AllRecipes[name].layeredimagefn)()
+        assert(#recipe_layers==3 and recipe_layers[1].image:find("body_",1,true))
         local capacities,variants={},{}
         for n=1,60 do
             for _,ingredient in ipairs(row.ingredients) do
@@ -48,6 +50,13 @@ function M.run()
             assert(copy.components.nw_wand.data.wand_uid==d.wand_uid)
             assert(copy._nw_stats:value()==built._nw_stats:value())
             assert(copy._nw_cards:value()==built._nw_cards:value())
+            local layers=copy.layeredinvimagefn(copy)
+            local expected=require("nw/visual").icon_parts(copy._nw_look:value(),false)
+            for i,layer in ipairs(layers) do assert(layer.image==expected[i]) end
+            copy.components.nw_wand.data.broken=true;copy.components.nw_wand:Sync()
+            assert(copy.layeredinvimagefn(copy)[3].image:find("_broken_",1,true))
+            copy.components.nw_wand.data.broken=false;copy.components.nw_wand:Sync()
+            assert(not copy.layeredinvimagefn(copy)[3].image:find("_broken_",1,true))
             -- Loading an installed card must call the real container predicate
             -- with the component as self, then restore the card exactly once.
             local box=copy.components.container

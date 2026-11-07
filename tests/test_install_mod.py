@@ -70,6 +70,31 @@ class InstallModTests(unittest.TestCase):
             self.assertEqual(target.read_bytes(), b'previous package')
             self.assertFalse(list(root.glob('.nw_install_*')))
 
+    def test_retired_assets_are_removed_but_unrelated_files_remain(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            workspace, game, target = self.prepare(Path(tmp))
+            retired=target/'images/inventoryimages/nw_wands_9.tex'
+            retired.parent.mkdir(parents=True)
+            retired.write_bytes(b'old combinations')
+            keep=retired.with_name('unrelated.tex');keep.write_bytes(b'keep')
+            with patch.object(install_mod, 'ROOT', workspace), \
+                 patch.object(install_mod, 'running_game_processes', return_value=[]), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                install_mod.install(game)
+            self.assertFalse(retired.exists())
+            self.assertEqual(keep.read_bytes(),b'keep')
+
+    def test_retirement_only_also_requires_game_to_be_closed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            workspace, game, target = self.prepare(Path(tmp))
+            shutil.copytree(workspace/'mod',target,dirs_exist_ok=True)
+            retired=target/'anim/nw_ground_cards_0.zip';retired.write_bytes(b'loaded')
+            with patch.object(install_mod, 'ROOT', workspace), \
+                 patch.object(install_mod, 'running_game_processes', return_value=['live client']):
+                with self.assertRaisesRegex(SystemExit,'installation deferred'):
+                    install_mod.install(game)
+            self.assertEqual(retired.read_bytes(),b'loaded')
+
     def test_process_scan_recognizes_client_and_dedicated_server(self):
         rows = ('"dontstarve_steam_x64.exe","123","Console","1","12,345 K"\n'
                 '"dontstarve_dedicated_server_nullrenderer_x64.exe","456","Console","1","10,000 K"\n'

@@ -8,5 +8,6 @@
   "pitch_octave_up": "v7_pitch_modifiers/pitch_octave_up.png",
   "pitch_octave_down": "v7_pitch_modifiers/pitch_octave_down.png",
   "pitch_semitone_up": "v7_pitch_modifiers/pitch_semitone_up.png",
-  "pitch_semitone_down": "v7_pitch_modifiers/pitch_semitone_down.png"
+  "pitch_semitone_down": "v7_pitch_modifiers/pitch_semitone_down.png",
+  "giant_shot": "v8_giant_shot/giant_shot.png"
 }

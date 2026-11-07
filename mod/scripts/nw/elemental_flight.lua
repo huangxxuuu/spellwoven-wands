@@ -16,7 +16,7 @@ local profiles={
     heavy={drift=.06,offset=.65,rate=12,head_playback=.5},
     scatter={drift=.04,offset=.22,rate=20,life=.3,maxlife=.75,stagger=true},
     -- Registered head/tail alpha bounds determine the new rear offsets. Keep
-    -- a visible overlap at the attachment; the hook attaches behind its rope.
+    -- a visible overlap at the attachment.
     gust={drift=.08,offset=.60,rate=24,life=.24,motion_heading=true},
     spore_ball={drift=.03,offset=.50,rate=16,life=.32,maxlife=.8,motion_heading=true},
     flint_lance={drift=0,offset=.50,rate=30,life=.35,maxlife=.9,directions=128,motion_heading=true,
@@ -26,7 +26,8 @@ local profiles={
     heal_bolt={drift=.04,offset=.60,rate=24,life=.3,maxlife=.75,motion_heading=true},
     star_vortex={drift=0,offset=.38,rate=24,life=.24,motion_heading=true,stagger=true},
     glass_disc={drift=0,offset=.48,rate=24,life=.24,motion_heading=true},
-    land_hook={drift=.02,offset=3.50,rate=24,life=.24,motion_heading=true},
+    -- The hook's head animation already includes its rope.
+    land_hook={drift=.01,offset=1.75,rate=24,life=.24,directions=64,motion_heading=true,trail=false},
     tri_electric={drift=0,offset=.36,rate=30,life=.24,head_frames=12,motion_heading=true,stagger=true},
     end_beam={drift=0,offset=.72,rate=60,life=.24,directions=128,motion_heading=true},
     soundwave={drift=0,offset=.45,rate=24,life=.3,maxlife=.75,motion_heading=true},
@@ -250,7 +251,7 @@ local function update(pool,s,now)
         -- Directional bodies face the segment actually travelled, just like
         -- their new trails. Motor rotation may already describe the next turn.
         face_head(s,now,profiles[s.id].motion_heading and continuous and math.atan2(dz,dx) or nil)
-        if continuous and s.visual.entity:IsVisible() then
+        if profiles[s.id].trail~=false and continuous and s.visual.entity:IsVisible() then
             if profiles[s.id].spatial then
                 path_emit(pool,s,now,x,inst._height:value(),z,dx,dz,dt,distance)
             else

@@ -39,15 +39,15 @@ function M.wand(encoded,slots,look,title)
             {T("心神转化"),s.sanity_conversion},{T("符文槽"),s.capacity}},
         innate=s.innate,slots=slots,count=used.." / "..#cards}
 end
-local kind={projectile=T("远程弹"),trigger=T("远程弹"),melee=T("近战"),instant=T("瞬发"),
-    field=T("地面法术"),note=T("音符"),modifier=T("修饰"),multicast=T("多重施法")}
 function M.card_details(id,brief)
     local d=Def.spells[id]
     if not d then return {title=T("正在读取法术卡…")} end
     local fields={}
     local function add(k,v) fields[#fields+1]={k,v} end
-    local subtitle=Def.trajectory[id] and T("弹道修饰") or kind[d.kind]
-    if d.event=="hit" or d.event=="timer" then subtitle=subtitle.."  ·  "..(d.event=="hit" and T("碰撞触发") or T("定时触发")) end
+    local tags=require("nw/card_tags")
+    local names={}
+    for _,tag in ipairs(tags.options(tags.for_card(id))) do names[#names+1]=tag.text end
+    local subtitle=table.concat(names," · ")
     if d.jump_damage then add(T("首击 / 后续"),d.damage.." / "..d.jump_damage)
     elseif d.kind=="instant" or d.kind=="melee" then add(T("范围伤害"),d.damage..T(" / 目标"))
     elseif d.kind=="projectile" and d.heal then add(T("命中治疗"),d.heal)
@@ -95,7 +95,7 @@ function M.card_details(id,brief)
     if Def.trajectory[id] then add(T("弹道延寿"),"+8%") end
     local effect=Info.effects[id]
     if Def.trajectory[id] then effect=effect..T(" 不同弹道的额外延寿合计最多 +24%。") end
-    return {title=Info.names[id],subtitle=subtitle,atlas="images/inventoryimages/nw_icons.xml",
+    return {title=Info.names[id],subtitle=subtitle,tags=names,atlas="images/inventoryimages/nw_icons.xml",
         icon=Info.icon(id),fields=fields,effect=effect}
 end
 function M.card(id)
