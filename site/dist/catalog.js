@@ -161,16 +161,29 @@ async function loadCatalog() {
 
     function render() {
         const term = normalize(query.value.trim());
-        const selectedTag = tagFilters.querySelector("input:checked").value;
-        const filtered = rows.filter(({card}) => (!category.value || category.value === card.category ||
+        // Available tags follow the other filters, so switching tags stays possible.
+        const candidates = rows.filter(({card}) => (!category.value || category.value === card.category ||
             category.value === card.category + "/" + card.subgroup) &&
-            (!station.value || station.value === (card.station || noRecipe)) &&
-            (!selectedTag || card.tagIds.includes(selectedTag)));
+            (!station.value || station.value === (card.station || noRecipe)))
+            .map(row => ({row, score: term ? relevance(row, term) : 1}))
+            .filter(hit => hit.score > 0);
+        const availableTags = new Set(candidates.flatMap(({row}) => row.card.tagIds));
+        let selectedTag = tagFilters.querySelector("input:checked").value;
+        if (selectedTag && !availableTags.has(selectedTag)) {
+            tagFilters.querySelector('input[value=""]').checked = true;
+            selectedTag = "";
+        }
+        for (const radio of tagFilters.querySelectorAll("input")) {
+            const hidden = !!radio.value && !availableTags.has(radio.value);
+            radio.disabled = hidden;
+            radio.parentElement.style.display = hidden ? "none" : "";
+        }
+        const matches = candidates.filter(({row}) => !selectedTag || row.card.tagIds.includes(selectedTag));
+        const filtered = matches.map(({row}) => row);
         let groups;
         let total;
         if (term) {
-            const ranked = filtered.map(row => ({row, score: relevance(row, term)}))
-                .filter(hit => hit.score > 0).sort((a, b) => b.score - a.score);
+            const ranked = matches.sort((a, b) => b.score - a.score);
             total = ranked.length;
             groups = total ? [makeGroup(t("搜索结果 · 按相关度", "Search results \u00b7 By relevance"), ranked.map(hit => hit.row))] : [];
         } else {

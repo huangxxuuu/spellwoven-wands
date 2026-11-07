@@ -37,7 +37,7 @@ def build_pages(directory):
                 if value is not None:
                     value = translate(value)
                     if key == 'lang': value = 'en'
-                    if key in ('href', 'src') and (value.startswith('assets/') or value.endswith(('.css', '.js'))):
+                    if key in ('href', 'src') and (value.startswith('assets/') or value.split('?', 1)[0].endswith(('.css', '.js'))):
                         value = '../' + value
                 out.append(key if value is None else key + '="' + escape(value, quote=True) + '"')
             self.parts.append('<' + tag + (' ' + ' '.join(out) if out else '') + '>')
