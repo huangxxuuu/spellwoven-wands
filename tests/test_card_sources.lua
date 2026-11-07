@@ -2,7 +2,7 @@ local S=require("nw/sources")
 local R=require("nw/card_rarity")
 local Catalog=require("nw/natural_loot")
 local function never() error("an ineligible victory rolled the fallback") end
-assert(#R.pool==182)
+assert(#R.pool==186)
 local seen={}
 local n=0
 for _,id in ipairs(R.pool) do
@@ -10,7 +10,7 @@ for _,id in ipairs(R.pool) do
     if id~="edge_propsign" then
         n=n+1
         assert(S.finish_card(201,nil,false,1,function(size)
-            if size then assert(size==181);return n end
+            if size then assert(size==185);return n end
             return .00009999
         end)==id)
     end

@@ -1,0 +1,86 @@
+{
+  "guard_ring": {
+    "status": "candidate",
+    "issues": [],
+    "correction": "保留五面独立木盾的环绕构图。把盾牌间四条运动短弧画成明确的深棕轮廓包围浅金色平涂封闭形状；轮廓外必须直接透明。禁止任何鲜黄、红色孤立点、噪声边、光晕或金粉。不要用发光效果模拟金色。",
+    "initial_preview_observations": [
+      "金色环绕笔触外缘存在明显黄红杂色颗粒，尤以下方弧线最明显。"
+    ],
+    "notes": [
+      "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=2），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+    ],
+    "retry_prompt_mode": "optional_not_required"
+  },
+  "deer_decoy": {
+    "status": "candidate",
+    "issues": [],
+    "correction": "严格保持奶白鹿体、淡青玉角、粉色胁部花纹及青灰尾巴的新版灵鹿形象，四蹄和双角完整。两条青绿短弧必须使用墨色细外轮廓加纯色块，完全去掉弧外的亮绿、青色残点；鹿角轮廓外也不得有任何散落点。运动笔触不是光晕。",
+    "initial_preview_observations": [
+      "鹿前后两条青绿运动弧外缘有可见亮绿/青色残点，鹿角局部边缘有零星彩点。"
+    ],
+    "notes": [
+      "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=2），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+    ],
+    "retry_prompt_mode": "optional_not_required"
+  },
+  "twin_arc": {
+    "status": "candidate",
+    "issues": [],
+    "correction": "保留两个紫色能量弹通过一条白蓝电弧相连的构图。将电弧画为深蓝外沿、低饱和蓝色中层、奶白内芯三层封闭实心形状；外沿之外必须完全透明。禁止高饱和青色像素颗粒、彩边、外发光、抗锯齿噪声。",
+    "initial_preview_observations": [
+      "连接双球的闪电轮廓外有明显亮青、蓝色杂色碎点。"
+    ],
+    "notes": [
+      "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=3），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+    ],
+    "retry_prompt_mode": "optional_not_required"
+  },
+  "searing_halo": {
+    "status": "candidate",
+    "issues": [],
+    "correction": "保留一个橙色弹心和四条宽火舌构成的火环。所有火焰统一为深棕外轮廓、橙色主体和淡黄内层三块实心平涂；火环内外边界必须干净封闭，边界外直接透明。禁止亮红杂点、黄色光粉、残余色边、火星及软发光。",
+    "initial_preview_observations": [
+      "火环内外边缘有可见红黄杂点，尤其上方内圈及底部弧线。"
+    ],
+    "notes": [
+      "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=3），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+    ],
+    "retry_prompt_mode": "optional_not_required"
+  },
+  "fireflies": {
+    "status": "candidate",
+    "issues": [],
+    "correction": "保留一大一小两只萤虫伴飞。虫体为棕橄榄色、窄长象牙白翅膀、腹端一个边界清楚的黄绿色实心亮斑。腹端不向外发光，翅膀外轮廓使用连续干净墨线，任何黄绿色不得出现在翅膀轮廓外；禁止所有小颗粒、光粉和色边。",
+    "initial_preview_observations": [
+      "两只萤虫的翅缘、腹部附近存在少量黄绿色边缘散点。"
+    ],
+    "notes": [
+      "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=2），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+    ],
+    "retry_prompt_mode": "optional_not_required"
+  },
+  "storm_cloud": {
+    "status": "candidate",
+    "issues": [],
+    "correction": "保留紧凑紫灰雷云和直接连接云底的两条白蓝闪电。云与闪电均使用明确封闭墨色外轮廓；闪电内层为低饱和浅蓝和奶白两块实心色，不使用高饱和青色。轮廓外直接透明，禁止彩点、噪点边缘和外发光。",
+    "initial_preview_observations": [
+      "雷电分叉的少数边缘存在青蓝色散点。"
+    ],
+    "notes": [
+      "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=1），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+    ],
+    "retry_prompt_mode": "optional_not_required"
+  },
+  "side_embers": {
+    "status": "candidate",
+    "issues": [],
+    "correction": "保留上方一个大母弹与左右两个小余烬组成的三弹分叉构图。把底部三条分离路径画成深棕外描线包裹橙黄色封闭短弧，轮廓外必须透明；不允许任何黄红碎点、色边、灰雾或外发光。三枚弹体完整保留在画布四周至少 8% 的留白以内。",
+    "initial_preview_observations": [
+      "底部两侧火焰运动弧的边缘有少量黄红色碎点。"
+    ],
+    "notes": [
+      "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=3），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+    ],
+    "retry_prompt_mode": "optional_not_required"
+  }
+}

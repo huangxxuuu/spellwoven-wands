@@ -1,0 +1,49 @@
+{
+  "id": "delay_seal",
+  "name": "延迟符印",
+  "attempt_count": 1,
+  "status": "candidate",
+  "prompt": "delay_seal.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/originals/delay_seal.png",
+  "output": "delay_seal.png",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-c511ee75-3e41-4b85-bcbc-c5d3bde65e3a.png",
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28 as C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-c511ee75-3e41-4b85-bcbc-c5d3bde65e3a.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [],
+    "complete_visible_subject": true,
+    "minimum_visible_margin_px": 53,
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "id": "delay_seal",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 964606,
+    "opaque_pixels": 1018,
+    "semi_transparent_pixels": 606892,
+    "bbox_alpha32": [
+      137,
+      71,
+      1135,
+      1201
+    ],
+    "bbox_alpha128": [
+      138,
+      72,
+      1134,
+      1201
+    ],
+    "edge_max_alpha": 1,
+    "sha256": "069649aa09a354bbb3dd861cb8fc0e43329acad293c2ac80688659740d863ef1",
+    "matches_source": true
+  }
+}

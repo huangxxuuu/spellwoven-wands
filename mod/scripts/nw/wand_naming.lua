@@ -43,6 +43,7 @@ function M.setup(inst)
             and (owns(doer,self) or not self.components.inventoryitem:IsHeld() and doer:IsNear(self,3) and CanEntitySeeTarget(doer,self)) then
             self.components.named:SetName(name,doer.userid)
             self:AddTag("nw_customname")
+            require("nw/spelljournal").renamed(self,doer)
             local one=pencil.components.stackable and pencil.components.stackable:Get() or pencil
             one:Remove()
         end

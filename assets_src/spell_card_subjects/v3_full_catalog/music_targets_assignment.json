@@ -1,0 +1,396 @@
+[
+  {
+    "id": "leech",
+    "name": "生命汲取",
+    "kind": "modifier",
+    "effect": "实际造成的可归属生命损失的 5% 回复给施法者。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "light",
+    "name": "照明",
+    "kind": "modifier",
+    "effect": "弹体照明半径 2，终止时留光 3 秒，残光数量由世界设置控制。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "heal_ally",
+    "name": "命中友方回血",
+    "kind": "modifier",
+    "effect": "遇受伤队友或玩家随从治疗 8 点并消耗弹丸，遇敌照常攻击。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "mana_reduce",
+    "name": "蓝耗降低",
+    "kind": "modifier",
+    "effect": "抽下一张，立即提供 30 法力支付后续卡。成功施法后剩余法力最多为法杖上限。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "recharge_down",
+    "name": "减少充能时间",
+    "kind": "modifier",
+    "effect": "施放间隔修正 −0.17 秒，充能时间修正 −0.33 秒。充能修正可持续叠加至负值，实际等待按 0 处理。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "chord_d",
+    "name": "弦琴 D·和鸣",
+    "kind": "note",
+    "effect": "在释放点奏出 D 音，附近玩家回复 1 理智，每位玩家每 3 秒最多受益一次。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 14,
+      "instrument": "kantele",
+      "label": "D"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "note_a",
+    "name": "陶笛 A·短鸣",
+    "kind": "projectile",
+    "effect": "短程声波标记首敌 2 秒，直伤 0；强化可赋予一次直伤。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 21,
+      "instrument": "ocarina",
+      "label": "A"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "note_c",
+    "name": "陶笛 C·应答",
+    "kind": "projectile",
+    "effect": "命中短鸣标记触发一次 8 伤回声。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 24,
+      "instrument": "ocarina",
+      "label": "C"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "target_hostile",
+    "name": "选取敌对生物",
+    "kind": "modifier",
+    "effect": "同一施法组可命中敌对生物。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "target_neutral",
+    "name": "选取中立生物",
+    "kind": "modifier",
+    "effect": "同一施法组可命中中立生物。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "target_friendly",
+    "name": "选取友好生物",
+    "kind": "modifier",
+    "effect": "同一施法组可命中友好生物。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "target_building",
+    "name": "选取建筑",
+    "kind": "modifier",
+    "effect": "同一施法组可命中建筑。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "target_nature",
+    "name": "选取自然物",
+    "kind": "modifier",
+    "effect": "同一施法组可命中自然物。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "target_players_other",
+    "name": "选取其他玩家",
+    "kind": "modifier",
+    "effect": "同一施法组可命中其他玩家。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "target_self",
+    "name": "选取自身",
+    "kind": "modifier",
+    "effect": "同一施法组可命中自身。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": null,
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "ocarina_b",
+    "name": "陶笛 B",
+    "kind": "projectile",
+    "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 23,
+      "instrument": "ocarina",
+      "label": "B"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "ocarina_d",
+    "name": "陶笛 D",
+    "kind": "projectile",
+    "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 26,
+      "instrument": "ocarina",
+      "label": "D"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "ocarina_e",
+    "name": "陶笛 E",
+    "kind": "projectile",
+    "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 28,
+      "instrument": "ocarina",
+      "label": "E"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "ocarina_f",
+    "name": "陶笛 F",
+    "kind": "projectile",
+    "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 29,
+      "instrument": "ocarina",
+      "label": "F"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "ocarina_gsharp",
+    "name": "陶笛 G#",
+    "kind": "projectile",
+    "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 32,
+      "instrument": "ocarina",
+      "label": "G#"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "ocarina_a2",
+    "name": "陶笛 A2",
+    "kind": "projectile",
+    "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 33,
+      "instrument": "ocarina",
+      "label": "A2"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "kantele_a",
+    "name": "弦琴 A",
+    "kind": "note",
+    "effect": "奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 9,
+      "instrument": "kantele",
+      "label": "A"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "kantele_dsharp",
+    "name": "弦琴 D#",
+    "kind": "note",
+    "effect": "奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 15,
+      "instrument": "kantele",
+      "label": "D#"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "kantele_e",
+    "name": "弦琴 E",
+    "kind": "note",
+    "effect": "奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 16,
+      "instrument": "kantele",
+      "label": "E"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "kantele_g",
+    "name": "弦琴 G",
+    "kind": "note",
+    "effect": "奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 19,
+      "instrument": "kantele",
+      "label": "G"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  },
+  {
+    "id": "ocarina_g",
+    "name": "陶笛 G",
+    "kind": "projectile",
+    "effect": "奏响 G 音，短程声波留下回声标记。加速或减速令音高升降一个八度；临时原版音源超出音域时会截断。",
+    "base": null,
+    "event": null,
+    "source_weapon": null,
+    "source_image": null,
+    "note": {
+      "pitch": 31,
+      "instrument": "ocarina",
+      "label": "G"
+    },
+    "status": "needs_generation",
+    "group": "music_targets"
+  }
+]

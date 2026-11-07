@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-07",
+  "status": "art direction study, no runtime implementation",
+  "shapes": {
+    "R": "切角矩形；内部凹口矩形也归此形状",
+    "H": "竖向六角形",
+    "N": "顶部中央凹口矩形；仅用于真实顶牌"
+  },
+  "underlayer_order": "紧贴顶牌的下一张在前，最下面一张在后",
+  "underlayer_assets": [
+    "RR",
+    "HR",
+    "RH",
+    "HH"
+  ],
+  "composition": "ground shadow -> bottom U2 -> under-top U1 -> actual top face",
+  "preview_total_cards": 3,
+  "variants": [
+    {
+      "id": "R_RR",
+      "top": "R",
+      "under_top_to_bottom": [
+        "R",
+        "R"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 0
+    },
+    {
+      "id": "H_RR",
+      "top": "H",
+      "under_top_to_bottom": [
+        "R",
+        "R"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 0
+    },
+    {
+      "id": "N_RR",
+      "top": "N",
+      "under_top_to_bottom": [
+        "R",
+        "R"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 0
+    },
+    {
+      "id": "R_HR",
+      "top": "R",
+      "under_top_to_bottom": [
+        "H",
+        "R"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 1
+    },
+    {
+      "id": "H_HR",
+      "top": "H",
+      "under_top_to_bottom": [
+        "H",
+        "R"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 1
+    },
+    {
+      "id": "N_HR",
+      "top": "N",
+      "under_top_to_bottom": [
+        "H",
+        "R"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 1
+    },
+    {
+      "id": "R_RH",
+      "top": "R",
+      "under_top_to_bottom": [
+        "R",
+        "H"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 1
+    },
+    {
+      "id": "H_RH",
+      "top": "H",
+      "under_top_to_bottom": [
+        "R",
+        "H"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 1
+    },
+    {
+      "id": "N_RH",
+      "top": "N",
+      "under_top_to_bottom": [
+        "R",
+        "H"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 1
+    },
+    {
+      "id": "R_HH",
+      "top": "R",
+      "under_top_to_bottom": [
+        "H",
+        "H"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 2
+    },
+    {
+      "id": "H_HH",
+      "top": "H",
+      "under_top_to_bottom": [
+        "H",
+        "H"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 2
+    },
+    {
+      "id": "N_HH",
+      "top": "N",
+      "under_top_to_bottom": [
+        "H",
+        "H"
+      ],
+      "total_cards_in_preview": 3,
+      "hex_cards_below_top": 2
+    }
+  ]
+}

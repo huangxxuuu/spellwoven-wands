@@ -19,8 +19,10 @@ parser.add_argument("--bag-bonus",action="store_true",help="native spell punchin
 parser.add_argument("--fresh",action="store_true",help="create a new isolated world without overwriting prior test saves")
 parser.add_argument("--revision",action="store_true",help="isolated spell revision integration suite")
 parser.add_argument("--wands",action="store_true",help="native crafted wand generation, replication and save/load suite")
+parser.add_argument("--journal",action="store_true",help="isolated player spell journal integration suite")
+parser.add_argument("--crafting",action="store_true",help="isolated native station recipe and class-filter integration suite")
 args = parser.parse_args()
-if sum((args.bounds,args.cleanup,args.pvp,args.scenes,args.bag_bonus,args.revision,args.wands))>1:
+if sum((args.bounds,args.cleanup,args.pvp,args.scenes,args.bag_bonus,args.revision,args.wands,args.journal,args.crafting))>1:
     parser.error("--bounds, --cleanup, --scenes, --bag-bonus and --pvp are separate suites")
 
 # LAN servers reject ports outside this engine-defined range and silently
@@ -39,7 +41,7 @@ def available_lan_port():
 
 lan_port=available_lan_port()
 print("Isolated LAN test port:",lan_port,flush=True)
-test_mod = "nw_weave_wands_test" if args.wands else "nw_weave_revision_test" if args.revision else "nw_weave_bag_bonus_test" if args.bag_bonus else "nw_weave_scenes_test" if args.scenes else "nw_weave_cleanup_test" if args.cleanup else "nw_weave_bounds_test" if args.bounds else "nw_weave_dev"
+test_mod = "nw_weave_crafting_test" if args.crafting else "nw_weave_journal_test" if args.journal else "nw_weave_wands_test" if args.wands else "nw_weave_revision_test" if args.revision else "nw_weave_bag_bonus_test" if args.bag_bonus else "nw_weave_scenes_test" if args.scenes else "nw_weave_cleanup_test" if args.cleanup else "nw_weave_bounds_test" if args.bounds else "nw_weave_dev"
 target = args.server / "mods" / test_mod
 marker = target / ".nw_workspace"
 if target.exists() and (not marker.exists() or marker.read_text() != str(ROOT)):
@@ -53,7 +55,7 @@ marker.write_text(str(ROOT))
 storage = ROOT / "test_worlds"
 version = (args.server / "version.txt").read_text().strip()
 mod_version=re.search(r'^version = "([^"]+)"',(ROOT/"mod/modinfo.lua").read_text("utf8"),re.M).group(1)
-conf_dir = "nw_smoke_" + version + "_" + mod_version + ("_wands" if args.wands else "_revision" if args.revision else "_bag_bonus" if args.bag_bonus else "_scenes" if args.scenes else "_cleanup" if args.cleanup else "_bounds" if args.bounds else "_pvp" if args.pvp else "")
+conf_dir = "nw_smoke_" + version + "_" + mod_version + ("_crafting" if args.crafting else "_journal" if args.journal else "_wands" if args.wands else "_revision" if args.revision else "_bag_bonus" if args.bag_bonus else "_scenes" if args.scenes else "_cleanup" if args.cleanup else "_bounds" if args.bounds else "_pvp" if args.pvp else "")
 if args.fresh:
     conf_dir += "_run_" + str(time.time_ns())
 cluster = storage / conf_dir / "Cluster_1"
@@ -61,13 +63,13 @@ master = cluster / "Master"
 master.mkdir(parents=True, exist_ok=True)
 (cluster / "cluster.ini").write_text(f"[GAMEPLAY]\ngame_mode = survival\nmax_players = 2\npvp = {str(args.pvp).lower()}\npause_when_empty = false\n\n[NETWORK]\ncluster_name = NW Isolated Offline Smoke\nlan_only_cluster = true\noffline_cluster = true\n\n[SHARD]\nshard_enabled = false\n", encoding="utf-8")
 (master / "server.ini").write_text(f"[NETWORK]\nserver_port = {lan_port}\n\n[STEAM]\nmaster_server_port = 27997\nauthentication_port = 8797\n", encoding="utf-8")
-smoke_mode = '"wands"' if args.wands else '"revision"' if args.revision else '"bag_bonus"' if args.bag_bonus else '"scenes"' if args.scenes else '"cleanup"' if args.cleanup else '"bounds"' if args.bounds else 'true'
+smoke_mode = '"crafting"' if args.crafting else '"journal"' if args.journal else '"wands"' if args.wands else '"revision"' if args.revision else '"bag_bonus"' if args.bag_bonus else '"scenes"' if args.scenes else '"cleanup"' if args.cleanup else '"bounds"' if args.bounds else 'true'
 smoke_options = ', permanent_motion_cleanup = true' if args.cleanup else ', boundary_cleanup = true' if args.bounds else ''
 (master / "modoverrides.lua").write_text('return { ["' + test_mod + '"] = { enabled = true, configuration_options = { development_smoke = ' + smoke_mode + smoke_options + ' } } }\n', encoding="utf-8")
-report = ROOT / "test_reports" / ("server_smoke_wands.log" if args.wands else "server_smoke_revision.log" if args.revision else "server_smoke_bag_bonus.log" if args.bag_bonus else "server_smoke_scenes.log" if args.scenes else "server_smoke_cleanup.log" if args.cleanup else "server_smoke_bounds.log" if args.bounds else "server_smoke_pvp.log" if args.pvp else "server_smoke.log")
+report = ROOT / "test_reports" / ("server_smoke_crafting.log" if args.crafting else "server_smoke_journal.log" if args.journal else "server_smoke_wands.log" if args.wands else "server_smoke_revision.log" if args.revision else "server_smoke_bag_bonus.log" if args.bag_bonus else "server_smoke_scenes.log" if args.scenes else "server_smoke_cleanup.log" if args.cleanup else "server_smoke_bounds.log" if args.bounds else "server_smoke_pvp.log" if args.pvp else "server_smoke.log")
 report.parent.mkdir(exist_ok=True)
 # The cooperative run covers the full suite; the second world verifies PvP specifically.
-pass_marker="NW_WAND_GENERATION_PASS:" if args.wands else "NW_REVISION_PASS:" if args.revision else "NW_BAG_BONUS_PASS:" if args.bag_bonus else "NW_SCENES_PASS:" if args.scenes else "NW_CLEANUP_PASS:" if args.cleanup else "NW_BOUNDS_PASS:" if args.bounds else "NW_SCOPE_PASS:" if args.pvp else "NW_SMOKE_PASS:"
+pass_marker="NW_CRAFTING_FILTER_PASS:" if args.crafting else "NW_JOURNAL_PASS:" if args.journal else "NW_WAND_GENERATION_PASS:" if args.wands else "NW_REVISION_PASS:" if args.revision else "NW_BAG_BONUS_PASS:" if args.bag_bonus else "NW_SCENES_PASS:" if args.scenes else "NW_CLEANUP_PASS:" if args.cleanup else "NW_BOUNDS_PASS:" if args.bounds else "NW_SCOPE_PASS:" if args.pvp else "NW_SMOKE_PASS:"
 command = [str(args.server / "bin64/dontstarve_dedicated_server_nullrenderer_x64.exe"),
            "-persistent_storage_root", str(storage), "-conf_dir", conf_dir, "-cluster", "Cluster_1",
            "-shard", "Master", "-offline", "-console"]

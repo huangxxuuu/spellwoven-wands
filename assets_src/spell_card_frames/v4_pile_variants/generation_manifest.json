@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-07",
+  "mode": "built-in image_gen for art, generated geometric references for layer accuracy",
+  "status": "concept sheets; not sliced runtime textures",
+  "art_images": [
+    {
+      "id": "pile_bases_art",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-e3d031b7-cfa1-41c5-baad-c8d67f71a05d.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v4_pile_variants/pile_bases_art.png",
+      "file": "pile_bases_art.png",
+      "width": 1517,
+      "height": 1037,
+      "mode": "RGB",
+      "sha256": "4e3ac315985cad60507c35b8e0fd6daf95c7d495a19557e9e0e7596c4659cb4d"
+    },
+    {
+      "id": "pile_combinations_art",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-101ea2fa-cee9-4418-9ebf-801fddeaa3fe.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v4_pile_variants/pile_combinations_art.png",
+      "file": "pile_combinations_art.png",
+      "width": 1346,
+      "height": 1168,
+      "mode": "RGB",
+      "sha256": "8ee2486f3815edb75422dffc891773280a6095c218e1ae3a435cb39723b95d03"
+    }
+  ],
+  "geometry_images": [
+    {
+      "file": "pile_bases_geometry.png",
+      "width": 1200,
+      "height": 820,
+      "mode": "RGB",
+      "sha256": "ccf5f923c045a4263dc598c5bd2872006698fe85711a73d96c9c3b668bcc6f03"
+    },
+    {
+      "file": "pile_matrix_geometry.png",
+      "width": 1440,
+      "height": 1250,
+      "mode": "RGB",
+      "sha256": "de6b80030cfd3345ae99d15ea0f56e17c8ad0328724710440ec9472e46c309b5"
+    }
+  ],
+  "geometry_source": "build_shape_guides.py",
+  "variants": "variants.json"
+}

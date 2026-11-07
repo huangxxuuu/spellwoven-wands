@@ -1,0 +1,7602 @@
+{
+  "paper_assets": 12,
+  "shadow_assets": 3,
+  "layout_count": 201,
+  "anchor_256": [
+    128,
+    136
+  ],
+  "materials": [
+    "paper_R",
+    "paper_H",
+    "paper_N",
+    "single_paper_R",
+    "single_paper_H",
+    "single_paper_N",
+    "base_medium_plain",
+    "base_medium_hex",
+    "base_large_plain",
+    "base_large_one_hex",
+    "base_large_hex_adjacent",
+    "base_large_hex_separated",
+    "shadow_R",
+    "shadow_H",
+    "shadow_N"
+  ],
+  "layouts": [
+    {
+      "key": "single_R",
+      "tier": "single",
+      "prefix": "R",
+      "style": "exact",
+      "sequence": "R",
+      "elements": [
+        [
+          "face",
+          0,
+          0.0
+        ],
+        [
+          "single_paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "single_H",
+      "tier": "single",
+      "prefix": "H",
+      "style": "exact",
+      "sequence": "H",
+      "elements": [
+        [
+          "face",
+          0,
+          0.0
+        ],
+        [
+          "single_paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "single_N",
+      "tier": "single",
+      "prefix": "N",
+      "style": "exact",
+      "sequence": "N",
+      "elements": [
+        [
+          "face",
+          0,
+          0.0
+        ],
+        [
+          "single_paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "two_RR",
+      "tier": "two",
+      "prefix": "RR",
+      "style": "exact",
+      "sequence": "RR",
+      "elements": [
+        [
+          "face",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "two_RH",
+      "tier": "two",
+      "prefix": "RH",
+      "style": "exact",
+      "sequence": "RH",
+      "elements": [
+        [
+          "face",
+          -8,
+          -13.2
+        ],
+        [
+          "paper_R",
+          -8,
+          -13.2
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "two_RN",
+      "tier": "two",
+      "prefix": "RN",
+      "style": "exact",
+      "sequence": "RN",
+      "elements": [
+        [
+          "face",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "two_HR",
+      "tier": "two",
+      "prefix": "HR",
+      "style": "exact",
+      "sequence": "HR",
+      "elements": [
+        [
+          "face",
+          0,
+          -4.2
+        ],
+        [
+          "paper_H",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "two_HH",
+      "tier": "two",
+      "prefix": "HH",
+      "style": "exact",
+      "sequence": "HH",
+      "elements": [
+        [
+          "face",
+          0,
+          -13.2
+        ],
+        [
+          "paper_H",
+          0,
+          -13.2
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "two_HN",
+      "tier": "two",
+      "prefix": "HN",
+      "style": "exact",
+      "sequence": "HN",
+      "elements": [
+        [
+          "face",
+          0,
+          -4.2
+        ],
+        [
+          "paper_H",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "two_NR",
+      "tier": "two",
+      "prefix": "NR",
+      "style": "exact",
+      "sequence": "NR",
+      "elements": [
+        [
+          "face",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "two_NH",
+      "tier": "two",
+      "prefix": "NH",
+      "style": "exact",
+      "sequence": "NH",
+      "elements": [
+        [
+          "face",
+          -8,
+          -13.2
+        ],
+        [
+          "paper_N",
+          -8,
+          -13.2
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "two_NN",
+      "tier": "two",
+      "prefix": "NN",
+      "style": "exact",
+      "sequence": "NN",
+      "elements": [
+        [
+          "face",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_RRR",
+      "tier": "three",
+      "prefix": "RRR",
+      "style": "exact",
+      "sequence": "RRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_RRH",
+      "tier": "three",
+      "prefix": "RRH",
+      "style": "exact",
+      "sequence": "RRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -17.4
+        ],
+        [
+          "paper_R",
+          8,
+          -17.4
+        ],
+        [
+          "paper_R",
+          8,
+          -13.2
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_RRN",
+      "tier": "three",
+      "prefix": "RRN",
+      "style": "exact",
+      "sequence": "RRN",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_RHR",
+      "tier": "three",
+      "prefix": "RHR",
+      "style": "exact",
+      "sequence": "RHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          8,
+          4.799999999999999
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_RHH",
+      "tier": "three",
+      "prefix": "RHH",
+      "style": "exact",
+      "sequence": "RHH",
+      "elements": [
+        [
+          "face",
+          -8,
+          -17.4
+        ],
+        [
+          "paper_R",
+          -8,
+          -17.4
+        ],
+        [
+          "paper_H",
+          0,
+          -4.199999999999999
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_RHN",
+      "tier": "three",
+      "prefix": "RHN",
+      "style": "exact",
+      "sequence": "RHN",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          8,
+          4.799999999999999
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_RNR",
+      "tier": "three",
+      "prefix": "RNR",
+      "style": "exact",
+      "sequence": "RNR",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_RNH",
+      "tier": "three",
+      "prefix": "RNH",
+      "style": "exact",
+      "sequence": "RNH",
+      "elements": [
+        [
+          "face",
+          8,
+          -17.4
+        ],
+        [
+          "paper_R",
+          8,
+          -17.4
+        ],
+        [
+          "paper_N",
+          8,
+          -13.2
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_RNN",
+      "tier": "three",
+      "prefix": "RNN",
+      "style": "exact",
+      "sequence": "RNN",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_HRR",
+      "tier": "three",
+      "prefix": "HRR",
+      "style": "exact",
+      "sequence": "HRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_HRH",
+      "tier": "three",
+      "prefix": "HRH",
+      "style": "exact",
+      "sequence": "HRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -17.4
+        ],
+        [
+          "paper_H",
+          8,
+          -17.4
+        ],
+        [
+          "paper_R",
+          8,
+          -13.2
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_HRN",
+      "tier": "three",
+      "prefix": "HRN",
+      "style": "exact",
+      "sequence": "HRN",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_HHR",
+      "tier": "three",
+      "prefix": "HHR",
+      "style": "exact",
+      "sequence": "HHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          0,
+          4.799999999999999
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_HHH",
+      "tier": "three",
+      "prefix": "HHH",
+      "style": "exact",
+      "sequence": "HHH",
+      "elements": [
+        [
+          "face",
+          0,
+          -17.4
+        ],
+        [
+          "paper_H",
+          0,
+          -17.4
+        ],
+        [
+          "paper_H",
+          0,
+          -4.199999999999999
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_HHN",
+      "tier": "three",
+      "prefix": "HHN",
+      "style": "exact",
+      "sequence": "HHN",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          0,
+          4.799999999999999
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_HNR",
+      "tier": "three",
+      "prefix": "HNR",
+      "style": "exact",
+      "sequence": "HNR",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_HNH",
+      "tier": "three",
+      "prefix": "HNH",
+      "style": "exact",
+      "sequence": "HNH",
+      "elements": [
+        [
+          "face",
+          8,
+          -17.4
+        ],
+        [
+          "paper_H",
+          8,
+          -17.4
+        ],
+        [
+          "paper_N",
+          8,
+          -13.2
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_HNN",
+      "tier": "three",
+      "prefix": "HNN",
+      "style": "exact",
+      "sequence": "HNN",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_NRR",
+      "tier": "three",
+      "prefix": "NRR",
+      "style": "exact",
+      "sequence": "NRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_NRH",
+      "tier": "three",
+      "prefix": "NRH",
+      "style": "exact",
+      "sequence": "NRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -17.4
+        ],
+        [
+          "paper_N",
+          8,
+          -17.4
+        ],
+        [
+          "paper_R",
+          8,
+          -13.2
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_NRN",
+      "tier": "three",
+      "prefix": "NRN",
+      "style": "exact",
+      "sequence": "NRN",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -8.4
+        ],
+        [
+          "paper_R",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_NHR",
+      "tier": "three",
+      "prefix": "NHR",
+      "style": "exact",
+      "sequence": "NHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          8,
+          4.799999999999999
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_NHH",
+      "tier": "three",
+      "prefix": "NHH",
+      "style": "exact",
+      "sequence": "NHH",
+      "elements": [
+        [
+          "face",
+          -8,
+          -17.4
+        ],
+        [
+          "paper_N",
+          -8,
+          -17.4
+        ],
+        [
+          "paper_H",
+          0,
+          -4.199999999999999
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_NHN",
+      "tier": "three",
+      "prefix": "NHN",
+      "style": "exact",
+      "sequence": "NHN",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -8.4
+        ],
+        [
+          "paper_H",
+          8,
+          4.799999999999999
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_NNR",
+      "tier": "three",
+      "prefix": "NNR",
+      "style": "exact",
+      "sequence": "NNR",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -4.2
+        ],
+        [
+          "paper_R",
+          0,
+          0.0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_NNH",
+      "tier": "three",
+      "prefix": "NNH",
+      "style": "exact",
+      "sequence": "NNH",
+      "elements": [
+        [
+          "face",
+          8,
+          -17.4
+        ],
+        [
+          "paper_N",
+          8,
+          -17.4
+        ],
+        [
+          "paper_N",
+          8,
+          -13.2
+        ],
+        [
+          "paper_H",
+          0,
+          0.0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "three_NNN",
+      "tier": "three",
+      "prefix": "NNN",
+      "style": "exact",
+      "sequence": "NNN",
+      "elements": [
+        [
+          "face",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -8.4
+        ],
+        [
+          "paper_N",
+          0,
+          -4.2
+        ],
+        [
+          "paper_N",
+          0,
+          0.0
+        ],
+        [
+          "shadow_N",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RRR_plain",
+      "tier": "medium",
+      "prefix": "RRR",
+      "style": "plain",
+      "sequence": "RRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RRR_hex",
+      "tier": "medium",
+      "prefix": "RRR",
+      "style": "hex",
+      "sequence": "RRRRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RRH_plain",
+      "tier": "medium",
+      "prefix": "RRH",
+      "style": "plain",
+      "sequence": "RRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RRH_hex",
+      "tier": "medium",
+      "prefix": "RRH",
+      "style": "hex",
+      "sequence": "RRHRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RRN_plain",
+      "tier": "medium",
+      "prefix": "RRN",
+      "style": "plain",
+      "sequence": "RRNRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RRN_hex",
+      "tier": "medium",
+      "prefix": "RRN",
+      "style": "hex",
+      "sequence": "RRNRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RHR_plain",
+      "tier": "medium",
+      "prefix": "RHR",
+      "style": "plain",
+      "sequence": "RHRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RHR_hex",
+      "tier": "medium",
+      "prefix": "RHR",
+      "style": "hex",
+      "sequence": "RHRRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RHH_plain",
+      "tier": "medium",
+      "prefix": "RHH",
+      "style": "plain",
+      "sequence": "RHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_H",
+          8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RHH_hex",
+      "tier": "medium",
+      "prefix": "RHH",
+      "style": "hex",
+      "sequence": "RHHRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_H",
+          8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RHN_plain",
+      "tier": "medium",
+      "prefix": "RHN",
+      "style": "plain",
+      "sequence": "RHNRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RHN_hex",
+      "tier": "medium",
+      "prefix": "RHN",
+      "style": "hex",
+      "sequence": "RHNRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RNR_plain",
+      "tier": "medium",
+      "prefix": "RNR",
+      "style": "plain",
+      "sequence": "RNRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RNR_hex",
+      "tier": "medium",
+      "prefix": "RNR",
+      "style": "hex",
+      "sequence": "RNRRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RNH_plain",
+      "tier": "medium",
+      "prefix": "RNH",
+      "style": "plain",
+      "sequence": "RNHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RNH_hex",
+      "tier": "medium",
+      "prefix": "RNH",
+      "style": "hex",
+      "sequence": "RNHRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RNN_plain",
+      "tier": "medium",
+      "prefix": "RNN",
+      "style": "plain",
+      "sequence": "RNNRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_RNN_hex",
+      "tier": "medium",
+      "prefix": "RNN",
+      "style": "hex",
+      "sequence": "RNNRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HRR_plain",
+      "tier": "medium",
+      "prefix": "HRR",
+      "style": "plain",
+      "sequence": "HRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HRR_hex",
+      "tier": "medium",
+      "prefix": "HRR",
+      "style": "hex",
+      "sequence": "HRRRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HRH_plain",
+      "tier": "medium",
+      "prefix": "HRH",
+      "style": "plain",
+      "sequence": "HRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HRH_hex",
+      "tier": "medium",
+      "prefix": "HRH",
+      "style": "hex",
+      "sequence": "HRHRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HRN_plain",
+      "tier": "medium",
+      "prefix": "HRN",
+      "style": "plain",
+      "sequence": "HRNRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HRN_hex",
+      "tier": "medium",
+      "prefix": "HRN",
+      "style": "hex",
+      "sequence": "HRNRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HHR_plain",
+      "tier": "medium",
+      "prefix": "HHR",
+      "style": "plain",
+      "sequence": "HHRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -3.8000000000000007
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HHR_hex",
+      "tier": "medium",
+      "prefix": "HHR",
+      "style": "hex",
+      "sequence": "HHRRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -3.8000000000000007
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HHH_plain",
+      "tier": "medium",
+      "prefix": "HHH",
+      "style": "plain",
+      "sequence": "HHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -3.8000000000000007
+        ],
+        [
+          "paper_H",
+          0,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HHH_hex",
+      "tier": "medium",
+      "prefix": "HHH",
+      "style": "hex",
+      "sequence": "HHHRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -3.8000000000000007
+        ],
+        [
+          "paper_H",
+          0,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HHN_plain",
+      "tier": "medium",
+      "prefix": "HHN",
+      "style": "plain",
+      "sequence": "HHNRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -3.8000000000000007
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HHN_hex",
+      "tier": "medium",
+      "prefix": "HHN",
+      "style": "hex",
+      "sequence": "HHNRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -3.8000000000000007
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HNR_plain",
+      "tier": "medium",
+      "prefix": "HNR",
+      "style": "plain",
+      "sequence": "HNRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HNR_hex",
+      "tier": "medium",
+      "prefix": "HNR",
+      "style": "hex",
+      "sequence": "HNRRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HNH_plain",
+      "tier": "medium",
+      "prefix": "HNH",
+      "style": "plain",
+      "sequence": "HNHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HNH_hex",
+      "tier": "medium",
+      "prefix": "HNH",
+      "style": "hex",
+      "sequence": "HNHRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HNN_plain",
+      "tier": "medium",
+      "prefix": "HNN",
+      "style": "plain",
+      "sequence": "HNNRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_HNN_hex",
+      "tier": "medium",
+      "prefix": "HNN",
+      "style": "hex",
+      "sequence": "HNNRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NRR_plain",
+      "tier": "medium",
+      "prefix": "NRR",
+      "style": "plain",
+      "sequence": "NRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NRR_hex",
+      "tier": "medium",
+      "prefix": "NRR",
+      "style": "hex",
+      "sequence": "NRRRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NRH_plain",
+      "tier": "medium",
+      "prefix": "NRH",
+      "style": "plain",
+      "sequence": "NRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NRH_hex",
+      "tier": "medium",
+      "prefix": "NRH",
+      "style": "hex",
+      "sequence": "NRHRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NRN_plain",
+      "tier": "medium",
+      "prefix": "NRN",
+      "style": "plain",
+      "sequence": "NRNRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NRN_hex",
+      "tier": "medium",
+      "prefix": "NRN",
+      "style": "hex",
+      "sequence": "NRNRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_R",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NHR_plain",
+      "tier": "medium",
+      "prefix": "NHR",
+      "style": "plain",
+      "sequence": "NHRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NHR_hex",
+      "tier": "medium",
+      "prefix": "NHR",
+      "style": "hex",
+      "sequence": "NHRRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NHH_plain",
+      "tier": "medium",
+      "prefix": "NHH",
+      "style": "plain",
+      "sequence": "NHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_H",
+          8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NHH_hex",
+      "tier": "medium",
+      "prefix": "NHH",
+      "style": "hex",
+      "sequence": "NHHRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_H",
+          8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NHN_plain",
+      "tier": "medium",
+      "prefix": "NHN",
+      "style": "plain",
+      "sequence": "NHNRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NHN_hex",
+      "tier": "medium",
+      "prefix": "NHN",
+      "style": "hex",
+      "sequence": "NHNRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_H",
+          8,
+          -3.8000000000000007
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NNR_plain",
+      "tier": "medium",
+      "prefix": "NNR",
+      "style": "plain",
+      "sequence": "NNRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NNR_hex",
+      "tier": "medium",
+      "prefix": "NNR",
+      "style": "hex",
+      "sequence": "NNRRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_R",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NNH_plain",
+      "tier": "medium",
+      "prefix": "NNH",
+      "style": "plain",
+      "sequence": "NNHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NNH_hex",
+      "tier": "medium",
+      "prefix": "NNH",
+      "style": "hex",
+      "sequence": "NNHRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_H",
+          -8,
+          -0.5999999999999996
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NNN_plain",
+      "tier": "medium",
+      "prefix": "NNN",
+      "style": "plain",
+      "sequence": "NNNRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "medium_NNN_hex",
+      "tier": "medium",
+      "prefix": "NNN",
+      "style": "hex",
+      "sequence": "NNNRHR",
+      "elements": [
+        [
+          "face",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -16.0
+        ],
+        [
+          "paper_N",
+          0,
+          -12.8
+        ],
+        [
+          "paper_N",
+          0,
+          -9.6
+        ],
+        [
+          "base_medium_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRR_plain",
+      "tier": "large",
+      "prefix": "RRR",
+      "style": "plain",
+      "sequence": "RRRRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRR_one_hex",
+      "tier": "large",
+      "prefix": "RRR",
+      "style": "one_hex",
+      "sequence": "RRRRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRR_hex_adjacent",
+      "tier": "large",
+      "prefix": "RRR",
+      "style": "hex_adjacent",
+      "sequence": "RRRRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRR_hex_separated",
+      "tier": "large",
+      "prefix": "RRR",
+      "style": "hex_separated",
+      "sequence": "RRRHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_R",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRH_plain",
+      "tier": "large",
+      "prefix": "RRH",
+      "style": "plain",
+      "sequence": "RRHRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRH_one_hex",
+      "tier": "large",
+      "prefix": "RRH",
+      "style": "one_hex",
+      "sequence": "RRHRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRH_hex_adjacent",
+      "tier": "large",
+      "prefix": "RRH",
+      "style": "hex_adjacent",
+      "sequence": "RRHRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRH_hex_separated",
+      "tier": "large",
+      "prefix": "RRH",
+      "style": "hex_separated",
+      "sequence": "RRHHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_H",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRN_plain",
+      "tier": "large",
+      "prefix": "RRN",
+      "style": "plain",
+      "sequence": "RRNRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRN_one_hex",
+      "tier": "large",
+      "prefix": "RRN",
+      "style": "one_hex",
+      "sequence": "RRNRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRN_hex_adjacent",
+      "tier": "large",
+      "prefix": "RRN",
+      "style": "hex_adjacent",
+      "sequence": "RRNRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RRN_hex_separated",
+      "tier": "large",
+      "prefix": "RRN",
+      "style": "hex_separated",
+      "sequence": "RRNHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_N",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHR_plain",
+      "tier": "large",
+      "prefix": "RHR",
+      "style": "plain",
+      "sequence": "RHRRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHR_one_hex",
+      "tier": "large",
+      "prefix": "RHR",
+      "style": "one_hex",
+      "sequence": "RHRRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHR_hex_adjacent",
+      "tier": "large",
+      "prefix": "RHR",
+      "style": "hex_adjacent",
+      "sequence": "RHRRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHR_hex_separated",
+      "tier": "large",
+      "prefix": "RHR",
+      "style": "hex_separated",
+      "sequence": "RHRHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          16,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHH_plain",
+      "tier": "large",
+      "prefix": "RHH",
+      "style": "plain",
+      "sequence": "RHHRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_H",
+          8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHH_one_hex",
+      "tier": "large",
+      "prefix": "RHH",
+      "style": "one_hex",
+      "sequence": "RHHRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_H",
+          8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHH_hex_adjacent",
+      "tier": "large",
+      "prefix": "RHH",
+      "style": "hex_adjacent",
+      "sequence": "RHHRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_H",
+          8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHH_hex_separated",
+      "tier": "large",
+      "prefix": "RHH",
+      "style": "hex_separated",
+      "sequence": "RHHHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          16,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          16,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHN_plain",
+      "tier": "large",
+      "prefix": "RHN",
+      "style": "plain",
+      "sequence": "RHNRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHN_one_hex",
+      "tier": "large",
+      "prefix": "RHN",
+      "style": "one_hex",
+      "sequence": "RHNRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHN_hex_adjacent",
+      "tier": "large",
+      "prefix": "RHN",
+      "style": "hex_adjacent",
+      "sequence": "RHNRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RHN_hex_separated",
+      "tier": "large",
+      "prefix": "RHN",
+      "style": "hex_separated",
+      "sequence": "RHNHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          16,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNR_plain",
+      "tier": "large",
+      "prefix": "RNR",
+      "style": "plain",
+      "sequence": "RNRRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNR_one_hex",
+      "tier": "large",
+      "prefix": "RNR",
+      "style": "one_hex",
+      "sequence": "RNRRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNR_hex_adjacent",
+      "tier": "large",
+      "prefix": "RNR",
+      "style": "hex_adjacent",
+      "sequence": "RNRRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNR_hex_separated",
+      "tier": "large",
+      "prefix": "RNR",
+      "style": "hex_separated",
+      "sequence": "RNRHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_R",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNH_plain",
+      "tier": "large",
+      "prefix": "RNH",
+      "style": "plain",
+      "sequence": "RNHRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNH_one_hex",
+      "tier": "large",
+      "prefix": "RNH",
+      "style": "one_hex",
+      "sequence": "RNHRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNH_hex_adjacent",
+      "tier": "large",
+      "prefix": "RNH",
+      "style": "hex_adjacent",
+      "sequence": "RNHRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNH_hex_separated",
+      "tier": "large",
+      "prefix": "RNH",
+      "style": "hex_separated",
+      "sequence": "RNHHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_H",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNN_plain",
+      "tier": "large",
+      "prefix": "RNN",
+      "style": "plain",
+      "sequence": "RNNRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNN_one_hex",
+      "tier": "large",
+      "prefix": "RNN",
+      "style": "one_hex",
+      "sequence": "RNNRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNN_hex_adjacent",
+      "tier": "large",
+      "prefix": "RNN",
+      "style": "hex_adjacent",
+      "sequence": "RNNRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_RNN_hex_separated",
+      "tier": "large",
+      "prefix": "RNN",
+      "style": "hex_separated",
+      "sequence": "RNNHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_N",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRR_plain",
+      "tier": "large",
+      "prefix": "HRR",
+      "style": "plain",
+      "sequence": "HRRRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRR_one_hex",
+      "tier": "large",
+      "prefix": "HRR",
+      "style": "one_hex",
+      "sequence": "HRRRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRR_hex_adjacent",
+      "tier": "large",
+      "prefix": "HRR",
+      "style": "hex_adjacent",
+      "sequence": "HRRRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRR_hex_separated",
+      "tier": "large",
+      "prefix": "HRR",
+      "style": "hex_separated",
+      "sequence": "HRRHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_R",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRH_plain",
+      "tier": "large",
+      "prefix": "HRH",
+      "style": "plain",
+      "sequence": "HRHRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRH_one_hex",
+      "tier": "large",
+      "prefix": "HRH",
+      "style": "one_hex",
+      "sequence": "HRHRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRH_hex_adjacent",
+      "tier": "large",
+      "prefix": "HRH",
+      "style": "hex_adjacent",
+      "sequence": "HRHRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRH_hex_separated",
+      "tier": "large",
+      "prefix": "HRH",
+      "style": "hex_separated",
+      "sequence": "HRHHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_H",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRN_plain",
+      "tier": "large",
+      "prefix": "HRN",
+      "style": "plain",
+      "sequence": "HRNRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRN_one_hex",
+      "tier": "large",
+      "prefix": "HRN",
+      "style": "one_hex",
+      "sequence": "HRNRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRN_hex_adjacent",
+      "tier": "large",
+      "prefix": "HRN",
+      "style": "hex_adjacent",
+      "sequence": "HRNRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HRN_hex_separated",
+      "tier": "large",
+      "prefix": "HRN",
+      "style": "hex_separated",
+      "sequence": "HRNHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_N",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHR_plain",
+      "tier": "large",
+      "prefix": "HHR",
+      "style": "plain",
+      "sequence": "HHRRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -9.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHR_one_hex",
+      "tier": "large",
+      "prefix": "HHR",
+      "style": "one_hex",
+      "sequence": "HHRRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -9.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHR_hex_adjacent",
+      "tier": "large",
+      "prefix": "HHR",
+      "style": "hex_adjacent",
+      "sequence": "HHRRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -9.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHR_hex_separated",
+      "tier": "large",
+      "prefix": "HHR",
+      "style": "hex_separated",
+      "sequence": "HHRHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHH_plain",
+      "tier": "large",
+      "prefix": "HHH",
+      "style": "plain",
+      "sequence": "HHHRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -9.900000000000002
+        ],
+        [
+          "paper_H",
+          0,
+          -7.200000000000001
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHH_one_hex",
+      "tier": "large",
+      "prefix": "HHH",
+      "style": "one_hex",
+      "sequence": "HHHRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -9.900000000000002
+        ],
+        [
+          "paper_H",
+          0,
+          -7.200000000000001
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHH_hex_adjacent",
+      "tier": "large",
+      "prefix": "HHH",
+      "style": "hex_adjacent",
+      "sequence": "HHHRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -9.900000000000002
+        ],
+        [
+          "paper_H",
+          0,
+          -7.200000000000001
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHH_hex_separated",
+      "tier": "large",
+      "prefix": "HHH",
+      "style": "hex_separated",
+      "sequence": "HHHHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          8,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHN_plain",
+      "tier": "large",
+      "prefix": "HHN",
+      "style": "plain",
+      "sequence": "HHNRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -9.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHN_one_hex",
+      "tier": "large",
+      "prefix": "HHN",
+      "style": "one_hex",
+      "sequence": "HHNRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -9.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHN_hex_adjacent",
+      "tier": "large",
+      "prefix": "HHN",
+      "style": "hex_adjacent",
+      "sequence": "HHNRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -9.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HHN_hex_separated",
+      "tier": "large",
+      "prefix": "HHN",
+      "style": "hex_separated",
+      "sequence": "HHNHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNR_plain",
+      "tier": "large",
+      "prefix": "HNR",
+      "style": "plain",
+      "sequence": "HNRRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNR_one_hex",
+      "tier": "large",
+      "prefix": "HNR",
+      "style": "one_hex",
+      "sequence": "HNRRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNR_hex_adjacent",
+      "tier": "large",
+      "prefix": "HNR",
+      "style": "hex_adjacent",
+      "sequence": "HNRRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNR_hex_separated",
+      "tier": "large",
+      "prefix": "HNR",
+      "style": "hex_separated",
+      "sequence": "HNRHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_R",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNH_plain",
+      "tier": "large",
+      "prefix": "HNH",
+      "style": "plain",
+      "sequence": "HNHRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNH_one_hex",
+      "tier": "large",
+      "prefix": "HNH",
+      "style": "one_hex",
+      "sequence": "HNHRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNH_hex_adjacent",
+      "tier": "large",
+      "prefix": "HNH",
+      "style": "hex_adjacent",
+      "sequence": "HNHRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNH_hex_separated",
+      "tier": "large",
+      "prefix": "HNH",
+      "style": "hex_separated",
+      "sequence": "HNHHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_H",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNN_plain",
+      "tier": "large",
+      "prefix": "HNN",
+      "style": "plain",
+      "sequence": "HNNRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNN_one_hex",
+      "tier": "large",
+      "prefix": "HNN",
+      "style": "one_hex",
+      "sequence": "HNNRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNN_hex_adjacent",
+      "tier": "large",
+      "prefix": "HNN",
+      "style": "hex_adjacent",
+      "sequence": "HNNRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_HNN_hex_separated",
+      "tier": "large",
+      "prefix": "HNN",
+      "style": "hex_separated",
+      "sequence": "HNNHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_N",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRR_plain",
+      "tier": "large",
+      "prefix": "NRR",
+      "style": "plain",
+      "sequence": "NRRRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRR_one_hex",
+      "tier": "large",
+      "prefix": "NRR",
+      "style": "one_hex",
+      "sequence": "NRRRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRR_hex_adjacent",
+      "tier": "large",
+      "prefix": "NRR",
+      "style": "hex_adjacent",
+      "sequence": "NRRRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRR_hex_separated",
+      "tier": "large",
+      "prefix": "NRR",
+      "style": "hex_separated",
+      "sequence": "NRRHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_R",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRH_plain",
+      "tier": "large",
+      "prefix": "NRH",
+      "style": "plain",
+      "sequence": "NRHRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRH_one_hex",
+      "tier": "large",
+      "prefix": "NRH",
+      "style": "one_hex",
+      "sequence": "NRHRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRH_hex_adjacent",
+      "tier": "large",
+      "prefix": "NRH",
+      "style": "hex_adjacent",
+      "sequence": "NRHRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRH_hex_separated",
+      "tier": "large",
+      "prefix": "NRH",
+      "style": "hex_separated",
+      "sequence": "NRHHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_H",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRN_plain",
+      "tier": "large",
+      "prefix": "NRN",
+      "style": "plain",
+      "sequence": "NRNRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRN_one_hex",
+      "tier": "large",
+      "prefix": "NRN",
+      "style": "one_hex",
+      "sequence": "NRNRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRN_hex_adjacent",
+      "tier": "large",
+      "prefix": "NRN",
+      "style": "hex_adjacent",
+      "sequence": "NRNRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_R",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NRN_hex_separated",
+      "tier": "large",
+      "prefix": "NRN",
+      "style": "hex_separated",
+      "sequence": "NRNHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -30.6
+        ],
+        [
+          "paper_R",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_N",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHR_plain",
+      "tier": "large",
+      "prefix": "NHR",
+      "style": "plain",
+      "sequence": "NHRRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHR_one_hex",
+      "tier": "large",
+      "prefix": "NHR",
+      "style": "one_hex",
+      "sequence": "NHRRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHR_hex_adjacent",
+      "tier": "large",
+      "prefix": "NHR",
+      "style": "hex_adjacent",
+      "sequence": "NHRRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHR_hex_separated",
+      "tier": "large",
+      "prefix": "NHR",
+      "style": "hex_separated",
+      "sequence": "NHRHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          16,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHH_plain",
+      "tier": "large",
+      "prefix": "NHH",
+      "style": "plain",
+      "sequence": "NHHRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_H",
+          8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHH_one_hex",
+      "tier": "large",
+      "prefix": "NHH",
+      "style": "one_hex",
+      "sequence": "NHHRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_H",
+          8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHH_hex_adjacent",
+      "tier": "large",
+      "prefix": "NHH",
+      "style": "hex_adjacent",
+      "sequence": "NHHRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_H",
+          8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHH_hex_separated",
+      "tier": "large",
+      "prefix": "NHH",
+      "style": "hex_separated",
+      "sequence": "NHHHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          16,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          16,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHN_plain",
+      "tier": "large",
+      "prefix": "NHN",
+      "style": "plain",
+      "sequence": "NHNRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHN_one_hex",
+      "tier": "large",
+      "prefix": "NHN",
+      "style": "one_hex",
+      "sequence": "NHNRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHN_hex_adjacent",
+      "tier": "large",
+      "prefix": "NHN",
+      "style": "hex_adjacent",
+      "sequence": "NHNRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_H",
+          8,
+          -9.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NHN_hex_separated",
+      "tier": "large",
+      "prefix": "NHN",
+      "style": "hex_separated",
+      "sequence": "NHNHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -30.6
+        ],
+        [
+          "paper_H",
+          16,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNR_plain",
+      "tier": "large",
+      "prefix": "NNR",
+      "style": "plain",
+      "sequence": "NNRRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNR_one_hex",
+      "tier": "large",
+      "prefix": "NNR",
+      "style": "one_hex",
+      "sequence": "NNRRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNR_hex_adjacent",
+      "tier": "large",
+      "prefix": "NNR",
+      "style": "hex_adjacent",
+      "sequence": "NNRRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_R",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNR_hex_separated",
+      "tier": "large",
+      "prefix": "NNR",
+      "style": "hex_separated",
+      "sequence": "NNRHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_R",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNH_plain",
+      "tier": "large",
+      "prefix": "NNH",
+      "style": "plain",
+      "sequence": "NNHRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNH_one_hex",
+      "tier": "large",
+      "prefix": "NNH",
+      "style": "one_hex",
+      "sequence": "NNHRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNH_hex_adjacent",
+      "tier": "large",
+      "prefix": "NNH",
+      "style": "hex_adjacent",
+      "sequence": "NNHRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_H",
+          -8,
+          -7.200000000000001
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNH_hex_separated",
+      "tier": "large",
+      "prefix": "NNH",
+      "style": "hex_separated",
+      "sequence": "NNHHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_H",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNN_plain",
+      "tier": "large",
+      "prefix": "NNN",
+      "style": "plain",
+      "sequence": "NNNRRRRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_plain",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNN_one_hex",
+      "tier": "large",
+      "prefix": "NNN",
+      "style": "one_hex",
+      "sequence": "NNNRRHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_one_hex",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNN_hex_adjacent",
+      "tier": "large",
+      "prefix": "NNN",
+      "style": "hex_adjacent",
+      "sequence": "NNNRHHRRR",
+      "elements": [
+        [
+          "face",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -21.6
+        ],
+        [
+          "paper_N",
+          0,
+          -18.900000000000002
+        ],
+        [
+          "paper_N",
+          0,
+          -16.200000000000003
+        ],
+        [
+          "base_large_hex_adjacent",
+          0,
+          0
+        ],
+        [
+          "shadow_R",
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "key": "large_NNN_hex_separated",
+      "tier": "large",
+      "prefix": "NNN",
+      "style": "hex_separated",
+      "sequence": "NNNHRRRRH",
+      "elements": [
+        [
+          "face",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -30.6
+        ],
+        [
+          "paper_N",
+          8,
+          -27.900000000000002
+        ],
+        [
+          "paper_N",
+          8,
+          -25.200000000000003
+        ],
+        [
+          "base_large_hex_separated",
+          0,
+          0
+        ],
+        [
+          "shadow_H",
+          0,
+          2
+        ]
+      ]
+    }
+  ],
+  "main_faces": "Existing spell art, separate override symbol",
+  "notes": "Layouts are transforms and references only, not 201 baked textures.",
+  "runtime_compiled": true,
+  "face_pages": 5,
+  "spell_faces": 220
+}

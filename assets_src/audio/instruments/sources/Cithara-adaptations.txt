@@ -1,0 +1,16 @@
+Cithara Barbarica calibrated SoundFont
+
+Source: https://github.com/sfzinstruments/cithara-barbarica
+Commit: a47c10dc4a26538a8a56d31d3436488138292ca2
+Creator: D. Smolken
+License: CC0 1.0 Universal (see LICENSE)
+
+- Fixed first round-robin take of finger pluck; other takes and articulations are omitted.
+- Original stereo 24-bit PCM samples are retained bit-for-bit, including their natural tails.
+- No playback loops, no newly synthesized waveform, no reverb or chorus in this preset.
+- Root MIDI notes and integer-cent tuning measured from each waveform using independent YIN analysis.
+- Source SFZ assigns roots one octave below their measured recorded pitch; this bank maps to actual MIDI pitch. The author's reason for the octave difference is unspecified.
+- Source b5 filename is misleading: measured root is A5/MIDI81, consistent with its original shifted root69.
+- Original overlapping key zones are replaced with exclusive nearest-root zones; ties choose the lower root.
+- Lowest requested target44 is transposed 20 semitones below lowest source64. Its natural tail is correspondingly longer.
+- For target MIDI44..80 hold each note for 32 seconds then trim inaudible silence, so no note-off envelope truncates the recorded decay.

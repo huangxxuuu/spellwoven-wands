@@ -1,0 +1,9 @@
+{
+  "id": "bee_swarm",
+  "name": "蜂群突袭",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "bee_swarm.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_elemental_flight/bee_swarm_head_0.png"
+}
+

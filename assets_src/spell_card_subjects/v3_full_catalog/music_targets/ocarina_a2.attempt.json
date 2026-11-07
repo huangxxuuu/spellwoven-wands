@@ -1,0 +1,10 @@
+{
+  "id": "ocarina_a2",
+  "name": "陶笛 A2",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T01:00:11.504Z",
+  "completed_at": "2026-11-07T01:00:49.650Z",
+  "result_file": "ocarina_a2.result.json"
+}

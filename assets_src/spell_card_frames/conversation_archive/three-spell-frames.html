@@ -1,0 +1,113 @@
+<div id="three-spell-frames" aria-label="法术卡三种主类边框比较">
+  <div class="viz-controls">
+    <label class="form-label" for="three-frame-size">图标尺寸 <output id="three-frame-size-value" class="tabular-nums">64 px</output><input class="form-range" id="three-frame-size" type="range" min="32" max="64" step="16" value="64"></label>
+    <label class="form-check form-switch"><input class="form-check-input" id="three-frame-silhouette" type="checkbox"><span class="form-check-label">纯轮廓</span></label>
+  </div>
+  <div class="viz-carousel viz-dotted-background" aria-label="边框方案" data-previous-label="上一方案" data-next-label="下一方案">
+    <section data-variant="保留绘图空间（推荐）" aria-label="保留绘图空间的三种边框">
+      <div class="tf-product">
+        <div class="tf-caption">同一图案 · 主图按内框适配 · 同一配色</div>
+        <div class="tf-primary">
+          <div class="tf-example"><div class="tf-slot"><div class="tf-cell tf-basic" role="img" aria-label="基础法术，四角轻切的矩形"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div><span class="tf-role">基础法术</span><span class="tf-shape">切角矩形</span></div>
+          <div class="tf-example"><div class="tf-slot"><div class="tf-cell tf-modifier" role="img" aria-label="法术修饰，上下尖且两侧有竖直边的六边形"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div><span class="tf-role">法术修饰</span><span class="tf-shape">上下尖六边形</span></div>
+          <div class="tf-example"><div class="tf-slot"><div class="tf-cell tf-control" role="img" aria-label="施法控制，上边中央有宽凹口的卡片"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div><span class="tf-role">施法控制</span><span class="tf-shape">顶部凹口矩形</span></div>
+        </div>
+        <div class="tf-caption tf-small-caption">32 px 混排</div>
+        <div class="tf-mixed" aria-label="固定32像素混排">
+          <div class="tf-small-slot"><div class="tf-cell tf-control" role="img" aria-label="施法控制"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+          <div class="tf-small-slot"><div class="tf-cell tf-basic" role="img" aria-label="基础法术"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+          <div class="tf-small-slot"><div class="tf-cell tf-modifier" role="img" aria-label="法术修饰"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+          <div class="tf-small-slot"><div class="tf-cell tf-basic" role="img" aria-label="基础法术"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+          <div class="tf-small-slot"><div class="tf-cell tf-modifier" role="img" aria-label="法术修饰"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+          <div class="tf-small-slot"><div class="tf-cell tf-control" role="img" aria-label="施法控制"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+        </div>
+      </div>
+    </section>
+    <section data-variant="纯菱形对照" aria-label="修饰类改用纯菱形的对照方案" hidden>
+      <div class="tf-product">
+        <div class="tf-caption">同一图案 · 主图按内框适配 · 同一配色</div>
+        <div class="tf-primary">
+          <div class="tf-example"><div class="tf-slot"><div class="tf-cell tf-basic" role="img" aria-label="基础法术，四角轻切的矩形"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div><span class="tf-role">基础法术</span><span class="tf-shape">切角矩形</span></div>
+          <div class="tf-example"><div class="tf-slot"><div class="tf-cell tf-diamond" role="img" aria-label="法术修饰，纯菱形"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div><span class="tf-role">法术修饰</span><span class="tf-shape">纯菱形</span></div>
+          <div class="tf-example"><div class="tf-slot"><div class="tf-cell tf-control" role="img" aria-label="施法控制，上边中央有宽凹口的卡片"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div><span class="tf-role">施法控制</span><span class="tf-shape">顶部凹口矩形</span></div>
+        </div>
+        <div class="tf-caption tf-small-caption">32 px 混排</div>
+        <div class="tf-mixed" aria-label="固定32像素混排">
+          <div class="tf-small-slot"><div class="tf-cell tf-control" role="img" aria-label="施法控制"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+          <div class="tf-small-slot"><div class="tf-cell tf-basic" role="img" aria-label="基础法术"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+          <div class="tf-small-slot"><div class="tf-cell tf-diamond" role="img" aria-label="法术修饰"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+          <div class="tf-small-slot"><div class="tf-cell tf-basic" role="img" aria-label="基础法术"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+          <div class="tf-small-slot"><div class="tf-cell tf-diamond" role="img" aria-label="法术修饰"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+          <div class="tf-small-slot"><div class="tf-cell tf-control" role="img" aria-label="施法控制"><span class="tf-frame"></span><span class="tf-art"><i data-lucide="flame" aria-hidden="true"></i></span></div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <span class="sr-only" id="three-frame-status" aria-live="polite">64像素，显示相同图案</span>
+</div>
+<style>
+#three-spell-frames { display:grid; gap:14px; }
+#three-spell-frames .tf-product { --tf-size:64px; --tf-ink:#483729; --tf-paper:#e7d7b8; font-family:"Microsoft YaHei",sans-serif; font-size:13px; line-height:1.5; color:#eee3ce; background:#342e27; border-radius:7px; padding:18px 22px; min-height:280px; box-sizing:border-box; }
+#three-spell-frames .tf-caption { font-size:12px; color:#cebea3; margin-bottom:14px; }
+#three-spell-frames .tf-primary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+#three-spell-frames .tf-example { display:flex; align-items:center; flex-direction:column; min-width:0; gap:4px; text-align:center; }
+#three-spell-frames .tf-slot { width:80px; height:80px; display:grid; place-items:center; background:radial-gradient(ellipse at 50% 38%,#625746,#453c30); border:1px solid #746047; border-radius:5px; margin-bottom:4px; box-sizing:border-box; }
+#three-spell-frames .tf-shape { font-size:12px; color:#cebea3; }
+#three-spell-frames .tf-cell { position:relative; display:block; width:var(--tf-size); height:var(--tf-size); flex:none; }
+#three-spell-frames .tf-frame { position:absolute; left:9.375%; top:6.25%; width:81.25%; height:87.5%; clip-path:var(--tf-shape); background:var(--tf-ink); }
+#three-spell-frames .tf-frame::after { position:absolute; content:""; inset:calc(var(--tf-size) * .0390625); clip-path:var(--tf-shape); background:linear-gradient(145deg,var(--tf-paper),#d3bd98); }
+#three-spell-frames .tf-basic { --tf-shape:polygon(7.6923% 0,92.3077% 0,100% 7.1429%,100% 92.8571%,92.3077% 100%,7.6923% 100%,0 92.8571%,0 7.1429%); }
+#three-spell-frames .tf-modifier { --tf-shape:polygon(50% 0,100% 21.4286%,100% 78.5714%,50% 100%,0 78.5714%,0 21.4286%); }
+#three-spell-frames .tf-diamond { --tf-shape:polygon(50% 0,100% 50%,50% 100%,0 50%); }
+#three-spell-frames .tf-control { --tf-shape:polygon(7.6923% 0,34.6154% 0,34.6154% 14.2857%,65.3846% 14.2857%,65.3846% 0,92.3077% 0,100% 7.1429%,100% 92.8571%,92.3077% 100%,7.6923% 100%,0 92.8571%,0 7.1429%); }
+#three-spell-frames .tf-art { position:absolute; inset:0; display:grid; place-items:center; color:#6a3d26; }
+#three-spell-frames .tf-art svg { width:calc(var(--tf-size) * .46875) !important; height:calc(var(--tf-size) * .46875) !important; min-width:0 !important; max-width:none !important; fill:#c86b37; stroke:#6c4028; stroke-width:1.8; }
+#three-spell-frames .tf-diamond .tf-art svg { width:calc(var(--tf-size) * .34375) !important; height:calc(var(--tf-size) * .34375) !important; }
+#three-spell-frames .tf-small-caption { margin:19px 0 9px; padding-top:13px; border-top:1px solid #685944; }
+#three-spell-frames .tf-mixed { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; }
+#three-spell-frames .tf-small-slot { display:grid; place-items:center; height:44px; background:#514838; border:1px solid #77644b; border-radius:4px; }
+#three-spell-frames .tf-small-slot .tf-cell { --tf-size:32px; }
+#three-spell-frames[data-silhouette="true"] .tf-slot,#three-spell-frames[data-silhouette="true"] .tf-small-slot { background:#ccbda3; border-color:#a59477; }
+#three-spell-frames[data-silhouette="true"] .tf-art { visibility:hidden; }
+#three-spell-frames[data-silhouette="true"] .tf-frame::after { background:var(--tf-ink); }
+@media(max-width:480px) {
+  #three-spell-frames .tf-product { padding:16px 10px; min-height:330px; }
+  #three-spell-frames .tf-primary { gap:4px; }
+  #three-spell-frames .tf-mixed { grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; }
+}
+</style>
+<script>
+(() => {
+  const root=document.getElementById('three-spell-frames');
+  const size=root.querySelector('#three-frame-size');
+  const silhouette=root.querySelector('#three-frame-silhouette');
+  const output=root.querySelector('#three-frame-size-value');
+  const status=root.querySelector('#three-frame-status');
+  const products=root.querySelectorAll('.tf-product');
+  function render(saved) {
+    if(saved && typeof saved==='object') {
+      if([32,48,64].includes(Number(saved.size))) size.value=String(saved.size);
+      if(typeof saved.silhouette==='boolean') silhouette.checked=saved.silhouette;
+    }
+    products.forEach(product=>product.style.setProperty('--tf-size',size.value+'px'));
+    root.dataset.silhouette=String(silhouette.checked);
+    output.textContent=size.value+' px';
+    status.textContent=size.value+'像素，'+(silhouette.checked?'纯轮廓':'显示相同图案');
+  }
+  function change() {
+    render();
+    const state={size:Number(size.value),silhouette:silhouette.checked};
+    if(window.openai && typeof window.openai.setWidgetState==='function') {
+      const result=window.openai.setWidgetState({modelContent:{frameComparison:state},privateContent:state});
+      if(result && typeof result.catch==='function') result.catch(()=>{});
+    }
+  }
+  size.addEventListener('input',change);
+  silhouette.addEventListener('change',change);
+  render(window.openai && window.openai.widgetState && window.openai.widgetState.privateContent);
+  window.addEventListener('openai:set_globals',event=>{
+    const state=event.detail && event.detail.globals && event.detail.globals.widgetState;
+    if(state) render(state.privateContent);
+  });
+})();
+</script>

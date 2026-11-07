@@ -1,0 +1,1885 @@
+{
+  "schema_version": 1,
+  "description": "Final pitches deduplicated separately for each instrument.",
+  "note_convention": "Scientific pitch notation: C4=MIDI 60; # means sharp.",
+  "filename_convention": "<instrument>_m<three-digit MIDI>_<note>.wav; s means sharp.",
+  "tuning": {
+    "reference_note": "A4",
+    "reference_midi": 69,
+    "reference_hz": 440.0,
+    "temperament": "12-tone equal temperament"
+  },
+  "allowed_octave_offsets": [
+    -1,
+    0,
+    1
+  ],
+  "allowed_octave_offsets_semitones": [
+    -12,
+    0,
+    12
+  ],
+  "allowed_semitone_offsets": [
+    -1,
+    0,
+    1
+  ],
+  "offsets_stack": true,
+  "total_note_count": 76,
+  "instruments": [
+    {
+      "instrument": "ocarina",
+      "name_zh": "陶笛",
+      "base_notes": [
+        {
+          "midi": 69,
+          "note": "A4"
+        },
+        {
+          "midi": 71,
+          "note": "B4"
+        },
+        {
+          "midi": 72,
+          "note": "C5"
+        },
+        {
+          "midi": 74,
+          "note": "D5"
+        },
+        {
+          "midi": 76,
+          "note": "E5"
+        },
+        {
+          "midi": 77,
+          "note": "F5"
+        },
+        {
+          "midi": 80,
+          "note": "G#5"
+        },
+        {
+          "midi": 81,
+          "note": "A5"
+        }
+      ],
+      "midi_min": 56,
+      "midi_max": 94,
+      "note_min": "G#3",
+      "note_max": "A#6",
+      "note_count": 39,
+      "source_route_count": 72,
+      "is_contiguous": true,
+      "notes": [
+        {
+          "midi": 56,
+          "note": "G#3",
+          "frequency_hz": 207.65234879,
+          "filename": "ocarina_m056_Gs3.wav",
+          "relative_path": "ocarina/ocarina_m056_Gs3.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 69,
+              "base_note": "A4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 57,
+          "note": "A3",
+          "frequency_hz": 220.0,
+          "filename": "ocarina_m057_A3.wav",
+          "relative_path": "ocarina/ocarina_m057_A3.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 69,
+              "base_note": "A4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            }
+          ]
+        },
+        {
+          "midi": 58,
+          "note": "A#3",
+          "frequency_hz": 233.081880759,
+          "filename": "ocarina_m058_As3.wav",
+          "relative_path": "ocarina/ocarina_m058_As3.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 69,
+              "base_note": "A4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            },
+            {
+              "base_midi": 71,
+              "base_note": "B4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 59,
+          "note": "B3",
+          "frequency_hz": 246.941650628,
+          "filename": "ocarina_m059_B3.wav",
+          "relative_path": "ocarina/ocarina_m059_B3.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 71,
+              "base_note": "B4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            },
+            {
+              "base_midi": 72,
+              "base_note": "C5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 60,
+          "note": "C4",
+          "frequency_hz": 261.625565301,
+          "filename": "ocarina_m060_C4.wav",
+          "relative_path": "ocarina/ocarina_m060_C4.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 71,
+              "base_note": "B4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            },
+            {
+              "base_midi": 72,
+              "base_note": "C5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            }
+          ]
+        },
+        {
+          "midi": 61,
+          "note": "C#4",
+          "frequency_hz": 277.182630977,
+          "filename": "ocarina_m061_Cs4.wav",
+          "relative_path": "ocarina/ocarina_m061_Cs4.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 72,
+              "base_note": "C5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            },
+            {
+              "base_midi": 74,
+              "base_note": "D5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 62,
+          "note": "D4",
+          "frequency_hz": 293.664767917,
+          "filename": "ocarina_m062_D4.wav",
+          "relative_path": "ocarina/ocarina_m062_D4.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 74,
+              "base_note": "D5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            }
+          ]
+        },
+        {
+          "midi": 63,
+          "note": "D#4",
+          "frequency_hz": 311.126983722,
+          "filename": "ocarina_m063_Ds4.wav",
+          "relative_path": "ocarina/ocarina_m063_Ds4.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 74,
+              "base_note": "D5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            },
+            {
+              "base_midi": 76,
+              "base_note": "E5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 64,
+          "note": "E4",
+          "frequency_hz": 329.627556913,
+          "filename": "ocarina_m064_E4.wav",
+          "relative_path": "ocarina/ocarina_m064_E4.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 76,
+              "base_note": "E5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            },
+            {
+              "base_midi": 77,
+              "base_note": "F5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 65,
+          "note": "F4",
+          "frequency_hz": 349.228231433,
+          "filename": "ocarina_m065_F4.wav",
+          "relative_path": "ocarina/ocarina_m065_F4.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 76,
+              "base_note": "E5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            },
+            {
+              "base_midi": 77,
+              "base_note": "F5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            }
+          ]
+        },
+        {
+          "midi": 66,
+          "note": "F#4",
+          "frequency_hz": 369.994422712,
+          "filename": "ocarina_m066_Fs4.wav",
+          "relative_path": "ocarina/ocarina_m066_Fs4.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 77,
+              "base_note": "F5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            }
+          ]
+        },
+        {
+          "midi": 67,
+          "note": "G4",
+          "frequency_hz": 391.995435982,
+          "filename": "ocarina_m067_G4.wav",
+          "relative_path": "ocarina/ocarina_m067_G4.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 80,
+              "base_note": "G#5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 68,
+          "note": "G#4",
+          "frequency_hz": 415.30469758,
+          "filename": "ocarina_m068_Gs4.wav",
+          "relative_path": "ocarina/ocarina_m068_Gs4.wav",
+          "is_base_note": false,
+          "route_count": 3,
+          "routes": [
+            {
+              "base_midi": 69,
+              "base_note": "A4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            },
+            {
+              "base_midi": 80,
+              "base_note": "G#5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            },
+            {
+              "base_midi": 81,
+              "base_note": "A5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 69,
+          "note": "A4",
+          "frequency_hz": 440.0,
+          "filename": "ocarina_m069_A4.wav",
+          "relative_path": "ocarina/ocarina_m069_A4.wav",
+          "is_base_note": true,
+          "route_count": 3,
+          "routes": [
+            {
+              "base_midi": 69,
+              "base_note": "A4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            },
+            {
+              "base_midi": 80,
+              "base_note": "G#5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            },
+            {
+              "base_midi": 81,
+              "base_note": "A5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            }
+          ]
+        },
+        {
+          "midi": 70,
+          "note": "A#4",
+          "frequency_hz": 466.163761518,
+          "filename": "ocarina_m070_As4.wav",
+          "relative_path": "ocarina/ocarina_m070_As4.wav",
+          "is_base_note": false,
+          "route_count": 3,
+          "routes": [
+            {
+              "base_midi": 69,
+              "base_note": "A4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            },
+            {
+              "base_midi": 71,
+              "base_note": "B4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            },
+            {
+              "base_midi": 81,
+              "base_note": "A5",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            }
+          ]
+        },
+        {
+          "midi": 71,
+          "note": "B4",
+          "frequency_hz": 493.883301256,
+          "filename": "ocarina_m071_B4.wav",
+          "relative_path": "ocarina/ocarina_m071_B4.wav",
+          "is_base_note": true,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 71,
+              "base_note": "B4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            },
+            {
+              "base_midi": 72,
+              "base_note": "C5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            }
+          ]
+        },
+        {
+          "midi": 72,
+          "note": "C5",
+          "frequency_hz": 523.251130601,
+          "filename": "ocarina_m072_C5.wav",
+          "relative_path": "ocarina/ocarina_m072_C5.wav",
+          "is_base_note": true,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 71,
+              "base_note": "B4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            },
+            {
+              "base_midi": 72,
+              "base_note": "C5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            }
+          ]
+        },
+        {
+          "midi": 73,
+          "note": "C#5",
+          "frequency_hz": 554.365261954,
+          "filename": "ocarina_m073_Cs5.wav",
+          "relative_path": "ocarina/ocarina_m073_Cs5.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 72,
+              "base_note": "C5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            },
+            {
+              "base_midi": 74,
+              "base_note": "D5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            }
+          ]
+        },
+        {
+          "midi": 74,
+          "note": "D5",
+          "frequency_hz": 587.329535835,
+          "filename": "ocarina_m074_D5.wav",
+          "relative_path": "ocarina/ocarina_m074_D5.wav",
+          "is_base_note": true,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 74,
+              "base_note": "D5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            }
+          ]
+        },
+        {
+          "midi": 75,
+          "note": "D#5",
+          "frequency_hz": 622.253967444,
+          "filename": "ocarina_m075_Ds5.wav",
+          "relative_path": "ocarina/ocarina_m075_Ds5.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 74,
+              "base_note": "D5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            },
+            {
+              "base_midi": 76,
+              "base_note": "E5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            }
+          ]
+        },
+        {
+          "midi": 76,
+          "note": "E5",
+          "frequency_hz": 659.255113826,
+          "filename": "ocarina_m076_E5.wav",
+          "relative_path": "ocarina/ocarina_m076_E5.wav",
+          "is_base_note": true,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 76,
+              "base_note": "E5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            },
+            {
+              "base_midi": 77,
+              "base_note": "F5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            }
+          ]
+        },
+        {
+          "midi": 77,
+          "note": "F5",
+          "frequency_hz": 698.456462866,
+          "filename": "ocarina_m077_F5.wav",
+          "relative_path": "ocarina/ocarina_m077_F5.wav",
+          "is_base_note": true,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 76,
+              "base_note": "E5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            },
+            {
+              "base_midi": 77,
+              "base_note": "F5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            }
+          ]
+        },
+        {
+          "midi": 78,
+          "note": "F#5",
+          "frequency_hz": 739.988845423,
+          "filename": "ocarina_m078_Fs5.wav",
+          "relative_path": "ocarina/ocarina_m078_Fs5.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 77,
+              "base_note": "F5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            }
+          ]
+        },
+        {
+          "midi": 79,
+          "note": "G5",
+          "frequency_hz": 783.990871963,
+          "filename": "ocarina_m079_G5.wav",
+          "relative_path": "ocarina/ocarina_m079_G5.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 80,
+              "base_note": "G#5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            }
+          ]
+        },
+        {
+          "midi": 80,
+          "note": "G#5",
+          "frequency_hz": 830.60939516,
+          "filename": "ocarina_m080_Gs5.wav",
+          "relative_path": "ocarina/ocarina_m080_Gs5.wav",
+          "is_base_note": true,
+          "route_count": 3,
+          "routes": [
+            {
+              "base_midi": 69,
+              "base_note": "A4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            },
+            {
+              "base_midi": 80,
+              "base_note": "G#5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            },
+            {
+              "base_midi": 81,
+              "base_note": "A5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            }
+          ]
+        },
+        {
+          "midi": 81,
+          "note": "A5",
+          "frequency_hz": 880.0,
+          "filename": "ocarina_m081_A5.wav",
+          "relative_path": "ocarina/ocarina_m081_A5.wav",
+          "is_base_note": true,
+          "route_count": 3,
+          "routes": [
+            {
+              "base_midi": 69,
+              "base_note": "A4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            },
+            {
+              "base_midi": 80,
+              "base_note": "G#5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            },
+            {
+              "base_midi": 81,
+              "base_note": "A5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            }
+          ]
+        },
+        {
+          "midi": 82,
+          "note": "A#5",
+          "frequency_hz": 932.327523036,
+          "filename": "ocarina_m082_As5.wav",
+          "relative_path": "ocarina/ocarina_m082_As5.wav",
+          "is_base_note": false,
+          "route_count": 3,
+          "routes": [
+            {
+              "base_midi": 69,
+              "base_note": "A4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            },
+            {
+              "base_midi": 71,
+              "base_note": "B4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            },
+            {
+              "base_midi": 81,
+              "base_note": "A5",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            }
+          ]
+        },
+        {
+          "midi": 83,
+          "note": "B5",
+          "frequency_hz": 987.766602512,
+          "filename": "ocarina_m083_B5.wav",
+          "relative_path": "ocarina/ocarina_m083_B5.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 71,
+              "base_note": "B4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            },
+            {
+              "base_midi": 72,
+              "base_note": "C5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            }
+          ]
+        },
+        {
+          "midi": 84,
+          "note": "C6",
+          "frequency_hz": 1046.502261202,
+          "filename": "ocarina_m084_C6.wav",
+          "relative_path": "ocarina/ocarina_m084_C6.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 71,
+              "base_note": "B4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            },
+            {
+              "base_midi": 72,
+              "base_note": "C5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            }
+          ]
+        },
+        {
+          "midi": 85,
+          "note": "C#6",
+          "frequency_hz": 1108.730523907,
+          "filename": "ocarina_m085_Cs6.wav",
+          "relative_path": "ocarina/ocarina_m085_Cs6.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 72,
+              "base_note": "C5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            },
+            {
+              "base_midi": 74,
+              "base_note": "D5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            }
+          ]
+        },
+        {
+          "midi": 86,
+          "note": "D6",
+          "frequency_hz": 1174.65907167,
+          "filename": "ocarina_m086_D6.wav",
+          "relative_path": "ocarina/ocarina_m086_D6.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 74,
+              "base_note": "D5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            }
+          ]
+        },
+        {
+          "midi": 87,
+          "note": "D#6",
+          "frequency_hz": 1244.507934888,
+          "filename": "ocarina_m087_Ds6.wav",
+          "relative_path": "ocarina/ocarina_m087_Ds6.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 74,
+              "base_note": "D5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            },
+            {
+              "base_midi": 76,
+              "base_note": "E5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            }
+          ]
+        },
+        {
+          "midi": 88,
+          "note": "E6",
+          "frequency_hz": 1318.510227651,
+          "filename": "ocarina_m088_E6.wav",
+          "relative_path": "ocarina/ocarina_m088_E6.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 76,
+              "base_note": "E5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            },
+            {
+              "base_midi": 77,
+              "base_note": "F5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            }
+          ]
+        },
+        {
+          "midi": 89,
+          "note": "F6",
+          "frequency_hz": 1396.912925732,
+          "filename": "ocarina_m089_F6.wav",
+          "relative_path": "ocarina/ocarina_m089_F6.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 76,
+              "base_note": "E5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            },
+            {
+              "base_midi": 77,
+              "base_note": "F5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            }
+          ]
+        },
+        {
+          "midi": 90,
+          "note": "F#6",
+          "frequency_hz": 1479.977690847,
+          "filename": "ocarina_m090_Fs6.wav",
+          "relative_path": "ocarina/ocarina_m090_Fs6.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 77,
+              "base_note": "F5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            }
+          ]
+        },
+        {
+          "midi": 91,
+          "note": "G6",
+          "frequency_hz": 1567.981743927,
+          "filename": "ocarina_m091_G6.wav",
+          "relative_path": "ocarina/ocarina_m091_G6.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 80,
+              "base_note": "G#5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            }
+          ]
+        },
+        {
+          "midi": 92,
+          "note": "G#6",
+          "frequency_hz": 1661.21879032,
+          "filename": "ocarina_m092_Gs6.wav",
+          "relative_path": "ocarina/ocarina_m092_Gs6.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 80,
+              "base_note": "G#5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            },
+            {
+              "base_midi": 81,
+              "base_note": "A5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            }
+          ]
+        },
+        {
+          "midi": 93,
+          "note": "A6",
+          "frequency_hz": 1760.0,
+          "filename": "ocarina_m093_A6.wav",
+          "relative_path": "ocarina/ocarina_m093_A6.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 80,
+              "base_note": "G#5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            },
+            {
+              "base_midi": 81,
+              "base_note": "A5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            }
+          ]
+        },
+        {
+          "midi": 94,
+          "note": "A#6",
+          "frequency_hz": 1864.655046072,
+          "filename": "ocarina_m094_As6.wav",
+          "relative_path": "ocarina/ocarina_m094_As6.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 81,
+              "base_note": "A5",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instrument": "lyre",
+      "name_zh": "弦琴",
+      "base_notes": [
+        {
+          "midi": 57,
+          "note": "A3"
+        },
+        {
+          "midi": 60,
+          "note": "C4"
+        },
+        {
+          "midi": 62,
+          "note": "D4"
+        },
+        {
+          "midi": 64,
+          "note": "E4"
+        },
+        {
+          "midi": 67,
+          "note": "G4"
+        }
+      ],
+      "midi_min": 44,
+      "midi_max": 80,
+      "note_min": "G#2",
+      "note_max": "G#5",
+      "note_count": 37,
+      "source_route_count": 45,
+      "is_contiguous": true,
+      "notes": [
+        {
+          "midi": 44,
+          "note": "G#2",
+          "frequency_hz": 103.826174395,
+          "filename": "lyre_m044_Gs2.wav",
+          "relative_path": "lyre/lyre_m044_Gs2.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 57,
+              "base_note": "A3",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 45,
+          "note": "A2",
+          "frequency_hz": 110.0,
+          "filename": "lyre_m045_A2.wav",
+          "relative_path": "lyre/lyre_m045_A2.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 57,
+              "base_note": "A3",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            }
+          ]
+        },
+        {
+          "midi": 46,
+          "note": "A#2",
+          "frequency_hz": 116.54094038,
+          "filename": "lyre_m046_As2.wav",
+          "relative_path": "lyre/lyre_m046_As2.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 57,
+              "base_note": "A3",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            }
+          ]
+        },
+        {
+          "midi": 47,
+          "note": "B2",
+          "frequency_hz": 123.470825314,
+          "filename": "lyre_m047_B2.wav",
+          "relative_path": "lyre/lyre_m047_B2.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 60,
+              "base_note": "C4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 48,
+          "note": "C3",
+          "frequency_hz": 130.81278265,
+          "filename": "lyre_m048_C3.wav",
+          "relative_path": "lyre/lyre_m048_C3.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 60,
+              "base_note": "C4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            }
+          ]
+        },
+        {
+          "midi": 49,
+          "note": "C#3",
+          "frequency_hz": 138.591315488,
+          "filename": "lyre_m049_Cs3.wav",
+          "relative_path": "lyre/lyre_m049_Cs3.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 60,
+              "base_note": "C4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            },
+            {
+              "base_midi": 62,
+              "base_note": "D4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 50,
+          "note": "D3",
+          "frequency_hz": 146.832383959,
+          "filename": "lyre_m050_D3.wav",
+          "relative_path": "lyre/lyre_m050_D3.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 62,
+              "base_note": "D4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            }
+          ]
+        },
+        {
+          "midi": 51,
+          "note": "D#3",
+          "frequency_hz": 155.563491861,
+          "filename": "lyre_m051_Ds3.wav",
+          "relative_path": "lyre/lyre_m051_Ds3.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 62,
+              "base_note": "D4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            },
+            {
+              "base_midi": 64,
+              "base_note": "E4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 52,
+          "note": "E3",
+          "frequency_hz": 164.813778456,
+          "filename": "lyre_m052_E3.wav",
+          "relative_path": "lyre/lyre_m052_E3.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 64,
+              "base_note": "E4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            }
+          ]
+        },
+        {
+          "midi": 53,
+          "note": "F3",
+          "frequency_hz": 174.614115717,
+          "filename": "lyre_m053_F3.wav",
+          "relative_path": "lyre/lyre_m053_F3.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 64,
+              "base_note": "E4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            }
+          ]
+        },
+        {
+          "midi": 54,
+          "note": "F#3",
+          "frequency_hz": 184.997211356,
+          "filename": "lyre_m054_Fs3.wav",
+          "relative_path": "lyre/lyre_m054_Fs3.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 67,
+              "base_note": "G4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": -1,
+              "total_offset_semitones": -13
+            }
+          ]
+        },
+        {
+          "midi": 55,
+          "note": "G3",
+          "frequency_hz": 195.997717991,
+          "filename": "lyre_m055_G3.wav",
+          "relative_path": "lyre/lyre_m055_G3.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 67,
+              "base_note": "G4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 0,
+              "total_offset_semitones": -12
+            }
+          ]
+        },
+        {
+          "midi": 56,
+          "note": "G#3",
+          "frequency_hz": 207.65234879,
+          "filename": "lyre_m056_Gs3.wav",
+          "relative_path": "lyre/lyre_m056_Gs3.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 57,
+              "base_note": "A3",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            },
+            {
+              "base_midi": 67,
+              "base_note": "G4",
+              "octave_offset": -1,
+              "octave_offset_semitones": -12,
+              "semitone_offset": 1,
+              "total_offset_semitones": -11
+            }
+          ]
+        },
+        {
+          "midi": 57,
+          "note": "A3",
+          "frequency_hz": 220.0,
+          "filename": "lyre_m057_A3.wav",
+          "relative_path": "lyre/lyre_m057_A3.wav",
+          "is_base_note": true,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 57,
+              "base_note": "A3",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            }
+          ]
+        },
+        {
+          "midi": 58,
+          "note": "A#3",
+          "frequency_hz": 233.081880759,
+          "filename": "lyre_m058_As3.wav",
+          "relative_path": "lyre/lyre_m058_As3.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 57,
+              "base_note": "A3",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            }
+          ]
+        },
+        {
+          "midi": 59,
+          "note": "B3",
+          "frequency_hz": 246.941650628,
+          "filename": "lyre_m059_B3.wav",
+          "relative_path": "lyre/lyre_m059_B3.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 60,
+              "base_note": "C4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            }
+          ]
+        },
+        {
+          "midi": 60,
+          "note": "C4",
+          "frequency_hz": 261.625565301,
+          "filename": "lyre_m060_C4.wav",
+          "relative_path": "lyre/lyre_m060_C4.wav",
+          "is_base_note": true,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 60,
+              "base_note": "C4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            }
+          ]
+        },
+        {
+          "midi": 61,
+          "note": "C#4",
+          "frequency_hz": 277.182630977,
+          "filename": "lyre_m061_Cs4.wav",
+          "relative_path": "lyre/lyre_m061_Cs4.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 60,
+              "base_note": "C4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            },
+            {
+              "base_midi": 62,
+              "base_note": "D4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            }
+          ]
+        },
+        {
+          "midi": 62,
+          "note": "D4",
+          "frequency_hz": 293.664767917,
+          "filename": "lyre_m062_D4.wav",
+          "relative_path": "lyre/lyre_m062_D4.wav",
+          "is_base_note": true,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 62,
+              "base_note": "D4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            }
+          ]
+        },
+        {
+          "midi": 63,
+          "note": "D#4",
+          "frequency_hz": 311.126983722,
+          "filename": "lyre_m063_Ds4.wav",
+          "relative_path": "lyre/lyre_m063_Ds4.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 62,
+              "base_note": "D4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            },
+            {
+              "base_midi": 64,
+              "base_note": "E4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            }
+          ]
+        },
+        {
+          "midi": 64,
+          "note": "E4",
+          "frequency_hz": 329.627556913,
+          "filename": "lyre_m064_E4.wav",
+          "relative_path": "lyre/lyre_m064_E4.wav",
+          "is_base_note": true,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 64,
+              "base_note": "E4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            }
+          ]
+        },
+        {
+          "midi": 65,
+          "note": "F4",
+          "frequency_hz": 349.228231433,
+          "filename": "lyre_m065_F4.wav",
+          "relative_path": "lyre/lyre_m065_F4.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 64,
+              "base_note": "E4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            }
+          ]
+        },
+        {
+          "midi": 66,
+          "note": "F#4",
+          "frequency_hz": 369.994422712,
+          "filename": "lyre_m066_Fs4.wav",
+          "relative_path": "lyre/lyre_m066_Fs4.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 67,
+              "base_note": "G4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": -1,
+              "total_offset_semitones": -1
+            }
+          ]
+        },
+        {
+          "midi": 67,
+          "note": "G4",
+          "frequency_hz": 391.995435982,
+          "filename": "lyre_m067_G4.wav",
+          "relative_path": "lyre/lyre_m067_G4.wav",
+          "is_base_note": true,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 67,
+              "base_note": "G4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 0,
+              "total_offset_semitones": 0
+            }
+          ]
+        },
+        {
+          "midi": 68,
+          "note": "G#4",
+          "frequency_hz": 415.30469758,
+          "filename": "lyre_m068_Gs4.wav",
+          "relative_path": "lyre/lyre_m068_Gs4.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 57,
+              "base_note": "A3",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            },
+            {
+              "base_midi": 67,
+              "base_note": "G4",
+              "octave_offset": 0,
+              "octave_offset_semitones": 0,
+              "semitone_offset": 1,
+              "total_offset_semitones": 1
+            }
+          ]
+        },
+        {
+          "midi": 69,
+          "note": "A4",
+          "frequency_hz": 440.0,
+          "filename": "lyre_m069_A4.wav",
+          "relative_path": "lyre/lyre_m069_A4.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 57,
+              "base_note": "A3",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            }
+          ]
+        },
+        {
+          "midi": 70,
+          "note": "A#4",
+          "frequency_hz": 466.163761518,
+          "filename": "lyre_m070_As4.wav",
+          "relative_path": "lyre/lyre_m070_As4.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 57,
+              "base_note": "A3",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            }
+          ]
+        },
+        {
+          "midi": 71,
+          "note": "B4",
+          "frequency_hz": 493.883301256,
+          "filename": "lyre_m071_B4.wav",
+          "relative_path": "lyre/lyre_m071_B4.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 60,
+              "base_note": "C4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            }
+          ]
+        },
+        {
+          "midi": 72,
+          "note": "C5",
+          "frequency_hz": 523.251130601,
+          "filename": "lyre_m072_C5.wav",
+          "relative_path": "lyre/lyre_m072_C5.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 60,
+              "base_note": "C4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            }
+          ]
+        },
+        {
+          "midi": 73,
+          "note": "C#5",
+          "frequency_hz": 554.365261954,
+          "filename": "lyre_m073_Cs5.wav",
+          "relative_path": "lyre/lyre_m073_Cs5.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 60,
+              "base_note": "C4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            },
+            {
+              "base_midi": 62,
+              "base_note": "D4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            }
+          ]
+        },
+        {
+          "midi": 74,
+          "note": "D5",
+          "frequency_hz": 587.329535835,
+          "filename": "lyre_m074_D5.wav",
+          "relative_path": "lyre/lyre_m074_D5.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 62,
+              "base_note": "D4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            }
+          ]
+        },
+        {
+          "midi": 75,
+          "note": "D#5",
+          "frequency_hz": 622.253967444,
+          "filename": "lyre_m075_Ds5.wav",
+          "relative_path": "lyre/lyre_m075_Ds5.wav",
+          "is_base_note": false,
+          "route_count": 2,
+          "routes": [
+            {
+              "base_midi": 62,
+              "base_note": "D4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            },
+            {
+              "base_midi": 64,
+              "base_note": "E4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            }
+          ]
+        },
+        {
+          "midi": 76,
+          "note": "E5",
+          "frequency_hz": 659.255113826,
+          "filename": "lyre_m076_E5.wav",
+          "relative_path": "lyre/lyre_m076_E5.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 64,
+              "base_note": "E4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            }
+          ]
+        },
+        {
+          "midi": 77,
+          "note": "F5",
+          "frequency_hz": 698.456462866,
+          "filename": "lyre_m077_F5.wav",
+          "relative_path": "lyre/lyre_m077_F5.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 64,
+              "base_note": "E4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            }
+          ]
+        },
+        {
+          "midi": 78,
+          "note": "F#5",
+          "frequency_hz": 739.988845423,
+          "filename": "lyre_m078_Fs5.wav",
+          "relative_path": "lyre/lyre_m078_Fs5.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 67,
+              "base_note": "G4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": -1,
+              "total_offset_semitones": 11
+            }
+          ]
+        },
+        {
+          "midi": 79,
+          "note": "G5",
+          "frequency_hz": 783.990871963,
+          "filename": "lyre_m079_G5.wav",
+          "relative_path": "lyre/lyre_m079_G5.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 67,
+              "base_note": "G4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 0,
+              "total_offset_semitones": 12
+            }
+          ]
+        },
+        {
+          "midi": 80,
+          "note": "G#5",
+          "frequency_hz": 830.60939516,
+          "filename": "lyre_m080_Gs5.wav",
+          "relative_path": "lyre/lyre_m080_Gs5.wav",
+          "is_base_note": false,
+          "route_count": 1,
+          "routes": [
+            {
+              "base_midi": 67,
+              "base_note": "G4",
+              "octave_offset": 1,
+              "octave_offset_semitones": 12,
+              "semitone_offset": 1,
+              "total_offset_semitones": 13
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

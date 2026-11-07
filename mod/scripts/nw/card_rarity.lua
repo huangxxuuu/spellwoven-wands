@@ -29,4 +29,6 @@ add("giant_shot",3)
 add("short_life",2)
 add("homing_rotate",2)
 add("gunpowder",2)
+add("ocarina_g",1)
+for _,c in ipairs(require("nw/pitch_modifiers").cards) do add(c.id,c.tier) end
 return M

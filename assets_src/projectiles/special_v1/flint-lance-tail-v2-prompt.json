@@ -1,0 +1,9 @@
+{
+  "method": "builtin image_gen",
+  "output": "flint_lance-tail-v2.png",
+  "references": [
+    "flint_lance-atlas.png",
+    "../basic_v1/arrow-tail-v2.png"
+  ],
+  "prompt": "Create a transparent game VFX trail strip. Reference image1 is the flint lance atlas: use ONLY its muted ash-gray/ivory stone-dust palette and hand-inked painterly texture. Reference image2 is the magic-arrow short-segment strip: use ONLY its three-age connected-segment structure, not its cyan color. Output exactly THREE equal square cells in ONE horizontal row, a 3:1 wide canvas. Each cell is an age of ONE very SHORT horizontal flint-dust energy wake segment, no projectile body. All three share exact center and SAME left/right extents, approximately x=18% to82% of each cell, with usable opaque axial coverage across the middle80%. FRESH: compact charcoal-edged warm ivory-gray stroke, soft powder shoulders and a pale silver core, thickness about14% cell height. MIDDLE: SAME horizontal length, thickness9%, slightly broken internal flint-grain texture. OLD: SAME horizontal length, delicate thickness5%, still visible, runtime handles alpha fade. Ends have only short soft tapers and overlap well; do not shorten the old pose. Keep the segment substantial enough in thickness to match a wooden spear shaft. At most a few tiny stone-grain flecks embedded INSIDE the stroke, no large floating stone shards or isolated dots. Exactly straight and horizontal, no curved swooshes, no long pointed comet tail, no arrowhead, no spear, no fire colors, no cyan. Hand-painted dark whimsical survival-game material. No labels, grid, border, shadows, background mist, glow spilling into cell edges, or watermark. Fully transparent RGBA outside the three isolated strokes with wide transparent gutters."
+}

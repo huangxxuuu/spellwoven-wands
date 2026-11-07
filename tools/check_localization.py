@@ -2,7 +2,6 @@
 import json
 import re
 from pathlib import Path
-from xml.etree import ElementTree
 from lupa.lua51 import LuaRuntime, lua_type
 from build_localized_names import names
 
@@ -42,11 +41,8 @@ if __name__ == '__main__':
     for key, source in names('zh').items():
         assert actual[source] == expected_en[key], f'Stale generated name: {source}'
     for language in ('zh', 'en'):
-        suffix = '_en' if language == 'en' else ''
-        atlas = ElementTree.parse(ROOT / f'mod/images/nw_sections{suffix}.xml')
-        icons = {row.get('name') for row in atlas.findall('.//Element')}
         rows = runtime(language).eval('require("nw/acquisition").menu_entries')
-        assert all(not row.section_icon or row.section_icon + '.tex' in icons for row in rows.values())
+        assert all(not row.section_icon for row in rows.values()), 'Retired crafting headings still registered'
     a = json.loads((ROOT / 'site/dist/catalog.json').read_text(encoding='utf8'))['cards']
     b = json.loads((ROOT / 'site/dist/catalog.en.json').read_text(encoding='utf8'))['cards']
     assert [c['id'] for c in a] == [c['id'] for c in b]
@@ -54,4 +50,4 @@ if __name__ == '__main__':
         for key in ('mana', 'delay', 'recharge', 'iconIndex', 'groupOrder'):
             assert left[key] == right[key], (left['id'], key)
         assert not re.search(r'[\u4e00-\u9fff]', json.dumps(right, ensure_ascii=False))
-    print(f'PASS: {len(dictionary)} translations, format arguments, both icon atlases, gameplay/ID parity, {len(a)} bilingual catalog cards')
+    print(f'PASS: {len(dictionary)} translations, format arguments, real recipe entries, gameplay/ID parity, {len(a)} bilingual catalog cards')

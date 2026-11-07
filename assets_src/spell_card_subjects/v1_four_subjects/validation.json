@@ -1,0 +1,98 @@
+[
+  {
+    "id": "fire",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "raw_alpha_bbox": [
+      0,
+      57,
+      1198,
+      1214
+    ],
+    "visible_alpha_bbox_threshold_8": [
+      76,
+      275,
+      1189,
+      979
+    ],
+    "edge_max_alpha": 1,
+    "transparent_fraction": 0.7371,
+    "source_copy_identical": true,
+    "sha256": "6883d78bc52ff734672c00f45a3184af978363e9f185d56032aa775131d9b453"
+  },
+  {
+    "id": "frost",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "raw_alpha_bbox": [
+      0,
+      0,
+      1216,
+      1214
+    ],
+    "visible_alpha_bbox_threshold_8": [
+      56,
+      305,
+      1197,
+      984
+    ],
+    "edge_max_alpha": 1,
+    "transparent_fraction": 0.7449,
+    "source_copy_identical": true,
+    "sha256": "6849b7827e0a65ad3a4876e59a509c10c45649e550d8f125a203fbaba54aed04"
+  },
+  {
+    "id": "heavy",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "raw_alpha_bbox": [
+      0,
+      15,
+      1218,
+      1236
+    ],
+    "visible_alpha_bbox_threshold_8": [
+      102,
+      104,
+      1142,
+      1159
+    ],
+    "edge_max_alpha": 1,
+    "transparent_fraction": 0.4707,
+    "source_copy_identical": true,
+    "sha256": "328162d3c6da6dd327e816e81a1c031612bae39411c6971bcb3513339840aebb"
+  },
+  {
+    "id": "edge_farm_hoe",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "raw_alpha_bbox": [
+      0,
+      23,
+      1224,
+      1254
+    ],
+    "visible_alpha_bbox_threshold_8": [
+      142,
+      76,
+      1154,
+      1190
+    ],
+    "edge_max_alpha": 1,
+    "transparent_fraction": 0.8214,
+    "source_copy_identical": true,
+    "sha256": "674e4c9e74ba3efeeb8f0083d9b0bc9cdf00973f4272d5e6fc9f662267be6313"
+  }
+]

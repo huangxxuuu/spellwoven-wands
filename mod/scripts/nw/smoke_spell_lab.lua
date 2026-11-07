@@ -583,7 +583,7 @@ function M.run(x,z,done)
         end)
         return 1.5,function()
             assert(close(owner.components.health.currenthealth,mine-22),"NW_SCOPE: self")
-            assert(close(friend.components.health.currenthealth,hp-(TheNet:GetPVPEnabled() and 22 or 0)),"NW_SCOPE: PvP")
+            assert(close(friend.components.health.currenthealth,hp-22),"NW_SCOPE: explicit player target")
             print("NW_SCOPE_PASS: self and other-player damage; PvP",TheNet:GetPVPEnabled())
         end
     end

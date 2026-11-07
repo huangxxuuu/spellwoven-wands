@@ -1,0 +1,32 @@
+{
+  "hit": {
+    "source": "assets_src/spell_card_subjects/v3_full_catalog/projectiles_controls/imprint_hit.png",
+    "sha256": "ab26b67f82600dfa510f8d4b55505e582a901052b157e8f0805cf49d935d3389",
+    "operations": [
+      "trim transparent margin",
+      "uniform scale",
+      "center on opaque badge plate"
+    ],
+    "redrawn": false
+  },
+  "timer": {
+    "source": "assets_src/spell_card_subjects/v3_full_catalog/projectiles_controls/imprint_timer.png",
+    "sha256": "3a7e0039cf4121cc6e32be0722572ad167cd5e0796acc1d785148c8b7ee26811",
+    "operations": [
+      "trim transparent margin",
+      "uniform scale",
+      "center on opaque badge plate"
+    ],
+    "redrawn": false
+  },
+  "break": {
+    "source": "assets_src/spell_card_subjects/v3_full_catalog/fields/payload_egg.png",
+    "sha256": "576a246a8a710fbda3e9405dad81d2e913bb6b0115aaaab579e8bbc0ec9bcc69",
+    "operations": [
+      "trim transparent margin",
+      "uniform scale",
+      "center on opaque badge plate"
+    ],
+    "redrawn": false
+  }
+}

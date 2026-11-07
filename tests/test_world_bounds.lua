@@ -92,7 +92,7 @@ local P=require("nw/projectiles")
 TheSim={FindEntities=function() return {} end}
 local projectile
 SpawnPrefab=function(name)
-    assert(name=="nw_projectile","boundary must not manufacture a terminal effect")
+    assert(name=="nw_end_beam","boundary must not manufacture a terminal effect")
     local e=entity()
     function e:Launch(caster,p,x,z,dx,dz,cleanup)
         self:ListenForEvent("onremove",cleanup)
@@ -116,6 +116,7 @@ assert(E.execute(plan,owner,0,0,1,0,1.4))
 projectile.x=100;P.step(projectile,now+1,{})
 assert(not projectile.valid and E.stats()==0 and fired==0)
 -- Terminal blink in the five-unit buffer must not teleport the caster.
+TheWorld.Map.IsOceanAtPoint=function() return false end
 owner.Physics.Teleport=function() error("teleport into void") end
 require("nw/engraved_impact").finish({owner=owner,p={engraving="orangestaff"}},14,0)
 print("world bounds: coast/ocean, void margin/corners, natural barriers, fast sweep, restored and ownerless fields, idle cleanup, reservations and silent removal")

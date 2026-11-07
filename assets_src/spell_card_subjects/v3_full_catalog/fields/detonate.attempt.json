@@ -1,0 +1,9 @@
+{
+  "id": "detonate",
+  "name": "晶雷引爆令",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "detonate.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/originals/detonate.png"
+}
+

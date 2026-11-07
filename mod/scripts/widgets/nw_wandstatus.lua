@@ -46,8 +46,8 @@ function Status:Refresh(wand,near,hint)
     end
     tip(self.edit,(hint or (near and T("可编辑：点击或拖动法术卡") or T("只读：靠近奥术台可编辑")))..T("\n按住右键拖动窗口"))
     tip(self.mana,string.format(T("法力 %d / %d\n按住右键拖动窗口"),mana,maximum))
-    tip(self.cast,state=="cooling" and string.format(T("冷却剩余 %.1f 秒"),cooling/100)
-        or state=="ready" and T("可以施法") or T("暂不可施法：法力不足或无有效法术"))
+    tip(self.cast,wand._nw_broken and wand._nw_broken:value() and T("法杖破损：用 5 份奥术粉尘修复") or state=="cooling" and string.format(T("冷却剩余 %.1f 秒"),cooling/100)
+        or state=="ready" and T("可以施法") or require("nw/cast_status").tip(wand._nw_castreason and wand._nw_castreason:value()))
 end
 function Status:OnUpdate(dt)
     if not self.wand then return end

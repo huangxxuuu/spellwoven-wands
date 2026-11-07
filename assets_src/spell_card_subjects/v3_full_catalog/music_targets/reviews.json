@@ -1,0 +1,109 @@
+{
+  "leech": {
+    "status": "candidate",
+    "notes": "生命液滴、收拢弯爪与回流箭头清楚，主体完整。"
+  },
+  "heal_ally": {
+    "status": "candidate",
+    "notes": "弹丸命中红心与绿色加号清楚，未见明显雾底。"
+  },
+  "light": {
+    "status": "candidate",
+    "notes": "六道光芒、亮核与弧线清楚；预览有彩色边缘，但实际 alpha≥8 的饱和红/绿像素均为0，877个红色像素均为低于8的低alpha残留，列为观察项而非必重绘。",
+    "retry": "保持主体菱形亮核、六道光芒与底部短轨迹完全不变；清除光芒尖端和轨迹边缘的红色、黄色杂色散点及细碎毛边。只保留三层金色实心形状与近黑描边。外部及各形状之间全部透明，抗锯齿仅1–2像素，不要半透明彩色残留。",
+    "optional_retry": true
+  },
+  "mana_reduce": {
+    "status": "candidate",
+    "notes": "蓝色液滴、降低箭头与回流形状清楚；底部余量较小，最终卡面适配时需按可见轮廓留边。"
+  },
+  "recharge_down": {
+    "status": "candidate",
+    "notes": "沙漏与缩短等待符号清楚，主要形状完整。"
+  },
+  "chord_d": {
+    "status": "candidate",
+    "notes": "木制三角弦琴、蓝音符和唯一音名D清楚，无明显灰雾。"
+  },
+  "note_a": {
+    "status": "candidate",
+    "notes": "陶笛、金色音符和唯一音名A清楚，背景透明。"
+  },
+  "note_c": {
+    "status": "candidate",
+    "notes": "陶笛、金色音符和唯一音名C清楚，背景透明。"
+  },
+  "target_hostile": {
+    "status": "candidate",
+    "notes": "猎犬头与目标准星明确，毛束已简化；外沿刻标余量小，合框时按完整轮廓缩放。"
+  },
+  "target_friendly": {
+    "status": "candidate",
+    "notes": "猪人头像、友好心形与同系列准星清楚。"
+  },
+  "target_building": {
+    "status": "candidate",
+    "notes": "单间木屋及准星清楚，独立透明主体。"
+  },
+  "target_neutral": {
+    "status": "needs_retry",
+    "notes": "兔子长耳上方额外出现两条卷曲触角状笔画，影响原版兔子形象。",
+    "retry": "保持准星环、兔子坐姿、暖棕配色和白胸毛；兔子只能有两只正常长耳。删除头顶/耳朵上方两条卷曲触角、问号状深色笔画及任何额外耳朵，不新增肢体。主形简洁，兔子外与准星内空隙全部透明。"
+  },
+  "target_nature": {
+    "status": "candidate",
+    "notes": "树木与矿石组成紧凑自然资源轮廓，系列准星统一。"
+  },
+  "target_players_other": {
+    "status": "candidate",
+    "notes": "两位玩家剪影和从施法者指向他人的箭头清楚，与自身卡区分明确。"
+  },
+  "target_self": {
+    "status": "candidate",
+    "notes": "单个施法者和回指胸口的弯箭头清楚，背景空隙透明。"
+  },
+  "ocarina_b": {
+    "status": "candidate",
+    "notes": "陶笛与金色音符风格统一，唯一音名B正确，主体完整。"
+  },
+  "ocarina_d": {
+    "status": "candidate",
+    "notes": "陶笛与金色音符风格统一，唯一音名D正确，主体完整。"
+  },
+  "ocarina_e": {
+    "status": "candidate",
+    "notes": "陶笛与金色音符风格统一，唯一音名E正确，主体完整。"
+  },
+  "ocarina_f": {
+    "status": "candidate",
+    "notes": "陶笛与金色音符风格统一，唯一音名F正确，主体完整。"
+  },
+  "ocarina_gsharp": {
+    "status": "candidate",
+    "notes": "陶笛与金色音符风格统一，唯一音名G#正确，主体完整。"
+  },
+  "ocarina_a2": {
+    "status": "candidate",
+    "notes": "陶笛与金色音符风格统一，唯一音名A2正确，主体完整。"
+  },
+  "kantele_a": {
+    "status": "candidate",
+    "notes": "木制三角弦琴与蓝色音符风格统一，唯一音名A正确，主体完整。"
+  },
+  "kantele_dsharp": {
+    "status": "candidate",
+    "notes": "木制三角弦琴与蓝色音符风格统一，唯一音名D#正确，主体完整。"
+  },
+  "kantele_e": {
+    "status": "candidate",
+    "notes": "木制三角弦琴与蓝色音符风格统一，唯一音名E正确，主体完整。"
+  },
+  "kantele_g": {
+    "status": "candidate",
+    "notes": "木制三角弦琴、蓝色音符与唯一音名G正确，主体完整。"
+  },
+  "ocarina_g": {
+    "status": "candidate",
+    "notes": "陶笛、金色音符与唯一音名G正确，主体完整。"
+  }
+}

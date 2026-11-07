@@ -35,19 +35,51 @@ local function find(...) return TheSim:FindEntities(...) end
 local Effects=require("nw/spell_effects")
 local Engraving=require("nw/engraved_impact")
 local Flight=require("nw/flight")
+local AnimatedFlight=require("nw/elemental_flight")
 local Triggers=require("nw/projectile_triggers")
-local impact,timer=Triggers.hit,Triggers.timer
+local Beam=require("nw/end_beam")
+local timer=Triggers.timer
+function M.contact_fx(s,x,z)
+    local id=AnimatedFlight.resolve(s.p and (s.p.base or s.p.id))
+    if id then
+        local fx=Effects.fx("nw_elemental_hit_fx",x,z)
+        if fx then fx:SetImpact(id,s.height or require("nw/muzzle").default_height,Size.factor(s.p),math.atan2(s.dz,s.dx)) end
+    end
+end
+local function impact(s,target,x,z)
+    M.contact_fx(s,x,z)
+    -- A payload may remove its carrier synchronously. Capture the contact cue
+    -- first, including the incoming direction before a wall reflection.
+    Triggers.hit(s,target,x,z)
+end
+local function beam_candidates(cache,x,z,nx,nz,scope,radius)
+    return M.candidates(cache,x,z,nx,nz,find,scope,radius)
+end
+local function beam_hit(inst,s,target,x,z,kind)
+    if kind=="ally" then
+        if s.group and s.group.healed then s.group.healed[target]=true end
+        target.components.health:DoDelta(s.p.flags.heal_ally.heal,false,"nw_heal")
+        M.heal_fx(x,z)
+        M.contact_fx(s,x,z)
+    else
+        if kind=="prop" then target._nw_break(s.owner)
+        else require("nw/expanded_hits").impact(s,target,x,z) end
+        impact(s,target,x,z)
+    end
+end
 local function finish(inst,s,x,z,natural)
     if s.placement then require("nw/field_motion").stop(inst,x,z);return end
+    if s.beam and not Beam.stop(inst,s,x,z,GetTime()) then return end
     local p=s.p
     if p and (natural or p.engraving=="orangestaff") then
         if p.engraving and not p.ballistic then Engraving.finish(s,x,z) end
-        if p.id=="spore_ball" then Effects.blast(s.owner,x,z,{damage=s.damage,radius=Size.factor(p),flags=s.p.flags}) end
+        if p.id=="spore_ball" then Effects.blast(s.owner,x,z,{damage=s.damage,radius=Size.factor(p),flags=s.p.flags,quiet_burst=true,journal_id=p.journal_id or p.id}) end
         if p.end_damage or p.id=="land_hook" then require("nw/expanded_hits").finish(s,x,z) end
         if p.flags.light then Effects.afterlight(s.owner,x,z) end
     end
     Triggers.finish(s,x,z)
-    inst:Remove()
+    if not s.beam or #s.beam.segments==0 then inst:Remove()
+    elseif inst:IsValid() then Beam.publish(inst,s,GetTime(),true) end
 end
 local function rebound(inst,s,c,ix,iz,length,fraction)
     if not s.bounces or s.bounces<=0 then return false end
@@ -77,12 +109,20 @@ function M.step(inst,now,cache,timers)
     elseif not s or not Effects.live(s.owner) then inst:Remove();return end
     local p=s.p
     local flags=p and p.flags or {}
+    if Beam.is(p) then
+        Beam.start(inst,s)
+        if s.beam.ended then
+            if Beam.step(inst,s,now,cache,beam_candidates,beam_hit) then Beam.publish(inst,s,now) end
+            return
+        end
+    end
     local key=not s.placement and p and p.engraving
     if key=="shieldofterror" then require("nw/orbit_shield").update(inst,s,now,timers);return end
     local x,z=s.x,s.z
     local nx,ny,nz=inst.Transform:GetWorldPosition()
     if not s.placement and not (p and p.ballistic) then Flight.ground(inst,nx,ny,nz) end
     local dx,dz=nx-x,nz-z
+    if not s.placement and require("nw/guard_ring").intercept(inst,x,z,nx,nz) then return end
     local length=math.sqrt(dx*dx+dz*dz)
     local dt=math.max(0,now-s.time)
     local range=Limits.range>0 and Limits.range or math.huge
@@ -98,6 +138,7 @@ function M.step(inst,now,cache,timers)
     if boundary==0 then inst:Remove();return end
     if boundary then fraction=fraction*boundary end
     nx,nz=x+dx*fraction,z+dz*fraction
+    if s.beam and boundary then inst:Remove();return end
     local age=s.age or 0
     local elapsed=dt*fraction
     local deadline=p and p.event=="timer" and not s.timer_done and (p.time or .5)
@@ -111,12 +152,13 @@ function M.step(inst,now,cache,timers)
     s.time=now;s.age=age+elapsed;s.remaining=s.remaining-elapsed
     s.x,s.z=nx,nz;s.travelled=s.travelled+length*fraction
     if Perf.sample then Perf.sample.steps=Perf.sample.steps+1 end
-    if flags.side_embers or flags.halo or s.partner then require("nw/expanded_hits").step(s,now) end
+    if not s.placement and (flags.side_embers or flags.halo or s.partner) then require("nw/expanded_hits").step(s,now) end
     if s.ignore_self then
         local ox,_,oz=s.owner.Transform:GetWorldPosition()
         local radius=s.owner:GetPhysicsRadius(.5)+Size.radius(p,s.age)
         if (x-ox)^2+(z-oz)^2>radius^2 then s.ignore_self=false end
     end
+    if s.beam and not Beam.step(inst,s,now,cache,beam_candidates,beam_hit) then return end
     local contacts
     local filter=Engraving.filters[key]
     local scope=flags.targets or (filter and {nature=true})
@@ -125,7 +167,8 @@ function M.step(inst,now,cache,timers)
     for _,e in ipairs(not skip_contacts and M.candidates(cache,x,z,nx,nz,find,scope,hit_radius) or {}) do
         if Perf.sample then Perf.sample.visits=Perf.sample.visits+1 end
         -- Floating staff stars pass over walls even when buildings are selected.
-        if e~=inst and not (s.ignore_walls and e:HasTag("wall")) and (e~=s.owner or flags.targets and flags.targets.self and not s.ignore_self) and e:IsValid() and (not s.hit or not s.hit[e] or s.age+.000001>=s.hit[e]) then
+        if e~=inst and not (s.ignore_walls and e:HasTag("wall")) and (e~=s.owner or flags.targets and flags.targets.self and not s.ignore_self) and e:IsValid()
+            and (not s.hit or not s.hit[e] or s.age+.000001>=s.hit[e] or s.beam and (e:HasTag("wall") or e._nw_break)) then
             local tx,_,tz=e.Transform:GetWorldPosition()
             local t=Geometry.hit(x,z,nx,nz,tx,tz,math.min(3,e:GetPhysicsRadius(.5))+hit_radius)
             if t then
@@ -149,6 +192,45 @@ function M.step(inst,now,cache,timers)
         if contacts and not s.hits_left then for _,c in ipairs(contacts) do t=math.min(t,c.t) end end
         require("nw/engraved_fire").absorb(s.owner,x,z,x+(nx-x)*t,z+(nz-z)*t,(p.fire_radius or 3)*Size.factor(p))
     end
+    if s.beam then
+        if contacts and #contacts>1 then table.sort(contacts,function(a,b) return a.t<b.t or a.t==b.t and a.e.GUID<b.e.GUID end) end
+        for _,c in ipairs(contacts or {}) do
+            local ix,iz=x+(nx-x)*c.t,z+(nz-z)*c.t
+            advance_timer(c.t)
+            if not inst:IsValid() then return end
+            if not Effects.live(s.owner) then inst:Remove();return end
+            local target=c.e
+            if target:IsValid() then
+                local wall=c.wall and not c.selected and target.components.health and not target.components.health:IsDead()
+                if wall then
+                    if Beam.claim(s,target,now) then impact(s,target,ix,iz) end
+                    if not inst:IsValid() then return end
+                    if not Effects.live(s.owner) then inst:Remove();return end
+                    Beam.record(s,x,z,ix,iz,now)
+                    if rebound(inst,s,c,ix,iz,length,fraction) then Beam.publish(inst,s,now);return end
+                    finish(inst,s,ix,iz,true);return
+                end
+                local kind=Beam.classify(s,target)
+                if kind then
+                    Beam.hit(inst,s,target,ix,iz,s.dx,s.dz,now,beam_hit,kind)
+                    if not inst:IsValid() then return end
+                    if not Effects.live(s.owner) then inst:Remove();return end
+                    if kind=="prop" or kind=="ally" then
+                        Beam.record(s,x,z,ix,iz,now)
+                        finish(inst,s,ix,iz,kind=="prop");return
+                    end
+                end
+            end
+        end
+        advance_timer(1)
+        if not inst:IsValid() then return end
+        if not Effects.live(s.owner) then inst:Remove();return end
+        Beam.record(s,x,z,nx,nz,now)
+        if s.remaining<=.000001 or s.travelled>=range-.000001 then finish(inst,s,nx,nz,true)
+        elseif not Flight.steer(inst,s,dt) then finish(inst,s,nx,nz,false)
+        else Beam.publish(inst,s,now) end
+        return
+    end
     if contacts then
         if #contacts>1 then table.sort(contacts,function(a,b) return a.t<b.t or a.t==b.t and a.e.GUID<b.e.GUID end) end
         for _,c in ipairs(contacts) do
@@ -159,8 +241,12 @@ function M.step(inst,now,cache,timers)
                     if rebound(inst,s,c,ix,iz,length,fraction) then return end
                     finish(inst,s,ix,iz,false);return
                 end
-                if s.hits_left then s.hit[c.e]=s.age+.1;s.hits_left=s.hits_left-1 end
-                if not s.hits_left or s.hits_left<=0 then finish(inst,s,ix,iz,false);return end
+                s.hit[c.e]=s.age+.5
+                if not c.wall then require("nw/explosions").hit(s.owner,p,ix,iz) end
+                if not s.pass_creatures then
+                    if s.hits_left then s.hits_left=s.hits_left-1 end
+                    if not s.hits_left or s.hits_left<=0 then finish(inst,s,ix,iz,false);return end
+                end
             elseif p and p.id=="gust" and c.prop and c.e._nw_stored and c.e._nw_stored.p.id=="payload_egg" then
                 local speed=s.motor_speed or s.speed
                 require("nw/field_motion").push_egg(c.e,s.owner,s.dx,s.dz,speed*.5)
@@ -186,6 +272,7 @@ function M.step(inst,now,cache,timers)
                 s.group.healed[c.e]=true
                 c.e.components.health:DoDelta(flags.heal_ally.heal,false,"nw_heal")
                 M.heal_fx(c.tx,c.tz)
+                M.contact_fx(s,ix,iz)
                 finish(inst,s,ix,iz,false);return
             elseif c.e:IsValid() and (c.selected or c.prop and p and p.heal or Targeting.allowed(s.owner,c.e,flags)) then
                 if p and p.heal then
@@ -200,7 +287,7 @@ function M.step(inst,now,cache,timers)
                     require("nw/expanded_hits").impact(s,c.e,ix,iz)
                 elseif p and (p.burn_damage or p.freeze or flags.leech or flags.knockback) then
                     Effects.direct(s.owner,c.e,p,s.dx,s.dz)
-                else Targeting.damage(s.owner,c.e,s.damage,flags) end
+                else Targeting.damage(s.owner,c.e,s.damage,flags,p) end
                 if not s.hits_left or s.hits_left<=1 then
                     -- A selected object may accept a collision without having a
                     -- health, burnable or freezable component. Always show the

@@ -1,0 +1,49 @@
+{
+  "id": "vital_ring",
+  "name": "活力环",
+  "attempt_count": 1,
+  "status": "candidate",
+  "prompt": "vital_ring.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_objects/garden_ring.png",
+  "output": "vital_ring.png",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-eab9521a-e592-44ed-858d-97770a5143a8.png",
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28 as C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-eab9521a-e592-44ed-858d-97770a5143a8.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [],
+    "complete_visible_subject": true,
+    "minimum_visible_margin_px": 70,
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "id": "vital_ring",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 1234699,
+    "opaque_pixels": 607,
+    "semi_transparent_pixels": 337210,
+    "bbox_alpha32": [
+      77,
+      160,
+      1184,
+      1084
+    ],
+    "bbox_alpha128": [
+      77,
+      161,
+      1183,
+      1083
+    ],
+    "edge_max_alpha": 1,
+    "sha256": "00c1a8da4a0dffeddcc4b7b2e7cf550de564ecfe51124e7e2bdeb26b06726556",
+    "matches_source": true
+  }
+}

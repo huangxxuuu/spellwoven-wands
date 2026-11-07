@@ -28,7 +28,11 @@ local inv={maxslots=2,GetEquippedItem=function() return wand end}
 function inv:GetItemSlot(item) for i,v in pairs(slots) do if v==item then return i end end end
 function inv:GetItemInSlot(i) return slots[i] end
 function inv:RemoveItem(item) local i=self:GetItemSlot(item);if i then slots[i]=nil;return item end end
-function inv:GiveItem(item,i) if slots[i] then return false end;slots[i]=item;return true end
+function inv:GiveItem(item,i)
+    if not i then for k=1,self.maxslots do if not slots[k] then i=k;break end end end
+    if not i or slots[i] then return false end
+    slots[i]=item;return true
+end
 local player={components={inventory=inv,health={IsDead=function() return false end}},Transform={GetWorldPosition=function() return 0,0,0 end}}
 local function reject(reason,slot,source,revision)
     local oldrev=data.config_revision;local oldmana=data.runtime.mana

@@ -1,0 +1,103 @@
+{
+  "created": "2026-11-07",
+  "mode": "built-in image_gen",
+  "status": "style-selection candidates; not final runtime exports",
+  "images": [
+    {
+      "id": "a_ink_parchment",
+      "title": "A — INK & PARCHMENT",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-1f1f4838-ddd8-468a-b1e7-ff80970f8fad.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v1_candidates/a_ink_parchment.png",
+      "file": "a_ink_parchment.png",
+      "width": 1448,
+      "height": 1086,
+      "mode": "RGB",
+      "bytes": 2562022,
+      "alpha_extrema": null,
+      "corner_alpha": null,
+      "center_alpha": null,
+      "sha256": "9ad613040aa9318465404e4c98a64175764b943885b1abf9b20d37244a1b3c73"
+    },
+    {
+      "id": "b_antique_brass",
+      "title": "B — ANTIQUE BRASS",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-87020fec-93cd-4fef-a0cf-6c6ba4853380.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v1_candidates/b_antique_brass.png",
+      "file": "b_antique_brass.png",
+      "width": 1448,
+      "height": 1086,
+      "mode": "RGB",
+      "bytes": 2562029,
+      "alpha_extrema": null,
+      "corner_alpha": null,
+      "center_alpha": null,
+      "sha256": "4df44cdca1b804d3c917cb1110700bcfa78f98cd4a87b147b006de09af22e2f0"
+    },
+    {
+      "id": "c_thorn_engraving",
+      "title": "C — THORN ENGRAVING",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-2dd94568-e797-47d4-ac19-ad8a06c7c766.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v1_candidates/c_thorn_engraving.png",
+      "file": "c_thorn_engraving.png",
+      "width": 1448,
+      "height": 1086,
+      "mode": "RGB",
+      "bytes": 2846280,
+      "alpha_extrema": null,
+      "corner_alpha": null,
+      "center_alpha": null,
+      "sha256": "44dd04c13b1eb22db82a61b4bb6a26b3c347f501d0d262cd4b533fcc8615dd8c"
+    },
+    {
+      "id": "a_ink_parchment_collector_basic",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-99e8befb-f57f-4a69-a10e-b999fdc96205.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v1_candidates/a_ink_parchment_collector_basic.png",
+      "file": "a_ink_parchment_collector_basic.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "bytes": 1943210,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "corner_alpha": 0,
+      "center_alpha": 253,
+      "sha256": "c0739c6e06be406194397eb6cdcae6a8d8fde9626519066f4553057f96547a15"
+    },
+    {
+      "id": "b_antique_brass_collector_basic",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-b006477a-a068-4a6d-a263-d037812977f0.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v1_candidates/b_antique_brass_collector_basic.png",
+      "file": "b_antique_brass_collector_basic.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "bytes": 1860902,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "corner_alpha": 0,
+      "center_alpha": 253,
+      "sha256": "54fdf762379b17a98411b3dacfae450cf754ca393da6001ee6e0e6df027367d9"
+    },
+    {
+      "id": "c_thorn_engraving_collector_basic",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-bc3e9624-ef16-4c30-bfed-5a7373c3197c.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v1_candidates/c_thorn_engraving_collector_basic.png",
+      "file": "c_thorn_engraving_collector_basic.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "bytes": 2130891,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "corner_alpha": 0,
+      "center_alpha": 253,
+      "sha256": "0b41dd967e928200af90430e7e5be95fc8d4e5219bfd738340fa9c3d3452ec8a"
+    }
+  ]
+}

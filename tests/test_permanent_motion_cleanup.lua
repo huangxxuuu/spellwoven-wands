@@ -49,6 +49,7 @@ local function entity(id,speed,absent)
     end
     e.Transform={GetWorldPosition=function() return e.x,0,e.z end,SetRotation=function() end}
     e.Physics={Stop=function() end,ClearCollisionMask=function() end,SetMotorVel=function() end}
+    e.AnimState={PlayAnimation=function() end,PushAnimation=function() end,SetScale=function() end}
     e.entity={SetCanSleep=function() end}
     function e:IsValid() return self.valid end
     function e:IsInLimbo() return self.limbo end

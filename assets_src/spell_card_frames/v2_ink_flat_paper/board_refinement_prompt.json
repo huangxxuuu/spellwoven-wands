@@ -1,0 +1,11 @@
+{
+  "mode": "built-in image_gen",
+  "created": "2026-11-07",
+  "id": "a_flat_paper_style_board",
+  "referenced_image_paths": [
+    "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v2_ink_flat_paper/a_flat_paper_style_board_pass1.png",
+    "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v2_ink_flat_paper/a_flat_paper_collector_basic.png"
+  ],
+  "transparent_background": false,
+  "prompt": "Use case: precise-object-edit.\nImage1 is the EDIT TARGET, the updated A flat-paper comparison board. Image2 is the APPROVED MATERIAL AND INK-OUTLINE REFERENCE: a single flat paper card with a hand-drawn fine inset ink line. Make one very limited consistency correction to image1.\nKeep its entire layout, title, labels, background, all three card shapes, blank paper centers, pale warm-gray paper gradient, gentle worn edges, and lying-flat ground perspective unchanged.\nRestore a confident narrow DARK BROWN HAND-DRAWN OUTER INK CONTOUR around every card. On the three LARGE collection cards only, also add ONE fine slightly irregular inset ink keyline like image2, printed directly on the SAME flat paper, with subtle corner hatching. The inset ink line follows the same clipped rectangle / six-sided vertical hexagon / top-center-notched rectangle shape. These are flat pigment strokes with ZERO relief or shading around the line. Do not create a thick raised frame, a beveled rim, a pasted inner sheet, an inset window or a detached border.\nAll inventory cards should have a simpler, slightly bolder single outer ink contour to survive small size; omit the fine inset line and most fine hatching there. Ground cards use the simplified single contour, natural thin layered front paper edges and attached soft ground shadow.\nAbsolutely NO curls, dog ears, rolls, folds, lifted corners, internal paper flaps, raised rails, embossed frame or triangular fold shadows ANYWHERE. Each individual card is one continuous flat paper sheet. Preserve ALL other image1 content exactly. This is a linework consistency fix only. High quality, sharp professional illustration."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "spore_sentry",
+  "name": "荚刺哨株",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "spore_sentry.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_objects/plant_idle.png"
+}
+

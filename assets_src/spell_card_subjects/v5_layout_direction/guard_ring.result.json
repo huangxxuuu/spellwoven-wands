@@ -1,0 +1,30 @@
+{
+  "id": "guard_ring",
+  "name": "护卫环",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-c3867a66-a29f-4015-bcea-395d1f4eccab.png",
+  "output": "guard_ring.png",
+  "prompt": "guard_ring.prompt.txt",
+  "references": [
+    "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v3_full_catalog/fields/guard_ring.png"
+  ],
+  "status": "candidate",
+  "visual_review": "五面盾牌数量正确；后排左中右三面展示木撑与皮革握带内侧，前排两面保留中央圆钉正面，环绕空隙和弧线保留。",
+  "attempt_count_this_request": 1,
+  "validation": {
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bbox_alpha8": [
+      84,
+      151,
+      1155,
+      1098
+    ],
+    "minimum_visible_margin_px": 84,
+    "saturated_red_pixels_alpha8": 0,
+    "sha256": "97fb2ebfb1e1a222555185f7d357bf1ddf8298e75850812e5fc43f15d5230973",
+    "matches_source": true
+  }
+}

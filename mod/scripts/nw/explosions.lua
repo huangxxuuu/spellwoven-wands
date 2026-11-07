@@ -15,6 +15,7 @@ function M.hit(owner,p,x,z)
     bomb.persists=false
     bomb.Transform:SetPosition(x,0,z)
     bomb._nw_owner=owner
+    require("nw/journal_damage").tag(bomb,owner,p)
     local explosive=bomb.components.explosive
     explosive:SetAttacker(owner)
     local damage=modifier.explosion_damage or 25

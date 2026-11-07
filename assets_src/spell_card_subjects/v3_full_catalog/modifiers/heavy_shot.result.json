@@ -1,0 +1,41 @@
+{
+  "id": "heavy_shot",
+  "name": "沉重一击",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-cab59dcc-ff7a-46db-97b8-c8c81ecb1207.png",
+  "output": "heavy_shot.png",
+  "prompt": "heavy_shot.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "石壳、紫芯与下压箭头表达沉重一击；红色杂边只存在 alpha<8 区域。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      136,
+      39,
+      1163,
+      1252
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 2,
+    "sha256": "3ad1aec39f81f441b8bdaa7d61c1b88b73a1ca8bf17fecc75f3214ca9645c1b4",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

@@ -1,0 +1,74 @@
+{
+  "id": "target_hostile",
+  "name": "选取敌对生物",
+  "attempt_count": 1,
+  "status": "generated",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T00:50:21.103Z",
+  "review_status": "candidate",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b376-75a7-7611-9170-0176970a151c\\exec-d7028e4d-5fd0-49cd-993c-f772056218b1.png",
+  "output": "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v3_full_catalog/music_targets/target_hostile.png",
+  "prompt": "target_hostile.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/originals/target_hostile.png",
+  "completed_at": "2026-11-07T00:52:07.750Z",
+  "notes": "猎犬头与目标准星明确，毛束已简化；外沿刻标余量小，合框时按完整轮廓缩放。",
+  "issues": [],
+  "review": {
+    "status": "candidate",
+    "notes": "猎犬头与目标准星明确，毛束已简化；外沿刻标余量小，合框时按完整轮廓缩放。",
+    "issues": [],
+    "checked_visual": true,
+    "checked_alpha": true
+  },
+  "validation": {
+    "id": "target_hostile",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "0f4a2bc9e4dc00c09d9cd11d4a024a044bd392e844fac22bd508aac729abeaba",
+    "matches_original": true,
+    "transparent_pixels": 936144,
+    "opaque_pixels": 1589,
+    "nearly_opaque_pixels": 559278,
+    "alpha_bboxes": {
+      "1": [
+        0,
+        0,
+        1236,
+        1254
+      ],
+      "8": [
+        30,
+        8,
+        1221,
+        1243
+      ],
+      "32": [
+        30,
+        8,
+        1220,
+        1243
+      ],
+      "128": [
+        31,
+        9,
+        1220,
+        1242
+      ],
+      "250": [
+        34,
+        15,
+        1219,
+        1238
+      ]
+    },
+    "border_pixels_alpha_gte8": 0,
+    "red_pixels_alpha_gte8": 0,
+    "green_pixels_alpha_gte8": 0,
+    "red_pixels_alpha_1_to_7": 110,
+    "green_pixels_alpha_1_to_7": 19
+  },
+  "reviewed_at": "2026-11-07T01:06:22.977247+00:00"
+}

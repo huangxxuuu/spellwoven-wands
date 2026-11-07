@@ -146,22 +146,17 @@ function M.run(x,z,starting_wand)
         builder:EvaluateTechTrees()
         assert(builder.current_prototyper==station)
         local slots=station.components.craftingstation:GetItems()
-        local index,headings=0,0
+        local index=0
         for _,row in ipairs(rules.menu_entries) do
             if row.station==station.prefab then
                 index=index+1
                 assert(slots[index]==row.name,"NW_MENU: incorrect station slot "..index)
-                if row.section_icon then
-                    headings=headings+1
-                    built=nil
-                    assert(AllRecipes[row.name].nw_section and builder:KnowsRecipe(AllRecipes[row.name]))
-                    assert(not builder:DoBuild(row.name) and not built,"NW_MENU: built a section title")
-                end
+                assert(not row.section_icon and not AllRecipes[row.name].nw_section,"NW_MENU: obsolete heading")
             end
         end
-        assert(#slots==index and headings==(station==bench and 9 or 5))
+        assert(#slots==index)
     end
-    print("NW_SECTIONS_PASS: station order and all 14 non-craftable headings")
+    print("NW_STATION_RECIPES_PASS: both stations contain real recipes only")
     print("NW_STATIONS_PASS: crafted both stations and all recipes, 63 exclusive weapon cards")
     local gem= give("redgem",1)
     give("goldnugget",1)

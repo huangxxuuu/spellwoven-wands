@@ -1,0 +1,41 @@
+{
+  "id": "wild_charge",
+  "name": "散放快充",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-a3cb770a-eed0-4866-9cc4-d96f2ce9a1aa.png",
+  "output": "wild_charge.png",
+  "prompt": "wild_charge.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "法杖、三条散开弹道与回充箭头表达散放快充。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      77,
+      79,
+      1220,
+      1192
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 34,
+    "sha256": "cd44412b8862d99218a08f3d52620b6823f018482d161e2877b0b8b7149dfa2e",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

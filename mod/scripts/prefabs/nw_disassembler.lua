@@ -1,32 +1,34 @@
 local recycle=require("nw/recycle")
-local assets={Asset("ANIM","anim/nw_stations.zip")}
+local assets={Asset("ANIM","anim/nw_stations.zip"),Asset("ANIM","anim/nw_spell_world.zip")}
 local function clientfx(inst)
-    local ring,update,hover,start
-    local function refresh()
+    local ring,update,start
+    local function clear()
         if update then update:Cancel();update=nil end
-        if inst._active:value() or hover then
-            if not ring then
-                ring=SpawnPrefab("reticuleaoe")
-                ring.entity:SetParent(inst.entity)
-            end
-            local active=inst._active:value()
-            ring.AnimState:SetMultColour(.34,.91,1,active and .8 or .3)
-            local function scale()
-                local n=start and math.clamp((GetTime()-start)/2,.01,1) or 1
-                ring.Transform:SetScale(n,n,n)
-                if n==1 and update then update:Cancel();update=nil end
-            end
-            scale()
-            if active and start and GetTime()-start<2 then update=inst:DoPeriodicTask(FRAMES,scale) end
-        elseif ring then ring:Remove();ring=nil end
+        if ring then ring:Remove();ring=nil end
     end
-    inst:ListenForEvent("mouseover",function() hover=true;refresh() end)
-    inst:ListenForEvent("mouseout",function() hover=false;refresh() end)
     local function state()
-        start=inst._active:value() and (start or GetTime()) or nil
-        refresh()
+        if not inst._active:value() then start=nil;clear();return end
+        start=start or GetTime()
+        if not ring then
+            ring=CreateEntity();ring.entity:AddTransform();ring.entity:AddAnimState()
+            ring:AddTag("FX");ring:AddTag("NOCLICK");ring.persists=false
+            ring.entity:SetParent(inst.entity)
+            ring.AnimState:SetBank("nw_spell_world");ring.AnimState:SetBuild("nw_spell_world")
+            ring.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+            ring.AnimState:PlayAnimation("recycle_wave",true)
+            ring.AnimState:SetFinalOffset(1)
+        end
+        local function scale()
+            local n=math.clamp((GetTime()-start)/2,.01,1)
+            ring.Transform:SetScale(n,n,n)
+            -- The gold edge appears as the expanding dust finishes searching.
+            ring.AnimState:SetMultColour(.55+.45*n,.62+.38*n,1,.22+.35*n)
+        end
+        scale()
+        if not update then update=inst:DoPeriodicTask(FRAMES,scale) end
     end
     inst:ListenForEvent("nw_furnacedirty",state)
+    inst:ListenForEvent("onremove",clear)
     inst:DoTaskInTime(0,state)
     return state
 end
@@ -47,6 +49,15 @@ local function fn()
     if not TheWorld.ismastersim then return inst end
     inst.SetNWActive=function(_,active)
         inst._active:set(active);inst.Light:Enable(active)
+        if inst._lightgrow then inst._lightgrow:Cancel();inst._lightgrow=nil end
+        if active then
+            local start=GetTime();inst.Light:SetRadius(.1)
+            inst._lightgrow=inst:DoPeriodicTask(FRAMES,function()
+                local n=math.min(1,(GetTime()-start)/2)
+                inst.Light:SetRadius(.1+3.9*n)
+                if n>=1 then inst._lightgrow:Cancel();inst._lightgrow=nil end
+            end)
+        end
         inst.AnimState:PlayAnimation(active and "active" or "furnace",true)
         if update then update() end
     end
@@ -65,5 +76,5 @@ local function fn()
     inst:ListenForEvent("onremove",recycle.stop)
     return inst
 end
-return Prefab("nw_disassembler",fn,assets,{"reticuleaoe","carnival_sparkle_fx","nw_dust","nw_spellcard"}),
+return Prefab("nw_disassembler",fn,assets,{"carnival_sparkle_fx","nw_dust","nw_spellcard"}),
     MakePlacer("nw_disassembler_placer","nw_stations","nw_stations","furnace")

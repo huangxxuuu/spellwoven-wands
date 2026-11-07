@@ -49,8 +49,8 @@ function Button:SetTextColour(...) self.textcolour={...} end
 function Button:SetTextFocusColour(...) self.textfocuscolour={...} end
 function Button:SetOnClick(fn) self.onclick=fn end
 package.loaded["widgets/imagebutton"]=Button
-local visited
-VisitURL=function(url) visited=url end
+local visited,overlay
+VisitURL=function(url,use_overlay) visited,overlay=url,use_overlay end
 package.loaded["widgets/nineslice"]=Class(Widget,function(self)
     Widget._ctor(self);self.mid_center=self:AddChild(Widget())
 end)
@@ -78,14 +78,23 @@ ThePlayer={HUD={},replica={inventory={GetEquippedItem=function() return equipped
 local screen=ThePlayer.HUD
 TheFrontEnd={GetActiveScreen=function() return screen end}
 package.loaded["nw/editing"]={near=function() return near end}
+package.loaded["widgets/textbutton"]=package.loaded["widgets/imagebutton"]
 local Panel=require("widgets/nw_wandpanel")
 local root=Widget();root:SetPosition(640,60);root:SetScale(1.25)
 local panel=root:AddChild(Panel({}));panel.focus=true
 load_cb(false,"");panel:Refresh();panel:OnUpdate(.1)
 assert(panel.status.edit.texture=="readonly.tex")
 assert(panel.status.state=="ready" and panel.status.target_mana==.5)
+local reason="DUPLICATE_CARD"
+w._nw_castreason=net(function() return reason end)
+ready=false;panel:Refresh()
+assert(panel.status.cast._nw_tip==require("nw/cast_status").tip(reason))
+reason="NO_MANA";panel:Refresh()
+assert(panel.status.cast._nw_tip==require("nw/cast_status").tip(reason))
+ready=true;panel:Refresh()
 panel.guide.onclick()
 assert(visited=="https://huangxxuuu.github.io/spellwoven-wands/")
+assert(overlay==false,"guide must open the default browser")
 require("nw/locale").configure("en")
 panel.guide.onclick()
 assert(visited=="https://huangxxuuu.github.io/spellwoven-wands/en/")

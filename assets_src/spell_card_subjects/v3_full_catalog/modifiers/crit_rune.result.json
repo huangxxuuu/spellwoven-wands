@@ -1,0 +1,41 @@
+{
+  "id": "crit_rune",
+  "name": "暴击铭文",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-5aa9748d-2dc4-45e4-838f-7e795ba7f13d.png",
+  "output": "crit_rune.png",
+  "prompt": "crit_rune.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "晶石上的红色切口与白色冲击形状表达暴击。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      178,
+      4,
+      1077,
+      1250
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 4,
+    "sha256": "58378967c994cc72e375f1802910652a5b67015542a2e41cccc4fe2197c642fd",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

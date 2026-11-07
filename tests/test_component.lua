@@ -11,7 +11,7 @@ local function net()
     return { current=0, set=function(self,v) self.current=v end, value=function(self) return self.current end }
 end
 local function entity()
-    return {_nw_capacity=net(),_nw_mana=net(),_nw_ready=net()}
+    return {AddTag=function() end,RemoveTag=function() end,_nw_capacity=net(),_nw_mana=net(),_nw_ready=net()}
 end
 local Component=require("components/nw_wand")
 local a=Component(entity());a:InitializePrototype()
@@ -63,3 +63,31 @@ for _,extreme in ipairs({{24,320,.08,.10},{1200,2,2.4,6}}) do
     assert(restored.data.stats.mana_regen==s.mana_regen and restored.inst._nw_ready.current)
 end
 print("component: save/load, offline time, invalid input, deck repair, preview isolation")
+
+-- Broken state survives saving without losing cards or rolled stats.
+a.data.broken=true
+local broken=a:OnSave()
+local loaded=Component(entity());loaded:OnLoad(broken)
+assert(loaded.data.broken and loaded.data.cards[1].spell_id=="spark")
+assert(not loaded:ReadyPlan() and not loaded:PreviewCast())
+loaded.data.broken=false
+assert(loaded:ReadyPlan())
+-- A duplicate in an existing save must not reject the wand and roll a starter.
+local duplicate=U.copy(saved)
+duplicate.wand.cards[2]=U.copy(duplicate.wand.cards[1]);duplicate.wand.cards[2].spell_id="orbit"
+duplicate.wand.runtime=require("nw/compiler").initial(duplicate.wand.cards,duplicate.wand.stats,9)
+duplicate.wand.runtime.mana=100;duplicate.wand.runtime.remaining_recharge=.7
+local recovered=Component(entity());recovered:OnLoad(duplicate)
+assert(recovered.data and recovered.data.cards[1].spell_id=="spark" and recovered.data.cards[2].spell_id=="orbit")
+assert(recovered.data.cards[1].card_uid~=recovered.data.cards[2].card_uid)
+assert(recovered.data.runtime.mana==100 and recovered.data.runtime.remaining_recharge==.7)
+assert(require("nw/compiler").compile(recovered.data))
+for _,bad in ipairs({false,"",42}) do
+    local legacy=U.copy(saved)
+    legacy.wand.cards[1].card_uid=bad or nil
+    local c=Component(entity());c:OnLoad(legacy)
+    assert(c.data and c.data.cards[1].spell_id=="spark","missing card ID must not reset the wand")
+    assert(type(c.data.cards[1].card_uid)=="string" and c.data.cards[1].card_uid~="")
+    assert(c.data.runtime.mana==legacy.wand.runtime.mana)
+    assert(c.data.stats.mana_max==legacy.wand.stats.mana_max and require("nw/compiler").compile(c.data))
+end

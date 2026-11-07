@@ -1,0 +1,41 @@
+{
+  "axe": {
+    "archive": "anim/axe.zip",
+    "symbol": "axe01",
+    "frame": 0,
+    "size": [
+      152,
+      157
+    ],
+    "origin": [
+      -72,
+      -146
+    ]
+  },
+  "spear": {
+    "archive": "anim/swap_spear.zip",
+    "symbol": "swap_spear",
+    "frame": 0,
+    "size": [
+      74,
+      307
+    ],
+    "origin": [
+      -28,
+      -202
+    ]
+  },
+  "glasscutter": {
+    "archive": "anim/glasscutter.zip",
+    "symbol": "glasscutter01",
+    "frame": 0,
+    "size": [
+      130,
+      248
+    ],
+    "origin": [
+      -66,
+      -235
+    ]
+  }
+}

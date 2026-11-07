@@ -1,0 +1,128 @@
+[
+  {
+    "id": "arrow",
+    "saturated_red_alpha_counts": {
+      "1": 12,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_green_alpha_counts": {
+      "1": 85,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_cyan_alpha_counts": {
+      "1": 4001,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    }
+  },
+  {
+    "id": "chain",
+    "saturated_red_alpha_counts": {
+      "1": 1969,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_green_alpha_counts": {
+      "1": 85,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_cyan_alpha_counts": {
+      "1": 19,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    }
+  },
+  {
+    "id": "trident_cast",
+    "saturated_red_alpha_counts": {
+      "1": 43,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_green_alpha_counts": {
+      "1": 205,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_cyan_alpha_counts": {
+      "1": 145,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    }
+  },
+  {
+    "id": "grow_orb",
+    "saturated_red_alpha_counts": {
+      "1": 972,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_green_alpha_counts": {
+      "1": 23,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_cyan_alpha_counts": {
+      "1": 2,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    }
+  },
+  {
+    "id": "wild_double",
+    "saturated_red_alpha_counts": {
+      "1": 947,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_green_alpha_counts": {
+      "1": 53,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_cyan_alpha_counts": {
+      "1": 6,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    }
+  },
+  {
+    "id": "heal_bolt",
+    "saturated_red_alpha_counts": {
+      "1": 17,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_green_alpha_counts": {
+      "1": 14,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    },
+    "saturated_cyan_alpha_counts": {
+      "1": 4,
+      "8": 0,
+      "32": 0,
+      "128": 0
+    }
+  }
+]

@@ -1,0 +1,97 @@
+<div id="spell-card-backgrounds" aria-label="法术卡底色比较">
+  <div class="viz-controls">
+    <label class="form-label" for="background-card-size">图标尺寸 <output id="background-card-size-value" class="tabular-nums">64 px</output><input class="form-range" id="background-card-size" type="range" min="32" max="64" step="16" value="64"></label>
+    <label class="form-label" for="background-card-art">主图<select class="form-select" id="background-card-art"><option value="fire">橙红火焰</option><option value="ice">浅色冰晶</option><option value="weapon">深色武器</option><option value="none">隐藏图案</option></select></label>
+  </div>
+  <div class="viz-carousel viz-dotted-background" aria-label="卡面底色方案" data-previous-label="上一方案" data-next-label="下一方案">
+    <section data-variant="轻微上下渐变（推荐）" aria-label="轻微上下渐变">
+      <div class="bg-product bg-linear"><div class="bg-caption">同一边框 · 同一主图 · 只比较底色</div><div class="bg-gallery"></div><div class="bg-caption bg-small-caption">32 px 对照</div><div class="bg-mixed"></div></div>
+    </section>
+    <section data-variant="纯色纸面" aria-label="纯色纸面" hidden>
+      <div class="bg-product bg-flat"><div class="bg-caption">同一边框 · 同一主图 · 只比较底色</div><div class="bg-gallery"></div><div class="bg-caption bg-small-caption">32 px 对照</div><div class="bg-mixed"></div></div>
+    </section>
+    <section data-variant="中心向外渐变" aria-label="中心向外渐变" hidden>
+      <div class="bg-product bg-radial"><div class="bg-caption">同一边框 · 同一主图 · 只比较底色</div><div class="bg-gallery"></div><div class="bg-caption bg-small-caption">32 px 对照</div><div class="bg-mixed"></div></div>
+    </section>
+  </div>
+  <template id="background-card-template"><div class="bg-cell" role="img"><span class="bg-frame"></span><span class="bg-art bg-fire"><i data-lucide="flame" aria-hidden="true"></i></span><span class="bg-art bg-ice"><i data-lucide="gem" aria-hidden="true"></i></span><span class="bg-art bg-weapon"><i data-lucide="sword" aria-hidden="true"></i></span></div></template>
+  <span class="sr-only" id="background-card-status" aria-live="polite">64像素，橙红火焰</span>
+</div>
+<style>
+#spell-card-backgrounds { display:grid; gap:14px; }
+#spell-card-backgrounds .bg-product { --bg-size:64px; --bg-ink:#483729; font-family:"Microsoft YaHei",sans-serif; font-size:13px; line-height:1.5; color:#eee3ce; background:#342e27; border-radius:7px; padding:18px 22px; min-height:260px; box-sizing:border-box; }
+#spell-card-backgrounds .bg-linear { --bg-paper:linear-gradient(to bottom,#E5DCC9 0%,#DDD3BE 55%,#D4C7AD 100%); }
+#spell-card-backgrounds .bg-flat { --bg-paper:#DDD3BE; }
+#spell-card-backgrounds .bg-radial { --bg-paper:radial-gradient(ellipse farthest-corner at 50% 50%,#E5DCC9 0%,#DDD3BE 60%,#D4C7AD 100%); }
+#spell-card-backgrounds .bg-caption { font-size:12px; color:#cebea3; margin-bottom:14px; }
+#spell-card-backgrounds .bg-gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+#spell-card-backgrounds .bg-example { display:flex; align-items:center; flex-direction:column; min-width:0; gap:8px; text-align:center; }
+#spell-card-backgrounds .bg-slot { width:80px; height:80px; display:grid; place-items:center; background:radial-gradient(ellipse at 50% 38%,#625746,#453c30); border:1px solid #746047; border-radius:5px; box-sizing:border-box; }
+#spell-card-backgrounds .bg-cell { position:relative; display:block; width:var(--bg-size); height:var(--bg-size); flex:none; }
+#spell-card-backgrounds .bg-frame { position:absolute; left:9.375%; top:6.25%; width:81.25%; height:87.5%; clip-path:var(--bg-shape); background:var(--bg-ink); }
+#spell-card-backgrounds .bg-frame::after { position:absolute; content:""; inset:calc(var(--bg-size) * .0390625); clip-path:var(--bg-shape); background:var(--bg-paper); }
+#spell-card-backgrounds .bg-basic { --bg-shape:polygon(7.6923% 0,92.3077% 0,100% 7.1429%,100% 92.8571%,92.3077% 100%,7.6923% 100%,0 92.8571%,0 7.1429%); }
+#spell-card-backgrounds .bg-modifier { --bg-shape:polygon(50% 0,100% 21.4286%,100% 78.5714%,50% 100%,0 78.5714%,0 21.4286%); }
+#spell-card-backgrounds .bg-control { --bg-shape:polygon(7.6923% 0,34.6154% 0,34.6154% 14.2857%,65.3846% 14.2857%,65.3846% 0,92.3077% 0,100% 7.1429%,100% 92.8571%,92.3077% 100%,7.6923% 100%,0 92.8571%,0 7.1429%); }
+#spell-card-backgrounds .bg-art { position:absolute; inset:0; display:none; place-items:center; }
+#spell-card-backgrounds[data-art="fire"] .bg-fire,#spell-card-backgrounds[data-art="ice"] .bg-ice,#spell-card-backgrounds[data-art="weapon"] .bg-weapon { display:grid; }
+#spell-card-backgrounds .bg-art svg { width:calc(var(--bg-size) * .46875) !important; height:calc(var(--bg-size) * .46875) !important; min-width:0 !important; max-width:none !important; stroke-width:1.8; }
+#spell-card-backgrounds .bg-fire svg { fill:#c86b37; stroke:#6c4028; }
+#spell-card-backgrounds .bg-ice svg { fill:#d8e9e7; stroke:#476871; }
+#spell-card-backgrounds .bg-weapon svg { fill:#6a6260; stroke:#393638; stroke-width:2; }
+#spell-card-backgrounds .bg-small-caption { margin:19px 0 9px; padding-top:13px; border-top:1px solid #685944; }
+#spell-card-backgrounds .bg-mixed { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+#spell-card-backgrounds .bg-small-slot { display:grid; place-items:center; height:44px; background:#514838; border:1px solid #77644b; border-radius:4px; }
+#spell-card-backgrounds .bg-small-slot .bg-cell { --bg-size:32px; }
+@media(max-width:480px) { #spell-card-backgrounds .bg-product { padding:16px 10px; } #spell-card-backgrounds .bg-gallery,#spell-card-backgrounds .bg-mixed { gap:4px; } }
+</style>
+<script>
+(() => {
+  const root=document.getElementById('spell-card-backgrounds');
+  const template=root.querySelector('#background-card-template');
+  const products=root.querySelectorAll('.bg-product');
+  const definitions=[['basic','基础法术'],['modifier','法术修饰'],['control','施法控制']];
+  products.forEach(product=>{
+    definitions.forEach(([shape,name])=>{
+      function cell() {
+        const result=template.content.firstElementChild.cloneNode(true);
+        result.classList.add('bg-'+shape);
+        result.dataset.name=name;
+        return result;
+      }
+      const example=document.createElement('div');example.className='bg-example';
+      const slot=document.createElement('div');slot.className='bg-slot';slot.appendChild(cell());
+      const label=document.createElement('span');label.textContent=name;
+      example.append(slot,label);product.querySelector('.bg-gallery').appendChild(example);
+      const small=document.createElement('div');small.className='bg-small-slot';small.appendChild(cell());
+      product.querySelector('.bg-mixed').appendChild(small);
+    });
+  });
+  const size=root.querySelector('#background-card-size');
+  const art=root.querySelector('#background-card-art');
+  const output=root.querySelector('#background-card-size-value');
+  const status=root.querySelector('#background-card-status');
+  const names={fire:'橙红火焰',ice:'浅色冰晶',weapon:'深色武器',none:'隐藏图案'};
+  function render(saved) {
+    if(saved && typeof saved==='object') {
+      if([32,48,64].includes(Number(saved.size))) size.value=String(saved.size);
+      if(Object.prototype.hasOwnProperty.call(names,saved.art)) art.value=saved.art;
+    }
+    products.forEach(product=>product.style.setProperty('--bg-size',size.value+'px'));
+    root.dataset.art=art.value;output.textContent=size.value+' px';
+    status.textContent=size.value+'像素，'+names[art.value];
+    root.querySelectorAll('.bg-cell').forEach(cell=>cell.setAttribute('aria-label',cell.dataset.name+'，'+names[art.value]));
+  }
+  function change() {
+    render();const state={size:Number(size.value),art:art.value};
+    if(window.openai && typeof window.openai.setWidgetState==='function') {
+      const result=window.openai.setWidgetState({modelContent:{cardBackgroundPreview:state},privateContent:state});
+      if(result && typeof result.catch==='function') result.catch(()=>{});
+    }
+  }
+  size.addEventListener('input',change);art.addEventListener('change',change);
+  render(window.openai && window.openai.widgetState && window.openai.widgetState.privateContent);
+  if(globalThis.lucide) lucide.createIcons({attrs:{width:16,height:16}});
+  window.addEventListener('openai:set_globals',event=>{const state=event.detail && event.detail.globals && event.detail.globals.widgetState;if(state)render(state.privateContent);});
+})();
+</script>

@@ -1,0 +1,10 @@
+{
+  "id": "heal_ally",
+  "name": "命中友方回血",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T00:46:21.529Z",
+  "completed_at": "2026-11-07T00:46:52.931Z",
+  "result_file": "heal_ally.result.json"
+}

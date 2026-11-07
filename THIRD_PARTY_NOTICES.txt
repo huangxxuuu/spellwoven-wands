@@ -32,3 +32,15 @@ a blanket license for all image, animation, font or audio files in this tree.
 Contact the author before reusing artwork independently of this project.
 Python packages, GitHub Actions and other external development tools retain
 their own licenses and are installed separately rather than vendored here.
+
+Instrument audio
+----------------
+The creator-supplied DST_Instrument_WAVs.zip contains rendered FreePats Ocarina
+and Cithara Barbarica (medieval lyre) samples, supplied under CC0 1.0.
+The original notices and CC0 texts are preserved in
+assets_src/audio/instruments/licenses/ and mod/sound/licenses/.
+Source/derivation manifests are retained in assets_src/audio/instruments/.
+The 76 WAVs are packed without resampling, pitch randomization or PCM changes
+into mod/sound/nw_instruments.fsb; nw_instruments.fev maps individual pitches.
+These audio assets retain their supplied CC0 terms, independently of the
+project's code license. The FMOD compiler/runtime is not redistributed.

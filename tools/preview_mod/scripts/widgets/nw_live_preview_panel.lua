@@ -11,6 +11,22 @@ local spells={
     {"glass_disc","月玻璃飞刃"},{"tri_electric","三相电球"},{"end_beam","终点聚爆束"},
     {"soundwave","音波"},{"bee_swarm","蜂群突袭"},{"fireflies","萤虫伴飞"},
 }
+local groups={
+    {"投射物",spells},
+    {"工具刻印",{
+        {"orange_bolt","橙杖能量弹"},{"fishingrod","鱼竿"},{"oceanfishingrod","海钓鱼钩"},{"trident","三叉戟"},
+        {"farm_hoe","园艺锄"},{"yoth_lance","骑士长矛"},
+    }},
+    {"场地",{
+        {"crystal_mine","近感晶雷"},{"sleep_crystal","休眠晶体"},
+        {"payload_egg","空心载荷卵"},{"moon_fall","月石坠击"},
+        {"delay_seal","延迟符印"},{"detonate","晶雷引爆令"},
+        {"rain_cloud","局部雨云"},{"storm_cloud","局部雷云"},
+        {"guard_ring","护卫环"},{"shock_ring","电击环"},
+        {"vortex","聚怪涡"},{"deer_decoy","幻鹿诱饵"},
+        {"vital_ring","活力环"},{"spore_sentry","荚刺哨株"},
+    }},
+}
 local function label(parent,text,size,x,y)
     local t=parent:AddChild(Text(FONT,size,text))
     t:SetColour(.94,.96,1,1)
@@ -30,7 +46,7 @@ local function button(parent,text,x,y,w,fn)
 end
 local Panel=Class(Widget,function(self,api)
     Widget._ctor(self,"nw_live_preview_panel")
-    self.api=api;self.selected=1;self.speed=20;self.angle=0;self.size=1
+    self.api=api;self.group=1;self.selected=1;self.speed=20;self.angle=0;self.size=1
     self.ui_scale=2.25
     self:SetHAnchor(ANCHOR_LEFT);self:SetVAnchor(ANCHOR_BOTTOM)
     self:SetScaleMode(SCALEMODE_NONE)
@@ -64,7 +80,14 @@ local Panel=Class(Widget,function(self,api)
         end
         return false
     end
-    label(self.body,"自制法术 · 飞行外观",23,0,-39)
+    self.groupbuttons={}
+    for index,group in ipairs(groups) do
+        local selected=index
+        self.groupbuttons[index]=button(self.body,group[1],(index-2)*112,-39,106,function()
+            self.group=selected;self.selected=1;self:RefreshSelection()
+            local _,running=self.api.status();if running then self:Play() end
+        end)
+    end
     self.spellbuttons={}
     for i,row in ipairs(spells) do
         local index=i
@@ -106,11 +129,18 @@ local Panel=Class(Widget,function(self,api)
     self:RefreshSelection();self:RefreshValues();self:StartUpdating()
 end)
 function Panel:RefreshSelection()
+    local entries=groups[self.group][2]
+    for i,b in ipairs(self.groupbuttons) do
+        b:SetImageNormalColour(i==self.group and .16 or .10,i==self.group and .34 or .19,.28,1)
+    end
     for i,b in ipairs(self.spellbuttons) do
+        if entries[i] then
+            b:SetText(entries[i][2]);b:SetHoverText(entries[i][1],{font_size=18});b:Show()
+        else b:Hide() end
         if i==self.selected then b:SetImageNormalColour(.16,.34,.28,1)
         else b:SetImageNormalColour(.16,.19,.24,1) end
     end
-    self.idtext:SetString(spells[self.selected][1])
+    self.idtext:SetString(entries[self.selected][1])
 end
 function Panel:RefreshValues()
     self.values.speed:SetString(string.format("%.1f",self.speed))
@@ -118,7 +148,7 @@ function Panel:RefreshValues()
     self.values.size:SetString(string.format("%.2f×",self.size))
 end
 function Panel:Play()
-    self.api.start(spells[self.selected][1],self.speed,self.angle,self.size)
+    self.api.start(groups[self.group][2][self.selected][1],self.speed,self.angle,self.size)
 end
 function Panel:BeginDrag()
     if self.drag or not TheInput:IsMouseDown(MOUSEBUTTON_LEFT) then return end

@@ -1,0 +1,41 @@
+{
+  "id": "homing_rotate",
+  "name": "转向敌人",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-b638eba0-1179-4134-b032-eab1e57510bb.png",
+  "output": "homing_rotate.png",
+  "prompt": "homing_rotate.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "弹头转向目标的角度变化，没有持续推进尾焰。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      58,
+      67,
+      1208,
+      1164
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 46,
+    "sha256": "5812c5ac7fdcad552f49e8a5880c588e9a3ad84d41bd5c51e6295ff603214efa",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

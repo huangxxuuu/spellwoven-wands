@@ -1,0 +1,8 @@
+Use case: precise-object-edit
+Edit target: the attached 旋斧攻击 spell-card illustration.
+Change ONLY the background and edge cleanliness. Preserve the single weapon, its exact identity, structure, pose, colors, large shading shapes, and the existing action-stroke arrangement.
+
+Produce a clean standalone transparent PNG cutout. Outside the weapon and the few intentional motion strokes, EVERY area must be fully transparent. Remove all surrounding gray haze, cloudy texture, dust, detached speckle, and red/yellow/cyan edge contamination. Clean the negative spaces between the action strokes and the weapon as well as the outer background. Keep the intentional motion strokes as clean, mostly opaque painted shapes with a short crisp antialiased edge, not fuzzy translucent smoke.
+
+The weapon must stay fully opaque and unchanged. The deliberate stroke colors are warm gray, off-white and muted ochre. Do not turn highlights or blade facets transparent. Retain the exact current canvas, subject position, and complete silhouette. No added glow, shadow, border, paper, checkerboard, text, extra objects, or new lines. True transparent alpha background.
+

@@ -1,0 +1,186 @@
+{
+  "date": "2026-11-07",
+  "purpose": "Historical interaction previews and user ground-pile reference; current decisions are in docs/20 and docs/21",
+  "entries": [
+    {
+      "filename": "spell-card-backgrounds-flat.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-backgrounds-flat.png",
+      "bytes": 27655,
+      "sha256": "b593ce23611db823b5a17f1dfbf1492457638bcd4f958b25f7ee5c30e25e1deb"
+    },
+    {
+      "filename": "spell-card-backgrounds-linear.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-backgrounds-linear.png",
+      "bytes": 30925,
+      "sha256": "b8b2e598c447a10fb179ba8c99735ed2f4294058bed751eb481af9e2afd022f8"
+    },
+    {
+      "filename": "spell-card-backgrounds-preview.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-backgrounds-preview.html",
+      "bytes": 93394,
+      "sha256": "64db27cd108814a879d8ab39f71a673d0f7356c78cf1d799f4c3d5588c422a28"
+    },
+    {
+      "filename": "spell-card-backgrounds-radial-empty.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-backgrounds-radial-empty.png",
+      "bytes": 32233,
+      "sha256": "221cd618df440ca226eabc92e1db37b333b34e87f09dc800981f8f2b97ffe80e"
+    },
+    {
+      "filename": "spell-card-backgrounds-radial.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-backgrounds-radial.png",
+      "bytes": 33577,
+      "sha256": "6da70465ff5f053f1fe701260df8eb51d6e0c422d3382a10ae2b6d85e260de21"
+    },
+    {
+      "filename": "spell-card-backgrounds-small.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-backgrounds-small.png",
+      "bytes": 29196,
+      "sha256": "1d657d4bdd63ebebd76856c0d24de380f8f73dc745faebf7813bf7a1c39452ea"
+    },
+    {
+      "filename": "spell-card-backgrounds.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-backgrounds.html",
+      "bytes": 8662,
+      "sha256": "6a9cecadfb45f76cd52805998b0afcb5649549c7aca4177ee86ab60f484057fa"
+    },
+    {
+      "filename": "spell-card-badge-inside.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-badge-inside.png",
+      "bytes": 29144,
+      "sha256": "abb9dcd811b77389679263ed76435bd10361501f379360d682c81629238a5084"
+    },
+    {
+      "filename": "spell-card-badge-overlap.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-badge-overlap.png",
+      "bytes": 29244,
+      "sha256": "48a0a57d011a5d41c446a8421dbfcf4dfeea8d1599510c9ca709b9d0af15b15a"
+    },
+    {
+      "filename": "spell-card-badge-position-preview.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-badge-position-preview.html",
+      "bytes": 92181,
+      "sha256": "227e2c435a5646aa8844505590e2b5f43bfa3a3e492c165075304f2314aba45c"
+    },
+    {
+      "filename": "spell-card-badge-position.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-badge-position.html",
+      "bytes": 7836,
+      "sha256": "68bf4cecf583ffddba750b3aa6d3c1b93929fa4aad80ec9d22bc2e263c2ae754"
+    },
+    {
+      "filename": "spell-card-badge-small.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-badge-small.png",
+      "bytes": 27248,
+      "sha256": "e3edf69a0d1f15624914b0bc6f90e7cad1c06fce2a18d5e26c0be38fa65d7f1c"
+    },
+    {
+      "filename": "spell-card-preview-direct.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-preview-direct.html",
+      "bytes": 81969,
+      "sha256": "ab78d13644c6b65de72f879d45a0e125481286dfe8d08d490833a6d64051dba8"
+    },
+    {
+      "filename": "spell-card-preview-small.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-preview-small.png",
+      "bytes": 44980,
+      "sha256": "a514cd49b6ab1316a8c392ca03aab8b3427b6c671932508555d4c2129a41d967"
+    },
+    {
+      "filename": "spell-card-preview.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-preview.html",
+      "bytes": 100210,
+      "sha256": "d82f0f06935198a61f824eada2b0ed57a16a2a7a83684b2574a014447fc5eb2b"
+    },
+    {
+      "filename": "spell-card-preview.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-preview.png",
+      "bytes": 69653,
+      "sha256": "fc0cb86e5ae0ce347661896c97d890fa44f65d34a12bdb3ee05779917452afa4"
+    },
+    {
+      "filename": "spell-card-structure.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-card-structure.html",
+      "bytes": 13600,
+      "sha256": "5b5ed04eac6d4595aecb3f7f148148dadbfba09f58973a87f94c60d49e378360"
+    },
+    {
+      "filename": "spell-pile-appearance-control.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-pile-appearance-control.png",
+      "bytes": 29502,
+      "sha256": "8fc6ebaa5324c50a1ac65335dd5d7e8e11648b2815a8d9ed77659e1d64fc9fa8"
+    },
+    {
+      "filename": "spell-pile-appearance-default.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-pile-appearance-default.png",
+      "bytes": 29745,
+      "sha256": "c68a5e3b6e736a4f3449e7d725e62911625879f063aebfbd277a89fff0657a80"
+    },
+    {
+      "filename": "spell-pile-appearance-modifier.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-pile-appearance-modifier.png",
+      "bytes": 31667,
+      "sha256": "bf5115b9c58030d34199ed16832840a8c060561fb8113a87a3c9a1f6b5c9ba4d"
+    },
+    {
+      "filename": "spell-pile-appearance-preview.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-pile-appearance-preview.html",
+      "bytes": 93941,
+      "sha256": "e63a3a1fa3dc4dd365790279bb8cf248f227e0e7305ce20e75629dbe6cdd0e9e"
+    },
+    {
+      "filename": "spell-pile-appearance-same.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-pile-appearance-same.png",
+      "bytes": 26469,
+      "sha256": "bfc07a7fedde42236f9c51c9416bcc91af247b5a909783fcf79e419dbcceee36"
+    },
+    {
+      "filename": "spell-pile-appearance-small.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-pile-appearance-small.png",
+      "bytes": 27515,
+      "sha256": "130d27fd0bd97ef4e73cc30e9233af30998f10f602bf751e5dc41d95de5b1e39"
+    },
+    {
+      "filename": "spell-pile-appearance.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\spell-pile-appearance.html",
+      "bytes": 9218,
+      "sha256": "f59d52479fc7a66144f3419d93a43a7180beb02bbe856d9b3105819fddd46ef2"
+    },
+    {
+      "filename": "three-spell-frames-diamond.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\three-spell-frames-diamond.png",
+      "bytes": 35563,
+      "sha256": "5d58e7ff03b95aaf1899af24b3d6abd52b9d5bcb6362fffc6713aa10e3d46561"
+    },
+    {
+      "filename": "three-spell-frames-preview.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\three-spell-frames-preview.html",
+      "bytes": 98731,
+      "sha256": "af4cc13f18857d1c9fc64946291785cd660b21f09a26f844d9fbe2e021efceca"
+    },
+    {
+      "filename": "three-spell-frames-preview.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\three-spell-frames-preview.png",
+      "bytes": 35270,
+      "sha256": "69ba1b670f1bfe56357fef04bf9a6cb1b5283f0568b4f1e0d3757fe890397d79"
+    },
+    {
+      "filename": "three-spell-frames-small.png",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\three-spell-frames-small.png",
+      "bytes": 18042,
+      "sha256": "fcb4a4b8e27d4c4489c2c46968af28bae3f09d5e71466a9eddb461b1462a750c"
+    },
+    {
+      "filename": "three-spell-frames.html",
+      "source": "C:\\Users\\85183\\.codex\\visualizations\\2026\\11\\06\\01a1b21b-363e-7553-93b3-c905097de644\\three-spell-frames.html",
+      "bytes": 11736,
+      "sha256": "3300c8d233f333e57aeaf73a1b814bd9a7915334562a69f444a0f27dfcfb92f3"
+    },
+    {
+      "filename": "user-ground-pile-reference.png",
+      "source": "C:\\Users\\85183\\AppData\\Local\\Temp\\codex-clipboard-f1ca546f-0f8b-4c6e-accb-6f45659af264.png",
+      "bytes": 160466,
+      "sha256": "808e53b813006666a2fb3b5b1347c433cf9e03ac9818f31b067c94812e1e745d"
+    }
+  ]
+}

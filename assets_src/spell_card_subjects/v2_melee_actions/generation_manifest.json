@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-07",
+  "mode": "built-in image_gen",
+  "status": "generated_candidates",
+  "transparent_background": true,
+  "outputs": [
+    {
+      "id": "whirl",
+      "name": "旋斧攻击",
+      "reference": "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v2_melee_actions/references/axe-native.png",
+      "initial_prompt": "whirl.prompt.txt",
+      "initial_source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-6347b560-f594-4cfa-94b3-50ec4bb0a2c6.png",
+      "initial_output": "whirl.attempt1.png",
+      "cleanup_prompt": "whirl.cleanup.prompt.txt",
+      "final_source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-20c5399f-d65a-489e-9c94-5fac79dc761d.png",
+      "final_output": "whirl.png"
+    },
+    {
+      "id": "thrust",
+      "name": "长矛戳击",
+      "reference": "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v2_melee_actions/references/spear-native.png",
+      "initial_prompt": "thrust.prompt.txt",
+      "initial_source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-f715a093-0f76-43fc-bec0-4f21c8ffcaf2.png",
+      "initial_output": "thrust.attempt1.png",
+      "cleanup_prompt": "thrust.cleanup.prompt.txt",
+      "final_source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-3445d63f-fa1e-44c9-a067-f42c20624e23.png",
+      "final_output": "thrust.png"
+    },
+    {
+      "id": "slash",
+      "name": "玻璃刀砍",
+      "reference": "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v2_melee_actions/references/glasscutter-native.png",
+      "initial_prompt": "slash.prompt.txt",
+      "initial_source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-c964d689-16ca-40f2-9b04-ef2b621b766d.png",
+      "initial_output": "slash.attempt1.png",
+      "cleanup_prompt": "slash.cleanup.prompt.txt",
+      "final_source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-52d25490-647c-4f20-9094-ac7738231c3e.png",
+      "final_output": "slash.png"
+    }
+  ]
+}
+

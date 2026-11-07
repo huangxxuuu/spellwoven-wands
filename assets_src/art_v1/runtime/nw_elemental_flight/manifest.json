@@ -1,0 +1,1833 @@
+{
+  "bank": "nw_elemental_flight",
+  "fps": 30,
+  "frames": 6,
+  "directions": 32,
+  "directions_by_kind": {
+    "fire": 32,
+    "frost": 32,
+    "arrow": 128,
+    "heavy": 32,
+    "scatter": 32,
+    "gust": 32,
+    "slime": 32,
+    "heal_bolt": 32,
+    "flint_lance": 128,
+    "grow_orb": 32,
+    "star_vortex": 32,
+    "glass_disc": 32,
+    "tri_electric": 32,
+    "end_beam": 128,
+    "spore_ball": 32,
+    "land_hook": 32,
+    "soundwave": 32,
+    "bee_swarm": 32,
+    "fireflies": 32
+  },
+  "orientation_rules": {
+    "bee_swarm": {
+      "head": "upright_left"
+    },
+    "fireflies": {
+      "head": "upright_left"
+    }
+  },
+  "source_layout": "3 columns x 4 rows: head/head/tail/hit",
+  "frames_by_kind": {
+    "fire": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "frost": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "arrow": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "heavy": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "scatter": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "gust": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "slime": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "heal_bolt": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "flint_lance": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "grow_orb": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "star_vortex": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "glass_disc": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "tri_electric": {
+      "head": 12,
+      "tail": 6,
+      "hit": 6
+    },
+    "end_beam": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "spore_ball": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "land_hook": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "soundwave": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "bee_swarm": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    },
+    "fireflies": {
+      "head": 6,
+      "tail": 6,
+      "hit": 6
+    }
+  },
+  "sources": {
+    "fire": {
+      "path": "assets_src/projectiles/elemental_v1/fire-atlas.png",
+      "sha256": "dfc3af374d87efb2acc6df0070d617dffce446c43bc875c755f23744d2c4d969",
+      "groups": {
+        "head": {
+          "source_crop": [
+            21,
+            190,
+            275,
+            408
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.6734234234234234
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            135,
+            110
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "tail": {
+          "source_crop": [
+            110,
+            194,
+            186,
+            226
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.47297297297297297
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            60,
+            45
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            30,
+            121,
+            266,
+            309
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.48423423423423423
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            150,
+            125
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "frost": {
+      "path": "assets_src/projectiles/elemental_v1/frost-atlas.png",
+      "sha256": "df69f2b5fbc904ee17f13c32fce12e1f12940b0fef124025be532da9347121b8",
+      "groups": {
+        "head": {
+          "source_crop": [
+            25,
+            166,
+            271,
+            308
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5337837837837838
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            130,
+            100
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "tail": {
+          "source_crop": [
+            100,
+            188,
+            196,
+            254
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.49774774774774777
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            54,
+            45
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            41,
+            126,
+            255,
+            304
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.48423423423423423
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            150,
+            125
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "arrow": {
+      "path": "assets_src/projectiles/basic_v1/arrow-atlas.png",
+      "sha256": "63f962cdb3ab4449fbde5b87f9a8fbc31479ac58a7ac9b8eed8d8aa44fd497c1",
+      "groups": {
+        "head": {
+          "source_crop": [
+            26,
+            224,
+            270,
+            284
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5720720720720721
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            150,
+            125
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "source_frame_pivot_fractions": [
+            [
+              0.5,
+              0.5720720720720721
+            ],
+            [
+              0.5,
+              0.5720720720720721
+            ],
+            [
+              0.5,
+              0.5720720720720721
+            ],
+            [
+              0.5,
+              0.49099099099099097
+            ],
+            [
+              0.5,
+              0.49099099099099097
+            ],
+            [
+              0.5,
+              0.49099099099099097
+            ]
+          ]
+        },
+        "tail": {
+          "source_crop": [
+            97,
+            313,
+            627,
+            411
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            80,
+            70
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "override": {
+            "path": "assets_src/projectiles/basic_v1/arrow-tail-v2.png",
+            "sha256": "8a98b66c653a31179cce743d0563f67faa9d320e38d92e01744f7476beb80323",
+            "layout": "3 columns x 1 row: fresh/middle/old"
+          }
+        },
+        "hit": {
+          "source_crop": [
+            88,
+            182,
+            208,
+            258
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.4954954954954955
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            100,
+            80
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "heavy": {
+      "path": "assets_src/projectiles/basic_v1/heavy-atlas.png",
+      "sha256": "8ab070c1b3989663060f4a4f5a71c5c1d7ca47dc93462bb93d2213386e9daa9d",
+      "groups": {
+        "head": {
+          "source_crop": [
+            19,
+            137,
+            277,
+            391
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5945945945945946
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            175,
+            175
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "tail": {
+          "source_crop": [
+            62,
+            179,
+            662,
+            545
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            165,
+            220
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "override": {
+            "path": "assets_src/projectiles/basic_v1/heavy-tail-v2.png",
+            "sha256": "43b02f6324a19054f7403b8be584c3d11fba282a2d50f05697665a603a1cfe89",
+            "layout": "3 columns x 1 row: fresh/middle/old"
+          }
+        },
+        "hit": {
+          "source_crop": [
+            51,
+            132,
+            245,
+            300
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.4864864864864865
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            180,
+            160
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "scatter": {
+      "path": "assets_src/projectiles/basic_v1/scatter-atlas.png",
+      "sha256": "5515797527b88c2f1aeca9b924367e71001e889b845aaa5ed746164b5caf4b6c",
+      "groups": {
+        "head": {
+          "source_crop": [
+            60,
+            157,
+            236,
+            293
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5067567567567568
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            55,
+            55
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "tail": {
+          "source_crop": [
+            122,
+            199,
+            174,
+            235
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.48873873873873874
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            42,
+            36
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            101,
+            175,
+            195,
+            261
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.49099099099099097
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            55,
+            45
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "gust": {
+      "path": "assets_src/projectiles/special_v1/gust-atlas.png",
+      "sha256": "45bfc82b9c63586c9915585b59bbb29239a23590fd58d463c590704d8326e948",
+      "groups": {
+        "head": {
+          "source_crop": [
+            21,
+            90,
+            479,
+            310
+          ],
+          "source_pivot_fraction": [
+            0.6906077348066298,
+            0.5524861878453039
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            200,
+            180
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "tail": {
+          "source_crop": [
+            33,
+            110,
+            329,
+            252
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            90,
+            90
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            59,
+            55,
+            303,
+            307
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            130,
+            110
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "slime": {
+      "path": "assets_src/projectiles/special_v1/slime-atlas.png",
+      "sha256": "5c6b34d2e8a6a2cb43739a084530520bf56ae615a60664b259ddabef2f2dc0b4",
+      "groups": {
+        "head": {
+          "source_crop": [
+            24,
+            118,
+            476,
+            248
+          ],
+          "source_pivot_fraction": [
+            0.6906077348066298,
+            0.505524861878453
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            255,
+            225
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "source_frame_pivot_fractions": [
+            [
+              0.6906077348066298,
+              0.505524861878453
+            ],
+            [
+              0.6961325966850829,
+              0.505524861878453
+            ],
+            [
+              0.712707182320442,
+              0.505524861878453
+            ],
+            [
+              0.7237569060773481,
+              0.505524861878453
+            ],
+            [
+              0.6933701657458563,
+              0.505524861878453
+            ],
+            [
+              0.6878453038674033,
+              0.505524861878453
+            ]
+          ]
+        },
+        "tail": {
+          "source_crop": [
+            127,
+            134,
+            235,
+            228
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            67.5,
+            67.5
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            40,
+            55,
+            322,
+            307
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            165,
+            150
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "heal_bolt": {
+      "path": "assets_src/projectiles/special_v1/heal_bolt-atlas.png",
+      "sha256": "81da3cb9b384389e7db51a06bd2bfc6b5a2af8b4d1eaeccbbc7d7dc398ebfd39",
+      "groups": {
+        "head": {
+          "source_crop": [
+            38,
+            89,
+            472,
+            309
+          ],
+          "source_pivot_fraction": [
+            0.7044198895027625,
+            0.5497237569060773
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            185,
+            170
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "tail": {
+          "source_crop": [
+            35,
+            113,
+            327,
+            249
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            100,
+            130
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            12,
+            37,
+            350,
+            325
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            120,
+            110
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "flint_lance": {
+      "path": "assets_src/projectiles/special_v1/flint_lance-atlas.png",
+      "sha256": "f6b073f1f978cd90f70e6168e5c4856700c2941c18b1b44de2b8567f094c957a",
+      "groups": {
+        "head": {
+          "source_crop": [
+            25,
+            145,
+            337,
+            247
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5414364640883977
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            180,
+            105
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "source_frame_pivot_fractions": [
+            [
+              0.5220994475138122,
+              0.5414364640883977
+            ],
+            [
+              0.5027624309392266,
+              0.5414364640883977
+            ],
+            [
+              0.4861878453038674,
+              0.5414364640883977
+            ],
+            [
+              0.5220994475138122,
+              0.5276243093922652
+            ],
+            [
+              0.5027624309392266,
+              0.5276243093922652
+            ],
+            [
+              0.4861878453038674,
+              0.5276243093922652
+            ]
+          ]
+        },
+        "tail": {
+          "source_crop": [
+            81,
+            312,
+            643,
+            418
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5041436464088398
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            52,
+            80
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "override": {
+            "path": "assets_src/projectiles/special_v1/flint_lance-tail-v2.png",
+            "sha256": "0b0883af9ca415173505147b710a89e541bf6e4c9faa3a8cd2b85da6d1383511",
+            "layout": "3 columns x 1 row: fresh/middle/old"
+          }
+        },
+        "hit": {
+          "source_crop": [
+            61,
+            84,
+            301,
+            278
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            110,
+            95
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "grow_orb": {
+      "path": "assets_src/projectiles/special_v1/grow_orb-atlas.png",
+      "sha256": "4aa126d6551a6eb663b65c5ac02b77a5c5dcbea56fe5f460524f3a66124712c4",
+      "groups": {
+        "head": {
+          "source_crop": [
+            51,
+            109,
+            419,
+            289
+          ],
+          "source_pivot_fraction": [
+            0.649171270718232,
+            0.5497237569060773
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            170,
+            170
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "tail": {
+          "source_crop": [
+            29,
+            113,
+            333,
+            249
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            95,
+            120
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            43,
+            52,
+            319,
+            310
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            140,
+            140
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "star_vortex": {
+      "path": "assets_src/projectiles/special_v1/star_vortex-atlas.png",
+      "sha256": "eca9f6d86be74489bf8600613e776ee0e68f69f143cd09b383f32c59bf32338b",
+      "groups": {
+        "head": {
+          "source_crop": [
+            52,
+            99,
+            432,
+            287
+          ],
+          "source_pivot_fraction": [
+            0.6685082872928176,
+            0.5331491712707183
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            110,
+            110
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "source_frame_pivot_fractions": [
+            [
+              0.6685082872928176,
+              0.5331491712707183
+            ],
+            [
+              0.638121546961326,
+              0.5276243093922652
+            ],
+            [
+              0.5939226519337016,
+              0.5331491712707183
+            ],
+            [
+              0.6629834254143646,
+              0.511049723756906
+            ],
+            [
+              0.6408839779005525,
+              0.5027624309392266
+            ],
+            [
+              0.5994475138121547,
+              0.5027624309392266
+            ]
+          ]
+        },
+        "tail": {
+          "source_crop": [
+            31,
+            105,
+            331,
+            257
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            55,
+            60
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            47,
+            43,
+            315,
+            319
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            90,
+            90
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "glass_disc": {
+      "path": "assets_src/projectiles/special_v1/glass_disc-atlas.png",
+      "sha256": "372749e2ef49f8d948cd3a7e9826e31540ab40d05b0c571cca819fff18554f2c",
+      "groups": {
+        "head": {
+          "source_crop": [
+            33,
+            49,
+            329,
+            347
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5469613259668509
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            130,
+            130
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "source_frame_pivot_fractions": [
+            [
+              0.5220994475138122,
+              0.5469613259668509
+            ],
+            [
+              0.5027624309392266,
+              0.5469613259668509
+            ],
+            [
+              0.48342541436464087,
+              0.5469613259668509
+            ],
+            [
+              0.5220994475138122,
+              0.5082872928176796
+            ],
+            [
+              0.5027624309392266,
+              0.5082872928176796
+            ],
+            [
+              0.48342541436464087,
+              0.5082872928176796
+            ]
+          ]
+        },
+        "tail": {
+          "source_crop": [
+            46,
+            98,
+            316,
+            242
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.4696132596685083
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            85,
+            135
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            64,
+            52,
+            298,
+            310
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            110,
+            110
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "tri_electric": {
+      "path": "assets_src/projectiles/special_v1/tri_electric-atlas.png",
+      "sha256": "a85536e31133198cdd14d8e745cd9352f3fc364527cee02d3684be1b6e2d55d3",
+      "groups": {
+        "head": {
+          "source_crop": [
+            9,
+            57,
+            355,
+            333
+          ],
+          "source_pivot_fraction": [
+            0.5027624309392266,
+            0.5386740331491713
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            165,
+            165
+          ],
+          "frames": 12,
+          "period": 0.4,
+          "source_frame_pivot_fractions": [
+            [
+              0.5027624309392266,
+              0.5386740331491713
+            ],
+            [
+              0.5027624309392266,
+              0.5386740331491713
+            ],
+            [
+              0.5027624309392266,
+              0.5386740331491713
+            ],
+            [
+              0.5027624309392266,
+              0.5386740331491713
+            ],
+            [
+              0.5027624309392266,
+              0.5386740331491713
+            ],
+            [
+              0.5027624309392266,
+              0.5386740331491713
+            ],
+            [
+              0.5027624309392266,
+              0.5414364640883977
+            ],
+            [
+              0.5027624309392266,
+              0.5414364640883977
+            ],
+            [
+              0.5027624309392266,
+              0.5414364640883977
+            ],
+            [
+              0.5027624309392266,
+              0.5386740331491713
+            ],
+            [
+              0.5027624309392266,
+              0.5386740331491713
+            ],
+            [
+              0.5027624309392266,
+              0.5386740331491713
+            ]
+          ],
+          "override": {
+            "path": "assets_src/projectiles/special_v1/tri_electric-head-v2.png",
+            "sha256": "253c7e26c559a9918262a7394d9389bd1b87f3940fd942ad822240b9815dbf54",
+            "layout": "3 columns x 4 rows: head loop"
+          }
+        },
+        "tail": {
+          "source_crop": [
+            45,
+            113,
+            317,
+            249
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            90,
+            97.5
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            53,
+            47,
+            309,
+            315
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            165,
+            165
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "end_beam": {
+      "path": "assets_src/projectiles/special_v1/end_beam-atlas.png",
+      "sha256": "f28d68db2e9b039c4dd1a8ef4b1e4eec5d2533779bc90fcdc78914e731578095",
+      "groups": {
+        "head": {
+          "source_crop": [
+            46,
+            111,
+            494,
+            289
+          ],
+          "source_pivot_fraction": [
+            0.7458563535911602,
+            0.5524861878453039
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            245,
+            145
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "source_frame_pivot_fractions": [
+            [
+              0.7458563535911602,
+              0.5524861878453039
+            ],
+            [
+              0.7016574585635359,
+              0.5524861878453039
+            ],
+            [
+              0.6629834254143646,
+              0.5524861878453039
+            ],
+            [
+              0.7458563535911602,
+              0.5524861878453039
+            ],
+            [
+              0.7016574585635359,
+              0.5524861878453039
+            ],
+            [
+              0.6629834254143646,
+              0.5524861878453039
+            ]
+          ]
+        },
+        "tail": {
+          "source_crop": [
+            35,
+            125,
+            327,
+            237
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            110,
+            110
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            76,
+            104,
+            286,
+            258
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            140,
+            110
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "spore_ball": {
+      "path": "assets_src/projectiles/special_v1/spore_ball-atlas.png",
+      "sha256": "6b01e9e72b6e3275ee7d9b33495fa7ee0c46053c2328aa9fb31ec9631cc3a892",
+      "groups": {
+        "head": {
+          "source_crop": [
+            46,
+            97,
+            408,
+            279
+          ],
+          "source_pivot_fraction": [
+            0.6270718232044199,
+            0.5193370165745856
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            170,
+            170
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "tail": {
+          "source_crop": [
+            63,
+            129,
+            299,
+            233
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            65,
+            65
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            38,
+            43,
+            324,
+            319
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            140,
+            120
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "land_hook": {
+      "path": "assets_src/projectiles/special_v1/land_hook-atlas.png",
+      "sha256": "1018713645a2c231aa1c214f373bc14cdfacbb16cff7255255abaf36357d4715",
+      "groups": {
+        "head": {
+          "source_crop": [
+            17,
+            24,
+            957,
+            204
+          ],
+          "source_pivot_fraction": [
+            0.7693522906793049,
+            0.5507246376811594
+          ],
+          "pixels": [
+            256,
+            256
+          ],
+          "display_size": [
+            1120,
+            1064
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "source_frame_pivot_fractions": [
+            [
+              0.7693522906793049,
+              0.5507246376811594
+            ],
+            [
+              0.7693522906793049,
+              0.5507246376811594
+            ],
+            [
+              0.7693522906793049,
+              0.5507246376811594
+            ],
+            [
+              0.7693522906793049,
+              0.5797101449275363
+            ],
+            [
+              0.7693522906793049,
+              0.5797101449275363
+            ],
+            [
+              0.7693522906793049,
+              0.5797101449275363
+            ]
+          ]
+        },
+        "tail": {
+          "source_crop": [
+            136,
+            -1,
+            496,
+            209
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            126,
+            112
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            160,
+            -2,
+            472,
+            210
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            266,
+            224
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "soundwave": {
+      "path": "assets_src/projectiles/special_v1/soundwave-atlas.png",
+      "sha256": "9a599ab7251c0e36d3e14af9d595c082be8e4c4a88f450d3057b95c9aee0992f",
+      "groups": {
+        "head": {
+          "source_crop": [
+            2,
+            97,
+            332,
+            319
+          ],
+          "source_pivot_fraction": [
+            0.4613259668508287,
+            0.574585635359116
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            195,
+            195
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "source_frame_pivot_fractions": [
+            [
+              0.4613259668508287,
+              0.574585635359116
+            ],
+            [
+              0.43370165745856354,
+              0.574585635359116
+            ],
+            [
+              0.40607734806629836,
+              0.574585635359116
+            ],
+            [
+              0.4613259668508287,
+              0.574585635359116
+            ],
+            [
+              0.43370165745856354,
+              0.574585635359116
+            ],
+            [
+              0.40607734806629836,
+              0.574585635359116
+            ]
+          ]
+        },
+        "tail": {
+          "source_crop": [
+            47,
+            110,
+            315,
+            252
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            120,
+            150
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            34,
+            26,
+            328,
+            336
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            210,
+            210
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "bee_swarm": {
+      "path": "assets_src/projectiles/special_v1/bee_swarm-atlas.png",
+      "sha256": "2f8c2474c0908b0628f9e167e98cab06fcf4d96eabf330d8b5047cfc3b438bb2",
+      "groups": {
+        "head": {
+          "source_crop": [
+            75,
+            52,
+            325,
+            328
+          ],
+          "source_pivot_fraction": [
+            0.5524861878453039,
+            0.5248618784530387
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            110,
+            115
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "source_frame_pivot_fractions": [
+            [
+              0.5524861878453039,
+              0.5248618784530387
+            ],
+            [
+              0.5524861878453039,
+              0.5248618784530387
+            ],
+            [
+              0.5524861878453039,
+              0.5248618784530387
+            ],
+            [
+              0.5524861878453039,
+              0.5248618784530387
+            ],
+            [
+              0.5524861878453039,
+              0.5248618784530387
+            ],
+            [
+              0.5524861878453039,
+              0.5248618784530387
+            ]
+          ]
+        },
+        "tail": {
+          "source_crop": [
+            84,
+            127,
+            278,
+            235
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            32,
+            25
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            103,
+            102,
+            259,
+            260
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            65,
+            65
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    },
+    "fireflies": {
+      "path": "assets_src/projectiles/special_v1/fireflies-atlas.png",
+      "sha256": "3bd40ac6c9f86de4b287e3f75dba6570f09676d83dccc8fa8f5fa91b84477a3e",
+      "groups": {
+        "head": {
+          "source_crop": [
+            68,
+            65,
+            412,
+            333
+          ],
+          "source_pivot_fraction": [
+            0.6629834254143646,
+            0.5497237569060773
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            150,
+            130
+          ],
+          "frames": 6,
+          "period": 0.2,
+          "source_frame_pivot_fractions": [
+            [
+              0.6629834254143646,
+              0.5497237569060773
+            ],
+            [
+              0.6408839779005525,
+              0.5497237569060773
+            ],
+            [
+              0.6160220994475138,
+              0.5497237569060773
+            ],
+            [
+              0.6629834254143646,
+              0.5524861878453039
+            ],
+            [
+              0.6408839779005525,
+              0.5524861878453039
+            ],
+            [
+              0.6160220994475138,
+              0.5524861878453039
+            ]
+          ]
+        },
+        "tail": {
+          "source_crop": [
+            117,
+            143,
+            245,
+            219
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            64,
+            64
+          ],
+          "display_size": [
+            36,
+            36
+          ],
+          "frames": 6,
+          "period": 0.2
+        },
+        "hit": {
+          "source_crop": [
+            95,
+            93,
+            267,
+            269
+          ],
+          "source_pivot_fraction": [
+            0.5,
+            0.5
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "display_size": [
+            130,
+            130
+          ],
+          "frames": 6,
+          "period": 0.2
+        }
+      }
+    }
+  }
+}

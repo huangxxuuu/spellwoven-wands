@@ -76,6 +76,7 @@ local function strike(inst,owner,e,p,x,z,kx,kz)
     if p.source_weapon=="ruins_bat" and e:IsValid() then
         if TryLuckRoll(owner,TUNING.SHADOW_TENTACLE_RUINS_BAT_CHANCE,LuckFormulas.ShadowTentacleSpawn) then
             local tentacle=SpawnPrefab("shadowtentacle")
+            require("nw/journal_damage").tag(tentacle,owner,p)
             tentacle.owner=owner;tentacle.Transform:SetPosition(e.Transform:GetWorldPosition())
             tentacle.components.combat:SetTarget(e)
         end

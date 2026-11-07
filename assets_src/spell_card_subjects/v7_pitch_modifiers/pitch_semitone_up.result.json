@@ -1,0 +1,29 @@
+{
+  "id": "pitch_semitone_up",
+  "name": "升半音",
+  "pitch_shift": 1,
+  "symbol": "+1",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b496-52e7-7ab1-bdeb-c27b52b8e8e0\\exec-d5ee4ad1-a10e-498f-986b-d18862a7f68c.png",
+  "output": "pitch_semitone_up.png",
+  "prompt": "pitch_semitone_up.prompt.txt",
+  "status": "reviewed",
+  "attempt_count_this_request": 1,
+  "tool": "built-in imagegen",
+  "validation": {
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bbox_alpha8": [
+      219,
+      55,
+      1026,
+      1207
+    ],
+    "sha256": "cb4c1d98cac40dd81d010aad0445e280a4a9b8b8205a6215416e34d52ba16e79",
+    "matches_generated_source": true,
+    "frame_containment": true
+  },
+  "visual_review": "音符正立，箭头方向与数值正确；八度长箭头、半音短箭头，四张均完整入框。"
+}

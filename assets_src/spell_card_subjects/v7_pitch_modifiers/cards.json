@@ -1,0 +1,37 @@
+{
+  "runtime_registered": true,
+  "cards": [
+    {
+      "id": "pitch_octave_up",
+      "name": "升八度",
+      "kind": "modifier",
+      "pitch_shift": 12,
+      "symbol": "+12",
+      "image": "pitch_octave_up.png"
+    },
+    {
+      "id": "pitch_octave_down",
+      "name": "降八度",
+      "kind": "modifier",
+      "pitch_shift": -12,
+      "symbol": "−12",
+      "image": "pitch_octave_down.png"
+    },
+    {
+      "id": "pitch_semitone_up",
+      "name": "升半音",
+      "kind": "modifier",
+      "pitch_shift": 1,
+      "symbol": "+1",
+      "image": "pitch_semitone_up.png"
+    },
+    {
+      "id": "pitch_semitone_down",
+      "name": "降半音",
+      "kind": "modifier",
+      "pitch_shift": -1,
+      "symbol": "−1",
+      "image": "pitch_semitone_down.png"
+    }
+  ]
+}

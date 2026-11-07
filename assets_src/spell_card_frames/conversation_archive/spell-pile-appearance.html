@@ -1,0 +1,92 @@
+<div id="spell-pile-appearance" aria-label="地面卡堆按真实表层顺序变化的示意">
+  <div class="viz-controls">
+    <label class="form-label" for="pile-count">总张数 <output id="pile-count-value" class="tabular-nums">8 / 25</output><input class="form-range" id="pile-count" type="range" min="1" max="25" step="1" value="8"></label>
+    <label class="form-label" for="pile-order">前几个非空格的顺序<select class="form-select" id="pile-order"><option value="mixed">基础 → 修饰 → 控制</option><option value="same">基础 → 基础 → 基础</option><option value="control">控制 → 基础 → 修饰</option><option value="modifier">修饰 → 基础 → 控制</option></select></label>
+  </div>
+  <div class="pc-product">
+    <div class="pc-meta"><span>地面卡堆</span><span id="pile-depth-label">厚堆 · 7–25 张</span></div>
+    <div class="pc-ground" aria-label="轻透视的地面卡堆"><div class="pc-shadow"></div><div id="pile-edge-layers"></div><div id="pile-visible-cards"></div></div>
+    <div class="pc-caption">表层对应卡牌 · 从顶牌向下</div>
+    <div class="pc-flat-row" id="pile-flat-cards"></div>
+  </div>
+  <template id="pile-card-template"><div class="pc-card" role="img"><span class="pc-frame"></span><span class="pc-art pc-art-basic"><i data-lucide="flame" aria-hidden="true"></i></span><span class="pc-art pc-art-modifier"><i data-lucide="corner-up-right" aria-hidden="true"></i></span><span class="pc-art pc-art-control"><i data-lucide="copy" aria-hidden="true"></i></span></div></template>
+  <span class="sr-only" id="pile-status" aria-live="polite">8张，厚堆，顶牌是基础法术</span>
+</div>
+<style>
+#spell-pile-appearance { display:grid; gap:14px; }
+#spell-pile-appearance .pc-product { font-family:"Microsoft YaHei",sans-serif; font-size:13px; line-height:1.5; color:#eee3ce; background:#342e27; border-radius:7px; padding:15px 18px; }
+#spell-pile-appearance .pc-meta { display:flex; justify-content:space-between; gap:12px; margin-bottom:8px; color:#d5c6ab; }
+#spell-pile-appearance .pc-ground { position:relative; height:185px; background:#666a54; border-radius:5px; overflow:visible; }
+#spell-pile-appearance .pc-shadow { position:absolute; left:50%; top:157px; transform:translateX(-50%); width:148px; height:24px; background:#323529; opacity:.42; border-radius:50%; filter:blur(3px); }
+#spell-pile-appearance .pc-card { --pc-size:64px; --pc-ink:#483729; position:relative; width:var(--pc-size); height:var(--pc-size); flex:none; }
+#spell-pile-appearance .pc-frame { position:absolute; left:9.375%; top:6.25%; width:81.25%; height:87.5%; clip-path:var(--pc-shape); background:var(--pc-ink); }
+#spell-pile-appearance .pc-frame::after { position:absolute; content:""; inset:calc(var(--pc-size) * .0390625); clip-path:var(--pc-shape); background:linear-gradient(to bottom,#E5DCC9 0%,#DDD3BE 55%,#D4C7AD 100%); }
+#spell-pile-appearance .pc-basic { --pc-shape:polygon(7.6923% 0,92.3077% 0,100% 7.1429%,100% 92.8571%,92.3077% 100%,7.6923% 100%,0 92.8571%,0 7.1429%); }
+#spell-pile-appearance .pc-modifier { --pc-shape:polygon(50% 0,100% 21.4286%,100% 78.5714%,50% 100%,0 78.5714%,0 21.4286%); }
+#spell-pile-appearance .pc-control { --pc-shape:polygon(7.6923% 0,34.6154% 0,34.6154% 14.2857%,65.3846% 14.2857%,65.3846% 0,92.3077% 0,100% 7.1429%,100% 92.8571%,92.3077% 100%,7.6923% 100%,0 92.8571%,0 7.1429%); }
+#spell-pile-appearance .pc-art { position:absolute; inset:0; display:none; place-items:center; }
+#spell-pile-appearance .pc-basic .pc-art-basic,#spell-pile-appearance .pc-modifier .pc-art-modifier,#spell-pile-appearance .pc-control .pc-art-control { display:grid; }
+#spell-pile-appearance .pc-art svg { width:calc(var(--pc-size) * .46875) !important; height:calc(var(--pc-size) * .46875) !important; min-width:0 !important; max-width:none !important; stroke-width:2; fill:none; stroke:#5a4b3b; }
+#spell-pile-appearance .pc-art-basic svg { fill:#c86b37; stroke:#6c4028; stroke-width:1.8; }
+#spell-pile-appearance .pc-art-modifier svg { stroke:#456963; }
+#spell-pile-appearance .pc-art-control svg { stroke:#685375; }
+#spell-pile-appearance .pc-ground .pc-card { --pc-size:128px; position:absolute; left:calc(50% - 64px); top:60px; transform:translate(var(--pc-x,0px),var(--pc-y,0px)) perspective(200px) rotateX(50deg); transform-origin:50% 50%; }
+#spell-pile-appearance .pc-under .pc-art,#spell-pile-appearance .pc-edge .pc-art { display:none; }
+#spell-pile-appearance .pc-under .pc-frame::after { inset:calc(var(--pc-size) * .0078125); background:#d5c9b2; }
+#spell-pile-appearance .pc-edge .pc-frame { background:#78664f; }
+#spell-pile-appearance .pc-edge .pc-frame::after { inset:calc(var(--pc-size) * .0078125); background:#d8cbb1; }
+#spell-pile-appearance .pc-caption { color:#cebea3; font-size:12px; margin:13px 0 8px; }
+#spell-pile-appearance .pc-flat-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; min-height:92px; }
+#spell-pile-appearance .pc-flat-example { display:flex; align-items:center; flex-direction:column; gap:4px; text-align:center; }
+#spell-pile-appearance .pc-flat-slot { display:grid; place-items:center; width:72px; height:72px; background:#514838; border:1px solid #77644b; border-radius:4px; }
+#spell-pile-appearance .pc-flat-example[hidden] { display:none; }
+@media(max-width:480px) { #spell-pile-appearance .pc-product { padding:12px 10px; } #spell-pile-appearance .pc-flat-row { gap:4px; } }
+</style>
+<script>
+(() => {
+  const root=document.getElementById('spell-pile-appearance');
+  const template=root.querySelector('#pile-card-template');
+  const count=root.querySelector('#pile-count');
+  const order=root.querySelector('#pile-order');
+  const edgeContainer=root.querySelector('#pile-edge-layers');
+  const visibleContainer=root.querySelector('#pile-visible-cards');
+  const flatContainer=root.querySelector('#pile-flat-cards');
+  const shapes={mixed:['basic','modifier','control'],same:['basic','basic','basic'],control:['control','basic','modifier'],modifier:['modifier','basic','control']};
+  const names={basic:'基础法术',modifier:'法术修饰',control:'施法控制'};
+  const makeCard=()=>template.content.firstElementChild.cloneNode(true);
+  const cards=[],flats=[],edges=[];
+  for(let i=0;i<3;i++) {
+    const card=makeCard();card.style.zIndex=String(20-i);if(i>0)card.classList.add('pc-under');visibleContainer.appendChild(card);cards.push(card);
+    const example=document.createElement('div');example.className='pc-flat-example';
+    const slot=document.createElement('div');slot.className='pc-flat-slot';const face=makeCard();slot.appendChild(face);
+    const label=document.createElement('span');example.append(slot,label);flatContainer.appendChild(example);flats.push({example,face,label});
+  }
+  for(let i=0;i<7;i++){const card=makeCard();card.classList.add('pc-edge');card.style.zIndex=String(i);edgeContainer.appendChild(card);edges.push(card);}
+  function setShape(card,shape) {card.classList.remove('pc-basic','pc-modifier','pc-control');card.classList.add('pc-'+shape);card.setAttribute('aria-label',names[shape]);}
+  function render(saved) {
+    if(saved && typeof saved==='object') {
+      if(Number.isInteger(saved.count) && saved.count>=1 && saved.count<=25)count.value=String(saved.count);
+      if(Object.prototype.hasOwnProperty.call(shapes,saved.order))order.value=saved.order;
+    }
+    const n=Number(count.value),sequence=shapes[order.value],depth=n===1?1:n<=3?3:n<=6?7:12;
+    const tier=n===1?'单卡':n<=3?'薄堆 · 2–3 张':n<=6?'中堆 · 4–6 张':'厚堆 · 7–25 张';
+    root.querySelector('#pile-count-value').textContent=n+' / 25';root.querySelector('#pile-depth-label').textContent=tier;
+    for(let i=0;i<3;i++) {
+      setShape(cards[i],sequence[i]);cards[i].hidden=i>=n;cards[i].style.display=i>=n?'none':'block';
+      cards[i].style.setProperty('--pc-x',(i===1?2:i===2?-2:0)+'px');cards[i].style.setProperty('--pc-y',(-depth+Math.min(depth,i*2))+'px');
+      flats[i].example.hidden=i>=n;setShape(flats[i].face,sequence[i]);flats[i].label.textContent=(i===0?'顶牌 · ':'')+names[sequence[i]];
+    }
+    const slices=Math.ceil(depth/2);
+    edges.forEach((card,i)=>{setShape(card,sequence[0]);card.style.display=i<slices?'block':'none';card.style.setProperty('--pc-y',(-Math.min(depth,i*2))+'px');});
+    root.querySelector('#pile-status').textContent=n+'张，'+tier+'，顶牌是'+names[sequence[0]];
+  }
+  function change() {
+    render();const state={count:Number(count.value),order:order.value};
+    if(window.openai && typeof window.openai.setWidgetState==='function'){const result=window.openai.setWidgetState({modelContent:{pileAppearance:state},privateContent:state});if(result && typeof result.catch==='function')result.catch(()=>{});}
+  }
+  count.addEventListener('input',change);order.addEventListener('change',change);
+  render(window.openai && window.openai.widgetState && window.openai.widgetState.privateContent);
+  if(globalThis.lucide)lucide.createIcons({attrs:{width:16,height:16}});
+  window.addEventListener('openai:set_globals',event=>{const state=event.detail && event.detail.globals && event.detail.globals.widgetState;if(state)render(state.privateContent);});
+})();
+</script>

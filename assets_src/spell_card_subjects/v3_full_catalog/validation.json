@@ -1,0 +1,1756 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "id": "spark",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "26b522c4b816bc2d4f013cd7afd4fa724119343824a4e843ded5ef509dd33668",
+      "matches_source": true,
+      "png": "projectiles_controls/spark.png",
+      "prompt": "projectiles_controls/spark.prompt.txt"
+    },
+    {
+      "id": "arrow",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "f14c2d08d84554be304479cfb4eb5b704d4421ed841a7c46116bf6c0d8625e12",
+      "matches_source": true,
+      "png": "projectiles_controls/arrow.png",
+      "prompt": "projectiles_controls/arrow.prompt.txt"
+    },
+    {
+      "id": "scatter",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "3f686da3104e0417093dd69230e0e33cbff7e9d895cde33080a14f6c13e13518",
+      "matches_source": true,
+      "png": "projectiles_controls/scatter.png",
+      "prompt": "projectiles_controls/scatter.prompt.txt"
+    },
+    {
+      "id": "double",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "ce60ace662ccf3bff590578da7953656e92bed51f28accc8b1fb2ba7039339ad",
+      "matches_source": true,
+      "png": "projectiles_controls/double.png",
+      "prompt": "projectiles_controls/double.prompt.txt"
+    },
+    {
+      "id": "triple",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "ac8e2c64671a370176be3d8dadc7a2b355a82d71cb4dd40a214db375afefd0b3",
+      "matches_source": true,
+      "png": "projectiles_controls/triple.png",
+      "prompt": "projectiles_controls/triple.prompt.txt"
+    },
+    {
+      "id": "speed_up",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "e2ea9fc2b2c1b0d58ade983c92c7401eccce48582d7a7456e905c91a772614e6",
+      "matches_source": true,
+      "png": "modifiers/speed_up.png",
+      "prompt": "modifiers/speed_up.prompt.txt"
+    },
+    {
+      "id": "speed_down",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "c98f1d022caaca1ca866d294b657ec52b1af56e024e3777a40ddad7d91778ee6",
+      "matches_source": true,
+      "png": "modifiers/speed_down.png",
+      "prompt": "modifiers/speed_down.prompt.txt"
+    },
+    {
+      "id": "damage_up",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "cae4bf2ce73db1ef6a96d310a090b49c06b9ba00e8e40a650f158a6972e1e6d3",
+      "matches_source": true,
+      "png": "modifiers/damage_up.png",
+      "prompt": "modifiers/damage_up.prompt.txt"
+    },
+    {
+      "id": "precision",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "71e66b26ed09a00f6fbb6b2ae8b3a1953541338712726bd6e8c2f0a1f052302c",
+      "matches_source": true,
+      "png": "modifiers/precision.png",
+      "prompt": "modifiers/precision.prompt.txt"
+    },
+    {
+      "id": "sine",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "5982b92ab00e06e7746cb7963b8f21d97baae57ef29f1ddcca629c5679410a0d",
+      "matches_source": true,
+      "png": "modifiers/sine.png",
+      "prompt": "modifiers/sine.prompt.txt"
+    },
+    {
+      "id": "spiral",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "1c7fa941ba7d76164c9202161bb5d07237c8eac044feef62edd0a5ea057dff3d",
+      "matches_source": true,
+      "png": "modifiers/spiral.png",
+      "prompt": "modifiers/spiral.prompt.txt"
+    },
+    {
+      "id": "homing",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "b80f017ef99cf7465e488f8fb4634eadec69624930e05a694d9ad3f5cacf48ad",
+      "matches_source": true,
+      "png": "modifiers/homing.png",
+      "prompt": "modifiers/homing.prompt.txt"
+    },
+    {
+      "id": "bounce",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "2abecde177de1afcb740e10c2439800b68cf6ac7f82ac1a86048f97a5aca5bca",
+      "matches_source": true,
+      "png": "modifiers/bounce.png",
+      "prompt": "modifiers/bounce.prompt.txt"
+    },
+    {
+      "id": "pierce",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "d1b9217786d66c1a1ba2638d1f84af4de20544cc25fea51b61e499708d7aa0e9",
+      "matches_source": true,
+      "png": "modifiers/pierce.png",
+      "prompt": "modifiers/pierce.prompt.txt"
+    },
+    {
+      "id": "explosion",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "0a2417cbb2c709c3b3ce8e02e8c288a475f83f8f71b3820b29cfcf9a16d1c931",
+      "matches_source": true,
+      "png": "modifiers/explosion.png",
+      "prompt": "modifiers/explosion.prompt.txt"
+    },
+    {
+      "id": "chain",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "1226fde04f06939456c3de71d484f1acb456586e00d84aa2ef4ee03d5a3546a5",
+      "matches_source": true,
+      "png": "projectiles_controls/chain.png",
+      "prompt": "projectiles_controls/chain.prompt.txt"
+    },
+    {
+      "id": "knockback",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "1f7512fc06af70bd36e898da1bd61e56b0e0b39d3860b1edbc337d8d8d8d0fdb",
+      "matches_source": true,
+      "png": "modifiers/knockback.png",
+      "prompt": "modifiers/knockback.prompt.txt"
+    },
+    {
+      "id": "leech",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "7dc16ef45236119abaf66de38ed27cc3550425e3def525e99c5aaa3ad6679b05",
+      "matches_source": true,
+      "png": "music_targets/leech.png",
+      "prompt": "music_targets/leech.prompt.txt"
+    },
+    {
+      "id": "light",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "2aca8d5ad33bf92fade5b3bd8272ee4a8c4f95a7d9065f2a775d6aa3fc3a2d84",
+      "matches_source": true,
+      "png": "music_targets/light.png",
+      "prompt": "music_targets/light.prompt.txt"
+    },
+    {
+      "id": "orbit",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "03448fc91bd1a353cd3037d369221ef3a5a5d526603d44ee56202da4628fb81f",
+      "matches_source": true,
+      "png": "modifiers/orbit.png",
+      "prompt": "modifiers/orbit.prompt.txt"
+    },
+    {
+      "id": "pierce_all",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "b0b24a66f971251b8d95d7ff17f96d82c3677014b630d5e6aca0cf98890719be",
+      "matches_source": true,
+      "png": "modifiers/pierce_all.png",
+      "prompt": "modifiers/pierce_all.prompt.txt"
+    },
+    {
+      "id": "imprint_hit",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "ab26b67f82600dfa510f8d4b55505e582a901052b157e8f0805cf49d935d3389",
+      "matches_source": true,
+      "png": "projectiles_controls/imprint_hit.png",
+      "prompt": "projectiles_controls/imprint_hit.prompt.txt"
+    },
+    {
+      "id": "imprint_timer",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "3a7e0039cf4121cc6e32be0722572ad167cd5e0796acc1d785148c8b7ee26811",
+      "matches_source": true,
+      "png": "projectiles_controls/imprint_timer.png",
+      "prompt": "projectiles_controls/imprint_timer.prompt.txt"
+    },
+    {
+      "id": "heal_ally",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "3806121968c3203fe349ab021d400aa41aee983cbaa4e611bf15335963c134d0",
+      "matches_source": true,
+      "png": "music_targets/heal_ally.png",
+      "prompt": "music_targets/heal_ally.prompt.txt"
+    },
+    {
+      "id": "mana_reduce",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "9a85ce216e09635c8aab2396fcae52c9314278c3be9c4757690ef06ff5a434d5",
+      "matches_source": true,
+      "png": "music_targets/mana_reduce.png",
+      "prompt": "music_targets/mana_reduce.prompt.txt"
+    },
+    {
+      "id": "recharge_down",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "5a0ca99a7b30a02c392c6f6b8484ebe436d3379fc2e2b16ba01f43522289bc97",
+      "matches_source": true,
+      "png": "music_targets/recharge_down.png",
+      "prompt": "music_targets/recharge_down.prompt.txt"
+    },
+    {
+      "id": "repeat_2",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "fd049e94e26baf32bf60ca3922ec270e85f66a6570409502b73e86191a4959c9",
+      "matches_source": true,
+      "png": "projectiles_controls/repeat_2.png",
+      "prompt": "projectiles_controls/repeat_2.prompt.txt"
+    },
+    {
+      "id": "repeat_3",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "69fb5fa6297eca38a39c2e47a3acd1e5c688ab9281468e6e987ef8038cc70bc4",
+      "matches_source": true,
+      "png": "projectiles_controls/repeat_3.png",
+      "prompt": "projectiles_controls/repeat_3.prompt.txt"
+    },
+    {
+      "id": "phase_wall",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "c8f68bb9e30234fca3ca06e0bf74c1dcadbcc065d23e5365b88cddad8a85c825",
+      "matches_source": true,
+      "png": "modifiers/phase_wall.png",
+      "prompt": "modifiers/phase_wall.prompt.txt"
+    },
+    {
+      "id": "spore_sentry",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "42b9967ae5a6d164ff907401ecfc89d1e52d6af5f57f34476b074904dd8400af",
+      "matches_source": true,
+      "png": "fields/spore_sentry.png",
+      "prompt": "fields/spore_sentry.prompt.txt"
+    },
+    {
+      "id": "vital_ring",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "00c1a8da4a0dffeddcc4b7b2e7cf550de564ecfe51124e7e2bdeb26b06726556",
+      "matches_source": true,
+      "png": "fields/vital_ring.png",
+      "prompt": "fields/vital_ring.prompt.txt"
+    },
+    {
+      "id": "heavy_shot",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "3ad1aec39f81f441b8bdaa7d61c1b88b73a1ca8bf17fecc75f3214ca9645c1b4",
+      "matches_source": true,
+      "png": "modifiers/heavy_shot.png",
+      "prompt": "modifiers/heavy_shot.prompt.txt"
+    },
+    {
+      "id": "trident_cast",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "29618f88a409f948f1d9032dd7aeabc1a49a9da5e37df12770f4992263ac6589",
+      "matches_source": true,
+      "png": "projectiles_controls/trident_cast.png",
+      "prompt": "projectiles_controls/trident_cast.prompt.txt"
+    },
+    {
+      "id": "chord_d",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "2da3e82c027bf35d3218e7036610e17e6dd8dc0473c38f24f2e96d01711d142a",
+      "matches_source": true,
+      "png": "music_targets/chord_d.png",
+      "prompt": "music_targets/chord_d.prompt.txt"
+    },
+    {
+      "id": "repeat_4",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "8492930b852954547215f9759882da4ed160658a3d1553e2c8afdc6af6195dbf",
+      "matches_source": true,
+      "png": "projectiles_controls/repeat_4.png",
+      "prompt": "projectiles_controls/repeat_4.prompt.txt"
+    },
+    {
+      "id": "gust",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "9c2c5c09539565ccc51ce235840173c6cf56011b1643b0d85eaf5e7ff1375639",
+      "matches_source": true,
+      "png": "projectiles_controls/gust.png",
+      "prompt": "projectiles_controls/gust.prompt.txt"
+    },
+    {
+      "id": "spore_ball",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "09798057673de39cdb4768fbad2a8ee1d80cd27f0ae7d4822dca7a0a816b93b6",
+      "matches_source": true,
+      "png": "projectiles_controls/spore_ball.png",
+      "prompt": "projectiles_controls/spore_ball.prompt.txt"
+    },
+    {
+      "id": "flint_lance",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "ee8dee4d57e1fe92cb06f774bcbfe65d067ce6c3084247e8d0000198099ea494",
+      "matches_source": true,
+      "png": "projectiles_controls/flint_lance.png",
+      "prompt": "projectiles_controls/flint_lance.prompt.txt"
+    },
+    {
+      "id": "crystal_mine",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "a9a46b1af2e308439340ed73e6f336e2a62f9e211215a686c1e485f9cd55472f",
+      "matches_source": true,
+      "png": "fields/crystal_mine.png",
+      "prompt": "fields/crystal_mine.prompt.txt"
+    },
+    {
+      "id": "sleep_crystal",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "70ba4af83391bde6b9530885734f5281f77dde9169e14524e7b5f002ef639f88",
+      "matches_source": true,
+      "png": "fields/sleep_crystal.png",
+      "prompt": "fields/sleep_crystal.prompt.txt"
+    },
+    {
+      "id": "slime",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "bd0c4633020876ae15e132a5364349cf466501cb8ea3b3726882766c54dbb2ac",
+      "matches_source": true,
+      "png": "projectiles_controls/slime.png",
+      "prompt": "projectiles_controls/slime.prompt.txt"
+    },
+    {
+      "id": "grow_orb",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "b62c3440f76faff3667b319de1a4810d86cdd02801f0b5bf93a00b2f7d36b25a",
+      "matches_source": true,
+      "png": "projectiles_controls/grow_orb.png",
+      "prompt": "projectiles_controls/grow_orb.prompt.txt"
+    },
+    {
+      "id": "heal_bolt",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "38daa095ec403aea029310231155540182dd24862d619ef166c080ff1898d52e",
+      "matches_source": true,
+      "png": "projectiles_controls/heal_bolt.png",
+      "prompt": "projectiles_controls/heal_bolt.prompt.txt"
+    },
+    {
+      "id": "star_vortex",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "d1792b6a901ea936598562ee71c771cc3bbec216c4a1280dd4631718515ac931",
+      "matches_source": true,
+      "png": "projectiles_controls/star_vortex.png",
+      "prompt": "projectiles_controls/star_vortex.prompt.txt"
+    },
+    {
+      "id": "moon_fall",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "fc820adeea53bb706177e2c8a26e222f8e58fb154964e36e091fb33a152921e8",
+      "matches_source": true,
+      "png": "fields/moon_fall.png",
+      "prompt": "fields/moon_fall.prompt.txt"
+    },
+    {
+      "id": "bog_whip",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "02d9ba0bc82fa236695b6acad0e76e8f6bcfbeac9b778d560d0ae73ba4cf32da",
+      "matches_source": true,
+      "png": "fields/bog_whip.png",
+      "prompt": "fields/bog_whip.prompt.txt"
+    },
+    {
+      "id": "detonate",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "3e33db261e0b7dfc16498a96feac4728b788bc81f30649fe1da8dec449b8ee72",
+      "matches_source": true,
+      "png": "fields/detonate.png",
+      "prompt": "fields/detonate.prompt.txt"
+    },
+    {
+      "id": "bee_swarm",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "b816d71009bbaeab6fb864ec03c2955627a120c0dec5d62cab80cfb3e1a35c5b",
+      "matches_source": true,
+      "png": "fields/bee_swarm.png",
+      "prompt": "fields/bee_swarm.prompt.txt"
+    },
+    {
+      "id": "delay_seal",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "069649aa09a354bbb3dd861cb8fc0e43329acad293c2ac80688659740d863ef1",
+      "matches_source": true,
+      "png": "fields/delay_seal.png",
+      "prompt": "fields/delay_seal.prompt.txt"
+    },
+    {
+      "id": "rain_cloud",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "ae69e775b45dbbf3685c08760128ef9006a52faa8398cd4dc9306194466af465",
+      "matches_source": true,
+      "png": "fields/rain_cloud.png",
+      "prompt": "fields/rain_cloud.prompt.txt"
+    },
+    {
+      "id": "guard_ring",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "f4a4a5be130768298e7e2345c4af2187d721bd7d79eae377359e55621fd93d07",
+      "matches_source": true,
+      "png": "fields/guard_ring.png",
+      "prompt": "fields/guard_ring.prompt.txt"
+    },
+    {
+      "id": "wild_charge",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "cd44412b8862d99218a08f3d52620b6823f018482d161e2877b0b8b7149dfa2e",
+      "matches_source": true,
+      "png": "modifiers/wild_charge.png",
+      "prompt": "modifiers/wild_charge.prompt.txt"
+    },
+    {
+      "id": "long_life",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "3955071e6b98d6548db6ca80a489bb85d72d4b4f8df7a20a1bd71235913c7553",
+      "matches_source": true,
+      "png": "modifiers/long_life.png",
+      "prompt": "modifiers/long_life.prompt.txt"
+    },
+    {
+      "id": "reverse_path",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "997d995a4f8fc1ecef990e56d4d67e45c92d1c4c3c99730f73d66048c0d48763",
+      "matches_source": true,
+      "png": "modifiers/reverse_path.png",
+      "prompt": "modifiers/reverse_path.prompt.txt"
+    },
+    {
+      "id": "return_path",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "30e8769a3adb27bc35376150ba363939994ae12c58fecfc40523574ef3feebf0",
+      "matches_source": true,
+      "png": "modifiers/return_path.png",
+      "prompt": "modifiers/return_path.prompt.txt"
+    },
+    {
+      "id": "light_shot",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "3d755215076a90e547246d8afd90c971faa2d02507f6b88fa6338faff7267c2a",
+      "matches_source": true,
+      "png": "modifiers/light_shot.png",
+      "prompt": "modifiers/light_shot.prompt.txt"
+    },
+    {
+      "id": "accelerate",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "186a88e3e5363f59620dc27e6194c86354fcbeb911d97fb0e57c1e5ab171cd0d",
+      "matches_source": true,
+      "png": "modifiers/accelerate.png",
+      "prompt": "modifiers/accelerate.prompt.txt"
+    },
+    {
+      "id": "chill_touch",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "59be33b30c96eee3462f43a680095f21c0168c4a935b6e3c0850d66ea4165542",
+      "matches_source": true,
+      "png": "fields/chill_touch.png",
+      "prompt": "fields/chill_touch.prompt.txt"
+    },
+    {
+      "id": "wet_weak",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "fa76714770484dc912ff97a9a5c6b6af25b05e3def2faf7af489b9fed51c8508",
+      "matches_source": true,
+      "png": "fields/wet_weak.png",
+      "prompt": "fields/wet_weak.prompt.txt"
+    },
+    {
+      "id": "melee_mark",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "86810f04e697b2fc612490d6391e1e75e12dd26429c8bc4c38983efac36f0291",
+      "matches_source": true,
+      "png": "modifiers/melee_mark.png",
+      "prompt": "modifiers/melee_mark.prompt.txt"
+    },
+    {
+      "id": "wild_double",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "367903bca8f647aef482e5d602fd90bcc95914e8ee9096de056dcd2bf8ee7cfe",
+      "matches_source": true,
+      "png": "projectiles_controls/wild_double.png",
+      "prompt": "projectiles_controls/wild_double.prompt.txt"
+    },
+    {
+      "id": "two_way",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "2433031dcffce2b6787bde88d45c647b713f4675f392965c6349c61bb9492555",
+      "matches_source": true,
+      "png": "projectiles_controls/two_way.png",
+      "prompt": "projectiles_controls/two_way.prompt.txt"
+    },
+    {
+      "id": "note_a",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "d5adbfb5a09867cfc146c8ae9223f362f0d5a6f38f1ec47c3574cdf4d0b46a90",
+      "matches_source": true,
+      "png": "music_targets/note_a.png",
+      "prompt": "music_targets/note_a.prompt.txt"
+    },
+    {
+      "id": "glass_disc",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "d9399bef72911a386c82b16f92b6b93b53dbe4f7061ace23e517d02543752b4d",
+      "matches_source": true,
+      "png": "projectiles_controls/glass_disc.png",
+      "prompt": "projectiles_controls/glass_disc.prompt.txt"
+    },
+    {
+      "id": "land_hook",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "34d49966dbc1550a2eb5161b02a21c7e4b6af0440999b908d4cc1a8dbaaf552b",
+      "matches_source": true,
+      "png": "projectiles_controls/land_hook.png",
+      "prompt": "projectiles_controls/land_hook.prompt.txt"
+    },
+    {
+      "id": "tri_electric",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "eaa196373a268450999d66e4bd4638747917d035977b89c976dae199690018fa",
+      "matches_source": true,
+      "png": "projectiles_controls/tri_electric.png",
+      "prompt": "projectiles_controls/tri_electric.prompt.txt"
+    },
+    {
+      "id": "end_beam",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "3eb01cc0cbb058b08f8adf8fe0ca44351978c1a8e3acb27c60d5ba982752f540",
+      "matches_source": true,
+      "png": "projectiles_controls/end_beam.png",
+      "prompt": "projectiles_controls/end_beam.prompt.txt"
+    },
+    {
+      "id": "deer_decoy",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "b12c80cb050dc7205e68fb2b5748731e2cd4b423995129c108945479171f6e8d",
+      "matches_source": true,
+      "png": "fields/deer_decoy.png",
+      "prompt": "fields/deer_decoy.prompt.txt"
+    },
+    {
+      "id": "payload_egg",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "576a246a8a710fbda3e9405dad81d2e913bb6b0115aaaab579e8bbc0ec9bcc69",
+      "matches_source": true,
+      "png": "fields/payload_egg.png",
+      "prompt": "fields/payload_egg.prompt.txt"
+    },
+    {
+      "id": "fireflies",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "e0d81a101867d38cb9c5776e401e7ba5a1095199417823b0ed16e227985ba30a",
+      "matches_source": true,
+      "png": "fields/fireflies.png",
+      "prompt": "fields/fireflies.prompt.txt"
+    },
+    {
+      "id": "shock_ring",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "62f0e730077db136ef3adbe76f2664e3c906369c8c3c4f3dba62c17c2b3ce2eb",
+      "matches_source": true,
+      "png": "fields/shock_ring.png",
+      "prompt": "fields/shock_ring.prompt.txt"
+    },
+    {
+      "id": "storm_cloud",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "6fcf75c5c5b6b55f9367e85487273ae9473be5d21b5b0d73ed74751dd2f537ad",
+      "matches_source": true,
+      "png": "fields/storm_cloud.png",
+      "prompt": "fields/storm_cloud.prompt.txt"
+    },
+    {
+      "id": "vortex",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "7f76b46c733ad7e6e28929b08cc6ba2c78c8b715910a38f08447e5a0d4c3d898",
+      "matches_source": true,
+      "png": "fields/vortex.png",
+      "prompt": "fields/vortex.prompt.txt"
+    },
+    {
+      "id": "harmless",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "aecf7aa3dc0a820c2cd67fcc57bfd6c008ee1f270a8a3a491fcc3d9acb89ea38",
+      "matches_source": true,
+      "png": "modifiers/harmless.png",
+      "prompt": "modifiers/harmless.prompt.txt"
+    },
+    {
+      "id": "searing_halo",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "760fe320c1914cd67df62c2109bbd4b06f34b6d712da638921d18a46c5dbdf1d",
+      "matches_source": true,
+      "png": "fields/searing_halo.png",
+      "prompt": "fields/searing_halo.prompt.txt"
+    },
+    {
+      "id": "twin_arc",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "cec36f4ec04f310bb42b915334ef7f508adc41689ed581c3adbead4ad226052e",
+      "matches_source": true,
+      "png": "fields/twin_arc.png",
+      "prompt": "fields/twin_arc.prompt.txt"
+    },
+    {
+      "id": "side_embers",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "5a6bb838c70889675831e7d4260a7560725b9fd05555fdfc389fee9a66b4a6a2",
+      "matches_source": true,
+      "png": "fields/side_embers.png",
+      "prompt": "fields/side_embers.prompt.txt"
+    },
+    {
+      "id": "near_homing",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "bb7d121799e344278da593baf04aa21ae4485be2fbf25b2ac731cb58f4861b70",
+      "matches_source": true,
+      "png": "modifiers/near_homing.png",
+      "prompt": "modifiers/near_homing.prompt.txt"
+    },
+    {
+      "id": "crit_rune",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "58378967c994cc72e375f1802910652a5b67015542a2e41cccc4fe2197c642fd",
+      "matches_source": true,
+      "png": "modifiers/crit_rune.png",
+      "prompt": "modifiers/crit_rune.prompt.txt"
+    },
+    {
+      "id": "cast_four",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "f4a73a79a309f9d8b64fed0fd985de084df2002bede38c01724f6fb3634ea7d8",
+      "matches_source": true,
+      "png": "projectiles_controls/cast_four.png",
+      "prompt": "projectiles_controls/cast_four.prompt.txt"
+    },
+    {
+      "id": "hex_cast",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "6c1e082208aff2594e4e753fcf06bb2f12e8444357313ad56470673c0747f256",
+      "matches_source": true,
+      "png": "projectiles_controls/hex_cast.png",
+      "prompt": "projectiles_controls/hex_cast.prompt.txt"
+    },
+    {
+      "id": "note_c",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "772ce43f1029a424cafce97c6a0fcb064fbc7b85f0f84084d074b945982a4f32",
+      "matches_source": true,
+      "png": "music_targets/note_c.png",
+      "prompt": "music_targets/note_c.prompt.txt"
+    },
+    {
+      "id": "target_hostile",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "0f4a2bc9e4dc00c09d9cd11d4a024a044bd392e844fac22bd508aac729abeaba",
+      "matches_source": true,
+      "png": "music_targets/target_hostile.png",
+      "prompt": "music_targets/target_hostile.prompt.txt"
+    },
+    {
+      "id": "target_neutral",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "4730bca40848142f21884072845be9533aef9d596d3ea3b355ff9c4c08bd75f1",
+      "matches_source": true,
+      "png": "music_targets/target_neutral.png",
+      "prompt": "music_targets/target_neutral.prompt.txt"
+    },
+    {
+      "id": "target_friendly",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "6f18e9d927520b21050703a10c99b98470f945f8b27089ac1fffea2974f19a8f",
+      "matches_source": true,
+      "png": "music_targets/target_friendly.png",
+      "prompt": "music_targets/target_friendly.prompt.txt"
+    },
+    {
+      "id": "target_building",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "cd88cf673452032c6e7b812bde88d72aa90392df0ac47d38a60c9b39e83581be",
+      "matches_source": true,
+      "png": "music_targets/target_building.png",
+      "prompt": "music_targets/target_building.prompt.txt"
+    },
+    {
+      "id": "target_nature",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "ef72a7f31521d49568eb06608ab8b7230645a7bcf19b0d73d27c6f9edfdd10fe",
+      "matches_source": true,
+      "png": "music_targets/target_nature.png",
+      "prompt": "music_targets/target_nature.prompt.txt"
+    },
+    {
+      "id": "target_players_other",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "a8287c8252bec7d3660e8d5bae63f17f10c1be8bd093a1d788b8d44036d2af37",
+      "matches_source": true,
+      "png": "music_targets/target_players_other.png",
+      "prompt": "music_targets/target_players_other.prompt.txt"
+    },
+    {
+      "id": "target_self",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "b2a5885fb4d2b3e457ecc6639a74ab9f721be0c2832b85db213f70e470df6b3a",
+      "matches_source": true,
+      "png": "music_targets/target_self.png",
+      "prompt": "music_targets/target_self.prompt.txt"
+    },
+    {
+      "id": "ocarina_b",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "6024e4a0377a08edd661bb439782426b8456cbdde40e96957ae2d7776b313b1f",
+      "matches_source": true,
+      "png": "music_targets/ocarina_b.png",
+      "prompt": "music_targets/ocarina_b.prompt.txt"
+    },
+    {
+      "id": "ocarina_d",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "eb13f606c2b501fba7c6668bf1e6464de7d980accb96663603066e5361a71cbd",
+      "matches_source": true,
+      "png": "music_targets/ocarina_d.png",
+      "prompt": "music_targets/ocarina_d.prompt.txt"
+    },
+    {
+      "id": "ocarina_e",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "46499ae37b32407d0da0b1be84d4f488c0715a3aafa7d44733e1c2faba09ec97",
+      "matches_source": true,
+      "png": "music_targets/ocarina_e.png",
+      "prompt": "music_targets/ocarina_e.prompt.txt"
+    },
+    {
+      "id": "ocarina_f",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "7fb0dc4cb2812f2087151802dc308670909df445e4035806dfaaa12e255e2e36",
+      "matches_source": true,
+      "png": "music_targets/ocarina_f.png",
+      "prompt": "music_targets/ocarina_f.prompt.txt"
+    },
+    {
+      "id": "ocarina_gsharp",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "2404c4bd78a3a6dc91965917a7b35538150df2c21731953344bfb894eafc92a0",
+      "matches_source": true,
+      "png": "music_targets/ocarina_gsharp.png",
+      "prompt": "music_targets/ocarina_gsharp.prompt.txt"
+    },
+    {
+      "id": "ocarina_a2",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "a7446d6df2b15f3f82d3eaea17489e9fa68d802f6a78fd58fdf2dc3e3796bfb5",
+      "matches_source": true,
+      "png": "music_targets/ocarina_a2.png",
+      "prompt": "music_targets/ocarina_a2.prompt.txt"
+    },
+    {
+      "id": "kantele_a",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "ff4c98ca8f2b3f0e6f90aa1aecb9c36563b91a70676878243a39312de76a1a73",
+      "matches_source": true,
+      "png": "music_targets/kantele_a.png",
+      "prompt": "music_targets/kantele_a.prompt.txt"
+    },
+    {
+      "id": "kantele_dsharp",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "e99d14e8f7c917968228e352d6258cc6a044550b0bba7936988c9502d77d58bc",
+      "matches_source": true,
+      "png": "music_targets/kantele_dsharp.png",
+      "prompt": "music_targets/kantele_dsharp.prompt.txt"
+    },
+    {
+      "id": "kantele_e",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "a498e9380aff2edbb85a02429694f56275729838dd4f30f7c0feb85080ebb03e",
+      "matches_source": true,
+      "png": "music_targets/kantele_e.png",
+      "prompt": "music_targets/kantele_e.prompt.txt"
+    },
+    {
+      "id": "kantele_g",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "53f3ba8f7172a98549b25965ef8f61e9dfaf25a98208245f6d37410c68768e62",
+      "matches_source": true,
+      "png": "music_targets/kantele_g.png",
+      "prompt": "music_targets/kantele_g.prompt.txt"
+    },
+    {
+      "id": "giant_shot",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "c0e8f469776d4332ca54596640c23e1117a1edaed52d5cb7ad195ec988210f82",
+      "matches_source": true,
+      "png": "modifiers/giant_shot.png",
+      "prompt": "modifiers/giant_shot.prompt.txt"
+    },
+    {
+      "id": "short_life",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "75cc27f829f78c79bb3cc8385d0375094cff046081e760b15012db77406fc998",
+      "matches_source": true,
+      "png": "modifiers/short_life.png",
+      "prompt": "modifiers/short_life.prompt.txt"
+    },
+    {
+      "id": "homing_rotate",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "5812c5ac7fdcad552f49e8a5880c588e9a3ad84d41bd5c51e6295ff603214efa",
+      "matches_source": true,
+      "png": "modifiers/homing_rotate.png",
+      "prompt": "modifiers/homing_rotate.prompt.txt"
+    },
+    {
+      "id": "ocarina_g",
+      "attempt_count": 1,
+      "mode": "RGBA",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "399e8f976f9cd457972e85fe248a5743897019c9f8e87a5fe0b13e39d8c5a217",
+      "matches_source": true,
+      "png": "music_targets/ocarina_g.png",
+      "prompt": "music_targets/ocarina_g.prompt.txt"
+    }
+  ]
+}

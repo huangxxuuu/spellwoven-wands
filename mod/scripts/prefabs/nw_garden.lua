@@ -1,6 +1,7 @@
 local Effects=require("nw/spell_effects")
 local Target=require("nw/targeting")
-local assets={Asset("ANIM","anim/nw_objects.zip")}
+local Stages=require("nw/field_stages")
+local assets={Asset("ANIM","anim/nw_objects.zip"),Asset("ANIM","anim/nw_field_stages.zip")}
 
 local function nearest(owner,x,z,radius,flags)
     local list=Effects.scan(x,z,radius,flags)
@@ -47,8 +48,7 @@ local function sentry(inst,owner,p,x,z)
                 local length=math.sqrt(dx*dx+dz*dz)
                 if length<=p.radius and Effects.clear(x,z,tx,tz,Effects.scan(x,z,p.radius)) then
                     if length<.001 then dx,dz=1,0 else dx,dz=dx/length,dz/length end
-                    local thorn={id="spore_sentry",kind="projectile",speed=14,lifetime=.36*require("nw/projectile_size").factor(p),
-                        damage=p.damage,flags={targets=p.flags.targets},spread=0,size_mult=p.size_mult,max_range=math.max(30,p.radius)}
+                    local thorn=require("nw/field_effects").shot(p,"spore_sentry",14,.36)
                     local fired=require("nw/executor").execute({root_block=1,projectile_count=1,
                         next_state={rng_state=1},blocks={{projectiles={thorn}}}},owner,x,z,dx,dz,.62)
                     if fired then
@@ -66,13 +66,13 @@ local function sentry(inst,owner,p,x,z)
     inst.AnimState:PlayAnimation("spore_grow")
     inst.AnimState:PushAnimation("spore_idle",true)
     inst:DoTaskInTime(.6,seek)
-    inst:DoTaskInTime(5.7,wilt)
+    inst:DoTaskInTime(require("nw/field_effects").time(p,5.7),wilt)
 end
 
 local function ring(inst,owner,p,x,z)
-    inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-    inst.AnimState:PlayAnimation("vital_pulse",true)
+    Stages.start(inst,"vital_ring",p)
     local function pulse()
+        Stages.pulse(inst)
         local x,_,z=inst.Transform:GetWorldPosition()
         for _,e in ipairs(Effects.scan(x,z,p.radius)) do
             local h=e.components.health
@@ -82,14 +82,15 @@ local function ring(inst,owner,p,x,z)
             end
         end
     end
-    for n=1,3 do inst:DoTaskInTime(n,pulse) end
-    inst:DoTaskInTime(3.1,inst.Remove)
+    for n=1,3 do inst:DoTaskInTime(require("nw/field_effects").time(p,n),pulse) end
+    inst:DoTaskInTime(require("nw/field_effects").time(p,3.1),function() Stages.finish(inst);inst:Remove() end)
 end
 
 local function note(inst,owner,p,x,z)
     inst.AnimState:PlayAnimation("chord_note")
     local now=GetTime()
-    inst.SoundEmitter:PlaySoundWithParams(require("nw/arsenal").tone(p.id,p.pitch))
+    -- A separate emitter outlives the brief note visual and preserves the sampled decay.
+    require("nw/expanded_fields").sound(owner,x,z,p.id,p.pitch)
     for _,e in ipairs(Effects.scan(x,z,p.radius)) do
         if e:HasTag("player") and Effects.live(e) and e.components.sanity and not e:HasTag("playerghost")
             and e:GetDistanceSqToPoint(x,0,z)<=p.radius^2 and now+.001>=(e._nw_chord_next or 0) then
@@ -109,9 +110,13 @@ local function prefab(id,activate)
         inst.entity:AddNetwork()
         inst.entity:SetCanSleep(false)
         inst.AnimState:SetBank("nw_objects");inst.AnimState:SetBuild("nw_objects")
-        if id=="spore_sentry" then inst:AddTag("nw_sentry")
+        if id=="vital_ring" then Stages.setup(inst,id) end
+        if id=="spore_sentry" then
+            inst.AnimState:SetBank(Stages.bank);inst.AnimState:SetBuild(Stages.bank)
+            inst:AddTag("nw_sentry")
         else inst:AddTag("FX");inst:AddTag("NOCLICK") end
         inst.entity:SetPristine()
+        Stages.attach(inst,id)
         if not TheWorld.ismastersim then return inst end
         inst.persists=false
         if id=="spore_sentry" then
@@ -138,6 +143,6 @@ local function prefab(id,activate)
         end
         return inst
     end
-    return Prefab("nw_"..id,fn,assets)
+    return Prefab("nw_"..id,fn,assets,{"nw_vital_stage_fx"})
 end
 return prefab("spore_sentry",sentry),prefab("vital_ring",ring),prefab("chord_d",note)

@@ -1,0 +1,53 @@
+{
+  "id": "cast_four",
+  "name": "四重施法",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-2c490e56-538b-4e7d-b4d3-9bbccda7cba4.png",
+  "output": "cast_four.png",
+  "prompt": "cast_four.prompt.txt",
+  "reference": null,
+  "review": {
+    "visual_reviewed": true,
+    "mechanism_and_count_checked": true,
+    "issues": [],
+    "notes": [
+      "四个不同印记表现四重抽取，与复制法术图形明确区分。"
+    ],
+    "validation": {
+      "id": "cast_four",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_8": [
+        45,
+        69,
+        1214,
+        1232
+      ],
+      "alpha_bbox_32": [
+        45,
+        69,
+        1214,
+        1231
+      ],
+      "alpha_bbox_128": [
+        45,
+        70,
+        1214,
+        1231
+      ],
+      "edge_max_alpha": 1,
+      "nonzero_edge_pixels": 61,
+      "visible_edge_pixels": 0,
+      "transparent_ratio": 0.5808080808080808,
+      "sha256": "f4a73a79a309f9d8b64fed0fd985de084df2002bede38c01724f6fb3634ea7d8"
+    }
+  },
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-2c490e56-538b-4e7d-b4d3-9bbccda7cba4.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "source_hash_matches": true,
+  "raw_png_modified": false,
+  "retry_needed": false
+}

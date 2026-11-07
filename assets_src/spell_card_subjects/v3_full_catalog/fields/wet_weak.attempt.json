@@ -1,0 +1,9 @@
+{
+  "id": "wet_weak",
+  "name": "潮湿破绽",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "wet_weak.prompt.txt",
+  "reference": null
+}
+

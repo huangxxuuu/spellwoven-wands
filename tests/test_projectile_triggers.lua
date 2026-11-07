@@ -14,6 +14,7 @@ TheSim={FindEntities=function() return candidates end}
 require("nw/explosions").hit=function(_,p) if p and p.flags and p.flags.explosive_hit then explosions=explosions+1 end end
 Effects.chain=function(_,first,x,z) blasts[#blasts+1]={x=x,z=z} end
 SpawnPrefab=function(name)
+    if name=="nw_elemental_hit_fx" then return {Transform={SetPosition=function() end},SetImpact=function() end} end
     if name~="nw_projectile" then return {Transform={SetPosition=function() end}} end
     local obj={valid=true,x=0,z=0}
     obj.Transform={GetWorldPosition=function() return obj.x,0,obj.z end,SetRotation=function() end}
@@ -40,7 +41,7 @@ local function cast(...)
     return objects[1]
 end
 local function target(x)
-    local e={GUID=991,components={health={IsDead=function() return false end},combat={GetAttacked=function() end}}}
+    local e={GUID=991,components={health={currenthealth=1000,IsDead=function() return false end},combat={GetAttacked=function() end}}}
     e.Transform={GetWorldPosition=function() return x,0,0 end}
     function e:IsValid() return true end
     function e:IsInLimbo() return false end
@@ -135,4 +136,35 @@ e=cast("arrow_timer","chain")
 require("nw/orbit_shield").update(e,e._shot,.5)
 require("nw/orbit_shield").update(e,e._shot,1.2)
 assert(not e.valid and #blasts==1 and E.stats()==0)
-print("projectile triggers: expiration, contact deduplication, piercing replay, independent scatter timers, queued expiry, ledger cleanup")
+-- The real executor keeps the beam carrier reserved after its moving front
+-- ends. Later trail hits can still reserve/release another payload subtree.
+for _,obj in ipairs(objects) do obj:Remove() end
+objects,blasts,candidates={},{},{target(2)}
+local previous_spawn=SpawnPrefab
+SpawnPrefab=function(name)
+    if name~="nw_end_beam" then return previous_spawn(name) end
+    local obj=previous_spawn("nw_projectile")
+    obj.Physics.Stop=function() obj.speed=0 end
+    obj.Physics.Teleport=function(_,x,_,z) obj.x,obj.z=x,z end
+    return obj
+end
+local now,endpoint=0,0
+GetTime=function() return now end
+local previous_blast=Effects.blast
+Effects.blast=function() endpoint=endpoint+1 end
+local plan={projectile_count=2,next_state={rng_state=1},blocks={
+    {projectiles={{id="end_beam",kind="projectile",event="hit",payload=2,end_damage=16,
+        damage=12,speed=26,lifetime=.1,flags={},spread=0}}},
+    {projectiles={{id="chain",kind="instant",damage=15,flags={},spread=0}}},
+}}
+assert(E.execute(plan,owner,0,0,1,0,1.4) and E.stats()==2)
+local beam=objects[1];beam.x=3;now=.1;P.step(beam,now,{})
+assert(beam.valid and beam._shot.beam.ended and E.stats()==1 and endpoint==1 and #blasts==1)
+now=.6;P.step(beam,now,{})
+assert(beam.valid and E.stats()==1 and #blasts==2,"residue must replay through the actual executor after front termination")
+candidates={target(1)};now=.7;P.step(beam,now,{})
+assert(E.stats()==1 and #blasts==3,"late trail entrants must retain the collision payload")
+now=1.6;P.step(beam,now,{})
+assert(not beam.valid and E.stats()==0 and endpoint==1 and #blasts==3)
+SpawnPrefab=previous_spawn;Effects.blast=previous_blast
+print("projectile triggers: piercing replay, timer/end rules, lingering-beam payload reservations and final ledger cleanup")

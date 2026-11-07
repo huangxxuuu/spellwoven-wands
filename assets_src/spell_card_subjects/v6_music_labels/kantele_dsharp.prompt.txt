@@ -1,0 +1,5 @@
+Use case: text-localization.
+Asset type: existing transparent spell-card main illustration, minimal local symbol correction.
+Input image 1 is the EDIT TARGET, not a style suggestion.
+Primary request: Replace the dark-brown D# label at upper right with a single capital C. Remove the sharp sign entirely. Match the new C to the original D's hand-drawn serif lettering, height, weight, dark-brown color and baseline; center it within the old D# label area. The only text must be C.
+Constraints: Change ONLY that note-name label. Preserve the entire instrument, every decorative leaf, string or hole, floating musical-note glyph, colored ribbon, paint texture, exact composition, position, size, silhouette, colors and existing transparent margins unchanged. Do not repaint or redesign the illustration. Keep the same square canvas. Preserve genuine alpha transparency. No background, no colored matte, no stray colored pixels, no shadow, no added text, no card frame. This is a surgical correction of D# to C, nothing else.

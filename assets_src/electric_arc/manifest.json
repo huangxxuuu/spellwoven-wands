@@ -1,0 +1,14 @@
+{
+  "bank": "nw_electric_arc",
+  "build": "shock_fx",
+  "native_symbol": "bolt_arc_side",
+  "native_frames": [
+    3,
+    5
+  ],
+  "fps": 30,
+  "frames": 4,
+  "directions": 256,
+  "span_pixels": 112,
+  "notes": "Animation matrices only; uses installed native textures"
+}

@@ -1,0 +1,75 @@
+{
+  "id": "searing_halo",
+  "name": "灼光环",
+  "attempt_count": 1,
+  "status": "candidate",
+  "prompt": "searing_halo.prompt.txt",
+  "reference": null,
+  "output": "searing_halo.png",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-a57b5e3c-0fdb-4831-b4c3-d1a6520f228d.png",
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28 as C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-a57b5e3c-0fdb-4831-b4c3-d1a6520f228d.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=3），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+    ],
+    "complete_visible_subject": true,
+    "minimum_visible_margin_px": 46,
+    "card_frame_fitting_required": true,
+    "initial_preview_observations": [
+      "火环内外边缘有可见红黄杂点，尤其上方内圈及底部弧线。"
+    ],
+    "color_fringe_audit": {
+      "id": "searing_halo",
+      "color_masks": {
+        "red": {
+          "total": 1079,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 2
+        },
+        "yellow": {
+          "total": 219,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 3
+        }
+      }
+    }
+  },
+  "validation": {
+    "id": "searing_halo",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 1101512,
+    "opaque_pixels": 1763,
+    "semi_transparent_pixels": 469241,
+    "bbox_alpha32": [
+      46,
+      72,
+      1207,
+      1208
+    ],
+    "bbox_alpha128": [
+      46,
+      72,
+      1206,
+      1207
+    ],
+    "edge_max_alpha": 1,
+    "sha256": "760fe320c1914cd67df62c2109bbd4b06f34b6d712da638921d18a46c5dbdf1d",
+    "matches_source": true
+  },
+  "retry_prompt": "searing_halo.retry.prompt.txt",
+  "retry_prompt_mode": "optional_not_required"
+}

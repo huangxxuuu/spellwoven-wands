@@ -97,7 +97,7 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim)
                 end
                 local e
                 if p.kind~="instant" and not p.suppress_support then
-                    e=SpawnPrefab((p.kind=="field" or p.kind=="note") and (p.kind=="note" and "nw_chord_d" or "nw_"..p.id) or p.kind=="melee" and ("nw_"..p.id.."_fx") or p.id=="spore_ball" and "nw_spore_ball_flight" or "nw_projectile")
+                    e=SpawnPrefab((p.kind=="field" or p.kind=="note") and (p.kind=="note" and "nw_chord_d" or "nw_"..p.id) or p.kind=="melee" and ("nw_"..p.id.."_fx") or p.id=="spore_ball" and "nw_spore_ball_flight" or p.id=="end_beam" and "nw_end_beam" or "nw_projectile")
                     if not e then
                         for _,v in ipairs(objects) do if v.entity then v.entity:Remove() end end
                         manager:release(reservation,sizes[index],true)
@@ -129,6 +129,10 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim)
                 require("nw/melee").launch(v.entity,owner,p,px,pz,ux,uz,group.cleanup)
             else
                 local fx,fz=px,pz
+                if (p.base or p.id)=="scatter" then
+                    local offset=(v.k-2)*.35*require("nw/projectile_size").factor(p)
+                    fx,fz=fx-az*offset,fz+ax*offset
+                end
                 if p.aim_range and aim and index==1 and not require("nw/targeting").only_self(p.flags) then
                     if p.id=="detonate" then
                         local ox,_,oz=owner.Transform:GetWorldPosition()
@@ -140,9 +144,21 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim)
                         fx,fz=px+ux*r,pz+uz*r
                     end
                 end
+                if index==1 and (p.id=="crystal_mine" or p.id=="sleep_crystal") then
+                    local ox,_,oz=owner.Transform:GetWorldPosition();fx,fz=ox,oz
+                end
                 local payload=p.id=="payload_egg" and M.store_payload(blocks,angles,p.payload) or nil
                 v.entity:Launch(owner,p,fx,fz,ux,uz,group.cleanup,h,group.fire,payload)
                 if owner._nw_neutral and v.entity:IsValid() then require("nw/payload_caster").retain(owner,v.entity) end
+                local effects=v.entity._nw_effects
+                if effects then
+                    effects.context=cast_context
+                    if p.flags.twin_arc then
+                        local partner=cast_context.unpaired_field
+                        if partner and partner:IsValid() then partner._nw_effects.partner=v.entity;cast_context.unpaired_field=nil
+                        else cast_context.unpaired_field=v.entity end
+                    end
+                end
                 if v.entity._shot then v.entity._shot.context=cast_context end
                 local s=v.entity._shot
                 if s then

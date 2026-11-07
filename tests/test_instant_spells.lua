@@ -16,11 +16,12 @@ function owner.components.combat:DoAttack(e,weapon,projectile,_,_,range,origin)
     arcs[#arcs+1]={e.GUID,weapon.damage,origin.x,origin.z}
     e.components.health.currenthealth=e.components.health.currenthealth-weapon.damage
 end
-local function target(x,z)
+local function target(x,z,y)
     local h={currenthealth=200,IsDead=function(self) return self.currenthealth<=0 end}
     local e={GUID=#targets+1,GetPhysicsRadius=function() return .5 end,components={health=h,combat={}},
         IsValid=function() return true end,IsInLimbo=function() return false end,HasTag=function() return false end,
-        Transform={GetWorldPosition=function() return x,0,z end},
+        Transform={GetWorldPosition=function() return x,y or 0,z end},
+        GetPosition=function() return Vector3(x,y or 0,z) end,
         GetDistanceSqToPoint=function(_,px,_,pz) return (px-x)^2+(pz-z)^2 end}
     function e.components.combat:GetAttacked(_,d) h.currenthealth=h.currenthealth-d end
     targets[#targets+1]=e
@@ -28,10 +29,10 @@ local function target(x,z)
 end
 SpawnPrefab=function(name)
     local fx={}
-    fx.Transform={SetPosition=function(_,x,_,z) fx.x=x;fx.z=z end}
+    fx.Transform={SetPosition=function(_,x,y,z) fx.x=x;fx.y=y;fx.z=z end}
     if name=="nw_arc_fx" then
         fx.components={weapon={SetDamage=function(_,d) fx.damage=d end}}
-        function fx:SetSpan(dx,dz,e) spans[#spans+1]={dx,dz,e} end
+        function fx:SetSpan(dx,dz,e,dy,lift) spans[#spans+1]={dx,dz,e,dy,lift,self.y} end
     elseif name=="nw_ground_shock_fx" then
         landings[#landings+1]=fx
     elseif name=="nw_blast_fx" then
@@ -96,4 +97,15 @@ p=cast({"arrow_timer","explosion"},0,0)
 assert(#p.blocks[2].projectiles==0)
 carriers[#carriers].cleanup()
 assert(Executor.stats()==0)
-print("instant spells: native lightning, target priority and explosion modifier classification")
+-- Each chain hop starts at the previous contact, including elevated targets.
+targets={};arcs={};spans={}
+target(6,0,2);target(12,0,4);cast({"chain"},0,0)
+assert(spans[1][4]==2 and spans[1][6]==.75)
+assert(spans[2][4]==2 and spans[2][6]==2.75)
+-- A cloud passes its real root height and its billboard lift independently.
+targets={};spans={};local airborne=target(3,4,2)
+GetCombatFxSize=function() return 1,"med","high" end
+require("nw/expanded_hits").electric(owner,airborne,0,0,7,nil,true,0,2.2)
+assert(spans[1][4]==3.75 and spans[1][5]==2.2 and spans[1][6]==0)
+assert(airborne.components.health.currenthealth==193,"height correction does not change damage")
+print("instant spells: lightning target priority, 3D hop heights, separate cloud lift and unchanged damage")

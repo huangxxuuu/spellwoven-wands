@@ -12,6 +12,7 @@ local function owner(inst)
     end
     inst._nw_owner=e
     inst.components.explosive:SetAttacker(e)
+    if inst._nw_powder then require("nw/journal_damage").tag(inst,e,inst._nw_powder.p) end
     return e
 end
 local function start(inst,data,caster)

@@ -26,7 +26,7 @@ local function update()
 end
 local drawn={gust=true,slime=true,heal_bolt=true,heavy=true,land_hook=true,
     arrow=true,fire=true,frost=true,scatter=true,spore_ball=true,flint_lance=true,grow_orb=true,star_vortex=true,glass_disc=true,tri_electric=true,end_beam=true,soundwave=true,bee_swarm=true,
-    fishingrod=true,farm_hoe=true,orange_bolt=true,yoth_lance=true}
+    trident=true,fishingrod=true,farm_hoe=true,orange_bolt=true,yoth_lance=true}
 -- A screen-facing painted body rotates within its own plane. Native physics
 -- owns the world heading; a reversal never swaps entities or reflects the art.
 function M.attach(inst,id,turn)

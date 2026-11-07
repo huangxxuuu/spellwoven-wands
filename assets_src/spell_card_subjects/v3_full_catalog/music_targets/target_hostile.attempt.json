@@ -1,0 +1,10 @@
+{
+  "id": "target_hostile",
+  "name": "选取敌对生物",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T00:50:21.103Z",
+  "completed_at": "2026-11-07T00:52:07.750Z",
+  "result_file": "target_hostile.result.json"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "knockback",
+  "name": "击退",
+  "group": "modifiers",
+  "status": "needs_retry",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-09912efc-a22b-47b9-9e47-35a650486763.png",
+  "output": "knockback.png",
+  "prompt": "knockback.prompt.txt",
+  "retry_prompt": "knockback.retry.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [
+      "冲击尖角之间出现带颗粒的半透明青灰雾，边界不够干净，不符合仅用实心运动笔触的要求。"
+    ],
+    "notes": [
+      "魔弹、木靶与推离箭头能表达击退，但冲击边缘出现半透明雾。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      64,
+      110,
+      1195,
+      1200
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 54,
+    "sha256": "1f7512fc06af70bd36e898da1bd61e56b0e0b39d3860b1edbc337d8d8d8d0fdb",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

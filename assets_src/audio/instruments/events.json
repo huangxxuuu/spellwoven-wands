@@ -1,0 +1,617 @@
+{
+  "project": "nw_instruments",
+  "instruments": {
+    "ocarina": [
+      {
+        "midi": 56,
+        "note": "G#3",
+        "event": "nw_instruments/ocarina/m056",
+        "file": "ocarina/ocarina_m056_Gs3.wav",
+        "duration": 1.1429251700680272,
+        "sha256": "a45891452f1cfd39767597d8dc968f5cbea51ced4e0ff5bdc66f2c8f652c392e"
+      },
+      {
+        "midi": 57,
+        "note": "A3",
+        "event": "nw_instruments/ocarina/m057",
+        "file": "ocarina/ocarina_m057_A3.wav",
+        "duration": 1.1483446712018142,
+        "sha256": "cac7fa11d7c05186b24cc0fcabf5b3bfa1ac467499f6a9931615bb019b3aadf5"
+      },
+      {
+        "midi": 58,
+        "note": "A#3",
+        "event": "nw_instruments/ocarina/m058",
+        "file": "ocarina/ocarina_m058_As3.wav",
+        "duration": 1.1500680272108843,
+        "sha256": "495578ee0a566a1b0106f3ef3ba30a97d3b78ed0bae2119f5114d33294a739c5"
+      },
+      {
+        "midi": 59,
+        "note": "B3",
+        "event": "nw_instruments/ocarina/m059",
+        "file": "ocarina/ocarina_m059_B3.wav",
+        "duration": 1.1516553287981859,
+        "sha256": "8c9112663834c4055a6c9182d8d73631d95c5ea42635a3aaee6ddbc16769ec4b"
+      },
+      {
+        "midi": 60,
+        "note": "C4",
+        "event": "nw_instruments/ocarina/m060",
+        "file": "ocarina/ocarina_m060_C4.wav",
+        "duration": 1.1498639455782314,
+        "sha256": "f070308d703bbc1680fe8d1a7870856688637b80e8a14a683ca91e5ed9936129"
+      },
+      {
+        "midi": 61,
+        "note": "C#4",
+        "event": "nw_instruments/ocarina/m061",
+        "file": "ocarina/ocarina_m061_Cs4.wav",
+        "duration": 1.150294784580499,
+        "sha256": "a4166b5a2b17543a500cb2af8e0ff9eff3a3c02ada410992a17673acbb6c6dcf"
+      },
+      {
+        "midi": 62,
+        "note": "D4",
+        "event": "nw_instruments/ocarina/m062",
+        "file": "ocarina/ocarina_m062_D4.wav",
+        "duration": 1.1486167800453515,
+        "sha256": "6712cee912971ae631f5fe17bd89d384be88f5f830d0a57c88e76552832add64"
+      },
+      {
+        "midi": 63,
+        "note": "D#4",
+        "event": "nw_instruments/ocarina/m063",
+        "file": "ocarina/ocarina_m063_Ds4.wav",
+        "duration": 1.153106575963719,
+        "sha256": "2dc3f94b909592e3e1ccea8cecef7f7ee0e3c48f5ef24c1c3e26a64a1922992c"
+      },
+      {
+        "midi": 64,
+        "note": "E4",
+        "event": "nw_instruments/ocarina/m064",
+        "file": "ocarina/ocarina_m064_E4.wav",
+        "duration": 1.1505668934240363,
+        "sha256": "eb86a6ba8afe522fff6dc0e2bfdd10fc4eb9e1ade32bd2e8392ff66bff41bf09"
+      },
+      {
+        "midi": 65,
+        "note": "F4",
+        "event": "nw_instruments/ocarina/m065",
+        "file": "ocarina/ocarina_m065_F4.wav",
+        "duration": 1.1491609977324264,
+        "sha256": "d06f9245905c8bc4958eb2702ad7198f23f938e42ff19b3f7c6c04754b19220a"
+      },
+      {
+        "midi": 66,
+        "note": "F#4",
+        "event": "nw_instruments/ocarina/m066",
+        "file": "ocarina/ocarina_m066_Fs4.wav",
+        "duration": 1.1508163265306122,
+        "sha256": "84b70b0de0fe694617da66f70cae490aef15ebe4259a912d9e648d36a41bcf4a"
+      },
+      {
+        "midi": 67,
+        "note": "G4",
+        "event": "nw_instruments/ocarina/m067",
+        "file": "ocarina/ocarina_m067_G4.wav",
+        "duration": 1.1488662131519274,
+        "sha256": "99aefaf7de5002515e54a5b4f121c15060c107adbfb3fead98af86bd307df8f6"
+      },
+      {
+        "midi": 68,
+        "note": "G#4",
+        "event": "nw_instruments/ocarina/m068",
+        "file": "ocarina/ocarina_m068_Gs4.wav",
+        "duration": 1.1460770975056689,
+        "sha256": "9a03e8e86ba7f4ef52ddc57a46b5ebf0f2340482fd37d96c9e65841f37f477ba"
+      },
+      {
+        "midi": 69,
+        "note": "A4",
+        "event": "nw_instruments/ocarina/m069",
+        "file": "ocarina/ocarina_m069_A4.wav",
+        "duration": 1.1501133786848072,
+        "sha256": "fa355e9b9acd46ebd762fa6378c098681d73b0986183d5fa6f218bbf587a31a4"
+      },
+      {
+        "midi": 70,
+        "note": "A#4",
+        "event": "nw_instruments/ocarina/m070",
+        "file": "ocarina/ocarina_m070_As4.wav",
+        "duration": 1.1514285714285715,
+        "sha256": "220b6f752c5fae4dd9093a039bc173263e6c807a63fd62800d39cdb601007882"
+      },
+      {
+        "midi": 71,
+        "note": "B4",
+        "event": "nw_instruments/ocarina/m071",
+        "file": "ocarina/ocarina_m071_B4.wav",
+        "duration": 1.1501360544217687,
+        "sha256": "acfdb42fa741428af87d6403b80e8e537141348e0e1789a6a777f345a91d8247"
+      },
+      {
+        "midi": 72,
+        "note": "C5",
+        "event": "nw_instruments/ocarina/m072",
+        "file": "ocarina/ocarina_m072_C5.wav",
+        "duration": 1.1492290249433106,
+        "sha256": "41ad56f9b859334f46ba4249cdd038ea71dd3dcd7fea647429a2e1bbfb626405"
+      },
+      {
+        "midi": 73,
+        "note": "C#5",
+        "event": "nw_instruments/ocarina/m073",
+        "file": "ocarina/ocarina_m073_Cs5.wav",
+        "duration": 1.150702947845805,
+        "sha256": "3cee17c4a310d96be5c1b1083c2411c6c719eeb2f1f58d474e559d2c02d3ef0a"
+      },
+      {
+        "midi": 74,
+        "note": "D5",
+        "event": "nw_instruments/ocarina/m074",
+        "file": "ocarina/ocarina_m074_D5.wav",
+        "duration": 1.1530385487528345,
+        "sha256": "de4514e9beba6b9ac12962f893a6bf0d59e8e79efc56102d564d2b85e3b641a5"
+      },
+      {
+        "midi": 75,
+        "note": "D#5",
+        "event": "nw_instruments/ocarina/m075",
+        "file": "ocarina/ocarina_m075_Ds5.wav",
+        "duration": 1.1492743764172335,
+        "sha256": "a7a5a34da827b1ac17a37b2a7ca4d1e87bda1bb2f7c4509aad163c15a01d350d"
+      },
+      {
+        "midi": 76,
+        "note": "E5",
+        "event": "nw_instruments/ocarina/m076",
+        "file": "ocarina/ocarina_m076_E5.wav",
+        "duration": 1.140952380952381,
+        "sha256": "0d58798edda5449915f837b3c34cec26396aac4788950cdd454fb8e8620a61ec"
+      },
+      {
+        "midi": 77,
+        "note": "F5",
+        "event": "nw_instruments/ocarina/m077",
+        "file": "ocarina/ocarina_m077_F5.wav",
+        "duration": 1.149795918367347,
+        "sha256": "c0392d7ed4f21b3e53a1752087a3117e1b335f03f7d00685b65381b77a6edb09"
+      },
+      {
+        "midi": 78,
+        "note": "F#5",
+        "event": "nw_instruments/ocarina/m078",
+        "file": "ocarina/ocarina_m078_Fs5.wav",
+        "duration": 1.1412244897959183,
+        "sha256": "c9ecb80ca7e1485b5117f73cef5098958f98c26f117ee3ba874d688fa8de6486"
+      },
+      {
+        "midi": 79,
+        "note": "G5",
+        "event": "nw_instruments/ocarina/m079",
+        "file": "ocarina/ocarina_m079_G5.wav",
+        "duration": 1.1503401360544219,
+        "sha256": "f61afb06a8197ac1a22310cb5c6d25d24e1d5167624fbd881a76adaa9d77dfca"
+      },
+      {
+        "midi": 80,
+        "note": "G#5",
+        "event": "nw_instruments/ocarina/m080",
+        "file": "ocarina/ocarina_m080_Gs5.wav",
+        "duration": 1.1474149659863946,
+        "sha256": "1203db186a16aa9f3259f616e9f7063e3976eb4edd85a86251fcadeaaf9871de"
+      },
+      {
+        "midi": 81,
+        "note": "A5",
+        "event": "nw_instruments/ocarina/m081",
+        "file": "ocarina/ocarina_m081_A5.wav",
+        "duration": 1.1494557823129252,
+        "sha256": "6d554461735323bdbc3b543085d0266babf27bd35109a6c6d82f2f6c2a1be03d"
+      },
+      {
+        "midi": 82,
+        "note": "A#5",
+        "event": "nw_instruments/ocarina/m082",
+        "file": "ocarina/ocarina_m082_As5.wav",
+        "duration": 1.145827664399093,
+        "sha256": "9f1425d3434b8e6ee89b5d46864acb28ef73d0b33a09156594c2c6eccf1eb688"
+      },
+      {
+        "midi": 83,
+        "note": "B5",
+        "event": "nw_instruments/ocarina/m083",
+        "file": "ocarina/ocarina_m083_B5.wav",
+        "duration": 1.148843537414966,
+        "sha256": "fed8a43af8ca675314dfb0bdd9ac4d30ffc1bdf2c16a7c2525d73b5973776852"
+      },
+      {
+        "midi": 84,
+        "note": "C6",
+        "event": "nw_instruments/ocarina/m084",
+        "file": "ocarina/ocarina_m084_C6.wav",
+        "duration": 1.1485034013605442,
+        "sha256": "8ca92ffc4abc614dba5ddcb8c6ee66fa5e8c40d8adae69bc552c0c7b04b18913"
+      },
+      {
+        "midi": 85,
+        "note": "C#6",
+        "event": "nw_instruments/ocarina/m085",
+        "file": "ocarina/ocarina_m085_Cs6.wav",
+        "duration": 1.1487074829931974,
+        "sha256": "44f8c1e5021c0930ff82173d45178e75e6573fe6779c7cb545dda65789f149c6"
+      },
+      {
+        "midi": 86,
+        "note": "D6",
+        "event": "nw_instruments/ocarina/m086",
+        "file": "ocarina/ocarina_m086_D6.wav",
+        "duration": 1.1460770975056689,
+        "sha256": "b5774fcfaa2bdf23a93e3951cf75758c81d9759a1a53b4d6d6eeb5ff25332395"
+      },
+      {
+        "midi": 87,
+        "note": "D#6",
+        "event": "nw_instruments/ocarina/m087",
+        "file": "ocarina/ocarina_m087_Ds6.wav",
+        "duration": 1.1404308390022675,
+        "sha256": "ed33301c12887b5b8d7fcc3fa89836121a91692c055576a4d986f11506c37820"
+      },
+      {
+        "midi": 88,
+        "note": "E6",
+        "event": "nw_instruments/ocarina/m088",
+        "file": "ocarina/ocarina_m088_E6.wav",
+        "duration": 1.1431519274376418,
+        "sha256": "add47e72657ccf45751ca4b9ec82f2521dfbf2cd7080d20216679b21df30dc63"
+      },
+      {
+        "midi": 89,
+        "note": "F6",
+        "event": "nw_instruments/ocarina/m089",
+        "file": "ocarina/ocarina_m089_F6.wav",
+        "duration": 1.1413378684807256,
+        "sha256": "e831befab130c00b8018ca3b7ac7e250905289046faa165018798e6a47d0fd8e"
+      },
+      {
+        "midi": 90,
+        "note": "F#6",
+        "event": "nw_instruments/ocarina/m090",
+        "file": "ocarina/ocarina_m090_Fs6.wav",
+        "duration": 1.1383446712018142,
+        "sha256": "847f030451707323051d25599866c3a0041adad24d84213da881bff601bca52b"
+      },
+      {
+        "midi": 91,
+        "note": "G6",
+        "event": "nw_instruments/ocarina/m091",
+        "file": "ocarina/ocarina_m091_G6.wav",
+        "duration": 1.1492743764172335,
+        "sha256": "cf802f3def5ff3ded1b38624a17ca29a2061c3aeffb2df25a0cb631d8abaf498"
+      },
+      {
+        "midi": 92,
+        "note": "G#6",
+        "event": "nw_instruments/ocarina/m092",
+        "file": "ocarina/ocarina_m092_Gs6.wav",
+        "duration": 1.1422902494331066,
+        "sha256": "924a0ecd0a3d5e7f2f8f5528e9f8e8bffc1687852b790a8c128e513468b13d63"
+      },
+      {
+        "midi": 93,
+        "note": "A6",
+        "event": "nw_instruments/ocarina/m093",
+        "file": "ocarina/ocarina_m093_A6.wav",
+        "duration": 1.1473015873015873,
+        "sha256": "f1ca4a751be423657e7cd259e94403148a44332bfadbbde96edece863a837c38"
+      },
+      {
+        "midi": 94,
+        "note": "A#6",
+        "event": "nw_instruments/ocarina/m094",
+        "file": "ocarina/ocarina_m094_As6.wav",
+        "duration": 1.1431972789115645,
+        "sha256": "fd3b4f429b2aa58890b4f1211a1a492c01a220ca5c3041d744cebe8d716addb4"
+      }
+    ],
+    "kantele": [
+      {
+        "midi": 44,
+        "note": "G#2",
+        "event": "nw_instruments/kantele/m044",
+        "file": "lyre/lyre_m044_Gs2.wav",
+        "duration": 23.73891156462585,
+        "sha256": "3b8a5ae18c2219e720d4039bb6143574ad672c5b20009bceb89b02b6214adca4"
+      },
+      {
+        "midi": 45,
+        "note": "A2",
+        "event": "nw_instruments/kantele/m045",
+        "file": "lyre/lyre_m045_A2.wav",
+        "duration": 22.4078231292517,
+        "sha256": "746bfbfe34291b79bc4bdffb41a973af612ea8c83bd9a85d8c0d2b90082f419c"
+      },
+      {
+        "midi": 46,
+        "note": "A#2",
+        "event": "nw_instruments/kantele/m046",
+        "file": "lyre/lyre_m046_As2.wav",
+        "duration": 21.15142857142857,
+        "sha256": "f2e3e84b55db856f353308a47444a4d487b1203603f3f3cce8d94b4573906502"
+      },
+      {
+        "midi": 47,
+        "note": "B2",
+        "event": "nw_instruments/kantele/m047",
+        "file": "lyre/lyre_m047_B2.wav",
+        "duration": 19.96557823129252,
+        "sha256": "4d93701779838645152436b2b2429730f6f2261cb79a33d8289c602c92084d33"
+      },
+      {
+        "midi": 48,
+        "note": "C3",
+        "event": "nw_instruments/kantele/m048",
+        "file": "lyre/lyre_m048_C3.wav",
+        "duration": 18.846258503401362,
+        "sha256": "894b2f90803e454f0e4be26985ee757b7cbcd29de26d1acb36959914522db072"
+      },
+      {
+        "midi": 49,
+        "note": "C#3",
+        "event": "nw_instruments/kantele/m049",
+        "file": "lyre/lyre_m049_Cs3.wav",
+        "duration": 17.789795918367346,
+        "sha256": "4f936d45ca29a8e5c74a89726275cb7e7f5b42f417206dc5821e72d0105fb8d5"
+      },
+      {
+        "midi": 50,
+        "note": "D3",
+        "event": "nw_instruments/kantele/m050",
+        "file": "lyre/lyre_m050_D3.wav",
+        "duration": 16.792630385487527,
+        "sha256": "2bd0ad1b920abce929180d778fefd6994ad99b542648986fe6591c1ac71df8a1"
+      },
+      {
+        "midi": 51,
+        "note": "D#3",
+        "event": "nw_instruments/kantele/m051",
+        "file": "lyre/lyre_m051_Ds3.wav",
+        "duration": 15.851428571428572,
+        "sha256": "4dd2ca5a7825c41e39d35214ffe2804333d16250a92643b31608a2f9da47bc18"
+      },
+      {
+        "midi": 52,
+        "note": "E3",
+        "event": "nw_instruments/kantele/m052",
+        "file": "lyre/lyre_m052_E3.wav",
+        "duration": 14.963083900226758,
+        "sha256": "9ec3db327ddbb9dd5388dda26f3c458662e44b65a687376fae726575bf8aeb0e"
+      },
+      {
+        "midi": 53,
+        "note": "F3",
+        "event": "nw_instruments/kantele/m053",
+        "file": "lyre/lyre_m053_F3.wav",
+        "duration": 14.12453514739229,
+        "sha256": "10f4cc49bcd62dfe6eb21e148170c0ed55e68b47b4b0bbcda4e033c90b525055"
+      },
+      {
+        "midi": 54,
+        "note": "F#3",
+        "event": "nw_instruments/kantele/m054",
+        "file": "lyre/lyre_m054_Fs3.wav",
+        "duration": 13.333015873015873,
+        "sha256": "95678386490bc4adb125e5de58ca850579850d86670459494448baaedca90c19"
+      },
+      {
+        "midi": 55,
+        "note": "G3",
+        "event": "nw_instruments/kantele/m055",
+        "file": "lyre/lyre_m055_G3.wav",
+        "duration": 12.584716553287981,
+        "sha256": "24a23f8dd2a3a2e7ada4e020d0b0e04036cdcf352364550f4bb44b8dd2b74e7a"
+      },
+      {
+        "midi": 56,
+        "note": "G#3",
+        "event": "nw_instruments/kantele/m056",
+        "file": "lyre/lyre_m056_Gs3.wav",
+        "duration": 11.879659863945578,
+        "sha256": "197cb68457a2827186c13af3b5725521ef453848c3f505709b70fda4b188b330"
+      },
+      {
+        "midi": 57,
+        "note": "A3",
+        "event": "nw_instruments/kantele/m057",
+        "file": "lyre/lyre_m057_A3.wav",
+        "duration": 11.214172335600907,
+        "sha256": "87df4b97ac83527bff78ab69fca3bac33e7fa3581f9b46fa741c2d552bfa0533"
+      },
+      {
+        "midi": 58,
+        "note": "A#3",
+        "event": "nw_instruments/kantele/m058",
+        "file": "lyre/lyre_m058_As3.wav",
+        "duration": 10.586031746031747,
+        "sha256": "ad53b83c1e017abe1fbd893eaa3a25137c7f2e44e61e072534315a5ffe7a0df3"
+      },
+      {
+        "midi": 59,
+        "note": "B3",
+        "event": "nw_instruments/kantele/m059",
+        "file": "lyre/lyre_m059_B3.wav",
+        "duration": 9.993174603174603,
+        "sha256": "e77482f5479cd2b307faa62a375b5cd2f1113671e650c5116351fe17ce279f85"
+      },
+      {
+        "midi": 60,
+        "note": "C4",
+        "event": "nw_instruments/kantele/m060",
+        "file": "lyre/lyre_m060_C4.wav",
+        "duration": 9.43358276643991,
+        "sha256": "a6ea316e6ef04ce724aa490197cef5f289632b0eb0e4740f09fe4036958855a8"
+      },
+      {
+        "midi": 61,
+        "note": "C#4",
+        "event": "nw_instruments/kantele/m061",
+        "file": "lyre/lyre_m061_Cs4.wav",
+        "duration": 8.905419501133787,
+        "sha256": "5fb144bc90b085050570c5ecb59d72cc442443d2e90dcf13e91484cdbc878617"
+      },
+      {
+        "midi": 62,
+        "note": "D4",
+        "event": "nw_instruments/kantele/m062",
+        "file": "lyre/lyre_m062_D4.wav",
+        "duration": 8.406916099773243,
+        "sha256": "d7952c5f21fa8637d13b59c1fed2ea66ab474b97c70d093520091a488056d0cd"
+      },
+      {
+        "midi": 63,
+        "note": "D#4",
+        "event": "nw_instruments/kantele/m063",
+        "file": "lyre/lyre_m063_Ds4.wav",
+        "duration": 7.936394557823129,
+        "sha256": "07efa0a3d55dc4d3bc0d03f74f34b3d8eaf4a363fe08558673edbae0e4bd3e78"
+      },
+      {
+        "midi": 64,
+        "note": "E4",
+        "event": "nw_instruments/kantele/m064",
+        "file": "lyre/lyre_m064_E4.wav",
+        "duration": 7.492267573696145,
+        "sha256": "d056084d65af1a52565023d762b0dc6dbeeab0db2184bf57d91f3c2766bf5a97"
+      },
+      {
+        "midi": 65,
+        "note": "F4",
+        "event": "nw_instruments/kantele/m065",
+        "file": "lyre/lyre_m065_F4.wav",
+        "duration": 7.073106575963719,
+        "sha256": "a45a2b161acf01356d67fb32884038992d6d7281c3dd469e3bf3c30cebc2fe81"
+      },
+      {
+        "midi": 66,
+        "note": "F#4",
+        "event": "nw_instruments/kantele/m066",
+        "file": "lyre/lyre_m066_Fs4.wav",
+        "duration": 10.687278911564626,
+        "sha256": "eaf84b03137cd888f126916e47813a359a9c7ca9fbbaa60e65f704c4d6497575"
+      },
+      {
+        "midi": 67,
+        "note": "G4",
+        "event": "nw_instruments/kantele/m067",
+        "file": "lyre/lyre_m067_G4.wav",
+        "duration": 10.088707482993197,
+        "sha256": "1c07537c6658b101f2fa1c5f739bd311f08b5b5431b5a574dcc842a969fcdf59"
+      },
+      {
+        "midi": 68,
+        "note": "G#4",
+        "event": "nw_instruments/kantele/m068",
+        "file": "lyre/lyre_m068_Gs4.wav",
+        "duration": 8.58201814058957,
+        "sha256": "7049759571d064850b8961a80292fb178f71deafe2bfea17e9079328ca035cfa"
+      },
+      {
+        "midi": 69,
+        "note": "A4",
+        "event": "nw_instruments/kantele/m069",
+        "file": "lyre/lyre_m069_A4.wav",
+        "duration": 8.101632653061225,
+        "sha256": "089d1e68ccc8d0feea9d215b8ecd53984d8c7819bc69e479bc1fa85485dc92b2"
+      },
+      {
+        "midi": 70,
+        "note": "A#4",
+        "event": "nw_instruments/kantele/m070",
+        "file": "lyre/lyre_m070_As4.wav",
+        "duration": 10.118956916099773,
+        "sha256": "cfcd7d76a129cf95de4b1681c46ad83e825994823752c50d639787923e464bf2"
+      },
+      {
+        "midi": 71,
+        "note": "B4",
+        "event": "nw_instruments/kantele/m071",
+        "file": "lyre/lyre_m071_B4.wav",
+        "duration": 9.55233560090703,
+        "sha256": "280a7f4d0386fd687fc0620a7a1d07eb7ed055f096f94e9038001307a6452a3f"
+      },
+      {
+        "midi": 72,
+        "note": "C5",
+        "event": "nw_instruments/kantele/m072",
+        "file": "lyre/lyre_m072_C5.wav",
+        "duration": 9.017505668934241,
+        "sha256": "3fa69d48ec926aeebd43ea66bd4783921d4345d01707524a053ac0e3a31e7f9b"
+      },
+      {
+        "midi": 73,
+        "note": "C#5",
+        "event": "nw_instruments/kantele/m073",
+        "file": "lyre/lyre_m073_Cs5.wav",
+        "duration": 6.261882086167801,
+        "sha256": "046ff24d09ae30b486448eec575631d7dd64795b5963e9666b14a0f89164258e"
+      },
+      {
+        "midi": 74,
+        "note": "D5",
+        "event": "nw_instruments/kantele/m074",
+        "file": "lyre/lyre_m074_D5.wav",
+        "duration": 5.911678004535148,
+        "sha256": "713650bafbbb2836585c442c77976d065a683f33497274840e567ceb2e85a75d"
+      },
+      {
+        "midi": 75,
+        "note": "D#5",
+        "event": "nw_instruments/kantele/m075",
+        "file": "lyre/lyre_m075_Ds5.wav",
+        "duration": 6.371950113378685,
+        "sha256": "1c9a64cf3fbad90bfacfc26ea49d65d0613d000004e80f263bd8f5b4595a8774"
+      },
+      {
+        "midi": 76,
+        "note": "E5",
+        "event": "nw_instruments/kantele/m076",
+        "file": "lyre/lyre_m076_E5.wav",
+        "duration": 6.784557823129251,
+        "sha256": "212b6c02c6581092aedb8fa08c43f3316e666af3309fcedcd83b33fa00fd53a5"
+      },
+      {
+        "midi": 77,
+        "note": "F5",
+        "event": "nw_instruments/kantele/m077",
+        "file": "lyre/lyre_m077_F5.wav",
+        "duration": 6.405034013605442,
+        "sha256": "6738a3e8247a049f368acd384d490ced1ce23a3e7d620586227d8b072fa8d3ee"
+      },
+      {
+        "midi": 78,
+        "note": "F#5",
+        "event": "nw_instruments/kantele/m078",
+        "file": "lyre/lyre_m078_Fs5.wav",
+        "duration": 5.718412698412698,
+        "sha256": "3d14ac57175ce5e95f8a7bf3b10bcfa068e78402273ade9d10109bc6e4692929"
+      },
+      {
+        "midi": 79,
+        "note": "G5",
+        "event": "nw_instruments/kantele/m079",
+        "file": "lyre/lyre_m079_G5.wav",
+        "duration": 5.398730158730158,
+        "sha256": "b56d4fe1d680615d0d3162f0b248b50f0cdd95146c32d0f10b16998b26ab2ffc"
+      },
+      {
+        "midi": 80,
+        "note": "G#5",
+        "event": "nw_instruments/kantele/m080",
+        "file": "lyre/lyre_m080_Gs5.wav",
+        "duration": 5.240249433106576,
+        "sha256": "c1903a52bdadad518bfd76bdd95cc22f640ff9889ccefb0603005d461f6a8182"
+      }
+    ]
+  }
+}

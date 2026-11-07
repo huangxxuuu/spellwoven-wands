@@ -1,0 +1,53 @@
+[
+  {
+    "id": "whirl",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "visible_bbox_alpha_8": [
+      86,
+      101,
+      1161,
+      1175
+    ],
+    "transparent_fraction": 0.6978,
+    "exact_generated_copy": true,
+    "sha256": "f336a31c887e79bb730c2cd5da086573932b4c64d956e1bf92e94a919a70dbd3"
+  },
+  {
+    "id": "thrust",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "visible_bbox_alpha_8": [
+      77,
+      113,
+      1211,
+      1151
+    ],
+    "transparent_fraction": 0.835,
+    "exact_generated_copy": true,
+    "sha256": "c8df4daa39595adadc752dc96bcd6a885f07d84e5830d61bbb7d5e489f2ec249"
+  },
+  {
+    "id": "slash",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "visible_bbox_alpha_8": [
+      70,
+      128,
+      1128,
+      1166
+    ],
+    "transparent_fraction": 0.7147,
+    "exact_generated_copy": true,
+    "sha256": "4ab0c0b80bbc3e86bf835b5e22ae3b0c2574ed1e920fcff65056c95b8933b5ff"
+  }
+]

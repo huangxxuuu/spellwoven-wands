@@ -1,0 +1,9 @@
+{
+  "id": "moon_fall",
+  "name": "月石坠击",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "moon_fall.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/originals/moon_fall.png"
+}
+

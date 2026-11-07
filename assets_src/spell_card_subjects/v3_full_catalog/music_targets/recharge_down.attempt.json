@@ -1,0 +1,10 @@
+{
+  "id": "recharge_down",
+  "name": "减少充能时间",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T00:48:22.042Z",
+  "completed_at": "2026-11-07T00:50:04.008Z",
+  "result_file": "recharge_down.result.json"
+}

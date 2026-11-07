@@ -1,0 +1,31 @@
+{
+  "id": "repeat_2",
+  "name": "双倍施法",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-6d260cd5-0acf-400a-b0a6-57f394ed7a0a.png",
+  "output": "repeat_2.png",
+  "prompt": "repeat_2.prompt.txt",
+  "references": [
+    "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v4_retry_three/repeat_2.png",
+    "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v3_full_catalog/projectiles_controls/repeat_3.png"
+  ],
+  "status": "candidate",
+  "visual_review": "左侧一枚输入，经两分支指向右侧两枚同形输出，三枚菱形与×2文字完整，构图与三倍施法一致。",
+  "attempt_count_this_request": 1,
+  "validation": {
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bbox_alpha8": [
+      168,
+      180,
+      1084,
+      1106
+    ],
+    "minimum_visible_margin_px": 148,
+    "saturated_red_pixels_alpha8": 0,
+    "sha256": "31f5a639eded80de192d7ec3b3d1a39b43f2669e391efc2d53acff00851c342e",
+    "matches_source": true
+  }
+}

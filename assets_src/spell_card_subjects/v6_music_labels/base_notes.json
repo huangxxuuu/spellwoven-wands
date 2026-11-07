@@ -1,0 +1,28 @@
+{
+  "scope": "Main-image labels only; runtime IDs and audio unchanged",
+  "groups": [
+    {
+      "name": "陶笛 · A 和声小调",
+      "notes": [
+        {"id": "note_a", "label": "A"},
+        {"id": "ocarina_b", "label": "B"},
+        {"id": "note_c", "label": "C"},
+        {"id": "ocarina_d", "label": "D"},
+        {"id": "ocarina_e", "label": "E"},
+        {"id": "ocarina_f", "label": "F"},
+        {"id": "ocarina_gsharp", "label": "G#"},
+        {"id": "ocarina_a2", "label": "A5"}
+      ]
+    },
+    {
+      "name": "弦琴 · A 小调五声音阶",
+      "notes": [
+        {"id": "kantele_a", "label": "A"},
+        {"id": "kantele_dsharp", "label": "C"},
+        {"id": "chord_d", "label": "D"},
+        {"id": "kantele_e", "label": "E"},
+        {"id": "kantele_g", "label": "G"}
+      ]
+    }
+  ]
+}

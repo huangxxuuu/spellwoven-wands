@@ -1,0 +1,10 @@
+{
+  "id": "target_friendly",
+  "name": "选取友好生物",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T00:52:35.373Z",
+  "completed_at": "2026-11-07T00:53:46.760Z",
+  "result_file": "target_friendly.result.json"
+}

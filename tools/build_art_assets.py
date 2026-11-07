@@ -9,6 +9,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 from PIL import Image, ImageOps, ImageDraw, ImageChops, ImageFilter
 from lupa.lua51 import LuaRuntime
+from animation_atlas import validate_animation_archive
 
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE=ROOT/'assets_src/art_v1'
@@ -22,6 +23,10 @@ TAIL_HEIGHT=48
 def resize(id,size,stretch=False,prefer_icon=False):
     redraw=SOURCE/'icon_redraws'/f'{id}.png'
     path=redraw if (prefer_icon or size==(64,64)) and redraw.exists() else ORIGINALS/f'{id}.png'
+    if not path.exists():
+        subjects=ROOT/'assets_src/spell_card_subjects'
+        selected=json.loads((subjects/'selected_overrides.json').read_text(encoding='utf8'))
+        if id in selected:path=subjects/selected[id]
     im=Image.open(path).convert('RGBA')
     assert im.getchannel('A').getextrema()[0]==0, f'{id}: expected real transparency'
     # Generated cutouts can contain almost invisible alpha dust far outside the
@@ -57,6 +62,7 @@ def compile_bank(name,build,anims,images,tools):
     result=subprocess.run([str(tools/'buildtools/windows/Python27/python.exe'),str(tools/'tools/scripts/buildanimation.py'),str(intermediate),'--outputdir',str(ROOT/'mod'),'--scale','1','--force'],cwd=tools,capture_output=True,timeout=90)
     (ROOT/f'test_reports/{name}_build.log').write_bytes(result.stdout+result.stderr)
     assert result.returncode==0,f'{name}: check build log'
+    validate_animation_archive(ROOT/f'mod/anim/{name}.zip')
     with zipfile.ZipFile(ROOT/f'mod/anim/{name}.zip') as z:
         assert z.read('anim.bin')[:4]==b'ANIM' and z.read('build.bin')[:4]==b'BILD'
 
@@ -80,20 +86,30 @@ def motion(anims,name,symbol,poses):
         ET.SubElement(f,'element',name=symbol,frame='0',layername=symbol,z_index='0',
                       m_a=str(c*sx),m_b=str(s*sx),m_c=str(-s*sy),m_d=str(c*sy),m_tx=str(x),m_ty=str(y))
 
-def card_face(art,size=64):
-    # Keep the larger painted master for ground cards and downsample for inventory.
-    plate=Image.new('RGBA',(192,192))
-    d=ImageDraw.Draw(plate)
-    for box,r,color in [((20,2,172,190),13,'#241d21'),((25,7,167,185),10,'#bd9861'),
-                        ((29,11,163,181),8,'#583c38'),((34,16,158,176),6,'#382d37')]:
-        d.rounded_rectangle(box,r,fill=color)
-    for x,y in [(37,19),(155,19),(37,173),(155,173)]:
-        d.polygon([(x,y-5),(x+4,y),(x,y+5),(x-4,y)],fill='#ead29a')
+CARD_KINDS={}
+def card_face(art,size=64,id=None):
+    # Category silhouettes and a light parchment field; artwork can cross the rim.
+    plate=Image.new('RGBA',(192,192));d=ImageDraw.Draw(plate)
+    kind=CARD_KINDS.get(id,'projectile')
+    shapes={
+        'projectile':[(22,25),(96,3),(170,25),(170,174),(96,190),(22,174)],
+        'field':[(12,28),(40,8),(152,8),(180,28),(180,164),(152,184),(40,184),(12,164)],
+        'modifier':[(96,0),(186,96),(96,192),(6,96)],
+        'melee':[(22,10),(170,10),(170,137),(96,191),(22,137)],
+        'multicast':[(30,2),(162,2),(162,20),(180,20),(180,172),(162,172),(162,190),(30,190),(30,172),(12,172),(12,20),(30,20)],
+        'instant':[(96,2),(180,48),(180,145),(96,190),(12,145),(12,48)],
+    }
+    pts=shapes.get(kind,shapes['projectile'])
+    for scale,col in [(1,'#30252a'),(.94,'#d3ae73'),(.86,'#574135'),(.80,'#b9a382')]:
+        if kind=='note':
+            pad=96*(1-scale);d.ellipse((pad+8,pad,184-pad,192-pad),fill=col)
+        else:d.polygon([(96+(x-96)*scale,96+(y-96)*scale) for x,y in pts],fill=col)
     plate=plate.resize((size,size),Image.Resampling.LANCZOS)
     glyph=art.crop(art.getchannel('A').getbbox())
-    glyph=ImageOps.contain(glyph,(40*size//64,46*size//64),Image.Resampling.LANCZOS)
+    glyph=ImageOps.contain(glyph,(57*size//64,57*size//64),Image.Resampling.LANCZOS)
     plate.alpha_composite(glyph,((size-glyph.width)//2,(size-glyph.height)//2))
-    return plate
+    out=Image.new("RGBA",plate.size);out.alpha_composite(plate)
+    return out
 
 CARD_CANVAS=(230,172)
 CARD_DEPTHS={'card':4,'pile_small':10,'pile_medium':17,'pile_large':27}
@@ -125,7 +141,7 @@ def paper_edges(shape,depth):
 def build_ground_cards(cards,tools):
     # Two single-page builds preserve the full-size source faces. Each clip names
     # its actual face, so there is no symbol override or sampler change at runtime.
-    faces={id:ground_face(card_face(icon(id,192),192)) for id in cards.order.values()}
+    faces={id:ground_face(card_face(icon(id,192),192,id)) for id in cards.order.values()}
     edges={pose:paper_edges(faces['spark'].getchannel('A'),depth) for pose,depth in CARD_DEPTHS.items()}
     for page in range((max(cards.codes.values())-1)//128+1):
         bank=f'nw_ground_cards_{page}'
@@ -235,6 +251,7 @@ def planted_clip(animations,length,layout,scale):
 def wand_parts(vm,manifest,tools):
     v=vm.eval('require("nw/visual")')
     sheet=Image.open(WAND_ART/'heads.png').convert('RGBA')
+    broken=Image.open(WAND_ART/'heads_broken.png').convert('RGBA')
     tails=Image.open(WAND_ART/'tails.png').convert('RGBA')
     images={'anchor':Image.new('RGBA',(4,4))}
     # A tight, translucent contact shadow, below the native grass and the tail.
@@ -249,6 +266,12 @@ def wand_parts(vm,manifest,tools):
         add_ornament(images,sheet,(x1,0,x2,sheet.height//2-12),'head_crystal_'+str(i+1),.985)
         add_ornament(images,sheet,(x1,sheet.height//2,x2,sheet.height),'head_plain_'+str(i+1),.985)
         add_ornament(images,tails,(i*tails.width//3,0,(i+1)*tails.width//3,tails.height),'tail_'+tail,.985)
+    for i in range(3):
+        extra={}
+        x1,x2=i*broken.width//3,(i+1)*broken.width//3
+        add_ornament(extra,broken,(x1,0,x2,broken.height//2-12),'head_crystal_'+str(i+1),.985)
+        add_ornament(extra,broken,(x1,broken.height//2,x2,broken.height),'head_plain_'+str(i+1),.985)
+        images.update({k+'_broken':im for k,im in extra.items()})
     for style in range(1,v.styles+1):
         for length,height in BODY_HEIGHTS.items():
             name=f'body_{style:02}_{length}'
@@ -292,11 +315,13 @@ def wand_parts(vm,manifest,tools):
 
 def wand_icon_page(v,start,images,specs,layouts,tools):
     page=Path(v.atlas(start)).stem
-    atlas=Image.new('RGBA',(2048,1024))
+    atlas=Image.new('RGBA',(2048,2048))
     xml=ET.Element('Atlas');ET.SubElement(xml,'Texture',filename=page+'.tex');els=ET.SubElement(xml,'Elements')
-    for i in range(v.per_style):
-        code=start+i
+    for i in range(v.per_style*2):
+        code=start+i%v.per_style
+        broken=i>=v.per_style
         head,length,tail,body=v.parts(code)
+        if broken: head+="_broken"
         im=Image.new('RGBA',(192,256))
         for slot,part in [('head',head),('tail',tail),('body',body)]:
             sprite=images[part].resize(specs[part]['world_size'],Image.Resampling.LANCZOS)
@@ -311,7 +336,7 @@ def wand_icon_page(v,start,images,specs,layouts,tools):
         im=ImageOps.contain(im,(extent,extent),Image.Resampling.LANCZOS)
         x=(i%32)*64;y=(i//32)*64
         atlas.alpha_composite(im,(x+(64-im.width)//2,y+(64-im.height)//2))
-        ET.SubElement(els,'Element',name=v.icon(code)+'.tex',u1=str(x/atlas.width),u2=str((x+64)/atlas.width),
+        ET.SubElement(els,'Element',name=v.icon(code,broken)+'.tex',u1=str(x/atlas.width),u2=str((x+64)/atlas.width),
                       v1=str(1-(y+64)/atlas.height),v2=str(1-y/atlas.height))
     dest=ROOT/'mod/images/inventoryimages'
     atlas.save(RUNTIME/(page+'.png'))
@@ -346,7 +371,7 @@ def garden_animations(build,anims,images,tiles):
         frame(build,key,key,art.size,(0,-art.height/2))
     for name,poses in {
         'spore_grow': [('bud',5),('sprout',7),('idle',6)],
-        'spore_idle': [('idle',15),('aim',5),('idle',10)],
+        'spore_idle': [('idle',30)],
         'spore_fire': [('aim',6),('fire',4),('idle',4)],
         'spore_wilt': [('wilt',9)]}.items():
         anim(anims,name,'nw_objects',[('plant_'+poses[0][0],0,0)])
@@ -363,17 +388,12 @@ def garden_animations(build,anims,images,tiles):
     images['garden_thorn']=thorn
     frame(build,'garden_thorn','garden_thorn',thorn.size)
     anim(anims,'spore_thorn','nw_objects',[('garden_thorn',0,0)])
-    ring=tiles['vital_ring']
-    ring=ring.crop(ring.getchannel('A').getbbox())
-    ring=ring.resize((300,300),Image.Resampling.LANCZOS)
-    strength=Image.new('L',ring.size,135)
-    ImageDraw.Draw(strength).ellipse((50,50,250,250),fill=32)
-    ring.putalpha(ImageChops.multiply(ring.getchannel('A'),strength.filter(ImageFilter.GaussianBlur(8))))
+    ring=Image.open(ROOT/'assets_src/spell_revision/vital_ring.png').convert('RGBA')
+    ring=ImageOps.contain(ring.crop(ring.getchannel('A').getbbox()),(900,450),Image.Resampling.LANCZOS)
     images['garden_ring']=ring
     frame(build,'garden_ring','garden_ring',ring.size)
-    motion(anims,'vital_pulse','garden_ring',[(0,0,0,1.96+.04*math.cos(i*math.tau/30),
-        1.96+.04*math.cos(i*math.tau/30)) for i in range(30)])
-    for f in anims[-1]: f.set('w','650');f.set('h','650')
+    motion(anims,'vital_pulse','garden_ring',[(0,0,0,1,1)]*30)
+    for f in anims[-1]: f.set('w','950');f.set('h','500')
     # Isolate the turquoise note from the harp illustration, for the world effect.
     note=tiles['chord_d'].crop((227,48,350,190))
     images['garden_note']=note
@@ -395,20 +415,26 @@ def arsenal_art(arsenal):
         x,y=i%4,i//4
         sheet.crop((round(x*sheet.width/4),round(y*sheet.height/2),
                     round((x+1)*sheet.width/4),round((y+1)*sheet.height/2))).save(ORIGINALS/f'target_{name}.png')
-    for c in arsenal.cards.values():
-        note=arsenal.notes[c.id]
-        if not note: continue
+    masters={}
+    for src in ('note_a','chord_d'):
+        path=SOURCE/(src+'_unlabelled.png')
+        if not path.exists(): Image.open(ORIGINALS/(src+'.png')).save(path)
+        masters[src]=Image.open(path).convert('RGBA')
+    for id,note in arsenal.notes.items():
         src='note_a' if note.instrument=='ocarina' else 'chord_d'
-        im=resize(src,(160,160))
-        font=ImageFont.truetype('C:/Windows/Fonts/georgiab.ttf',62)
-        ImageDraw.Draw(im).text((155,157),note.label,font=font,anchor='rs',fill='#fff1b9',stroke_width=5,stroke_fill='#332325')
-        im.save(ORIGINALS/f'{c.id}.png')
+        art=masters[src];art=art.crop(art.getchannel('A').getbbox())
+        art=ImageOps.contain(art,(130,130),Image.Resampling.LANCZOS)
+        im=Image.new('RGBA',(160,160));im.alpha_composite(art,(5,0))
+        font=ImageFont.truetype('C:/Windows/Fonts/georgiab.ttf',54)
+        ImageDraw.Draw(im).text((155,156),note.label,font=font,anchor='rs',fill='#fff1b9',stroke_width=5,stroke_fill='#332325')
+        im.save(ORIGINALS/f'{id}.png')
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--tools',type=Path,default=Path("E:/SteamLibrary/steamapps/common/Don't Starve Mod Tools/mod_tools"));args=parser.parse_args()
     RUNTIME.mkdir(parents=True,exist_ok=True)
     vm=LuaRuntime(unpack_returned_tuples=True);vm.globals().package.path=str(ROOT/'mod/scripts/?.lua').replace('\\','/')+';'+vm.globals().package.path
     ids=list(vm.eval('require("nw/cards").order').values())
+    CARD_KINDS.update({id:c.kind for id,c in vm.eval('require("nw/definitions").spells').items()})
     manifest={'version':1,'purpose':'generated hand-inked art, compiled at game sizes','inventory_pixels':[64,64],'parts':{},'layouts':{}}
     wand_parts(vm,manifest,args.tools)
     tiles=garden_tiles()
@@ -430,7 +456,7 @@ def main():
     reticle.alpha_composite(portrait,((w-portrait.width)//2,(h-portrait.height)//2))
     reticle.save(ORIGINALS/'target_friendly.png')
     glyphs={id:icon(id) for id in ids}
-    iconimages={id:card_face(glyphs[id]) for id in ids}
+    iconimages={id:card_face(glyphs[id],id=id) for id in ids}
     iconimages['wand_icon']=resize('wand_icon',(64,64))
     atlas=Image.new('RGBA',(1024,1024));xml=ET.Element('Atlas');ET.SubElement(xml,'Texture',filename='nw_icons.tex');elements=ET.SubElement(xml,'Elements')
     for i,(id,im) in enumerate(iconimages.items()):
@@ -513,6 +539,7 @@ def main():
                     sx=1+4*math.sin(i*math.pi/(count-1))
                     height=-20
                 poses.append((0,height,angle,sx,sy))
+            if card.id=='delay_seal': poses=[(0,0,0,1,1)]*30
             motion(anims,'field_'+card.id,'nw_spell_'+card.id,poses)
     motion(anims,'field_boundary','blast_extent',[(0,0,0,1,1)])
     garden_animations(build,anims,images,tiles)
@@ -522,6 +549,9 @@ def main():
     for i,(id,im) in enumerate(iconimages.items()):
         x,y=(i%8)*128,(i//8)*120;sheet.paste(im,(x+32,y+8),im);draw.text((x+4,y+80),id,fill='white')
     sheet.save(SOURCE/'inventory_64_review.png')
+    # Full legacy FX rebuilds must finish by restoring the approved card resources.
+    from build_card_resources import build as build_cards
+    build_cards(args.tools)
     print('PASS:',len(ids),'spell icons + wand, modular parts, inventory and combat animations')
 
 if __name__=='__main__': main()

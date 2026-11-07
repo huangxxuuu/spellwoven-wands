@@ -141,6 +141,8 @@ function M.lookkit(color,style)
     local bench=SpawnPrefab("nw_workbench")
     bench.Transform:SetPosition(place(player,.4,2.5):Get())
 end
+M.pages[#M.pages+1]={"陶笛 G",{"ocarina_g"}}
+M.pages[#M.pages+1]={"乐器调音",{"pitch_octave_up","pitch_octave_down","pitch_semitone_up","pitch_semitone_down"}}
 function M.all(player)
     player=player or actor()
     if not player then return end
@@ -162,6 +164,23 @@ function M.all(player)
     local wand=makewand(player,{})
     print("NW_SPELLKIT: all spells / grouped chests, bench and editable 12-slot wand")
     return boxes,bench,wand
+end
+function M.dropkit(player)
+    player=player or actor()
+    if not player then return end
+    local craftable,ids,boxes={},{},{}
+    for _,r in ipairs(require("nw/acquisition").recipes) do if r.card then craftable[r.card]=true end end
+    local tiers=require("nw/card_rarity").tiers
+    for _,id in ipairs(Cards.order) do if tiers[id] and not craftable[id] then ids[#ids+1]=id end end
+    local count=math.ceil(#ids/9)
+    for n=1,count do
+        local chest=SpawnPrefab("treasurechest");boxes[#boxes+1]=chest
+        chest.Transform:SetPosition(place(player,2*math.pi*n/count,math.max(4,count*.7)):Get())
+        chest:AddComponent("named");chest.components.named:SetName("不可制作法术 · "..n.."/"..count)
+        for j=1,9 do local id=ids[(n-1)*9+j];if id then chest.components.container:GiveItem(card(id),j) end end
+    end
+    print("NW_DROPKIT: "..#ids.." non-craftable playable cards in "..count.." chests")
+    return boxes,ids
 end
 function M.range()
     local player=actor()

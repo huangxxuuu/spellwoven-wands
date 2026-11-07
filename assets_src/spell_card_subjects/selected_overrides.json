@@ -1,0 +1,12 @@
+{
+  "knockback": "v4_retry_three/knockback.png",
+  "target_neutral": "v4_retry_three/target_neutral.png",
+  "repeat_2": "v5_layout_direction/repeat_2.png",
+  "guard_ring": "v5_layout_direction/guard_ring.png",
+  "ocarina_a2": "v6_music_labels/ocarina_a2.png",
+  "kantele_dsharp": "v6_music_labels/kantele_dsharp.png",
+  "pitch_octave_up": "v7_pitch_modifiers/pitch_octave_up.png",
+  "pitch_octave_down": "v7_pitch_modifiers/pitch_octave_down.png",
+  "pitch_semitone_up": "v7_pitch_modifiers/pitch_semitone_up.png",
+  "pitch_semitone_down": "v7_pitch_modifiers/pitch_semitone_down.png"
+}

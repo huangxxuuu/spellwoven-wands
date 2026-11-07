@@ -42,7 +42,10 @@ for count=2,12 do
             end
         end
     end
-    for i=1,count do assert(Layout.slot_at((i-(count+1)/2)*76,0,count)==i) end
+    for i=1,count do assert(Layout.slot_at((i-(count+1)/2)*Layout.slot_step,0,count)==i) end
+    for i=1,count-1 do
+        assert(not Layout.slot_at((i-count/2)*Layout.slot_step,0,count),"slot gaps must not select cards")
+    end
     assert(not Layout.slot_at(0,56,count),"header should remain draggable")
 end
 local fill,progress,state=Layout.state(50,200,75,100,true)

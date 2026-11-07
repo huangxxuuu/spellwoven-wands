@@ -1,0 +1,78 @@
+<div id="spell-card-badge-position" aria-label="法术卡右下机制角标位置比较">
+  <div class="viz-controls"><label class="form-label" for="badge-card-size">图标尺寸 <output id="badge-card-size-value" class="tabular-nums">64 px</output><input class="form-range" id="badge-card-size" type="range" min="32" max="64" step="16" value="64"></label></div>
+  <div class="viz-carousel viz-dotted-background" aria-label="机制角标位置方案" data-previous-label="上一方案" data-next-label="下一方案">
+    <section data-variant="压在右下框角（推荐）" aria-label="压在右下框角">
+      <div class="bp-product bp-overlap"><div class="bp-caption">数量位置示意 · 符号待细化</div><div class="bp-gallery"></div><div class="bp-caption bp-small-caption">32 px 对照</div><div class="bp-small-row"></div></div>
+    </section>
+    <section data-variant="完全放在框内" aria-label="完全放在框内" hidden>
+      <div class="bp-product bp-inside"><div class="bp-caption">数量位置示意 · 符号待细化</div><div class="bp-gallery"></div><div class="bp-caption bp-small-caption">32 px 对照</div><div class="bp-small-row"></div></div>
+    </section>
+  </div>
+  <template id="badge-card-template"><div class="bp-cell" role="img"><span class="bp-frame"></span><span class="bp-art"><i data-lucide="flame" aria-hidden="true"></i></span><span class="bp-badge"><i aria-hidden="true"></i></span><span class="bp-count" aria-hidden="true">12</span></div></template>
+  <span class="sr-only" id="badge-card-status" aria-live="polite">64像素，数量在上方居中</span>
+</div>
+<style>
+#spell-card-badge-position { display:grid; gap:14px; }
+#spell-card-badge-position .bp-product { --bp-size:64px; --bp-ink:#483729; --bp-cut:polygon(11.111% 0,88.889% 0,100% 11.111%,100% 88.889%,88.889% 100%,11.111% 100%,0 88.889%,0 11.111%); font-family:"Microsoft YaHei",sans-serif; font-size:13px; line-height:1.5; color:#eee3ce; background:#342e27; border-radius:7px; padding:18px 22px; min-height:260px; box-sizing:border-box; }
+#spell-card-badge-position .bp-caption { font-size:12px; color:#cebea3; margin-bottom:14px; }
+#spell-card-badge-position .bp-gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+#spell-card-badge-position .bp-example { display:flex; align-items:center; flex-direction:column; min-width:0; gap:8px; text-align:center; }
+#spell-card-badge-position .bp-slot { width:80px; height:80px; display:grid; place-items:center; background:radial-gradient(ellipse at 50% 38%,#625746,#453c30); border:1px solid #746047; border-radius:5px; box-sizing:border-box; }
+#spell-card-badge-position .bp-cell { position:relative; display:block; width:var(--bp-size); height:var(--bp-size); flex:none; }
+#spell-card-badge-position .bp-frame { position:absolute; z-index:1; left:9.375%; top:6.25%; width:81.25%; height:87.5%; clip-path:polygon(7.6923% 0,92.3077% 0,100% 7.1429%,100% 92.8571%,92.3077% 100%,7.6923% 100%,0 92.8571%,0 7.1429%); background:var(--bp-ink); }
+#spell-card-badge-position .bp-frame::after { position:absolute; content:""; inset:calc(var(--bp-size) * .0390625); clip-path:polygon(7.6923% 0,92.3077% 0,100% 7.1429%,100% 92.8571%,92.3077% 100%,7.6923% 100%,0 92.8571%,0 7.1429%); background:linear-gradient(to bottom,#E5DCC9 0%,#DDD3BE 55%,#D4C7AD 100%); }
+#spell-card-badge-position .bp-art { position:absolute; z-index:2; inset:0; display:grid; place-items:center; }
+#spell-card-badge-position .bp-art svg { width:calc(var(--bp-size) * .46875) !important; height:calc(var(--bp-size) * .46875) !important; min-width:0 !important; max-width:none !important; fill:#c86b37; stroke:#6c4028; stroke-width:1.8; }
+#spell-card-badge-position .bp-badge { position:absolute; z-index:3; width:28.125%; height:28.125%; left:67.1875%; top:68.75%; display:grid; place-items:center; background:var(--bp-ink); clip-path:var(--bp-cut); }
+#spell-card-badge-position .bp-badge::before { content:""; position:absolute; inset:calc(var(--bp-size) * .0234375); background:#DDD3BE; clip-path:var(--bp-cut); }
+#spell-card-badge-position .bp-badge svg { position:relative; z-index:1; width:calc(var(--bp-size) * .21875) !important; height:calc(var(--bp-size) * .21875) !important; min-width:0 !important; max-width:none !important; fill:none; stroke:#483729; stroke-width:2.3; }
+#spell-card-badge-position .bp-inside .bp-badge { left:54.6875%; top:57.8125%; }
+#spell-card-badge-position .bp-count { position:absolute; z-index:4; left:50%; top:-3px; transform:translateX(-50%); color:#fff4da; font-family:Arial,sans-serif; font-size:12px; line-height:12px; font-weight:500; text-shadow:1px 1px #251c15,-1px -1px #251c15,1px -1px #251c15,-1px 1px #251c15; }
+#spell-card-badge-position .bp-small-caption { margin:19px 0 9px; padding-top:13px; border-top:1px solid #685944; }
+#spell-card-badge-position .bp-small-row { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+#spell-card-badge-position .bp-small-slot { display:grid; place-items:center; height:48px; background:#514838; border:1px solid #77644b; border-radius:4px; }
+#spell-card-badge-position .bp-small-slot .bp-cell { --bp-size:32px; }
+@media(max-width:480px) { #spell-card-badge-position .bp-product { padding:16px 10px; } #spell-card-badge-position .bp-gallery { gap:4px; } }
+</style>
+<script>
+(() => {
+  const root=document.getElementById('spell-card-badge-position');
+  const template=root.querySelector('#badge-card-template');
+  const products=root.querySelectorAll('.bp-product');
+  const definitions=[['none','普通火焰弹'],['arrow-right-to-line','碰撞火焰弹'],['clock','定时火焰弹']];
+  products.forEach(product=>{
+    definitions.forEach(([symbol,name])=>{
+      function cell() {
+        const result=template.content.firstElementChild.cloneNode(true);
+        result.setAttribute('aria-label',name+'，数量12在上方居中');
+        if(symbol==='none') result.querySelector('.bp-badge').remove();
+        else result.querySelector('.bp-badge i').dataset.lucide=symbol;
+        return result;
+      }
+      const example=document.createElement('div');example.className='bp-example';
+      const slot=document.createElement('div');slot.className='bp-slot';slot.appendChild(cell());
+      const label=document.createElement('span');label.textContent=name;
+      example.append(slot,label);product.querySelector('.bp-gallery').appendChild(example);
+      if(symbol!=='none') { const small=document.createElement('div');small.className='bp-small-slot';small.appendChild(cell());product.querySelector('.bp-small-row').appendChild(small); }
+    });
+  });
+  const size=root.querySelector('#badge-card-size');
+  const output=root.querySelector('#badge-card-size-value');
+  const status=root.querySelector('#badge-card-status');
+  function render(saved) {
+    if(saved && [32,48,64].includes(Number(saved.size))) size.value=String(saved.size);
+    products.forEach(product=>product.style.setProperty('--bp-size',size.value+'px'));
+    output.textContent=size.value+' px';status.textContent=size.value+'像素，数量在上方居中';
+  }
+  size.addEventListener('input',()=>{
+    render();const state={size:Number(size.value)};
+    if(window.openai && typeof window.openai.setWidgetState==='function') {
+      const result=window.openai.setWidgetState({modelContent:{badgePositionPreview:state},privateContent:state});
+      if(result && typeof result.catch==='function')result.catch(()=>{});
+    }
+  });
+  render(window.openai && window.openai.widgetState && window.openai.widgetState.privateContent);
+  if(globalThis.lucide)lucide.createIcons({attrs:{width:16,height:16}});
+  window.addEventListener('openai:set_globals',event=>{const state=event.detail && event.detail.globals && event.detail.globals.widgetState;if(state)render(state.privateContent);});
+})();
+</script>

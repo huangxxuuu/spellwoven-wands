@@ -14,22 +14,23 @@ ART=ROOT/'assets_src/art_v1'
 RUNTIME=ART/'runtime'
 manifest=json.loads((ART/'manifest.json').read_text())
 atlas=Image.open(RUNTIME/'nw_icons.png').convert('RGBA')
-assert atlas.size==(1024,1024)
+assert atlas.size==(2048,2048)
 elements=ET.parse(ROOT/'mod/images/inventoryimages/nw_icons.xml').findall('./Elements/Element')
-assert len(elements)==216 and len({e.attrib['name'] for e in elements})==216
+assert len(elements)==221 and len({e.attrib['name'] for e in elements})==221
 inventory_count=len(elements)
 rects=set();hashes={}
 for e in elements:
     a=e.attrib
-    x,y=round(float(a['u1'])*atlas.width),round((1-float(a['v2']))*1024)
-    assert round((float(a['u2'])-float(a['u1']))*atlas.width)==64
-    assert round((float(a['v2'])-float(a['v1']))*1024)==64
+    size=64 if a['name']=='nw_wand.tex' else 128
+    x,y=round(float(a['u1'])*atlas.width),round((1-float(a['v2']))*atlas.height)
+    assert round((float(a['u2'])-float(a['u1']))*atlas.width)==size
+    assert round((float(a['v2'])-float(a['v1']))*atlas.height)==size
     assert (x,y) not in rects;rects.add((x,y))
-    tile=atlas.crop((x,y,x+64,y+64))
+    tile=atlas.crop((x,y,x+size,y+size))
     assert tile.getchannel('A').getextrema()==(0,255)
     id='wand_icon' if a['name']=='nw_wand.tex' else a['name'][9:-4]
     source=Image.open(RUNTIME/f'icon_{id}.png').convert('RGBA')
-    assert source.size==(64,64) and source.tobytes()==tile.tobytes()
+    assert source.size==(size,size) and source.tobytes()==tile.tobytes()
     hashes.setdefault(hashlib.sha256(tile.tobytes()).hexdigest(),set()).add(id)
 # The retired, unavailable weak_homing card supplies the new rotation glyph.
 # All currently obtainable cards must still have distinct artwork.
@@ -213,12 +214,14 @@ for style in range(1,10):
     assert xml.find('Texture').get('filename')==page+'.tex'
     assert (ROOT/f'mod/images/inventoryimages/{page}.tex').read_bytes()[:4]==b'KTEX'
     we=xml.findall('./Elements/Element')
-    assert len(we)==len(heads)*len(tails)*3
+    assert len(we)==len(heads)*len(tails)*3*2
     for i,el in enumerate(we):
-        assert el.get('name')==f'nw_wand_{(style-1)*len(we)+i}.tex'
+        per=len(we)//2
+        suffix='_broken' if i>=per else ''
+        assert el.get('name')==f'nw_wand_{(style-1)*per+i%per}{suffix}.tex'
         x=int(float(el.get('u1'))*wands.width);y=round((1-float(el.get('v2')))*wands.height)
         digests.add(hashlib.sha256(wands.crop((x,y,x+64,y+64)).tobytes()).hexdigest())
-assert len(digests)==4374
+assert len(digests)==8748
 # Each three-wand group holds colour constant; compare material across rows.
 sheet=Image.new('RGBA',(840,790),(55,49,43,255));draw=ImageDraw.Draw(sheet)
 for i,shape in enumerate(shapes):

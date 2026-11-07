@@ -16,10 +16,11 @@
 
 用途
 保持 DST 世界运行，修改素材后自动编译、加载新版本，并循环播放飞行效果。
-使用真正的游戏 AnimState 和相机，复用当前 flight_visual.lua 与 spark_trail.lua。
+使用真正的游戏 AnimState 和相机，复用当前投射物、工具刻印及场地成员的生产渲染模块。
 独立客户端 Mod，名字为 Spellwoven Live Art Preview，不需要开启原 Mod 的开发者选项。
 第一版只预览外观：本地直线飞行，不产生伤害，不保存实体，不模拟碰撞、追踪和完整施法组合。
-本工具不是全部法术的完整模拟器：场地、云、晶体、近战和附加修饰暂未接入。
+面板分为“投射物”“工具刻印”“场地”三页。场地按正常寿命演示生成、触发和结束；
+不产生伤害、治疗、载荷或拦截。近战和完整附加修饰组合仍需用正式模组检查。
 
 首次准备
 1. 双击项目根目录 preview.cmd，保持终端窗口开着。
@@ -34,6 +35,9 @@
 nw_preview("spark")                  火花，默认速度20，高度1.4，前后12单位循环
 nw_preview("arrow", 20, 90, 1)        箭弹，速度20，世界方向90度，大小1倍
 nw_preview("fire", 10, 0, 2)          火弹，速度10，方向0度，大小2倍
+nw_preview("orange_bolt", 20, 135, 1) 橙杖弹核与短尾迹
+nw_preview("vital_ring", 20, 0, 1)    独立蘑菇圈，三次回血动作与收尾
+nw_preview("guard_ring", 20, 0, 2.5)  巨化护卫环，跟随玩家与单盾消耗
 nw_preview_refresh()                 手动重新加载当前资源
 nw_preview_stop()                    停止，删除弹体/尾迹，卸载预览资源
 
@@ -45,7 +49,12 @@ nw_preview_stop()                    停止，删除弹体/尾迹，卸载预览
 spark, arrow, fire, frost, heavy, scatter, gust, slime, heal_bolt,
 land_hook, spore_ball, flint_lance, grow_orb, star_vortex, glass_disc,
 tri_electric, end_beam, soundwave, bee_swarm, fireflies
-不包含原版武器刻印。
+工具刻印：orange_bolt, fishingrod, trident, farm_hoe, yoth_lance。
+场地：crystal_mine, sleep_crystal, payload_egg, moon_fall, delay_seal, detonate,
+rain_cloud, storm_cloud, guard_ring, shock_ring, vortex, deer_decoy, vital_ring, spore_sentry。
+永久晶体和卵在预览中以3秒循环演示结束；这不代表其正式寿命。
+场地预览的速度参数不改变阶段时间；方向决定摆放位置。护卫环直接围绕玩家。
+原版哑铃等刻印仍通过正式施法观察落地和命中效果。
 
 编辑入口
 火花弹头：docs/previews/spark-six/head-6x64.png（保持384×64）
@@ -53,6 +62,8 @@ tri_electric, end_beam, soundwave, bee_swarm, fireflies
 普通弹体：assets_src/spell_revision/ 下对应源图片，具体映射见 tools/build_spell_world.py。
 保存后终端打印 BUILT / PUBLISHED，游戏控制台或 client_log.txt 打印 [NW preview] loaded r…。
 动画构建脚本和 flight_visual.lua、spark_trail.lua 的改动也会触发重建。
+工具素材见 assets_src/projectiles/tools_v1/ 与 tools/build_tool_flight.py；
+场地动作见 tools/build_field_stages.py，源图沿用原有场地及植物分层素材。
 不要编辑 dist 里的产物，它们会重新生成。
 
 首轮验证

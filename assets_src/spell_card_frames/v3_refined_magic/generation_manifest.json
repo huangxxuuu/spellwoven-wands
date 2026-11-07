@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-07",
+  "mode": "built-in image_gen",
+  "status": "first sample for review; no runtime replacement",
+  "images": [
+    {
+      "id": "refined_magic_style_board",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-3b9cf136-3f11-4835-b6a7-d0bde7d731e3.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v3_refined_magic/refined_magic_style_board.png",
+      "file": "refined_magic_style_board.png",
+      "width": 1448,
+      "height": 1086,
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "center_alpha": null,
+      "sha256": "0caf2a3c6f56c63b0546e1218004613ed288253f6ddd3ab683978f17b2ab7066"
+    },
+    {
+      "id": "refined_magic_collector_basic",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-bfe4e8dc-af8b-4144-930b-1a38e9fb6956.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v3_refined_magic/refined_magic_collector_basic.png",
+      "file": "refined_magic_collector_basic.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "center_alpha": 253,
+      "sha256": "59e005be57cd548b622cf8020a364360efd2d88ea7b0cff475f6bf376f53a8fb"
+    }
+  ]
+}

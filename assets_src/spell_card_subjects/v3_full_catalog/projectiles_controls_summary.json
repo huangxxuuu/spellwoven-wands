@@ -1,0 +1,470 @@
+{
+  "group": "projectiles_controls",
+  "assigned": 27,
+  "generated": 27,
+  "attempts": 27,
+  "candidate": 26,
+  "needs_retry": 1,
+  "failed": 0,
+  "all_visual_reviewed": true,
+  "all_source_hashes_match": true,
+  "raw_png_modified": false,
+  "automatic_regeneration_performed": false,
+  "retry_requests": [
+    {
+      "id": "repeat_2",
+      "name": "双倍施法",
+      "status": "needs_retry",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_2.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_2.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_2.result.json",
+      "issues": [
+        "双倍施法底端菱形贴近并触及画布下边缘：6 个 alpha≥8 像素落在边界，最大 alpha 108。主体需要完整安全留白。"
+      ],
+      "notes": [
+        "一个输入、两个同形输出，唯一倍数文字×2正确。"
+      ],
+      "retry_prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_2.retry.prompt.txt",
+      "source_hash_matches": true,
+      "attempt_count": 1
+    }
+  ],
+  "records": [
+    {
+      "id": "spark",
+      "name": "火花弹",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\spark.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\spark.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\spark.result.json",
+      "issues": [],
+      "notes": [
+        "四角星主体与粉紫火花身份一致。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "arrow",
+      "name": "魔法箭",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\arrow.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\arrow.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\arrow.result.json",
+      "issues": [],
+      "notes": [
+        "青白晶体箭头、棕杆、粉白尾羽均保留。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "scatter",
+      "name": "散弹",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\scatter.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\scatter.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\scatter.result.json",
+      "issues": [],
+      "notes": [
+        "准确三枚石色楔状弹丸。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "double",
+      "name": "双重施法",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\double.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\double.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\double.result.json",
+      "issues": [],
+      "notes": [
+        "两个不同印记表现多抽取；开放聚合笔触距离边缘仅1–2px，接入卡牌时需统一缩放留白。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "triple",
+      "name": "三重施法",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\triple.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\triple.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\triple.result.json",
+      "issues": [],
+      "notes": [
+        "三个不同印记表现多抽取；留白偏紧，后续接入应缩放。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "chain",
+      "name": "连锁闪电",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\chain.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\chain.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\chain.result.json",
+      "issues": [],
+      "notes": [
+        "四个击中节点串联，粗折线与短分叉可读。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "imprint_hit",
+      "name": "碰撞触发修饰",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\imprint_hit.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\imprint_hit.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\imprint_hit.result.json",
+      "issues": [],
+      "notes": [
+        "弹体、接触面、触发后的两个载荷方向可读，未添加机制角标。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "imprint_timer",
+      "name": "定时触发修饰",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\imprint_timer.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\imprint_timer.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\imprint_timer.result.json",
+      "issues": [],
+      "notes": [
+        "金色沙漏与载体结合，触发后的载荷可读，未添加机制角标。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "repeat_2",
+      "name": "双倍施法",
+      "status": "needs_retry",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_2.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_2.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_2.result.json",
+      "issues": [
+        "双倍施法底端菱形贴近并触及画布下边缘：6 个 alpha≥8 像素落在边界，最大 alpha 108。主体需要完整安全留白。"
+      ],
+      "notes": [
+        "一个输入、两个同形输出，唯一倍数文字×2正确。"
+      ],
+      "retry_prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_2.retry.prompt.txt",
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "repeat_3",
+      "name": "三倍施法",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_3.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_3.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_3.result.json",
+      "issues": [],
+      "notes": [
+        "一个输入、三个同形输出，唯一倍数文字×3正确；上下留白偏紧。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "trident_cast",
+      "name": "三叉阵",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\trident_cast.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\trident_cast.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\trident_cast.result.json",
+      "issues": [],
+      "notes": [
+        "准确三个前向展开分支。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "repeat_4",
+      "name": "四倍施法",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_4.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_4.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\repeat_4.result.json",
+      "issues": [],
+      "notes": [
+        "一个输入、四个同形输出，唯一倍数文字×4正确。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "gust",
+      "name": "风压弹",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\gust.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\gust.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\gust.result.json",
+      "issues": [],
+      "notes": [
+        "实心风卷与当前弹头形象一致。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "spore_ball",
+      "name": "蘑菇孢球",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\spore_ball.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\spore_ball.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\spore_ball.result.json",
+      "issues": [],
+      "notes": [
+        "棕褐孢球与大块奶油色凸点一致。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "flint_lance",
+      "name": "燧晶投枪",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\flint_lance.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\flint_lance.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\flint_lance.result.json",
+      "issues": [],
+      "notes": [
+        "灰白燧石矛头、短木杆和粗绳清晰。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "slime",
+      "name": "黏液弹",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\slime.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\slime.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\slime.result.json",
+      "issues": [],
+      "notes": [
+        "黄绿色圆润黏液主体和短尾一致。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "grow_orb",
+      "name": "蓄势光球",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\grow_orb.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\grow_orb.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\grow_orb.result.json",
+      "issues": [],
+      "notes": [
+        "金色花瓣包裹的核心与后方较小阶段球清晰。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "heal_bolt",
+      "name": "愈合弹",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\heal_bolt.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\heal_bolt.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\heal_bolt.result.json",
+      "issues": [],
+      "notes": [
+        "浅绿弹芯、粉色及灰绿花瓣外形一致。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "star_vortex",
+      "name": "旋流四星",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\star_vortex.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\star_vortex.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\star_vortex.result.json",
+      "issues": [],
+      "notes": [
+        "准确四颗四角星组成旋流。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "wild_double",
+      "name": "双重散放",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\wild_double.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\wild_double.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\wild_double.result.json",
+      "issues": [],
+      "notes": [
+        "准确两道向前分散的金色箭束。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "two_way",
+      "name": "前后阵",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\two_way.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\two_way.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\two_way.result.json",
+      "issues": [],
+      "notes": [
+        "准确两道相反180度箭束，中心释放点明确。",
+        "横画布主体完整，可后续等比放入方形卡框；仅透明画布比例不同，无需重绘。保留重试 prompt 作为用户希望调整构图时的可选方案。"
+      ],
+      "retry_prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\two_way.retry.prompt.txt",
+      "source_hash_matches": true,
+      "attempt_count": 1,
+      "retry_policy": "optional_not_required"
+    },
+    {
+      "id": "glass_disc",
+      "name": "月玻璃飞刃",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\glass_disc.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\glass_disc.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\glass_disc.result.json",
+      "issues": [],
+      "notes": [
+        "月玻璃钩刃、灰褐内环与透明中心孔清楚。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "land_hook",
+      "name": "岸上抓钩",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\land_hook.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\land_hook.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\land_hook.result.json",
+      "issues": [],
+      "notes": [
+        "三叉深灰抓钩与一段可见粗绳一致。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "tri_electric",
+      "name": "三相电球",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\tri_electric.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\tri_electric.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\tri_electric.result.json",
+      "issues": [],
+      "notes": [
+        "准确三颗紫色电球与短闪电分叉。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "end_beam",
+      "name": "终点聚爆束",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\end_beam.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\end_beam.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\end_beam.result.json",
+      "issues": [],
+      "notes": [
+        "使用当前紫色连续激光与终点星芒，未使用过期红橙弹头素材；左下留白偏紧。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "cast_four",
+      "name": "四重施法",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\cast_four.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\cast_four.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\cast_four.result.json",
+      "issues": [],
+      "notes": [
+        "四个不同印记表现四重抽取，与复制法术图形明确区分。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    },
+    {
+      "id": "hex_cast",
+      "name": "六角阵",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\hex_cast.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\hex_cast.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\hex_cast.result.json",
+      "issues": [],
+      "notes": [
+        "准确六道等间隔向外箭束，未添加外圈。"
+      ],
+      "retry_prompt": null,
+      "source_hash_matches": true,
+      "attempt_count": 1
+    }
+  ],
+  "validation_file": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\validation.json",
+  "fringe_checks_file": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\fringe_checks.json",
+  "optional_retry_requests": [
+    {
+      "id": "two_way",
+      "name": "前后阵",
+      "status": "candidate",
+      "image": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\two_way.png",
+      "prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\two_way.prompt.txt",
+      "result": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\two_way.result.json",
+      "issues": [],
+      "notes": [
+        "准确两道相反180度箭束，中心释放点明确。",
+        "横画布主体完整，可后续等比放入方形卡框；仅透明画布比例不同，无需重绘。保留重试 prompt 作为用户希望调整构图时的可选方案。"
+      ],
+      "retry_prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\two_way.retry.prompt.txt",
+      "source_hash_matches": true,
+      "attempt_count": 1,
+      "retry_policy": "optional_not_required"
+    }
+  ]
+}

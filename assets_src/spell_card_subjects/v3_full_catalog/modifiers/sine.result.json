@@ -1,0 +1,41 @@
+{
+  "id": "sine",
+  "name": "正弦弹道",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-2e3223ca-9922-42d9-beee-b6dfa7666e02.png",
+  "output": "sine.png",
+  "prompt": "sine.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "双波峰波谷形成正弦线路；构图较宽，入框时统一等比缩放。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      12,
+      412,
+      1239,
+      845
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 12,
+    "sha256": "5982b92ab00e06e7746cb7963b8f21d97baae57ef29f1ddcca629c5679410a0d",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

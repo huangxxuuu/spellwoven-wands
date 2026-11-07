@@ -1,0 +1,53 @@
+{
+  "id": "tri_electric",
+  "name": "三相电球",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-24d756f3-d5ce-4d70-b595-963e6936f830.png",
+  "output": "tri_electric.png",
+  "prompt": "tri_electric.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_elemental_flight/tri_electric_head_0.png",
+  "review": {
+    "visual_reviewed": true,
+    "mechanism_and_count_checked": true,
+    "issues": [],
+    "notes": [
+      "准确三颗紫色电球与短闪电分叉。"
+    ],
+    "validation": {
+      "id": "tri_electric",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_8": [
+        88,
+        90,
+        1186,
+        1143
+      ],
+      "alpha_bbox_32": [
+        88,
+        90,
+        1186,
+        1143
+      ],
+      "alpha_bbox_128": [
+        89,
+        91,
+        1186,
+        1142
+      ],
+      "edge_max_alpha": 1,
+      "nonzero_edge_pixels": 31,
+      "visible_edge_pixels": 0,
+      "transparent_ratio": 0.7814648626786628,
+      "sha256": "eaa196373a268450999d66e4bd4638747917d035977b89c976dae199690018fa"
+    }
+  },
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-24d756f3-d5ce-4d70-b595-963e6936f830.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "source_hash_matches": true,
+  "raw_png_modified": false,
+  "retry_needed": false
+}

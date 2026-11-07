@@ -1,9 +1,8 @@
 local T=GLOBAL.require("nw/locale").t
 GLOBAL.require("nw/locale").install(env,GLOBAL)
-PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_gunpowder" }
+PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_gunpowder" }
 Assets={Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
-    Asset("ATLAS","images/nw_sections_en.xml"),Asset("IMAGE","images/nw_sections_en.tex"),
-    Asset("ATLAS","images/nw_sections.xml"),Asset("IMAGE","images/nw_sections.tex"),
+    Asset("SOUNDPACKAGE","sound/nw_instruments.fev"),Asset("SOUND","sound/nw_instruments.fsb"),
     Asset("ATLAS","images/nw_hud.xml"),Asset("IMAGE","images/nw_hud.tex"),
     Asset("ATLAS","images/nw_frame.xml"),Asset("IMAGE","images/nw_frame.tex")}
 GLOBAL.require("nw/expanded_fields").crystal_limit=GetModConfigData("crystal_limit") or 0
@@ -54,11 +53,16 @@ GLOBAL.STRINGS.CHARACTERS.GENERIC.DESCRIBE.NW_DISASSEMBLER=T("持续操作时分
 GLOBAL.require("nw/crafting").install(env)
 GLOBAL.require("nw/rewards").install(env)
 GLOBAL.require("nw/first_boss_reward").install(env)
+GLOBAL.require("nw/spelljournal").install(env)
+GLOBAL.require("nw/journal_damage").install(env)
 GLOBAL.STRINGS.NAMES.NW_SPELLPILE=T("法术牌堆")
 GLOBAL.STRINGS.CHARACTERS.GENERIC.DESCRIBE.NW_SPELLPILE=T("打开可以逐张取出法术卡。")
 GLOBAL.require("nw/cardpile").install(env)
+GLOBAL.require("nw/wand_container").install(env)
 GLOBAL.require("nw/wand_naming").install(env)
 GLOBAL.require("nw/recycle").install(env)
+GLOBAL.require("nw/guard_ring").install(env)
+GLOBAL.require("nw/wand_damage").install(env)
 if GetModConfigData("developer_options") == true then
     AddSimPostInit(function()
         if GLOBAL.TheWorld.ismastersim then
@@ -88,15 +92,23 @@ AddClientModRPCHandler("nw_weave","edit_result",GLOBAL.require("nw/editor_client
 AddClientModRPCHandler("nw_weave","edit_status",GLOBAL.require("nw/editor_client").status)
 AddClientModRPCHandler("nw_weave","dev_help",GLOBAL.require("nw/dev_output").print_lines)
 if not GLOBAL.TheNet:IsDedicated() then
-    GLOBAL.require("nw/crafting_sections").install(env,GLOBAL)
+    AddClassPostConstruct("widgets/image",GLOBAL.require("nw/card_icon").install)
+    GLOBAL.require("nw/crafting_filter").install(env,GLOBAL)
     AddComponentPostInit("playercontroller",GLOBAL.require("nw/hold_cast").install)
     AddClassPostConstruct("widgets/itemtile",GLOBAL.require("nw/client").tile)
-    AddClassPostConstruct("widgets/invslot",GLOBAL.require("nw/client").inventory_slot)
     AddClassPostConstruct("widgets/controls",function(self)
         self.nw_wandpanel=self.inv.root:AddChild(GLOBAL.require("widgets/nw_wandpanel")(self.inv))
     end)
 end
-if GetModConfigData("development_smoke")=="wands" then
+if GetModConfigData("development_smoke")=="crafting" then
+    AddSimPostInit(function()
+        if GLOBAL.TheWorld.ismastersim then GLOBAL.TheWorld:DoTaskInTime(2,GLOBAL.require("nw/smoke_crafting_filter").run) end
+    end)
+elseif GetModConfigData("development_smoke")=="journal" then
+    AddSimPostInit(function()
+        if GLOBAL.TheWorld.ismastersim then GLOBAL.TheWorld:DoTaskInTime(2,GLOBAL.require("nw/smoke_spelljournal").run) end
+    end)
+elseif GetModConfigData("development_smoke")=="wands" then
     AddSimPostInit(function()
         if GLOBAL.TheWorld.ismastersim then GLOBAL.TheWorld:DoTaskInTime(2,GLOBAL.require("nw/smoke_wand_generation").run) end
     end)

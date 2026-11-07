@@ -1,0 +1,41 @@
+{
+  "id": "speed_up",
+  "name": "加速",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-a0eb9139-a5b0-4b1a-b4ae-7f10711c3ac1.png",
+  "output": "speed_up.png",
+  "prompt": "speed_up.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "魔弹与两条加速笔触清楚。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      61,
+      164,
+      1237,
+      1074
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 17,
+    "sha256": "e2ea9fc2b2c1b0d58ade983c92c7401eccce48582d7a7456e905c91a772614e6",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

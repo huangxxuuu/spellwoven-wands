@@ -83,10 +83,14 @@ function M.install(tile,wand)
         local panel,moved=panel_for(root)
         local stats,slots,look=item._nw_stats:value(),item._nw_cards:value(),item._nw_look:value()
         local title=item:GetDisplayName()
+        local broken=item._nw_broken and item._nw_broken:value()
+        if broken then title=title..T(" · 破损") end
         local actions=M.actions(tile)
         if actions~="" then title=title.."\n"..actions end
         if moved or stats~=last_stats or slots~=last_slots or look~=last_look or title~=last_title then
-            panel:Display(Data.wand(stats,slots,look,title))
+            local data=Data.wand(stats,slots,look,title)
+            if broken then data.icon=require("nw/visual").icon(look,true)..".tex";data.subtitle=T("无法施法：用 5 份奥术粉尘修复") end
+            panel:Display(data)
             last_stats,last_slots,last_look,last_title=stats,slots,look,title
         end
         place(panel,tile,root,40)

@@ -32,11 +32,11 @@ function M.wand(encoded,slots,look,title)
     local used=0
     for _,id in ipairs(cards) do if id then used=used+1 end end
     return {title=title,subtitle=s.shuffle and T("乱序") or T("非乱序"),
-        atlas=Visual.atlas(look),icon=Visual.icon(look)..".tex",
-        fields={{T("基础同发"),s.draw_count},{T("散射"),s.spread.."°"},
-            {T("施放间隔"),s.cast_delay..T(" 秒")},{T("充能时间"),s.recharge..T(" 秒")},
-            {T("法力上限"),s.mana_max},{T("法力回复"),s.mana_regen..T(" / 秒")},
-            {T("SAN 转化率"),s.sanity_conversion},{T("容量"),s.capacity}},
+        atlas=Visual.atlas(look),icon=Visual.icon(look)..".tex",wand_look=look,
+        fields={{T("齐发数"),s.draw_count},{T("偏斜"),s.spread.."°"},
+            {T("施咒间歇"),s.cast_delay..T(" 秒")},{T("回充时长"),s.recharge..T(" 秒")},
+            {T("魔力储量"),s.mana_max},{T("魔力回涌"),s.mana_regen..T(" / 秒")},
+            {T("心神转化"),s.sanity_conversion},{T("符文槽"),s.capacity}},
         innate=s.innate,slots=slots,count=used.." / "..#cards}
 end
 local kind={projectile=T("远程弹"),trigger=T("远程弹"),melee=T("近战"),instant=T("瞬发"),
@@ -90,6 +90,7 @@ function M.card_details(id,brief)
     if d.planar then add(T("位面伤害"),d.planar) end
     local note=require("nw/arsenal").notes[id]
     if note then add(T("音级"),note.label) end
+    if d.pitch_shift then add(T("音高偏移"),string.format(T("%+d 半音"),d.pitch_shift)) end
     if d.max_targets then add(T("最多目标"),d.max_targets) end
     if Def.trajectory[id] then add(T("弹道延寿"),"+8%") end
     local effect=Info.effects[id]

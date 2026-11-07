@@ -1,0 +1,10 @@
+{
+  "id": "target_building",
+  "name": "选取建筑",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T00:52:35.373Z",
+  "completed_at": "2026-11-07T00:54:22.896Z",
+  "result_file": "target_building.result.json"
+}

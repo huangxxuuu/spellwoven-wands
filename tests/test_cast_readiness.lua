@@ -7,6 +7,7 @@ local C=require("nw/compiler")
 local U=require("nw/util")
 local W=require("components/nw_wand")
 local wand={_nw_capacity=net(),_nw_mana=net(),_nw_ready=net(),components={}}
+wand.AddTag=function() end;wand.RemoveTag=function() end
 local cmp=W(wand);wand.components.nw_wand=cmp;cmp:InitializePrototype()
 local shots=0
 local player={components={inventory={GetEquippedItem=function() return wand end},health={IsDead=function() return false end}},

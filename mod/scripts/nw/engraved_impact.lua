@@ -88,20 +88,31 @@ local function harvest(owner,e)
         end
     end
 end
-local function wet(owner,x,z,scale)
+local function wet(owner,x,z,scale,p)
     local staff=at("trident",x,z)
+    require("nw/journal_damage").tag(staff,owner,p)
     staff.components.inventoryitem.owner=owner
     local pos=Vector3(x,0,z)
+    local native=staff.DoWaterExplosionEffect
+    local hitplayers={}
+    staff.DoWaterExplosionEffect=function(self,e,caster,position)
+        if e:HasTag("player") then
+            if not hitplayers[e] and not e:HasTag("playerghost") and e.components.combat then
+                hitplayers[e]=true;e.components.combat:GetAttacked(caster,TUNING.TRIDENT.SPELL.DAMAGE,self)
+            end
+        else return native(self,e,caster,position) end
+    end
     -- The native cast handles ocean targets itself. Extend its impact to dry land once.
     for _,e in ipairs(TheSim:FindEntities(x,0,z,TUNING.TRIDENT.SPELL.RADIUS*scale,nil,{"INLIMBO","outofreach","DECOR","FX"})) do
-        if e~=staff and e~=owner and (not e:IsOnOcean(false) or e:GetDistanceSqToPoint(x,0,z)>TUNING.TRIDENT.SPELL.RADIUS^2)
-            and (not e.components.health or require("nw/targeting").allowed(owner,e)) then
+        if e~=staff and (e:HasTag("player") or not e:IsOnOcean(false) or e:GetDistanceSqToPoint(x,0,z)>TUNING.TRIDENT.SPELL.RADIUS^2)
+            and (e:HasTag("player") or not e.components.health or require("nw/targeting").allowed(owner,e)) then
             staff:DoWaterExplosionEffect(e,owner,pos)
         end
     end
     staff.components.spellcaster:CastSpell(nil,pos,owner)
     staff.components.inventoryitem.owner=nil;staff:Remove()
-    require("nw/projectile_size").visual(at("crab_king_waterspout",x,z),scale)
+    require("nw/projectile_size").visual(at(TheWorld.Map:IsOceanAtPoint(x,0,z)
+        and "crab_king_waterspout" or "groundpound_fx",x,z),scale)
     for _,e in ipairs(TheSim:FindEntities(x,0,z,2*scale,nil,{"INLIMBO","FX"})) do
         DoDeltaMoistureToEntity(e,TUNING.WATERINGCAN_WATER_AMOUNT)
     end
@@ -124,40 +135,54 @@ function M.finish(s,x,z)
     if key=="lighter" then
         require("nw/engraved_fire").burst(s.inst,s.owner,x,z,(s.p.fire_radius or 3)*require("nw/projectile_size").factor(s.p))
     elseif key=="chum" then
-        at("splash_green",x,z)
-        if TheWorld.Map:IsOceanAtPoint(x,0,z) then at("chum_aoe",x,z):SetThrower(s.owner) end
-    elseif key=="trident" then wet(s.owner,x,z,require("nw/projectile_size").factor(s.p))
+        if TheWorld.Map:IsOceanAtPoint(x,0,z) then
+            at("splash_green",x,z);at("chum_aoe",x,z):SetThrower(s.owner)
+        else at("sand_puff",x,z) end
+    elseif key=="trident" then wet(s.owner,x,z,require("nw/projectile_size").factor(s.p),s.p)
     elseif key=="orangestaff" then
         -- Natural expiry can happen while the shot is in the void margin.
-        if not TheWorld.Map:IsPassableAtPoint(x,0,z,true) then return end
+        local ocean=TheWorld.Map:IsOceanAtPoint(x,0,z)
+        if not ocean and not TheWorld.Map:IsPassableAtPoint(x,0,z,true) then return end
         local owner=s.owner
         local ox,_,oz=owner.Transform:GetWorldPosition()
         at("sand_puff",ox,oz)
         owner.Physics:Teleport(x,0,z)
         at("sand_puff",x,z)
-        if TheWorld.Map:IsOceanAtPoint(x,0,z) and not TheWorld.Map:GetPlatformAtPoint(x,z)
-            and owner.components.drownable then owner.components.drownable:CheckDrownable() end
+        if ocean and not TheWorld.Map:GetPlatformAtPoint(x,z) and owner.components.drownable then
+            -- Teleport first; let native platform membership update before its
+            -- drowning check, including the stategraph's casting busy state.
+            owner:DoTaskInTime(0,function()
+                if owner:IsValid() and owner.components.drownable then owner.components.drownable:CheckDrownable() end
+            end)
+        end
     elseif key=="farm_hoe" then
         local tiller=s.inst.components.farmtiller or s.inst:AddComponent("farmtiller")
         return tiller:Till(Vector3(x,0,z),s.owner)
     elseif s.p.ballistic then
         local bell=at(key,x,z)
+        require("nw/journal_damage").tag(bell,s.owner,s.p)
         -- The native pickup callback enables the corresponding landing routine for mighty throws.
         bell:PushEvent("onputininventory",{HasTag=function(_,tag) return tag=="mightiness_mighty" end})
         local flight=bell.components.complexprojectile
         flight.attacker=s.owner
         require("nw/giant_native").bell(bell,s.owner,require("nw/projectile_size").factor(s.p))
         flight.onhitfn(bell,s.owner,nil)
+        -- Keep the native landing motion after the temporary gameplay item is
+        -- deleted. This prefab has no inventory, physics or combat components.
+        local landing=at("nw_tool_land_"..key,x,z)
+        require("nw/projectile_size").visual(landing,require("nw/projectile_size").factor(s.p))
         if bell:IsValid() then bell:Remove() end
     elseif key=="voidcloth_boomerang" and s.native and s.native:IsValid() then
-        local bolt=s.native;s.native=nil
+        local bolt=s.native;s.native=nil;bolt._nw_controller=nil
+        require("nw/journal_damage").tag(bolt,s.owner,s.p)
         -- Keep the rendered body's position/interpolation through the handoff.
         -- Native ReturnToThrower sets velocity before its first steering update.
         bolt:FacePoint(s.owner.Transform:GetWorldPosition())
         bolt:ReturnToThrower(s.owner)
         require("nw/world_bounds").watch(bolt)
     elseif key=="staff_tornado" and s.native and s.native:IsValid() then
-        local tornado=s.native;s.native=nil
+        local tornado=s.native;s.native=nil;tornado._nw_controller=nil
+        require("nw/journal_damage").tag(tornado,s.owner,s.p)
         tornado.Physics:Teleport(x,0,z)
         tornado.components.knownlocations:RememberLocation("target",Vector3(x,0,z))
         tornado:SetDuration(TUNING.TORNADO_LIFETIME)
@@ -168,12 +193,15 @@ end
 local function bounce(s,e,x,z)
     local last=not s.hits_left or s.hits_left<=1
     local bolt=last and s.native or at("brilliance_projectile_fx",x,z)
+    require("nw/journal_damage").tag(bolt,s.owner,s.p)
+    bolt._nw_controller=nil
     require("nw/projectile_size").native(bolt,s.p)
     bolt.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
     if last then s.native=nil end
     bolt.Physics:Teleport(x,0,z)
     bolt.entity:SetCanSleep(false)
     local staff=at("staff_lunarplant",x,z)
+    require("nw/journal_damage").tag(staff,s.owner,s.p)
     staff:RemoveFromScene()
     staff.components.inventoryitem.owner=s.owner
     bolt:ListenForEvent("onremove",function()
@@ -188,7 +216,7 @@ end
 function M.hit(s,e,x,z)
     local key=s.p.engraving
     if key=="lighter" then
-        require("nw/engraved_fire").burst(s.inst,s.owner,x,z,(s.p.fire_radius or 3)*require("nw/projectile_size").factor(s.p))
+        require("nw/engraved_fire").burst(s.inst,s.owner,x,z,(s.p.fire_radius or 3)*require("nw/projectile_size").factor(s.p),e)
     elseif (key=="chum" or key=="trident") and s.hits_left and s.hits_left>1 then
         M.finish(s,x,z)
         return true

@@ -1,0 +1,29 @@
+{
+  "id": "pitch_octave_down",
+  "name": "降八度",
+  "pitch_shift": -12,
+  "symbol": "−12",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b496-52e7-7ab1-bdeb-c27b52b8e8e0\\exec-cf0034f4-25d0-46e9-9906-832e2f5b0db9.png",
+  "output": "pitch_octave_down.png",
+  "prompt": "pitch_octave_down.prompt.txt",
+  "status": "reviewed",
+  "attempt_count_this_request": 1,
+  "tool": "built-in imagegen",
+  "validation": {
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bbox_alpha8": [
+      189,
+      60,
+      1058,
+      1216
+    ],
+    "sha256": "1336b6b72d50584acf418a5832e604070aedae0a4efc78ffb6e55725be3ae396",
+    "matches_generated_source": true,
+    "frame_containment": true
+  },
+  "visual_review": "音符正立，箭头方向与数值正确；八度长箭头、半音短箭头，四张均完整入框。"
+}

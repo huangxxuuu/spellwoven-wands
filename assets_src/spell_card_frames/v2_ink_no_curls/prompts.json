@@ -1,0 +1,25 @@
+{
+  "created": "2026-11-07",
+  "mode": "built-in image_gen",
+  "selected_style": "A 墨线羊皮纸",
+  "revision": "仅去除内部卷角，保留原有边框",
+  "entries": [
+    {
+      "id": "a_ink_no_curls_collector_basic",
+      "referenced_image_paths": [
+        "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v1_candidates/a_ink_parchment_collector_basic.png",
+        "C:/Users/85183/AppData/Local/Temp/codex-clipboard-d8e9d765-1988-44be-aab4-da1c2f5438be.png"
+      ],
+      "transparent_background": true,
+      "prompt": "Use case: precise-object-edit. Make a very small localized correction.\nImage1 is the clean ORIGINAL CARD and the only edit target. Image2 is the user's annotated screenshot showing two red-circled defect areas, for LOCATION REFERENCE ONLY; do not copy its red marks, screenshot background, or interface.\nRemove ONLY the two rolled-paper flaps INSIDE the card: one just inside the TOP-LEFT corner, one just inside the BOTTOM-RIGHT corner. Also remove the small dark shadows belonging specifically to these rolled flaps. Seamlessly reconstruct the pale flat paper and a little matching understated wear in the two tiny repaired patches.\nPRESERVE THE ORIGINAL BORDER AS-IS: same broad pale rim, same dark double ink outlines, same cut corners, same raised-looking edge highlights and shadows, same border thickness and texture. Do NOT flatten, thin, simplify, remove, restyle, reshape, or redesign the border. Do NOT change the rest of the paper, overall colors, grain, hatching, lighting, composition, or card proportions. This is not a new frame design. All changes must be confined to the two curled interior flaps circled in the reference.\nThe result is the same original A frame, simply with clean flat paper in place of those two inward curls. Keep the entire outside transparent alpha and preserve the single-card composition. No text, annotations or red marks. High-fidelity local repair."
+    },
+    {
+      "id": "a_ink_no_curls_style_board",
+      "referenced_image_paths": [
+        "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v1_candidates/a_ink_parchment.png"
+      ],
+      "transparent_background": false,
+      "prompt": "Use case: precise-object-edit. Make a very small localized correction to this original A comparison board.\nRemove ONLY the rolled PAPER FLAPS INSIDE the large BASIC and CONTROL cards: the tiny rolled triangular flaps at their top-left and bottom-right interior corners. Remove only the shadows cast by those flaps, and fill those tiny areas with matching pale flat paper and subtle matching wear.\nKeep EVERY ORIGINAL FRAME/BORDER EXACTLY THE SAME: broad pale rims, dark double outlines, thickness, cut corners, edge relief/shading, ink texture. Do NOT flatten, thin, simplify, remove, or redesign borders. The hexagon does not need a redesign. Keep all small inventory and ground card artwork unchanged where there is no curled flap.\nPreserve the entire original layout, background, title \"A — INK & PARCHMENT\", all labels, all three class silhouettes, color palette, paper grain, and standing sizes. Ground cards remain lying flat exactly as in the input. This is only the removal of a few inward curled flaps, not a restyle, not a new material, not a frame change. No extra text, no red marks, no new elements."
+    }
+  ]
+}

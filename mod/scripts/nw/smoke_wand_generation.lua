@@ -48,6 +48,21 @@ function M.run()
             assert(copy.components.nw_wand.data.wand_uid==d.wand_uid)
             assert(copy._nw_stats:value()==built._nw_stats:value())
             assert(copy._nw_cards:value()==built._nw_cards:value())
+            -- Loading an installed card must call the real container predicate
+            -- with the component as self, then restore the card exactly once.
+            local box=copy.components.container
+            assert(box and box:OnSave()==nil)
+            local installed=0
+            for slot=1,d.stats.capacity do
+                local card=d.cards[slot]
+                local item=box:GetItemInSlot(slot)
+                assert((item~=nil)==(card~=false and card~=nil))
+                if card then
+                    installed=installed+1
+                    assert(item.spell_id==card.spell_id and item:GetCardUID()==card.card_uid)
+                end
+            end
+            assert(box:NumItems()==installed)
             capacities[d.stats.capacity]=(capacities[d.stats.capacity] or 0)+1
             variants[built._nw_stats:value()]=true
             if n==1 then retained[#retained+1]={copy,copy._nw_stats:value()} else copy:Remove() end

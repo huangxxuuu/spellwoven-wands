@@ -40,9 +40,12 @@ local function fn()
         self.components.inventoryitem:ChangeImageName("nw_spell_"..id)
         self.components.inspectable.description=Cards.names[id]
         refresh(self)
+        require("nw/spelljournal").observe(require("nw/spelljournal").owner(self),self)
     end
     function inst:GetCardUID()
-        self.card_uid = self.card_uid or require("nw/wand_factory").uid()
+        local Identity=require("nw/card_identity")
+        if not Identity.valid(self.card_uid) then self.card_uid=require("nw/wand_factory").uid() end
+        Identity.observe(self.card_uid)
         return self.card_uid
     end
     inst.onPreBuilt = function(self, builder, materials, recipe)
@@ -55,9 +58,13 @@ local function fn()
     end
     inst.OnLoad=function(self,data)
         self.card_uid, self.source = data and data.card_uid, data and data.source or "legacy"
+        self:GetCardUID()
         local id=Cards.migrate_id(data and data.spell_id)
         self:SetSpell(Cards.codes[id] and id or "spark")
     end
+    -- Allocate at creation, never for the first time after the world counter
+    -- has already been serialized during a save.
+    inst:GetCardUID()
     inst:SetSpell("spark")
     return inst
 end

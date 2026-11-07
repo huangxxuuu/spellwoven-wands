@@ -1,0 +1,41 @@
+{
+  "id": "pierce_all",
+  "name": "高级穿透",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-bb9a9459-3841-4b5e-91ef-3fcff86a2370.png",
+  "output": "pierce_all.png",
+  "prompt": "pierce_all.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "四个目标与无穷符号表达持续穿透。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      8,
+      246,
+      1246,
+      1031
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 8,
+    "sha256": "b0b24a66f971251b8d95d7ff17f96d82c3677014b630d5e6aca0cf98890719be",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-07",
+  "tool": "built-in image_gen",
+  "scope": "concept correction; no runtime integration",
+  "user_confirmation": {
+    "date": "2026-11-07",
+    "statement": "可以。保存记录一下这些。",
+    "scope": "Accepted corrected pile structure as a production reference: recessed middle H corners, ground shadow under lowest H missing corners, and independently narrowed double H layers.",
+    "remaining": "Displayed thickness is emphasized; final thickness, small-size readability, transparent asset separation and runtime integration remain pending."
+  },
+  "entries": [
+    {
+      "id": "pile_recess_focus_art",
+      "filename": "pile_recess_focus_attempt1.png",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-5a2c54fc-fd5a-46fe-bc8f-d6d2266f28c5.png",
+      "status": "rejected",
+      "note": "RRH/RHH retained short false horizontal shoulders beside lower H.",
+      "width": 1464,
+      "height": 1074,
+      "mode": "RGB",
+      "sha256": "7b7cd6dd142f91333d40da35a4f15091b153a2d9016fac33c5effe84baa991fd",
+      "bytes": 1976406
+    },
+    {
+      "id": "pile_combinations_recess_corrected",
+      "filename": "pile_combinations_attempt1.png",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-8237363e-6594-44a1-be11-0d63c2749f81.png",
+      "status": "rejected",
+      "note": "RH/HH R/N cells retained false rectangular lowest edges.",
+      "width": 1346,
+      "height": 1168,
+      "mode": "RGB",
+      "sha256": "19ec069d008da869a10cf8a6e3d5be071539e1ae14cd679b657b0091716d77b7",
+      "bytes": 1906062
+    },
+    {
+      "id": "pile_combinations_recess_v2",
+      "filename": "pile_combinations_recess_corrected.png",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-0bdf4b49-6f59-436e-8e60-971416e92633.png",
+      "status": "accepted_structure_reference",
+      "confirmed_date": "2026-11-07",
+      "note": "Corrected missing-corner geometry; all 12 combinations visually checked.",
+      "width": 1310,
+      "height": 1201,
+      "mode": "RGB",
+      "sha256": "3b5c18e35df5d06575359f1a66c72fe64b14b9f52893f70213f0c6d71f59e828",
+      "bytes": 1944444
+    },
+    {
+      "id": "pile_recess_focus_v2",
+      "filename": "pile_recess_focus_corrected.png",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-fc185eae-5480-4e4a-acf4-2027a0ad4af4.png",
+      "status": "accepted_structure_reference",
+      "confirmed_date": "2026-11-07",
+      "note": "Removed residual horizontal H shoulders; enlarged comparison.",
+      "width": 1464,
+      "height": 1075,
+      "mode": "RGB",
+      "sha256": "2983676b91d63d8f5e0046344b7ff2f742662a3c9e8b8d3c32a7ae9b95f2f317",
+      "bytes": 1801884
+    }
+  ]
+}

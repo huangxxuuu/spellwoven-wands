@@ -16,7 +16,12 @@ end
 assert(not D.wand(D.encode(wand),"0",0,"试杖").fields)
 for _,id in ipairs(Cards.order) do
     local basic=D.card(id)
-    assert(#basic.fields>=3 and not basic.effect:find("%d"))
+    assert(#basic.fields>=3 and not basic.effect:match("^[^\n]*"):find("%d"))
+    if require("nw/arsenal").notes[id] then
+        assert(basic.effect:find("\n基础音 ",1,true) and basic.effect:find("可调音域",1,true))
+    else
+        assert(not basic.effect:find("%d"))
+    end
     local shown={};for _,f in ipairs(basic.fields) do shown[f[1]]=f[2] end
     assert(shown["法力消耗"]~=nil and shown["施放修正"] and shown["充能修正"])
     assert(not shown["最大转向"] and not shown["振幅"] and not shown["频率"])
@@ -63,6 +68,18 @@ function Widget:SetSize(w,h) self.w,self.h=w,h end
 function Widget:SetTint() end
 function Widget:SetTexture(a,t) self.atlas,self.texture=a,t end
 local Image=Class(Widget,function(self,a,t) Widget._ctor(self,"image");self:SetTexture(a,t) end)
+local UIAnim=Class(Widget,function(self)
+    Widget._ctor(self,"uianim")
+    self.state={symbols={},hidden={}}
+    function self.state:SetBank(v) self.bank=v end
+    function self.state:SetBuild(v) self.build=v end
+    function self.state:PlayAnimation(v) self.animation=v end
+    function self.state:OverrideSymbol(k,build,v) self.symbols[k]={build,v} end
+    function self.state:HideSymbol(k) self.hidden[k]=true end
+    function self.state:GetVisualBB() return -50,-20,70,180 end
+end)
+function UIAnim:GetAnimState() return self.state end
+package.loaded["widgets/uianim"]=UIAnim
 local Text=Class(Widget,function(self,font,size) Widget._ctor(self,"text");self.fontsize=size end)
 function Text:SetColour() end
 function Text:SetHAlign() end
@@ -120,7 +137,13 @@ local function hover(wand_item)
         item._nw_look.v=Visual.per_style
         events.nw_lookdirty()
         local plate=panel.body.children[1]
-        assert(plate.children[1].atlas==Visual.atlas(Visual.per_style))
+        local expected=UIAnim()
+        Visual.apply({AnimState=expected.state},Visual.per_style,"ground")
+        assert(plate.state.bank=="nw_parts" and plate.state.build=="nw_parts")
+        assert(plate.state.animation==expected.state.animation and plate.scale==.28)
+        for k,v in pairs(expected.state.symbols) do assert(plate.state.symbols[k][2]==v[2]) end
+        assert(plate.state.hidden.contact_shadow and plate.state.hidden.contact_grass)
+        assert(plate.x==42-20*.14)
     else
         cursor=card_cursor;events.newactiveitem();assert(root.shown)
         events.nw_carddirty();task.tick();assert(root.shown)

@@ -1,0 +1,41 @@
+{
+  "id": "near_homing",
+  "name": "短距离追踪",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-05bcce69-4db9-46e6-b0d1-2a2f6e06ef70.png",
+  "output": "near_homing.png",
+  "prompt": "near_homing.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "短而紧的弯曲路径指向近处目标，保留推进笔触。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      43,
+      54,
+      1160,
+      1208
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 43,
+    "sha256": "bb7d121799e344278da593baf04aa21ae4485be2fbf25b2ac731cb58f4861b70",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

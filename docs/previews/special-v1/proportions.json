@@ -1,0 +1,1499 @@
+{
+  "alpha_threshold": 8,
+  "measurement": "whole painted silhouette bounds in animation pixels; not root-only thickness",
+  "kinds": {
+    "gust": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 125.0,
+          "height": 63.75
+        },
+        {
+          "frame": 1,
+          "width": 127.08,
+          "height": 61.88
+        },
+        {
+          "frame": 2,
+          "width": 120.83,
+          "height": 60.0
+        },
+        {
+          "frame": 3,
+          "width": 125.0,
+          "height": 61.88
+        },
+        {
+          "frame": 4,
+          "width": 127.08,
+          "height": 60.0
+        },
+        {
+          "frame": 5,
+          "width": 127.08,
+          "height": 61.88
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 80.16,
+          "height": 36.56
+        },
+        {
+          "frame": 1,
+          "width": 80.16,
+          "height": 36.56
+        },
+        {
+          "frame": 2,
+          "width": 73.12,
+          "height": 26.72
+        },
+        {
+          "frame": 3,
+          "width": 71.72,
+          "height": 26.72
+        },
+        {
+          "frame": 4,
+          "width": 59.06,
+          "height": 18.28
+        },
+        {
+          "frame": 5,
+          "width": 53.44,
+          "height": 16.88
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.573,
+      "snapshots": {
+        "1": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0,
+            0.0417,
+            0.0833,
+            0.125,
+            0.1667,
+            0.2083
+          ],
+          "lifetime_seconds": 0.24,
+          "birth_interval_seconds": 0.041666666666666664
+        },
+        "2.5": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0118,
+            0.0777,
+            0.1435,
+            0.2094,
+            0.2753,
+            0.3412
+          ],
+          "lifetime_seconds": 0.37947331922020555,
+          "birth_interval_seconds": 0.06588078458684124
+        }
+      }
+    },
+    "spore_ball": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 115.1,
+          "height": 77.92
+        },
+        {
+          "frame": 1,
+          "width": 118.65,
+          "height": 76.15
+        },
+        {
+          "frame": 2,
+          "width": 116.88,
+          "height": 76.15
+        },
+        {
+          "frame": 3,
+          "width": 115.1,
+          "height": 77.92
+        },
+        {
+          "frame": 4,
+          "width": 115.1,
+          "height": 77.92
+        },
+        {
+          "frame": 5,
+          "width": 118.65,
+          "height": 79.69
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 57.89,
+          "height": 26.41
+        },
+        {
+          "frame": 1,
+          "width": 57.89,
+          "height": 26.41
+        },
+        {
+          "frame": 2,
+          "width": 53.83,
+          "height": 17.27
+        },
+        {
+          "frame": 3,
+          "width": 53.83,
+          "height": 17.27
+        },
+        {
+          "frame": 4,
+          "width": 34.53,
+          "height": 11.17
+        },
+        {
+          "frame": 5,
+          "width": 32.5,
+          "height": 9.14
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.331,
+      "snapshots": {
+        "1": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25,
+            0.3125
+          ],
+          "lifetime_seconds": 0.32,
+          "birth_interval_seconds": 0.0625
+        },
+        "2.5": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0118,
+            0.1106,
+            0.2094,
+            0.3083,
+            0.4071,
+            0.5059
+          ],
+          "lifetime_seconds": 0.5059644256269408,
+          "birth_interval_seconds": 0.09882117688026187
+        }
+      }
+    },
+    "flint_lance": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 166.88,
+          "height": 28.44
+        },
+        {
+          "frame": 1,
+          "width": 166.88,
+          "height": 28.44
+        },
+        {
+          "frame": 2,
+          "width": 165.0,
+          "height": 29.53
+        },
+        {
+          "frame": 3,
+          "width": 166.88,
+          "height": 29.53
+        },
+        {
+          "frame": 4,
+          "width": 166.88,
+          "height": 28.44
+        },
+        {
+          "frame": 5,
+          "width": 165.0,
+          "height": 28.44
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 44.69,
+          "height": 13.75
+        },
+        {
+          "frame": 1,
+          "width": 44.69,
+          "height": 13.75
+        },
+        {
+          "frame": 2,
+          "width": 43.88,
+          "height": 8.75
+        },
+        {
+          "frame": 3,
+          "width": 43.06,
+          "height": 8.75
+        },
+        {
+          "frame": 4,
+          "width": 43.88,
+          "height": 3.75
+        },
+        {
+          "frame": 5,
+          "width": 42.25,
+          "height": 3.75
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.466,
+      "snapshots": {
+        "1": {
+          "live_particles": 64,
+          "ages_seconds": [
+            0.0033,
+            0.0087,
+            0.0142,
+            0.0196,
+            0.025,
+            0.0304,
+            0.0358,
+            0.0412,
+            0.0467,
+            0.0521,
+            0.0575,
+            0.0629,
+            0.0683,
+            0.0737,
+            0.0792,
+            0.0846,
+            0.09,
+            0.0954,
+            0.1008,
+            0.1062,
+            0.1117,
+            0.1171,
+            0.1225,
+            0.1279,
+            0.1333,
+            0.1387,
+            0.1442,
+            0.1496,
+            0.155,
+            0.1604,
+            0.1658,
+            0.1712,
+            0.1767,
+            0.1821,
+            0.1875,
+            0.1929,
+            0.1983,
+            0.2038,
+            0.2092,
+            0.2146,
+            0.22,
+            0.2254,
+            0.2308,
+            0.2362,
+            0.2417,
+            0.2471,
+            0.2525,
+            0.2579,
+            0.2633,
+            0.2687,
+            0.2742,
+            0.2796,
+            0.285,
+            0.2904,
+            0.2958,
+            0.3012,
+            0.3067,
+            0.3121,
+            0.3175,
+            0.3229,
+            0.3283,
+            0.3337,
+            0.3392,
+            0.3446
+          ],
+          "lifetime_seconds": 0.35,
+          "sampling": "distance",
+          "spacing_world": 0.13,
+          "coverage_world": 0.28,
+          "reference_interval_at_speed25": 0.0052
+        },
+        "2.5": {
+          "live_particles": 41,
+          "ages_seconds": [
+            0.0115,
+            0.025,
+            0.0385,
+            0.0521,
+            0.0656,
+            0.0792,
+            0.0927,
+            0.1062,
+            0.1198,
+            0.1333,
+            0.1469,
+            0.1604,
+            0.174,
+            0.1875,
+            0.201,
+            0.2146,
+            0.2281,
+            0.2417,
+            0.2552,
+            0.2687,
+            0.2823,
+            0.2958,
+            0.3094,
+            0.3229,
+            0.3365,
+            0.35,
+            0.3635,
+            0.3771,
+            0.3906,
+            0.4042,
+            0.4177,
+            0.4312,
+            0.4448,
+            0.4583,
+            0.4719,
+            0.4854,
+            0.499,
+            0.5125,
+            0.526,
+            0.5396,
+            0.5531
+          ],
+          "lifetime_seconds": 0.5533985905294664,
+          "sampling": "distance",
+          "spacing_world": 0.325,
+          "coverage_world": 0.7000000000000001,
+          "reference_interval_at_speed25": 0.013000000000000001
+        }
+      }
+    },
+    "slime": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 140.78,
+          "height": 60.94
+        },
+        {
+          "frame": 1,
+          "width": 143.44,
+          "height": 58.59
+        },
+        {
+          "frame": 2,
+          "width": 148.75,
+          "height": 53.91
+        },
+        {
+          "frame": 3,
+          "width": 151.41,
+          "height": 53.91
+        },
+        {
+          "frame": 4,
+          "width": 143.44,
+          "height": 60.94
+        },
+        {
+          "frame": 5,
+          "width": 138.12,
+          "height": 60.94
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 59.06,
+          "height": 46.41
+        },
+        {
+          "frame": 1,
+          "width": 59.06,
+          "height": 46.41
+        },
+        {
+          "frame": 2,
+          "width": 40.08,
+          "height": 31.64
+        },
+        {
+          "frame": 3,
+          "width": 39.02,
+          "height": 31.64
+        },
+        {
+          "frame": 4,
+          "width": 24.26,
+          "height": 17.93
+        },
+        {
+          "frame": 5,
+          "width": 24.26,
+          "height": 16.88
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.762,
+      "snapshots": {
+        "1": {
+          "live_particles": 6,
+          "ages_seconds": [
+            -0.0,
+            0.05,
+            0.1,
+            0.15,
+            0.2,
+            0.25
+          ],
+          "lifetime_seconds": 0.3,
+          "birth_interval_seconds": 0.049999999999999996
+        },
+        "2.5": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0513,
+            0.1304,
+            0.2094,
+            0.2885,
+            0.3675,
+            0.4466
+          ],
+          "lifetime_seconds": 0.4743416490252569,
+          "birth_interval_seconds": 0.07905694150420949
+        }
+      }
+    },
+    "grow_orb": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 116.88,
+          "height": 70.83
+        },
+        {
+          "frame": 1,
+          "width": 116.88,
+          "height": 70.83
+        },
+        {
+          "frame": 2,
+          "width": 116.88,
+          "height": 70.83
+        },
+        {
+          "frame": 3,
+          "width": 116.88,
+          "height": 70.83
+        },
+        {
+          "frame": 4,
+          "width": 116.88,
+          "height": 70.83
+        },
+        {
+          "frame": 5,
+          "width": 116.88,
+          "height": 70.83
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 83.12,
+          "height": 43.12
+        },
+        {
+          "frame": 1,
+          "width": 83.12,
+          "height": 43.12
+        },
+        {
+          "frame": 2,
+          "width": 71.25,
+          "height": 33.75
+        },
+        {
+          "frame": 3,
+          "width": 71.25,
+          "height": 33.75
+        },
+        {
+          "frame": 4,
+          "width": 56.41,
+          "height": 20.62
+        },
+        {
+          "frame": 5,
+          "width": 51.95,
+          "height": 18.75
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.609,
+      "snapshots": {
+        "1": {
+          "live_particles": 8,
+          "ages_seconds": [
+            0.0,
+            0.0417,
+            0.0833,
+            0.125,
+            0.1667,
+            0.2083,
+            0.25,
+            0.2917
+          ],
+          "lifetime_seconds": 0.3,
+          "birth_interval_seconds": 0.04166666666666667
+        },
+        "2.5": {
+          "live_particles": 8,
+          "ages_seconds": [
+            0.0118,
+            0.0777,
+            0.1435,
+            0.2094,
+            0.2753,
+            0.3412,
+            0.4071,
+            0.473
+          ],
+          "lifetime_seconds": 0.4743416490252569,
+          "birth_interval_seconds": 0.06588078458684124
+        }
+      }
+    },
+    "heal_bolt": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 111.77,
+          "height": 53.12
+        },
+        {
+          "frame": 1,
+          "width": 109.84,
+          "height": 67.29
+        },
+        {
+          "frame": 2,
+          "width": 111.77,
+          "height": 74.38
+        },
+        {
+          "frame": 3,
+          "width": 109.84,
+          "height": 72.6
+        },
+        {
+          "frame": 4,
+          "width": 109.84,
+          "height": 60.21
+        },
+        {
+          "frame": 5,
+          "width": 111.77,
+          "height": 51.35
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 85.94,
+          "height": 50.78
+        },
+        {
+          "frame": 1,
+          "width": 85.94,
+          "height": 50.78
+        },
+        {
+          "frame": 2,
+          "width": 73.44,
+          "height": 40.62
+        },
+        {
+          "frame": 3,
+          "width": 73.44,
+          "height": 38.59
+        },
+        {
+          "frame": 4,
+          "width": 53.12,
+          "height": 22.34
+        },
+        {
+          "frame": 5,
+          "width": 48.44,
+          "height": 22.34
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.683,
+      "snapshots": {
+        "1": {
+          "live_particles": 8,
+          "ages_seconds": [
+            0.0,
+            0.0417,
+            0.0833,
+            0.125,
+            0.1667,
+            0.2083,
+            0.25,
+            0.2917
+          ],
+          "lifetime_seconds": 0.3,
+          "birth_interval_seconds": 0.04166666666666667
+        },
+        "2.5": {
+          "live_particles": 8,
+          "ages_seconds": [
+            0.0118,
+            0.0777,
+            0.1435,
+            0.2094,
+            0.2753,
+            0.3412,
+            0.4071,
+            0.473
+          ],
+          "lifetime_seconds": 0.4743416490252569,
+          "birth_interval_seconds": 0.06588078458684124
+        }
+      }
+    },
+    "star_vortex": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 73.33,
+          "height": 49.27
+        },
+        {
+          "frame": 1,
+          "width": 73.33,
+          "height": 46.98
+        },
+        {
+          "frame": 2,
+          "width": 72.19,
+          "height": 44.69
+        },
+        {
+          "frame": 3,
+          "width": 69.9,
+          "height": 45.83
+        },
+        {
+          "frame": 4,
+          "width": 73.33,
+          "height": 43.54
+        },
+        {
+          "frame": 5,
+          "width": 74.48,
+          "height": 48.12
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 45.55,
+          "height": 24.38
+        },
+        {
+          "frame": 1,
+          "width": 45.55,
+          "height": 24.38
+        },
+        {
+          "frame": 2,
+          "width": 35.23,
+          "height": 18.75
+        },
+        {
+          "frame": 3,
+          "width": 35.23,
+          "height": 18.75
+        },
+        {
+          "frame": 4,
+          "width": 25.78,
+          "height": 13.12
+        },
+        {
+          "frame": 5,
+          "width": 24.92,
+          "height": 12.19
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.495,
+      "snapshots": {
+        "1": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0,
+            0.0417,
+            0.0833,
+            0.125,
+            0.1667,
+            0.2083
+          ],
+          "lifetime_seconds": 0.24,
+          "birth_interval_seconds": 0.041666666666666664
+        },
+        "2.5": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0118,
+            0.0777,
+            0.1435,
+            0.2094,
+            0.2753,
+            0.3412
+          ],
+          "lifetime_seconds": 0.37947331922020555,
+          "birth_interval_seconds": 0.06588078458684124
+        }
+      }
+    },
+    "glass_disc": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 117.81,
+          "height": 120.52
+        },
+        {
+          "frame": 1,
+          "width": 113.75,
+          "height": 117.81
+        },
+        {
+          "frame": 2,
+          "width": 117.81,
+          "height": 120.52
+        },
+        {
+          "frame": 3,
+          "width": 117.81,
+          "height": 117.81
+        },
+        {
+          "frame": 4,
+          "width": 111.04,
+          "height": 112.4
+        },
+        {
+          "frame": 5,
+          "width": 116.46,
+          "height": 119.17
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 69.06,
+          "height": 61.17
+        },
+        {
+          "frame": 1,
+          "width": 69.06,
+          "height": 61.17
+        },
+        {
+          "frame": 2,
+          "width": 51.8,
+          "height": 46.41
+        },
+        {
+          "frame": 3,
+          "width": 50.47,
+          "height": 46.41
+        },
+        {
+          "frame": 4,
+          "width": 35.86,
+          "height": 25.31
+        },
+        {
+          "frame": 5,
+          "width": 34.53,
+          "height": 25.31
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.508,
+      "snapshots": {
+        "1": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0,
+            0.0417,
+            0.0833,
+            0.125,
+            0.1667,
+            0.2083
+          ],
+          "lifetime_seconds": 0.24,
+          "birth_interval_seconds": 0.041666666666666664
+        },
+        "2.5": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0118,
+            0.0777,
+            0.1435,
+            0.2094,
+            0.2753,
+            0.3412
+          ],
+          "lifetime_seconds": 0.37947331922020555,
+          "birth_interval_seconds": 0.06588078458684124
+        }
+      }
+    },
+    "land_hook": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 643.12,
+          "height": 195.34
+        },
+        {
+          "frame": 1,
+          "width": 656.25,
+          "height": 195.34
+        },
+        {
+          "frame": 2,
+          "width": 660.62,
+          "height": 195.34
+        },
+        {
+          "frame": 3,
+          "width": 647.5,
+          "height": 195.34
+        },
+        {
+          "frame": 4,
+          "width": 656.25,
+          "height": 195.34
+        },
+        {
+          "frame": 5,
+          "width": 656.25,
+          "height": 195.34
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 106.31,
+          "height": 33.25
+        },
+        {
+          "frame": 1,
+          "width": 106.31,
+          "height": 33.25
+        },
+        {
+          "frame": 2,
+          "width": 90.56,
+          "height": 21.0
+        },
+        {
+          "frame": 3,
+          "width": 90.56,
+          "height": 21.0
+        },
+        {
+          "frame": 4,
+          "width": 82.69,
+          "height": 17.5
+        },
+        {
+          "frame": 5,
+          "width": 80.72,
+          "height": 15.75
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.17,
+      "snapshots": {
+        "1": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0,
+            0.0417,
+            0.0833,
+            0.125,
+            0.1667,
+            0.2083
+          ],
+          "lifetime_seconds": 0.24,
+          "birth_interval_seconds": 0.041666666666666664
+        },
+        "2.5": {
+          "live_particles": 6,
+          "ages_seconds": [
+            0.0118,
+            0.0777,
+            0.1435,
+            0.2094,
+            0.2753,
+            0.3412
+          ],
+          "lifetime_seconds": 0.37947331922020555,
+          "birth_interval_seconds": 0.06588078458684124
+        }
+      }
+    },
+    "tri_electric": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 75.62,
+          "height": 73.91
+        },
+        {
+          "frame": 1,
+          "width": 80.78,
+          "height": 87.66
+        },
+        {
+          "frame": 2,
+          "width": 79.06,
+          "height": 97.97
+        },
+        {
+          "frame": 3,
+          "width": 89.38,
+          "height": 85.94
+        },
+        {
+          "frame": 4,
+          "width": 94.53,
+          "height": 80.78
+        },
+        {
+          "frame": 5,
+          "width": 108.28,
+          "height": 92.81
+        },
+        {
+          "frame": 6,
+          "width": 73.91,
+          "height": 70.47
+        },
+        {
+          "frame": 7,
+          "width": 89.38,
+          "height": 85.94
+        },
+        {
+          "frame": 8,
+          "width": 108.28,
+          "height": 63.59
+        },
+        {
+          "frame": 9,
+          "width": 65.31,
+          "height": 99.69
+        },
+        {
+          "frame": 10,
+          "width": 73.91,
+          "height": 101.41
+        },
+        {
+          "frame": 11,
+          "width": 73.91,
+          "height": 67.03
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 80.16,
+          "height": 44.18
+        },
+        {
+          "frame": 1,
+          "width": 78.75,
+          "height": 44.18
+        },
+        {
+          "frame": 2,
+          "width": 68.91,
+          "height": 30.47
+        },
+        {
+          "frame": 3,
+          "width": 68.91,
+          "height": 30.47
+        },
+        {
+          "frame": 4,
+          "width": 47.81,
+          "height": 15.23
+        },
+        {
+          "frame": 5,
+          "width": 45.0,
+          "height": 13.71
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.436,
+      "snapshots": {
+        "1": {
+          "live_particles": 8,
+          "ages_seconds": [
+            0.0,
+            0.0333,
+            0.0667,
+            0.1,
+            0.1333,
+            0.1667,
+            0.2,
+            0.2333
+          ],
+          "lifetime_seconds": 0.24,
+          "birth_interval_seconds": 0.03333333333333333
+        },
+        "2.5": {
+          "live_particles": 7,
+          "ages_seconds": [
+            0.0513,
+            0.104,
+            0.1567,
+            0.2094,
+            0.2621,
+            0.3148,
+            0.3675
+          ],
+          "lifetime_seconds": 0.37947331922020555,
+          "birth_interval_seconds": 0.052704627669473
+        }
+      }
+    },
+    "end_beam": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 137.81,
+          "height": 39.27
+        },
+        {
+          "frame": 1,
+          "width": 137.81,
+          "height": 45.31
+        },
+        {
+          "frame": 2,
+          "width": 148.02,
+          "height": 51.35
+        },
+        {
+          "frame": 3,
+          "width": 145.47,
+          "height": 48.33
+        },
+        {
+          "frame": 4,
+          "width": 137.81,
+          "height": 42.29
+        },
+        {
+          "frame": 5,
+          "width": 135.26,
+          "height": 39.27
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 91.09,
+          "height": 36.09
+        },
+        {
+          "frame": 1,
+          "width": 91.09,
+          "height": 36.09
+        },
+        {
+          "frame": 2,
+          "width": 82.5,
+          "height": 27.5
+        },
+        {
+          "frame": 3,
+          "width": 82.5,
+          "height": 27.5
+        },
+        {
+          "frame": 4,
+          "width": 73.91,
+          "height": 17.19
+        },
+        {
+          "frame": 5,
+          "width": 70.47,
+          "height": 13.75
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.703,
+      "snapshots": {
+        "1": {
+          "live_particles": 15,
+          "ages_seconds": [
+            -0.0,
+            0.0167,
+            0.0333,
+            0.05,
+            0.0667,
+            0.0833,
+            0.1,
+            0.1167,
+            0.1333,
+            0.15,
+            0.1667,
+            0.1833,
+            0.2,
+            0.2167,
+            0.2333
+          ],
+          "lifetime_seconds": 0.24,
+          "birth_interval_seconds": 0.016666666666666666
+        },
+        "2.5": {
+          "live_particles": 14,
+          "ages_seconds": [
+            0.025,
+            0.0513,
+            0.0777,
+            0.104,
+            0.1304,
+            0.1567,
+            0.1831,
+            0.2094,
+            0.2358,
+            0.2621,
+            0.2885,
+            0.3148,
+            0.3412,
+            0.3675
+          ],
+          "lifetime_seconds": 0.37947331922020555,
+          "birth_interval_seconds": 0.0263523138347365
+        }
+      }
+    },
+    "soundwave": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 119.84,
+          "height": 95.47
+        },
+        {
+          "frame": 1,
+          "width": 127.97,
+          "height": 103.59
+        },
+        {
+          "frame": 2,
+          "width": 142.19,
+          "height": 117.81
+        },
+        {
+          "frame": 3,
+          "width": 136.09,
+          "height": 109.69
+        },
+        {
+          "frame": 4,
+          "width": 121.88,
+          "height": 99.53
+        },
+        {
+          "frame": 5,
+          "width": 115.78,
+          "height": 95.47
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 99.38,
+          "height": 70.31
+        },
+        {
+          "frame": 1,
+          "width": 99.38,
+          "height": 70.31
+        },
+        {
+          "frame": 2,
+          "width": 78.75,
+          "height": 56.25
+        },
+        {
+          "frame": 3,
+          "width": 78.75,
+          "height": 56.25
+        },
+        {
+          "frame": 4,
+          "width": 54.38,
+          "height": 44.53
+        },
+        {
+          "frame": 5,
+          "width": 50.62,
+          "height": 44.53
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.597,
+      "snapshots": {
+        "1": {
+          "live_particles": 8,
+          "ages_seconds": [
+            0.0,
+            0.0417,
+            0.0833,
+            0.125,
+            0.1667,
+            0.2083,
+            0.25,
+            0.2917
+          ],
+          "lifetime_seconds": 0.3,
+          "birth_interval_seconds": 0.04166666666666667
+        },
+        "2.5": {
+          "live_particles": 8,
+          "ages_seconds": [
+            0.0118,
+            0.0777,
+            0.1435,
+            0.2094,
+            0.2753,
+            0.3412,
+            0.4071,
+            0.473
+          ],
+          "lifetime_seconds": 0.4743416490252569,
+          "birth_interval_seconds": 0.06588078458684124
+        }
+      }
+    },
+    "bee_swarm": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 74.48,
+          "height": 99.43
+        },
+        {
+          "frame": 1,
+          "width": 81.35,
+          "height": 83.85
+        },
+        {
+          "frame": 2,
+          "width": 79.06,
+          "height": 83.85
+        },
+        {
+          "frame": 3,
+          "width": 71.04,
+          "height": 82.66
+        },
+        {
+          "frame": 4,
+          "width": 72.19,
+          "height": 95.83
+        },
+        {
+          "frame": 5,
+          "width": 75.62,
+          "height": 99.43
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 27.5,
+          "height": 12.11
+        },
+        {
+          "frame": 1,
+          "width": 27.5,
+          "height": 12.11
+        },
+        {
+          "frame": 2,
+          "width": 19.5,
+          "height": 8.59
+        },
+        {
+          "frame": 3,
+          "width": 19.5,
+          "height": 8.59
+        },
+        {
+          "frame": 4,
+          "width": 14.0,
+          "height": 5.08
+        },
+        {
+          "frame": 5,
+          "width": 13.5,
+          "height": 4.69
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.122,
+      "snapshots": {
+        "1": {
+          "live_particles": 5,
+          "ages_seconds": [
+            -0.0,
+            0.05,
+            0.1,
+            0.15,
+            0.2
+          ],
+          "lifetime_seconds": 0.24,
+          "birth_interval_seconds": 0.05
+        },
+        "2.5": {
+          "live_particles": 5,
+          "ages_seconds": [
+            0.0513,
+            0.1304,
+            0.2094,
+            0.2885,
+            0.3675
+          ],
+          "lifetime_seconds": 0.37947331922020555,
+          "birth_interval_seconds": 0.0790569415042095
+        }
+      }
+    },
+    "fireflies": {
+      "head": [
+        {
+          "frame": 0,
+          "width": 50.78,
+          "height": 22.34
+        },
+        {
+          "frame": 1,
+          "width": 51.56,
+          "height": 26.41
+        },
+        {
+          "frame": 2,
+          "width": 50.0,
+          "height": 33.85
+        },
+        {
+          "frame": 3,
+          "width": 49.22,
+          "height": 32.5
+        },
+        {
+          "frame": 4,
+          "width": 52.34,
+          "height": 23.02
+        },
+        {
+          "frame": 5,
+          "width": 51.56,
+          "height": 20.31
+        }
+      ],
+      "tail": [
+        {
+          "frame": 0,
+          "width": 12.66,
+          "height": 8.16
+        },
+        {
+          "frame": 1,
+          "width": 12.66,
+          "height": 8.16
+        },
+        {
+          "frame": 2,
+          "width": 9.84,
+          "height": 5.91
+        },
+        {
+          "frame": 3,
+          "width": 9.84,
+          "height": 5.34
+        },
+        {
+          "frame": 4,
+          "width": 5.34,
+          "height": 3.66
+        },
+        {
+          "frame": 5,
+          "width": 4.78,
+          "height": 3.38
+        }
+      ],
+      "fresh_tail_to_max_head_height": 0.241,
+      "snapshots": {
+        "1": {
+          "live_particles": 8,
+          "ages_seconds": [
+            0.0,
+            0.0417,
+            0.0833,
+            0.125,
+            0.1667,
+            0.2083,
+            0.25,
+            0.2917
+          ],
+          "lifetime_seconds": 0.3,
+          "birth_interval_seconds": 0.04166666666666667
+        },
+        "2.5": {
+          "live_particles": 8,
+          "ages_seconds": [
+            0.0118,
+            0.0777,
+            0.1435,
+            0.2094,
+            0.2753,
+            0.3412,
+            0.4071,
+            0.473
+          ],
+          "lifetime_seconds": 0.4743416490252569,
+          "birth_interval_seconds": 0.06588078458684124
+        }
+      }
+    }
+  }
+}

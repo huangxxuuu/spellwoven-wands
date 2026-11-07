@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-07",
+  "policy": "Native weapon/item identity directly uses original art with uniform scale and positioning within frame interior, except the three explicitly commissioned melee action illustrations.",
+  "subjects": {
+    "fire": {
+      "selected": "fire.png",
+      "source_type": "generated_custom_projectile"
+    },
+    "frost": {
+      "selected": "frost.png",
+      "source_type": "generated_custom_projectile"
+    },
+    "heavy": {
+      "selected": "heavy.png",
+      "source_type": "generated_custom_projectile"
+    },
+    "edge_farm_hoe": {
+      "selected": "edge_farm_hoe.native.png",
+      "source_type": "native_animation",
+      "layout": "edge_farm_hoe.native_layout.png",
+      "card_preview": "edge_farm_hoe.native_card_preview.png",
+      "source_details": "native_hoe_layout.json",
+      "superseded_generated_candidate": "edge_farm_hoe.png"
+    }
+  },
+  "redraw_exceptions": {
+    "whirl": "../v2_melee_actions/whirl.png",
+    "thrust": "../v2_melee_actions/thrust.png",
+    "slash": "../v2_melee_actions/slash.png"
+  }
+}

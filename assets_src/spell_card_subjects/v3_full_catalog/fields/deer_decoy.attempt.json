@@ -1,0 +1,9 @@
+{
+  "id": "deer_decoy",
+  "name": "幻鹿诱饵",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "deer_decoy.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_field_stages/deer_pose_0_0.png"
+}
+

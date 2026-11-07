@@ -1,0 +1,10 @@
+{
+  "id": "ocarina_g",
+  "name": "陶笛 G",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T01:04:08.998Z",
+  "completed_at": "2026-11-07T01:05:23.272Z",
+  "result_file": "ocarina_g.result.json"
+}

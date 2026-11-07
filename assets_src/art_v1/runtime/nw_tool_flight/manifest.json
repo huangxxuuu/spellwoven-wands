@@ -1,0 +1,168 @@
+{
+  "bank": "nw_tool_flight",
+  "directions": 128,
+  "fps": 30,
+  "kinds": {
+    "fishingrod": {
+      "directions": 128,
+      "groups": {
+        "head": {
+          "frames": 1,
+          "period": 0.03333333333333333,
+          "display_size": [
+            212.35023041474653,
+            212.35023041474653
+          ],
+          "pixels": [
+            256,
+            256
+          ],
+          "orientation": "directional",
+          "symbols": [
+            "fishingrod_head_00"
+          ]
+        }
+      }
+    },
+    "trident": {
+      "directions": 128,
+      "groups": {
+        "head": {
+          "frames": 1,
+          "period": 0.03333333333333333,
+          "display_size": [
+            224.78048780487805,
+            224.78048780487805
+          ],
+          "pixels": [
+            256,
+            256
+          ],
+          "orientation": "directional",
+          "symbols": [
+            "trident_head_00"
+          ]
+        }
+      }
+    },
+    "farm_hoe": {
+      "directions": 128,
+      "groups": {
+        "head": {
+          "frames": 1,
+          "period": 0.03333333333333333,
+          "display_size": [
+            288.0,
+            288.0
+          ],
+          "pixels": [
+            256,
+            256
+          ],
+          "orientation": "upright_left",
+          "symbols": [
+            "farm_hoe_head_00"
+          ]
+        }
+      }
+    },
+    "yoth_lance": {
+      "directions": 128,
+      "groups": {
+        "head": {
+          "frames": 1,
+          "period": 0.03333333333333333,
+          "display_size": [
+            263.3744855967078,
+            263.3744855967078
+          ],
+          "pixels": [
+            256,
+            256
+          ],
+          "orientation": "directional",
+          "symbols": [
+            "yoth_lance_head_00"
+          ]
+        }
+      }
+    },
+    "oceanfishingrod": {
+      "directions": 128,
+      "groups": {
+        "head": {
+          "frames": 8,
+          "period": 0.26666666666666666,
+          "display_size": [
+            640,
+            240
+          ],
+          "pixels": [
+            512,
+            192
+          ],
+          "orientation": "directional",
+          "symbols": [
+            "oceanfishingrod_head_00",
+            "oceanfishingrod_head_01",
+            "oceanfishingrod_head_02",
+            "oceanfishingrod_head_03",
+            "oceanfishingrod_head_04",
+            "oceanfishingrod_head_05",
+            "oceanfishingrod_head_06",
+            "oceanfishingrod_head_07"
+          ]
+        }
+      }
+    },
+    "orange_bolt": {
+      "directions": 128,
+      "groups": {
+        "head": {
+          "frames": 6,
+          "period": 0.2,
+          "display_size": [
+            160,
+            160
+          ],
+          "pixels": [
+            128,
+            128
+          ],
+          "orientation": "directional",
+          "symbols": [
+            "orange_bolt_head_00",
+            "orange_bolt_head_01",
+            "orange_bolt_head_02",
+            "orange_bolt_head_03",
+            "orange_bolt_head_04",
+            "orange_bolt_head_05"
+          ]
+        },
+        "tail": {
+          "frames": 6,
+          "period": 0.2,
+          "display_size": [
+            56,
+            220
+          ],
+          "pixels": [
+            96,
+            96
+          ],
+          "orientation": "directional",
+          "symbols": [
+            "orange_bolt_tail_00",
+            "orange_bolt_tail_01",
+            "orange_bolt_tail_02",
+            "orange_bolt_tail_03",
+            "orange_bolt_tail_04",
+            "orange_bolt_tail_05"
+          ]
+        }
+      }
+    }
+  },
+  "images": 24,
+  "clips": 896
+}

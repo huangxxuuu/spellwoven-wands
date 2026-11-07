@@ -1,0 +1,9 @@
+{
+  "id": "sleep_crystal",
+  "name": "休眠晶体",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "sleep_crystal.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_spell_world/sleep_crystal.png"
+}
+

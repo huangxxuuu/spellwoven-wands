@@ -1,0 +1,33 @@
+{
+  "id": "repeat_2",
+  "name": "双倍施法",
+  "status": "candidate",
+  "review": "整体缩小后尖角完整，保留一个输入、两个相同输出与唯一文字×2；底部安全留白充足。",
+  "batch_attempt_count": 1,
+  "total_attempt_number": 2,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-76c57e16-384f-4bf8-aa42-f5cd905589e8.png",
+  "output": "repeat_2.png",
+  "prompt": "repeat_2.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v3_full_catalog/projectiles_controls/repeat_2.png",
+  "validation": {
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      312,
+      200,
+      996,
+      1023
+    ],
+    "minimum_visible_margin_px": 200,
+    "sha256": "e5e102a6b394ca98908ca32df72d90b34f93d6c30236a112b8b873df684fd0da",
+    "matches_source": true,
+    "raw_png_modified": false
+  }
+}

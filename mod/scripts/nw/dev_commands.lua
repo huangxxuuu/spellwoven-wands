@@ -65,6 +65,8 @@ end
 
 commands = {
     {name="nw_help", args="", description="列出当前所有开发者命令和用法。", run=help},
+    {name="nw_journal",args='["法术ID"]',description='查看个人法术收集与伤害统计；提供 ID 时查看单卡。',run=require("nw/spelljournal").report},
+    {name="nw_dropkit",args="",description="将所有当前不能制作的可用法术卡放入箱子。",run=Kit.dropkit},
     {name="nw_spellkit", args="", description="放置全套分类法术卡箱、奥术台，并领取一把 12 格空杖。", run=Kit.all},
     {name="nw_testscene",args='["场景ID"]',description='列出测试场景；"all" 生成全部箱牌，"duo" 生成双人 A/B 分箱套装。',run=require("nw/test_scene_kit").spawn},
     {name="nw_testcleanup",args="[数量]",description="生成休眠清理测试用追踪卵，默认 20 个；另处再生成 1 个测试数量门槛。",run=require("nw/test_scene_kit").cleanup},

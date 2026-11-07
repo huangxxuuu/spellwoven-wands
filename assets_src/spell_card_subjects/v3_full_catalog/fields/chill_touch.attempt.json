@@ -1,0 +1,9 @@
+{
+  "id": "chill_touch",
+  "name": "寒霜附魔",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "chill_touch.prompt.txt",
+  "reference": null
+}
+

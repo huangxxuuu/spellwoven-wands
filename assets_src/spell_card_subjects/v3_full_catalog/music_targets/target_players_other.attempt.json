@@ -1,0 +1,10 @@
+{
+  "id": "target_players_other",
+  "name": "选取其他玩家",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T00:54:50.412Z",
+  "completed_at": "2026-11-07T00:56:38.243Z",
+  "result_file": "target_players_other.result.json"
+}

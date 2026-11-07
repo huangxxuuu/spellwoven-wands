@@ -12,9 +12,18 @@ function M.absorb(owner,x,z,nx,nz,r)
         end
     end
 end
-function M.burst(inst,owner,x,z,r)
+function M.burst(inst,owner,x,z,r,direct)
     local fx=SpawnPrefab("nw_lighter_burst_fx")
     fx.Transform:SetPosition(x,0,z);fx:SetRadius(r)
+    for _,e in ipairs(TheSim:FindEntities(x,0,z,r,{"player"},omit)) do
+        if e~=direct and e.components.combat and e.components.health and not e.components.health:IsDead() then
+            local p=inst._shot and inst._shot.p
+            local health=e.components.health
+            local before=health.currenthealth
+            e.components.combat:GetAttacked(owner,p and p.damage or 17,inst,"fire")
+            require("nw/journal_damage").loss(owner,p,health,before)
+        end
+    end
     for _,e in ipairs(TheSim:FindEntities(x,0,z,r,nil,omit,{"cookable","canlight","burnable"})) do
         if e:IsValid() then
             local cook=e.components.cookable

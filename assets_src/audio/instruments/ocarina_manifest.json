@@ -1,0 +1,1263 @@
+{
+  "instrument": "ocarina",
+  "source_sf2": "sources/Ocarina-extended.sf2",
+  "source_sha256": "d92e8fddfcb7932795c4f72e5d5c3c83313c5189fee5ddc71c0eab1667906390",
+  "renderer": "FluidSynth",
+  "renderer_version": "2.6.2",
+  "preset": {
+    "bank": 0,
+    "program_zero_based": 0,
+    "name": "Ocarina"
+  },
+  "format": "WAV",
+  "encoding": "PCM_16",
+  "sample_rate": 44100,
+  "channels": 1,
+  "reverb": false,
+  "chorus": false,
+  "interpolation": "highest (25th-order sinc in FluidSynth 2.6.2)",
+  "per_instrument_gain": 4.701446903362246,
+  "set_peak_target_dbfs": -3,
+  "dither": "TPDF, deterministic seed; silent samples remain zero",
+  "notes": [
+    {
+      "midi": 56,
+      "note": "G#3",
+      "frequency_hz": 207.65234879,
+      "filename": "ocarina_m056_Gs3.wav",
+      "relative_path": "ocarina/ocarina_m056_Gs3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1482110321521759,
+      "duration_seconds": 1.1429251700680272,
+      "sha256": "a45891452f1cfd39767597d8dc968f5cbea51ced4e0ff5bdc66f2c8f652c392e"
+    },
+    {
+      "midi": 57,
+      "note": "A3",
+      "frequency_hz": 220.0,
+      "filename": "ocarina_m057_A3.wav",
+      "relative_path": "ocarina/ocarina_m057_A3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14822228252887726,
+      "duration_seconds": 1.1483446712018142,
+      "sha256": "cac7fa11d7c05186b24cc0fcabf5b3bfa1ac467499f6a9931615bb019b3aadf5"
+    },
+    {
+      "midi": 58,
+      "note": "A#3",
+      "frequency_hz": 233.081880759,
+      "filename": "ocarina_m058_As3.wav",
+      "relative_path": "ocarina/ocarina_m058_As3.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14821745455265045,
+      "duration_seconds": 1.1500680272108843,
+      "sha256": "495578ee0a566a1b0106f3ef3ba30a97d3b78ed0bae2119f5114d33294a739c5"
+    },
+    {
+      "midi": 59,
+      "note": "B3",
+      "frequency_hz": 246.941650628,
+      "filename": "ocarina_m059_B3.wav",
+      "relative_path": "ocarina/ocarina_m059_B3.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14822246134281158,
+      "duration_seconds": 1.1516553287981859,
+      "sha256": "8c9112663834c4055a6c9182d8d73631d95c5ea42635a3aaee6ddbc16769ec4b"
+    },
+    {
+      "midi": 60,
+      "note": "C4",
+      "frequency_hz": 261.625565301,
+      "filename": "ocarina_m060_C4.wav",
+      "relative_path": "ocarina/ocarina_m060_C4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14819873869419098,
+      "duration_seconds": 1.1498639455782314,
+      "sha256": "f070308d703bbc1680fe8d1a7870856688637b80e8a14a683ca91e5ed9936129"
+    },
+    {
+      "midi": 61,
+      "note": "C#4",
+      "frequency_hz": 277.182630977,
+      "filename": "ocarina_m061_Cs4.wav",
+      "relative_path": "ocarina/ocarina_m061_Cs4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1482214778661728,
+      "duration_seconds": 1.150294784580499,
+      "sha256": "a4166b5a2b17543a500cb2af8e0ff9eff3a3c02ada410992a17673acbb6c6dcf"
+    },
+    {
+      "midi": 62,
+      "note": "D4",
+      "frequency_hz": 293.664767917,
+      "filename": "ocarina_m062_D4.wav",
+      "relative_path": "ocarina/ocarina_m062_D4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1482200175523758,
+      "duration_seconds": 1.1486167800453515,
+      "sha256": "6712cee912971ae631f5fe17bd89d384be88f5f830d0a57c88e76552832add64"
+    },
+    {
+      "midi": 63,
+      "note": "D#4",
+      "frequency_hz": 311.126983722,
+      "filename": "ocarina_m063_Ds4.wav",
+      "relative_path": "ocarina/ocarina_m063_Ds4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.148221954703331,
+      "duration_seconds": 1.153106575963719,
+      "sha256": "2dc3f94b909592e3e1ccea8cecef7f7ee0e3c48f5ef24c1c3e26a64a1922992c"
+    },
+    {
+      "midi": 64,
+      "note": "E4",
+      "frequency_hz": 329.627556913,
+      "filename": "ocarina_m064_E4.wav",
+      "relative_path": "ocarina/ocarina_m064_E4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        },
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1481974571943283,
+      "duration_seconds": 1.1505668934240363,
+      "sha256": "eb86a6ba8afe522fff6dc0e2bfdd10fc4eb9e1ade32bd2e8392ff66bff41bf09"
+    },
+    {
+      "midi": 65,
+      "note": "F4",
+      "frequency_hz": 349.228231433,
+      "filename": "ocarina_m065_F4.wav",
+      "relative_path": "ocarina/ocarina_m065_F4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14822067320346832,
+      "duration_seconds": 1.1491609977324264,
+      "sha256": "d06f9245905c8bc4958eb2702ad7198f23f938e42ff19b3f7c6c04754b19220a"
+    },
+    {
+      "midi": 66,
+      "note": "F#4",
+      "frequency_hz": 369.994422712,
+      "filename": "ocarina_m066_Fs4.wav",
+      "relative_path": "ocarina/ocarina_m066_Fs4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1482190638780594,
+      "duration_seconds": 1.1508163265306122,
+      "sha256": "84b70b0de0fe694617da66f70cae490aef15ebe4259a912d9e648d36a41bcf4a"
+    },
+    {
+      "midi": 67,
+      "note": "G4",
+      "frequency_hz": 391.995435982,
+      "filename": "ocarina_m067_G4.wav",
+      "relative_path": "ocarina/ocarina_m067_G4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14819709956645966,
+      "duration_seconds": 1.1488662131519274,
+      "sha256": "99aefaf7de5002515e54a5b4f121c15060c107adbfb3fead98af86bd307df8f6"
+    },
+    {
+      "midi": 68,
+      "note": "G#4",
+      "frequency_hz": 415.30469758,
+      "filename": "ocarina_m068_Gs4.wav",
+      "relative_path": "ocarina/ocarina_m068_Gs4.wav",
+      "is_base_note": false,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        },
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1482168734073639,
+      "duration_seconds": 1.1460770975056689,
+      "sha256": "9a03e8e86ba7f4ef52ddc57a46b5ebf0f2340482fd37d96c9e65841f37f477ba"
+    },
+    {
+      "midi": 69,
+      "note": "A4",
+      "frequency_hz": 440.0,
+      "filename": "ocarina_m069_A4.wav",
+      "relative_path": "ocarina/ocarina_m069_A4.wav",
+      "is_base_note": true,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        },
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14821931719779968,
+      "duration_seconds": 1.1501133786848072,
+      "sha256": "fa355e9b9acd46ebd762fa6378c098681d73b0986183d5fa6f218bbf587a31a4"
+    },
+    {
+      "midi": 70,
+      "note": "A#4",
+      "frequency_hz": 466.163761518,
+      "filename": "ocarina_m070_As4.wav",
+      "relative_path": "ocarina/ocarina_m070_As4.wav",
+      "is_base_note": false,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14820869266986847,
+      "duration_seconds": 1.1514285714285715,
+      "sha256": "220b6f752c5fae4dd9093a039bc173263e6c807a63fd62800d39cdb601007882"
+    },
+    {
+      "midi": 71,
+      "note": "B4",
+      "frequency_hz": 493.883301256,
+      "filename": "ocarina_m071_B4.wav",
+      "relative_path": "ocarina/ocarina_m071_B4.wav",
+      "is_base_note": true,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.148226797580719,
+      "duration_seconds": 1.1501360544217687,
+      "sha256": "acfdb42fa741428af87d6403b80e8e537141348e0e1789a6a777f345a91d8247"
+    },
+    {
+      "midi": 72,
+      "note": "C5",
+      "frequency_hz": 523.251130601,
+      "filename": "ocarina_m072_C5.wav",
+      "relative_path": "ocarina/ocarina_m072_C5.wav",
+      "is_base_note": true,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14813277125358582,
+      "duration_seconds": 1.1492290249433106,
+      "sha256": "41ad56f9b859334f46ba4249cdd038ea71dd3dcd7fea647429a2e1bbfb626405"
+    },
+    {
+      "midi": 73,
+      "note": "C#5",
+      "frequency_hz": 554.365261954,
+      "filename": "ocarina_m073_Cs5.wav",
+      "relative_path": "ocarina/ocarina_m073_Cs5.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14817705750465393,
+      "duration_seconds": 1.150702947845805,
+      "sha256": "3cee17c4a310d96be5c1b1083c2411c6c719eeb2f1f58d474e559d2c02d3ef0a"
+    },
+    {
+      "midi": 74,
+      "note": "D5",
+      "frequency_hz": 587.329535835,
+      "filename": "ocarina_m074_D5.wav",
+      "relative_path": "ocarina/ocarina_m074_D5.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14611423015594482,
+      "duration_seconds": 1.1530385487528345,
+      "sha256": "de4514e9beba6b9ac12962f893a6bf0d59e8e79efc56102d564d2b85e3b641a5"
+    },
+    {
+      "midi": 75,
+      "note": "D#5",
+      "frequency_hz": 622.253967444,
+      "filename": "ocarina_m075_Ds5.wav",
+      "relative_path": "ocarina/ocarina_m075_Ds5.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14622211456298828,
+      "duration_seconds": 1.1492743764172335,
+      "sha256": "a7a5a34da827b1ac17a37b2a7ca4d1e87bda1bb2f7c4509aad163c15a01d350d"
+    },
+    {
+      "midi": 76,
+      "note": "E5",
+      "frequency_hz": 659.255113826,
+      "filename": "ocarina_m076_E5.wav",
+      "relative_path": "ocarina/ocarina_m076_E5.wav",
+      "is_base_note": true,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        },
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14819717407226562,
+      "duration_seconds": 1.140952380952381,
+      "sha256": "0d58798edda5449915f837b3c34cec26396aac4788950cdd454fb8e8620a61ec"
+    },
+    {
+      "midi": 77,
+      "note": "F5",
+      "frequency_hz": 698.456462866,
+      "filename": "ocarina_m077_F5.wav",
+      "relative_path": "ocarina/ocarina_m077_F5.wav",
+      "is_base_note": true,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1480029821395874,
+      "duration_seconds": 1.149795918367347,
+      "sha256": "c0392d7ed4f21b3e53a1752087a3117e1b335f03f7d00685b65381b77a6edb09"
+    },
+    {
+      "midi": 78,
+      "note": "F#5",
+      "frequency_hz": 739.988845423,
+      "filename": "ocarina_m078_Fs5.wav",
+      "relative_path": "ocarina/ocarina_m078_Fs5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.148338183760643,
+      "duration_seconds": 1.1412244897959183,
+      "sha256": "c9ecb80ca7e1485b5117f73cef5098958f98c26f117ee3ba874d688fa8de6486"
+    },
+    {
+      "midi": 79,
+      "note": "G5",
+      "frequency_hz": 783.990871963,
+      "filename": "ocarina_m079_G5.wav",
+      "relative_path": "ocarina/ocarina_m079_G5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1492634415626526,
+      "duration_seconds": 1.1503401360544219,
+      "sha256": "f61afb06a8197ac1a22310cb5c6d25d24e1d5167624fbd881a76adaa9d77dfca"
+    },
+    {
+      "midi": 80,
+      "note": "G#5",
+      "frequency_hz": 830.60939516,
+      "filename": "ocarina_m080_Gs5.wav",
+      "relative_path": "ocarina/ocarina_m080_Gs5.wav",
+      "is_base_note": true,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        },
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14614665508270264,
+      "duration_seconds": 1.1474149659863946,
+      "sha256": "1203db186a16aa9f3259f616e9f7063e3976eb4edd85a86251fcadeaaf9871de"
+    },
+    {
+      "midi": 81,
+      "note": "A5",
+      "frequency_hz": 880.0,
+      "filename": "ocarina_m081_A5.wav",
+      "relative_path": "ocarina/ocarina_m081_A5.wav",
+      "is_base_note": true,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        },
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1444384604692459,
+      "duration_seconds": 1.1494557823129252,
+      "sha256": "6d554461735323bdbc3b543085d0266babf27bd35109a6c6d82f2f6c2a1be03d"
+    },
+    {
+      "midi": 82,
+      "note": "A#5",
+      "frequency_hz": 932.327523036,
+      "filename": "ocarina_m082_As5.wav",
+      "relative_path": "ocarina/ocarina_m082_As5.wav",
+      "is_base_note": false,
+      "route_count": 3,
+      "routes": [
+        {
+          "base_midi": 69,
+          "base_note": "A4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14826738834381104,
+      "duration_seconds": 1.145827664399093,
+      "sha256": "9f1425d3434b8e6ee89b5d46864acb28ef73d0b33a09156594c2c6eccf1eb688"
+    },
+    {
+      "midi": 83,
+      "note": "B5",
+      "frequency_hz": 987.766602512,
+      "filename": "ocarina_m083_B5.wav",
+      "relative_path": "ocarina/ocarina_m083_B5.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14803451299667358,
+      "duration_seconds": 1.148843537414966,
+      "sha256": "fed8a43af8ca675314dfb0bdd9ac4d30ffc1bdf2c16a7c2525d73b5973776852"
+    },
+    {
+      "midi": 84,
+      "note": "C6",
+      "frequency_hz": 1046.502261202,
+      "filename": "ocarina_m084_C6.wav",
+      "relative_path": "ocarina/ocarina_m084_C6.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 71,
+          "base_note": "B4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14794427156448364,
+      "duration_seconds": 1.1485034013605442,
+      "sha256": "8ca92ffc4abc614dba5ddcb8c6ee66fa5e8c40d8adae69bc552c0c7b04b18913"
+    },
+    {
+      "midi": 85,
+      "note": "C#6",
+      "frequency_hz": 1108.730523907,
+      "filename": "ocarina_m085_Cs6.wav",
+      "relative_path": "ocarina/ocarina_m085_Cs6.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 72,
+          "base_note": "C5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14822204411029816,
+      "duration_seconds": 1.1487074829931974,
+      "sha256": "44f8c1e5021c0930ff82173d45178e75e6573fe6779c7cb545dda65789f149c6"
+    },
+    {
+      "midi": 86,
+      "note": "D6",
+      "frequency_hz": 1174.65907167,
+      "filename": "ocarina_m086_D6.wav",
+      "relative_path": "ocarina/ocarina_m086_D6.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14020736515522003,
+      "duration_seconds": 1.1460770975056689,
+      "sha256": "b5774fcfaa2bdf23a93e3951cf75758c81d9759a1a53b4d6d6eeb5ff25332395"
+    },
+    {
+      "midi": 87,
+      "note": "D#6",
+      "frequency_hz": 1244.507934888,
+      "filename": "ocarina_m087_Ds6.wav",
+      "relative_path": "ocarina/ocarina_m087_Ds6.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 74,
+          "base_note": "D5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14808717370033264,
+      "duration_seconds": 1.1404308390022675,
+      "sha256": "ed33301c12887b5b8d7fcc3fa89836121a91692c055576a4d986f11506c37820"
+    },
+    {
+      "midi": 88,
+      "note": "E6",
+      "frequency_hz": 1318.510227651,
+      "filename": "ocarina_m088_E6.wav",
+      "relative_path": "ocarina/ocarina_m088_E6.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        },
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14835293591022491,
+      "duration_seconds": 1.1431519274376418,
+      "sha256": "add47e72657ccf45751ca4b9ec82f2521dfbf2cd7080d20216679b21df30dc63"
+    },
+    {
+      "midi": 89,
+      "note": "F6",
+      "frequency_hz": 1396.912925732,
+      "filename": "ocarina_m089_F6.wav",
+      "relative_path": "ocarina/ocarina_m089_F6.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 76,
+          "base_note": "E5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14809627830982208,
+      "duration_seconds": 1.1413378684807256,
+      "sha256": "e831befab130c00b8018ca3b7ac7e250905289046faa165018798e6a47d0fd8e"
+    },
+    {
+      "midi": 90,
+      "note": "F#6",
+      "frequency_hz": 1479.977690847,
+      "filename": "ocarina_m090_Fs6.wav",
+      "relative_path": "ocarina/ocarina_m090_Fs6.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 77,
+          "base_note": "F5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14881382882595062,
+      "duration_seconds": 1.1383446712018142,
+      "sha256": "847f030451707323051d25599866c3a0041adad24d84213da881bff601bca52b"
+    },
+    {
+      "midi": 91,
+      "note": "G6",
+      "frequency_hz": 1567.981743927,
+      "filename": "ocarina_m091_G6.wav",
+      "relative_path": "ocarina/ocarina_m091_G6.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1494932919740677,
+      "duration_seconds": 1.1492743764172335,
+      "sha256": "cf802f3def5ff3ded1b38624a17ca29a2061c3aeffb2df25a0cb631d8abaf498"
+    },
+    {
+      "midi": 92,
+      "note": "G#6",
+      "frequency_hz": 1661.21879032,
+      "filename": "ocarina_m092_Gs6.wav",
+      "relative_path": "ocarina/ocarina_m092_Gs6.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.1492868810892105,
+      "duration_seconds": 1.1422902494331066,
+      "sha256": "924a0ecd0a3d5e7f2f8f5528e9f8e8bffc1687852b790a8c128e513468b13d63"
+    },
+    {
+      "midi": 93,
+      "note": "A6",
+      "frequency_hz": 1760.0,
+      "filename": "ocarina_m093_A6.wav",
+      "relative_path": "ocarina/ocarina_m093_A6.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 80,
+          "base_note": "G#5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.14861297607421875,
+      "duration_seconds": 1.1473015873015873,
+      "sha256": "f1ca4a751be423657e7cd259e94403148a44332bfadbbde96edece863a837c38"
+    },
+    {
+      "midi": 94,
+      "note": "A#6",
+      "frequency_hz": 1864.655046072,
+      "filename": "ocarina_m094_As6.wav",
+      "relative_path": "ocarina/ocarina_m094_As6.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 81,
+          "base_note": "A5",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        }
+      ],
+      "note_on_seconds": 0.8,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.15058040618896484,
+      "duration_seconds": 1.1431972789115645,
+      "sha256": "fd3b4f429b2aa58890b4f1211a1a492c01a220ca5c3041d744cebe8d716addb4"
+    }
+  ]
+}

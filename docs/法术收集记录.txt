@@ -1,0 +1,154 @@
+法术收集记录（无美术、无实体收集册）
+
+归档交接：2026-11-07
+本文件是本次“玩家统计、达成时间、纪录法杖快照、nw_help 输出修复”的维护入口。
+后台功能已实现，当前存档 schema 为 v2；实体收集册、美术和客户端展示界面仍未实现。
+实体与界面设计另见 docs/21_法术收集册设计与会话交接.md；该文件早期的“记录未实现”
+描述以本文件为准，不应重复实现一套收藏存档。
+本次开发没有执行发布；归档聊天不代表授权发布，也不要求开始制作收集册界面。
+
+服务器在每位玩家身上添加 nw_spelljournal 组件，随当前世界的角色存档保存。
+普通重连、死亡复活、原版分片迁移使用组件存档；月门换角色另接 SaveForReroll / LoadForReroll。
+这不是跨世界的账号成就。旧档无法恢复过去未记录的历史；升级后会扫描玩家现有物品。
+
+收集与使用口径
+1. 进入物品栏、鼠标手持栏、装备栏、随身背包或随身容器即解锁。
+   拾起已装卡的法杖，也会解锁其中的实体卡。拾起已装满的背包会递归扫描内容。
+   地面箱子和地面背包里的卡不算；只打开箱子也不算。收集标记不会因丢弃或消耗而撤销。
+2. 成功的右键施法提交一次法杖施法记录。预览、冷却、法力不足导致失败、无效目标等不记。
+   根据本轮编译 trace 的 execute 事件，以实体 card_uid 去重，再汇总到 spell_id。
+   同一张卡在这一轮中最多一次；两张同名实体卡各读到一次，则该卡种累计两次。
+   碰撞载荷、定时载荷在右键发射时记使用；之后是否命中、贯穿重放几次都不再加次数。
+   跳过的缺蓝卡不记。法杖天生修正计一次使用，但不会因此成为“已收集”的实体卡。
+3. 伤害独立累计，不受上述使用去重限制。按目标实际生命减少统计，扣除护甲/抗性，
+   不计治疗、零伤和超过目标剩余生命的溢出伤害。总命中数是正伤害结算次数，不是弹体数。
+   增伤、暴击、附加爆炸、侧向余烬、光环和连线的伤害归到承载它们的基础法术。
+   法术场生成的子弹归到该法术场；触发载荷则归载荷自己的卡。
+   包含本 mod 的持续灼烧、连锁电击、平面伤害和已接入的原版武器/爆炸/回旋与龙卷后续。
+   原版环境火势的蔓延与共享燃烧，无法可靠区分多个来源，不计入逐卡统计。
+   永久法术沿用现有施法者解析：例如离线休眠晶体被别人打爆，归当时解析到的施法者。
+
+保存的统计
+* 逐卡：是否收集、施放次数、累计实际伤害。出现过的卡才分配记录。
+* 玩家：法杖总施法次数、总实际伤害、正伤害结算次数、单次最高实际伤害。
+* 短时纪录：1、5、10 秒滚动区间的最高伤害总量，不是每秒平均值。
+  使用 100 ms 时间桶，窗口从旧到新移动，不是固定整秒分段。
+  保守丢弃边界的最旧桶，最多漏掉不到 100 ms 的边界伤害，不会把超过窗口的伤害加进来。
+  只在有伤害时推进时间桶，没有常驻定时器；最多 100 个桶，和命中频率、游玩时长无关。
+  只保存最高纪录；重连/换分片不接续正在进行的短时窗口。
+  单次最高伤害、1/5/10 秒最高伤害各自附带达成时间及当时手持的法杖完整快照。
+  延迟伤害结算时若已从 A 杖换成 B 杖，保存 B；若已卸下或手持普通物品，不保存法杖。
+  刷新纪录时若空手，会清除旧纪录附带的法杖；仅平纪录不覆盖先前时间或快照。
+  每项纪录最多一份快照，额外最多 4 份；不受优秀法杖排行榜筛选。
+  达成后再改名、换卡或改变属性，不改写这些历史快照。
+* 法杖榜：容量、法力上限、回蓝、抽取数、理智转化效率越高越好；
+  施法延迟、充能时间、散射越低越好。8 个维度各取前三，按 wand_uid 去重，至多 24 份。
+  不乱序与天生法术作为快照信息保留，不强行换算成总分。
+  遇到定义为取得、装备、施法或给法杖改名，不扫描视野内所有地面物品。
+  同值用 UID 稳定决胜。只保存属性、名字、自定义名标志、来源、外观、卡槽 ID 等纯数据；
+  不保存法杖实体、当前蓝量、冷却或施法闭包，不会让丢弃的杖继续常驻。
+  同杖再次遇到会更新快照；改名同步更新在线玩家已保存的该杖，离线玩家下次遇到时更新。
+
+各项统计的时间（存档 schema v2）
+* 时间格式：unix 为服务器现实时间的 Unix 秒时间戳，world_day 为从第 1 天起的世界天数
+  （含小数），shard 为达成所在分片。现实时间与重连后会重置的 GetTime 无关。
+* 每张卡：collected_at 首次收集，used_at 首次使用；casts_at 当前累计次数更新时间；
+  damage_first_at 首次造成伤害，damage_at 当前累计伤害更新时间。
+* 玩家汇总 times：collected/used 为解锁新卡种导致对应种数增加的时间；
+  casts/damage/hits 为当前累计施法次数、伤害总量、正伤害次数的最后更新时间。
+* 四项伤害纪录各有 at，仅严格超过原纪录才更新，平纪录沿用第一次达成时间。
+* 法杖榜快照：first_seen_at 初次记录，updated_at 最近更新，renamed_at 改名时间；
+  stats_at 为各项排行属性数值的取得时间，属性未变化时保留原时间。
+* 不保存每次累加的完整历史。达到计数上限而数值不变时，不更新该累计值的时间。
+* 旧版 v1 存档保留全部数值，但缺失的历史时间和伤害纪录法杖均为未知；
+  不会把读档、再次拾取或平纪录的时间伪装成最初达成时间。后续更新的数值正常记录时间。
+
+查询与未来收集册接口
+开启 mod 的开发者选项后，房主/管理员远程控制台：
+    nw_journal()                  总览
+    nw_journal("spark")           单卡收集、次数与伤害
+
+服务器 Lua 接口（返回值均为独立副本）：
+    player.components.nw_spelljournal:GetSummary()
+    player.components.nw_spelljournal:GetCard("spark")
+    player.components.nw_spelljournal:GetTopWands("mana_max")
+    player.components.nw_spelljournal:GetTopWands("cast_delay")
+    player.components.nw_spelljournal:GetDamageRecord()     单次最高伤害
+    player.components.nw_spelljournal:GetDamageRecord(5)    5 秒最高伤害（也支持 1、10）
+
+GetDamageRecord 返回 {damage, at, wand}，空手达成时 wand 为 nil；旧纪录缺失时间时 at 为 nil。
+GetSummary 包含 times、max_hit_record、best_damage_records；GetCard 返回逐卡时间字段。
+nw_journal 控制台输出同步显示时间（UTC / 世界天数）及达成时手持的法杖名字。
+
+现在不持续向客户端同步整本记录。以后收集册可在打开时请求摘要或分页数据。
+
+空间和性能
+当前 220 种卡，逐卡记录和数字计数有界，不保存每次施法/每次命中的历史明细。
+本机 Lua 5.1 + 游戏 DataDumper 序列化压力样本：全部卡、百万次计数、千万伤害、
+21 份长名字/长卡 ID 法杖快照、各项时间及四份伤害纪录快照，未压缩约 104 KiB/玩家；
+按 24 份排行快照预留约 120 KiB。这是 v2 时间与伤害快照功能后的大小。
+普通玩家通常更小，游戏实际压缩存档也会更小。Lua 内存包含表开销，不能与文件字节等同。
+测试 10 万次伤害记录约 0.17 秒，约 1.7 微秒/次；强制每次刷新并复制手持杖快照时约
+9.3 微秒/次。仅是本机 Lua 逻辑基准，非游戏帧率保证。实际只在纪录刷新时复制快照。
+没有新增空间查询、常驻每帧玩家遍历或逐次网络广播。原版伤害适配只检查带来源标记的攻击。
+法杖榜仅保留最多 24 份，未变化的同一法杖使用缓存，避免每次施法重新排序。
+数值累计上限 10^15，防止超长游戏或异常输入产生无穷值。
+
+验证入口
+    .venv/Scripts/python.exe tools/run_tests.py
+    .venv/Scripts/python.exe tools/smoke_server.py --journal --fresh --seconds 90
+    .venv/Scripts/python.exe tools/measure_spelljournal.py
+新增 test_spelljournal.lua；原版服务器集成测试使用独立测试 mod 和隔离世界。
+
+2026-11-07 验证结果：157 个 Lua 文件语法通过；64 项 Lua 测试通过，包含本次新增测试。
+全新隔离服务器通过收集、成功/失败施法、贯穿多次载荷、实际减伤、原版武器/爆炸、
+改名快照、原版玩家存档与角色切换测试，见 test_reports/server_smoke_journal.log。
+v2 补充通过达成时间、延迟伤害换杖、卸下后清空快照、历史快照冻结、v1 迁移及 v2 保存读取。
+全套测试另有 6 项既有失败，在禁用新增统计后仍复现：卡数/说明断言与测试模拟缺失，
+详见 test_reports/spelljournal_existing_failures.txt；本次没有修改这些无关逻辑。
+
+实现位置与维护注意
+* mod/scripts/components/nw_spelljournal.lua：v1/v2 读写、逐卡与玩家统计、时间、排行榜、纪录快照。
+* mod/scripts/nw/spelljournal.lua：玩家/背包事件、初始扫描、换角色、改名同步与控制台查询。
+* mod/scripts/components/nw_wand.lua：成功施法后 RecordCast；不要放入碰撞或载荷回调。
+* mod/scripts/nw/compiler.lua：输出 journal_id，标识伤害所属的原始卡种。
+* mod/scripts/nw/journal_damage.lua：实际扣血记录和带来源标记的原版 combat 适配。
+  当前游戏 DoAttack 直接调用 GetAttacked_Internal；不能只钩 GetAttacked，也不能两层重复计数。
+* mod/scripts/nw/projectiles.lua：普通弹简化分支必须向 Targeting.damage 传 p；曾经实服测试发现
+  遗漏该参数会漏统计基础弹，现已修复。孢球爆炸与场生成子弹等派生伤害也必须保留来源。
+* tests/test_spelljournal.lua、mod/scripts/nw/smoke_spelljournal.lua：规则测试及隔离实服测试。
+* test_reports/spelljournal_tests.txt、server_smoke_journal.log、spelljournal_size_perf.json：验证报告。
+  报告数字是当次快照，不代表后续代码变更自动通过；卡总数也不能当作长期固定常量。
+* 工作区同时包含其他功能与美术修改。维护时只改所需文件，不能整批回退或覆盖其他修改。
+
+nw_help() 无输出问题：已修复并同步本地 Lua，待玩家重进世界确认
+用户症状：本地模式执行报 variable 'nw_help' is not declared；远程模式执行没有可见输出。
+本地报错的原因：开发者命令仅在服务端注册；开启世界 mod 的“开发者选项”后，房主/管理员
+应在远程控制台执行 nw_help()，不是客户端本地模式。
+
+已核实的证据：本机客户端日志记录了 SendRemoteExecute(nw_help())，服务器日志随后打印了
+完整的帮助列表。因此这次并非未注册命令或未开启配置，而是输出没有回传客户端。
+日志位置：D:/Documents/Klei/DoNotStarveTogether/client_log.txt 与 master_server_log.txt。
+仅只读检查日志，没有修改玩家存档或自动关闭正在运行的游戏。
+
+原因与修复：mod/scripts/nw/dev_output.lua 以前只在 ThePlayer.userid 与 TheNet:GetUserID()
+不同的时候发客户端 RPC。房主启动的独立子服务器可能与房主使用同一账号，但 print 输出
+仍然只进入服务器日志。现在在 TheNet:IsDedicated() 为 true 时也回传；同进程房主保留
+本地输出以免重复，无玩家的服务器控制台不发送。回传对象始终是执行者 ThePlayer，
+不能用 ConsoleCommandPlayer()，否则选中了其他玩家时可能把私有查询结果发错人。
+
+tests/test_dev_commands.lua 已覆盖远程管理员、同账号独立服务器房主、同进程房主去重、
+选中其他玩家不改变接收人，以及无玩家服务器控制台。该测试及 test_test_scenarios.lua、
+test_spelljournal.lua 在修复后均通过；尚没有收到玩家更新后“游戏窗口已显示”的确认。
+
+安装状态：仅将修复后的 scripts/nw/dev_output.lua 原子复制到已核验所属本工作区的
+E:/SteamLibrary/steamapps/common/Don't Starve Together/mods/nw_weave_dev/，已核对文件哈希一致。
+没有更新正在使用的动画或贴图。旧文件备份在 backups/nw_help_remote_fix/。
+这里的单文件校验不代表整个安装目录已经与当前工作区全部同步。
+
+已告知用户的生效步骤：退回主菜单，重新进入世界，再用远程模式执行 nw_help()。
+已运行的世界仍持有旧 Lua，磁盘文件同步不会替换已加载函数。
+若仍无输出，先确认世界已重载、正确 mod 与开发者选项、客户端/服务端代码，再同时检查
+这次执行的两侧日志和 dev_help RPC；不要把“单元测试通过”当作玩家界面已复测通过。
+完整本地安装使用 tools/install_mod.py；它会在 DST 仍运行时拒绝有变更的整包覆盖，
+需先正常退出游戏与本地服务器后运行，避免替换已加载资源导致崩溃。

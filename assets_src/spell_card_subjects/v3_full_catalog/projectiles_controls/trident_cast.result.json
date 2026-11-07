@@ -1,0 +1,54 @@
+{
+  "id": "trident_cast",
+  "name": "三叉阵",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-45841a88-09f2-4766-9824-af9990a2a087.png",
+  "output": "trident_cast.png",
+  "prompt": "trident_cast.prompt.txt",
+  "reference": null,
+  "review": {
+    "visual_reviewed": true,
+    "mechanism_and_count_checked": true,
+    "issues": [],
+    "notes": [
+      "准确三个前向展开分支。",
+      "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+    ],
+    "validation": {
+      "id": "trident_cast",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_8": [
+        139,
+        40,
+        1110,
+        1242
+      ],
+      "alpha_bbox_32": [
+        139,
+        40,
+        1110,
+        1241
+      ],
+      "alpha_bbox_128": [
+        140,
+        41,
+        1109,
+        1241
+      ],
+      "edge_max_alpha": 2,
+      "nonzero_edge_pixels": 1061,
+      "visible_edge_pixels": 0,
+      "transparent_ratio": 0.7652062045791584,
+      "sha256": "29618f88a409f948f1d9032dd7aeabc1a49a9da5e37df12770f4992263ac6589"
+    }
+  },
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-45841a88-09f2-4766-9824-af9990a2a087.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "source_hash_matches": true,
+  "raw_png_modified": false,
+  "retry_needed": false
+}

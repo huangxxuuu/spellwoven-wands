@@ -15,6 +15,12 @@ function M.ground(inst,x,y,z)
     if math.abs(y)>.0001 then inst.Physics:TeleportRespectingInterpolation(x,0,z) end
 end
 local function clamp(v,a,b) return math.max(a,math.min(b,v)) end
+function M.orbit_radius(p,speed)
+    -- Apply the minimum before giant scaling: a slow, large projectile still
+    -- needs room to turn. Faster projectiles get a wider base circle.
+    local base=math.max(2.5,3.2*math.sqrt(math.max(0,speed or 0)/25))
+    return math.min(8,base*math.sqrt(math.max(1,p and p.size_mult or 1)))
+end
 function M.turn(angle,desired,limit)
     local delta=(desired-angle+math.pi)%(2*math.pi)-math.pi
     return angle+clamp(delta,-limit,limit)
@@ -69,6 +75,7 @@ local function propulsion(s,dt)
     local f=s.p.flags
     local ax,az,damping=0,0,s.drag or 0
     local guided=false
+    local turn_rate=0
     local before=s.vx*s.vx+s.vz*s.vz>.000001 and math.atan2(s.vz,s.vx) or s.heading
     for _,key in ipairs({"homing","homing_short"}) do
         local h=f[key]
@@ -76,6 +83,7 @@ local function propulsion(s,dt)
             local target=seek_cached(s,key,h)
             if target then
                 guided=true
+                turn_rate=math.max(turn_rate,h.turn_rate or 360)
                 local x,_,z=target.Transform:GetWorldPosition()
                 local dx,dz=x-s.x,z-s.z
                 local distance=math.sqrt(dx*dx+dz*dz)
@@ -91,7 +99,8 @@ local function propulsion(s,dt)
     s.vx,s.vz=s.vx*decay+ax*gain,s.vz*decay+az*gain
     if guided and s.vx*s.vx+s.vz*s.vz>.000001 then
         local speed=math.sqrt(s.vx*s.vx+s.vz*s.vz)
-        local angle=M.turn(before,math.atan2(s.vz,s.vx),math.pi*dt)
+        local desired=ax*ax+az*az>.000001 and math.atan2(az,ax) or math.atan2(s.vz,s.vx)
+        local angle=M.turn(before,desired,turn_rate*DEGREES*dt)
         s.vx,s.vz=speed*math.cos(angle),speed*math.sin(angle)
     end
 end
@@ -111,22 +120,33 @@ function M.steer(inst,s,dt)
     end
     local base_speed=math.sqrt(s.vx*s.vx+s.vz*s.vz)
     local a=base_speed>.001 and math.atan2(s.vz,s.vx) or s.heading
+    local orbiting=f.orbit and not s.escaped
     local vx,vz
-    if f.orbit and not s.escaped then
+    if orbiting then
         local ox,_,oz=s.owner.Transform:GetWorldPosition()
         if s.ox and (ox-s.ox)^2+(oz-s.oz)^2>16 then return false end
         s.ox,s.oz=ox,oz
         local rx,rz=s.x-ox,s.z-oz
         local radius=math.sqrt(rx*rx+rz*rz)
-        if radius>3.5 then
+        local target_radius=M.orbit_radius(s.p,base_speed)
+        local return_radius=target_radius+math.max(1.5,target_radius*.5)
+        if radius>return_radius then
             vx,vz=-rx/radius*base_speed,-rz/radius*base_speed
+            -- Rejoin from the current position instead of chasing an old phase.
+            s.orbit_angle=nil;s.orbit_radius=nil
         else
             s.orbit_angle=s.orbit_angle or (radius>.05 and math.atan2(rz,rx) or a)
             if not s.orbit_started then
                 s.orbit_angle=s.orbit_angle+(s.fan_angle or 0);s.orbit_started=true
             end
-            s.orbit_angle=s.orbit_angle+dt*clamp(base_speed/2,160*DEGREES,360*DEGREES)
-            local r=radius+(2-radius)*math.min(1,dt/math.max(dt,.12-s.age))
+            local angular_speed=math.min(base_speed/target_radius,210*DEGREES)
+            s.orbit_angle=s.orbit_angle+dt*angular_speed
+            -- Ease into the ring with a 0.25 s time constant and a bounded
+            -- radial speed. Owner translation must not perturb its radius.
+            local step=math.min(8,base_speed*.5)*dt
+            local previous=s.orbit_radius or radius
+            local r=previous+clamp((target_radius-previous)*(1-math.exp(-dt/.25)),-step,step)
+            s.orbit_radius=r
             vx=(ox+r*math.cos(s.orbit_angle)-s.x)/dt
             vz=(oz+r*math.sin(s.orbit_angle)-s.z)/dt
         end
@@ -147,11 +167,20 @@ function M.steer(inst,s,dt)
             end
         end
         if f.homing_rotate and (f.homing or f.homing_short) then
-            a=M.turn(heading_before,a,math.pi*dt)
+            a=M.turn(heading_before,a,math.max(f.homing and f.homing.turn_rate or 0,
+                f.homing_short and f.homing_short.turn_rate or 0,f.homing_rotate.turn_rate or 360)*DEGREES*dt)
         end
         vx,vz=base_speed*math.cos(a),base_speed*math.sin(a)
     end
-    s.vx,s.vz=vx,vz
+    if orbiting then
+        -- Keep propulsion separate from radial/owner-following corrections.
+        -- External impulses still edit this same vector before propulsion;
+        -- no private cached speed can overwrite them on the following tick.
+        local drive=math.min(60,base_speed)
+        s.vx,s.vz=drive*math.cos(a),drive*math.sin(a)
+    else
+        s.vx,s.vz=vx,vz
+    end
     s.heading=a;s.phase=s.phase+dt
     local side,forward=0,0
     if f.sine then side=f.sine.amplitude*math.sin(2*math.pi*f.sine.frequency*s.phase) end
@@ -170,7 +199,7 @@ function M.steer(inst,s,dt)
         local rotation=-math.atan2(vz,vx)/DEGREES
         if speed>60 then
             local scale=60/speed
-            s.vx,s.vz=s.vx*scale,s.vz*scale
+            if not orbiting then s.vx,s.vz=s.vx*scale,s.vz*scale end
             speed=60
         end
         if rotation~=s.motor_angle or speed~=s.motor_speed then

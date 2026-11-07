@@ -1,0 +1,9 @@
+{
+  "id": "side_embers",
+  "name": "双侧余烬",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "side_embers.prompt.txt",
+  "reference": null
+}
+

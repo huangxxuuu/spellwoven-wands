@@ -1,6 +1,10 @@
 -- Player-facing summaries. Numerical reference text remains in spell_info.effects.
 local M={}
 local text={
+pitch_octave_up={"将同组乐器音升高一个八度，可叠加。","Raises this group's instrument notes by one octave; stacks."},
+pitch_octave_down={"将同组乐器音降低一个八度，可叠加。","Lowers this group's instrument notes by one octave; stacks."},
+pitch_semitone_up={"将同组乐器音升高一个半音，可叠加。","Raises this group's instrument notes by one semitone; stacks."},
+pitch_semitone_down={"将同组乐器音降低一个半音，可叠加。","Lowers this group's instrument notes by one semitone; stacks."},
 spark={"发射一枚轻型魔法火花。","Fires a light magical spark."},
 arrow={"发射一枚快速而精准的魔法箭。","Fires a fast, accurate magic arrow."},
 heavy={"发射一枚缓慢而沉重的魔法弹。","Fires a slow, heavy magic bolt."},
@@ -23,7 +27,7 @@ pierce_all={"使投射物持续穿透目标。","Lets projectiles keep piercing 
 phase_wall={"使投射物穿过墙体，不触发撞墙效果。","Lets projectiles pass through walls without a wall impact."},
 explosion={"使法术命中时爆炸，伤及周围敌友并点燃物体，不直接摧毁建筑、船和码头。","Makes spell impacts explode, harming friend and foe and igniting objects without directly demolishing structures, boats or docks."},
 gunpowder={"放下一堆燃烧的火药。可受移动修饰影响，寿命修饰改变引线时长；被扑灭则消失。","Places burning gunpowder. Movement modifiers affect it; lifetime modifiers change its fuse. Vanishes if extinguished."},
-chain={"释放在附近目标之间跳跃的闪电。","Releases lightning that jumps between nearby targets."},
+chain={"释放在附近目标之间跳跃的闪电；雨中潮湿时可能反噬。","Releases lightning that jumps between nearby targets; it may backfire when you are wet in the rain."},
 knockback={"使法术命中时击退目标。","Adds knockback to spell impacts."},
 leech={"将部分造成的伤害转化为施法者的生命。","Restores the caster's health from a portion of damage dealt."},
 light={"使投射物发光，并在消失处留下短暂余光。","Makes projectiles shine and leave a brief afterglow."},
@@ -46,7 +50,7 @@ vital_ring={"生成一片短暂恢复生命的区域。","Creates a temporary he
 heavy_shot={"增强投射物伤害，但降低速度并增加散射。","Makes projectiles stronger, slower and less accurate."},
 giant_shot={"放大法术的外观和实际作用范围，不直接增加伤害。","Enlarges spells and their effective areas without directly increasing damage."},
 trident_cast={"将后续法术向前方呈扇形分开施放。","Casts the following spells in a forward fan."},
-short_life={"缩短飞行投射物的存在时间，也缩短火药引线。","Shortens projectile lifetime and gunpowder fuses."},
+short_life={"缩短投射物与有限场地法术的存在时间，也缩短火药引线。","Shortens projectile and finite field lifetimes, including star duration and gunpowder fuses."},
 gust={"发射推开目标的气流，也能推动载荷卵而不击破它。","Fires a gust that pushes targets and moves payload eggs without breaking them."},
 spore_ball={"发射缓慢飘行、破裂时伤害附近目标的孢球。","Fires a drifting spore ball that bursts to hurt nearby targets."},
 flint_lance={"投出能够穿透目标的燧晶长枪。","Throws a flint lance that pierces targets."},
@@ -64,7 +68,7 @@ delay_seal={"留下符印，稍后从符印处释放载荷法术。","Leaves a s
 rain_cloud={"召唤局部雨云，浸湿附近目标并灭火。","Summons a rain cloud that wets nearby targets and extinguishes fires."},
 guard_ring={"召唤环绕自身、抵消敌方投射物的护盾。","Summons orbiting shields that block incoming enemy projectiles."},
 wild_charge={"缩短充能时间，但增加投射物散射。","Reduces recharge time at the cost of greater spread."},
-long_life={"延长飞行投射物的存在时间，也延长火药引线。","Extends projectile lifetime and gunpowder fuses."},
+long_life={"延长投射物与有限场地法术的存在时间，也延长火药引线。","Extends projectile and finite field lifetimes, including star duration and gunpowder fuses."},
 reverse_path={"使投射物飞行一段时间后掉头。","Makes projectiles reverse direction after a short flight."},
 return_path={"使投射物飞出后转向施法者返航。","Makes projectiles turn back toward the caster."},
 light_shot={"使投射物更快、更精准，但降低伤害。","Makes projectiles faster and more accurate, but weaker."},
@@ -79,8 +83,8 @@ note_c={"发出应答声波，引发短鸣标记的回声伤害。","Fires a res
 glass_disc={"发射能够穿透目标并折返的月玻璃飞刃。","Fires a piercing moon-glass blade that turns back."},
 land_hook={"发射抓钩，将施法者牵引向陆地落点。","Fires a hook that pulls the caster toward its land destination."},
 tri_electric={"发射一簇带有电击效果的魔法球。","Fires a cluster of electrified magic orbs."},
-end_beam={"发射穿透目标、在终点爆开的聚能光束。","Fires a piercing beam that bursts at its endpoint."},
-deer_decoy={"召唤吸引附近敌人的幻鹿，消散时造成伤害。","Summons a deer decoy that draws enemies and bursts when it fades."},
+end_beam={"发射贯穿光束，留下间隔伤害的紫色光带，在终点聚爆。","Fires a piercing purple beam that leaves a lingering damage trail and bursts at its endpoint."},
+deer_decoy={"召唤吸引附近敌人的灵鹿，结束时旋身消散并造成轻微伤害。","Summons a spirit deer that draws nearby enemies, then spins and fades with a gentle hit."},
 payload_egg={"留下储存载荷的空心卵。被攻击打破后释放法术，归击破者施放。","Leaves an egg containing a payload. Breaking it releases the spells under the breaker's ownership."},
 fireflies={"召唤短暂伴随并袭击附近目标的萤虫。","Summons brief firefly companions that attack nearby targets."},
 shock_ring={"生成向周围释放电击的法术环。","Creates a ring that shocks nearby targets."},
@@ -119,6 +123,13 @@ function M.get(id)
     local lang=require("nw/locale").language=="en" and 2 or 1
     local d=require("nw/definitions").spells[id]
     local row=text[id]
+    local arsenal=require("nw/arsenal")
+    if arsenal.notes[id] then
+        local summary=row and row[lang] or (arsenal.notes[id].instrument=="kantele"
+            and ({"奏响琴音，使周围玩家回复理智。","Plays a lyre note that restores nearby players' sanity."})[lang]
+            or ({"发出短鸣，为命中的目标留下回声标记。","Fires a short note that marks its target for an echo."})[lang])
+        return summary.."\n"..arsenal.tone_description(id)
+    end
     if row then return row[lang] end
     if d and d.base then
         return M.get(d.base)..(d.event=="hit" and ({"命中时释放载荷法术。"," Releases its payload on impact."})[lang]
@@ -129,7 +140,6 @@ function M.get(id)
         local kind={hostile={"敌对生物","hostile creatures"},neutral={"中立生物","neutral creatures"},friendly={"友好生物","friendly creatures"},building={"建筑","structures"},nature={"自然物","natural objects"},players_other={"其他玩家","other players"},self={"自身","the caster"}}
         return lang==1 and "使本组法术选取"..kind[d.select_target][1].."作为目标。" or "Lets this spell group target "..kind[d.select_target][2].."."
     end
-    if require("nw/arsenal").notes[id] or id=="chord_d" then return ({"发出对应音高的魔法声波。","Plays a magical sound wave at this note's pitch."})[lang] end
     if d and d.source_weapon then
         local key=d.source_weapon
         if weapons[key] then return weapons[key][lang] end

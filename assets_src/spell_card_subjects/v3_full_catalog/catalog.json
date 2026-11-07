@@ -1,0 +1,6013 @@
+{
+  "date": "2026-11-07",
+  "public_cards": 182,
+  "new_images": 103,
+  "new_image_statuses": {
+    "candidate": 100,
+    "needs_retry": 3
+  },
+  "scope_counts": {
+    "needs_generation": 103,
+    "existing_selected": 6,
+    "shared_base": 12,
+    "native_reuse": 61
+  },
+  "generation_calls_this_batch": 103,
+  "each_image_generated_once": true,
+  "automatic_retries": 0,
+  "image_postprocessing_performed": false,
+  "all_new_pngs_match_tool_sources": true,
+  "runtime_assets_installed": false,
+  "items": [
+    {
+      "id": "spark",
+      "name": "火花弹",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "发射一枚轻型魔法火花。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/spark.png",
+      "prompt": "projectiles_controls/spark.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/spark.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "四角星主体与粉紫火花身份一致。"
+      ],
+      "validation": {
+        "id": "spark",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "26b522c4b816bc2d4f013cd7afd4fa724119343824a4e843ded5ef509dd33668",
+        "matches_source": true,
+        "png": "projectiles_controls/spark.png",
+        "prompt": "projectiles_controls/spark.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-7457bc53-33f9-415f-801e-c25c39d85b9d.png",
+      "issues": []
+    },
+    {
+      "id": "arrow",
+      "name": "魔法箭",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "发射一枚飞行更快的魔法箭。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/arrow.png",
+      "prompt": "projectiles_controls/arrow.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/arrow.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "青白晶体箭头、棕杆、粉白尾羽均保留。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "validation": {
+        "id": "arrow",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "f14c2d08d84554be304479cfb4eb5b704d4421ed841a7c46116bf6c0d8625e12",
+        "matches_source": true,
+        "png": "projectiles_controls/arrow.png",
+        "prompt": "projectiles_controls/arrow.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-d5264763-d4f7-4d0a-b302-6a0dac6d64d3.png",
+      "issues": []
+    },
+    {
+      "id": "heavy",
+      "name": "重能量球",
+      "group": "existing_selected",
+      "group_label": "此前已选主图",
+      "origin": "existing_selected",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "发射缓慢但威力更大的能量球。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "../v1_four_subjects/heavy.png",
+      "prompt": "../v1_four_subjects/heavy.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "使用此前已选定的主图，非本次生成。"
+      ]
+    },
+    {
+      "id": "scatter",
+      "name": "散弹",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "同时发射三枚向不同方向散开的弹丸。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/scatter.png",
+      "prompt": "projectiles_controls/scatter.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/scatter.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "准确三枚石色楔状弹丸。"
+      ],
+      "validation": {
+        "id": "scatter",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "3f686da3104e0417093dd69230e0e33cbff7e9d895cde33080a14f6c13e13518",
+        "matches_source": true,
+        "png": "projectiles_controls/scatter.png",
+        "prompt": "projectiles_controls/scatter.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-9dc30fbd-1535-4a10-b166-e1dfead21cf0.png",
+      "issues": []
+    },
+    {
+      "id": "double",
+      "name": "双重施法",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "multicast",
+      "effect": "继续抽取两张法术，合并为同一施法块。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/double.png",
+      "prompt": "projectiles_controls/double.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/double.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "两个不同印记表现多抽取；开放聚合笔触距离边缘仅1–2px，接入卡牌时需统一缩放留白。"
+      ],
+      "validation": {
+        "id": "double",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "ce60ace662ccf3bff590578da7953656e92bed51f28accc8b1fb2ba7039339ad",
+        "matches_source": true,
+        "png": "projectiles_controls/double.png",
+        "prompt": "projectiles_controls/double.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-ef94fc37-1d84-40ff-a9af-a417ea66cd56.png",
+      "issues": []
+    },
+    {
+      "id": "triple",
+      "name": "三重施法",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "multicast",
+      "effect": "继续抽取三张法术，合并为同一施法块。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/triple.png",
+      "prompt": "projectiles_controls/triple.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/triple.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "三个不同印记表现多抽取；留白偏紧，后续接入应缩放。"
+      ],
+      "validation": {
+        "id": "triple",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "ac8e2c64671a370176be3d8dadc7a2b355a82d71cb4dd40a214db375afefd0b3",
+        "matches_source": true,
+        "png": "projectiles_controls/triple.png",
+        "prompt": "projectiles_controls/triple.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-b3fbf096-23d8-4fb1-99e0-807818580988.png",
+      "issues": []
+    },
+    {
+      "id": "speed_up",
+      "name": "加速",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同组初速度 ×1.5，另加 2 单位/秒初速度；多张倍率相乘、初速度增量相加。 静态投射物获得向前速度，每张使音符升一个八度；临时原版音源超出音域时会截断，完整音域待新音源接入。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/speed_up.png",
+      "prompt": "modifiers/speed_up.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/speed_up.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "魔弹与两条加速笔触清楚。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "speed_up",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "e2ea9fc2b2c1b0d58ade983c92c7401eccce48582d7a7456e905c91a772614e6",
+        "matches_source": true,
+        "png": "modifiers/speed_up.png",
+        "prompt": "modifiers/speed_up.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-a0eb9139-a5b0-4b1a-b4ae-7f10711c3ac1.png",
+      "issues": []
+    },
+    {
+      "id": "speed_down",
+      "name": "减速",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "飞行速度乘以 0.65，寿命乘以 1.4。 每张使音符降一个八度；临时原版音源超出音域时会截断，完整音域待新音源接入。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/speed_down.png",
+      "prompt": "modifiers/speed_down.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/speed_down.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "前方阻力弧线表达减速；小尺寸时需与声波类区分。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "speed_down",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "c98f1d022caaca1ca866d294b657ec52b1af56e024e3777a40ddad7d91778ee6",
+        "matches_source": true,
+        "png": "modifiers/speed_down.png",
+        "prompt": "modifiers/speed_down.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-b27428a1-1e4a-4b54-bbdd-351b73f4a0b3.png",
+      "issues": []
+    },
+    {
+      "id": "damage_up",
+      "name": "伤害强化",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同一施法块内每枚弹体增加 10 点伤害。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/damage_up.png",
+      "prompt": "modifiers/damage_up.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/damage_up.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "魔弹与粗上箭头表达伤害提升。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "damage_up",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "cae4bf2ce73db1ef6a96d310a090b49c06b9ba00e8e40a650f158a6972e1e6d3",
+        "matches_source": true,
+        "png": "modifiers/damage_up.png",
+        "prompt": "modifiers/damage_up.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-8d5fe002-9d1e-4613-989c-3427d902a309.png",
+      "issues": []
+    },
+    {
+      "id": "precision",
+      "name": "精准",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同一施法块的随机散射半角减少 2 度，最低为零。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/precision.png",
+      "prompt": "modifiers/precision.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/precision.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "三条线路收束到同一瞄准点。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "precision",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "71e66b26ed09a00f6fbb6b2ae8b3a1953541338712726bd6e8c2f0a1f052302c",
+        "matches_source": true,
+        "png": "modifiers/precision.png",
+        "prompt": "modifiers/precision.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-d2ab3707-c827-4690-9126-be994a7a57e9.png",
+      "issues": []
+    },
+    {
+      "id": "fire",
+      "name": "火焰弹",
+      "group": "existing_selected",
+      "group_label": "此前已选主图",
+      "origin": "existing_selected",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "每次命中蒸发直击伤害 ÷ 5 的潮湿值，仍有潮湿值时不会点燃。干燥后尝试引燃，随后每秒 3.6 点火伤，共三次，各弹独立。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "../v1_four_subjects/fire.png",
+      "prompt": "../v1_four_subjects/fire.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "使用此前已选定的主图，非本次生成。"
+      ]
+    },
+    {
+      "id": "frost",
+      "name": "冰霜弹",
+      "group": "existing_selected",
+      "group_label": "此前已选主图",
+      "origin": "existing_selected",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "直击后灭火并增加 0.4 寒冷值，由目标冻抗决定冻结。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "../v1_four_subjects/frost.png",
+      "prompt": "../v1_four_subjects/frost.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "使用此前已选定的主图，非本次生成。"
+      ]
+    },
+    {
+      "id": "sine",
+      "name": "正弦弹道",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "弹丸左右各摆动 1.2 单位，每秒 1.6 次波动。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/sine.png",
+      "prompt": "modifiers/sine.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/sine.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "双波峰波谷形成正弦线路；构图较宽，入框时统一等比缩放。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "sine",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "5982b92ab00e06e7746cb7963b8f21d97baae57ef29f1ddcca629c5679410a0d",
+        "matches_source": true,
+        "png": "modifiers/sine.png",
+        "prompt": "modifiers/sine.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-2e3223ca-9922-42d9-beee-b6dfa7666e02.png",
+      "issues": []
+    },
+    {
+      "id": "spiral",
+      "name": "螺旋弹道",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "以半径 1.45 单位绕圈前进，每秒 2.4 圈。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/spiral.png",
+      "prompt": "modifiers/spiral.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/spiral.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "连续螺旋围绕前进轴，能与正弦弹道区分。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "spiral",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "1c7fa941ba7d76164c9202161bb5d07237c8eac044feef62edd0a5ea057dff3d",
+        "matches_source": true,
+        "png": "modifiers/spiral.png",
+        "prompt": "modifiers/spiral.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-3024bd3d-2bda-4504-9fdb-676c668649df.png",
+      "issues": []
+    },
+    {
+      "id": "homing",
+      "name": "追踪",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "搜索半径 8，推进加速度 36，阻尼 0.72；趋近速度 50 单位/秒，转向上限 360°/秒。可推动静止实体。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/homing.png",
+      "prompt": "modifiers/homing.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/homing.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "长弯曲路线和敌方目标明确，附推进笔触。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "homing",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "b80f017ef99cf7465e488f8fb4634eadec69624930e05a694d9ad3f5cacf48ad",
+        "matches_source": true,
+        "png": "modifiers/homing.png",
+        "prompt": "modifiers/homing.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-23dbc5cf-94ad-4f88-b569-c737cfff2e5d.png",
+      "issues": []
+    },
+    {
+      "id": "bounce",
+      "name": "弹跳",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "每次撞墙结算碰撞效果并反弹，最多反弹两次。穿墙时忽略墙面。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/bounce.png",
+      "prompt": "modifiers/bounce.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/bounce.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "完整墙面与入射、反射路径表达反弹。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "bounce",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "2abecde177de1afcb740e10c2439800b68cf6ac7f82ac1a86048f97a5aca5bca",
+        "matches_source": true,
+        "png": "modifiers/bounce.png",
+        "prompt": "modifiers/bounce.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-cc8547b2-e130-43f0-a1bd-f7d056cdcff5.png",
+      "issues": []
+    },
+    {
+      "id": "pierce",
+      "name": "穿透",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "最多命中三次；重复命中同一敌人至少相隔 0.10 秒。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/pierce.png",
+      "prompt": "modifiers/pierce.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/pierce.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "同一路径贯穿三个目标。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "pierce",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "d1b9217786d66c1a1ba2638d1f84af4de20544cc25fea51b61e499708d7aa0e9",
+        "matches_source": true,
+        "png": "modifiers/pierce.png",
+        "prompt": "modifiers/pierce.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-b2089509-7123-42ae-aa9a-b7ded0906a68.png",
+      "issues": []
+    },
+    {
+      "id": "explosion",
+      "name": "爆炸",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "命中时触发半径 3、伤害 25 的爆炸，不分敌我并点燃可燃物；不直接破坏建筑、船和码头，保留法术爆炸外观。穿透命中同样触发，穿墙不触发；目标选择不限制爆炸。它是修饰，不是独立载荷。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/explosion.png",
+      "prompt": "modifiers/explosion.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/explosion.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "橙白实心爆裂形状清楚，无铺底烟云。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "explosion",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "0a2417cbb2c709c3b3ce8e02e8c288a475f83f8f71b3820b29cfcf9a16d1c931",
+        "matches_source": true,
+        "png": "modifiers/explosion.png",
+        "prompt": "modifiers/explosion.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-f6e2a138-5c0a-4a2f-9007-4b314d8fed1a.png",
+      "issues": []
+    },
+    {
+      "id": "chain",
+      "name": "连锁闪电",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "instant",
+      "effect": "从杖头或触发点放电。首击优先前方敌人，碰撞触发优先命中对象。共 4 跳，每跳最多 6 单位，首跳 15、后续 10。无目标时沿发射方向 ±85° 空跳 6 单位，再从落点索敌。按原版电武器结算。 下雨且施法者潮湿、距当前跳点不超过 6 单位时，后续每跳有 20% 概率反噬，单链最多一次。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/chain.png",
+      "prompt": "projectiles_controls/chain.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/chain.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "四个击中节点串联，粗折线与短分叉可读。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "validation": {
+        "id": "chain",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "1226fde04f06939456c3de71d484f1acb456586e00d84aa2ef4ee03d5a3546a5",
+        "matches_source": true,
+        "png": "projectiles_controls/chain.png",
+        "prompt": "projectiles_controls/chain.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-b6a3d0e4-3d8d-4cf1-8ebb-e301de13912f.png",
+      "issues": []
+    },
+    {
+      "id": "knockback",
+      "name": "击退",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "needs_retry",
+      "kind": "modifier",
+      "effect": "沿命中时弹道方向击退约 1 单位，由目标的原生击退动作结算。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/knockback.png",
+      "prompt": "modifiers/knockback.prompt.txt",
+      "retry_prompt": "modifiers/knockback.retry.prompt.txt",
+      "retry_prompt_mode": "recommended",
+      "result": "modifiers/knockback.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "冲击尖角之间出现带颗粒的半透明青灰雾，边界不够干净，不符合仅用实心运动笔触的要求。",
+        "魔弹、木靶与推离箭头能表达击退，但冲击边缘出现半透明雾。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "knockback",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "1f7512fc06af70bd36e898da1bd61e56b0e0b39d3860b1edbc337d8d8d8d0fdb",
+        "matches_source": true,
+        "png": "modifiers/knockback.png",
+        "prompt": "modifiers/knockback.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-09912efc-a22b-47b9-9e47-35a650486763.png",
+      "issues": [
+        "冲击尖角之间出现带颗粒的半透明青灰雾，边界不够干净，不符合仅用实心运动笔触的要求。"
+      ]
+    },
+    {
+      "id": "leech",
+      "name": "生命汲取",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "实际造成的可归属生命损失的 5% 回复给施法者。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/leech.png",
+      "prompt": "music_targets/leech.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/leech.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "生命液滴、收拢弯爪与回流箭头清楚，主体完整。"
+      ],
+      "validation": {
+        "id": "leech",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "7dc16ef45236119abaf66de38ed27cc3550425e3def525e99c5aaa3ad6679b05",
+        "matches_source": true,
+        "png": "music_targets/leech.png",
+        "prompt": "music_targets/leech.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-d4a79dd5-cfeb-40c7-8061-4921b631794b.png",
+      "issues": []
+    },
+    {
+      "id": "light",
+      "name": "照明",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "弹体照明半径 2，终止时留光 3 秒，残光数量由世界设置控制。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/light.png",
+      "prompt": "music_targets/light.prompt.txt",
+      "retry_prompt": "music_targets/light.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "music_targets/light.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "六道光芒、亮核与弧线清楚；预览有彩色边缘，但实际 alpha≥8 的饱和红/绿像素均为0，877个红色像素均为低于8的低alpha残留，列为观察项而非必重绘。"
+      ],
+      "validation": {
+        "id": "light",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "2aca8d5ad33bf92fade5b3bd8272ee4a8c4f95a7d9065f2a775d6aa3fc3a2d84",
+        "matches_source": true,
+        "png": "music_targets/light.png",
+        "prompt": "music_targets/light.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-b7d1baf8-dab3-4992-bf5d-0107292a9626.png",
+      "issues": []
+    },
+    {
+      "id": "thrust",
+      "name": "长矛戳击",
+      "group": "existing_selected",
+      "group_label": "此前已选主图",
+      "origin": "existing_selected",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点向前刺出长 2.4、宽 1 的范围。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "spear",
+      "image": "../v2_melee_actions/thrust.png",
+      "prompt": "../v2_melee_actions/thrust.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "使用此前已选定的主图，非本次生成。"
+      ]
+    },
+    {
+      "id": "slash",
+      "name": "玻璃刀砍",
+      "group": "existing_selected",
+      "group_label": "此前已选主图",
+      "origin": "existing_selected",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出半径 2.2、100° 的扇形斩击。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "glasscutter",
+      "image": "../v2_melee_actions/slash.png",
+      "prompt": "../v2_melee_actions/slash.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "使用此前已选定的主图，非本次生成。"
+      ]
+    },
+    {
+      "id": "whirl",
+      "name": "旋斧攻击",
+      "group": "existing_selected",
+      "group_label": "此前已选主图",
+      "origin": "existing_selected",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "绕释放点扫过半径 1.15 的小圆，每敌只伤一次。 对释放点半径 1.15 内的可砍目标累积普通斧头 75% 的工作量。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "axe",
+      "image": "../v2_melee_actions/whirl.png",
+      "prompt": "../v2_melee_actions/whirl.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "使用此前已选定的主图，非本次生成。"
+      ]
+    },
+    {
+      "id": "orbit",
+      "name": "环绕自身",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "弹丸随施法者环绕，半径随体型和速度调整（2.5～8），平滑入轨，角速度最高 210°/秒。普通弹命中一次消失，基础穿透可命中三次。基础寿命乘 4、至少 4 秒，再应用增减寿命修正，无寿命上限。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/orbit.png",
+      "prompt": "modifiers/orbit.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/orbit.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "施法者剪影与环绕的单条椭圆弹道。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "orbit",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "03448fc91bd1a353cd3037d369221ef3a5a5d526603d44ee56202da4628fb81f",
+        "matches_source": true,
+        "png": "modifiers/orbit.png",
+        "prompt": "modifiers/orbit.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-afd76a86-25bf-49bb-8615-df696875e302.png",
+      "issues": []
+    },
+    {
+      "id": "pierce_all",
+      "name": "高级穿透",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "不限命中次数，同一弹对同一敌人间隔 0.10 秒；仍受墙与寿命限制。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/pierce_all.png",
+      "prompt": "modifiers/pierce_all.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/pierce_all.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "四个目标与无穷符号表达持续穿透。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "pierce_all",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "b0b24a66f971251b8d95d7ff17f96d82c3677014b630d5e6aca0cf98890719be",
+        "matches_source": true,
+        "png": "modifiers/pierce_all.png",
+        "prompt": "modifiers/pierce_all.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-bb9a9459-3841-4b5e-91ef-3fcff86a2370.png",
+      "issues": []
+    },
+    {
+      "id": "imprint_hit",
+      "name": "碰撞触发修饰",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "下一枚普通远程弹每次有效命中敌人或撞墙时释放预载法术。若此前从未成功释放载荷，正常消失时补发一次；已释放则不在消失时重复。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/imprint_hit.png",
+      "prompt": "projectiles_controls/imprint_hit.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/imprint_hit.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "弹体、接触面、触发后的两个载荷方向可读，未添加机制角标。"
+      ],
+      "validation": {
+        "id": "imprint_hit",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "ab26b67f82600dfa510f8d4b55505e582a901052b157e8f0805cf49d935d3389",
+        "matches_source": true,
+        "png": "projectiles_controls/imprint_hit.png",
+        "prompt": "projectiles_controls/imprint_hit.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-ca72f40b-71a6-4987-bef0-46cec8569a58.png",
+      "issues": []
+    },
+    {
+      "id": "imprint_timer",
+      "name": "定时触发修饰",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "下一枚普通远程弹在 0.50 秒时释放预载法术。若提前正常消失且此前尚未触发，在消失处补发一次；已触发则不再释放。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/imprint_timer.png",
+      "prompt": "projectiles_controls/imprint_timer.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/imprint_timer.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "金色沙漏与载体结合，触发后的载荷可读，未添加机制角标。"
+      ],
+      "validation": {
+        "id": "imprint_timer",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "3a7e0039cf4121cc6e32be0722572ad167cd5e0796acc1d785148c8b7ee26811",
+        "matches_source": true,
+        "png": "projectiles_controls/imprint_timer.png",
+        "prompt": "projectiles_controls/imprint_timer.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-c7130920-0b29-4abd-95e1-6a0d2fa49506.png",
+      "issues": []
+    },
+    {
+      "id": "heal_ally",
+      "name": "命中友方回血",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "遇受伤队友或玩家随从治疗 8 点并消耗弹丸，遇敌照常攻击。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/heal_ally.png",
+      "prompt": "music_targets/heal_ally.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/heal_ally.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "弹丸命中红心与绿色加号清楚，未见明显雾底。"
+      ],
+      "validation": {
+        "id": "heal_ally",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "3806121968c3203fe349ab021d400aa41aee983cbaa4e611bf15335963c134d0",
+        "matches_source": true,
+        "png": "music_targets/heal_ally.png",
+        "prompt": "music_targets/heal_ally.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-daed7778-c30d-4aa8-b0b8-8bb0425973ed.png",
+      "issues": []
+    },
+    {
+      "id": "spark_hit",
+      "name": "火花弹·碰撞",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "发射一枚轻型魔法火花。\n每次有效碰撞时从弹丸位置释放载荷。若此前从未成功释放，正常消失时补发一次；已释放则不在消失时重复。",
+      "base": "spark",
+      "badge": "hit",
+      "source_weapon": null,
+      "image": "projectiles_controls/spark.png",
+      "prompt": "projectiles_controls/spark.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/spark.result.json",
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「火花弹」的主图，非本次单独生成；基础图状态：candidate。"
+      ]
+    },
+    {
+      "id": "spark_timer",
+      "name": "火花弹·定时",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "发射一枚轻型魔法火花。\n飞行 0.50 秒时释放载荷。若提前正常消失且此前尚未触发，在消失处补发一次；已触发则不再释放。散弹的每枚弹体独立释放定时载荷。",
+      "base": "spark",
+      "badge": "timer",
+      "source_weapon": null,
+      "image": "projectiles_controls/spark.png",
+      "prompt": "projectiles_controls/spark.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/spark.result.json",
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「火花弹」的主图，非本次单独生成；基础图状态：candidate。"
+      ]
+    },
+    {
+      "id": "arrow_hit",
+      "name": "魔法箭·碰撞",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "发射一枚飞行更快的魔法箭。\n每次有效碰撞时从弹丸位置释放载荷。若此前从未成功释放，正常消失时补发一次；已释放则不在消失时重复。",
+      "base": "arrow",
+      "badge": "hit",
+      "source_weapon": null,
+      "image": "projectiles_controls/arrow.png",
+      "prompt": "projectiles_controls/arrow.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/arrow.result.json",
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「魔法箭」的主图，非本次单独生成；基础图状态：candidate。"
+      ]
+    },
+    {
+      "id": "arrow_timer",
+      "name": "魔法箭·定时",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "发射一枚飞行更快的魔法箭。\n飞行 0.50 秒时释放载荷。若提前正常消失且此前尚未触发，在消失处补发一次；已触发则不再释放。散弹的每枚弹体独立释放定时载荷。",
+      "base": "arrow",
+      "badge": "timer",
+      "source_weapon": null,
+      "image": "projectiles_controls/arrow.png",
+      "prompt": "projectiles_controls/arrow.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/arrow.result.json",
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「魔法箭」的主图，非本次单独生成；基础图状态：candidate。"
+      ]
+    },
+    {
+      "id": "heavy_hit",
+      "name": "重能量球·碰撞",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "发射缓慢但威力更大的能量球。\n每次有效碰撞时从弹丸位置释放载荷。若此前从未成功释放，正常消失时补发一次；已释放则不在消失时重复。",
+      "base": "heavy",
+      "badge": "hit",
+      "source_weapon": null,
+      "image": "../v1_four_subjects/heavy.png",
+      "prompt": "../v1_four_subjects/heavy.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「重能量球」的主图，非本次单独生成；基础图状态：existing_selected。"
+      ]
+    },
+    {
+      "id": "heavy_timer",
+      "name": "重能量球·定时",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "发射缓慢但威力更大的能量球。\n飞行 0.50 秒时释放载荷。若提前正常消失且此前尚未触发，在消失处补发一次；已触发则不再释放。散弹的每枚弹体独立释放定时载荷。",
+      "base": "heavy",
+      "badge": "timer",
+      "source_weapon": null,
+      "image": "../v1_four_subjects/heavy.png",
+      "prompt": "../v1_four_subjects/heavy.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「重能量球」的主图，非本次单独生成；基础图状态：existing_selected。"
+      ]
+    },
+    {
+      "id": "scatter_hit",
+      "name": "散弹·碰撞",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "同时发射三枚向不同方向散开的弹丸。\n每次有效碰撞时从弹丸位置释放载荷。若此前从未成功释放，正常消失时补发一次；已释放则不在消失时重复。",
+      "base": "scatter",
+      "badge": "hit",
+      "source_weapon": null,
+      "image": "projectiles_controls/scatter.png",
+      "prompt": "projectiles_controls/scatter.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/scatter.result.json",
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「散弹」的主图，非本次单独生成；基础图状态：candidate。"
+      ]
+    },
+    {
+      "id": "scatter_timer",
+      "name": "散弹·定时",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "同时发射三枚向不同方向散开的弹丸。\n飞行 0.50 秒时释放载荷。若提前正常消失且此前尚未触发，在消失处补发一次；已触发则不再释放。散弹的每枚弹体独立释放定时载荷。",
+      "base": "scatter",
+      "badge": "timer",
+      "source_weapon": null,
+      "image": "projectiles_controls/scatter.png",
+      "prompt": "projectiles_controls/scatter.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/scatter.result.json",
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「散弹」的主图，非本次单独生成；基础图状态：candidate。"
+      ]
+    },
+    {
+      "id": "fire_hit",
+      "name": "火焰弹·碰撞",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "每次命中蒸发直击伤害 ÷ 5 的潮湿值，仍有潮湿值时不会点燃。干燥后尝试引燃，随后每秒 3.6 点火伤，共三次，各弹独立。\n每次有效碰撞时从弹丸位置释放载荷。若此前从未成功释放，正常消失时补发一次；已释放则不在消失时重复。",
+      "base": "fire",
+      "badge": "hit",
+      "source_weapon": null,
+      "image": "../v1_four_subjects/fire.png",
+      "prompt": "../v1_four_subjects/fire.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「火焰弹」的主图，非本次单独生成；基础图状态：existing_selected。"
+      ]
+    },
+    {
+      "id": "fire_timer",
+      "name": "火焰弹·定时",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "每次命中蒸发直击伤害 ÷ 5 的潮湿值，仍有潮湿值时不会点燃。干燥后尝试引燃，随后每秒 3.6 点火伤，共三次，各弹独立。\n飞行 0.50 秒时释放载荷。若提前正常消失且此前尚未触发，在消失处补发一次；已触发则不再释放。散弹的每枚弹体独立释放定时载荷。",
+      "base": "fire",
+      "badge": "timer",
+      "source_weapon": null,
+      "image": "../v1_four_subjects/fire.png",
+      "prompt": "../v1_four_subjects/fire.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「火焰弹」的主图，非本次单独生成；基础图状态：existing_selected。"
+      ]
+    },
+    {
+      "id": "frost_hit",
+      "name": "冰霜弹·碰撞",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "直击后灭火并增加 0.4 寒冷值，由目标冻抗决定冻结。\n每次有效碰撞时从弹丸位置释放载荷。若此前从未成功释放，正常消失时补发一次；已释放则不在消失时重复。",
+      "base": "frost",
+      "badge": "hit",
+      "source_weapon": null,
+      "image": "../v1_four_subjects/frost.png",
+      "prompt": "../v1_four_subjects/frost.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「冰霜弹」的主图，非本次单独生成；基础图状态：existing_selected。"
+      ]
+    },
+    {
+      "id": "frost_timer",
+      "name": "冰霜弹·定时",
+      "group": "shared_base",
+      "group_label": "共享基础主图",
+      "origin": "shared_base",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "直击后灭火并增加 0.4 寒冷值，由目标冻抗决定冻结。\n飞行 0.50 秒时释放载荷。若提前正常消失且此前尚未触发，在消失处补发一次；已触发则不再释放。散弹的每枚弹体独立释放定时载荷。",
+      "base": "frost",
+      "badge": "timer",
+      "source_weapon": null,
+      "image": "../v1_four_subjects/frost.png",
+      "prompt": "../v1_four_subjects/frost.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "复用基础卡「冰霜弹」的主图，非本次单独生成；基础图状态：existing_selected。"
+      ]
+    },
+    {
+      "id": "mana_reduce",
+      "name": "蓝耗降低",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "抽下一张，立即提供 30 法力支付后续卡。成功施法后剩余法力最多为法杖上限。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/mana_reduce.png",
+      "prompt": "music_targets/mana_reduce.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/mana_reduce.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "蓝色液滴、降低箭头与回流形状清楚；底部余量较小，最终卡面适配时需按可见轮廓留边。"
+      ],
+      "validation": {
+        "id": "mana_reduce",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "9a85ce216e09635c8aab2396fcae52c9314278c3be9c4757690ef06ff5a434d5",
+        "matches_source": true,
+        "png": "music_targets/mana_reduce.png",
+        "prompt": "music_targets/mana_reduce.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-1adc1786-e082-4243-8bcc-98ae3023191a.png",
+      "issues": []
+    },
+    {
+      "id": "recharge_down",
+      "name": "减少充能时间",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "施放间隔修正 −0.17 秒，充能时间修正 −0.33 秒。充能修正可持续叠加至负值，实际等待按 0 处理。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/recharge_down.png",
+      "prompt": "music_targets/recharge_down.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/recharge_down.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "沙漏与缩短等待符号清楚，主要形状完整。"
+      ],
+      "validation": {
+        "id": "recharge_down",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "5a0ca99a7b30a02c392c6f6b8484ebe436d3379fc2e2b16ba01f43522289bc97",
+        "matches_source": true,
+        "png": "music_targets/recharge_down.png",
+        "prompt": "music_targets/recharge_down.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-62853903-2e47-4001-942b-0c3532fe8602.png",
+      "issues": []
+    },
+    {
+      "id": "repeat_2",
+      "name": "双倍施法",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "needs_retry",
+      "kind": "modifier",
+      "effect": "抽下一张。当前组的攻击同时释放两份，各自携带载荷。副本免耗蓝，真实抽到的卡计费一次。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/repeat_2.png",
+      "prompt": "projectiles_controls/repeat_2.prompt.txt",
+      "retry_prompt": "projectiles_controls/repeat_2.retry.prompt.txt",
+      "retry_prompt_mode": "recommended",
+      "result": "projectiles_controls/repeat_2.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "双倍施法底端菱形贴近并触及画布下边缘：6 个 alpha≥8 像素落在边界，最大 alpha 108。主体需要完整安全留白。",
+        "一个输入、两个同形输出，唯一倍数文字×2正确。"
+      ],
+      "validation": {
+        "id": "repeat_2",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "fd049e94e26baf32bf60ca3922ec270e85f66a6570409502b73e86191a4959c9",
+        "matches_source": true,
+        "png": "projectiles_controls/repeat_2.png",
+        "prompt": "projectiles_controls/repeat_2.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-65060155-ccc0-4a5e-9823-9fb8c4c9017f.png",
+      "issues": [
+        "双倍施法底端菱形贴近并触及画布下边缘：6 个 alpha≥8 像素落在边界，最大 alpha 108。主体需要完整安全留白。"
+      ]
+    },
+    {
+      "id": "repeat_3",
+      "name": "三倍施法",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "抽下一张。当前组的攻击同时释放三份。倍数可相乘，预载计入可选的单发上限。副本免耗蓝。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/repeat_3.png",
+      "prompt": "projectiles_controls/repeat_3.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/repeat_3.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "一个输入、三个同形输出，唯一倍数文字×3正确；上下留白偏紧。"
+      ],
+      "validation": {
+        "id": "repeat_3",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "69fb5fa6297eca38a39c2e47a3acd1e5c688ab9281468e6e987ef8038cc70bc4",
+        "matches_source": true,
+        "png": "projectiles_controls/repeat_3.png",
+        "prompt": "projectiles_controls/repeat_3.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-db2246e8-f494-4cb8-bb55-955f76fbd844.png",
+      "issues": []
+    },
+    {
+      "id": "phase_wall",
+      "name": "穿墙",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "弹丸穿过完整墙体，优先于弹跳；穿越时不触发命中。可跨越海岸。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/phase_wall.png",
+      "prompt": "modifiers/phase_wall.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/phase_wall.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "完整墙体与贯穿轨迹，局部透明用于穿墙表达。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "phase_wall",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "c8f68bb9e30234fca3ca06e0bf74c1dcadbcc065d23e5365b88cddad8a85c825",
+        "matches_source": true,
+        "png": "modifiers/phase_wall.png",
+        "prompt": "modifiers/phase_wall.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-04215465-e5ff-4267-b947-99f6429e2d83.png",
+      "issues": []
+    },
+    {
+      "id": "spore_sentry",
+      "name": "荚刺哨株",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "临时随从，60 生命，可被怪物击倒。在释放点萌发，0.6 秒后索敌。6 秒内向半径 4 内的敌人发射最多三枚荚刺。并存数量由世界设置控制。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/spore_sentry.png",
+      "prompt": "fields/spore_sentry.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/spore_sentry.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "主体完整但画布留白偏紧，后续接入卡牌时须按 alpha 可见边界等比缩放并补足安全留白。"
+      ],
+      "validation": {
+        "id": "spore_sentry",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "42b9967ae5a6d164ff907401ecfc89d1e52d6af5f57f34476b074904dd8400af",
+        "matches_source": true,
+        "png": "fields/spore_sentry.png",
+        "prompt": "fields/spore_sentry.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-17a0d76d-d12e-49ef-84ec-e1aec49538ac.png",
+      "issues": []
+    },
+    {
+      "id": "vital_ring",
+      "name": "活力环",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "每个环每秒为圈内玩家和玩家随从回复 2 生命，共三次。多个环重叠时，治疗量叠加。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/vital_ring.png",
+      "prompt": "fields/vital_ring.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/vital_ring.result.json",
+      "attempt_count": 1,
+      "qa": [],
+      "validation": {
+        "id": "vital_ring",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "00c1a8da4a0dffeddcc4b7b2e7cf550de564ecfe51124e7e2bdeb26b06726556",
+        "matches_source": true,
+        "png": "fields/vital_ring.png",
+        "prompt": "fields/vital_ring.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-eab9521a-e592-44ed-858d-97770a5143a8.png",
+      "issues": []
+    },
+    {
+      "id": "heavy_shot",
+      "name": "沉重一击",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同组每弹伤害 +12，弹速 ×0.65，随机散射半角 +2°。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/heavy_shot.png",
+      "prompt": "modifiers/heavy_shot.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/heavy_shot.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "石壳、紫芯与下压箭头表达沉重一击；红色杂边只存在 alpha<8 区域。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "heavy_shot",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "3ad1aec39f81f441b8bdaa7d61c1b88b73a1ca8bf17fecc75f3214ca9645c1b4",
+        "matches_source": true,
+        "png": "modifiers/heavy_shot.png",
+        "prompt": "modifiers/heavy_shot.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-cab59dcc-ff7a-46db-97b8-c8c81ecb1207.png",
+      "issues": []
+    },
+    {
+      "id": "trident_cast",
+      "name": "三叉阵",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "multicast",
+      "effect": "抽三张法术，分别朝左 20°、正前和右 20° 释放。每一路仍保留自身散射。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/trident_cast.png",
+      "prompt": "projectiles_controls/trident_cast.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/trident_cast.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "准确三个前向展开分支。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "validation": {
+        "id": "trident_cast",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "29618f88a409f948f1d9032dd7aeabc1a49a9da5e37df12770f4992263ac6589",
+        "matches_source": true,
+        "png": "projectiles_controls/trident_cast.png",
+        "prompt": "projectiles_controls/trident_cast.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-45841a88-09f2-4766-9824-af9990a2a087.png",
+      "issues": []
+    },
+    {
+      "id": "chord_d",
+      "name": "弦琴 D·和鸣",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "note",
+      "effect": "在释放点奏出 D 音，附近玩家回复 1 理智，每位玩家每 3 秒最多受益一次。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/chord_d.png",
+      "prompt": "music_targets/chord_d.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/chord_d.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "木制三角弦琴、蓝音符和唯一音名D清楚，无明显灰雾。"
+      ],
+      "validation": {
+        "id": "chord_d",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "2da3e82c027bf35d3218e7036610e17e6dd8dc0473c38f24f2e96d01711d142a",
+        "matches_source": true,
+        "png": "music_targets/chord_d.png",
+        "prompt": "music_targets/chord_d.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-e61e896a-21aa-4076-bcbe-9f9ed224f334.png",
+      "issues": []
+    },
+    {
+      "id": "repeat_4",
+      "name": "四倍施法",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同组释放四份，每份造成 45% 伤害，副本免耗蓝。击退、吸血及友疗修饰只保留一份；愈合弹的每份按 45% 治疗；载荷计入可选的单发上限。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/repeat_4.png",
+      "prompt": "projectiles_controls/repeat_4.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/repeat_4.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "一个输入、四个同形输出，唯一倍数文字×4正确。"
+      ],
+      "validation": {
+        "id": "repeat_4",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "8492930b852954547215f9759882da4ed160658a3d1553e2c8afdc6af6195dbf",
+        "matches_source": true,
+        "png": "projectiles_controls/repeat_4.png",
+        "prompt": "projectiles_controls/repeat_4.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-66a9a846-86d3-44ba-a3fb-f093eefa948b.png",
+      "issues": []
+    },
+    {
+      "id": "gust",
+      "name": "风压弹",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "4 伤，生物最多推 1.3 单位，Boss 不吃位移。命中载荷卵时沿弹道叠加弹速一半的速度，不释放载荷；不能推动晶雷与休眠晶体。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/gust.png",
+      "prompt": "projectiles_controls/gust.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/gust.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "实心风卷与当前弹头形象一致。"
+      ],
+      "validation": {
+        "id": "gust",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "9c2c5c09539565ccc51ce235840173c6cf56011b1643b0d85eaf5e7ff1375639",
+        "matches_source": true,
+        "png": "projectiles_controls/gust.png",
+        "prompt": "projectiles_controls/gust.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-0079ffa9-2c65-4cef-9741-e003918ca175.png",
+      "issues": []
+    },
+    {
+      "id": "spore_ball",
+      "name": "蘑菇孢球",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "16 伤，存活 2 秒；可击破，碎裂仅判一次。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/spore_ball.png",
+      "prompt": "projectiles_controls/spore_ball.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/spore_ball.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "棕褐孢球与大块奶油色凸点一致。"
+      ],
+      "validation": {
+        "id": "spore_ball",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "09798057673de39cdb4768fbad2a8ee1d80cd27f0ae7d4822dca7a0a816b93b6",
+        "matches_source": true,
+        "png": "projectiles_controls/spore_ball.png",
+        "prompt": "projectiles_controls/spore_ball.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-78f9b6cb-a495-409f-a283-8699ba370285.png",
+      "issues": []
+    },
+    {
+      "id": "flint_lance",
+      "name": "燧晶投枪",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "20 伤，先天最多穿 2 敌，可跨越海岸。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/flint_lance.png",
+      "prompt": "projectiles_controls/flint_lance.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/flint_lance.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "灰白燧石矛头、短木杆和粗绳清晰。"
+      ],
+      "validation": {
+        "id": "flint_lance",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "ee8dee4d57e1fe92cb06f774bcbfe65d067ce6c3084247e8d0000198099ea494",
+        "matches_source": true,
+        "png": "projectiles_controls/flint_lance.png",
+        "prompt": "projectiles_controls/flint_lance.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-9c682dd4-3b94-4aa5-adc8-40232fc57859.png",
+      "issues": []
+    },
+    {
+      "id": "crystal_mine",
+      "name": "近感晶雷",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "26 伤，生成后立即感应，半径 1.6。不随时间消失，随世界存档；施法者离线、离开分片或变为幽灵时暂停触发。与休眠晶体共用可选数量上限。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/crystal_mine.png",
+      "prompt": "fields/crystal_mine.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/crystal_mine.result.json",
+      "attempt_count": 1,
+      "qa": [],
+      "validation": {
+        "id": "crystal_mine",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "a9a46b1af2e308439340ed73e6f336e2a62f9e211215a686c1e485f9cd55472f",
+        "matches_source": true,
+        "png": "fields/crystal_mine.png",
+        "prompt": "fields/crystal_mine.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-5e20a4c8-0ae6-42d4-bac9-954f8040da7e.png",
+      "issues": []
+    },
+    {
+      "id": "sleep_crystal",
+      "name": "休眠晶体",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "22 伤，不随时间消失，随世界存档；受到攻击或被晶雷引爆令启动时爆炸。施法者离线、离开分片或变为幽灵时仍可被攻击引爆，移动暂停。与近感晶雷共用可选数量上限。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/sleep_crystal.png",
+      "prompt": "fields/sleep_crystal.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/sleep_crystal.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "主体完整但画布留白偏紧，后续接入卡牌时须按 alpha 可见边界等比缩放并补足安全留白。"
+      ],
+      "validation": {
+        "id": "sleep_crystal",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "70ba4af83391bde6b9530885734f5281f77dde9169e14524e7b5f002ef639f88",
+        "matches_source": true,
+        "png": "fields/sleep_crystal.png",
+        "prompt": "fields/sleep_crystal.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-f24819a9-c7cf-43dc-8ba4-5b2a71a2ac6e.png",
+      "issues": []
+    },
+    {
+      "id": "slime",
+      "name": "黏液弹",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "10 伤，普通敌减速 25% 持续 1.5 秒；同源刷新。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/slime.png",
+      "prompt": "projectiles_controls/slime.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/slime.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "黄绿色圆润黏液主体和短尾一致。"
+      ],
+      "validation": {
+        "id": "slime",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "bd0c4633020876ae15e132a5364349cf466501cb8ea3b3726882766c54dbb2ac",
+        "matches_source": true,
+        "png": "projectiles_controls/slime.png",
+        "prompt": "projectiles_controls/slime.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-ff14721f-093d-44bc-9f58-802f2c526e35.png",
+      "issues": []
+    },
+    {
+      "id": "grow_orb",
+      "name": "蓄势光球",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "12→26 伤，飞满 1 秒封顶，同时略增半径。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/grow_orb.png",
+      "prompt": "projectiles_controls/grow_orb.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/grow_orb.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "金色花瓣包裹的核心与后方较小阶段球清晰。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "validation": {
+        "id": "grow_orb",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "b62c3440f76faff3667b319de1a4810d86cdd02801f0b5bf93a00b2f7d36b25a",
+        "matches_source": true,
+        "png": "projectiles_controls/grow_orb.png",
+        "prompt": "projectiles_controls/grow_orb.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-76cc93de-a4c4-45cb-815d-b8400b41cf82.png",
+      "issues": []
+    },
+    {
+      "id": "heal_bolt",
+      "name": "愈合弹",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "给命中目标回复 8 点生命。默认按普通弹体选取目标，可用目标卡指定友方。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/heal_bolt.png",
+      "prompt": "projectiles_controls/heal_bolt.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/heal_bolt.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "浅绿弹芯、粉色及灰绿花瓣外形一致。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "validation": {
+        "id": "heal_bolt",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "38daa095ec403aea029310231155540182dd24862d619ef166c080ff1898d52e",
+        "matches_source": true,
+        "png": "projectiles_controls/heal_bolt.png",
+        "prompt": "projectiles_controls/heal_bolt.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-ecda1f64-aeea-45b4-9e85-b1bd112cc39d.png",
+      "issues": []
+    },
+    {
+      "id": "star_vortex",
+      "name": "旋流四星",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "4 枚各 6 伤，共享 1 秒寿命，计入可选的单发上限。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/star_vortex.png",
+      "prompt": "projectiles_controls/star_vortex.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/star_vortex.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "准确四颗四角星组成旋流。"
+      ],
+      "validation": {
+        "id": "star_vortex",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "d1792b6a901ea936598562ee71c771cc3bbec216c4a1280dd4631718515ac931",
+        "matches_source": true,
+        "png": "projectiles_controls/star_vortex.png",
+        "prompt": "projectiles_controls/star_vortex.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-5fadc480-7f5a-4ee7-b77b-7219927514dd.png",
+      "issues": []
+    },
+    {
+      "id": "moon_fall",
+      "name": "月石坠击",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "地标等 0.8 秒落石，半径 2、30 伤，建筑免伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/moon_fall.png",
+      "prompt": "fields/moon_fall.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/moon_fall.result.json",
+      "attempt_count": 1,
+      "qa": [],
+      "validation": {
+        "id": "moon_fall",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "fc820adeea53bb706177e2c8a26e222f8e58fb154964e36e091fb33a152921e8",
+        "matches_source": true,
+        "png": "fields/moon_fall.png",
+        "prompt": "fields/moon_fall.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-823e047b-5af8-4681-bf95-0cc2968906ba.png",
+      "issues": []
+    },
+    {
+      "id": "bog_whip",
+      "name": "沼泽鞭击",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "从触发点沿弹向鞭打长 2.8 的区域，每敌 17 伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/bog_whip.png",
+      "prompt": "fields/bog_whip.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/bog_whip.result.json",
+      "attempt_count": 1,
+      "qa": [],
+      "validation": {
+        "id": "bog_whip",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "02d9ba0bc82fa236695b6acad0e76e8f6bcfbeac9b778d560d0ae73ba4cf32da",
+        "matches_source": true,
+        "png": "fields/bog_whip.png",
+        "prompt": "fields/bog_whip.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-ef0cfb72-366f-4d3b-9b7a-aeae6fa3808f.png",
+      "issues": []
+    },
+    {
+      "id": "detonate",
+      "name": "晶雷引爆令",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "最远指定 20 单位，在施法点周围 4 单位引爆自己的晶体。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/detonate.png",
+      "prompt": "fields/detonate.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/detonate.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "主体完整但画布留白偏紧，后续接入卡牌时须按 alpha 可见边界等比缩放并补足安全留白。"
+      ],
+      "validation": {
+        "id": "detonate",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "3e33db261e0b7dfc16498a96feac4728b788bc81f30649fe1da8dec449b8ee72",
+        "matches_source": true,
+        "png": "fields/detonate.png",
+        "prompt": "fields/detonate.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-6f85ccbd-c5fe-4280-9a32-246840b54b65.png",
+      "issues": []
+    },
+    {
+      "id": "bee_swarm",
+      "name": "蜂群突袭",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "最多 3 次各 6 伤，同一调度器控制，不掉蜂刺。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/bee_swarm.png",
+      "prompt": "fields/bee_swarm.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/bee_swarm.result.json",
+      "attempt_count": 1,
+      "qa": [],
+      "validation": {
+        "id": "bee_swarm",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "b816d71009bbaeab6fb864ec03c2955627a120c0dec5d62cab80cfb3e1a35c5b",
+        "matches_source": true,
+        "png": "fields/bee_swarm.png",
+        "prompt": "fields/bee_swarm.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-ca419c87-de1c-4620-b45d-bf3f94877b0e.png",
+      "issues": []
+    },
+    {
+      "id": "delay_seal",
+      "name": "延迟符印",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "0.75 秒后由印记释放预抽的一组，只抽 1 张。",
+      "base": null,
+      "badge": "release",
+      "source_weapon": null,
+      "image": "fields/delay_seal.png",
+      "prompt": "fields/delay_seal.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/delay_seal.result.json",
+      "attempt_count": 1,
+      "qa": [],
+      "validation": {
+        "id": "delay_seal",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "069649aa09a354bbb3dd861cb8fc0e43329acad293c2ac80688659740d863ef1",
+        "matches_source": true,
+        "png": "fields/delay_seal.png",
+        "prompt": "fields/delay_seal.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-c511ee75-3e41-4b85-bcbc-c5d3bde65e3a.png",
+      "issues": []
+    },
+    {
+      "id": "rain_cloud",
+      "name": "局部雨云",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "半径 2，持续 3 秒，两次局部湿润与灭火。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/rain_cloud.png",
+      "prompt": "fields/rain_cloud.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/rain_cloud.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "主体完整但画布留白偏紧，后续接入卡牌时须按 alpha 可见边界等比缩放并补足安全留白。"
+      ],
+      "validation": {
+        "id": "rain_cloud",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "ae69e775b45dbbf3685c08760128ef9006a52faa8398cd4dc9306194466af465",
+        "matches_source": true,
+        "png": "fields/rain_cloud.png",
+        "prompt": "fields/rain_cloud.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-ef3c0326-1f6d-44e4-9889-4a489fb14bfc.png",
+      "issues": []
+    },
+    {
+      "id": "guard_ring",
+      "name": "护卫环",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "护盾环绕施法者 2 秒，每抵消一枚射向自己的敌方投射物消耗一面盾。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/guard_ring.png",
+      "prompt": "fields/guard_ring.prompt.txt",
+      "retry_prompt": "fields/guard_ring.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/guard_ring.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=2），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "guard_ring",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "f4a4a5be130768298e7e2345c4af2187d721bd7d79eae377359e55621fd93d07",
+        "matches_source": true,
+        "png": "fields/guard_ring.png",
+        "prompt": "fields/guard_ring.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-a3d44a51-6baa-49c0-8a7f-67a89bba753b.png",
+      "issues": []
+    },
+    {
+      "id": "wild_charge",
+      "name": "散放快充",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同块随机半角 +10°，充能 −0.18 秒。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/wild_charge.png",
+      "prompt": "modifiers/wild_charge.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/wild_charge.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "法杖、三条散开弹道与回充箭头表达散放快充。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "wild_charge",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "cd44412b8862d99218a08f3d52620b6823f018482d161e2877b0b8b7149dfa2e",
+        "matches_source": true,
+        "png": "modifiers/wild_charge.png",
+        "prompt": "modifiers/wild_charge.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-a3cb770a-eed0-4866-9cc4-d96f2ce9a1aa.png",
+      "issues": []
+    },
+    {
+      "id": "long_life",
+      "name": "续航铭文",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "飞行弹体寿命 ×1.35，多张相乘，无寿命上限；默认无累计射程限制，可由世界设置开启。也延长火药引线；也影响有限寿命的静态场，永久实体仍永久。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/long_life.png",
+      "prompt": "modifiers/long_life.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/long_life.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "上半部剩余沙量较多，长箭头表达续航。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "long_life",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "3955071e6b98d6548db6ca80a489bb85d72d4b4f8df7a20a1bd71235913c7553",
+        "matches_source": true,
+        "png": "modifiers/long_life.png",
+        "prompt": "modifiers/long_life.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-5a727144-9941-49ce-9b63-ab3990b1e84d.png",
+      "issues": []
+    },
+    {
+      "id": "reverse_path",
+      "name": "往返弹道",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "0.45 秒后反向一次，增寿 15%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/reverse_path.png",
+      "prompt": "modifiers/reverse_path.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/reverse_path.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "U形折返线路表达向原方向返回。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "reverse_path",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "997d995a4f8fc1ecef990e56d4d67e45c92d1c4c3c99730f73d66048c0d48763",
+        "matches_source": true,
+        "png": "modifiers/reverse_path.png",
+        "prompt": "modifiers/reverse_path.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-b12c2684-4ed0-451a-bc76-a8b0641478bd.png",
+      "issues": []
+    },
+    {
+      "id": "return_path",
+      "name": "返航弹道",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "0.4 秒后掉头，再以最多 180°/秒转向施法者。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/return_path.png",
+      "prompt": "modifiers/return_path.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/return_path.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "弯曲回路终止于施法者，和固定折返区分。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "return_path",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "30e8769a3adb27bc35376150ba363939994ae12c58fecfc40523574ef3feebf0",
+        "matches_source": true,
+        "png": "modifiers/return_path.png",
+        "prompt": "modifiers/return_path.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-f3b25262-13e0-4bb5-bc67-c405ace68b2c.png",
+      "issues": []
+    },
+    {
+      "id": "light_shot",
+      "name": "轻盈一击",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "速度 ×1.35，伤害 ×0.75，半角 −1°。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/light_shot.png",
+      "prompt": "modifiers/light_shot.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/light_shot.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "羽毛与轻型魔弹清楚；青绿色高饱和边缘残留仅在 alpha<8 区域。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "light_shot",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "3d755215076a90e547246d8afd90c971faa2d02507f6b88fa6338faff7267c2a",
+        "matches_source": true,
+        "png": "modifiers/light_shot.png",
+        "prompt": "modifiers/light_shot.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-d5abb56b-06c9-4f57-b50f-cadb8cd33273.png",
+      "issues": []
+    },
+    {
+      "id": "accelerate",
+      "name": "蓄速",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "从 0.55 倍初速起步，0.7 秒内升到 1.45 倍。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/accelerate.png",
+      "prompt": "modifiers/accelerate.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/accelerate.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "沿同一直线的三个位置逐渐拉开间距；位置影像也被画成逐渐增大，需结合牌名避免误读巨化。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "accelerate",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "186a88e3e5363f59620dc27e6194c86354fcbeb911d97fb0e57c1e5ab171cd0d",
+        "matches_source": true,
+        "png": "modifiers/accelerate.png",
+        "prompt": "modifiers/accelerate.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-f0c53b96-2e7f-45bc-b14b-42d5341086e3.png",
+      "issues": []
+    },
+    {
+      "id": "chill_touch",
+      "name": "寒霜附魔",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "每张附魔每次命中附加 0.2 寒冷。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/chill_touch.png",
+      "prompt": "fields/chill_touch.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/chill_touch.result.json",
+      "attempt_count": 1,
+      "qa": [],
+      "validation": {
+        "id": "chill_touch",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "59be33b30c96eee3462f43a680095f21c0168c4a935b6e3c0850d66ea4165542",
+        "matches_source": true,
+        "png": "fields/chill_touch.png",
+        "prompt": "fields/chill_touch.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-f90a2839-6a81-418a-b465-317ac9b49205.png",
+      "issues": []
+    },
+    {
+      "id": "wet_weak",
+      "name": "潮湿破绽",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "对潮湿目标伤害 +25%，可叠加原版电击和火伤结算。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/wet_weak.png",
+      "prompt": "fields/wet_weak.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/wet_weak.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "主体完整但画布留白偏紧，后续接入卡牌时须按 alpha 可见边界等比缩放并补足安全留白。"
+      ],
+      "validation": {
+        "id": "wet_weak",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "fa76714770484dc912ff97a9a5c6b6af25b05e3def2faf7af489b9fed51c8508",
+        "matches_source": true,
+        "png": "fields/wet_weak.png",
+        "prompt": "fields/wet_weak.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-f1e05f37-b8e6-4383-8fc2-e9c4af0bd9af.png",
+      "issues": []
+    },
+    {
+      "id": "melee_mark",
+      "name": "近战破绽",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "命中后标记 2 秒，下一次合格近战 +20% 并消费。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/melee_mark.png",
+      "prompt": "modifiers/melee_mark.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/melee_mark.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "短刃、缺口和弱点目标表达近战破绽。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "melee_mark",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "86810f04e697b2fc612490d6391e1e75e12dd26429c8bc4c38983efac36f0291",
+        "matches_source": true,
+        "png": "modifiers/melee_mark.png",
+        "prompt": "modifiers/melee_mark.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-c6486175-8b6a-4e75-9b71-6c0d818c82d2.png",
+      "issues": []
+    },
+    {
+      "id": "wild_double",
+      "name": "双重散放",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "multicast",
+      "effect": "抽 2 张，半角 +8°，略减充能。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/wild_double.png",
+      "prompt": "projectiles_controls/wild_double.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/wild_double.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "准确两道向前分散的金色箭束。",
+        "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+      ],
+      "validation": {
+        "id": "wild_double",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "367903bca8f647aef482e5d602fd90bcc95914e8ee9096de056dcd2bf8ee7cfe",
+        "matches_source": true,
+        "png": "projectiles_controls/wild_double.png",
+        "prompt": "projectiles_controls/wild_double.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-a20ea061-29a1-4362-95f2-fe17ccd92912.png",
+      "issues": []
+    },
+    {
+      "id": "two_way",
+      "name": "前后阵",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "multicast",
+      "effect": "抽 2 张，固定 0°/180°，分别叠各自小散射。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/two_way.png",
+      "prompt": "projectiles_controls/two_way.prompt.txt",
+      "retry_prompt": "projectiles_controls/two_way.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "projectiles_controls/two_way.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "准确两道相反180度箭束，中心释放点明确。",
+        "横画布主体完整，可后续等比放入方形卡框；仅透明画布比例不同，无需重绘。保留重试 prompt 作为用户希望调整构图时的可选方案。"
+      ],
+      "validation": {
+        "id": "two_way",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1774,
+          887
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "2433031dcffce2b6787bde88d45c647b713f4675f392965c6349c61bb9492555",
+        "matches_source": true,
+        "png": "projectiles_controls/two_way.png",
+        "prompt": "projectiles_controls/two_way.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-a13bb56c-152c-4b1a-a0bd-09fb1e67b70a.png",
+      "issues": []
+    },
+    {
+      "id": "note_a",
+      "name": "陶笛 A·短鸣",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "短程声波标记首敌 2 秒，直伤 0；强化可赋予一次直伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/note_a.png",
+      "prompt": "music_targets/note_a.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/note_a.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "陶笛、金色音符和唯一音名A清楚，背景透明。"
+      ],
+      "validation": {
+        "id": "note_a",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "d5adbfb5a09867cfc146c8ae9223f362f0d5a6f38f1ec47c3574cdf4d0b46a90",
+        "matches_source": true,
+        "png": "music_targets/note_a.png",
+        "prompt": "music_targets/note_a.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-e5b1a72a-824c-46a9-aefc-fc6ea38107fd.png",
+      "issues": []
+    },
+    {
+      "id": "glass_disc",
+      "name": "月玻璃飞刃",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "14 伤，最多 2 命中；不自伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/glass_disc.png",
+      "prompt": "projectiles_controls/glass_disc.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/glass_disc.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "月玻璃钩刃、灰褐内环与透明中心孔清楚。"
+      ],
+      "validation": {
+        "id": "glass_disc",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "d9399bef72911a386c82b16f92b6b93b53dbe4f7061ace23e517d02543752b4d",
+        "matches_source": true,
+        "png": "projectiles_controls/glass_disc.png",
+        "prompt": "projectiles_controls/glass_disc.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-920f2515-5b86-4f3a-9874-1f62da2d74ce.png",
+      "issues": []
+    },
+    {
+      "id": "land_hook",
+      "name": "岸上抓钩",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "最长牵引 4 单位，只在陆地生效。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/land_hook.png",
+      "prompt": "projectiles_controls/land_hook.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/land_hook.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "三叉深灰抓钩与一段可见粗绳一致。"
+      ],
+      "validation": {
+        "id": "land_hook",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "34d49966dbc1550a2eb5161b02a21c7e4b6af0440999b908d4cc1a8dbaaf552b",
+        "matches_source": true,
+        "png": "projectiles_controls/land_hook.png",
+        "prompt": "projectiles_controls/land_hook.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-a4315035-ad98-4329-9e0b-e69fff0d24e6.png",
+      "issues": []
+    },
+    {
+      "id": "tri_electric",
+      "name": "三相电球",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "三枚各 5 基础电伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/tri_electric.png",
+      "prompt": "projectiles_controls/tri_electric.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/tri_electric.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "准确三颗紫色电球与短闪电分叉。"
+      ],
+      "validation": {
+        "id": "tri_electric",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "eaa196373a268450999d66e4bd4638747917d035977b89c976dae199690018fa",
+        "matches_source": true,
+        "png": "projectiles_controls/tri_electric.png",
+        "prompt": "projectiles_controls/tri_electric.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-24d756f3-d5ce-4d70-b595-963e6936f830.png",
+      "issues": []
+    },
+    {
+      "id": "end_beam",
+      "name": "终点聚爆束",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "贯穿光束每目标每 0.5 秒造成 12 伤害并触发碰撞效果。光带留存 1.2 秒后用 0.3 秒收细消散；终点半径 1.5 爆 16。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/end_beam.png",
+      "prompt": "projectiles_controls/end_beam.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/end_beam.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "使用当前紫色连续激光与终点星芒，未使用过期红橙弹头素材；左下留白偏紧。"
+      ],
+      "validation": {
+        "id": "end_beam",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "3eb01cc0cbb058b08f8adf8fe0ca44351978c1a8e3acb27c60d5ba982752f540",
+        "matches_source": true,
+        "png": "projectiles_controls/end_beam.png",
+        "prompt": "projectiles_controls/end_beam.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-b31229c2-8912-4f41-a0d0-1626c0912985.png",
+      "issues": []
+    },
+    {
+      "id": "deer_decoy",
+      "name": "幻鹿诱饵",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "3 秒灵鹿幻影吸引普通怪，结束时旋身消散，造成一次 5 点伤害，不分敌我。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/deer_decoy.png",
+      "prompt": "fields/deer_decoy.prompt.txt",
+      "retry_prompt": "fields/deer_decoy.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/deer_decoy.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=2），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "deer_decoy",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "b12c80cb050dc7205e68fb2b5748731e2cd4b423995129c108945479171f6e8d",
+        "matches_source": true,
+        "png": "fields/deer_decoy.png",
+        "prompt": "fields/deer_decoy.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-9cc734c6-03b1-46fc-ad73-e7c32a0a4b05.png",
+      "issues": []
+    },
+    {
+      "id": "payload_egg",
+      "name": "空心载荷卵",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "永久保存载荷。直接攻击、范围攻击和爆炸均可击破，载荷归实际攻击者；无有效攻击者时使用中立施法源。风压只推动。陆地、船、海面边界不可跨越；在海上生成会落水消失。",
+      "base": null,
+      "badge": "break",
+      "source_weapon": null,
+      "image": "fields/payload_egg.png",
+      "prompt": "fields/payload_egg.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/payload_egg.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "主体完整但画布留白偏紧，后续接入卡牌时须按 alpha 可见边界等比缩放并补足安全留白。"
+      ],
+      "validation": {
+        "id": "payload_egg",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "576a246a8a710fbda3e9405dad81d2e913bb6b0115aaaab579e8bbc0ec9bcc69",
+        "matches_source": true,
+        "png": "fields/payload_egg.png",
+        "prompt": "fields/payload_egg.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-2e5b6ef4-b222-45b4-b230-f79e6fc709b2.png",
+      "issues": []
+    },
+    {
+      "id": "fireflies",
+      "name": "萤虫伴飞",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "短时跟随，最多袭击两次各 5 伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/fireflies.png",
+      "prompt": "fields/fireflies.prompt.txt",
+      "retry_prompt": "fields/fireflies.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/fireflies.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=2），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "fireflies",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "e0d81a101867d38cb9c5776e401e7ba5a1095199417823b0ed16e227985ba30a",
+        "matches_source": true,
+        "png": "fields/fireflies.png",
+        "prompt": "fields/fireflies.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-0d1d4938-ffd2-4db3-b4a3-0e7420322ee9.png",
+      "issues": []
+    },
+    {
+      "id": "shock_ring",
+      "name": "电击环",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "半径 2，2 秒内两次各 6 基础电伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/shock_ring.png",
+      "prompt": "fields/shock_ring.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/shock_ring.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "主体完整但画布留白偏紧，后续接入卡牌时须按 alpha 可见边界等比缩放并补足安全留白。",
+        "少量同色蓝色抗锯齿细边，未见明显异色块；作为候选保留供用户实卡尺寸验收。"
+      ],
+      "validation": {
+        "id": "shock_ring",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "62f0e730077db136ef3adbe76f2664e3c906369c8c3c4f3dba62c17c2b3ce2eb",
+        "matches_source": true,
+        "png": "fields/shock_ring.png",
+        "prompt": "fields/shock_ring.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-c780ad05-5ab5-4e93-a200-57b466d6245a.png",
+      "issues": []
+    },
+    {
+      "id": "storm_cloud",
+      "name": "局部雷云",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "三次预警，各 7 基础电伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/storm_cloud.png",
+      "prompt": "fields/storm_cloud.prompt.txt",
+      "retry_prompt": "fields/storm_cloud.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/storm_cloud.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=1），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "storm_cloud",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "6fcf75c5c5b6b55f9367e85487273ae9473be5d21b5b0d73ed74751dd2f537ad",
+        "matches_source": true,
+        "png": "fields/storm_cloud.png",
+        "prompt": "fields/storm_cloud.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-d731c86b-a53f-43a5-848e-73e688f7b06e.png",
+      "issues": []
+    },
+    {
+      "id": "vortex",
+      "name": "聚怪涡",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "半径 2.5 只拉普通敌人一次，最大位移 1。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/vortex.png",
+      "prompt": "fields/vortex.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "fields/vortex.result.json",
+      "attempt_count": 1,
+      "qa": [],
+      "validation": {
+        "id": "vortex",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "7f76b46c733ad7e6e28929b08cc6ba2c78c8b715910a38f08447e5a0d4c3d898",
+        "matches_source": true,
+        "png": "fields/vortex.png",
+        "prompt": "fields/vortex.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-750b2d56-4504-4d70-8cd7-30801fab6f4f.png",
+      "issues": []
+    },
+    {
+      "id": "harmless",
+      "name": "无害载体",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "直伤归零，寿命 ×1.3，仍可带独立载荷。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/harmless.png",
+      "prompt": "modifiers/harmless.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/harmless.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "空心载体包裹紫色能量点。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "harmless",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "aecf7aa3dc0a820c2cd67fcc57bfd6c008ee1f270a8a3a491fcc3d9acb89ea38",
+        "matches_source": true,
+        "png": "modifiers/harmless.png",
+        "prompt": "modifiers/harmless.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-e3cb9e9a-b15e-4f9c-8f91-871d6760b3be.png",
+      "issues": []
+    },
+    {
+      "id": "searing_halo",
+      "name": "灼光环",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "半径 0.8，每目标每 0.5 秒最多 3 伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/searing_halo.png",
+      "prompt": "fields/searing_halo.prompt.txt",
+      "retry_prompt": "fields/searing_halo.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/searing_halo.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=3），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "searing_halo",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "760fe320c1914cd67df62c2109bbd4b06f34b6d712da638921d18a46c5dbdf1d",
+        "matches_source": true,
+        "png": "fields/searing_halo.png",
+        "prompt": "fields/searing_halo.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-a57b5e3c-0fdb-4831-b4c3-d1a6520f228d.png",
+      "issues": []
+    },
+    {
+      "id": "twin_arc",
+      "name": "双弹电弧",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同一施法两弹间距离不超过 3；每目标每 0.5 秒最多一次电伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/twin_arc.png",
+      "prompt": "fields/twin_arc.prompt.txt",
+      "retry_prompt": "fields/twin_arc.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/twin_arc.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=3），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "twin_arc",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "cec36f4ec04f310bb42b915334ef7f508adc41689ed581c3adbead4ad226052e",
+        "matches_source": true,
+        "png": "fields/twin_arc.png",
+        "prompt": "fields/twin_arc.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-1df9aeaf-76c5-4454-b423-35c11e69b40d.png",
+      "issues": []
+    },
+    {
+      "id": "side_embers",
+      "name": "双侧余烬",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "母弹经过 3 单位向两侧各发 1 枚，最多 2 组。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/side_embers.png",
+      "prompt": "fields/side_embers.prompt.txt",
+      "retry_prompt": "fields/side_embers.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/side_embers.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "主体完整但画布留白偏紧，后续接入卡牌时须按 alpha 可见边界等比缩放并补足安全留白。",
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=3），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "side_embers",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "5a6bb838c70889675831e7d4260a7560725b9fd05555fdfc389fee9a66b4a6a2",
+        "matches_source": true,
+        "png": "fields/side_embers.png",
+        "prompt": "fields/side_embers.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-374cbd4e-c71a-4e53-8cc5-62f34c1a410c.png",
+      "issues": []
+    },
+    {
+      "id": "near_homing",
+      "name": "短距离追踪",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "搜索半径 3，推进加速度 72，阻尼 1.44；趋近速度 50 单位/秒，转向上限 360°/秒。可推动静止实体。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/near_homing.png",
+      "prompt": "modifiers/near_homing.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/near_homing.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "短而紧的弯曲路径指向近处目标，保留推进笔触。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "near_homing",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "bb7d121799e344278da593baf04aa21ae4485be2fbf25b2ac731cb58f4861b70",
+        "matches_source": true,
+        "png": "modifiers/near_homing.png",
+        "prompt": "modifiers/near_homing.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-05bcce69-4db9-46e6-b0d1-2a2f6e06ef70.png",
+      "issues": []
+    },
+    {
+      "id": "crit_rune",
+      "name": "暴击铭文",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "直击 +15 个百分点暴击率，暴击 ×1.5。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/crit_rune.png",
+      "prompt": "modifiers/crit_rune.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/crit_rune.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "晶石上的红色切口与白色冲击形状表达暴击。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "crit_rune",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "58378967c994cc72e375f1802910652a5b67015542a2e41cccc4fe2197c642fd",
+        "matches_source": true,
+        "png": "modifiers/crit_rune.png",
+        "prompt": "modifiers/crit_rune.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-5aa9748d-2dc4-45e4-838f-7e795ba7f13d.png",
+      "issues": []
+    },
+    {
+      "id": "cast_four",
+      "name": "四重施法",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "multicast",
+      "effect": "抽 4 张，额外充能 +0.12 秒。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/cast_four.png",
+      "prompt": "projectiles_controls/cast_four.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/cast_four.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "四个不同印记表现四重抽取，与复制法术图形明确区分。"
+      ],
+      "validation": {
+        "id": "cast_four",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "f4a73a79a309f9d8b64fed0fd985de084df2002bede38c01724f6fb3634ea7d8",
+        "matches_source": true,
+        "png": "projectiles_controls/cast_four.png",
+        "prompt": "projectiles_controls/cast_four.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-2c490e56-538b-4e7d-b4d3-9bbccda7cba4.png",
+      "issues": []
+    },
+    {
+      "id": "hex_cast",
+      "name": "六角阵",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "multicast",
+      "effect": "抽 6 张，按 60° 隔开。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/hex_cast.png",
+      "prompt": "projectiles_controls/hex_cast.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "projectiles_controls/hex_cast.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "准确六道等间隔向外箭束，未添加外圈。"
+      ],
+      "validation": {
+        "id": "hex_cast",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "6c1e082208aff2594e4e753fcf06bb2f12e8444357313ad56470673c0747f256",
+        "matches_source": true,
+        "png": "projectiles_controls/hex_cast.png",
+        "prompt": "projectiles_controls/hex_cast.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-26031a5d-5198-482e-8bf8-8a92d6690363.png",
+      "issues": []
+    },
+    {
+      "id": "note_c",
+      "name": "陶笛 C·应答",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "命中短鸣标记触发一次 8 伤回声。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/note_c.png",
+      "prompt": "music_targets/note_c.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/note_c.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "陶笛、金色音符和唯一音名C清楚，背景透明。"
+      ],
+      "validation": {
+        "id": "note_c",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "772ce43f1029a424cafce97c6a0fcb064fbc7b85f0f84084d074b945982a4f32",
+        "matches_source": true,
+        "png": "music_targets/note_c.png",
+        "prompt": "music_targets/note_c.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-e7026e0e-ed33-49a2-9921-f6e1071c5c1b.png",
+      "issues": []
+    },
+    {
+      "id": "edge_batbat",
+      "name": "蝙蝠棒",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "batbat",
+      "image": "../../art_v1/originals/edge_batbat.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_bullkelp_root",
+      "name": "公牛海带茎",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "挥出鞭击，攻击距离 4 单位。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "bullkelp_root",
+      "image": "../../art_v1/originals/edge_bullkelp_root.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_chum",
+      "name": "鱼食",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "沿抛物线向施法点投掷鱼食，接触地面或海面后撒下饵屑并消失。海面诱鱼，陆地只有视觉效果。施法间隔增加 10 秒。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "chum",
+      "image": "../../art_v1/originals/edge_chum.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_dumbbell",
+      "name": "哑铃",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "斜抛哑铃，在空中穿过并攻击目标，落地后触发该哑铃的原版效果。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "dumbbell",
+      "image": "../../art_v1/originals/edge_dumbbell.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_dumbbell_bluegem",
+      "name": "冰铃",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "斜抛哑铃，在空中穿过并攻击目标，落地后触发该哑铃的原版效果。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "dumbbell_bluegem",
+      "image": "../../art_v1/originals/edge_dumbbell_bluegem.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_dumbbell_gem",
+      "name": "宝石哑铃",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "斜抛哑铃，在空中穿过并攻击目标，落地后触发该哑铃的原版效果。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "dumbbell_gem",
+      "image": "../../art_v1/originals/edge_dumbbell_gem.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_dumbbell_golden",
+      "name": "黄金哑铃",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "斜抛哑铃，在空中穿过并攻击目标，落地后触发该哑铃的原版效果。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "dumbbell_golden",
+      "image": "../../art_v1/originals/edge_dumbbell_golden.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_dumbbell_heat",
+      "name": "热铃",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "斜抛哑铃，在空中穿过并攻击目标，落地后触发该哑铃的原版效果。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "dumbbell_heat",
+      "image": "../../art_v1/originals/edge_dumbbell_heat.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_dumbbell_marble",
+      "name": "大理石哑铃",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "斜抛哑铃，在空中穿过并攻击目标，落地后触发该哑铃的原版效果。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "dumbbell_marble",
+      "image": "../../art_v1/originals/edge_dumbbell_marble.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_dumbbell_redgem",
+      "name": "火铃",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "斜抛哑铃，在空中穿过并攻击目标，落地后触发该哑铃的原版效果。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "dumbbell_redgem",
+      "image": "../../art_v1/originals/edge_dumbbell_redgem.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_farm_hoe",
+      "name": "园艺锄",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "锄头朝前，沿抛物线投向施法点。成功翻出土堆后消失；落点不能翻土时向前弹跳，寿命耗尽后消失。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "farm_hoe",
+      "image": "../v1_four_subjects/edge_farm_hoe.native.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_fence_rotator",
+      "name": "栅栏击剑",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "fence_rotator",
+      "image": "../../art_v1/originals/edge_fence_rotator.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_fishingrod",
+      "name": "淡水钓竿",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "沿飞行方向投出钓竿。命中可垂钓水源后收线，渔获落在朝向施法者的池塘边。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "fishingrod",
+      "image": "../../art_v1/originals/edge_fishingrod.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_fumaroleaxe",
+      "name": "炽热斧",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。砍树半径 2，效率为原工具的 100%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "fumaroleaxe",
+      "image": "../../art_v1/originals/edge_fumaroleaxe.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_fumarolehammer",
+      "name": "炎头锤",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。锤击半径 2，效率为原工具的 75%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "fumarolehammer",
+      "image": "../../art_v1/originals/edge_fumarolehammer.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_fumarolepickaxe",
+      "name": "烈焰鹤嘴锄",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。采矿半径 2，效率为原工具的 100%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "fumarolepickaxe",
+      "image": "../../art_v1/originals/edge_fumarolepickaxe.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_fumaroleshovel",
+      "name": "呲啦铲",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。铲掘半径 2，效率为原工具的 75%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "fumaroleshovel",
+      "image": "../../art_v1/originals/edge_fumaroleshovel.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_goldenaxe",
+      "name": "黄金斧头",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。砍树半径 2，效率为原工具的 75%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "goldenaxe",
+      "image": "../../art_v1/originals/edge_goldenaxe.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_goldenpickaxe",
+      "name": "黄金鹤嘴锄",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。采矿半径 2，效率为原工具的 75%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "goldenpickaxe",
+      "image": "../../art_v1/originals/edge_goldenpickaxe.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_goldenshovel",
+      "name": "黄金铲子",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。铲掘半径 2，效率为原工具的 75%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "goldenshovel",
+      "image": "../../art_v1/originals/edge_goldenshovel.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_hambat",
+      "name": "火腿棒",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "以满新鲜度火腿棒的攻击力挥击。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "hambat",
+      "image": "../../art_v1/originals/edge_hambat.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_hammer",
+      "name": "锤子",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。锤击半径 2，效率为原工具的 75%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "hammer",
+      "image": "../../art_v1/originals/edge_hammer.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_handpillow_beefalowool",
+      "name": "皮弗娄牛毛枕头",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。 原版枕头基础伤害为零，命中产生击退。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "handpillow_beefalowool",
+      "image": "../../art_v1/originals/edge_handpillow_beefalowool.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_handpillow_kelp",
+      "name": "海带枕头",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。 原版枕头基础伤害为零，命中产生击退。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "handpillow_kelp",
+      "image": "../../art_v1/originals/edge_handpillow_kelp.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_handpillow_petals",
+      "name": "花朵枕头",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。 原版枕头基础伤害为零，命中产生击退。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "handpillow_petals",
+      "image": "../../art_v1/originals/edge_handpillow_petals.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_handpillow_steelwool",
+      "name": "钢丝绵枕头",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。 原版枕头基础伤害为零，命中产生击退。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "handpillow_steelwool",
+      "image": "../../art_v1/originals/edge_handpillow_steelwool.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_lighter",
+      "name": "薇洛的打火机",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "沿抛物线向施法点投出旋转的打火机，吸收沿途半径 3 内的火焰；命中或落地时烤熟半径 3 内的食物并点燃可燃物。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "lighter",
+      "image": "../../art_v1/originals/edge_lighter.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_minifan",
+      "name": "旋转的风扇",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "发射旋转的扇叶，造成 5 点基础伤害。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "minifan",
+      "image": "../../art_v1/originals/edge_minifan.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_moonglassaxe",
+      "name": "月光玻璃斧",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。砍树半径 2，效率为原工具的 75%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "moonglassaxe",
+      "image": "../../art_v1/originals/edge_moonglassaxe.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_multitool_axe_pickaxe",
+      "name": "多用斧镐",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。砍树、采矿半径 2，效率为原工具的 75%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "multitool_axe_pickaxe",
+      "image": "../../art_v1/originals/edge_multitool_axe_pickaxe.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_nightstick",
+      "name": "晨星锤",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。 使用原版电武器结算。 出手时照亮周围。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "nightstick",
+      "image": "../../art_v1/originals/edge_nightstick.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_nightsword",
+      "name": "暗夜剑",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "挥出暗夜剑。每次施法耗费 32 法力，持杖期间没有暗夜剑的持续理智损耗。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "nightsword",
+      "image": "../../art_v1/originals/edge_nightsword.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_oceanfishingrod",
+      "name": "海钓竿",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "投出鱼钩。将钩中的海鱼或漂浮物朝施法者方向抛向最近的岸或船，最远 20 单位。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "oceanfishingrod",
+      "image": "../../art_v1/originals/edge_oceanfishingrod.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_orangestaff",
+      "name": "懒人魔杖",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "橙色魔弹消失时将施法者移至落点。不能穿透，海上落点可能导致落水。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "orangestaff",
+      "image": "../../art_v1/originals/edge_orangestaff.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_pickaxe",
+      "name": "鹤嘴锄",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。采矿半径 2，效率为原工具的 75%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "pickaxe",
+      "image": "../../art_v1/originals/edge_pickaxe.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_pickaxe_lunarplant",
+      "name": "亮茄粉碎者",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。锤击、采矿半径 2，效率为原工具的 75%。 位面伤害 8。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "pickaxe_lunarplant",
+      "image": "../../art_v1/originals/edge_pickaxe_lunarplant.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_pocketwatch_weapon",
+      "name": "警钟",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "挥动警钟，攻击距离 4 单位。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "pocketwatch_weapon",
+      "image": "../../art_v1/originals/edge_pocketwatch_weapon.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_propsign",
+      "name": "道具招牌",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "挥动道具招牌击飞附近目标，不造成伤害。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "propsign",
+      "image": "../../art_v1/originals/edge_propsign.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_ruins_bat",
+      "name": "铥矿棒",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。 有概率在命中处召唤暗影触手。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "ruins_bat",
+      "image": "../../art_v1/originals/edge_ruins_bat.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_shadow_battleaxe",
+      "name": "暗影槌",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。砍树半径 2，效率为原工具的 75%。 位面伤害 8。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "shadow_battleaxe",
+      "image": "../../art_v1/originals/edge_shadow_battleaxe.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_shieldofterror",
+      "name": "恐怖盾牌",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "盾牌在距离施法者 2 单位处环绕。位于攻击范围内时，可在护甲结算前挡下合计 50 点伤害。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "shieldofterror",
+      "image": "../../art_v1/originals/edge_shieldofterror.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_shovel",
+      "name": "铲子",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。铲掘半径 2，效率为原工具的 75%。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "shovel",
+      "image": "../../art_v1/originals/edge_shovel.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_shovel_lunarplant",
+      "name": "亮茄锄铲",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。铲掘半径 2，效率为原工具的 75%。 位面伤害 8。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "shovel_lunarplant",
+      "image": "../../art_v1/originals/edge_shovel_lunarplant.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_spear_wathgrithr",
+      "name": "战斗长矛",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点向前突刺。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "spear_wathgrithr",
+      "image": "../../art_v1/originals/edge_spear_wathgrithr.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_spear_wathgrithr_lightning",
+      "name": "奔雷矛",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点向前突刺。 对潮湿目标使用原版电击结算。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "spear_wathgrithr_lightning",
+      "image": "../../art_v1/originals/edge_spear_wathgrithr_lightning.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_spear_wathgrithr_lightning_charged",
+      "name": "充能奔雷矛",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点向前突刺。 位面伤害 16。 对潮湿目标使用原版电击结算。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "spear_wathgrithr_lightning_charged",
+      "image": "../../art_v1/originals/edge_spear_wathgrithr_lightning_charged.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_sword_lunarplant",
+      "name": "亮茄剑",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。 位面伤害 24。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "sword_lunarplant",
+      "image": "../../art_v1/originals/edge_sword_lunarplant.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_tentaclespike",
+      "name": "触手尖刺",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "tentaclespike",
+      "image": "../../art_v1/originals/edge_tentaclespike.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_torch",
+      "name": "火炬",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "从释放点挥出扇形攻击。 命中按原版武器概率点燃目标。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "torch",
+      "image": "../../art_v1/originals/edge_torch.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_trident",
+      "name": "刺耳三叉戟",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "投出鲸角，在终点发动海上水柱效果，并浸湿周围 2 单位的目标和农田。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "trident",
+      "image": "../../art_v1/originals/edge_trident.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_voidcloth_scythe",
+      "name": "暗影收割者",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "发射原尺寸两倍的旋转镰刀，采收碰撞半径 1.6，连续采收沿途植物；同一株只采收一次，8 单位内优先收入背包。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "voidcloth_scythe",
+      "image": "../../art_v1/originals/edge_voidcloth_scythe.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_whip",
+      "name": "三尾猫鞭",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "melee",
+      "effect": "挥出鞭击，攻击距离 4 单位。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "whip",
+      "image": "../../art_v1/originals/edge_whip.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_yoth_lance",
+      "name": "冲锋骑枪",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "朝施放方向射出冲锋骑枪，可穿过两个目标。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "yoth_lance",
+      "image": "../../art_v1/originals/edge_yoth_lance.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "target_hostile",
+      "name": "选取敌对生物",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同一施法组可命中敌对生物。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/target_hostile.png",
+      "prompt": "music_targets/target_hostile.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/target_hostile.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "猎犬头与目标准星明确，毛束已简化；外沿刻标余量小，合框时按完整轮廓缩放。"
+      ],
+      "validation": {
+        "id": "target_hostile",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "0f4a2bc9e4dc00c09d9cd11d4a024a044bd392e844fac22bd508aac729abeaba",
+        "matches_source": true,
+        "png": "music_targets/target_hostile.png",
+        "prompt": "music_targets/target_hostile.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-d7028e4d-5fd0-49cd-993c-f772056218b1.png",
+      "issues": []
+    },
+    {
+      "id": "target_neutral",
+      "name": "选取中立生物",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "needs_retry",
+      "kind": "modifier",
+      "effect": "同一施法组可命中中立生物。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/target_neutral.png",
+      "prompt": "music_targets/target_neutral.prompt.txt",
+      "retry_prompt": "music_targets/target_neutral.retry.prompt.txt",
+      "retry_prompt_mode": "recommended",
+      "result": "music_targets/target_neutral.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "兔子长耳上方额外出现两条卷曲触角状笔画，影响原版兔子形象。"
+      ],
+      "validation": {
+        "id": "target_neutral",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "4730bca40848142f21884072845be9533aef9d596d3ea3b355ff9c4c08bd75f1",
+        "matches_source": true,
+        "png": "music_targets/target_neutral.png",
+        "prompt": "music_targets/target_neutral.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-5d0dd6af-c137-467b-9f05-c5114fb1f48a.png",
+      "issues": [
+        "兔子长耳上方额外出现两条卷曲触角状笔画，影响原版兔子形象。"
+      ]
+    },
+    {
+      "id": "target_friendly",
+      "name": "选取友好生物",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同一施法组可命中友好生物。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/target_friendly.png",
+      "prompt": "music_targets/target_friendly.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/target_friendly.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "猪人头像、友好心形与同系列准星清楚。"
+      ],
+      "validation": {
+        "id": "target_friendly",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "6f18e9d927520b21050703a10c99b98470f945f8b27089ac1fffea2974f19a8f",
+        "matches_source": true,
+        "png": "music_targets/target_friendly.png",
+        "prompt": "music_targets/target_friendly.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-822b33b8-3caf-41ca-814b-9265dcdf72b5.png",
+      "issues": []
+    },
+    {
+      "id": "target_building",
+      "name": "选取建筑",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同一施法组可命中建筑。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/target_building.png",
+      "prompt": "music_targets/target_building.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/target_building.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "单间木屋及准星清楚，独立透明主体。"
+      ],
+      "validation": {
+        "id": "target_building",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "cd88cf673452032c6e7b812bde88d72aa90392df0ac47d38a60c9b39e83581be",
+        "matches_source": true,
+        "png": "music_targets/target_building.png",
+        "prompt": "music_targets/target_building.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-1bfcebf5-aed0-42ed-b6e6-49ec27b3c192.png",
+      "issues": []
+    },
+    {
+      "id": "target_nature",
+      "name": "选取自然物",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同一施法组可命中自然物。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/target_nature.png",
+      "prompt": "music_targets/target_nature.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/target_nature.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "树木与矿石组成紧凑自然资源轮廓，系列准星统一。"
+      ],
+      "validation": {
+        "id": "target_nature",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "ef72a7f31521d49568eb06608ab8b7230645a7bcf19b0d73d27c6f9edfdd10fe",
+        "matches_source": true,
+        "png": "music_targets/target_nature.png",
+        "prompt": "music_targets/target_nature.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-ac3315a0-3a52-4c14-ad9d-09a906a3a738.png",
+      "issues": []
+    },
+    {
+      "id": "target_players_other",
+      "name": "选取其他玩家",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同一施法组可命中其他玩家。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/target_players_other.png",
+      "prompt": "music_targets/target_players_other.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/target_players_other.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "两位玩家剪影和从施法者指向他人的箭头清楚，与自身卡区分明确。"
+      ],
+      "validation": {
+        "id": "target_players_other",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "a8287c8252bec7d3660e8d5bae63f17f10c1be8bd093a1d788b8d44036d2af37",
+        "matches_source": true,
+        "png": "music_targets/target_players_other.png",
+        "prompt": "music_targets/target_players_other.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-9189045d-64b8-49c2-a869-acdf98d118da.png",
+      "issues": []
+    },
+    {
+      "id": "target_self",
+      "name": "选取自身",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同一施法组可命中自身。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/target_self.png",
+      "prompt": "music_targets/target_self.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/target_self.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "单个施法者和回指胸口的弯箭头清楚，背景空隙透明。"
+      ],
+      "validation": {
+        "id": "target_self",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "b2a5885fb4d2b3e457ecc6639a74ab9f721be0c2832b85db213f70e470df6b3a",
+        "matches_source": true,
+        "png": "music_targets/target_self.png",
+        "prompt": "music_targets/target_self.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-bfcbc2d4-c11a-4e77-b542-07aa51763e29.png",
+      "issues": []
+    },
+    {
+      "id": "ocarina_b",
+      "name": "陶笛 B",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/ocarina_b.png",
+      "prompt": "music_targets/ocarina_b.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/ocarina_b.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "陶笛与金色音符风格统一，唯一音名B正确，主体完整。"
+      ],
+      "validation": {
+        "id": "ocarina_b",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "6024e4a0377a08edd661bb439782426b8456cbdde40e96957ae2d7776b313b1f",
+        "matches_source": true,
+        "png": "music_targets/ocarina_b.png",
+        "prompt": "music_targets/ocarina_b.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-783418a2-61d6-422d-946b-6f34b453fc6a.png",
+      "issues": []
+    },
+    {
+      "id": "ocarina_d",
+      "name": "陶笛 D",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/ocarina_d.png",
+      "prompt": "music_targets/ocarina_d.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/ocarina_d.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "陶笛与金色音符风格统一，唯一音名D正确，主体完整。"
+      ],
+      "validation": {
+        "id": "ocarina_d",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "eb13f606c2b501fba7c6668bf1e6464de7d980accb96663603066e5361a71cbd",
+        "matches_source": true,
+        "png": "music_targets/ocarina_d.png",
+        "prompt": "music_targets/ocarina_d.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-1a1cef97-9ce3-445e-87ca-a6a12d282f9b.png",
+      "issues": []
+    },
+    {
+      "id": "ocarina_e",
+      "name": "陶笛 E",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/ocarina_e.png",
+      "prompt": "music_targets/ocarina_e.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/ocarina_e.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "陶笛与金色音符风格统一，唯一音名E正确，主体完整。"
+      ],
+      "validation": {
+        "id": "ocarina_e",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "46499ae37b32407d0da0b1be84d4f488c0715a3aafa7d44733e1c2faba09ec97",
+        "matches_source": true,
+        "png": "music_targets/ocarina_e.png",
+        "prompt": "music_targets/ocarina_e.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-a262e915-27c2-4b07-bbc2-1078c70082f5.png",
+      "issues": []
+    },
+    {
+      "id": "ocarina_f",
+      "name": "陶笛 F",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/ocarina_f.png",
+      "prompt": "music_targets/ocarina_f.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/ocarina_f.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "陶笛与金色音符风格统一，唯一音名F正确，主体完整。"
+      ],
+      "validation": {
+        "id": "ocarina_f",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "7fb0dc4cb2812f2087151802dc308670909df445e4035806dfaaa12e255e2e36",
+        "matches_source": true,
+        "png": "music_targets/ocarina_f.png",
+        "prompt": "music_targets/ocarina_f.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-946bc6f6-8ca3-48fe-ac06-e21c5b65c2d8.png",
+      "issues": []
+    },
+    {
+      "id": "ocarina_gsharp",
+      "name": "陶笛 G#",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/ocarina_gsharp.png",
+      "prompt": "music_targets/ocarina_gsharp.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/ocarina_gsharp.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "陶笛与金色音符风格统一，唯一音名G#正确，主体完整。"
+      ],
+      "validation": {
+        "id": "ocarina_gsharp",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "2404c4bd78a3a6dc91965917a7b35538150df2c21731953344bfb894eafc92a0",
+        "matches_source": true,
+        "png": "music_targets/ocarina_gsharp.png",
+        "prompt": "music_targets/ocarina_gsharp.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-a09e1e63-5f7c-486a-bd6f-40f612d7c289.png",
+      "issues": []
+    },
+    {
+      "id": "ocarina_a2",
+      "name": "陶笛 A2",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/ocarina_a2.png",
+      "prompt": "music_targets/ocarina_a2.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/ocarina_a2.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "陶笛与金色音符风格统一，唯一音名A2正确，主体完整。"
+      ],
+      "validation": {
+        "id": "ocarina_a2",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "a7446d6df2b15f3f82d3eaea17489e9fa68d802f6a78fd58fdf2dc3e3796bfb5",
+        "matches_source": true,
+        "png": "music_targets/ocarina_a2.png",
+        "prompt": "music_targets/ocarina_a2.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-f520864b-c4e6-42b2-95aa-a09770528196.png",
+      "issues": []
+    },
+    {
+      "id": "kantele_a",
+      "name": "弦琴 A",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "note",
+      "effect": "奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/kantele_a.png",
+      "prompt": "music_targets/kantele_a.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/kantele_a.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "木制三角弦琴与蓝色音符风格统一，唯一音名A正确，主体完整。"
+      ],
+      "validation": {
+        "id": "kantele_a",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "ff4c98ca8f2b3f0e6f90aa1aecb9c36563b91a70676878243a39312de76a1a73",
+        "matches_source": true,
+        "png": "music_targets/kantele_a.png",
+        "prompt": "music_targets/kantele_a.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-2210e801-2e0b-4373-a22b-551060dc1976.png",
+      "issues": []
+    },
+    {
+      "id": "kantele_dsharp",
+      "name": "弦琴 D#",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "note",
+      "effect": "奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/kantele_dsharp.png",
+      "prompt": "music_targets/kantele_dsharp.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/kantele_dsharp.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "木制三角弦琴与蓝色音符风格统一，唯一音名D#正确，主体完整。"
+      ],
+      "validation": {
+        "id": "kantele_dsharp",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "e99d14e8f7c917968228e352d6258cc6a044550b0bba7936988c9502d77d58bc",
+        "matches_source": true,
+        "png": "music_targets/kantele_dsharp.png",
+        "prompt": "music_targets/kantele_dsharp.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-4220735a-f767-4141-9dd3-6117590ea4a7.png",
+      "issues": []
+    },
+    {
+      "id": "kantele_e",
+      "name": "弦琴 E",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "note",
+      "effect": "奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/kantele_e.png",
+      "prompt": "music_targets/kantele_e.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/kantele_e.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "木制三角弦琴与蓝色音符风格统一，唯一音名E正确，主体完整。"
+      ],
+      "validation": {
+        "id": "kantele_e",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "a498e9380aff2edbb85a02429694f56275729838dd4f30f7c0feb85080ebb03e",
+        "matches_source": true,
+        "png": "music_targets/kantele_e.png",
+        "prompt": "music_targets/kantele_e.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-bfa01940-d048-45be-89bb-6f3ad20da486.png",
+      "issues": []
+    },
+    {
+      "id": "kantele_g",
+      "name": "弦琴 G",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "note",
+      "effect": "奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/kantele_g.png",
+      "prompt": "music_targets/kantele_g.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/kantele_g.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "木制三角弦琴、蓝色音符与唯一音名G正确，主体完整。"
+      ],
+      "validation": {
+        "id": "kantele_g",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "53f3ba8f7172a98549b25965ef8f61e9dfaf25a98208245f6d37410c68768e62",
+        "matches_source": true,
+        "png": "music_targets/kantele_g.png",
+        "prompt": "music_targets/kantele_g.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-9ef2ae1f-c3ca-42d6-bb62-55734fee8d4a.png",
+      "issues": []
+    },
+    {
+      "id": "edge_voidcloth_boomerang",
+      "name": "暗影回旋镖",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "投出原版暗影回旋镖。去程随飞行逐渐变大，物理与位面伤害同时增长，命中或飞至尽头后飞回。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "voidcloth_boomerang",
+      "image": "../../art_v1/originals/edge_voidcloth_boomerang.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_firestaff",
+      "name": "火魔杖",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "朝施放方向发射原版火魔杖弹，命中时引燃。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "firestaff",
+      "image": "../../art_v1/originals/edge_firestaff.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_icestaff",
+      "name": "冰魔杖",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "朝施放方向发射原版冰魔杖弹，命中时灭火、施加寒冷。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "icestaff",
+      "image": "../../art_v1/originals/edge_icestaff.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_staff_lunarplant",
+      "name": "亮茄魔杖",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "命中造成原版亮茄弹的 10 点基础位面伤害，并在合格目标间反弹。穿透时每次命中均可发起一条反弹链。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "staff_lunarplant",
+      "image": "../../art_v1/originals/edge_staff_lunarplant.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_staff_tornado",
+      "name": "天气风向标",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "projectile",
+      "effect": "龙卷风先朝瞄准点前进，随后在附近游荡并破坏。触发释放时先沿弹道前进。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "staff_tornado",
+      "image": "../../art_v1/originals/edge_staff_tornado.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_yellowstaff",
+      "name": "唤星法杖",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "field",
+      "effect": "在释放点生成原版矮星，寿命、照明、温度和理智效果与原版相同。基础静止，可用加速、减速、追踪和目标选择改变移动。整次施法冷却至少 240 秒，作为触发载荷时同样生效。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "yellowstaff",
+      "image": "../../art_v1/originals/edge_yellowstaff.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "edge_opalstaff",
+      "name": "唤月法杖",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "field",
+      "effect": "在释放点生成原版极光，寿命、照明、温度和理智效果与原版相同。基础静止，可用加速、减速、追踪和目标选择改变移动。整次施法冷却至少 60 秒，作为触发载荷时同样生效。",
+      "base": null,
+      "badge": null,
+      "source_weapon": "opalstaff",
+      "image": "../../art_v1/originals/edge_opalstaff.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "giant_shot",
+      "name": "弹体巨化",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "放大远程弹、静态投射物、瞬发效果和近战的外观及实际作用范围。同组倍率相加：1 张 ×2.5、2 张 ×5、3 张 ×7.5。伤害数值、移动速度和主体寿命不变。星体照明、温度与理智范围同步扩大；哨株和虫群的自动攻击可覆盖扩大后的范围。独立触发载荷需另装巨化。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/giant_shot.png",
+      "prompt": "modifiers/giant_shot.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/giant_shot.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "相同菱形魔弹从小到大，膨胀箭头清楚。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "giant_shot",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "c0e8f469776d4332ca54596640c23e1117a1edaed52d5cb7ad195ec988210f82",
+        "matches_source": true,
+        "png": "modifiers/giant_shot.png",
+        "prompt": "modifiers/giant_shot.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-ba44bd12-9a62-4507-833f-9a8512cd1562.png",
+      "issues": []
+    },
+    {
+      "id": "short_life",
+      "name": "缩短寿命",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同组飞行弹体与触发载体寿命 ×0.5，多张相乘，最低 0.1 秒。与延寿修正相乘，可缩短环绕时间；不改变速度、伤害或定时触发的倒计时。碰撞／定时载体正常消失时，若此前未释放过载荷，会在消失处补发一次。火药引线也乘该倍率；也影响有限寿命的静态场；永久晶体与载荷卵仍永久。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/short_life.png",
+      "prompt": "modifiers/short_life.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/short_life.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "沙量集中下部，短轨迹逐段消散。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "short_life",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "75cc27f829f78c79bb3cc8385d0375094cff046081e760b15012db77406fc998",
+        "matches_source": true,
+        "png": "modifiers/short_life.png",
+        "prompt": "modifiers/short_life.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-d1ed8697-f887-40da-9e5f-e171a80ba18b.png",
+      "issues": []
+    },
+    {
+      "id": "homing_rotate",
+      "name": "转向敌人",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "搜索半径 8，转向上限 360°/秒。只改变方向，不增加速度。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/homing_rotate.png",
+      "prompt": "modifiers/homing_rotate.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "modifiers/homing_rotate.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "弹头转向目标的角度变化，没有持续推进尾焰。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "homing_rotate",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "5812c5ac7fdcad552f49e8a5880c588e9a3ad84d41bd5c51e6295ff603214efa",
+        "matches_source": true,
+        "png": "modifiers/homing_rotate.png",
+        "prompt": "modifiers/homing_rotate.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-b638eba0-1179-4134-b032-eab1e57510bb.png",
+      "issues": []
+    },
+    {
+      "id": "gunpowder",
+      "name": "火药",
+      "group": "native_reuse",
+      "group_label": "原版武器 / 道具复用",
+      "origin": "native_reuse",
+      "status": "reused",
+      "kind": "field",
+      "effect": "生成原版火药，基础引线随机 3～6 秒，再乘寿命修饰倍率。支持静态投射物移动修饰；伤害修饰影响基础伤害 200，巨化同步放大外观与基础爆炸半径 3。不分敌我，保留原版破坏与点燃；被扑灭则消失，存档保留剩余引线。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "../../art_v1/originals/gunpowder.png",
+      "prompt": null,
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": null,
+      "attempt_count": null,
+      "qa": [
+        "直接使用原版武器 / 道具图，非本次生成。"
+      ]
+    },
+    {
+      "id": "ocarina_g",
+      "name": "陶笛 G",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "projectile",
+      "effect": "奏响 G 音，短程声波留下回声标记。加速或减速令音高升降一个八度；临时原版音源超出音域时会截断。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/ocarina_g.png",
+      "prompt": "music_targets/ocarina_g.prompt.txt",
+      "retry_prompt": null,
+      "retry_prompt_mode": null,
+      "result": "music_targets/ocarina_g.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "陶笛、金色音符与唯一音名G正确，主体完整。"
+      ],
+      "validation": {
+        "id": "ocarina_g",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "399e8f976f9cd457972e85fe248a5743897019c9f8e87a5fe0b13e39d8c5a217",
+        "matches_source": true,
+        "png": "music_targets/ocarina_g.png",
+        "prompt": "music_targets/ocarina_g.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-ca769b81-086c-4410-9396-b70ff94274a6.png",
+      "issues": []
+    }
+  ]
+}

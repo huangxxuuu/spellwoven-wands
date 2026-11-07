@@ -1,0 +1,54 @@
+{
+  "id": "wild_double",
+  "name": "双重散放",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-a20ea061-29a1-4362-95f2-fe17ccd92912.png",
+  "output": "wild_double.png",
+  "prompt": "wild_double.prompt.txt",
+  "reference": null,
+  "review": {
+    "visual_reviewed": true,
+    "mechanism_and_count_checked": true,
+    "issues": [],
+    "notes": [
+      "准确两道向前分散的金色箭束。",
+      "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+    ],
+    "validation": {
+      "id": "wild_double",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_8": [
+        35,
+        149,
+        1218,
+        1128
+      ],
+      "alpha_bbox_32": [
+        35,
+        149,
+        1217,
+        1128
+      ],
+      "alpha_bbox_128": [
+        36,
+        150,
+        1216,
+        1127
+      ],
+      "edge_max_alpha": 1,
+      "nonzero_edge_pixels": 7,
+      "visible_edge_pixels": 0,
+      "transparent_ratio": 0.7282463262694943,
+      "sha256": "367903bca8f647aef482e5d602fd90bcc95914e8ee9096de056dcd2bf8ee7cfe"
+    }
+  },
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-a20ea061-29a1-4362-95f2-fe17ccd92912.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "source_hash_matches": true,
+  "raw_png_modified": false,
+  "retry_needed": false
+}

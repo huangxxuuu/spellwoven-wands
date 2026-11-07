@@ -1,0 +1,511 @@
+{
+  "no_retries_executed": true,
+  "instructions": "原图保持不动。仅在用户后续明确安排时用完整重试 prompt 尝试；本批不再调用生成器。",
+  "recommended": [
+    {
+      "id": "knockback",
+      "name": "击退",
+      "group": "modifiers",
+      "group_label": "修饰法术",
+      "origin": "needs_generation",
+      "status": "needs_retry",
+      "kind": "modifier",
+      "effect": "沿命中时弹道方向击退约 1 单位，由目标的原生击退动作结算。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "modifiers/knockback.png",
+      "prompt": "modifiers/knockback.prompt.txt",
+      "retry_prompt": "modifiers/knockback.retry.prompt.txt",
+      "retry_prompt_mode": "recommended",
+      "result": "modifiers/knockback.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "冲击尖角之间出现带颗粒的半透明青灰雾，边界不够干净，不符合仅用实心运动笔触的要求。",
+        "魔弹、木靶与推离箭头能表达击退，但冲击边缘出现半透明雾。",
+        "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+      ],
+      "validation": {
+        "id": "knockback",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "1f7512fc06af70bd36e898da1bd61e56b0e0b39d3860b1edbc337d8d8d8d0fdb",
+        "matches_source": true,
+        "png": "modifiers/knockback.png",
+        "prompt": "modifiers/knockback.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b203-eb4c-7171-8cb4-c3722174fe0b/exec-09912efc-a22b-47b9-9e47-35a650486763.png",
+      "issues": [
+        "冲击尖角之间出现带颗粒的半透明青灰雾，边界不够干净，不符合仅用实心运动笔触的要求。"
+      ]
+    },
+    {
+      "id": "repeat_2",
+      "name": "双倍施法",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "needs_retry",
+      "kind": "modifier",
+      "effect": "抽下一张。当前组的攻击同时释放两份，各自携带载荷。副本免耗蓝，真实抽到的卡计费一次。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/repeat_2.png",
+      "prompt": "projectiles_controls/repeat_2.prompt.txt",
+      "retry_prompt": "projectiles_controls/repeat_2.retry.prompt.txt",
+      "retry_prompt_mode": "recommended",
+      "result": "projectiles_controls/repeat_2.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "双倍施法底端菱形贴近并触及画布下边缘：6 个 alpha≥8 像素落在边界，最大 alpha 108。主体需要完整安全留白。",
+        "一个输入、两个同形输出，唯一倍数文字×2正确。"
+      ],
+      "validation": {
+        "id": "repeat_2",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "fd049e94e26baf32bf60ca3922ec270e85f66a6570409502b73e86191a4959c9",
+        "matches_source": true,
+        "png": "projectiles_controls/repeat_2.png",
+        "prompt": "projectiles_controls/repeat_2.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-65060155-ccc0-4a5e-9823-9fb8c4c9017f.png",
+      "issues": [
+        "双倍施法底端菱形贴近并触及画布下边缘：6 个 alpha≥8 像素落在边界，最大 alpha 108。主体需要完整安全留白。"
+      ]
+    },
+    {
+      "id": "target_neutral",
+      "name": "选取中立生物",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "needs_retry",
+      "kind": "modifier",
+      "effect": "同一施法组可命中中立生物。多张选择卡取并集，明确选择其他玩家后可命中他们。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/target_neutral.png",
+      "prompt": "music_targets/target_neutral.prompt.txt",
+      "retry_prompt": "music_targets/target_neutral.retry.prompt.txt",
+      "retry_prompt_mode": "recommended",
+      "result": "music_targets/target_neutral.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "兔子长耳上方额外出现两条卷曲触角状笔画，影响原版兔子形象。"
+      ],
+      "validation": {
+        "id": "target_neutral",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "4730bca40848142f21884072845be9533aef9d596d3ea3b355ff9c4c08bd75f1",
+        "matches_source": true,
+        "png": "music_targets/target_neutral.png",
+        "prompt": "music_targets/target_neutral.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-5d0dd6af-c137-467b-9f05-c5114fb1f48a.png",
+      "issues": [
+        "兔子长耳上方额外出现两条卷曲触角状笔画，影响原版兔子形象。"
+      ]
+    }
+  ],
+  "optional": [
+    {
+      "id": "light",
+      "name": "照明",
+      "group": "music_targets",
+      "group_label": "音乐、目标与辅助",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "弹体照明半径 2，终止时留光 3 秒，残光数量由世界设置控制。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "music_targets/light.png",
+      "prompt": "music_targets/light.prompt.txt",
+      "retry_prompt": "music_targets/light.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "music_targets/light.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "六道光芒、亮核与弧线清楚；预览有彩色边缘，但实际 alpha≥8 的饱和红/绿像素均为0，877个红色像素均为低于8的低alpha残留，列为观察项而非必重绘。"
+      ],
+      "validation": {
+        "id": "light",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "2aca8d5ad33bf92fade5b3bd8272ee4a8c4f95a7d9065f2a775d6aa3fc3a2d84",
+        "matches_source": true,
+        "png": "music_targets/light.png",
+        "prompt": "music_targets/light.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-75a7-7611-9170-0176970a151c/exec-b7d1baf8-dab3-4992-bf5d-0107292a9626.png",
+      "issues": []
+    },
+    {
+      "id": "guard_ring",
+      "name": "护卫环",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "护盾环绕施法者 2 秒，每抵消一枚射向自己的敌方投射物消耗一面盾。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/guard_ring.png",
+      "prompt": "fields/guard_ring.prompt.txt",
+      "retry_prompt": "fields/guard_ring.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/guard_ring.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=2），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "guard_ring",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "f4a4a5be130768298e7e2345c4af2187d721bd7d79eae377359e55621fd93d07",
+        "matches_source": true,
+        "png": "fields/guard_ring.png",
+        "prompt": "fields/guard_ring.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-a3d44a51-6baa-49c0-8a7f-67a89bba753b.png",
+      "issues": []
+    },
+    {
+      "id": "two_way",
+      "name": "前后阵",
+      "group": "projectiles_controls",
+      "group_label": "投射物与施法控制",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "multicast",
+      "effect": "抽 2 张，固定 0°/180°，分别叠各自小散射。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "projectiles_controls/two_way.png",
+      "prompt": "projectiles_controls/two_way.prompt.txt",
+      "retry_prompt": "projectiles_controls/two_way.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "projectiles_controls/two_way.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "准确两道相反180度箭束，中心释放点明确。",
+        "横画布主体完整，可后续等比放入方形卡框；仅透明画布比例不同，无需重绘。保留重试 prompt 作为用户希望调整构图时的可选方案。"
+      ],
+      "validation": {
+        "id": "two_way",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1774,
+          887
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "2433031dcffce2b6787bde88d45c647b713f4675f392965c6349c61bb9492555",
+        "matches_source": true,
+        "png": "projectiles_controls/two_way.png",
+        "prompt": "projectiles_controls/two_way.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b376-255c-74c2-a81f-b4e9ca3df6f9/exec-a13bb56c-152c-4b1a-a0bd-09fb1e67b70a.png",
+      "issues": []
+    },
+    {
+      "id": "deer_decoy",
+      "name": "幻鹿诱饵",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "3 秒灵鹿幻影吸引普通怪，结束时旋身消散，造成一次 5 点伤害，不分敌我。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/deer_decoy.png",
+      "prompt": "fields/deer_decoy.prompt.txt",
+      "retry_prompt": "fields/deer_decoy.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/deer_decoy.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=2），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "deer_decoy",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "b12c80cb050dc7205e68fb2b5748731e2cd4b423995129c108945479171f6e8d",
+        "matches_source": true,
+        "png": "fields/deer_decoy.png",
+        "prompt": "fields/deer_decoy.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-9cc734c6-03b1-46fc-ad73-e7c32a0a4b05.png",
+      "issues": []
+    },
+    {
+      "id": "fireflies",
+      "name": "萤虫伴飞",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "短时跟随，最多袭击两次各 5 伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/fireflies.png",
+      "prompt": "fields/fireflies.prompt.txt",
+      "retry_prompt": "fields/fireflies.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/fireflies.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=2），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "fireflies",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "e0d81a101867d38cb9c5776e401e7ba5a1095199417823b0ed16e227985ba30a",
+        "matches_source": true,
+        "png": "fields/fireflies.png",
+        "prompt": "fields/fireflies.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-0d1d4938-ffd2-4db3-b4a3-0e7420322ee9.png",
+      "issues": []
+    },
+    {
+      "id": "storm_cloud",
+      "name": "局部雷云",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "field",
+      "effect": "三次预警，各 7 基础电伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/storm_cloud.png",
+      "prompt": "fields/storm_cloud.prompt.txt",
+      "retry_prompt": "fields/storm_cloud.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/storm_cloud.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=1），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "storm_cloud",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "6fcf75c5c5b6b55f9367e85487273ae9473be5d21b5b0d73ed74751dd2f537ad",
+        "matches_source": true,
+        "png": "fields/storm_cloud.png",
+        "prompt": "fields/storm_cloud.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-d731c86b-a53f-43a5-848e-73e688f7b06e.png",
+      "issues": []
+    },
+    {
+      "id": "searing_halo",
+      "name": "灼光环",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "半径 0.8，每目标每 0.5 秒最多 3 伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/searing_halo.png",
+      "prompt": "fields/searing_halo.prompt.txt",
+      "retry_prompt": "fields/searing_halo.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/searing_halo.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=3），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "searing_halo",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "760fe320c1914cd67df62c2109bbd4b06f34b6d712da638921d18a46c5dbdf1d",
+        "matches_source": true,
+        "png": "fields/searing_halo.png",
+        "prompt": "fields/searing_halo.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-a57b5e3c-0fdb-4831-b4c3-d1a6520f228d.png",
+      "issues": []
+    },
+    {
+      "id": "twin_arc",
+      "name": "双弹电弧",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "同一施法两弹间距离不超过 3；每目标每 0.5 秒最多一次电伤。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/twin_arc.png",
+      "prompt": "fields/twin_arc.prompt.txt",
+      "retry_prompt": "fields/twin_arc.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/twin_arc.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=3），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "twin_arc",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "cec36f4ec04f310bb42b915334ef7f508adc41689ed581c3adbead4ad226052e",
+        "matches_source": true,
+        "png": "fields/twin_arc.png",
+        "prompt": "fields/twin_arc.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-1df9aeaf-76c5-4454-b423-35c11e69b40d.png",
+      "issues": []
+    },
+    {
+      "id": "side_embers",
+      "name": "双侧余烬",
+      "group": "fields",
+      "group_label": "场地、召唤与光环",
+      "origin": "needs_generation",
+      "status": "candidate",
+      "kind": "modifier",
+      "effect": "母弹经过 3 单位向两侧各发 1 枚，最多 2 组。",
+      "base": null,
+      "badge": null,
+      "source_weapon": null,
+      "image": "fields/side_embers.png",
+      "prompt": "fields/side_embers.prompt.txt",
+      "retry_prompt": "fields/side_embers.retry.prompt.txt",
+      "retry_prompt_mode": "optional_not_required",
+      "result": "fields/side_embers.result.json",
+      "attempt_count": 1,
+      "qa": [
+        "主体完整但画布留白偏紧，后续接入卡牌时须按 alpha 可见边界等比缩放并补足安全留白。",
+        "透明预览曾显示彩色细边；只读像素核对发现相应高饱和红绿黄青蓝残留仅存在于 alpha<8 区域（本图最大 alpha=3），alpha>=8 的相应杂色像素为 0。属于近透明 RGB 残留，改为候选，不要求重绘；保留 retry prompt 仅供用户自选。"
+      ],
+      "validation": {
+        "id": "side_embers",
+        "attempt_count": 1,
+        "mode": "RGBA",
+        "size": [
+          1254,
+          1254
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "5a6bb838c70889675831e7d4260a7560725b9fd05555fdfc389fee9a66b4a6a2",
+        "matches_source": true,
+        "png": "fields/side_embers.png",
+        "prompt": "fields/side_embers.prompt.txt"
+      },
+      "source": "C:/Users/85183/.codex/generated_images/01a1b375-cbd2-7320-8933-929fd5c00b28/exec-374cbd4e-c71a-4e53-8cc5-62f34c1a410c.png",
+      "issues": []
+    }
+  ]
+}

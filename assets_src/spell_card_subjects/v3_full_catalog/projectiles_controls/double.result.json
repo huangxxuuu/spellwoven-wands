@@ -1,0 +1,53 @@
+{
+  "id": "double",
+  "name": "双重施法",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-ef94fc37-1d84-40ff-a9af-a417ea66cd56.png",
+  "output": "double.png",
+  "prompt": "double.prompt.txt",
+  "reference": null,
+  "review": {
+    "visual_reviewed": true,
+    "mechanism_and_count_checked": true,
+    "issues": [],
+    "notes": [
+      "两个不同印记表现多抽取；开放聚合笔触距离边缘仅1–2px，接入卡牌时需统一缩放留白。"
+    ],
+    "validation": {
+      "id": "double",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_8": [
+        2,
+        83,
+        1253,
+        1225
+      ],
+      "alpha_bbox_32": [
+        2,
+        84,
+        1253,
+        1225
+      ],
+      "alpha_bbox_128": [
+        3,
+        84,
+        1252,
+        1224
+      ],
+      "edge_max_alpha": 2,
+      "nonzero_edge_pixels": 45,
+      "visible_edge_pixels": 0,
+      "transparent_ratio": 0.5508293715294471,
+      "sha256": "ce60ace662ccf3bff590578da7953656e92bed51f28accc8b1fb2ba7039339ad"
+    }
+  },
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-ef94fc37-1d84-40ff-a9af-a417ea66cd56.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "source_hash_matches": true,
+  "raw_png_modified": false,
+  "retry_needed": false
+}

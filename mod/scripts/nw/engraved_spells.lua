@@ -4,7 +4,7 @@ local M={retired={}}
 for source in ([[oar oar_driftwood oar_monkey malbatross_beak cane compass witchbroom golden_farm_hoe
     fumarole_farm_hoe pitchfork goldenpitchfork wateringcan premiumwateringcan merm_tool merm_tool_upgraded
     bugnet thulecitebugnet wortox_nabbag brush saddlehorn gestalt_cage queen_torch king_cane cutless
-    rabbitkingspear houndstooth_blowpipe wathgrithr_shield lucy carnivalgame_golfclub yoth_knightstick]]):gmatch("%S+") do
+    rabbitkingspear houndstooth_blowpipe wathgrithr_shield lucy carnivalgame_golfclub yoth_knightstick vault_compass]]):gmatch("%S+") do
     M.retired["edge_"..source]=true
 end
 

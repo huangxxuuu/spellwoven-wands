@@ -1,0 +1,31 @@
+{
+  "id": "kantele_dsharp",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-f2ccab7c-80a7-4753-92a4-0ae5688e220c.png",
+  "output": "kantele_dsharp.png",
+  "prompt": "kantele_dsharp.prompt.txt",
+  "references": [
+    "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v3_full_catalog/music_targets/kantele_dsharp.png"
+  ],
+  "old_label": "D#",
+  "new_label": "C",
+  "status": "selected",
+  "attempt_count_this_request": 1,
+  "validation": {
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bbox_alpha8": [
+      64,
+      138,
+      1157,
+      1156
+    ],
+    "sha256": "59c10bf1e282cf28d4684ea8a514b1ba4d6dc20aec4fafaf3cc0767ba980d9ca",
+    "matches_source": true,
+    "reddish_pixels_alpha8": 0,
+    "color_review": "宽阈值命中包括正常的橙色音符与陶土色；组合预览未见杂色污染。"
+  },
+  "visual_review": "音名符号正确，乐器造型、配色和构图保持一致。"
+}

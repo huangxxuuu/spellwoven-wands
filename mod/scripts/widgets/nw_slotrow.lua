@@ -3,9 +3,10 @@ local Image=require("widgets/image")
 local Cards=require("nw/cards")
 local Info=require("nw/spell_info")
 local Hint=require("nw/inventory_hint")
-local Row=Class(Widget,function(self,size,selectslot)
+local Row=Class(Widget,function(self,size,selectslot,step)
     Widget._ctor(self,"nw_slotrow")
     self.size=size
+    self.step=step or size
     self.cells={}
     self.selectslot=selectslot
     if not selectslot then self:SetClickable(false) end
@@ -49,7 +50,7 @@ function Row:SetCards(encoded)
                     end
                 else cell:SetClickable(false) end
             end
-            cell:Show();cell:SetPosition((i-(count+1)/2)*self.size,0)
+            cell:Show();cell:SetPosition((i-(count+1)/2)*self.step,0)
             local id=self.spells[i]
             if cell.spell~=id then
                 cell.spell=id
@@ -60,7 +61,7 @@ function Row:SetCards(encoded)
             end
         else cell:Hide() end
     end
-    self.width=count*self.size
+    self.width=count>0 and (count-1)*self.step+self.size or 0
     self:PlaceHover()
 end
 return Row

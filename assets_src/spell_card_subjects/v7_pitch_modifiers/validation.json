@@ -1,0 +1,220 @@
+{
+  "cards": [
+    {
+      "id": "pitch_octave_up",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "bbox_alpha8": [
+        150,
+        74,
+        1121,
+        1234
+      ],
+      "sha256": "c15bffc29d889022de4121135a50db4af2f4b8e02318f487333bba112f3b1493",
+      "album_fit": {
+        "source_bbox": [
+          150,
+          74,
+          1121,
+          1234
+        ],
+        "position": [
+          239,
+          186
+        ],
+        "fitted_size": [
+          546,
+          652
+        ],
+        "uniform_scale": 0.5621226764547415,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "inventory_fit": {
+        "source_bbox": [
+          150,
+          74,
+          1121,
+          1234
+        ],
+        "position": [
+          229,
+          174
+        ],
+        "fitted_size": [
+          566,
+          676
+        ],
+        "uniform_scale": 0.5824970113820042,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      }
+    },
+    {
+      "id": "pitch_octave_down",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "bbox_alpha8": [
+        189,
+        60,
+        1058,
+        1216
+      ],
+      "sha256": "1336b6b72d50584acf418a5832e604070aedae0a4efc78ffb6e55725be3ae396",
+      "album_fit": {
+        "source_bbox": [
+          189,
+          60,
+          1058,
+          1216
+        ],
+        "position": [
+          267,
+          186
+        ],
+        "fitted_size": [
+          491,
+          653
+        ],
+        "uniform_scale": 0.5644671483023357,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "inventory_fit": {
+        "source_bbox": [
+          189,
+          60,
+          1058,
+          1216
+        ],
+        "position": [
+          251,
+          165
+        ],
+        "fitted_size": [
+          522,
+          694
+        ],
+        "uniform_scale": 0.6007386309877811,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      }
+    },
+    {
+      "id": "pitch_semitone_up",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "bbox_alpha8": [
+        219,
+        55,
+        1026,
+        1207
+      ],
+      "sha256": "cb4c1d98cac40dd81d010aad0445e280a4a9b8b8205a6215416e34d52ba16e79",
+      "album_fit": {
+        "source_bbox": [
+          219,
+          55,
+          1026,
+          1207
+        ],
+        "position": [
+          274,
+          172
+        ],
+        "fitted_size": [
+          476,
+          680
+        ],
+        "uniform_scale": 0.5899739583333333,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "inventory_fit": {
+        "source_bbox": [
+          219,
+          55,
+          1026,
+          1207
+        ],
+        "position": [
+          259,
+          151
+        ],
+        "fitted_size": [
+          506,
+          723
+        ],
+        "uniform_scale": 0.6273483276367188,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      }
+    },
+    {
+      "id": "pitch_semitone_down",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "bbox_alpha8": [
+        208,
+        77,
+        1039,
+        1202
+      ],
+      "sha256": "e1f29bbf57d306c2742c15b0ae30286a9321d454959642f2b6d87742d93415fb",
+      "album_fit": {
+        "source_bbox": [
+          208,
+          77,
+          1039,
+          1202
+        ],
+        "position": [
+          259,
+          170
+        ],
+        "fitted_size": [
+          506,
+          685
+        ],
+        "uniform_scale": 0.6092378906250001,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "inventory_fit": {
+        "source_bbox": [
+          208,
+          77,
+          1039,
+          1202
+        ],
+        "position": [
+          244,
+          149
+        ],
+        "fitted_size": [
+          537,
+          727
+        ],
+        "uniform_scale": 0.6461497395833333,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      }
+    }
+  ],
+  "runtime_registered": true,
+  "frame_containment": "passed",
+  "imagegen_calls": 4,
+  "game_tests": "not run"
+}

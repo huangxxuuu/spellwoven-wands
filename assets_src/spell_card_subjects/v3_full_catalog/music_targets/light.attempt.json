@@ -1,0 +1,10 @@
+{
+  "id": "light",
+  "name": "照明",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T00:46:21.529Z",
+  "completed_at": "2026-11-07T00:47:50.175Z",
+  "result_file": "light.result.json"
+}

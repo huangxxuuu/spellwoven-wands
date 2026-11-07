@@ -6,7 +6,7 @@ local M={}
 M.messages={OK=T("法术槽已更新。"),NOT_OWNER=T("请先装备法杖。"),WAND_CHANGED=T("法杖已切换，请重新选择槽位。"),
     OUT_OF_RANGE=T("未检测到附近奥术台，请靠近后再试。"),STALE_REVISION=T("法术槽已更新，请再点一次。"),
     INVALID_SLOT=T("这个法术槽不存在。"),CARD_MISSING=T("法术卡已移动，请从随身物品栏重新选择。"),
-    INVENTORY_FULL=T("请先腾出一格随身物品栏。"),BUSY=T("操作太快，请稍后再试。"),
+    INVENTORY_FULL=T("物品栏和背包没有可接收这张法术卡的位置。"),BUSY=T("操作太快，请稍后再试。"),
     SPAWN_FAILED=T("法术卡创建失败。"),UNSUPPORTED_CARD=T("该法术尚未支持编辑。"),INVALID_REQUEST=T("换卡请求无效，请重新打开编辑器。")}
 function M.id(item)
     return item and item.Network and item.Network:GetNetworkID() or 0
@@ -34,6 +34,13 @@ function M.request(player,slot,cardid,revision,wandid,cursor)
                 local item=inv:GetItemInSlot(i)
                 if item and M.id(item)==cardid then source=item;break end
             end
+        end
+        if not source and not cursor and inv.GetOverflowContainer then
+            local bag=inv:GetOverflowContainer()
+            if bag then for i=1,bag:GetNumSlots() do
+                local item=bag:GetItemInSlot(i)
+                if item and M.id(item)==cardid then source=item;break end
+            end end
         end
         if not source then return false,"CARD_MISSING" end
     end

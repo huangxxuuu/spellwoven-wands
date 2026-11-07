@@ -1,0 +1,49 @@
+{
+  "id": "crystal_mine",
+  "name": "近感晶雷",
+  "attempt_count": 1,
+  "status": "candidate",
+  "prompt": "crystal_mine.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_spell_world/crystal_mine.png",
+  "output": "crystal_mine.png",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-5e20a4c8-0ae6-42d4-bac9-954f8040da7e.png",
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28 as C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-5e20a4c8-0ae6-42d4-bac9-954f8040da7e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [],
+    "complete_visible_subject": true,
+    "minimum_visible_margin_px": 38,
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "id": "crystal_mine",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 808160,
+    "opaque_pixels": 646,
+    "semi_transparent_pixels": 763710,
+    "bbox_alpha32": [
+      38,
+      157,
+      1214,
+      1099
+    ],
+    "bbox_alpha128": [
+      39,
+      158,
+      1214,
+      1099
+    ],
+    "edge_max_alpha": 1,
+    "sha256": "a9a46b1af2e308439340ed73e6f336e2a62f9e211215a686c1e485f9cd55472f",
+    "matches_source": true
+  }
+}

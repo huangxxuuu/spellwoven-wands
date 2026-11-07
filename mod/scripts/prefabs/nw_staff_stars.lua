@@ -47,6 +47,9 @@ local function make(id,native)
         end
         function inst:Launch(caster,p,x,z,dx,dz,cleanup)
             self.Transform:SetPosition(x,0,z)
+            local timer=self.components.timer
+            local left=timer and timer:GetTimeLeft("extinguish")
+            if left then timer:SetTimeLeft("extinguish",left*(p.field_lifetime_mult or 1)) end
             start(self,{p=p,dx=dx,dz=dz,userid=require("nw/persistent_fields").userid(caster),neutral=caster and caster._nw_neutral or nil},caster)
             -- A placed native star has its own lifetime; it is not a flying
             -- projectile reservation and must not block a wand for days.

@@ -6,8 +6,10 @@ local assets=Ground.assets()
 local function show(inst)
     local surface=inst._surface:value()
     local code,count=surface%stride,math.floor(surface/stride)
-    Ground.show(inst,code,count)
-    if inst._nw_outline then Ground.show(inst._nw_outline,code,count) end
+    local layout=inst._layers:value()
+    local separated=inst._separated:value()
+    Ground.show(inst,code,count,layout,separated)
+    if inst._nw_outline then Ground.show(inst._nw_outline,code,count,layout,separated) end
 end
 
 local function update(inst)
@@ -20,14 +22,12 @@ local function update(inst)
         inst:Remove()
         return
     end
-    for i=1,box:GetNumSlots() do
-        local top=box:GetItemInSlot(i)
-        if top then
-            inst._surface:set(count*stride+Cards.codes[top.spell_id])
-            inst.components.named:SetName(string.format(T("法术牌堆（%d/%d）"),count,box:GetNumSlots()))
-            show(inst)
-            break
-        end
+    local code,layout=Ground.surface(box)
+    if code then
+        inst._layers:set(layout)
+        inst._surface:set(count*stride+code)
+        inst.components.named:SetName(string.format(T("法术牌堆（%d/%d）"),count,box:GetNumSlots()))
+        show(inst)
     end
 end
 local function schedule(inst)
@@ -40,13 +40,15 @@ local function fn()
     inst.entity:AddTransform();inst.entity:AddAnimState();inst.entity:AddNetwork()
     inst:AddTag("nw_spellpile");inst:AddTag("chest");inst:AddTag("fireimmune")
     inst._surface=net_ushortint(inst.GUID,"nw_pile.surface","nw_piledirty")
+    inst._layers=net_byte(inst.GUID,"nw_pile.layers","nw_piledirty")
+    inst._separated=net_bool(inst.GUID,"nw_pile.separated","nw_piledirty")
     inst.displaynamefn=function(self)
         return string.format(T("法术牌堆（%d/%d）"),math.floor(self._surface:value()/stride),25)
     end
     show(inst)
     require("nw/recycle_mark").attach(inst,function(glow,item)
         local surface=item._surface:value()
-        Ground.show(glow,surface%stride,math.floor(surface/stride))
+        Ground.show(glow,surface%stride,math.floor(surface/stride),item._layers:value(),item._separated:value())
     end)
     inst.entity:SetPristine()
     if not TheWorld.ismastersim then
@@ -57,6 +59,13 @@ local function fn()
     inst:AddComponent("named")
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("nw_spellpile")
+    -- Choose once, on the server. Count changes, refreshes and reloads keep it.
+    inst._separated:set(math.random()<.5)
+    inst.OnSave=function(self,data) data.separated=self._separated:value() end
+    inst.OnLoad=function(self,data)
+        if data and data.separated~=nil then self._separated:set(data.separated==true) end
+        schedule(self)
+    end
     inst:ListenForEvent("itemget",schedule)
     inst:ListenForEvent("itemlose",schedule)
     schedule(inst)

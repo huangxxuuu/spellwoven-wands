@@ -1,0 +1,200 @@
+{
+  "fishingrod": {
+    "archive": "anim/fishingrod.zip",
+    "bank": "fishingrod",
+    "build": "fishingrod",
+    "symbol": "fishingrod01",
+    "frame": 0,
+    "native_top_left": [
+      -70,
+      -140
+    ],
+    "pixels": [
+      124,
+      270
+    ],
+    "alpha_bbox": [
+      4,
+      4,
+      120,
+      265
+    ]
+  },
+  "trident": {
+    "archive": "anim/trident.zip",
+    "bank": "trident",
+    "build": "trident",
+    "symbol": "trident_1",
+    "frame": 0,
+    "native_top_left": [
+      -68,
+      -280
+    ],
+    "pixels": [
+      135,
+      285
+    ],
+    "alpha_bbox": [
+      2,
+      1,
+      134,
+      283
+    ]
+  },
+  "farm_hoe": {
+    "archive": "anim/quagmire_hoe.zip",
+    "bank": "quagmire_hoe",
+    "build": "quagmire_hoe",
+    "symbol": "hoe01",
+    "frame": 0,
+    "native_top_left": [
+      -33,
+      -176
+    ],
+    "pixels": [
+      162,
+      253
+    ],
+    "alpha_bbox": [
+      4,
+      5,
+      160,
+      249
+    ]
+  },
+  "yoth_lance": {
+    "archive": "anim/yoth_lance.zip",
+    "bank": "yoth_lance",
+    "build": "yoth_lance",
+    "symbol": "swap_lance",
+    "frame": 0,
+    "native_top_left": [
+      -46,
+      -477
+    ],
+    "pixels": [
+      103,
+      603
+    ],
+    "alpha_bbox": [
+      4,
+      5,
+      98,
+      599
+    ]
+  },
+  "oceanfishingrod": {
+    "archive": "anim/oceanfishing_hook.zip",
+    "build": "oceanfishing_hook",
+    "symbols": {
+      "oceanfishingrod-hook-0.png": {
+        "symbol": "hook",
+        "frame": 0,
+        "native_top_left": [
+          -12,
+          -44
+        ],
+        "pixels": [
+          113,
+          69
+        ]
+      },
+      "oceanfishingrod-line_loop-0.png": {
+        "symbol": "line_loop",
+        "frame": 0,
+        "native_top_left": [
+          -45,
+          -14
+        ],
+        "pixels": [
+          61,
+          137
+        ]
+      },
+      "oceanfishingrod-line_loop-1.png": {
+        "symbol": "line_loop",
+        "frame": 1,
+        "native_top_left": [
+          -32,
+          -15
+        ],
+        "pixels": [
+          45,
+          145
+        ]
+      },
+      "oceanfishingrod-line_loop-2.png": {
+        "symbol": "line_loop",
+        "frame": 2,
+        "native_top_left": [
+          -32,
+          -13
+        ],
+        "pixels": [
+          41,
+          145
+        ]
+      },
+      "oceanfishingrod-line_loop-3.png": {
+        "symbol": "line_loop",
+        "frame": 3,
+        "native_top_left": [
+          -33,
+          -14
+        ],
+        "pixels": [
+          41,
+          141
+        ]
+      },
+      "oceanfishingrod-line_loop-4.png": {
+        "symbol": "line_loop",
+        "frame": 4,
+        "native_top_left": [
+          -37,
+          -9
+        ],
+        "pixels": [
+          49,
+          117
+        ]
+      },
+      "oceanfishingrod-line_loop-5.png": {
+        "symbol": "line_loop",
+        "frame": 5,
+        "native_top_left": [
+          -42,
+          -12
+        ],
+        "pixels": [
+          49,
+          137
+        ]
+      },
+      "oceanfishingrod-line_loop-6.png": {
+        "symbol": "line_loop",
+        "frame": 6,
+        "native_top_left": [
+          -51,
+          -12
+        ],
+        "pixels": [
+          61,
+          129
+        ]
+      },
+      "oceanfishingrod-line_loop-7.png": {
+        "symbol": "line_loop",
+        "frame": 7,
+        "native_top_left": [
+          -46,
+          -11
+        ],
+        "pixels": [
+          57,
+          129
+        ]
+      }
+    }
+  }
+}

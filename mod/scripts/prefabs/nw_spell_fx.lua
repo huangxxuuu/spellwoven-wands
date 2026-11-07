@@ -1,72 +1,28 @@
-local assets={Asset("ANIM","anim/shock_fx.zip"),Asset("ANIM","anim/fence_electric_field_fx.zip"),Asset("ANIM","anim/nw_objects.zip"),Asset("ANIM","anim/swap_spear.zip"),
+local assets={Asset("ANIM","anim/shock_fx.zip"),Asset("ANIM","anim/nw_electric_arc.zip"),Asset("ANIM","anim/nw_objects.zip"),Asset("ANIM","anim/explode.zip"),Asset("ANIM","anim/swap_spear.zip"),
     Asset("ANIM","anim/swap_glasscutter.zip"),Asset("ANIM","anim/swap_axe.zip")}
 local layout=require("nw/fx_layout")
 local function setup_arc(inst)
     inst._dx=net_float(inst.GUID,"nw_arc.dx","nw_arcdirty")
+    inst._dy=net_float(inst.GUID,"nw_arc.dy","nw_arcdirty")
     inst._dz=net_float(inst.GUID,"nw_arc.dz","nw_arcdirty")
+    inst._lift=net_float(inst.GUID,"nw_arc.lift","nw_arcdirty")
     inst._contact=net_entity(inst.GUID,"nw_arc.contact","nw_arcdirty")
     inst._shockanim=net_string(inst.GUID,"nw_arc.shockanim","nw_arcdirty")
-    local pieces={}
-    local last_x,last_z,last_target,last_anim
-    local function clear()
-        for _,piece in ipairs(pieces) do if piece:IsValid() then piece:Remove() end end
-        pieces={}
-    end
-    local function refresh()
-        if TheNet:IsDedicated() then return end
-        local dx,dz=inst._dx:value(),inst._dz:value()
-        local target,anim=inst._contact:value(),inst._shockanim:value()
-        if dx==last_x and dz==last_z and target==last_target and anim==last_anim then return end
-        last_x,last_z,last_target,last_anim=dx,dz,target,anim
-        clear()
-        local count,scale,rotation=layout.arc(dx,dz)
-        for i=1,count do
-            local piece=CreateEntity()
-            piece.entity:AddTransform();piece.entity:AddAnimState()
-            piece:AddTag("FX");piece:AddTag("NOCLICK");piece.persists=false
-            piece.entity:SetParent(inst.entity)
-            local mid=(i-.5)/count
-            piece.Transform:SetPosition(dx*mid,0,dz*mid)
-            piece.Transform:SetRotation(rotation)
-            piece.AnimState:SetBank("fence_electric_field_fx");piece.AnimState:SetBuild("fence_electric_field_fx")
-            -- This is a span between two world points, not a camera-facing
-            -- projectile. Ground-plane orientation lets world yaw turn the beam.
-            piece.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-            piece.AnimState:SetLightOverride(1);piece.AnimState:SetFinalOffset(3)
-            piece.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-            piece.AnimState:SetScale(scale,i%2==0 and -layout.arc_thickness or layout.arc_thickness)
-            piece.AnimState:SetMultColour(.64,.82,1,1)
-            piece.AnimState:PlayAnimation("beam",true)
-            pieces[i]=piece
-        end
-        if target and target:IsValid() and anim~="" then
-            local contact=CreateEntity()
-            contact.entity:AddTransform();contact.entity:AddAnimState()
-            contact:AddTag("FX");contact:AddTag("NOCLICK");contact.persists=false
-            contact.entity:SetParent(target.entity)
-            contact.AnimState:SetBank("shock_fx");contact.AnimState:SetBuild("shock_fx")
-            contact.AnimState:SetMultColour(.64,.82,1,1)
-            contact.AnimState:SetAddColour(.06,.15,.36,0)
-            contact.AnimState:SetFinalOffset(1)
-            contact.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-            contact.AnimState:PlayAnimation(anim)
-            pieces[#pieces+1]=contact
-        end
-    end
+    local refresh=require("nw/electric_visual").attach(inst)
     if TheWorld.ismastersim then
-        inst.SetSpan=function(_,dx,dz,target)
-            inst._dx:set(dx);inst._dz:set(dz)
+        inst.SetSpan=function(_,dx,dz,target,dy,source_visual_lift)
+            inst._dx:set(dx);inst._dy:set(dy or 0);inst._dz:set(dz)
+            inst._lift:set(source_visual_lift or 0)
             if target then
                 local _,size,height=GetCombatFxSize(target)
                 inst._shockanim:set(GetElectrocuteFxAnim(size,height))
                 inst._contact:set(target)
+            else
+                inst._shockanim:set("");inst._contact:set(nil)
             end
-            refresh()
+            if refresh then refresh() end
         end
-    else
-        inst:ListenForEvent("nw_arcdirty",refresh);inst:DoTaskInTime(0,refresh)
     end
-    inst:ListenForEvent("onremove",clear)
 end
 -- Purely visual ground contact. Never starts electrocution or forks native damage.
 local function ground_shock()
@@ -86,10 +42,34 @@ local function ground_shock()
     end
     return inst
 end
+-- Same proxy/local-animation layout as native explode_small, but without its
+-- independent SoundEmitter. The owning soft burst supplies one quieter sound.
+local function silent_explosion()
+    local inst=CreateEntity()
+    inst.entity:AddTransform();inst.entity:AddNetwork()
+    inst.Transform:SetFourFaced();inst:AddTag("FX");inst:AddTag("NOCLICK")
+    if not TheNet:IsDedicated() then
+        inst:DoTaskInTime(0,function(proxy)
+            local fx=CreateEntity()
+            fx.entity:AddTransform();fx.entity:AddAnimState();fx.entity:SetCanSleep(false)
+            fx:AddTag("FX");fx:AddTag("NOCLICK");fx.persists=false
+            fx.Transform:SetFromProxy(proxy.GUID)
+            fx.AnimState:SetBank("explode");fx.AnimState:SetBuild("explode")
+            fx.AnimState:PlayAnimation("small")
+            fx.AnimState:SetLightOverride(1)
+            fx:ListenForEvent("animover",fx.Remove)
+        end)
+    end
+    inst.entity:SetPristine()
+    if not TheWorld.ismastersim then return inst end
+    inst.persists=false;inst:DoTaskInTime(1,inst.Remove)
+    return inst
+end
 local function effect(name,animation,seconds,light)
     return Prefab(name,function()
         local inst=CreateEntity()
         inst.entity:AddTransform()
+        if name=="nw_moon_impact_fx" or name=="nw_soft_blast_fx" then inst.entity:AddSoundEmitter() end
         if animation then
             inst.entity:AddAnimState()
             inst.AnimState:SetBank("nw_objects");inst.AnimState:SetBuild("nw_objects")
@@ -105,17 +85,48 @@ local function effect(name,animation,seconds,light)
         inst.entity:AddNetwork();inst:AddTag("FX");inst:AddTag("NOCLICK")
         if name=="nw_arc_fx" then
             setup_arc(inst)
+        elseif name=="nw_moon_impact_fx" then
+            if TheWorld.ismastersim then
+                inst.SetRadius=function()
+                    if inst._nw_burst_started then return end
+                    inst._nw_burst_started=true
+                    -- The field's end animation supplies stone fragments.
+                    -- Native explode_small proxies each play their own sound;
+                    -- use one positioned meteor impact instead of five blasts.
+                    inst.SoundEmitter:PlaySound("dontstarve/common/meteor_impact")
+                end
+            end
         elseif animation=="blast" then
             -- Explosion art never draws a gameplay radius guide. This runs on
             -- both peers, including late-spawned replicated effects.
             inst.AnimState:Hide("blast_extent")
+            inst.AnimState:Hide("blast_burst")
             inst._radius=net_float(inst.GUID,"nw_blast.radius","nw_blastradiusdirty")
             local function resize()
                 local scale=layout.blast_scale(inst._radius:value())
                 inst.AnimState:SetScale(scale,scale)
             end
             if TheWorld.ismastersim then
-                inst.SetRadius=function(_,radius) inst._radius:set(radius);resize() end
+                inst.SetRadius=function(_,radius)
+                    inst._radius:set(radius);resize()
+                    if inst._nw_burst_started then return end
+                    inst._nw_burst_started=true
+                    local x,_,z=inst.Transform:GetWorldPosition()
+                    -- Native billboards: rising translucent fire/smoke at several depths.
+                    for i=0,4 do
+                        local a=i*2.399
+                        local fx=SpawnPrefab(name=="nw_soft_blast_fx" and "nw_silent_explode_small" or "explode_small")
+                        if fx then
+                            local r=i==0 and 0 or radius*.38
+                            fx.Transform:SetPosition(x+math.cos(a)*r,.15,z+math.sin(a)*r)
+                            local scale=math.max(.25,radius/3)*(i==0 and 1.1 or .65)
+                            fx.Transform:SetScale(scale,scale,scale)
+                        end
+                    end
+                    if name=="nw_soft_blast_fx" then
+                        inst.SoundEmitter:PlaySound("dontstarve/common/blackpowder_explo",nil,.35)
+                    end
+                end
             else
                 inst:ListenForEvent("nw_blastradiusdirty",resize)
                 inst:DoTaskInTime(0,resize)
@@ -130,12 +141,15 @@ local function effect(name,animation,seconds,light)
         end
         if seconds then inst:DoTaskInTime(seconds,inst.Remove) end
         return inst
-    end,assets)
+    end,assets,name=="nw_soft_blast_fx" and {"nw_silent_explode_small"} or {"explode_small"})
 end
 local weapon_fx=require("nw/weapon_visual")
 local effects={Prefab("nw_ground_shock_fx",ground_shock,assets),
+    Prefab("nw_silent_explode_small",silent_explosion,assets),
     effect("nw_arc_fx",nil,.22),effect("nw_heal_fx","heal",.3),
     effect("nw_blast_fx","blast",.32),effect("nw_lighter_burst_fx","blast",.32),effect("nw_afterlight",nil,3,true),
+    effect("nw_moon_impact_fx",nil,.8),
+    effect("nw_soft_blast_fx","blast",1),
     effect("nw_crystal_burst_fx","blast",.32),
     effect("nw_flyinglight",nil,nil,true)}
 local function reel_fx(name,build,symbol,anim)

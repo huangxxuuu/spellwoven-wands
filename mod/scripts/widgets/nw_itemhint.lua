@@ -1,6 +1,7 @@
 local T=require("nw/locale").t
 local Widget=require("widgets/widget")
 local Image=require("widgets/image")
+local UIAnim=require("widgets/uianim")
 local Text=require("widgets/text")
 local Frame=require("widgets/nw_wandframe")
 local Row=require("widgets/nw_slotrow")
@@ -46,13 +47,25 @@ function Panel:Display(data)
     local body=self.body
     body:KillAllChildren()
     local top=0
-    if data.icon then
-        local plate=body:AddChild(Image("images/hud.xml","inv_slot.tex"))
-        plate:SetClickable(false);plate:SetSize(46,46);plate:SetPosition(23,-23)
-        local art=plate:AddChild(Image(data.atlas,data.icon))
-        art:SetSize(40,40);art:SetClickable(false)
-        top=label(body,data.title,58,0,INNER-58,23,VALUE,true)
-        top=math.max(46,top+label(body,data.subtitle,58,top,INNER-58,16,LABEL))
+    if data.wand_look~=nil then
+        local art=body:AddChild(UIAnim())
+        art:SetClickable(false)
+        local state=art:GetAnimState()
+        require("nw/visual").apply({AnimState=state},data.wand_look,"ground")
+        state:HideSymbol("contact_shadow")
+        state:HideSymbol("contact_grass")
+        -- Keep a common scale so shaft lengths stay distinct, but center the
+        -- animation bounds rather than its ground-contact anchor (scrapbook UI).
+        art:SetScale(.28)
+        top=label(body,data.title,84,0,INNER-84,23,VALUE,true)
+        top=math.max(84,top+label(body,data.subtitle,84,top,INNER-84,16,LABEL))
+        local x1,y1,x2,y2=state:GetVisualBB()
+        art:SetPosition(42-(x1+x2)*.14,-top/2-(y1+y2)*.14)
+    elseif data.icon then
+        local art=body:AddChild(Image(data.atlas,data.icon))
+        art:SetSize(50,50);art:SetPosition(25,-25);art:SetClickable(false)
+        top=label(body,data.title,62,0,INNER-62,23,VALUE,true)
+        top=math.max(50,top+label(body,data.subtitle,62,top,INNER-62,16,LABEL))
     else
         top=label(body,data.title,0,0,INNER,21,VALUE)
     end

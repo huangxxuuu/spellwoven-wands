@@ -40,7 +40,12 @@ recipe("nw_roll_2", "nw_wand", T("精良随机法杖"), {{"boards",2},{"purplege
 recipe("nw_roll_3", "nw_wand", T("稀有随机法杖"), {{"livinglog",2},{"purplegem",2},{"nw_dust",40},{"nw_overlord_core",1}}, 1, nil, nil, 3)
 -- Inscription ingredients; weapon drop associations are selected separately below.
 local ink = {
+    pitch_octave_up={{"cutreeds",2},{"twigs",1}},
+    pitch_octave_down={{"cutreeds",2},{"charcoal",1}},
+    pitch_semitone_up={{"cutreeds",1},{"twigs",1}},
+    pitch_semitone_down={{"cutreeds",1},{"charcoal",1}},
     gunpowder={{"gunpowder",1},{"charcoal",2}},
+    ocarina_g={{"cutreeds",2},{"seashell",1}},
     gust={{"feather_robin",2},{"twigs",1}},
     spore_ball={{"spore_small",1},{"livinglog",1}},
     flint_lance={{"flint",3},{"spear",1}},
@@ -114,7 +119,7 @@ local function inscribe(id, ingredients, suffix)
     local weapon=weapons[id] and weapons[id].source_weapon or original_weapons[id]
     for _,v in ipairs(ingredients) do
         inputs[#inputs+1]=v
-        if not selectors[id] and not arsenal.notes[id] and (not weapon or v[1]==weapon) then associate(v[1],id) end
+        if not selectors[id] and not arsenal.notes[id] and not require("nw/pitch_modifiers").by_id[id] and (not weapon or v[1]==weapon) then associate(v[1],id) end
     end
     if signature_material[id] then associate(signature_material[id],id) end
     local row=recipe("nw_inscribe_"..id..(suffix or ""), "nw_spellcard", Cards.names[id],
@@ -188,7 +193,7 @@ local function bench_group(card)
     if not card then return bench.supplies end
     if bench_override[card] then return bench_override[card] end
     local d=definitions.spells[card]
-    if arsenal.notes[card] then return bench.note end
+    if arsenal.notes[card] or d.pitch_shift then return bench.note end
     if d.select_target then return bench.target end
     if d.kind=="projectile" then return bench.projectile end
     if d.kind=="field" then return bench.field end
@@ -214,13 +219,14 @@ table.sort(M.recipes,function(a,b)
     if a.group~=b.group then return a.group<b.group end
     if a.group==bench.note then
         local x,y=arsenal.notes[a.card],arsenal.notes[b.card]
-        if x.instrument~=y.instrument then return x.instrument=="kantele" end
-        if x.pitch~=y.pitch then return x.pitch<y.pitch end
+        if x and y then
+            if x.instrument~=y.instrument then return x.instrument=="kantele" end
+            if x.pitch~=y.pitch then return x.pitch<y.pitch end
+        elseif x or y then return x~=nil end
     end
     return a.order<b.order
 end)
--- Both the registration order and the station's learned list include these
--- dividers. Keep them out of the gameplay recipe catalog.
+-- Historical field-guide sections; these no longer create crafting recipes.
 local headings={
     [bench.projectile]={"projectile",T("远程投射物")}, [bench.field]={"field",T("静态投射物")},
     [bench.path]={"path",T("弹道修正")}, [bench.effect]={"effect",T("法术效果修正")},
@@ -237,15 +243,7 @@ function M.card_section(card)
     local group=recipe and recipe.group or (definitions.spells[card].kind=="melee" and 16 or bench_group(card))
     return group,group==11 and T("原创招式") or headings[group][2]
 end
-M.menu_entries={}
-local last_group
-for _,row in ipairs(M.recipes) do
-    local heading=headings[row.group]
-    if heading and row.group~=last_group then
-        table.insert(M.menu_entries,{name=row.station.."_section_"..heading[1],station=row.station,
-            title=heading[2],section_icon=heading[1]})
-    end
-    table.insert(M.menu_entries,row)
-    last_group=row.group
-end
+-- Retain the shared catalog name for station learning and existing exporters.
+-- All entries are real recipes, even when the local class filter is disabled.
+M.menu_entries=M.recipes
 return M

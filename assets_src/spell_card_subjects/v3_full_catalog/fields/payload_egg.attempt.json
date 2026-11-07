@@ -1,0 +1,9 @@
+{
+  "id": "payload_egg",
+  "name": "空心载荷卵",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "payload_egg.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_spell_world/payload_egg.png"
+}
+

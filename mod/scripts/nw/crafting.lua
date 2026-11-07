@@ -59,18 +59,6 @@ function M.install(env)
             image=image..".tex", atlas=atlas,
             no_deconstruction=true}, {})
     end
-    for _,row in ipairs(Rules.menu_entries) do
-        if row.section_icon then
-            local key=row.name:upper()
-            STRINGS.NAMES[key]=row.title
-            STRINGS.RECIPE_DESC[key]=T("分类标题")
-            local recipe=env.AddRecipe2(row.name,{},TECH.LOST,{nounlock=true,station_tag=row.station,
-                atlas=require("nw/locale").language=="en" and "images/nw_sections_en.xml" or "images/nw_sections.xml",image=row.section_icon..".tex",no_deconstruction=true,
-                canbuild=function() return false end},{})
-            recipe.nw_section=true
-        else
-            register_product(row)
-        end
-    end
+    for _,row in ipairs(Rules.recipes) do register_product(row) end
 end
 return M

@@ -22,22 +22,4 @@ function M.tile(self)
         else meter:Hide() end
     end)
 end
--- Bridge only drag releases for the wand strip. Native inventory input
--- continues to own pickup, backpack behavior, and ordinary slot clicks.
-function M.inventory_slot(slot)
-    local control=slot.OnControl
-    slot.OnControl=function(self,key,down)
-        local p=ThePlayer
-        local panel=p and p.HUD and p.HUD.controls.nw_wandpanel
-        if panel and self.focus and key==CONTROL_ACCEPT and panel:CanEdit() then
-            if down then
-                panel:StartInventoryDrag(not p.replica.inventory:GetActiveItem() and self.tile and self.tile.item)
-            elseif panel.press and panel.press.slot and self.container==p.replica.inventory then
-                panel:EndDrag(nil,self)
-                return true
-            end
-        end
-        return control(self,key,down)
-    end
-end
 return M

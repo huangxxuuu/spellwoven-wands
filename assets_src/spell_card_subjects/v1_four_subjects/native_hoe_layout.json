@@ -1,0 +1,43 @@
+{
+  "source": "assets_src\\projectiles\\tools_v1\\farm_hoe-native.png",
+  "native_archive": "anim/quagmire_hoe.zip",
+  "symbol": "hoe01",
+  "frame": 0,
+  "native_copy": "edge_farm_hoe.native.png",
+  "sha256": "98daa5bf531d8d0c8c028d85da3718c4bf2516942370511975dcfea79e565876",
+  "source_copy_identical": true,
+  "source_size": [
+    162,
+    253
+  ],
+  "source_alpha_bbox": [
+    4,
+    5,
+    160,
+    249
+  ],
+  "frame_candidate": "assets_src\\spell_card_frames\\v3_refined_magic\\refined_magic_collector_basic.png",
+  "frame_status": "v3 candidate, not final production frame",
+  "inner_safe_rect": [
+    175,
+    105,
+    1080,
+    1148
+  ],
+  "fitted_size": [
+    667,
+    1043
+  ],
+  "position": [
+    294,
+    105
+  ],
+  "operations": [
+    "trim transparent outer margin",
+    "uniform scale",
+    "translate"
+  ],
+  "fits_inside_inner_rect": true,
+  "maximal_contain_scale": true,
+  "status": "native subject selected; frame composition preview only"
+}

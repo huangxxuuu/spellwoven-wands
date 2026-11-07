@@ -1,0 +1,10 @@
+{
+  "id": "kantele_a",
+  "name": "弦琴 A",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T01:02:05.826Z",
+  "completed_at": "2026-11-07T01:03:08.078Z",
+  "result_file": "kantele_a.result.json"
+}

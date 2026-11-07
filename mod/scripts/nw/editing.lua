@@ -14,7 +14,12 @@ function M.commit(player,wand,slot,source,revision,cursor)
     if cmp._editlock then return false,"BUSY" end
     if cmp.data.config_revision~=revision then return false,"STALE_REVISION" end
     if not U.finite(slot) or slot~=math.floor(slot) or slot<1 or slot>cmp.data.stats.capacity then return false,"INVALID_SLOT" end
+    local sourceinv=inv
     local inputslot=source and inv:GetItemSlot(source)
+    if source and not cursor and not inputslot and inv.GetOverflowContainer then
+        local bag=inv:GetOverflowContainer()
+        if bag then inputslot=bag:GetItemSlot(source);if inputslot then sourceinv=bag end end
+    end
     if cursor and inv:GetActiveItem()~=source then return false,"CARD_MISSING" end
     if source and (not source:HasTag("nw_spellcard") or (not cursor and not inputslot) or not require("nw/cards").codes[source.spell_id]) then return false,"CARD_MISSING" end
     if source and not require("nw/cards").playable[source.spell_id] then return false,"UNSUPPORTED_CARD" end
@@ -22,10 +27,7 @@ function M.commit(player,wand,slot,source,revision,cursor)
     if not source and not old then return true end
     local split=source and source.components and source.components.stackable and source.components.stackable:IsStack()
     local outputslot=not split and inputslot or nil
-    if old and (not cursor or split) and not outputslot then
-        for i=1,inv.maxslots do if inv:GetItemInSlot(i)==nil then outputslot=i;break end end
-        if not outputslot then return false,"INVENTORY_FULL" end
-    end
+    local outputinv=outputslot and sourceinv or inv
     cmp._editlock=true
     local output
     if old then
@@ -51,7 +53,14 @@ function M.commit(player,wand,slot,source,revision,cursor)
             inv:GiveActiveItem(item)
             return inv:GetActiveItem()==item
         end
-        return inv:GiveItem(item,outputslot) and (inv:GetItemSlot(item)~=nil or item.IsValid and not item:IsValid())
+        -- Match native container-to-inventory transfers: GiveItem owns stack
+        -- merging and overflow selection. A full destination must return the
+        -- card to its source instead of dropping it or putting it on the cursor.
+        local ignorefull=inv.ignorefull
+        inv.ignorefull=true
+        local accepted=outputinv:GiveItem(item,outputslot,nil,false)
+        inv.ignorefull=ignorefull
+        return accepted and true or false
     end
     if output and not give(output) then
         output:Remove()
@@ -62,7 +71,7 @@ function M.commit(player,wand,slot,source,revision,cursor)
     end
     cmp:UpdateTime()
     local previous=cmp.data.runtime
-    cmp.data.cards[slot]=source and {card_uid=source:GetCardUID(),spell_id=source.spell_id,source=source.source} or false
+    cmp.data.cards[slot]=source and {card_uid=require("nw/card_identity").unique(cmp.data.cards,source:GetCardUID()),spell_id=source.spell_id,source=source.source} or false
     if source then source:Remove() end
     local runtime=C.initial(cmp.data.cards,cmp.data.stats,previous.rng_state)
     runtime.mana=previous.mana

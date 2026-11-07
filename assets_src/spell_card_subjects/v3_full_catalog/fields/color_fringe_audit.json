@@ -1,0 +1,152 @@
+{
+  "method": "RGB near-primary saturated residual probes; per image relevant hues, alpha thresholds 8/32/128; read-only PNG inspection",
+  "images": [
+    {
+      "id": "guard_ring",
+      "color_masks": {
+        "yellow": {
+          "total": 2902,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 2
+        },
+        "red": {
+          "total": 515,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 2
+        }
+      }
+    },
+    {
+      "id": "deer_decoy",
+      "color_masks": {
+        "green": {
+          "total": 203,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 2
+        },
+        "cyan": {
+          "total": 118,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 2
+        },
+        "yellow": {
+          "total": 115,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 1
+        }
+      }
+    },
+    {
+      "id": "twin_arc",
+      "color_masks": {
+        "cyan": {
+          "total": 2455,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 3
+        },
+        "blue": {
+          "total": 235,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 2
+        }
+      }
+    },
+    {
+      "id": "searing_halo",
+      "color_masks": {
+        "red": {
+          "total": 1079,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 2
+        },
+        "yellow": {
+          "total": 219,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 3
+        }
+      }
+    },
+    {
+      "id": "fireflies",
+      "color_masks": {
+        "yellow": {
+          "total": 49,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 2
+        },
+        "green": {
+          "total": 12,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 1
+        }
+      }
+    },
+    {
+      "id": "storm_cloud",
+      "color_masks": {
+        "cyan": {
+          "total": 34,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 1
+        },
+        "blue": {
+          "total": 47,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 1
+        }
+      }
+    },
+    {
+      "id": "side_embers",
+      "color_masks": {
+        "red": {
+          "total": 369,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 2
+        },
+        "yellow": {
+          "total": 92,
+          "alpha_ge8": 0,
+          "alpha_ge32": 0,
+          "alpha_ge128": 0,
+          "max_alpha": 3
+        }
+      }
+    }
+  ],
+  "thresholds": {
+    "red": "R>240 G<30 B<30",
+    "green": "G>240 R<40 B<40",
+    "cyan": "G>240 B>240 R<40",
+    "yellow": "R>240 G>240 B<40",
+    "blue": "B>240 R<40 G<70"
+  }
+}

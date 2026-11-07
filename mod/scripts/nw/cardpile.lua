@@ -63,7 +63,9 @@ function M.install(env)
     local action=Action({priority=6,rmb=true,distance=2,silent_fail=true})
     action.id,action.str,action.fn="NW_PILE",T("叠放法术卡"),M.perform
     env.AddAction(action)
-    env.AddComponentAction("USEITEM","inventoryitem",M.collect)
+    -- DST replaces collectors registered for the same mod/type/component.
+    -- Cards have stackable; inventoryitem's USEITEM slot belongs to wand repair.
+    env.AddComponentAction("USEITEM","stackable",M.collect)
     for _,sg in ipairs({"wilson","wilson_client"}) do
         env.AddStategraphActionHandler(sg,ActionHandler(action,"doshortaction"))
     end

@@ -1,0 +1,53 @@
+{
+  "id": "spore_ball",
+  "name": "蘑菇孢球",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-78f9b6cb-a495-409f-a283-8699ba370285.png",
+  "output": "spore_ball.png",
+  "prompt": "spore_ball.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_elemental_flight/spore_ball_head_0.png",
+  "review": {
+    "visual_reviewed": true,
+    "mechanism_and_count_checked": true,
+    "issues": [],
+    "notes": [
+      "棕褐孢球与大块奶油色凸点一致。"
+    ],
+    "validation": {
+      "id": "spore_ball",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_8": [
+        105,
+        225,
+        1113,
+        1041
+      ],
+      "alpha_bbox_32": [
+        105,
+        226,
+        1112,
+        1040
+      ],
+      "alpha_bbox_128": [
+        106,
+        226,
+        1112,
+        1039
+      ],
+      "edge_max_alpha": 1,
+      "nonzero_edge_pixels": 14,
+      "visible_edge_pixels": 0,
+      "transparent_ratio": 0.6736414764619247,
+      "sha256": "09798057673de39cdb4768fbad2a8ee1d80cd27f0ae7d4822dca7a0a816b93b6"
+    }
+  },
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-78f9b6cb-a495-409f-a283-8699ba370285.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "source_hash_matches": true,
+  "raw_png_modified": false,
+  "retry_needed": false
+}

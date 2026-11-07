@@ -1,0 +1,41 @@
+{
+  "id": "accelerate",
+  "name": "蓄速",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-f0c53b96-2e7f-45bc-b14b-42d5341086e3.png",
+  "output": "accelerate.png",
+  "prompt": "accelerate.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "沿同一直线的三个位置逐渐拉开间距；位置影像也被画成逐渐增大，需结合牌名避免误读巨化。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      15,
+      149,
+      1242,
+      1146
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 12,
+    "sha256": "186a88e3e5363f59620dc27e6194c86354fcbeb911d97fb0e57c1e5ab171cd0d",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

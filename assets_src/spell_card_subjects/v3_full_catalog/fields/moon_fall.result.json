@@ -1,0 +1,49 @@
+{
+  "id": "moon_fall",
+  "name": "月石坠击",
+  "attempt_count": 1,
+  "status": "candidate",
+  "prompt": "moon_fall.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/originals/moon_fall.png",
+  "output": "moon_fall.png",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-823e047b-5af8-4681-bf95-0cc2968906ba.png",
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28 as C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-823e047b-5af8-4681-bf95-0cc2968906ba.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [],
+    "complete_visible_subject": true,
+    "minimum_visible_margin_px": 53,
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "id": "moon_fall",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 1008495,
+    "opaque_pixels": 965,
+    "semi_transparent_pixels": 563056,
+    "bbox_alpha32": [
+      82,
+      53,
+      1189,
+      1187
+    ],
+    "bbox_alpha128": [
+      82,
+      54,
+      1187,
+      1186
+    ],
+    "edge_max_alpha": 1,
+    "sha256": "fc820adeea53bb706177e2c8a26e222f8e58fb154964e36e091fb33a152921e8",
+    "matches_source": true
+  }
+}

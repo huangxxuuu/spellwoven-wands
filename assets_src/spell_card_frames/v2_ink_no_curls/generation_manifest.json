@@ -1,0 +1,48 @@
+{
+  "created": "2026-11-07",
+  "mode": "built-in image_gen",
+  "status": "selected A; local curl removal; original border design retained",
+  "v1_archive_preserved": true,
+  "v1_archive_sha256": {
+    "a_ink_parchment.png": "9ad613040aa9318465404e4c98a64175764b943885b1abf9b20d37244a1b3c73",
+    "a_ink_parchment_collector_basic.png": "c0739c6e06be406194397eb6cdcae6a8d8fde9626519066f4553057f96547a15",
+    "b_antique_brass.png": "4df44cdca1b804d3c917cb1110700bcfa78f98cd4a87b147b006de09af22e2f0",
+    "b_antique_brass_collector_basic.png": "54fdf762379b17a98411b3dacfae450cf754ca393da6001ee6e0e6df027367d9",
+    "collector_prompts.json": "fa9a77f55a8be2f19aae60175995362ab453a92ff92c32ebe0ecd9fbf7994c4e",
+    "c_thorn_engraving.png": "44dd04c13b1eb22db82a61b4bb6a26b3c347f501d0d262cd4b533fcc8615dd8c",
+    "c_thorn_engraving_collector_basic.png": "0b41dd967e928200af90430e7e5be95fc8d4e5219bfd738340fa9c3d3452ec8a",
+    "generation_manifest.json": "bc20cd1b8dc53d308f6fd252ed9205c2ad8e41a75c04eb2f44331c101a9f3a29",
+    "prompts.json": "f2890f57f8dbae761239c94b91c849d0ca703e76179b73b228f9ab857981c5cc"
+  },
+  "images": [
+    {
+      "id": "a_ink_no_curls_collector_basic",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-f30db0c4-fe8b-4ede-9bdb-4c5a624d9a15.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v2_ink_no_curls/a_ink_no_curls_collector_basic.png",
+      "file": "a_ink_no_curls_collector_basic.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "ec02c416358a3271b69a4c970ffc9f8aaff64c20e933f9dd2f7aee25e71fe0cb"
+    },
+    {
+      "id": "a_ink_no_curls_style_board",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b21b-363e-7553-93b3-c905097de644\\exec-7a995425-d7d9-492e-9c9c-970579eb4c7f.png",
+      "destination": "D:/Projects/AI/dst_mod/assets_src/spell_card_frames/v2_ink_no_curls/a_ink_no_curls_style_board.png",
+      "file": "a_ink_no_curls_style_board.png",
+      "width": 1448,
+      "height": 1086,
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "sha256": "8eb93f75689c48a8c716665bffc76af51449d5fb873e7bc0b6d3792c71c34ec2"
+    }
+  ],
+  "reference_snapshot": {
+    "original": "C:/Users/85183/AppData/Local/Temp/codex-clipboard-d8e9d765-1988-44be-aab4-da1c2f5438be.png",
+    "archived": "references/user-curl-annotation.png"
+  }
+}

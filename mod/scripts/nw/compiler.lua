@@ -94,9 +94,6 @@ function M.compile(wand, definitions, limits)
             m.flags.targets=m.flags.targets or {}
             m.flags.targets[d.select_target]=true
         end
-        if d.id=="speed_up" or d.id=="speed_down" then
-            m.pitch=(m.pitch or 0)+(d.id=="speed_up" and 1 or -1)
-        end
         if d.copies then
             b.copies = math.min(max_projectiles+1, (b.copies or 1) * d.copies)
             if d.copy_damage then b.copy_damage=(b.copy_damage or 1)*d.copy_damage end
@@ -112,6 +109,7 @@ function M.compile(wand, definitions, limits)
         m.speed_mult = m.speed_mult * (d.speed_mult or 1)
         m.speed_add = m.speed_add + (d.speed_add or 0)
         m.lifetime_mult = m.lifetime_mult * (d.lifetime_mult or 1)
+        if d.pitch_shift then m.pitch=(m.pitch or 0)+d.pitch_shift end
         if d.flag then
             local old = m.flags[d.flag]
             local value = U.copy(d)
@@ -172,6 +170,7 @@ function M.compile(wand, definitions, limits)
                     end
                 elseif d.kind == "projectile" or d.kind == "trigger" or d.kind=="melee" or d.kind=="instant" or d.kind=="field" or d.kind=="note" then
                     local p = U.copy(d)
+                    p.journal_id=cards[id].spell_id
                     b.projectiles[#b.projectiles+1] = p
                     if d.kind=="projectile" or d.kind=="trigger" then
                         p.event=p.event or b.imprint
@@ -219,7 +218,9 @@ function M.compile(wand, definitions, limits)
                 p.lifetime = math.max(.1, lifetime * m.lifetime_mult)
                 p.flight_lifetime_mult = m.lifetime_mult
             end
-            if p.kind=="field" and p.id~="guard_ring" then
+            if p.kind=="field" then
+                p.field_lifetime_mult=m.lifetime_mult
+                p.child_modifiers={speed_mult=m.speed_mult,speed_add=m.speed_add,lifetime_mult=m.lifetime_mult}
                 p.speed=math.min(30,(p.speed or 0)*m.speed_mult+m.speed_add)
                 p.field_drive=p.speed>0
                 if p.id=="gunpowder" then
@@ -242,7 +243,7 @@ function M.compile(wand, definitions, limits)
             end
             p.pitch=m.pitch
             for key,v in pairs(p.innate or {}) do p.flags[key]=p.flags[key] or U.copy(v) end
-            if travels and p.flags.harmless then p.damage,p.burn_damage,p.freeze,p.planar=0,nil,nil,nil end
+            if (travels or p.kind=="field") and p.flags.harmless then p.damage,p.burn_damage,p.freeze,p.planar=0,nil,nil,nil end
             total = total + (p.count or 1)
         end
     end

@@ -1,0 +1,746 @@
+{
+  "spark": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "arrow": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "heavy": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "scatter": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "double": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "triple": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "speed_up": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "speed_down": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "damage_up": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "precision": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "fire": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "frost": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "sine": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "spiral": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "homing": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "bounce": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "pierce": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "explosion": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "chain": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "knockback": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "leech": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "light": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "thrust": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "slash": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "whirl": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "orbit": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "pierce_all": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "imprint_hit": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "imprint_timer": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "heal_ally": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "spark_hit": {
+    "primary_class": "basic",
+    "mechanism_badge": "hit"
+  },
+  "spark_timer": {
+    "primary_class": "basic",
+    "mechanism_badge": "timer"
+  },
+  "arrow_hit": {
+    "primary_class": "basic",
+    "mechanism_badge": "hit"
+  },
+  "arrow_timer": {
+    "primary_class": "basic",
+    "mechanism_badge": "timer"
+  },
+  "heavy_hit": {
+    "primary_class": "basic",
+    "mechanism_badge": "hit"
+  },
+  "heavy_timer": {
+    "primary_class": "basic",
+    "mechanism_badge": "timer"
+  },
+  "scatter_hit": {
+    "primary_class": "basic",
+    "mechanism_badge": "hit"
+  },
+  "scatter_timer": {
+    "primary_class": "basic",
+    "mechanism_badge": "timer"
+  },
+  "fire_hit": {
+    "primary_class": "basic",
+    "mechanism_badge": "hit"
+  },
+  "fire_timer": {
+    "primary_class": "basic",
+    "mechanism_badge": "timer"
+  },
+  "frost_hit": {
+    "primary_class": "basic",
+    "mechanism_badge": "hit"
+  },
+  "frost_timer": {
+    "primary_class": "basic",
+    "mechanism_badge": "timer"
+  },
+  "mana_reduce": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "recharge_down": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "repeat_2": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "repeat_3": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "phase_wall": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "spore_sentry": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "vital_ring": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "heavy_shot": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "trident_cast": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "chord_d": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "repeat_4": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "gust": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "spore_ball": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "flint_lance": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "crystal_mine": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "sleep_crystal": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "slime": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "grow_orb": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "heal_bolt": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "star_vortex": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "moon_fall": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "bog_whip": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "detonate": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "bee_swarm": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "delay_seal": {
+    "primary_class": "basic",
+    "mechanism_badge": "timer"
+  },
+  "rain_cloud": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "guard_ring": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "wild_charge": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "long_life": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "reverse_path": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "return_path": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "light_shot": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "accelerate": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "chill_touch": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "wet_weak": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "melee_mark": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "wild_double": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "two_way": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "note_a": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "glass_disc": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "land_hook": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "tri_electric": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "end_beam": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "deer_decoy": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "payload_egg": {
+    "primary_class": "basic",
+    "mechanism_badge": "break"
+  },
+  "fireflies": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "shock_ring": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "storm_cloud": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "vortex": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "harmless": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "searing_halo": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "twin_arc": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "side_embers": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "near_homing": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "crit_rune": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "cast_four": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "hex_cast": {
+    "primary_class": "control",
+    "mechanism_badge": null
+  },
+  "note_c": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_batbat": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_bullkelp_root": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_chum": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_dumbbell": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_dumbbell_bluegem": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_dumbbell_gem": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_dumbbell_golden": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_dumbbell_heat": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_dumbbell_marble": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_dumbbell_redgem": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_farm_hoe": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_fence_rotator": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_fishingrod": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_fumaroleaxe": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_fumarolehammer": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_fumarolepickaxe": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_fumaroleshovel": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_goldenaxe": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_goldenpickaxe": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_goldenshovel": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_hambat": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_hammer": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_handpillow_beefalowool": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_handpillow_kelp": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_handpillow_petals": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_handpillow_steelwool": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_lighter": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_minifan": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_moonglassaxe": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_multitool_axe_pickaxe": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_nightstick": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_nightsword": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_oceanfishingrod": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_orangestaff": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_pickaxe": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_pickaxe_lunarplant": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_pocketwatch_weapon": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_propsign": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_ruins_bat": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_shadow_battleaxe": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_shieldofterror": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_shovel": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_shovel_lunarplant": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_spear_wathgrithr": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_spear_wathgrithr_lightning": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_spear_wathgrithr_lightning_charged": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_sword_lunarplant": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_tentaclespike": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_torch": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_trident": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_voidcloth_scythe": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_whip": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_yoth_lance": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "target_hostile": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "target_neutral": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "target_friendly": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "target_building": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "target_nature": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "target_players_other": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "target_self": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "ocarina_b": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "ocarina_d": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "ocarina_e": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "ocarina_f": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "ocarina_gsharp": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "ocarina_a2": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "kantele_a": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "kantele_dsharp": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "kantele_e": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "kantele_g": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_voidcloth_boomerang": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_firestaff": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_icestaff": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_staff_lunarplant": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_staff_tornado": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_yellowstaff": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "edge_opalstaff": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "giant_shot": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "short_life": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "homing_rotate": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "gunpowder": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "ocarina_g": {
+    "primary_class": "basic",
+    "mechanism_badge": null
+  },
+  "pitch_octave_up": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "pitch_octave_down": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "pitch_semitone_up": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "pitch_semitone_down": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  }
+}

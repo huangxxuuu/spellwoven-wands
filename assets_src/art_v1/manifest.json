@@ -412,6 +412,258 @@
         0
       ]
     },
+    "head_crystal_1_red_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_1_blue_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_1_green_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_1_red_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_1_blue_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_1_green_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_2_red_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_2_blue_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_2_green_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_2_red_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_2_blue_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_2_green_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_3_red_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_3_blue_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_crystal_3_green_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_3_red_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_3_blue_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
+    "head_plain_3_green_broken": {
+      "pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "center": [
+        0,
+        0
+      ]
+    },
     "body_01_short": {
       "pixels": [
         72,

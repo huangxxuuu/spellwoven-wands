@@ -62,8 +62,12 @@ function M.run()
     local beforea,beforeb=a.components.health.currenthealth,b.components.health.currenthealth
     require("nw/explosions").hit(a,{flags={targets={hostile=true},explosive_hit=D.explosion}},x,z)
     assert(a.components.health.currenthealth==beforea-25 and b.components.health.currenthealth==beforeb-25,"NW_REVISION: native all-side explosion")
+    beforea,beforeb=a.components.health.currenthealth,b.components.health.currenthealth
+    require("nw/spell_effects").blast(a,x,z,{id="sleep_crystal",damage=12,radius=3,flags={targets={hostile=true}}})
+    assert(a.components.health.currenthealth==beforea-12 and b.components.health.currenthealth==beforeb-12,"NW_REVISION: crystal blast omitted players")
     a.components.health:SetInvincible(true);b.components.health:SetInvincible(true)
     require("nw/smoke_weapons").run(a,x,z)
+    require("nw/smoke_review36").run(a,x,z)
     local p=plan("gunpowder").blocks[1].projectiles[1]
     powder=spawn("nw_gunpowder",x+8,z)
     powder:Launch(a,p,x+8,z,1,0,function() end)
@@ -145,6 +149,7 @@ function M.run()
         TheWorld:DoTaskInTime(7,function()
             assert(not fuse:IsValid() and explosions>0,"NW_REVISION: native fuse explosion")
             assert(not neutral:IsValid(),"NW_REVISION: neutral caster released")
+            assert(require("nw/smoke_review36").passed,"NW_REVISION: new review regression suite")
             assert(require("nw/smoke_weapons").passed,"NW_REVISION: weapon regression suite")
             for _,v in ipairs(made) do if v:IsValid() then v:Remove() end end
             print("NW_REVISION_PASS: native attacks/area/explosive egg ownership, neutral cleanup, all-side blast, powder fuse/extinguish, ocean sink, land/boat boundaries, independent scatter payloads and budgets")

@@ -11,6 +11,7 @@ import subprocess
 import time
 import zipfile
 from xml.etree import ElementTree as ET
+from animation_atlas import validate_animation_archive
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'dist/live_preview'
@@ -28,11 +29,20 @@ def atomic_text(path, text):
 
 def inputs():
     files = list((ROOT / 'assets_src/spell_revision').rglob('*.png'))
+    files += list((ROOT / 'assets_src/projectiles/elemental_v1').glob('*.png'))
+    files += list((ROOT / 'assets_src/projectiles/basic_v1').glob('*.png'))
+    files += list((ROOT / 'assets_src/projectiles/special_v1').glob('*.png'))
+    files += list((ROOT / 'assets_src/projectiles/tools_v1').glob('*.png'))
+    files += list((ROOT / 'assets_src/fields').rglob('*.png'))
     files += list((ROOT / 'docs/previews/spark-six').glob('*.png'))
     files += list((ROOT / 'assets_src/art_v1/originals').glob('*.png'))
     files += [ROOT / 'tools' / name for name in (
-        'build_spell_world.py', 'build_spark_flight.py', 'build_art_assets.py')]
-    files += [ROOT / 'mod/scripts/nw' / name for name in ('flight_visual.lua', 'spark_trail.lua')]
+        'build_spell_world.py', 'build_spark_flight.py', 'build_elemental_flight.py',
+        'build_tool_flight.py', 'build_field_stages.py', 'build_electric_arc.py', 'native_animation.py', 'build_art_assets.py', 'animation_atlas.py')]
+    files += [ROOT / 'mod/scripts/nw' / name for name in (
+        'flight_visual.lua', 'spark_trail.lua', 'elemental_flight.lua', 'beam_path.lua', 'beam_visual.lua',
+        'tool_flight.lua', 'field_stages.lua', 'field_member_visual.lua', 'electric_visual.lua')]
+    files += list((ROOT / 'tools/preview_mod').rglob('*.lua'))
     return sorted(files)
 
 
@@ -57,7 +67,9 @@ def build(tools):
     original = build_art_assets.compile_bank
 
     def compile_preview(name, build_xml, anim_xml, images, ignored_tools):
-        key = 'spark' if name == 'nw_spark_flight' else 'world'
+        key = {'nw_spark_flight': 'spark', 'nw_spell_world': 'world',
+               'nw_elemental_flight': 'elemental', 'nw_tool_flight': 'tools',
+               'nw_field_stages': 'fields'}[name]
         h = hashlib.sha256(ET.tostring(build_xml) + ET.tostring(anim_xml))
         for image_name, image in sorted(images.items()):
             h.update(image_name.encode()); h.update(str(image.size).encode()); h.update(image.tobytes())
@@ -87,10 +99,12 @@ def build(tools):
             (work / 'compile.log').write_bytes(result.stdout + result.stderr)
             if result.returncode:
                 raise RuntimeError(f'Compiler failed; see {work / "compile.log"}')
+            validate_animation_archive(destination / 'anim' / (bank + '.zip'))
             archive = cache_dir / (bank + '.zip')
             shutil.copy2(destination / 'anim' / archive.name, archive)
             cache[key] = {'bank': bank, 'digest': digest}
         else:
+            validate_animation_archive(archive)
             (destination / 'anim').mkdir(exist_ok=True)
             shutil.copy2(archive, destination / 'anim' / archive.name)
         with zipfile.ZipFile(archive) as z:
@@ -103,14 +117,41 @@ def build(tools):
     try:
         for script in ('build_spark_flight.py', 'build_spell_world.py'):
             runpy.run_path(str(ROOT / 'tools' / script), run_name='__preview__')
+        for script in ('build_elemental_flight.py', 'build_tool_flight.py', 'build_field_stages.py'):
+            builder = runpy.run_path(str(ROOT / 'tools' / script), run_name='__preview__')
+            build_xml, anim_xml, images, _ = builder['make_bank']()
+            # Use the isolated compiler; do not replace production files.
+            compile_preview(builder['BANK'], build_xml, anim_xml, images, tools)
     finally:
         build_art_assets.compile_bank = original
-    flight = (ROOT / 'mod/scripts/nw/flight_visual.lua').read_text(encoding='utf8')
-    trail = (ROOT / 'mod/scripts/nw/spark_trail.lua').read_text(encoding='utf8')
-    flight = flight.replace('"nw_spell_world"', json.dumps(banks['world']))
-    trail = trail.replace('"nw_spark_flight"', json.dumps(banks['spark']))
-    source = 'local flight=(function()\n' + flight + '\nend)()\n'
-    source += 'local trail=(function()\n' + trail + '\nend)()\nreturn {flight=flight,trail=trail}\n'
+    # Native shock textures stay in the installed game; only the animation
+    # matrices need an isolated bank so an open preview can reload them.
+    import build_electric_arc
+    banks['electric'] = f'nw_preview_electric_{revision}'
+    build_electric_arc.build(banks['electric'], destination / 'anim' / (banks['electric']+'.zip'), manifest=False)
+    validate_animation_archive(destination / 'anim' / (banks['electric']+'.zip'))
+    module_names = {
+        'flight': 'flight_visual', 'trail': 'spark_trail', 'elemental': 'elemental_flight',
+        'beam_path': 'beam_path', 'beam_visual': 'beam_visual', 'tools': 'tool_flight',
+        'fields': 'field_stages', 'members': 'field_member_visual',
+        'size': 'projectile_size', 'electric': 'electric_visual',
+    }
+    source = 'local factories,loaded={},{}\n'
+    for name in module_names.values():
+        text = (ROOT / 'mod/scripts/nw' / (name + '.lua')).read_text(encoding='utf8')
+        for original_bank, key in (
+            ('nw_spell_world', 'world'), ('nw_spark_flight', 'spark'),
+            ('nw_elemental_flight', 'elemental'), ('nw_tool_flight', 'tools'),
+            ('nw_field_stages', 'fields'),
+            ('nw_electric_arc', 'electric'),
+        ):
+            text = text.replace(json.dumps(original_bank), json.dumps(banks[key]))
+        source += f'factories["nw/{name}"]=function(require)\n{text}\nend\n'
+    source += ('local function load(name)\n'
+               ' if not factories[name] then return require(name) end\n'
+               ' if not loaded[name] then loaded[name]=factories[name](load) end\n'
+               ' return loaded[name]\nend\n')
+    source += 'return {' + ','.join(f'{key}=load("nw/{name}")' for key, name in module_names.items()) + '}\n'
     # Syntax check the generated, actual runtime modules before publication.
     from lupa.lua51 import LuaRuntime
     LuaRuntime().eval('function(s) assert(loadstring(s)) end')(source)
@@ -119,7 +160,7 @@ def build(tools):
     for file in (ROOT / 'tools/preview_mod').rglob('*.lua'):
         LuaRuntime().eval('function(s) assert(loadstring(s)) end')(file.read_text(encoding='utf8'))
     atomic_text(cache_path, json.dumps(cache))
-    manifest = f'{revision} {banks["spark"]} {banks["world"]}\n'
+    manifest = f'{revision} {banks["spark"]} {banks["world"]} {banks["elemental"]} {banks["tools"]} {banks["fields"]} {banks["electric"]}\n'
     atomic_text(STAGE / 'live/current.txt', manifest)
     print(f'BUILT {revision}: {time.perf_counter()-started:.2f}s', flush=True)
     return revision, manifest

@@ -1,0 +1,284 @@
+[
+  {
+    "id": "spark",
+    "name": "火花弹",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "四角星主体与粉紫火花身份一致。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-7457bc53-33f9-415f-801e-c25c39d85b9d.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "arrow",
+    "name": "魔法箭",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "青白晶体箭头、棕杆、粉白尾羽均保留。",
+      "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-d5264763-d4f7-4d0a-b302-6a0dac6d64d3.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "scatter",
+    "name": "散弹",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "准确三枚石色楔状弹丸。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-9dc30fbd-1535-4a10-b166-e1dfead21cf0.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "double",
+    "name": "双重施法",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "两个不同印记表现多抽取；开放聚合笔触距离边缘仅1–2px，接入卡牌时需统一缩放留白。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-ef94fc37-1d84-40ff-a9af-a417ea66cd56.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "triple",
+    "name": "三重施法",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "三个不同印记表现多抽取；留白偏紧，后续接入应缩放。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-b3fbf096-23d8-4fb1-99e0-807818580988.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "chain",
+    "name": "连锁闪电",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "四个击中节点串联，粗折线与短分叉可读。",
+      "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-b6a3d0e4-3d8d-4cf1-8ebb-e301de13912f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "imprint_hit",
+    "name": "碰撞触发修饰",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "弹体、接触面、触发后的两个载荷方向可读，未添加机制角标。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-ca72f40b-71a6-4987-bef0-46cec8569a58.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "imprint_timer",
+    "name": "定时触发修饰",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "金色沙漏与载体结合，触发后的载荷可读，未添加机制角标。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-c7130920-0b29-4abd-95e1-6a0d2fa49506.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "repeat_2",
+    "name": "双倍施法",
+    "status": "needs_retry",
+    "issues": [
+      "双倍施法底端菱形贴近并触及画布下边缘：6 个 alpha≥8 像素落在边界，最大 alpha 108。主体需要完整安全留白。"
+    ],
+    "retry_instructions": "定向修正：仍然严格保留一个输入紫色菱形、两枚完全同形输出紫色菱形及唯一文字“×2”。把完整构图缩入正方形画布中心的76%区域，四周至少12%完全透明留白。所有菱形尖角和“×2”全部完整露出；最底尖角离画布下边缘至少12%画布高度。不要延长竖向布局，不要任何物体触边、裁切或越出画布。不增加第三个输出或任何装饰。透明背景干净。",
+    "notes": [
+      "一个输入、两个同形输出，唯一倍数文字×2正确。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-65060155-ccc0-4a5e-9823-9fb8c4c9017f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "repeat_3",
+    "name": "三倍施法",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "一个输入、三个同形输出，唯一倍数文字×3正确；上下留白偏紧。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-db2246e8-f494-4cb8-bb55-955f76fbd844.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "trident_cast",
+    "name": "三叉阵",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "准确三个前向展开分支。",
+      "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-45841a88-09f2-4766-9824-af9990a2a087.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "repeat_4",
+    "name": "四倍施法",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "一个输入、四个同形输出，唯一倍数文字×4正确。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-66a9a846-86d3-44ba-a3fb-f093eefa948b.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "gust",
+    "name": "风压弹",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "实心风卷与当前弹头形象一致。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-0079ffa9-2c65-4cef-9741-e003918ca175.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "spore_ball",
+    "name": "蘑菇孢球",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "棕褐孢球与大块奶油色凸点一致。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-78f9b6cb-a495-409f-a283-8699ba370285.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "flint_lance",
+    "name": "燧晶投枪",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "灰白燧石矛头、短木杆和粗绳清晰。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-9c682dd4-3b94-4aa5-adc8-40232fc57859.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "slime",
+    "name": "黏液弹",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "黄绿色圆润黏液主体和短尾一致。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-ff14721f-093d-44bc-9f58-802f2c526e35.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "grow_orb",
+    "name": "蓄势光球",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "金色花瓣包裹的核心与后方较小阶段球清晰。",
+      "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-76cc93de-a4c4-45cb-815d-b8400b41cf82.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "heal_bolt",
+    "name": "愈合弹",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "浅绿弹芯、粉色及灰绿花瓣外形一致。",
+      "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-ecda1f64-aeea-45b4-9e85-b1bd112cc39d.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "star_vortex",
+    "name": "旋流四星",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "准确四颗四角星组成旋流。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-5fadc480-7f5a-4ee7-b77b-7219927514dd.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "wild_double",
+    "name": "双重散放",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "准确两道向前分散的金色箭束。",
+      "透明预览可见彩色细边，但只读像素检查确认相应饱和杂色全部位于alpha<8区域；alpha≥8区域计数为0，不判为主体杂色。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-a20ea061-29a1-4362-95f2-fe17ccd92912.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "two_way",
+    "name": "前后阵",
+    "status": "candidate",
+    "issues": [],
+    "retry_instructions": "定向修正：输出必须是1:1正方形透明PNG，不能生成宽横幅或2:1图片。维持中心紫色释放点与准确两道互相180°、朝左右外侧的等长青白箭束。将整个横向符号完整放在正方形画布中央，符号最大宽度不超过画布的76%，高度约48%；左右各至少12%完全透明留白，上下保留更多透明空间。整体是单个完整符号，不加上/下分支，不加边框，不把透明留白裁掉。",
+    "notes": [
+      "准确两道相反180度箭束，中心释放点明确。",
+      "横画布主体完整，可后续等比放入方形卡框；仅透明画布比例不同，无需重绘。保留重试 prompt 作为用户希望调整构图时的可选方案。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-a13bb56c-152c-4b1a-a0bd-09fb1e67b70a.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "retry_policy": "optional_not_required"
+  },
+  {
+    "id": "glass_disc",
+    "name": "月玻璃飞刃",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "月玻璃钩刃、灰褐内环与透明中心孔清楚。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-920f2515-5b86-4f3a-9874-1f62da2d74ce.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "land_hook",
+    "name": "岸上抓钩",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "三叉深灰抓钩与一段可见粗绳一致。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-a4315035-ad98-4329-9e0b-e69fff0d24e6.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "tri_electric",
+    "name": "三相电球",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "准确三颗紫色电球与短闪电分叉。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-24d756f3-d5ce-4d70-b595-963e6936f830.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "end_beam",
+    "name": "终点聚爆束",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "使用当前紫色连续激光与终点星芒，未使用过期红橙弹头素材；左下留白偏紧。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-b31229c2-8912-4f41-a0d0-1626c0912985.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "cast_four",
+    "name": "四重施法",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "四个不同印记表现四重抽取，与复制法术图形明确区分。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-2c490e56-538b-4e7d-b4d3-9bbccda7cba4.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  {
+    "id": "hex_cast",
+    "name": "六角阵",
+    "status": "candidate",
+    "issues": [],
+    "notes": [
+      "准确六道等间隔向外箭束，未添加外圈。"
+    ],
+    "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9 as C:\\Users\\85183\\.codex\\generated_images\\01a1b376-255c-74c2-a81f-b4e9ca3df6f9\\exec-26031a5d-5198-482e-8bf8-8a92d6690363.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "id": "leech",
+  "name": "生命汲取",
+  "attempt_count": 1,
+  "status": "completed",
+  "tool": "built-in image_gen",
+  "started_at": "2026-11-07T00:46:21.522Z",
+  "completed_at": "2026-11-07T00:47:28.699Z",
+  "result_file": "leech.result.json"
+}

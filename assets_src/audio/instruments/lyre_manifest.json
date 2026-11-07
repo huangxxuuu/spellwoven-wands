@@ -1,0 +1,1013 @@
+{
+  "instrument": "lyre",
+  "source_sf2": "sources/Cithara_Barbarica_Finger_RR1_Calibrated.sf2",
+  "source_sha256": "6b14d4b2187131b7b42017dc09ea9b2328bef7ad89fe6b24d7a41bf237fcf213",
+  "renderer": "FluidSynth",
+  "renderer_version": "2.6.2",
+  "preset": {
+    "bank": 0,
+    "program_zero_based": 0,
+    "name": "Cithara Finger RR1"
+  },
+  "format": "WAV",
+  "encoding": "PCM_16",
+  "sample_rate": 44100,
+  "channels": 1,
+  "reverb": false,
+  "chorus": false,
+  "interpolation": "highest (25th-order sinc in FluidSynth 2.6.2)",
+  "per_instrument_gain": 8.884515796777325,
+  "set_peak_target_dbfs": -3,
+  "dither": "TPDF, deterministic seed; silent samples remain zero",
+  "notes": [
+    {
+      "midi": 44,
+      "note": "G#2",
+      "frequency_hz": 103.826174395,
+      "filename": "lyre_m044_Gs2.wav",
+      "relative_path": "lyre/lyre_m044_Gs2.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.04470285028219223,
+      "duration_seconds": 23.73891156462585,
+      "sha256": "3b8a5ae18c2219e720d4039bb6143574ad672c5b20009bceb89b02b6214adca4"
+    },
+    {
+      "midi": 45,
+      "note": "A2",
+      "frequency_hz": 110.0,
+      "filename": "lyre_m045_A2.wav",
+      "relative_path": "lyre/lyre_m045_A2.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.0447130985558033,
+      "duration_seconds": 22.4078231292517,
+      "sha256": "746bfbfe34291b79bc4bdffb41a973af612ea8c83bd9a85d8c0d2b90082f419c"
+    },
+    {
+      "midi": 46,
+      "note": "A#2",
+      "frequency_hz": 116.54094038,
+      "filename": "lyre_m046_As2.wav",
+      "relative_path": "lyre/lyre_m046_As2.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.04469951242208481,
+      "duration_seconds": 21.15142857142857,
+      "sha256": "f2e3e84b55db856f353308a47444a4d487b1203603f3f3cce8d94b4573906502"
+    },
+    {
+      "midi": 47,
+      "note": "B2",
+      "frequency_hz": 123.470825314,
+      "filename": "lyre_m047_B2.wav",
+      "relative_path": "lyre/lyre_m047_B2.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.04466772451996803,
+      "duration_seconds": 19.96557823129252,
+      "sha256": "4d93701779838645152436b2b2429730f6f2261cb79a33d8289c602c92084d33"
+    },
+    {
+      "midi": 48,
+      "note": "C3",
+      "frequency_hz": 130.81278265,
+      "filename": "lyre_m048_C3.wav",
+      "relative_path": "lyre/lyre_m048_C3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.044736623764038086,
+      "duration_seconds": 18.846258503401362,
+      "sha256": "894b2f90803e454f0e4be26985ee757b7cbcd29de26d1acb36959914522db072"
+    },
+    {
+      "midi": 49,
+      "note": "C#3",
+      "frequency_hz": 138.591315488,
+      "filename": "lyre_m049_Cs3.wav",
+      "relative_path": "lyre/lyre_m049_Cs3.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.044694285839796066,
+      "duration_seconds": 17.789795918367346,
+      "sha256": "4f936d45ca29a8e5c74a89726275cb7e7f5b42f417206dc5821e72d0105fb8d5"
+    },
+    {
+      "midi": 50,
+      "note": "D3",
+      "frequency_hz": 146.832383959,
+      "filename": "lyre_m050_D3.wav",
+      "relative_path": "lyre/lyre_m050_D3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.0447390079498291,
+      "duration_seconds": 16.792630385487527,
+      "sha256": "2bd0ad1b920abce929180d778fefd6994ad99b542648986fe6591c1ac71df8a1"
+    },
+    {
+      "midi": 51,
+      "note": "D#3",
+      "frequency_hz": 155.563491861,
+      "filename": "lyre_m051_Ds3.wav",
+      "relative_path": "lyre/lyre_m051_Ds3.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        },
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.044616784900426865,
+      "duration_seconds": 15.851428571428572,
+      "sha256": "4dd2ca5a7825c41e39d35214ffe2804333d16250a92643b31608a2f9da47bc18"
+    },
+    {
+      "midi": 52,
+      "note": "E3",
+      "frequency_hz": 164.813778456,
+      "filename": "lyre_m052_E3.wav",
+      "relative_path": "lyre/lyre_m052_E3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.044666893780231476,
+      "duration_seconds": 14.963083900226758,
+      "sha256": "9ec3db327ddbb9dd5388dda26f3c458662e44b65a687376fae726575bf8aeb0e"
+    },
+    {
+      "midi": 53,
+      "note": "F3",
+      "frequency_hz": 174.614115717,
+      "filename": "lyre_m053_F3.wav",
+      "relative_path": "lyre/lyre_m053_F3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 4.5351473922902495e-05,
+      "raw_peak": 0.04472888261079788,
+      "duration_seconds": 14.12453514739229,
+      "sha256": "10f4cc49bcd62dfe6eb21e148170c0ed55e68b47b4b0bbcda4e033c90b525055"
+    },
+    {
+      "midi": 54,
+      "note": "F#3",
+      "frequency_hz": 184.997211356,
+      "filename": "lyre_m054_Fs3.wav",
+      "relative_path": "lyre/lyre_m054_Fs3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": -1,
+          "total_offset_semitones": -13
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.00013605442176870748,
+      "raw_peak": 0.04461447149515152,
+      "duration_seconds": 13.333015873015873,
+      "sha256": "95678386490bc4adb125e5de58ca850579850d86670459494448baaedca90c19"
+    },
+    {
+      "midi": 55,
+      "note": "G3",
+      "frequency_hz": 195.997717991,
+      "filename": "lyre_m055_G3.wav",
+      "relative_path": "lyre/lyre_m055_G3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 0,
+          "total_offset_semitones": -12
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.044543083757162094,
+      "duration_seconds": 12.584716553287981,
+      "sha256": "24a23f8dd2a3a2e7ada4e020d0b0e04036cdcf352364550f4bb44b8dd2b74e7a"
+    },
+    {
+      "midi": 56,
+      "note": "G#3",
+      "frequency_hz": 207.65234879,
+      "filename": "lyre_m056_Gs3.wav",
+      "relative_path": "lyre/lyre_m056_Gs3.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        },
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": -1,
+          "octave_offset_semitones": -12,
+          "semitone_offset": 1,
+          "total_offset_semitones": -11
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.044682085514068604,
+      "duration_seconds": 11.879659863945578,
+      "sha256": "197cb68457a2827186c13af3b5725521ef453848c3f505709b70fda4b188b330"
+    },
+    {
+      "midi": 57,
+      "note": "A3",
+      "frequency_hz": 220.0,
+      "filename": "lyre_m057_A3.wav",
+      "relative_path": "lyre/lyre_m057_A3.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.04469222202897072,
+      "duration_seconds": 11.214172335600907,
+      "sha256": "87df4b97ac83527bff78ab69fca3bac33e7fa3581f9b46fa741c2d552bfa0533"
+    },
+    {
+      "midi": 58,
+      "note": "A#3",
+      "frequency_hz": 233.081880759,
+      "filename": "lyre_m058_As3.wav",
+      "relative_path": "lyre/lyre_m058_As3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.04472650587558746,
+      "duration_seconds": 10.586031746031747,
+      "sha256": "ad53b83c1e017abe1fbd893eaa3a25137c7f2e44e61e072534315a5ffe7a0df3"
+    },
+    {
+      "midi": 59,
+      "note": "B3",
+      "frequency_hz": 246.941650628,
+      "filename": "lyre_m059_B3.wav",
+      "relative_path": "lyre/lyre_m059_B3.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.044683411717414856,
+      "duration_seconds": 9.993174603174603,
+      "sha256": "e77482f5479cd2b307faa62a375b5cd2f1113671e650c5116351fe17ce279f85"
+    },
+    {
+      "midi": 60,
+      "note": "C4",
+      "frequency_hz": 261.625565301,
+      "filename": "lyre_m060_C4.wav",
+      "relative_path": "lyre/lyre_m060_C4.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.04474508762359619,
+      "duration_seconds": 9.43358276643991,
+      "sha256": "a6ea316e6ef04ce724aa490197cef5f289632b0eb0e4740f09fe4036958855a8"
+    },
+    {
+      "midi": 61,
+      "note": "C#4",
+      "frequency_hz": 277.182630977,
+      "filename": "lyre_m061_Cs4.wav",
+      "relative_path": "lyre/lyre_m061_Cs4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.04461858421564102,
+      "duration_seconds": 8.905419501133787,
+      "sha256": "5fb144bc90b085050570c5ecb59d72cc442443d2e90dcf13e91484cdbc878617"
+    },
+    {
+      "midi": 62,
+      "note": "D4",
+      "frequency_hz": 293.664767917,
+      "filename": "lyre_m062_D4.wav",
+      "relative_path": "lyre/lyre_m062_D4.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.04473494738340378,
+      "duration_seconds": 8.406916099773243,
+      "sha256": "d7952c5f21fa8637d13b59c1fed2ea66ab474b97c70d093520091a488056d0cd"
+    },
+    {
+      "midi": 63,
+      "note": "D#4",
+      "frequency_hz": 311.126983722,
+      "filename": "lyre_m063_Ds4.wav",
+      "relative_path": "lyre/lyre_m063_Ds4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        },
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.0445031113922596,
+      "duration_seconds": 7.936394557823129,
+      "sha256": "07efa0a3d55dc4d3bc0d03f74f34b3d8eaf4a363fe08558673edbae0e4bd3e78"
+    },
+    {
+      "midi": 64,
+      "note": "E4",
+      "frequency_hz": 329.627556913,
+      "filename": "lyre_m064_E4.wav",
+      "relative_path": "lyre/lyre_m064_E4.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.044593922793865204,
+      "duration_seconds": 7.492267573696145,
+      "sha256": "d056084d65af1a52565023d762b0dc6dbeeab0db2184bf57d91f3c2766bf5a97"
+    },
+    {
+      "midi": 65,
+      "note": "F4",
+      "frequency_hz": 349.228231433,
+      "filename": "lyre_m065_F4.wav",
+      "relative_path": "lyre/lyre_m065_F4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.044411852955818176,
+      "duration_seconds": 7.073106575963719,
+      "sha256": "a45a2b161acf01356d67fb32884038992d6d7281c3dd469e3bf3c30cebc2fe81"
+    },
+    {
+      "midi": 66,
+      "note": "F#4",
+      "frequency_hz": 369.994422712,
+      "filename": "lyre_m066_Fs4.wav",
+      "relative_path": "lyre/lyre_m066_Fs4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": -1,
+          "total_offset_semitones": -1
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.030980782583355904,
+      "duration_seconds": 10.687278911564626,
+      "sha256": "eaf84b03137cd888f126916e47813a359a9c7ca9fbbaa60e65f704c4d6497575"
+    },
+    {
+      "midi": 67,
+      "note": "G4",
+      "frequency_hz": 391.995435982,
+      "filename": "lyre_m067_G4.wav",
+      "relative_path": "lyre/lyre_m067_G4.wav",
+      "is_base_note": true,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 0,
+          "total_offset_semitones": 0
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.03124687261879444,
+      "duration_seconds": 10.088707482993197,
+      "sha256": "1c07537c6658b101f2fa1c5f739bd311f08b5b5431b5a574dcc842a969fcdf59"
+    },
+    {
+      "midi": 68,
+      "note": "G#4",
+      "frequency_hz": 415.30469758,
+      "filename": "lyre_m068_Gs4.wav",
+      "relative_path": "lyre/lyre_m068_Gs4.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        },
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 0,
+          "octave_offset_semitones": 0,
+          "semitone_offset": 1,
+          "total_offset_semitones": 1
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.030559809878468513,
+      "duration_seconds": 8.58201814058957,
+      "sha256": "7049759571d064850b8961a80292fb178f71deafe2bfea17e9079328ca035cfa"
+    },
+    {
+      "midi": 69,
+      "note": "A4",
+      "frequency_hz": 440.0,
+      "filename": "lyre_m069_A4.wav",
+      "relative_path": "lyre/lyre_m069_A4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.030404839664697647,
+      "duration_seconds": 8.101632653061225,
+      "sha256": "089d1e68ccc8d0feea9d215b8ecd53984d8c7819bc69e479bc1fa85485dc92b2"
+    },
+    {
+      "midi": 70,
+      "note": "A#4",
+      "frequency_hz": 466.163761518,
+      "filename": "lyre_m070_As4.wav",
+      "relative_path": "lyre/lyre_m070_As4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 57,
+          "base_note": "A3",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.03350410982966423,
+      "duration_seconds": 10.118956916099773,
+      "sha256": "cfcd7d76a129cf95de4b1681c46ad83e825994823752c50d639787923e464bf2"
+    },
+    {
+      "midi": 71,
+      "note": "B4",
+      "frequency_hz": 493.883301256,
+      "filename": "lyre_m071_B4.wav",
+      "relative_path": "lyre/lyre_m071_B4.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.033813007175922394,
+      "duration_seconds": 9.55233560090703,
+      "sha256": "280a7f4d0386fd687fc0620a7a1d07eb7ed055f096f94e9038001307a6452a3f"
+    },
+    {
+      "midi": 72,
+      "note": "C5",
+      "frequency_hz": 523.251130601,
+      "filename": "lyre_m072_C5.wav",
+      "relative_path": "lyre/lyre_m072_C5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.03376173973083496,
+      "duration_seconds": 9.017505668934241,
+      "sha256": "3fa69d48ec926aeebd43ea66bd4783921d4345d01707524a053ac0e3a31e7f9b"
+    },
+    {
+      "midi": 73,
+      "note": "C#5",
+      "frequency_hz": 554.365261954,
+      "filename": "lyre_m073_Cs5.wav",
+      "relative_path": "lyre/lyre_m073_Cs5.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 60,
+          "base_note": "C4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.04500915855169296,
+      "duration_seconds": 6.261882086167801,
+      "sha256": "046ff24d09ae30b486448eec575631d7dd64795b5963e9666b14a0f89164258e"
+    },
+    {
+      "midi": 74,
+      "note": "D5",
+      "frequency_hz": 587.329535835,
+      "filename": "lyre_m074_D5.wav",
+      "relative_path": "lyre/lyre_m074_D5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 9.070294784580499e-05,
+      "raw_peak": 0.04322051629424095,
+      "duration_seconds": 5.911678004535148,
+      "sha256": "713650bafbbb2836585c442c77976d065a683f33497274840e567ceb2e85a75d"
+    },
+    {
+      "midi": 75,
+      "note": "D#5",
+      "frequency_hz": 622.253967444,
+      "filename": "lyre_m075_Ds5.wav",
+      "relative_path": "lyre/lyre_m075_Ds5.wav",
+      "is_base_note": false,
+      "route_count": 2,
+      "routes": [
+        {
+          "base_midi": 62,
+          "base_note": "D4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        },
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.06102292239665985,
+      "duration_seconds": 6.371950113378685,
+      "sha256": "1c9a64cf3fbad90bfacfc26ea49d65d0613d000004e80f263bd8f5b4595a8774"
+    },
+    {
+      "midi": 76,
+      "note": "E5",
+      "frequency_hz": 659.255113826,
+      "filename": "lyre_m076_E5.wav",
+      "relative_path": "lyre/lyre_m076_E5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.05473507195711136,
+      "duration_seconds": 6.784557823129251,
+      "sha256": "212b6c02c6581092aedb8fa08c43f3316e666af3309fcedcd83b33fa00fd53a5"
+    },
+    {
+      "midi": 77,
+      "note": "F5",
+      "frequency_hz": 698.456462866,
+      "filename": "lyre_m077_F5.wav",
+      "relative_path": "lyre/lyre_m077_F5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 64,
+          "base_note": "E4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.05511445924639702,
+      "duration_seconds": 6.405034013605442,
+      "sha256": "6738a3e8247a049f368acd384d490ced1ce23a3e7d620586227d8b072fa8d3ee"
+    },
+    {
+      "midi": 78,
+      "note": "F#5",
+      "frequency_hz": 739.988845423,
+      "filename": "lyre_m078_Fs5.wav",
+      "relative_path": "lyre/lyre_m078_Fs5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": -1,
+          "total_offset_semitones": 11
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.0796831026673317,
+      "duration_seconds": 5.718412698412698,
+      "sha256": "3d14ac57175ce5e95f8a7bf3b10bcfa068e78402273ade9d10109bc6e4692929"
+    },
+    {
+      "midi": 79,
+      "note": "G5",
+      "frequency_hz": 783.990871963,
+      "filename": "lyre_m079_G5.wav",
+      "relative_path": "lyre/lyre_m079_G5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 0,
+          "total_offset_semitones": 12
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.0,
+      "raw_peak": 0.07937431335449219,
+      "duration_seconds": 5.398730158730158,
+      "sha256": "b56d4fe1d680615d0d3162f0b248b50f0cdd95146c32d0f10b16998b26ab2ffc"
+    },
+    {
+      "midi": 80,
+      "note": "G#5",
+      "frequency_hz": 830.60939516,
+      "filename": "lyre_m080_Gs5.wav",
+      "relative_path": "lyre/lyre_m080_Gs5.wav",
+      "is_base_note": false,
+      "route_count": 1,
+      "routes": [
+        {
+          "base_midi": 67,
+          "base_note": "G4",
+          "octave_offset": 1,
+          "octave_offset_semitones": 12,
+          "semitone_offset": 1,
+          "total_offset_semitones": 13
+        }
+      ],
+      "note_on_seconds": 32.0,
+      "velocity": 96,
+      "trimmed_lead_seconds": 0.00013605442176870748,
+      "raw_peak": 0.0679713636636734,
+      "duration_seconds": 5.240249433106576,
+      "sha256": "c1903a52bdadad518bfd76bdd95cc22f640ff9889ccefb0603005d461f6a8182"
+    }
+  ]
+}

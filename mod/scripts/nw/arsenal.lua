@@ -1,4 +1,5 @@
 local T=require("nw/locale").t
+local Samples=require("nw/instrument_samples")
 local M={cards={},notes={},weapons={}}
 local function add(card)
     M.cards[#M.cards+1]=card
@@ -45,22 +46,24 @@ local selections={
     {"nature",T("自然物")},{"players_other",T("其他玩家")},{"self",T("自身")}}
 for _,v in ipairs(selections) do
     add({id="target_"..v[1],name=T("选取")..v[2],kind="modifier",mana=2,delay=0,tier=1,select_target=v[1],
-        effect=T("同一施法组可命中")..v[2]..T("。多张选择卡取并集，其他玩家受世界 PvP 开关保护。")})
+        effect=T("同一施法组可命中")..v[2]..T("。多张选择卡取并集，明确选择其他玩家后可命中他们。")})
 end
--- Absolute semitones above C3. The shell bank has three complete octaves.
+-- Absolute semitones above C3; kantele uses the supplied lyre samples.
 for _,inst in ipairs({"ocarina","kantele"}) do
     local notes=inst=="ocarina" and {{"A",21},{"B",23},{"C",24},{"D",26},{"E",28},{"F",29},{"G#",32},{"A2",33}}
-        or {{"A",9},{"D",14},{"D#",15},{"E",16},{"G",19}}
+        or {{"A",9},{"D",14},{"D#",12},{"E",16},{"G",19}}
     for _,pair in ipairs(notes) do
         local name,pitch=unpack(pair)
         local prefix=inst=="ocarina" and T("陶笛") or T("弦琴")
         local id=({ocarinaA="note_a",ocarinaC="note_c",kanteleD="chord_d"})[inst..name]
         local new=not id
         id=id or (inst.."_"..name:lower():gsub("#","sharp"))
-        M.notes[id]={instrument=inst,pitch=pitch,label=name}
+        -- Keep legacy IDs; the former D# card is now the selected C4 base note.
+        local label=({ocarina_a2="A5",kantele_dsharp="C"})[id] or name
+        M.notes[id]={instrument=inst,pitch=pitch,label=label}
         if new then
             local harp=inst=="kantele"
-            add({id=id,name=prefix.." "..name,kind=harp and "note" or "projectile",tier=harp and 2 or 1,mana=harp and 10 or 6,
+            add({id=id,name=prefix.." "..label,kind=harp and "note" or "projectile",tier=harp and 2 or 1,mana=harp and 10 or 6,
                 delay=.03,damage=not harp and 0 or nil,speed=not harp and 14 or nil,lifetime=not harp and .45 or nil,
                 halfangle=not harp and 1 or nil,radius=harp and 3 or nil,
                 effect=harp and T("奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。")
@@ -74,11 +77,31 @@ for _,row in ipairs(engraving.extra) do
     engraving.configure(c,row[1])
     M.weapons[c.id]=c
 end
-function M.tone(id,shift)
+M.notes.ocarina_g={instrument="ocarina",pitch=31,label="G"}
+function M.resolve_tone(id,shift)
     local note=M.notes[id]
     if note then
-        local pitch=math.max(0,math.min(35,note.pitch+(shift or 0)))
-        return "hookline_2/common/shells/sea_sound_"..(1+math.floor(pitch/12)).."_LP",{note=pitch%12+.1}
+        local pitch=note.pitch+(shift or 0)
+        local bank=Samples[note.instrument]
+        local sample=bank.samples[pitch]
+        return {instrument=note.instrument,pitch=pitch,base_pitch=note.pitch,
+            octave=3+math.floor(pitch/12),semitone=pitch%12,supported=sample~=nil,
+            event=sample and sample.event,duration=sample and sample.duration,
+            range=bank.range,min_pitch=bank.min,max_pitch=bank.max}
     end
+end
+function M.tone(id,shift)
+    local tone=M.resolve_tone(id,shift)
+    -- Select an exact recorded note. Never substitute a boundary note or alter playback speed.
+    if not tone then return nil,"unknown_note" end
+    if not tone.supported then return nil,"unsupported_pitch" end
+    return tone.event,{},tone.duration
+end
+function M.tone_description(id)
+    local tone=M.resolve_tone(id,0)
+    if not tone then return "" end
+    local names={"C","C#","D","D#","E","F","F#","G","G#","A","A#","B"}
+    local base=names[tone.semitone+1]..tone.octave
+    return string.format(T("基础音 %s；可调音域 %s（含全部半音）。超出音域时静音，法术效果照常。"),base,tone.range)
 end
 return M

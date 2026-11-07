@@ -32,7 +32,10 @@ local function entity(userid)
         self.tasks[#self.tasks+1]=task;return task
     end
     function e:GetDistanceSqToPoint(x,y,z) return (self.x-x)^2+(self.z-z)^2 end
-    e.Transform={GetWorldPosition=function() return e.x,0,e.z end,SetRotation=function() end}
+    e.Transform={GetWorldPosition=function() return e.x,0,e.z end,SetRotation=function() end,
+        SetPosition=function(_,x,y,z) e.x,e.z=x,z end}
+    e.AnimState={PlayAnimation=function(_,name) e.animation=name end,PushAnimation=function() end}
+    function e:SetStage(id,phase) self.animation=id.."_"..phase end
     e.Physics={Stop=function() end,SetMotorVel=function(_,speed) e.speed=speed end,ClearCollisionMask=function() e.no_terrain_collision=true end}
     e.entity={SetCanSleep=function() end}
     return e
@@ -88,6 +91,7 @@ local save={};mine.OnSave(mine,save);mine:Remove()
 assert(save.placement.arm_left==0)
 local restored=entity();Stored.install(restored);restored.OnLoad(restored,Copy(save))
 assert(restored._nw_owner==owner and restored._nw_armed_at==now)
+assert(restored.animation=="crystal_mine_idle","loading a permanent field does not replay arrival")
 Fields.crystal_limit=1
 execute({{projectiles={shot("sleep_crystal")}}})
 assert(not restored.valid and #owner._nw_crystals==1)

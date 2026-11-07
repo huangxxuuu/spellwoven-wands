@@ -1,0 +1,20 @@
+{
+  "knockback": {
+    "selected": "knockback.png",
+    "status": "candidate",
+    "previous": "../v3_full_catalog/modifiers/knockback.png",
+    "total_attempt_number": 2
+  },
+  "repeat_2": {
+    "selected": "repeat_2.png",
+    "status": "candidate",
+    "previous": "../v3_full_catalog/projectiles_controls/repeat_2.png",
+    "total_attempt_number": 2
+  },
+  "target_neutral": {
+    "selected": "target_neutral.png",
+    "status": "candidate",
+    "previous": "../v3_full_catalog/music_targets/target_neutral.png",
+    "total_attempt_number": 2
+  }
+}

@@ -7,6 +7,7 @@ C.compile=function(...) calls=calls+1;return compile(...) end
 for _,d in pairs(require("nw/definitions").spells) do assert(d.mana==math.floor(d.mana),"fractional mana requires finer readiness cache key") end
 local W=require("components/nw_wand")
 local inst={_nw_capacity=net(),_nw_mana=net(),_nw_ready=net(),_nw_cancast=net()}
+inst.AddTag=function() end;inst.RemoveTag=function() end
 local w=W(inst);w:InitializePrototype()
 local player={IsValid=function() return true end,components={health={IsDead=function() return false end},inventory={GetEquippedItem=function() return inst end}}}
 calls=0;for i=1,1000 do assert(w:CanCast(player)) end;assert(calls==0)

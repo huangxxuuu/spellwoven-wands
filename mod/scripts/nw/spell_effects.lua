@@ -68,7 +68,7 @@ end
 local function valid_hit(owner,e,flags)
     return Target.allowed(owner,e,flags) or Target.selected_object(owner,e,flags)
 end
-local function deal(owner,e,n,flags,element)
+local function deal(owner,e,n,flags,element,p)
     if not valid_hit(owner,e,flags) then return 0 end
     local h=e.components.health
     if not h then return 0 end
@@ -82,6 +82,7 @@ local function deal(owner,e,n,flags,element)
     if e.components.combat then e.components.combat:GetAttacked(owner,n,nil,element)
     else h:DoDelta(-n,nil,element or "nw_spell",nil,owner) end
     local loss=math.max(0,before-math.max(0,h.currenthealth))
+    require("nw/journal_damage").record(owner,p,loss)
     leech(owner,flags,loss)
     return loss
 end
@@ -104,7 +105,7 @@ local function burn_tick(e)
         local stack=b[i]
         while stack.left>0 and stack.next<=now+.001 and M.live(stack.owner) and valid_hit(stack.owner,e,stack.flags) do
             stack.left=stack.left-1;stack.next=stack.next+1
-            deal(stack.owner,e,stack.damage,stack.flags,"fire")
+            deal(stack.owner,e,stack.damage,stack.flags,"fire",stack)
             if e._nw_burn~=b then return end
         end
         if stack.left==0 or not M.live(stack.owner) or not valid_hit(stack.owner,e,stack.flags) then table.remove(b,i)
@@ -134,7 +135,7 @@ local function burn(owner,e,p)
         e:ListenForEvent("onextinguish",clear_burn);e:ListenForEvent("death",clear_burn)
         b.task=e:DoTaskInTime(1,burn_tick)
     end
-    b[#b+1]={owner=owner,flags=p.flags,damage=p.burn_damage,left=p.burn_ticks,next=GetTime()+1}
+    b[#b+1]={owner=owner,flags=p.flags,damage=p.burn_damage,left=p.burn_ticks,next=GetTime()+1,journal_id=p.journal_id or p.id}
     local ice=e.components.freezable
     if ice and ice:IsFrozen() then ice:Unfreeze()
     elseif e.components.burnable and not e.components.burnable:IsBurning() then
@@ -173,6 +174,7 @@ local function knock(e,dx,dz,k)
     anchor:DoTaskInTime(.5,anchor.Remove)
 end
 function M.native_hit(owner,e,p,loss,dx,dz)
+    require("nw/journal_damage").record(owner,p,loss)
     leech(owner,p.flags,loss)
     if loss>0 and p.flags.knockback and e:IsValid() and not e.components.health:IsDead() then
         local d=math.max(.001,math.sqrt(dx*dx+dz*dz))
@@ -181,7 +183,7 @@ function M.native_hit(owner,e,p,loss,dx,dz)
 end
 function M.direct(owner,e,p,dx,dz)
     if Target.breakable(e) then e._nw_break(owner);return end
-    local loss=deal(owner,e,p.damage,p.flags,p.burn_damage and "fire" or p.freeze and "ice" or nil)
+    local loss=deal(owner,e,p.damage,p.flags,p.burn_damage and "fire" or p.freeze and "ice" or nil,p)
     if not e:IsValid() or e.components.health and e.components.health:IsDead() then return end
     local still_wet=p.burn_damage and valid_hit(owner,e,p.flags) and M.evaporate(e,p.damage*M.wet_mult(e,p.flags))
     if loss<=0 and not (p.freeze or Target.selected_object(owner,e,p.flags)) then return end
@@ -197,23 +199,31 @@ function M.direct(owner,e,p,dx,dz)
 end
 function M.blast(owner,x,z,p)
     local crystal=p.id=="sleep_crystal" or p.id=="crystal_mine"
-    local fx=M.fx(crystal and "nw_crystal_burst_fx" or "nw_blast_fx",x,z)
+    local quiet=p.quiet_burst or p.id=="spore_ball" or p.id=="end_beam"
+    local fx=M.fx(crystal and "nw_crystal_burst_fx" or p.id=="moon_fall" and "nw_moon_impact_fx"
+        or quiet and "nw_soft_blast_fx" or "nw_blast_fx",x,z)
     if fx then fx:SetRadius(p.radius) end
     for _,e in ipairs(M.scan(x,z,p.radius,p.flags)) do
         local egg=Target.breakable(e)
         if egg and e:GetDistanceSqToPoint(x,0,z)<=p.radius*p.radius then
             e._nw_break(owner)
-        elseif (Target.allowed(owner,e,p.flags) or Target.selected_object(owner,e,p.flags)) and not (p.no_structures and e:HasTag("structure")) and e:GetDistanceSqToPoint(x,0,z)<=p.radius*p.radius then
+        elseif (e:HasTag("player") and not e:HasTag("playerghost") or Target.allowed(owner,e,p.flags) or Target.selected_object(owner,e,p.flags)) and not (p.no_structures and e:HasTag("structure")) and e:GetDistanceSqToPoint(x,0,z)<=p.radius*p.radius then
             local ex,_,ez=e.Transform:GetWorldPosition()
             local dx,dz=ex-x,ez-z
             local distance=math.max(.001,math.sqrt(dx*dx+dz*dz))
-            M.direct(owner,e,p,dx/distance,dz/distance)
+            local hitp=p
+            if e:HasTag("player") then
+                hitp=require("nw/util").copy(p)
+                hitp.flags.targets={self=true,players_other=true}
+            end
+            require("nw/expanded_hits").impact({owner=owner,p=hitp,age=0,dx=dx/distance,dz=dz/distance},e,ex,ez)
             require("nw/explosions").hit(owner,p,ex,ez)
         end
     end
 end
 function M.chain(owner,first,x,z,p,aim_x,aim_z,prefer_front)
     local seen={}
+    local source_height=.75
     for hop=1,p.max_targets do
         local e
         if hop==1 and first and Target.allowed(owner,first,p.flags) and
@@ -222,12 +232,18 @@ function M.chain(owner,first,x,z,p,aim_x,aim_z,prefer_front)
         else
             e=arc_target(owner,x,z,p.radius,seen,hop==1 and prefer_front and aim_x or nil,aim_z,p.flags)
         end
+        local rain_backfire=hop>1 and not seen[owner] and TheWorld.state and TheWorld.state.israining
+            and owner.GetIsWet and owner:GetIsWet() and owner:GetDistanceSqToPoint(x,0,z)<=p.radius*p.radius
+            and math.random()<.2
+        if rain_backfire then e=owner end
         if hop==1 and (not e or e~=first and e:GetDistanceSqToPoint(x,0,z)>e:GetPhysicsRadius(.5)^2) then
             M.fx("nw_ground_shock_fx",x,z)
         end
         local tx,_,tz
+        local target_height=.05
         if e then
             tx,_,tz=e.Transform:GetWorldPosition()
+            target_height=require("nw/electric_visual").target_height(e)
         else
             -- An empty launch point also flashes. The landing consumes this hop,
             -- so the next search can bridge a gap without adding extra attacks.
@@ -236,19 +252,22 @@ function M.chain(owner,first,x,z,p,aim_x,aim_z,prefer_front)
             M.fx("nw_ground_shock_fx",tx,tz)
         end
         local dx,dz=tx-x,tz-z
-        local fx=M.fx("nw_arc_fx",x,z,.75)
+        local fx=M.fx("nw_arc_fx",x,z,source_height)
         if not fx then return end
-        fx:SetSpan(dx,dz,e)
+        fx:SetSpan(dx,dz,e,target_height-source_height)
         if e then
             local h=e.components.health
             local before=h.currenthealth
             fx.components.weapon:SetDamage((hop==1 and p.damage or p.jump_damage)*M.wet_mult(e,p.flags))
-            owner.components.combat:DoAttack(e,fx,fx,nil,nil,p.radius,Vector3(x,0,z))
+            if rain_backfire or e:HasTag("player") and p.flags.targets then
+                e.components.combat:GetAttacked(fx,(hop==1 and p.damage or p.jump_damage)*M.wet_mult(e,p.flags),fx,"electric")
+            else owner.components.combat:DoAttack(e,fx,fx,nil,nil,p.radius,Vector3(x,0,z)) end
             M.native_hit(owner,e,p,math.max(0,before-math.max(0,h.currenthealth)),dx,dz)
             require("nw/explosions").hit(owner,p,tx,tz)
             seen[e]=true
         end
         x,z=tx,tz
+        source_height=target_height
     end
 end
 function M.afterlight(owner,x,z)

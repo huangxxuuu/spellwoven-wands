@@ -18,7 +18,7 @@ function M.matches(owner,e,scope)
     if not e:IsValid() or e:IsInLimbo() or e:HasTag("playerghost") or e:HasTag("FX")
         or e:HasTag("nw_breakable") or e:HasTag("nw_decoy") then return false end
     if e==owner then return scope.self end
-    if e:HasTag("player") then return scope.players_other and TheNet:GetPVPEnabled() end
+    if e:HasTag("player") then return scope.players_other end
     if e:HasTag("nw_test_target") and scope.hostile then
         return e.components.health and not e.components.health:IsDead() and e.components.combat~=nil
     end
@@ -46,7 +46,7 @@ function M.allowed(owner,e,flags)
     local scope=flags and flags.targets
     if scope then
         if not M.matches(owner,e,scope) then return false end
-        if e==owner or M.object(e) then return true end
+        if e==owner or e:HasTag("player") or M.object(e) then return true end
     else
         if e==owner or e:HasTag("player") or e:HasTag("wall") then return false end
         local follower=e.components.follower
@@ -56,10 +56,13 @@ function M.allowed(owner,e,flags)
     end
     return owner.components.combat:CanTarget(e)
 end
-function M.damage(owner,e,amount,flags)
+function M.damage(owner,e,amount,flags,p)
     if M.breakable(e) then e._nw_break(owner);return true end
     if not M.allowed(owner,e,flags) then return false end
+    local health=e.components.health
+    local before=health and health.currenthealth
     e.components.combat:GetAttacked(owner,amount*require("nw/spell_effects").wet_mult(e,flags))
+    require("nw/journal_damage").loss(owner,p,health,before)
     return true
 end
 function M.egg(e)

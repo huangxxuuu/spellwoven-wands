@@ -10,7 +10,7 @@ function M.run(x,z,done)
         return item
     end
     local axe=card("whirl")
-    assert(axe.AnimState:IsCurrentAnimation("card_"..require("nw/cards").codes.whirl),"NW_PILE: wrong single-card clip")
+    assert(axe.AnimState:IsCurrentAnimation(require("nw/ground_card").pose(require("nw/cards").codes.whirl,1)),"NW_PILE: wrong single-card clip")
     axe:Remove()
     local floor=card("fire")
     floor.Transform:SetPosition(x+1,0,z)
@@ -52,7 +52,8 @@ function M.run(x,z,done)
         TheWorld:DoTaskInTime(2*FRAMES,function()
             local nextcode=require("nw/cards").codes.frost
             assert(old._surface:value()%require("nw/cardpile").stride==nextcode)
-            assert(old.AnimState:IsCurrentAnimation("pile_large_"..nextcode),"NW_PILE: top face did not change")
+            local pose=require("nw/ground_card").pose(nextcode,oldbox:NumItems(),old._layers:value(),old._separated:value())
+            assert(old.AnimState:IsCurrentAnimation(pose),"NW_PILE: top face did not change")
             old:Remove()
         end)
         local copy=SpawnSaveRecord(pile:GetSaveRecord())

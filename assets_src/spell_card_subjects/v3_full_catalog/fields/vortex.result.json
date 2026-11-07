@@ -1,0 +1,49 @@
+{
+  "id": "vortex",
+  "name": "聚怪涡",
+  "attempt_count": 1,
+  "status": "candidate",
+  "prompt": "vortex.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/originals/vortex.png",
+  "output": "vortex.png",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-750b2d56-4504-4d70-8cd7-30801fab6f4f.png",
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28 as C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-750b2d56-4504-4d70-8cd7-30801fab6f4f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [],
+    "complete_visible_subject": true,
+    "minimum_visible_margin_px": 68,
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "id": "vortex",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 876566,
+    "opaque_pixels": 1750,
+    "semi_transparent_pixels": 694200,
+    "bbox_alpha32": [
+      68,
+      102,
+      1177,
+      1127
+    ],
+    "bbox_alpha128": [
+      69,
+      103,
+      1176,
+      1126
+    ],
+    "edge_max_alpha": 1,
+    "sha256": "7f76b46c733ad7e6e28929b08cc6ba2c78c8b715910a38f08447e5a0d4c3d898",
+    "matches_source": true
+  }
+}

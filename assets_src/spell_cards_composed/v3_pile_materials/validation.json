@@ -1,0 +1,14 @@
+{
+  "counts": {
+    "single": 3,
+    "two": 9,
+    "three": 27,
+    "medium": 54,
+    "large": 108
+  },
+  "total": 201,
+  "transparent_exports": 402,
+  "all_alpha_bounds_inside_canvas": true,
+  "adjacent_and_separated_sequences_checked": true,
+  "runtime_modified": false
+}

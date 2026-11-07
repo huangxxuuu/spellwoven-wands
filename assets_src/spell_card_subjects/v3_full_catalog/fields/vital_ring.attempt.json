@@ -1,0 +1,9 @@
+{
+  "id": "vital_ring",
+  "name": "活力环",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "vital_ring.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_objects/garden_ring.png"
+}
+

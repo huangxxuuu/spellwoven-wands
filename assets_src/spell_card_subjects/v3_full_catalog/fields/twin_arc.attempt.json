@@ -1,0 +1,9 @@
+{
+  "id": "twin_arc",
+  "name": "双弹电弧",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "twin_arc.prompt.txt",
+  "reference": null
+}
+

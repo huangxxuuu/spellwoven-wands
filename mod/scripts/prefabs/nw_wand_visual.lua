@@ -1,7 +1,7 @@
 local Visual = require("nw/visual")
 local assets = {Asset("ANIM", "anim/nw_parts.zip")}
 local function refresh(inst)
-    if inst._local_visual then Visual.apply(inst._local_visual, inst._look:value(), "held") end
+    if inst._local_visual then Visual.apply(inst._local_visual, inst._look:value(), "held",inst._broken:value()) end
 end
 local function attach(inst)
     local parent = inst.entity:GetParent()
@@ -25,6 +25,7 @@ local function fn()
     inst.entity:AddNetwork()
     inst:AddTag("FX")
     inst._look = net_ushortint(inst.GUID, "nw_visual.look", "nw_visualdirty")
+    inst._broken = net_bool(inst.GUID,"nw_visual.broken","nw_visualdirty")
     inst.entity:SetPristine()
     inst.persists = false
     if not TheNet:IsDedicated() then

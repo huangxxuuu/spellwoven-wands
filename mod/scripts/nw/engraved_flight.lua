@@ -12,9 +12,8 @@ local skins={
 function M.visual(inst,key)
     local v=inst._visual
     if native[key] then v:Hide();return end
-    if key=="oceanfishingrod" then require("nw/flight_visual").attach(inst,key);return end
-    if key=="fishingrod" or key=="orangestaff" or key=="farm_hoe" or key=="yoth_lance" then
-        require("nw/flight_visual").attach(inst,key=="orangestaff" and "orange_bolt" or key,key=="fishingrod" and 4 or 0)
+    if require("nw/tool_flight").supports(key) then
+        require("nw/tool_flight").attach(inst,key)
         return
     end
     if key=="shieldofterror" or key=="lighter" then
@@ -29,7 +28,10 @@ function M.visual(inst,key)
     local skin=skins[key]
     local bank=skin and skin[1] or key
     local anim=skin and skin[2] or "spin_loop"
-    v.AnimState:SetBank(bank);v.AnimState:SetBuild(bank);v.AnimState:PlayAnimation(anim,true)
+    v.AnimState:SetBank(bank);v.AnimState:SetBuild(bank)
+    if key=="oceanfishingrod" then
+        v.AnimState:PlayAnimation("spin_pre",false);v.AnimState:PushAnimation("spin_loop",true)
+    else v.AnimState:PlayAnimation(anim,true) end
     local scale=skin and skin[3] or 1
     v.Transform:SetScale(scale,scale,scale)
 end
@@ -53,7 +55,10 @@ function M.sync_native(inst,s)
     if not s.native_height or not fx or not fx:IsValid() then return end
     fx.Transform:SetRotation(inst.Transform:GetRotation())
     local vx,_,vz=inst.Physics:GetMotorVel()
-    fx.Physics:SetMotorVel(vx,0,vz)
+    local scale=fx.Transform:GetScale()
+    -- Motor velocity is in the native visual's scaled local coordinates.
+    -- Giant art must cover the same world distance as its collision body.
+    fx.Physics:SetMotorVel(vx/math.max(.001,scale),0,vz/math.max(.001,scale))
 end
 function M.launch(inst,s)
     local key=s.p.engraving
@@ -66,7 +71,7 @@ function M.launch(inst,s)
         inst:ListenForEvent("onremove",function() if flame:IsValid() then flame:Remove() end end)
     end
     if native[key] then
-        local fx=SpawnPrefab(native[key]);s.native=fx
+        local fx=SpawnPrefab(native[key]);s.native=fx;fx._nw_controller=inst
         require("nw/projectile_size").native(fx,s.p)
         if key=="staff_tornado" then fx._nw_giant= s.p.size_mult end
         -- The native boomerang's .4..1 scale and upright artwork match its return

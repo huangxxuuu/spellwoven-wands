@@ -8,6 +8,7 @@ local Wand = Class(function(self, inst)
 end)
 function Wand:ReadyPlan()
     local d=self.data
+    if d.broken then return nil,"BROKEN" end
     local r=d.runtime
     -- Reuse the draw until a previously skipped card becomes affordable or
     -- an accepted card can no longer be paid. Cast accounts for regenerated mana.
@@ -15,6 +16,10 @@ function Wand:ReadyPlan()
     local c=self._ready_cache
     if not c or c.runtime~=r or c.revision~=d.config_revision or mana<c.low or mana>=c.high then
         local plan,err=Compiler.compile(d,nil,{defer_copies=true})
+        if err=="DUPLICATE_CARD" and require("nw/card_identity").repair(d) then
+            r=d.runtime
+            plan,err=Compiler.compile(d,nil,{defer_copies=true})
+        end
         if plan then plan._source_runtime=r;plan._config_revision=d.config_revision end
         c={runtime=r,revision=d.config_revision,low=plan and plan.mana_required or math.floor(mana),
             high=plan and plan.next_afford or math.floor(mana)+1,plan=plan,err=err}
@@ -25,13 +30,17 @@ end
 function Wand:Sync()
     if not self.data then return end
     if self.inst._nw_cancast then
-        local plan
+        local plan,err
         if self.data.runtime.remaining_cast<=.001 and self.data.runtime.remaining_recharge<=.001 then
-            plan=self:ReadyPlan()
+            plan,err=self:ReadyPlan()
+        else
+            err="COOLDOWN"
         end
         self.inst._nw_cancast:set(plan~=nil and plan.projectile_count>0)
+        if self.inst._nw_castreason then self.inst._nw_castreason:set(require("nw/cast_status").reason(plan,err)) end
     end
     self.inst._nw_capacity:set(self.data.stats.capacity)
+    require("nw/wand_container").sync(self.inst)
     self.inst._nw_mana:set(math.floor(self.data.runtime.mana))
     if self.inst._nw_cards then
         if self._synced_data~=self.data or self._synced_revision~=self.data.config_revision then
@@ -47,12 +56,15 @@ function Wand:Sync()
         self.inst._nw_cooltotal:set(math.min(65535,math.ceil((self.cool_total or 0)*100)))
     end
     local look = require("nw/visual").from_data(self.data)
+    local broken=self.data.broken==true
+    if broken then self.inst:AddTag("nw_broken") else self.inst:RemoveTag("nw_broken") end
     if self.inst._nw_look then
-        if not self.inst._nw_ready:value() or self.inst._nw_look:value() ~= look then
+        if not self.inst._nw_ready:value() or self.inst._nw_look:value() ~= look or self.inst._nw_broken and self.inst._nw_broken:value()~=broken then
+            if self.inst._nw_broken then self.inst._nw_broken:set(broken) end
             self.inst._nw_look:set(look)
             self.inst.components.inventoryitem.atlasname=require("nw/visual").atlas(look)
-            self.inst.components.inventoryitem:ChangeImageName(require("nw/visual").icon(look))
-            if self.inst._held_visual then self.inst._held_visual._look:set(look) end
+            self.inst.components.inventoryitem:ChangeImageName(require("nw/visual").icon(look,broken))
+            if self.inst._held_visual then self.inst._held_visual._look:set(look);self.inst._held_visual._broken:set(broken) end
             require("nw/visual").apply_dropped(self.inst, look)
         end
     end
@@ -94,11 +106,13 @@ end
 function Wand:PreviewCast()
     self:UpdateTime()
     if not self.data then return nil, "NOT_READY" end
+    if self.data.broken then return nil,"BROKEN" end
     return Compiler.compile(self.data)
 end
 function Wand:CanCast(doer,prepared)
     self:UpdateTime()
     if not self.data then return false,"NOT_READY" end
+    if self.data.broken then return false,"BROKEN" end
     if not doer or not doer:IsValid() or not doer.components.inventory
         or doer.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS) ~= self.inst
         or not doer.components.health or doer.components.health:IsDead() then return false,"NOT_OWNER" end
@@ -137,6 +151,11 @@ function Wand:Cast(doer,pos,prepared)
     local mx,my,mz=require("nw/muzzle").origin(doer,self.data.stats.capacity,dx,dz,length)
     local result,why=require("nw/executor").execute(plan,doer,mx,mz,dx,dz,my,pos)
     if not result then self.data.runtime.remaining_cast=.3;return false,why end
+    local journal=doer.components.nw_spelljournal
+    if journal then
+        journal:RecordCast(self.data,plan)
+        journal:ObserveWand(self.inst)
+    end
     self.data.runtime=plan.next_state
     self.cool_total=plan.cooldown
     self:Sync()
@@ -191,9 +210,8 @@ function Wand:OnLoad(saved)
     local ids = {}
     for _, card in ipairs(d.cards) do
         if card ~= false then
-            if type(card) ~= "table" or type(card.card_uid) ~= "string" or type(card.spell_id) ~= "string"
-                or ids[card.card_uid] then return end
-            ids[card.card_uid] = true
+            if type(card) ~= "table" or type(card.spell_id) ~= "string"
+                then return end
         end
     end
     self.data = U.copy(d)
@@ -205,6 +223,9 @@ function Wand:OnLoad(saved)
     end
     if not U.finite(self.data.config_revision) or self.data.config_revision<1
         or self.data.config_revision~=math.floor(self.data.config_revision) then self.data.config_revision=1 end
+    require("nw/card_identity").repair(self.data)
+    ids={}
+    for _,card in ipairs(self.data.cards) do if card then ids[card.card_uid]=true end end
     r = self.data.runtime
     r.mana = math.max(0, math.min(s.mana_max, r.mana))
     r.remaining_cast = math.max(0, r.remaining_cast)
@@ -218,7 +239,7 @@ function Wand:OnLoad(saved)
     end
     for id in pairs(ids) do if not seen[id] then valid = false end end
     if not valid then
-        local restored = Compiler.initial(d.cards, s, r.rng_state)
+        local restored = Compiler.initial(self.data.cards, s, r.rng_state)
         restored.mana = r.mana
         restored.remaining_cast = r.remaining_cast
         restored.remaining_recharge = math.max(r.remaining_recharge, s.recharge)

@@ -1,0 +1,9 @@
+{
+  "id": "storm_cloud",
+  "name": "局部雷云",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "storm_cloud.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/originals/storm_cloud.png"
+}
+

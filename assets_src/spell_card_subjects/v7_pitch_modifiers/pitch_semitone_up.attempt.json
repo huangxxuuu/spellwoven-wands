@@ -1,0 +1,7 @@
+{
+  "id": "pitch_semitone_up",
+  "name": "升半音",
+  "semitones": 1,
+  "status": "requested",
+  "attempt_count_this_request": 1
+}

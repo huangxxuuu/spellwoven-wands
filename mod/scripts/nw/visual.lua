@@ -26,13 +26,13 @@ function M.parts(code)
         M.lengths[length+1],"tail_"..M.tails[math.floor(tail/3)+1].."_"..M.colors[tail%3+1],
         string.format("body_%02d_%s",style,M.lengths[length+1])
 end
-function M.icon(code) return "nw_wand_"..code end
-function M.apply(inst, code, pose)
+function M.icon(code,broken) return "nw_wand_"..code..(broken and "_broken" or "") end
+function M.apply(inst, code, pose, broken)
     local head,length,tail,body=M.parts(code)
     inst.AnimState:SetBank("nw_parts")
     inst.AnimState:SetBuild("nw_parts")
     inst.AnimState:PlayAnimation(pose.."_"..length,true)
-    inst.AnimState:OverrideSymbol("head","nw_parts",head)
+    inst.AnimState:OverrideSymbol("head","nw_parts",head..(broken and "_broken" or ""))
     inst.AnimState:OverrideSymbol("body","nw_parts",body)
     inst.AnimState:OverrideSymbol("tail","nw_parts",tail)
     if pose=="ground" then
@@ -43,7 +43,7 @@ function M.apply_dropped(inst,look,floating)
     if floating==nil then
         floating=inst.components.floater and inst.components.floater:IsFloating()
     end
-    M.apply(inst,look,floating and "floating" or "ground")
+    M.apply(inst,look,floating and "floating" or "ground",inst._nw_broken and inst._nw_broken:value())
 end
 local function code_for(stats,roll,style)
     local length=stats.capacity<=4 and 0 or stats.capacity<=8 and 1 or 2

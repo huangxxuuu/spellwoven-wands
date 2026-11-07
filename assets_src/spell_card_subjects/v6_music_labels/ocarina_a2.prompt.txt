@@ -1,0 +1,5 @@
+Use case: text-localization.
+Asset type: existing transparent spell-card main illustration, minimal local symbol correction.
+Input image 1 is the EDIT TARGET, not a style suggestion.
+Primary request: Replace only the numeral 2 with numeral 5 in the dark-brown A2 label at upper right. Keep the existing A and match the replacement 5 to the original 2's hand-drawn serif lettering, height, weight, dark-brown color and baseline. The text must read A5.
+Constraints: Change ONLY that note-name label. Preserve the entire instrument, every decorative leaf, string or hole, floating musical-note glyph, colored ribbon, paint texture, exact composition, position, size, silhouette, colors and existing transparent margins unchanged. Do not repaint or redesign the illustration. Keep the same square canvas. Preserve genuine alpha transparency. No background, no colored matte, no stray colored pixels, no shadow, no added text, no card frame. This is a surgical correction of A2 to A5, nothing else.

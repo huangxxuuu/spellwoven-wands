@@ -1,6 +1,5 @@
 local Widget=require("widgets/widget")
 local Row=require("widgets/nw_slotrow")
-local Editor=require("nw/editor_client")
 local Editing=require("nw/editing")
 local Layout=require("nw/hud_layout")
 local Position=require("nw/hud_position")
@@ -10,7 +9,7 @@ local Panel=Class(Widget,function(self,bar)
     self.bar=bar
     self.frame=self:AddChild(require("widgets/nw_wandframe")())
     self.frame:SetPosition(0,16)
-    self.row=self:AddChild(Row(Layout.slot,function(i,down) self:Slot(i,down) end))
+    self.row=self:AddChild(Row(Layout.slot,function() end,Layout.slot_step))
     self.status=self:AddChild(require("widgets/nw_wandstatus")())
     local Locale=require("nw/locale")
     local T=Locale.t
@@ -26,8 +25,12 @@ local Panel=Class(Widget,function(self,bar)
     self.guide:SetTextFocusColour(232/255,190/255,100/255,1)
     self.guide:SetHoverText(T("织法之杖资料站"),{font_size=20,offset_y=-26})
     self.guide:SetOnClick(function()
-        VisitURL("https://huangxxuuu.github.io/spellwoven-wands/"..(Locale.language=="en" and "en/" or ""))
+        VisitURL("https://huangxxuuu.github.io/spellwoven-wands/"..(Locale.language=="en" and "en/" or ""),false)
     end)
+    self.manual=self:AddChild(require("widgets/textbutton")())
+    self.manual:SetFont(UIFONT);self.manual:SetTextSize(18);self.manual:SetText(T("入门"))
+    self.manual:SetHoverText(T("三个建筑，开始织法"))
+    self.manual:SetOnClick(function() require("nw/quickguide").open() end)
     self.count=2
     self:Hide()
     self.inst:DoPeriodicTask(.10,function() self:Refresh() end)
@@ -41,23 +44,27 @@ function Panel:Refresh()
     local p=ThePlayer
     local inv=p and p.replica.inventory
     local w=inv and inv:GetEquippedItem(EQUIPSLOTS.HANDS)
-    if self.wand~=w then self:StopWindowDrag();self.press=nil;self.drop=nil;self.wand=w end
+    if self.wand~=w then self:StopWindowDrag();self.wand=w end
     if not w or not w:HasTag("nw_wand") or not w._nw_ready:value() then self:StopWindowDrag();self:Hide();return end
     self:Show()
     self.row:SetCards(w._nw_cards:value())
+    local native=self.native_container
+    if native and native.isopen and native.container==w then
+        require("nw/wand_container").layout(native,#self.row.spells)
+        self.row:Hide()
+    else self.row:Show() end
     local count=#self.row.spells
     if self.count~=count or not self.frame_width then
         self.count=count;self.frame_width=Layout.frame_width(count)
         self.frame:SetSize(self.frame_width,142)
         self.guide:SetPosition(self.frame_width/2-32,Layout.status_y)
+        self.manual:SetPosition(-self.frame_width/2+32,Layout.status_y)
     end
     self:PlaceWindow()
     self.row:PlaceHover()
     if not self.checked or GetTime()-self.checked>=.25 then
         self.near=Editing.near(p);self.checked=GetTime()
     end
-    if self.press and not TheInput:IsControlPressed(CONTROL_PRIMARY) then self.press=nil end
-    self:FinishDrop()
     local request=p._nw_edit_request
     local hint
     if request and request.wand==require("nw/edit_protocol").id(w) and request.done and not request.ok
@@ -94,7 +101,6 @@ function Panel:BeginWindowDrag(x,y)
     if math.abs(lx)>width/2 or ly<bottom or ly>top or Layout.slot_at(lx,ly,self.count) then return false end
     self.window_drag={x=x,y=y,dx=pos.x-x,dy=pos.y-y,time=GetTime(),owner=p}
     p._nw_hud_dragging=self
-    self.press=nil;self.drop=nil
     return true
 end
 function Panel:StopWindowDrag()
@@ -160,61 +166,4 @@ function Panel:CanEdit()
         and p.replica.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)==self.wand
         and Editing.near(p)
 end
-function Panel:Slot(i,down)
-    if not self:CanEdit() then self.press=nil;self.drop=nil;return end
-    if not down then
-        self:EndDrag(i)
-        return
-    end
-    self.press=nil;self.drop=nil
-    local p=ThePlayer
-    local card=p.replica.inventory:GetActiveItem()
-    if card and not card:HasTag("nw_spellcard") then return end
-    local old=self.row.spells[i]
-    if not card and not old then return end
-    local revision=self.wand._nw_revision:value()
-    if Editor.submit(p,self.wand,i,card,true) and old then
-        self.press={slot=i,spell=old,revision=revision,request=p._nw_edit_request,wand=self.wand}
-    end
-end
-
--- Native inventory slots pick up on mouse-down, even when the button is
--- held. Complete an actual drag on release; a simple click leaves the card
--- on the normal inventory cursor so it can also be placed with another click.
-function Panel:StartInventoryDrag(card)
-    self.press=nil;self.drop=nil
-    if card and card:HasTag("nw_spellcard") and self:CanEdit() then
-        self.press={item=card,wand=self.wand}
-    end
-end
-function Panel:EndDrag(to,inventoryslot)
-    local drag=self.press
-    self.press=nil
-    if not drag or drag.slot==to and not inventoryslot or not self:CanEdit() then return end
-    if inventoryslot and not drag.slot then return end
-    drag.to=to;drag.inventoryslot=inventoryslot;drag.expires=GetTime()+2
-    self.drop=drag
-    self:FinishDrop()
-end
-function Panel:FinishDrop()
-    local drag=self.drop
-    if not drag then return end
-    if not self:CanEdit() or drag.wand~=self.wand or GetTime()>drag.expires then self.drop=nil;return end
-    local p=ThePlayer
-    local card=p.replica.inventory:GetActiveItem()
-    if drag.request then
-        if drag.request~=p._nw_edit_request or drag.request.done and not drag.request.ok then self.drop=nil;return end
-        if not drag.request.done or self.wand._nw_revision:value()~=drag.revision+1
-            or GetTime()-drag.request.time<.16 then return end
-    end
-    if not card then return end
-    if not card:HasTag("nw_spellcard") or drag.item and card~=drag.item
-        or drag.spell and require("nw/cards").bycode[card._spell:value()]~=drag.spell then self.drop=nil;return end
-    self.drop=nil
-    if drag.inventoryslot then
-        local slot=drag.inventoryslot
-        if slot.inst:IsValid() and slot.container==p.replica.inventory then slot:Click(false) end
-    else Editor.submit(p,self.wand,drag.to,card,true) end
-end
-
 return Panel

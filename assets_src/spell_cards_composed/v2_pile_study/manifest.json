@@ -1,0 +1,37 @@
+{
+  "runtime_modified": false,
+  "source": "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_cards_composed\\v1",
+  "tiers": [
+    "2",
+    "3",
+    "4-8",
+    "9+"
+  ],
+  "hex_offset": [
+    8,
+    9
+  ],
+  "ground_quad": [
+    [
+      72,
+      88
+    ],
+    [
+      184,
+      88
+    ],
+    [
+      213,
+      184
+    ],
+    [
+      43,
+      184
+    ]
+  ],
+  "review_images": [
+    "01_small_and_hex.png",
+    "02_tiers.png",
+    "03_grounding.png"
+  ]
+}

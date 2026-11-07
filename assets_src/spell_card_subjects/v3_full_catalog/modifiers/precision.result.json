@@ -1,0 +1,41 @@
+{
+  "id": "precision",
+  "name": "精准",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-d2ab3707-c827-4690-9126-be994a7a57e9.png",
+  "output": "precision.png",
+  "prompt": "precision.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "三条线路收束到同一瞄准点。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      54,
+      91,
+      1190,
+      1186
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 54,
+    "sha256": "71e66b26ed09a00f6fbb6b2ae8b3a1953541338712726bd6e8c2f0a1f052302c",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

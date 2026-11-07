@@ -1,0 +1,9 @@
+{
+  "id": "bog_whip",
+  "name": "沼泽鞭击",
+  "attempt_count": 1,
+  "status": "started",
+  "prompt": "bog_whip.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/originals/bog_whip.png"
+}
+

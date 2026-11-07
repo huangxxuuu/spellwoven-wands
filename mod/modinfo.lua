@@ -1,8 +1,8 @@
 local chinese = (locale and locale:lower():match("^zh") ~= nil) or locale == "chs" or locale == "cht"
 local function L(zh,en) return chinese and zh or en end
 name = L("织法之杖","Spellwoven Wands")
-version = "0.25.9"
-local release_date = "2026-11-06"
+version = "0.25.16"
+local release_date = "2026-11-07"
 description = L(
     "你的下一发法术，由你亲手编织。\n\n收集属性各异的随机法杖，自由排列法术卡：让火花追着敌人跑，让弹体命中后再释放一串法术，或用定时载荷打出层层展开的连招。改变顺序，试出新的搭配。\n\n把熟悉的武器刻成法术，发射会吸火的打火机，用飞旋镰刀收割植物。和朋友一起研究新组合、挑战首领，寻找更称手的法杖！\n\n灵感来自《Noita》，支持中文与 English。",
     "Weave your next spell.\n\nCollect wands with randomized traits and arrange spell cards to make them your own. Send sparks chasing enemies, release more spells on impact, or build timed chains that unfold in flight. Change the order and discover a new combination.\n\nTurn familiar weapons into spells: launch a lighter that absorbs flames or send a spinning scythe to harvest plants. Experiment with friends, challenge bosses, and find the wand that fits your next idea!\n\nInspired by Noita. Supports Chinese and English."
@@ -52,6 +52,9 @@ configuration_options = {
       options={{description="自动 / Auto",data="auto"},{description="中文",data="zh"},{description="English",data="en"}}},
     { name="starting_wand",label=L("给予出门法杖","Starting wand"),default=true,
       hover=L("玩家首次进入这个世界时，获得一把已装有火花弹的两槽入门法杖。","Gives each player a two-slot Starter Wand with a Spark Bolt when they first enter this world."),
+      options={{description=L("开启","On"),data=true},{description=L("关闭","Off"),data=false}} },
+    { name="crafting_class_filter",label=L("制作栏分类与标签筛选","Crafting class and tag filters"),default=true,
+      hover=L("仅影响本机：在奥术台和武器刻印台按分类和标签筛选，多选标签须同时满足。关闭制作栏后重置。与其他制作栏 Mod 冲突时可关闭；更改后重新进入世界。保留原版搜索。","Local display only: filter station recipes by class and tags; all selected tags must match. Resets when the drawer closes. Disable if another crafting-menu mod conflicts; rejoin after changing. Keeps native search."),
       options={{description=L("开启","On"),data=true},{description=L("关闭","Off"),data=false}} },
     ModOptions(L("掉落率","Drop rates"),L("调整成品法术卡与法杖的掉落概率。","Adjust drop chances for spell cards and wands.")),
     { name="card_drop_rate",label=L("生物成品法术卡掉率","Creature spell card drop rate"),default=1,

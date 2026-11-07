@@ -1,0 +1,42 @@
+{
+  "passed": 64,
+  "total": 70,
+  "failures": [
+    {
+      "test": "test_expansion.lua",
+      "passed": false,
+      "error": "[string \"<python>\"]:17: assertion failed!\nstack traceback:\n\t[string \"<python>\"]:17: in main chunk\n\t[C]: in function 'assert'",
+      "also_fails_with_previous_acquisition": true
+    },
+    {
+      "test": "test_inventory_hint.lua",
+      "passed": false,
+      "error": "[string \"<python>\"]:19: assertion failed!\nstack traceback:\n\t[string \"<python>\"]:19: in main chunk\n\t[C]: in function 'assert'",
+      "also_fails_with_previous_acquisition": true
+    },
+    {
+      "test": "test_motion.lua",
+      "passed": false,
+      "error": "...Projects/AI/dst_mod/mod/scripts/nw/spell_effects.lua:54: attempt to call global 'SpawnPrefab' (a nil value)\nstack traceback:\n\t...Projects/AI/dst_mod/mod/scripts/nw/spell_effects.lua:54: in function 'fx'\n\t...:/Projects/AI/dst_mod/mod/scripts/nw/projectiles.lua:45: in function 'contact_fx'\n\t...:/Projects/AI/dst_mod/mod/scripts/nw/projectiles.lua:50: in function 'impact'\n\t...:/Projects/AI/dst_mod/mod/scripts/nw/projectiles.lua:253: in function 'step'\n\t[string \"<python>\"]:186: in function 'gust'\n\t[string \"<python>\"]:190: in main chunk",
+      "also_fails_with_previous_acquisition": true
+    },
+    {
+      "test": "test_permanent_motion_cleanup.lua",
+      "passed": false,
+      "error": ".../Projects/AI/dst_mod/mod/scripts/nw/field_stages.lua:135: attempt to index field 'AnimState' (a nil value)\nstack traceback:\n\t.../Projects/AI/dst_mod/mod/scripts/nw/field_stages.lua:135: in function 'play'\n\t.../Projects/AI/dst_mod/mod/scripts/nw/field_stages.lua:150: in function 'start'\n\t...ects/AI/dst_mod/mod/scripts/nw/persistent_fields.lua:96: in function 'start'\n\t...ects/AI/dst_mod/mod/scripts/nw/persistent_fields.lua:113: in function 'OnLoad'\n\t[string \"<python>\"]:154: in main chunk",
+      "also_fails_with_previous_acquisition": true
+    },
+    {
+      "test": "test_rules.lua",
+      "passed": false,
+      "error": "[string \"<python>\"]:7: 219 ~= 215\nstack traceback:\n\t[string \"<python>\"]:64: in main chunk\n\t[string \"<python>\"]:7: in function 'eq'\n\t[C]: in function 'assert'",
+      "also_fails_with_previous_acquisition": true
+    },
+    {
+      "test": "test_spell_lab.lua",
+      "passed": false,
+      "error": "[string \"<python>\"]:24: assertion failed!\nstack traceback:\n\t[string \"<python>\"]:24: in main chunk\n\t[C]: in function 'assert'",
+      "also_fails_with_previous_acquisition": true
+    }
+  ]
+}

@@ -3,8 +3,8 @@
 local Flight=require("nw/flight")
 local Cleanup=require("nw/permanent_motion_cleanup")
 local M={drag=math.log(2)/4,stop_speed=.1}
-local saved_keys={"vx","vz","heading","phase","offx","offz","accel_factor","reversed",
-    "orbit_angle","orbit_started","escaped","bounces","hits_left","travelled","stopped","actor_userid"}
+local saved_keys={"vx","vz","heading","phase","offx","offz","accel_factor","reversed","motor_speed","motor_angle",
+    "orbit_angle","orbit_radius","orbit_started","escaped","bounces","hits_left","travelled","stopped","actor_userid"}
 function M.save(inst)
     local data={}
     for _,key in ipairs(saved_keys) do
@@ -68,12 +68,15 @@ function M.start(inst,caster,p,dx,dz,age,saved)
     if require("nw/ground_fields").applies(p) and require("nw/ground_fields").sink(inst) then return false end
     if not require("nw/world_bounds").watch(inst) then return false end
     local f=p.flags or {};p.flags=f
+    require("nw/field_effects").attach(inst,caster,p,function() return owner(inst,inst._nw_motion or {owner=caster}) end)
     if (p.speed or 0)<=0 and not (f.homing or f.homing_short) and not saved then return end
     local x,_,z=inst.Transform:GetWorldPosition()
     local s={placement=true,owner=caster,p=p,speed=p.speed or 0,hit={},dx=dx,dz=dz,
         ignore_walls=p.id=="edge_yellowstaff" or p.id=="edge_opalstaff",
         age=age or 0,x=x,z=z,time=GetTime(),remaining=math.huge,travelled=0,
         ignore_self=f.targets and f.targets.self,
+        pass_creatures=p.id=="vital_ring" or p.id=="rain_cloud" or p.id=="shock_ring"
+            or p.id=="storm_cloud" or p.id=="fireflies" or p.id=="delay_seal",
         bounces=f.bounce and f.bounce.bounces,
         hits_left=f.pierce_all and math.huge or f.pierce and f.pierce.hits,
         drag=inst._nw_stored and M.drag or nil}
@@ -85,8 +88,10 @@ function M.start(inst,caster,p,dx,dz,age,saved)
     inst.entity:SetCanSleep(false)
     Cleanup.watch(inst)
     if M.prepare(inst,s,GetTime()) then
-        local speed=math.sqrt(s.vx*s.vx+s.vz*s.vz)
-        inst.Transform:SetRotation(-s.heading/DEGREES)
+        -- Saved propulsion can exceed the capped orbit's actual motor speed.
+        -- Restore the last applied motion until the next steering update.
+        local speed=s.motor_speed or math.sqrt(s.vx*s.vx+s.vz*s.vz)
+        inst.Transform:SetRotation(s.motor_angle or -s.heading/DEGREES)
         inst.Physics:SetMotorVel(speed,0,0)
     end
     s.task=inst:DoPeriodicTask(FRAMES,function()
@@ -101,6 +106,7 @@ function M.push_egg(inst,actor,dx,dz,impulse)
     local data=old and M.save(inst) or {}
     data.vx=(data.vx or 0)+dx*impulse;data.vz=(data.vz or 0)+dz*impulse
     data.heading=math.atan2(data.vz,data.vx);data.stopped=false
+    data.motor_speed,data.motor_angle=nil,nil -- Apply the new impulse immediately.
     data.actor_userid=require("nw/persistent_fields").userid(actor)
     if old and old.task then old.task:Cancel() end
     local stored=inst._nw_stored

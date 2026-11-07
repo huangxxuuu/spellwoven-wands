@@ -1,0 +1,67 @@
+{
+  "source": "Ocarina 20241002.sf2",
+  "source_sha256": "e92c42a68cb738663748ce512dfbc7f18c3c3ea38d12df9ce165b249e6da6bc6",
+  "derived": "Ocarina-extended.sf2",
+  "derived_sha256": "d92e8fddfcb7932795c4f72e5d5c3c83313c5189fee5ddc71c0eab1667906390",
+  "size_bytes": 3226512,
+  "changed_byte_count": 4,
+  "changed_byte_offsets": [
+    3225602,
+    3225603,
+    3225760,
+    3225893
+  ],
+  "edits": [
+    {
+      "table": "pgen",
+      "generator_index": 0,
+      "description": "preset Ocarina key range",
+      "before": [
+        60,
+        92
+      ],
+      "after": [
+        56,
+        94
+      ],
+      "amount_byte_offset": 3225602
+    },
+    {
+      "table": "igen",
+      "generator_index": 1,
+      "description": "lowest sample zone F#4; root MIDI66",
+      "before": [
+        60,
+        70
+      ],
+      "after": [
+        56,
+        70
+      ],
+      "amount_byte_offset": 3225760
+    },
+    {
+      "table": "igen",
+      "generator_index": 34,
+      "description": "highest sample zone E6; root MIDI88",
+      "before": [
+        86,
+        92
+      ],
+      "after": [
+        86,
+        94
+      ],
+      "amount_byte_offset": 3225892
+    }
+  ],
+  "preset_name_preserved": "Ocarina",
+  "bank": 0,
+  "program_zero_based": 0,
+  "resulting_key_range": [
+    56,
+    94
+  ],
+  "unchanged": "All bytes other than the four key-range bound bytes; includes original PCM samples, loops, tuning, envelopes, names, and INFO metadata.",
+  "reason": "Required Mod range extends below and above original playable range60..92. New edge notes transpose existing edge samples through FluidSynth."
+}

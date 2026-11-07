@@ -1,0 +1,33 @@
+{
+  "id": "knockback",
+  "name": "击退",
+  "status": "candidate",
+  "review": "灰雾与颗粒已移除，实心冲击尖角、木靶与推离箭头保留；留白未完全达到提示值，接入时统一等比入框。",
+  "batch_attempt_count": 1,
+  "total_attempt_number": 2,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-37dd8684-5d2b-40c5-9ac7-36a80fa99ed1.png",
+  "output": "knockback.png",
+  "prompt": "knockback.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v3_full_catalog/modifiers/knockback.png",
+  "validation": {
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      92,
+      111,
+      1191,
+      1200
+    ],
+    "minimum_visible_margin_px": 54,
+    "sha256": "1b188acc727af37f7fdd7879535740b7fd3c19f932202245b355be452d5aa217",
+    "matches_source": true,
+    "raw_png_modified": false
+  }
+}

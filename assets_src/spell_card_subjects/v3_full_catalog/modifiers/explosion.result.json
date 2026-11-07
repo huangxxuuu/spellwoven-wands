@@ -1,0 +1,41 @@
+{
+  "id": "explosion",
+  "name": "爆炸",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-f6e2a138-5c0a-4a2f-9007-4b314d8fed1a.png",
+  "output": "explosion.png",
+  "prompt": "explosion.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "橙白实心爆裂形状清楚，无铺底烟云。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      52,
+      46,
+      1179,
+      1227
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 27,
+    "sha256": "0a2417cbb2c709c3b3ce8e02e8c288a475f83f8f71b3820b29cfcf9a16d1c931",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

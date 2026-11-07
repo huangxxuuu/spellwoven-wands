@@ -14,7 +14,7 @@ for id in pairs(roster.retired) do
     end
     retired=retired+1
 end
-assert(retired==30 and cards.codes.edge_voidcloth_scythe<cards.codes.target_self)
+assert(retired==31 and cards.codes.edge_voidcloth_scythe<cards.codes.target_self)
 for _,row in ipairs(roster.extra) do
     local id="edge_"..row[1]
     assert(cards.codes[id]>205 and acquisition.by_name["nw_inscribe_"..id].station=="nw_engraver")
@@ -58,14 +58,14 @@ for _,distance in ipairs({1,8,20,30}) do
     assert(math.abs(c.velocity.x-speed*1.5)<1e-8)
     assert(s.vx==c.velocity.x and s.vz==0,"aimed arc must update shared steering velocity")
 end
-local native={IsValid=function() return true end,Transform={},Physics={}}
+local native={IsValid=function() return true end,Transform={GetScale=function() return 2.5,2.5,2.5 end},Physics={}}
 native.Physics.Teleport=function() error("native motion must not teleport each tick") end
 native.Transform.SetRotation=function(_,r) native.angle=r end
 native.Physics.SetMotorVel=function(_,vx,vy,vz) native.speed=vx;assert(vy==0 and vz==0) end
 inst.Transform={GetRotation=function() return -73 end}
 inst.Physics.GetMotorVel=function() return 22.5,0,0 end
 flight.sync_native(inst,{native=native,native_height=1.4})
-assert(native.angle==-73 and native.speed==22.5)
+assert(native.angle==-73 and native.speed==9)
 assert(defs.edge_lighter.kind=="projectile" and cast("giant_shot","edge_lighter").fire_radius==3)
 assert(cast("edge_lighter").ballistic,"lighter must use the same aimed arc as other thrown weapons")
 local burst=0

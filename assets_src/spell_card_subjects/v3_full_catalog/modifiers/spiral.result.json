@@ -1,0 +1,41 @@
+{
+  "id": "spiral",
+  "name": "螺旋弹道",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-3024bd3d-2bda-4504-9fdb-676c668649df.png",
+  "output": "spiral.png",
+  "prompt": "spiral.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "连续螺旋围绕前进轴，能与正弦弹道区分。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      32,
+      197,
+      1223,
+      1128
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 31,
+    "sha256": "1c7fa941ba7d76164c9202161bb5d07237c8eac044feef62edd0a5ea057dff3d",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

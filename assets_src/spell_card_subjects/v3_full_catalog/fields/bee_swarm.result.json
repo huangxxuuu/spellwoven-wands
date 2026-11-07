@@ -1,0 +1,49 @@
+{
+  "id": "bee_swarm",
+  "name": "蜂群突袭",
+  "attempt_count": 1,
+  "status": "candidate",
+  "prompt": "bee_swarm.prompt.txt",
+  "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_elemental_flight/bee_swarm_head_0.png",
+  "output": "bee_swarm.png",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-ca419c87-de1c-4620-b45d-bf3f94877b0e.png",
+  "output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28 as C:\\Users\\85183\\.codex\\generated_images\\01a1b375-cbd2-7320-8933-929fd5c00b28\\exec-ca419c87-de1c-4620-b45d-bf3f94877b0e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [],
+    "complete_visible_subject": true,
+    "minimum_visible_margin_px": 123,
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "id": "bee_swarm",
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 1088966,
+    "opaque_pixels": 529,
+    "semi_transparent_pixels": 483021,
+    "bbox_alpha32": [
+      123,
+      208,
+      1125,
+      1040
+    ],
+    "bbox_alpha128": [
+      124,
+      208,
+      1125,
+      1039
+    ],
+    "edge_max_alpha": 1,
+    "sha256": "b816d71009bbaeab6fb864ec03c2955627a120c0dec5d62cab80cfb3e1a35c5b",
+    "matches_source": true
+  }
+}

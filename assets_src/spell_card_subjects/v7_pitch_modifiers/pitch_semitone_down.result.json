@@ -1,0 +1,29 @@
+{
+  "id": "pitch_semitone_down",
+  "name": "降半音",
+  "pitch_shift": -1,
+  "symbol": "−1",
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b496-52e7-7ab1-bdeb-c27b52b8e8e0\\exec-5d49b4c6-14b8-49cd-9cb3-47aa8dd72fa4.png",
+  "output": "pitch_semitone_down.png",
+  "prompt": "pitch_semitone_down.prompt.txt",
+  "status": "reviewed",
+  "attempt_count_this_request": 1,
+  "tool": "built-in imagegen",
+  "validation": {
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "bbox_alpha8": [
+      208,
+      77,
+      1039,
+      1202
+    ],
+    "sha256": "e1f29bbf57d306c2742c15b0ae30286a9321d454959642f2b6d87742d93415fb",
+    "matches_generated_source": true,
+    "frame_containment": true
+  },
+  "visual_review": "音符正立，箭头方向与数值正确；八度长箭头、半音短箭头，四张均完整入框。"
+}

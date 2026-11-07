@@ -77,12 +77,12 @@ local far=velocity({homing_short=Copy(D.near_homing)},0,1/30,1)
 assert(far.vx==0,"short guidance does not act outside its range")
 enemy.x,enemy.z=0,5
 local turn,body=velocity({homing_rotate=Copy(D.homing_rotate)},6,1/30,1)
-close(body.motor,6);close(math.atan2(turn.vz,turn.vx),6*DEGREES)
+close(body.motor,6);close(math.atan2(turn.vz,turn.vx),12*DEGREES)
 for _,flags in ipairs({{homing=Copy(D.homing)}, {homing_short=Copy(D.near_homing)},
     {homing=Copy(D.homing),homing_rotate=Copy(D.homing_rotate)}}) do
     enemy.z=2
     local guided=velocity(flags,2,1/30,1)
-    assert(math.atan2(guided.vz,guided.vx)<=6*DEGREES+1e-9,"combined guidance must respect 180 degrees/s")
+    assert(math.atan2(guided.vz,guided.vx)<=12*DEGREES+1e-9,"combined guidance must respect 360 degrees/s")
 end
 
 -- All paths use exactly the same steering function for a moving native star.
@@ -113,6 +113,25 @@ close(restored.motor,inert.motor)
 for i=1,900 do if not restored._nw_motion.stopped then frame(restored,FRAMES) end end
 assert(restored.valid and restored.motor==0 and restored._nw_motion.stopped and restored.can_sleep)
 local star=field(descriptor({},8),false);frame(star,4);close(star.motor,8)
+
+-- Persist a partially entered orbit so loading a moving placement continues
+-- the same smooth radius and phase instead of restarting its entry.
+local owner_x,owner_z=owner.x,owner.z
+owner.x,owner.z=0,0
+local orbiting=field(descriptor({orbit=Copy(D.orbit)},25),true)
+for _=1,8 do frame(orbiting,FRAMES) end
+local orbit_saved=Motion.save(orbiting)
+assert(orbit_saved.orbit_radius and orbit_saved.orbit_radius>0)
+local orbit_loaded=entity(orbiting.x,orbiting.z)
+orbit_loaded._nw_stored={p=orbiting._nw_motion.p};orbit_loaded._nw_owner=owner
+Motion.start(orbit_loaded,owner,orbiting._nw_motion.p,1,0,orbiting._nw_motion.age,orbit_saved)
+close(orbit_loaded._nw_motion.orbit_radius,orbiting._nw_motion.orbit_radius)
+close(orbit_loaded.motor,orbiting.motor);close(orbit_loaded.rotation,orbiting.rotation)
+F.steer(orbiting,orbiting._nw_motion,FRAMES)
+F.steer(orbit_loaded,orbit_loaded._nw_motion,FRAMES)
+close(orbit_loaded.motor,orbiting.motor);close(orbit_loaded.rotation,orbiting.rotation)
+orbiting:Remove();orbit_loaded:Remove()
+owner.x,owner.z=owner_x,owner_z
 
 -- Collision preserves the field. Pierce and wall reflection reuse bullet
 -- contact ordering and budgets, without detonating the placement.
@@ -154,6 +173,10 @@ end
 
 -- Gust pushes an egg without opening it, accumulates actual momentum, can
 -- wake a stopped egg, and passes through crystals without pushing them.
+SpawnPrefab=function(name)
+    assert(name=="nw_elemental_hit_fx")
+    return nil -- Cosmetic impacts are covered by test_elemental_hit.lua.
+end
 local function prop(id)
     local e=entity(2,0,{nw_breakable=true});e._nw_owner=owner
     e._nw_stored={p=descriptor({},0,id)}

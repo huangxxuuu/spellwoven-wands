@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-07",
+  "tool": "built-in image_gen",
+  "status": "generated_candidates_visually_reviewed",
+  "transparent_background": true,
+  "outputs": [
+    {
+      "id": "fire",
+      "name": "火焰弹",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-825c78fd-01f3-4279-80b5-29ab167a79fb.png",
+      "output": "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v1_four_subjects/fire.png",
+      "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_elemental_flight/fire_head_0.png",
+      "prompt": "fire.prompt.txt"
+    },
+    {
+      "id": "frost",
+      "name": "冰霜弹",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-1bc54351-d643-4d66-9213-d1b01bf0db17.png",
+      "output": "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v1_four_subjects/frost.png",
+      "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_elemental_flight/frost_head_0.png",
+      "prompt": "frost.prompt.txt"
+    },
+    {
+      "id": "heavy",
+      "name": "重能量球",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-7f04fbb1-e9eb-4771-814f-227210894608.png",
+      "output": "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v1_four_subjects/heavy.png",
+      "reference": "D:/Projects/AI/dst_mod/assets_src/art_v1/runtime/nw_elemental_flight/heavy_head_0.png",
+      "prompt": "heavy.prompt.txt"
+    },
+    {
+      "id": "edge_farm_hoe",
+      "name": "工具刻印·园艺锄",
+      "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-db34f9fc-c7b8-4c71-8ce6-35d2b41f0d51.png",
+      "output": "D:/Projects/AI/dst_mod/assets_src/spell_card_subjects/v1_four_subjects/edge_farm_hoe.png",
+      "reference": "D:/Projects/AI/dst_mod/assets_src/projectiles/tools_v1/farm_hoe-native.png",
+      "prompt": "edge_farm_hoe.prompt.txt"
+    }
+  ],
+  "validation": "validation.json",
+  "notes": [
+    "Original generated RGBA PNGs copied losslessly; no repainting, resizing, or alpha editing.",
+    "All visible subjects fit inside canvas. Alpha=1 residual pixels exist in the original background; raw alpha bounding boxes are not suitable for automatic subject fitting."
+  ]
+}

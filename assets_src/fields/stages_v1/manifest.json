@@ -1,0 +1,828 @@
+{
+  "bank": "nw_field_stages",
+  "orientation": "BillBoard",
+  "ground_kinds": [
+    "vortex",
+    "shock_ring"
+  ],
+  "kinds": [
+    "crystal_mine",
+    "sleep_crystal",
+    "payload_egg",
+    "moon_fall",
+    "delay_seal",
+    "detonate",
+    "rain_cloud",
+    "storm_cloud",
+    "guard_ring",
+    "shock_ring",
+    "vortex",
+    "deer_decoy",
+    "vital_ring",
+    "spore_sentry"
+  ],
+  "placement_baseline_pixels": {
+    "crystal_mine": 12,
+    "sleep_crystal": 10,
+    "payload_egg": 5
+  },
+  "pixels_per_world_unit": 150,
+  "sources": {
+    "crystal_mine": "assets_src\\art_v1\\runtime\\nw_spell_world\\crystal_mine.png",
+    "sleep_crystal": "assets_src\\art_v1\\runtime\\nw_spell_world\\sleep_crystal.png",
+    "payload_egg": "assets_src\\art_v1\\runtime\\nw_spell_world\\payload_egg.png",
+    "rain_cloud": "assets_src\\art_v1\\runtime\\nw_spell_world\\rain_cloud.png",
+    "shield": "assets_src\\art_v1\\runtime\\nw_spell_world\\shield.png",
+    "drop": "assets_src\\art_v1\\runtime\\nw_spell_world\\drop.png",
+    "signal0": "assets_src\\art_v1\\runtime\\nw_spell_world\\signal0.png",
+    "moon_fall": "assets_src\\art_v1\\originals\\moon_fall.png",
+    "delay_seal": "assets_src\\art_v1\\originals\\delay_seal.png",
+    "detonate": "assets_src\\art_v1\\originals\\detonate.png",
+    "shock_ring": "assets_src\\art_v1\\originals\\shock_ring.png",
+    "vortex": "assets_src\\art_v1\\originals\\vortex.png",
+    "storm_cloud": "assets_src\\art_v1\\originals\\storm_cloud.png",
+    "ground_ring": "nw_objects/blast_extent.png",
+    "vital_cap": "nw_objects/garden_ring.png: single upper mushroom cap",
+    "vital_stem": "nw_objects/garden_ring.png: single upper mushroom stem/ground",
+    "vital_mote": "nw_objects/garden_ring.png: one complete pale green spore",
+    "spore_bud": "assets_src\\art_v1\\runtime\\nw_objects\\plant_bud.png",
+    "spore_sprout": "assets_src\\art_v1\\runtime\\nw_objects\\plant_sprout.png",
+    "spore_idle": "assets_src\\art_v1\\runtime\\nw_objects\\plant_idle.png",
+    "spore_aim": "assets_src\\art_v1\\runtime\\nw_objects\\plant_aim.png",
+    "spore_fire": "assets_src\\art_v1\\runtime\\nw_objects\\plant_fire.png",
+    "spore_wilt": "assets_src\\art_v1\\runtime\\nw_objects\\plant_wilt.png",
+    "spore_head": "plant_idle: thorn head",
+    "spore_root": "plant_idle: fixed stem/root",
+    "crystal_mine_shine": "crystal_mine: existing bright painted facets",
+    "sleep_crystal_shine": "sleep_crystal: existing bright painted facets",
+    "payload_egg_shine": "payload_egg: existing bright painted facets",
+    "delay_seal_shine": "delay_seal: existing bright painted facets",
+    "detonate_shine": "detonate: existing bright painted facets",
+    "shock_ring_shine": "shock_ring: existing bright painted facets",
+    "storm_body": "storm_cloud: cloud portion",
+    "storm_shine": "storm_cloud: existing bright cloud facets",
+    "vortex_core": "vortex: inner swirl",
+    "vortex_rocks": "vortex: outer rocks",
+    "deer_pose_0": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 1, column 1",
+    "deer_pose_1": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 1, column 2",
+    "deer_pose_2": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 1, column 3",
+    "deer_pose_3": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 1, column 4",
+    "deer_pose_4": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 2, column 1",
+    "deer_pose_5": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 2, column 2",
+    "deer_pose_6": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 2, column 3",
+    "deer_pose_7": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 2, column 4",
+    "deer_pose_8": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 3, column 1",
+    "deer_pose_9": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 3, column 2",
+    "deer_pose_10": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 3, column 3",
+    "deer_pose_11": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 3, column 4",
+    "deer_pose_12": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 4, column 1",
+    "deer_pose_13": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 4, column 2",
+    "deer_pose_14": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 4, column 3",
+    "deer_pose_15": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 4, column 4",
+    "crystal_mine_piece_0": "crystal_mine: breakup quadrant",
+    "crystal_mine_piece_1": "crystal_mine: breakup quadrant",
+    "crystal_mine_piece_2": "crystal_mine: breakup quadrant",
+    "crystal_mine_piece_3": "crystal_mine: breakup quadrant",
+    "sleep_crystal_piece_0": "sleep_crystal: breakup quadrant",
+    "sleep_crystal_piece_1": "sleep_crystal: breakup quadrant",
+    "sleep_crystal_piece_2": "sleep_crystal: breakup quadrant",
+    "sleep_crystal_piece_3": "sleep_crystal: breakup quadrant",
+    "payload_egg_piece_0": "payload_egg: breakup quadrant",
+    "payload_egg_piece_1": "payload_egg: breakup quadrant",
+    "payload_egg_piece_2": "payload_egg: breakup quadrant",
+    "payload_egg_piece_3": "payload_egg: breakup quadrant",
+    "moon_fall_piece_0": "moon_fall: breakup quadrant",
+    "moon_fall_piece_1": "moon_fall: breakup quadrant",
+    "moon_fall_piece_2": "moon_fall: breakup quadrant",
+    "moon_fall_piece_3": "moon_fall: breakup quadrant"
+  },
+  "packing": {
+    "candidate_images": 536,
+    "referenced_images": 324,
+    "max_atlas_pages": 2,
+    "source_pixels_unchanged": true
+  },
+  "sprite_sizes": {
+    "crystal_mine": [
+      138,
+      91
+    ],
+    "sleep_crystal": [
+      116,
+      110
+    ],
+    "payload_egg": [
+      90,
+      103
+    ],
+    "rain_cloud": [
+      244,
+      155
+    ],
+    "shield": [
+      51,
+      54
+    ],
+    "drop": [
+      6,
+      20
+    ],
+    "signal0": [
+      36,
+      10
+    ],
+    "moon_fall": [
+      165,
+      158
+    ],
+    "delay_seal": [
+      150,
+      137
+    ],
+    "detonate": [
+      150,
+      148
+    ],
+    "shock_ring": [
+      191,
+      200
+    ],
+    "vortex": [
+      220,
+      184
+    ],
+    "storm_cloud": [
+      240,
+      213
+    ],
+    "ground_ring": [
+      240,
+      240
+    ],
+    "vital_cap": [
+      79,
+      39
+    ],
+    "vital_stem": [
+      79,
+      32
+    ],
+    "vital_mote": [
+      27,
+      22
+    ],
+    "spore_bud": [
+      123,
+      57
+    ],
+    "spore_sprout": [
+      122,
+      102
+    ],
+    "spore_idle": [
+      131,
+      138
+    ],
+    "spore_aim": [
+      151,
+      140
+    ],
+    "spore_fire": [
+      174,
+      139
+    ],
+    "spore_wilt": [
+      156,
+      108
+    ],
+    "spore_head": [
+      131,
+      93
+    ],
+    "spore_root": [
+      131,
+      50
+    ],
+    "crystal_mine_shine": [
+      138,
+      91
+    ],
+    "sleep_crystal_shine": [
+      116,
+      110
+    ],
+    "payload_egg_shine": [
+      90,
+      103
+    ],
+    "delay_seal_shine": [
+      150,
+      137
+    ],
+    "detonate_shine": [
+      150,
+      148
+    ],
+    "shock_ring_shine": [
+      191,
+      200
+    ],
+    "storm_body": [
+      240,
+      213
+    ],
+    "storm_shine": [
+      240,
+      213
+    ],
+    "vortex_core": [
+      220,
+      184
+    ],
+    "vortex_rocks": [
+      220,
+      184
+    ],
+    "deer_pose_0": [
+      256,
+      256
+    ],
+    "deer_pose_1": [
+      256,
+      256
+    ],
+    "deer_pose_2": [
+      256,
+      256
+    ],
+    "deer_pose_3": [
+      256,
+      256
+    ],
+    "deer_pose_4": [
+      256,
+      256
+    ],
+    "deer_pose_5": [
+      256,
+      256
+    ],
+    "deer_pose_6": [
+      256,
+      256
+    ],
+    "deer_pose_7": [
+      256,
+      256
+    ],
+    "deer_pose_8": [
+      256,
+      256
+    ],
+    "deer_pose_9": [
+      256,
+      256
+    ],
+    "deer_pose_10": [
+      256,
+      256
+    ],
+    "deer_pose_11": [
+      256,
+      256
+    ],
+    "deer_pose_12": [
+      256,
+      256
+    ],
+    "deer_pose_13": [
+      256,
+      256
+    ],
+    "deer_pose_14": [
+      256,
+      256
+    ],
+    "deer_pose_15": [
+      256,
+      256
+    ],
+    "crystal_mine_piece_0": [
+      69,
+      45
+    ],
+    "crystal_mine_piece_1": [
+      69,
+      45
+    ],
+    "crystal_mine_piece_2": [
+      69,
+      46
+    ],
+    "crystal_mine_piece_3": [
+      69,
+      46
+    ],
+    "sleep_crystal_piece_0": [
+      58,
+      55
+    ],
+    "sleep_crystal_piece_1": [
+      58,
+      55
+    ],
+    "sleep_crystal_piece_2": [
+      58,
+      55
+    ],
+    "sleep_crystal_piece_3": [
+      58,
+      55
+    ],
+    "payload_egg_piece_0": [
+      45,
+      51
+    ],
+    "payload_egg_piece_1": [
+      45,
+      51
+    ],
+    "payload_egg_piece_2": [
+      45,
+      52
+    ],
+    "payload_egg_piece_3": [
+      45,
+      52
+    ],
+    "moon_fall_piece_0": [
+      82,
+      79
+    ],
+    "moon_fall_piece_1": [
+      83,
+      79
+    ],
+    "moon_fall_piece_2": [
+      82,
+      79
+    ],
+    "moon_fall_piece_3": [
+      83,
+      79
+    ]
+  },
+  "clips": {
+    "crystal_mine_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "crystal_mine_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "crystal_mine_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "crystal_mine_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "sleep_crystal_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "sleep_crystal_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "sleep_crystal_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "sleep_crystal_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "payload_egg_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "payload_egg_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "payload_egg_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "payload_egg_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "moon_fall_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "moon_fall_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "moon_fall_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "moon_fall_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "delay_seal_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "delay_seal_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "delay_seal_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "delay_seal_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "detonate_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "detonate_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "detonate_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "detonate_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "rain_cloud_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "rain_cloud_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "rain_cloud_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "rain_cloud_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "storm_cloud_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "storm_cloud_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "storm_cloud_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "storm_cloud_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "guard_ring_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "guard_ring_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "guard_ring_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "guard_ring_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "shock_ring_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "shock_ring_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "shock_ring_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "shock_ring_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "vortex_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "vortex_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "vortex_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "vortex_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "deer_decoy_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "deer_decoy_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "deer_decoy_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "deer_decoy_end": {
+      "seconds": 0.5,
+      "fps": 30,
+      "loop": false,
+      "frames": 15
+    },
+    "vital_ring_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "vital_ring_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "vital_ring_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "vital_ring_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "spore_sentry_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "spore_sentry_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "spore_sentry_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "spore_sentry_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "moon_fall_warning": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": true,
+      "frames": 9
+    },
+    "moon_fall_fall": {
+      "seconds": 0.24,
+      "fps": 25,
+      "loop": false,
+      "frames": 6
+    },
+    "storm_cloud_warning": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "guard_member_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "guard_member_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "guard_member_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "guard_member_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "vital_member_spawn": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "vital_member_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "vital_member_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "vital_member_end": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "vital_mote_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "vital_mote_pulse": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "spore_grow": {
+      "seconds": 0.6,
+      "fps": 30,
+      "loop": false,
+      "frames": 18
+    },
+    "spore_idle": {
+      "seconds": 1.2,
+      "fps": 30,
+      "loop": true,
+      "frames": 36
+    },
+    "spore_fire": {
+      "seconds": 0.4,
+      "fps": 30,
+      "loop": false,
+      "frames": 12
+    },
+    "spore_wilt": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    }
+  },
+  "footprint_width_pixels": {
+    "moon_fall": 100,
+    "shock_ring": 191,
+    "vortex": 220
+  },
+  "notes": [
+    "Runtime fits moon/shock/vortex art to gameplay radius",
+    "Moon fall is non-looping",
+    "Moon warning uses a separate native soft shadow, without a range circle",
+    "Deer uses four idle poses and a single eight-pose spin followed by dissolution",
+    "Guard and vital rings use independent client members, never a composite ring",
+    "Eight alpha levels are baked into existing painted textures"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "long_life",
+  "name": "续航铭文",
+  "group": "modifiers",
+  "status": "candidate",
+  "attempt_count": 1,
+  "source": "C:\\Users\\85183\\.codex\\generated_images\\01a1b203-eb4c-7171-8cb4-c3722174fe0b\\exec-5a727144-9941-49ce-9b63-ab3990b1e84d.png",
+  "output": "long_life.png",
+  "prompt": "long_life.prompt.txt",
+  "review": {
+    "visual_checked": true,
+    "issues": [],
+    "notes": [
+      "上半部剩余沙量较多，长箭头表达续航。",
+      "生成图安全留白偏紧，但可见主体未触边；接入卡牌时按主体边界等比缩小至卡框内部。"
+    ],
+    "card_frame_fitting_required": true
+  },
+  "validation": {
+    "mode": "RGBA",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "bbox_alpha8": [
+      46,
+      60,
+      1219,
+      1218
+    ],
+    "visible_edge_pixels": 0,
+    "minimum_visible_margin_px": 35,
+    "sha256": "3955071e6b98d6548db6ca80a489bb85d72d4b4f8df7a20a1bd71235913c7553",
+    "matches_source": true
+  },
+  "raw_png_modified": false
+}

@@ -93,6 +93,7 @@ function M.start(inst,data,owner,loading)
     end
     local x,_,z=inst.Transform:GetWorldPosition()
     if require("nw/field_motion").start(inst,owner,data.p,data.dx,data.dz,data.age,data.motion)==false then return end
+    require("nw/field_stages").start(inst,data.p.id,data.p,loading)
     require("nw/expanded_fields").actions[data.p.id](inst,owner,data.p,x,z,data.dx,data.dz,fire)
 end
 function M.install(inst)

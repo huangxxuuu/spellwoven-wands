@@ -1,7 +1,7 @@
 """Build real-size spell sprites and animation clips; artwork is independent of card icons."""
 import math
 from xml.etree import ElementTree as E
-from PIL import Image,ImageOps,ImageDraw
+from PIL import Image,ImageOps,ImageDraw,ImageFilter
 from build_art_assets import ROOT,ORIGINALS,frame,compile_bank
 from pathlib import Path
 src=ROOT/'assets_src/spell_revision'
@@ -30,8 +30,10 @@ def clip(name,poses,fps=24):
                         w=str(max(xs)-min(xs)+2),h=str(max(ys)-min(ys)+2))
 for name in ['gust','slime','heal_bolt','heavy','land_hook','spore_ball','flint_lance','grow_orb','star_vortex','glass_disc','tri_electric','end_beam','soundwave','bee_swarm']:
     # Heavy Energy Orb uses the same cracked-shell artwork as its spell card.
-    source=ORIGINALS/'heavy.png' if name=='heavy' else None
-    symbol('body_'+name,tile(name,118,84,source))
+    source=ORIGINALS/(name+'.png') if name in ('heavy','land_hook') else None
+    im=tile(name,118,84,source)
+    if name=='land_hook': im=im.rotate(135,Image.Resampling.BICUBIC,expand=True)
+    symbol('body_'+name,im)
 # Frost's ice tip points northeast in the source, like the arrow, not the flame.
 for name,srcname,angle in [('arrow','arrow',45),('fire','fire',-135),('frost','frost',45),('scatter','pellet',0)]:
     im=tile(name,116,92,ORIGINALS/(srcname+'.png')).rotate(-angle,Image.Resampling.BICUBIC,expand=True)
@@ -63,8 +65,9 @@ for i in range(13):
     poses.append([('axe_whirl',math.cos(a)*ox-math.sin(a)*oy,math.sin(a)*ox+math.cos(a)*oy,a,scale,scale)])
 clip('axe_whirl',poses,fps=31)
 symbol('body_orange_bolt',tile('orange_bolt',150,100))
-for name in ('fishingrod','farm_hoe'):
+for name in ('fishingrod','farm_hoe','trident'):
     im=tile(name,140,140,ORIGINALS/('edge_'+name+'.png'))
+    if name=='trident': im=im.rotate(-45,Image.Resampling.BICUBIC,expand=True)
     if name=='farm_hoe':
         im=im.rotate(-45,Image.Resampling.BICUBIC,expand=True)
         im=ImageOps.flip(im.crop(im.getbbox()))
@@ -104,12 +107,12 @@ for name in ['crystal_mine','sleep_crystal','payload_egg','rain_cloud','shield_2
             pose=[]
             for j in range(int(name[-1])):
                 angle=ph+math.pi*j
-                pose.append(('shield',90*math.cos(angle),-105+26*math.sin(angle),.08*math.sin(angle),.8+.15*math.sin(angle),1))
+                pose.append(('shield',290*math.cos(angle),-25+115*math.sin(angle),.08*math.sin(angle),.8+.15*math.sin(angle),1))
         elif name=='rain_cloud':
-            pose=[(name,0,-230,0,1,1)]
+            pose=[(name,0,-370,0,1,1)]
             for j in range(14):
                 u=(t*2+j*.371)%1
-                pose.append(('drop',((j*79)%302)-151-u*13,-180+u*175,0,.7,1))
+                pose.append(('drop',((j*79)%302)-151-u*13,-320+u*315,0,.7,1))
         else:
             sy=1+.026*math.sin(ph) if name=='payload_egg' else 1
             pose=[(name,0,-images[name].height*sy/2,0,1,sy)]
@@ -117,4 +120,13 @@ for name in ['crystal_mine','sleep_crystal','payload_egg','rain_cloud','shield_2
                 for j in range(int(t*4)%4):pose.append(('signal'+str(j),0,-100-j*8,0,.45+j*.23,.5+j*.2))
         poses.append(pose)
     clip(name,poses)
+# Ground decorations share the same deterministic clip/compiler pipeline.
+symbol('recycle_wave',tile('recycle_wave',1200,1200))
+clip('recycle_wave',[[('recycle_wave',0,0,0,1,1)]])
+wet=Image.new('RGBA',(600,600));d=ImageDraw.Draw(wet)
+for j in range(16):
+    a=j*2.399;cx=300+math.cos(a)*(100+j*5);cy=300+math.sin(a)*(100+j*5)
+    d.ellipse((cx-70,cy-45,cx+70,cy+45),fill=(68,96,104,45))
+wet=wet.filter(ImageFilter.GaussianBlur(8));symbol('wet_patch',wet)
+clip('wet_patch',[[('wet_patch',0,0,0,1,1)]])
 compile_bank(bank,build,animations,images,Path("E:/SteamLibrary/steamapps/common/Don't Starve Mod Tools/mod_tools"))
