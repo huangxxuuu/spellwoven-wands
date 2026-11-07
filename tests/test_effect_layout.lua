@@ -2,6 +2,7 @@
 -- networked parent, and its image-space endpoints must land on the span.
 local layout=require("nw/fx_layout")
 local electric=require("nw/electric_visual")
+local stages=require("nw/field_stages")
 local factories,entities={},{}
 Prefab=function(name,fn) factories[name]=fn;return name end
 Asset=function() end
@@ -36,6 +37,17 @@ CreateEntity=function()
 end
 require("prefabs/nw_spell_fx")
 local function close(a,b) return math.abs(a-b)<1e-8 end
+-- Real cloud strike anchors follow the billboard artwork at every zoom/angle,
+-- rather than treating its painted height as a fixed world-space Y value.
+for _,size in ipairs({1,2.5,5}) do
+    local lift=stages.storm_lift({size_mult=size})
+    assert(close(lift*electric.pixels_per_unit,345*size))
+    for _,pitch in ipairs({25,35,60}) do
+        local _,_,_,raised=electric.span(3,.75,1,lift,0,math.rad(pitch))
+        local _,sy=electric.project(0,raised,0,0,math.rad(pitch))
+        assert(close(sy*electric.pixels_per_unit,-345*size))
+    end
+end
 for _,v in ipairs({{0,0,0,0},{.3,0,0,0},{0,0,-2.1,0},{-3,.7,4,0},{6,-1.5,0,0},{3,.75,1,2.2},{0,.3,0,4.4}}) do
 for _,heading in ipairs({0,45,110,270}) do
 for _,pitch in ipairs({25,35,60}) do

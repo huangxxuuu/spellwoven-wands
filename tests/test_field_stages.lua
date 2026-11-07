@@ -79,8 +79,9 @@ local function entity()
         SetBank=function(_,name) e.bank=name end,
         SetScale=function(_,x,y) e.artscale={x,y} end,
         SetOrientation=function(_,orientation) e.orientation=orientation end,
+        SetFinalOffset=function(_,offset) e.finaloffset=offset end,
         PlayAnimation=function(_,name,loop) e.anim=name;e.clips[#e.clips+1]={name=name,at=now,loop=loop,playback=e.playback or 1} end,
-        PushAnimation=function(_,name,loop) e.queued=name end,
+        PushAnimation=function(_,name,loop) e.queued=name;e.clips[#e.clips].queued=name end,
         SetTime=function(_,t) e.animtime=t end,
         SetDeltaTimeMultiplier=function(_,speed) assert(speed>0 and speed<math.huge);e.playback=speed end,
     },{__index=function() return noop end})
@@ -424,6 +425,21 @@ near(Stages.duration("storm_cloud","warning"),.3)
 near(Stages.duration("storm_cloud","end"),.8)
 near(Stages.duration("rain_cloud","spawn"),.2)
 near(Stages.duration("rain_cloud","end"),.3)
+local loaded_storm=field("storm_cloud",nil,true)
+assert(loaded_storm.anim=="storm_cloud_idle" and loaded_storm._nw_field_stages.storm_cycle==nil)
+for cycle=1,4 do
+    local index=(cycle-1)%3+1
+    local suffix=index==1 and "" or "_"..index
+    Stages.warning(loaded_storm)
+    assert(loaded_storm.anim=="storm_cloud_warning"..suffix and loaded_storm.queued=="storm_cloud_idle"..suffix)
+    Stages.pulse(loaded_storm)
+    assert(loaded_storm.anim=="storm_cloud_pulse"..suffix and loaded_storm.queued=="storm_cloud_idle"..suffix)
+end
+loaded_storm:Remove()
+local rain=field("rain_cloud")
+Stages.warning(rain);assert(rain.anim=="rain_cloud_warning" and rain.queued=="rain_cloud_idle")
+Stages.pulse(rain);assert(rain.anim=="rain_cloud_pulse" and rain._nw_field_stages.storm_cycle==nil)
+rain:Remove()
 local electric_hits={}
 local original_electric=Hits.electric
 Hits.electric=function(caster,e,x,z,damage,p,base_only,height,lift)
@@ -440,15 +456,20 @@ for _,lifetime in ipairs({1,2,.5,.25,1/64}) do
     local launched=now
     Fields.actions.storm_cloud(storm,owner,sp,0,0)
     near(storm.playback,1/visual_scale)
+    assert(storm.finaloffset==4,"cloud foreground must cover the top of the attack arc")
     advance(launched+.49*visual_scale)
     assert(storm.anim=="storm_cloud_spawn" and #electric_hits==0,"gathering must not be interrupted or strike early")
     advance(launched+2.55*lifetime)
     local warns,pulses={},{}
     for _,clip in ipairs(storm.clips) do
-        if clip.name=="storm_cloud_warning" then
+        if clip.name:match("^storm_cloud_warning") then
             warns[#warns+1]=clip.at;near(clip.playback,1/visual_scale)
-        elseif clip.name=="storm_cloud_pulse" then
+            local suffix=#warns==1 and "" or "_"..#warns
+            assert(clip.name=="storm_cloud_warning"..suffix and clip.queued=="storm_cloud_idle"..suffix)
+        elseif clip.name:match("^storm_cloud_pulse") then
             pulses[#pulses+1]=clip.at;near(clip.playback,1/visual_scale)
+            local suffix=#pulses==1 and "" or "_"..#pulses
+            assert(clip.name=="storm_cloud_pulse"..suffix and clip.queued=="storm_cloud_idle"..suffix)
         end
     end
     assert(#warns==3 and #pulses==3 and not storm.valid)
@@ -463,11 +484,12 @@ for _,lifetime in ipairs({1,2,.5,.25,1/64}) do
     end
     assert(#electric_hits==#expected_hits)
     for i,at in ipairs(expected_hits) do
-        near(electric_hits[i].at,at);near(electric_hits[i].height,.4);near(electric_hits[i].lift,5.5)
+        near(electric_hits[i].at,at);near(electric_hits[i].height,.4);near(electric_hits[i].lift,345/150*2.5)
     end
     local tail=fxs[#fxs]
     assert(tail.valid and tail.anim=="storm_cloud_end" and not tail.components.health and not tail.components.combat)
     near(tail.scale,2.5)
+    assert(tail.finaloffset==4,"the fading cloud retains its arc occlusion order")
     near(tail.playback,1)
     advance(launched+2.55*lifetime+.79)
     assert(tail.valid and #electric_hits==#expected_hits,"dispersal must remain visual only")

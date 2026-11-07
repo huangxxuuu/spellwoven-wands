@@ -216,11 +216,11 @@ local function electricity(inst,owner,p,x,z)
                 local now=GetTime()
                 if Target.hittable(owner,e,p.flags) and e:GetDistanceSqToPoint(x,0,z)<=p.radius*p.radius and now>=(e._nw_storm_next or 0) then
                     e._nw_storm_next=now+.45
-                    -- The cloud's height is painted into its billboard (330 px).
+                    -- The strike emerges inside the cloud's lower billows.
                     -- Keep this visual lift separate from world Y; the renderer
                     -- projects it with the local camera's pitch on every client.
                     Hits.electric(owner,e,x,z,p.damage*Effects.wet_mult(e,p.flags),p,false,
-                        cloud and y or nil,cloud and 330/150*require("nw/projectile_size").factor(p) or nil)
+                        cloud and y or nil,cloud and Stages.storm_lift(p) or nil)
                     if cloud then break end
                 end
             end

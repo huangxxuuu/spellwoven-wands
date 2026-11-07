@@ -50,12 +50,28 @@
     "delay_seal_shine": "delay_seal: existing bright painted facets",
     "detonate_shine": "detonate: existing bright painted facets",
     "shock_ring_shine": "shock_ring: existing bright painted facets",
-    "storm_back": "assets_src\\fields\\stages_v1\\storm_lobes_v2.png: quadrant 1",
-    "storm_crown": "assets_src\\fields\\stages_v1\\storm_lobes_v2.png: quadrant 2",
-    "storm_left": "assets_src\\fields\\stages_v1\\storm_lobes_v2.png: quadrant 3",
-    "storm_left_shine": "storm_left: cool light on inner painted facets",
-    "storm_right": "assets_src\\fields\\stages_v1\\storm_lobes_v2.png: quadrant 4",
-    "storm_right_shine": "storm_right: cool light on inner painted facets",
+    "storm_back": "storm_volumes_v5.png: registered row 1, dark",
+    "storm_back_light_0": "storm_volumes_v5.png: registered row 1, transmitted light zone 0",
+    "storm_back_light_1": "storm_volumes_v5.png: registered row 1, transmitted light zone 1",
+    "storm_back_light_2": "storm_volumes_v5.png: registered row 1, transmitted light zone 2",
+    "storm_crown": "storm_volumes_v5.png: registered row 2, dark",
+    "storm_crown_light_0": "storm_volumes_v5.png: registered row 2, transmitted light zone 0",
+    "storm_crown_light_1": "storm_volumes_v5.png: registered row 2, transmitted light zone 1",
+    "storm_crown_light_2": "storm_volumes_v5.png: registered row 2, transmitted light zone 2",
+    "storm_left": "storm_volumes_v5.png: registered row 3, dark",
+    "storm_left_light_0": "storm_volumes_v5.png: registered row 3, transmitted light zone 0",
+    "storm_left_light_1": "storm_volumes_v5.png: registered row 3, transmitted light zone 1",
+    "storm_left_light_2": "storm_volumes_v5.png: registered row 3, transmitted light zone 2",
+    "storm_right": "storm_volumes_v5.png: registered row 4, dark",
+    "storm_right_light_0": "storm_volumes_v5.png: registered row 4, transmitted light zone 0",
+    "storm_right_light_1": "storm_volumes_v5.png: registered row 4, transmitted light zone 1",
+    "storm_right_light_2": "storm_volumes_v5.png: registered row 4, transmitted light zone 2",
+    "storm_inner_arc_bolt_b_0": "DST shock_fx: bolt_b frame 0, native electrocute silhouette",
+    "storm_inner_arc_bolt_b_1": "DST shock_fx: bolt_b frame 3, native electrocute silhouette",
+    "storm_inner_arc_bolt_b_2": "DST shock_fx: bolt_b frame 4, native electrocute silhouette",
+    "storm_inner_arc_bolt_c_0": "DST shock_fx: bolt_c frame 0, native electrocute silhouette",
+    "storm_inner_arc_bolt_c_1": "DST shock_fx: bolt_c frame 3, native electrocute silhouette",
+    "storm_inner_arc_bolt_c_2": "DST shock_fx: bolt_c frame 4, native electrocute silhouette",
     "vortex_core": "vortex: inner swirl",
     "vortex_rocks": "vortex: outer rocks",
     "deer_pose_0": "assets_src\\fields\\stages_v1\\deer_spirit_v2.png: row 1, column 1",
@@ -107,8 +123,8 @@
     "spore_pose_15": "assets_src/fields/stages_v1/spore_sentry_v2.png: row 4, column 4, registered upper body"
   },
   "packing": {
-    "candidate_images": 616,
-    "referenced_images": 360,
+    "candidate_images": 744,
+    "referenced_images": 452,
     "max_atlas_pages": 2,
     "source_pixels_unchanged": true
   },
@@ -226,28 +242,92 @@
       200
     ],
     "storm_back": [
-      213,
+      197,
+      84
+    ],
+    "storm_back_light_0": [
+      197,
+      84
+    ],
+    "storm_back_light_1": [
+      197,
+      84
+    ],
+    "storm_back_light_2": [
+      197,
       84
     ],
     "storm_crown": [
-      176,
-      133
+      184,
+      123
+    ],
+    "storm_crown_light_0": [
+      184,
+      123
+    ],
+    "storm_crown_light_1": [
+      184,
+      123
+    ],
+    "storm_crown_light_2": [
+      184,
+      123
     ],
     "storm_left": [
-      128,
-      66
+      134,
+      61
     ],
-    "storm_left_shine": [
-      128,
-      66
+    "storm_left_light_0": [
+      134,
+      61
+    ],
+    "storm_left_light_1": [
+      134,
+      61
+    ],
+    "storm_left_light_2": [
+      134,
+      61
     ],
     "storm_right": [
       128,
-      53
+      50
     ],
-    "storm_right_shine": [
+    "storm_right_light_0": [
       128,
-      53
+      50
+    ],
+    "storm_right_light_1": [
+      128,
+      50
+    ],
+    "storm_right_light_2": [
+      128,
+      50
+    ],
+    "storm_inner_arc_bolt_b_0": [
+      39,
+      68
+    ],
+    "storm_inner_arc_bolt_b_1": [
+      39,
+      68
+    ],
+    "storm_inner_arc_bolt_b_2": [
+      39,
+      68
+    ],
+    "storm_inner_arc_bolt_c_0": [
+      108,
+      34
+    ],
+    "storm_inner_arc_bolt_c_1": [
+      108,
+      34
+    ],
+    "storm_inner_arc_bolt_c_2": [
+      108,
+      34
     ],
     "vortex_core": [
       220,
@@ -622,10 +702,10 @@
       "frames": 15
     },
     "storm_cloud_idle": {
-      "seconds": 1.2,
+      "seconds": 0.8,
       "fps": 30,
       "loop": true,
-      "frames": 36
+      "frames": 24
     },
     "storm_cloud_pulse": {
       "seconds": 0.2,
@@ -801,6 +881,42 @@
       "loop": false,
       "frames": 9
     },
+    "storm_cloud_warning_2": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "storm_cloud_pulse_2": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "storm_cloud_idle_2": {
+      "seconds": 0.8,
+      "fps": 30,
+      "loop": true,
+      "frames": 24
+    },
+    "storm_cloud_warning_3": {
+      "seconds": 0.3,
+      "fps": 30,
+      "loop": false,
+      "frames": 9
+    },
+    "storm_cloud_pulse_3": {
+      "seconds": 0.2,
+      "fps": 30,
+      "loop": false,
+      "frames": 6
+    },
+    "storm_cloud_idle_3": {
+      "seconds": 0.8,
+      "fps": 30,
+      "loop": true,
+      "frames": 24
+    },
     "guard_member_spawn": {
       "seconds": 0.2,
       "fps": 30,
@@ -897,7 +1013,7 @@
     "Moon warning uses a separate native soft shadow, without a range circle",
     "Deer uses four idle poses and a single eight-pose spin followed by dissolution",
     "Guard and vital rings use independent client members, never a composite ring",
-    "Storm lobes gather for .5 s before the first warning and disperse for .8 s in a separate visual effect",
+    "Storm lobes roll continuously through gather, warning, strike and dispersal; native electric art flickers between layers",
     "Eight alpha levels are baked into existing painted textures"
   ]
 }

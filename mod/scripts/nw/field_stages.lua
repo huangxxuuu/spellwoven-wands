@@ -2,6 +2,10 @@
 -- keeps the original field, damage tasks or spell reservations alive.
 local Size=require("nw/projectile_size")
 local M={bank="nw_field_stages",spawn_time=.2,pulse_time=.2,end_time=.3,fall_time=.24}
+-- Billboard art coordinates: the cloud and its lower billows were raised 35 px.
+-- Keep the source inside the cloud; the foreground art hides the arc's top.
+M.storm_strike_pixels=345
+function M.storm_lift(p) return M.storm_strike_pixels/150*Size.factor(p) end
 M.phase={spawn=1,idle=2,pulse=3,finish=4,warning=5,fall=6}
 local profiles={crystal_mine=true,sleep_crystal=true,payload_egg=true,moon_fall=true,
     delay_seal=true,detonate=true,rain_cloud=true,storm_cloud=true,guard_ring=true,
@@ -96,6 +100,7 @@ function M.setup(inst,id)
     inst.AnimState:SetBank(M.bank);inst.AnimState:SetBuild(M.bank)
     -- Circular field art lies on the ground; bodies and clouds stay upright.
     inst.AnimState:SetOrientation(M.orientation(id))
+    if id=="storm_cloud" then inst.AnimState:SetFinalOffset(4) end
     inst.AnimState:PlayAnimation(id.."_idle",true)
     if members[id] then inst.AnimState:SetMultColour(1,1,1,0) end
     if id=="deer_decoy" then inst.AnimState:SetLightOverride(.4) end
@@ -145,8 +150,15 @@ play=function(inst,phase,loop)
             end)
         end
     else
-        inst.AnimState:PlayAnimation(s.id.."_"..phase,loop==true)
-        if not loop then inst.AnimState:PushAnimation(s.id.."_idle",true) end
+        local suffix=""
+        if s.id=="storm_cloud" then
+            -- Three strikes follow different buried lightning routes. The
+            -- body motion and gameplay clocks remain the same in every clip.
+            if phase=="warning" then s.storm_cycle=(s.storm_cycle or 0)%3+1 end
+            if phase~="spawn" and (s.storm_cycle or 1)>1 then suffix="_"..s.storm_cycle end
+        end
+        inst.AnimState:PlayAnimation(s.id.."_"..phase..suffix,loop==true)
+        if not loop then inst.AnimState:PushAnimation(s.id.."_idle"..suffix,true) end
     end
 end
 
@@ -199,7 +211,10 @@ function M.effect_state(inst,id,phase,size,radius,count,age,seed)
     else
         inst.Transform:SetScale(size or 1,size or 1,size or 1)
         fit(inst,id,size or 1,radius or 1)
-        if id=="storm_cloud" then inst.AnimState:SetDeltaTimeMultiplier(1) end
+        if id=="storm_cloud" then
+            inst.AnimState:SetDeltaTimeMultiplier(1)
+            inst.AnimState:SetFinalOffset(4)
+        end
         if id=="deer_decoy" then inst.AnimState:SetLightOverride(.4) end
         inst.AnimState:PlayAnimation(id.."_"..phase,false)
     end

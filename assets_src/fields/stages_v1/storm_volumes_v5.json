@@ -1,0 +1,22 @@
+{
+  "image": "storm_volumes_v5.png",
+  "prompt": "storm_volumes_v5_prompt.txt",
+  "generation": "built-in image_gen",
+  "size": [1254, 1254],
+  "columns": [0, 627, 1254],
+  "states": ["dark", "internally_lit"],
+  "row_edges": [0, 292, 723, 1002, 1254],
+  "alpha_threshold": 8,
+  "rows": [
+    {"key": "storm_back", "pair_crop_in_cell": [13, 22, 613, 278], "alpha_iou": 0.9965},
+    {"key": "storm_crown", "pair_crop_in_cell": [12, 15, 616, 420], "alpha_iou": 0.9967},
+    {"key": "storm_left", "pair_crop_in_cell": [41, 11, 587, 258], "alpha_iou": 0.9955},
+    {"key": "storm_right", "pair_crop_in_cell": [44, 23, 594, 238], "alpha_iou": 0.9948}
+  ],
+  "notes": [
+    "Rows are not equal height; use row_edges before pair_crop_in_cell.",
+    "Use the same pair_crop_in_cell for both columns to preserve registration.",
+    "Threshold alpha <= 8 during the usual build cleanup to remove faint isolated pixels.",
+    "No baked lightning strokes: illumination is trapped behind the dark cloud foreground."
+  ]
+}

@@ -1,10 +1,12 @@
 # 织法之杖 · Spellwoven Wands
 
-**正式版 1.0.0 · 2026-11-08**
+**正式版 1.0.1 · 2026-11-08**
 
-[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.0)
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.1)
 
-首个正式版本现已发布。收集随机法杖，自由编排法术卡，将战斗、工具与乐器组合进同一套玩法。支持中文与 English；房主启用，参与玩家安装。
+1.0.1 重绘局部雷云：厚暗云层持续翻涌，电光沿三条不同路线在云内传播，分叉闪电与余光依次显现、消退；抬高云体并将落雷起点藏入云底。攻击次数、时间、伤害和范围保持不变。[完整更新说明](docs/releases/1.0.1.txt)
+
+收集随机法杖，自由编排法术卡，将战斗、工具与乐器组合进同一套玩法。支持中文与 English；房主启用，参与玩家安装。
 
 标签与编辑最终交接：[法杖编辑与标签筛选最终方案](docs/25_法杖编辑与标签筛选最终方案_会话归档.md)。记录24个双字标签、两行单选、“伤害”仅限修饰类、原生容器编辑、逐卡核查及安装／验证边界。
 

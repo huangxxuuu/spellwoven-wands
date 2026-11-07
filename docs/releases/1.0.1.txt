@@ -1,0 +1,21 @@
+织法之杖 1.0.1 · 雷云表现更新
+
+· 重绘局部雷云，保留饥荒手绘风格，增强厚暗云层与内部透光的明暗层次。
+· 云层从聚拢到攻击、消散持续翻涌；电光沿云腔传播，短促分叉闪电先消失，余光稍后消退。
+· 三次预警与落雷采用不同的云内放电路线。
+· 略微抬高雷云及落雷起点，闪电顶端藏入云内或云底，并保持镜头旋转与巨型法术下的位置一致。
+· 雷云攻击次数、时间、伤害、范围和其他法术玩法保持不变。
+
+资料站同时保留近期更新的中英文法术说明和可见标签筛选。
+升级后请重启游戏与世界；房主与参与玩家均需更新。沿用现有存档格式。
+
+Spellwoven Wands 1.0.1 — Storm cloud visual update
+
+· Redrawn storm clouds with Don't Starve-style inked artwork, dark foreground billows and light transmitted from within.
+· Continuous rolling motion through formation, attacks and dissipation. Light travels through cloud cavities; brief branching arcs fade before the lingering illumination.
+· Three distinct internal discharge routes for the three warnings and strikes.
+· Slightly raised clouds and strike origins, with lightning emerging from inside or beneath the cloud. Alignment is retained across camera angles and enlarged spells.
+· Strike count, timing, damage, range and other spell mechanics are unchanged.
+
+The field guide also retains the recent bilingual spell documentation and visible tag-filter improvements.
+Restart the game and world after updating. Both the host and participating players need the update. The existing save format is retained.

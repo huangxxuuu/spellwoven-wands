@@ -225,5 +225,13 @@
   "《织法之杖》的创意来自《Noita》，由 yuejian 使用 Codex 开发。欢迎分享卡组，也欢迎通过 GitHub 反馈问题。": "Inspired by Noita and developed by yuejian with Codex. Share your builds and report issues on GitHub.",
   "功能标签": "Functional tags",
   "全部标签": "All tags",
-  " · 魔力回涌 ": " · Mana Flow "
+  " · 魔力回涌 ": " · Mana Flow ",
+  "1.0.1 · 雷云表现更新": "1.0.1 · Storm cloud visual update",
+  "重绘局部雷云，保留饥荒手绘风格，增强厚暗云层与内部透光的明暗层次。": "Redrawn storm clouds retain Don't Starve-style inked artwork, with dark foreground billows and light transmitted from within.",
+  "云层从聚拢到攻击、消散持续翻涌；电光沿云腔传播，短促分叉闪电先消失，余光稍后消退。": "Clouds keep rolling through formation, attacks and dissipation. Light travels through cloud cavities; brief branching arcs fade before the lingering illumination.",
+  "三次预警与落雷采用不同的云内放电路线。": "Three distinct internal discharge routes accompany the three warnings and strikes.",
+  "略微抬高雷云及落雷起点，闪电顶端藏入云内或云底，并保持镜头旋转与巨型法术下的位置一致。": "Clouds and strike origins are slightly higher, with lightning emerging from inside or beneath the cloud. Alignment is retained across camera angles and enlarged spells.",
+  "雷云攻击次数、时间、伤害、范围和其他法术玩法保持不变。": "Strike count, timing, damage, range and other spell mechanics are unchanged.",
+  "升级后请重启游戏与世界；房主与参与玩家均需更新。沿用现有存档格式。": "Restart the game and world after updating. Both the host and participating players need the update. The existing save format is retained.",
+  "下载 1.0.1 与离线资料站": "Download 1.0.1 and the offline field guide"
 }
