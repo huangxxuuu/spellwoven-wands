@@ -44,3 +44,15 @@ The 216 supplied CorrectedBeats_22050 WAVs (C3-B5, three beat lengths per instru
 into mod/sound/nw_instruments.fsb; nw_instruments.fev maps instrument, beat length and pitch combinations.
 These audio assets retain their supplied CC0 terms, independently of the
 project's code license. The FMOD compiler/runtime is not redistributed.
+
+Field-guide website fonts
+-------------------------
+The website references fonts already installed on the visitor's device through
+CSS font-family fallbacks (including Microsoft YaHei, PingFang SC, Georgia,
+Noto Serif SC, Songti SC, SimSun and Consolas). No font files are bundled,
+self-hosted or downloaded by the website. These font names do not imply that
+the fonts are covered by this project's MIT license.
+Microsoft explicitly permits naming Windows fonts in CSS font stacks:
+https://learn.microsoft.com/en-us/typography/fonts/font-faq#web
+Hosting or redistributing font files would require checking their individual
+licenses; the current site does neither.

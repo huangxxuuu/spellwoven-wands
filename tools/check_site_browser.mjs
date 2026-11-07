@@ -101,6 +101,11 @@ try{
     assert(await mobile.evaluate('document.documentElement.scrollWidth<=innerWidth'),'Mobile overflow');
     await mobile.evaluate(`document.querySelector('#q').value='homing';document.querySelector('#filters').dispatchEvent(new Event('input'));`);
     assert(await mobile.evaluate(`document.querySelector('#count').textContent.startsWith('Showing ') && document.querySelectorAll('.spell-card').length>0`));
+    await mobile.evaluate(`document.querySelector('#q').value='';document.querySelector('#tag').value='music';document.querySelector('#filters').dispatchEvent(new Event('input'));`);
+    assert(await mobile.evaluate(`document.querySelectorAll('.spell-card').length>0`),'Music tag must have results');
+    assert(await mobile.evaluate(`(async()=>{const {cards}=await (await fetch('../catalog.en.json')).json();const names=[...document.querySelectorAll('.spell-card')].map(n=>n.textContent);return names.length===cards.filter(c=>c.tagIds.includes('music')).length && names.every(n=>cards.find(c=>c.name===n)?.tagIds.includes('music'));})()`),'Tag results differ from mod data');
+    await mobile.evaluate(`document.querySelector('#category').selectedIndex=2;document.querySelector('#filters').dispatchEvent(new Event('input'));`);
+    assert(await mobile.evaluate(`(async()=>{const {cards}=await (await fetch('../catalog.en.json')).json();const category=document.querySelector('#category').value;const names=[...document.querySelectorAll('.spell-card')].map(n=>n.textContent);const expected=cards.filter(c=>c.tagIds.includes('music')&&c.category===category);return names.length===expected.length && names.every(n=>expected.some(c=>c.name===n));})()`),'Combined category/tag filter differs from mod data');
     const mobileShot=await mobile.call('Page.captureScreenshot',{format:'png'});
     await fs.writeFile(path.join(report,'site_locale_mobile.png'),Buffer.from(mobileShot.data,'base64'));
     assert.equal(errors.length,0,JSON.stringify(errors));

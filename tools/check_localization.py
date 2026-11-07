@@ -50,4 +50,32 @@ if __name__ == '__main__':
         for key in ('mana', 'delay', 'recharge', 'iconIndex', 'groupOrder'):
             assert left[key] == right[key], (left['id'], key)
         assert not re.search(r'[\u4e00-\u9fff]', json.dumps(right, ensure_ascii=False))
+    # Compare every public card against the actual in-game presentation model.
+    for language, cards in (("zh", a), ("en", b)):
+        vm = runtime(language)
+        hover = vm.eval('require("nw/hover_data")')
+        info = vm.eval('require("nw/spell_info")')
+        visuals = vm.eval('require("nw/card_visuals").cards')
+        tags = vm.eval('require("nw/card_tags")')
+        rarity = vm.eval('require("nw/card_rarity")')
+        classes = {}
+        for station in ("nw_workbench", "nw_engraver"):
+            for option in vm.eval('require("nw/crafting_filter").class_options')(station).values():
+                classes[option.data] = option.text
+        assert {c["id"] for c in cards} == set(rarity.pool.values())
+        for card in cards:
+            card_id = card["id"]
+            detail = hover.card_details(card_id, False)
+            fields = [[detail.fields[i][1], vm.globals().tostring(detail.fields[i][2])]
+                      for i in range(1, len(detail.fields) + 1)]
+            own = tags.options(tags.for_card(card_id))
+            expected = {"name": detail.title, "effect": info.brief(card_id),
+                        "detailedEffect": detail.effect, "fields": fields,
+                        "categoryId": visuals[card_id].primary_class,
+                        "category": classes[visuals[card_id].primary_class],
+                        "rarity": rarity.names[rarity.tiers[card_id]],
+                        "tags": [own[i].text for i in range(1, len(own) + 1)],
+                        "tagIds": [own[i].id for i in range(1, len(own) + 1)]}
+            for key, value in expected.items():
+                assert card[key] == value, (language, card_id, key, "website differs from mod")
     print(f'PASS: {len(dictionary)} translations, format arguments, real recipe entries, gameplay/ID parity, {len(a)} bilingual catalog cards')

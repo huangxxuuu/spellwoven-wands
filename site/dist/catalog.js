@@ -5,6 +5,7 @@ const t = (zh, en) => english ? en : zh;
 const form = document.querySelector("#filters");
 const query = document.querySelector("#q");
 const category = document.querySelector("#category");
+const tagFilter = document.querySelector("#tag");
 const station = document.querySelector("#station");
 const fuzzy = document.querySelector("#fuzzy");
 const descriptions = document.querySelector("#descriptions");
@@ -38,12 +39,8 @@ function showCard(card) {
     const title = element("div", "", "detail-title");
     title.append(icon(card), heading);
     const attributes = element("dl", undefined, "spell-attrs");
-    const numbers = [t("法力消耗 ", "Mana cost ") + card.mana, t("施法间隔修正 ", "Cast delay modifier ") + signed(card.delay) + t(" 秒", " s"),
-        t("充能修正 ", "Recharge modifier ") + signed(card.recharge) + t(" 秒", " s"), ...card.stats];
-    for (const stat of numbers) {
-        const separator = english ? stat.search(/\s+(?=[+−-]?\d|[×±]|[A-G][♯#]?\d)/) : stat.indexOf(" ");
-        attributes.append(element("dt", separator < 0 ? t("效果", "Details") : stat.slice(0, separator)),
-            element("dd", separator < 0 ? stat : stat.slice(separator + 1)));
+    for (const [label, value] of card.fields) {
+        attributes.append(element("dt", label), element("dd", value));
     }
     const sources = element("ul");
     card.sources.forEach(source => sources.append(element("li", source)));
@@ -59,7 +56,8 @@ function showCard(card) {
         toggle.textContent = details.hidden ? t("详细数据", "Detailed data") : t("收起数据", "Hide data");
     });
     document.querySelector("#detail-content").replaceChildren(title,
-        element("small", [card.category, card.subgroup, card.rarity].filter(Boolean).join("　/　")),
+        element("small", [card.category, card.subgroup, card.rarity, ...card.tags].filter(Boolean).join("　/　")),
+        element("p", card.tags.join(" · "), "card-tags"),
         element("p", card.effect, "effect"), element("h3", t("法术属性", "Spell stats")), attributes, toggle, details,
         element("h3", t("获取途径", "Acquisition")), sources, element("small", card.id));
     dialog.showModal();
@@ -126,7 +124,8 @@ function makeGroup(title, matches, level = "h2") {
 async function loadCatalog() {
     const response = await fetch(english ? "../catalog.en.json" : "catalog.json");
     if (!response.ok) throw new Error("catalog unavailable");
-    const {cards} = await response.json();
+    const {cards, tags} = await response.json();
+    for (const tag of tags) tagFilter.add(new Option(tag.text, tag.id));
     const categories = [...new Set(cards.map(card => card.category))];
     for (const value of categories) {
         category.add(new Option(value, value));
@@ -146,15 +145,16 @@ async function loadCatalog() {
         button.append(icon(card), element("span", card.name));
         button.addEventListener("click", () => showCard(card));
         return {card, button, name: normalize(card.name), id: normalize(card.id),
-            tags: [card.category, card.subgroup, card.rarity].filter(Boolean).map(normalize).join(" "),
-            effect: normalize(card.effect), sources: card.sources.map(normalize).join(" ")};
+            tags: [card.category, card.subgroup, card.rarity, ...card.tags].filter(Boolean).map(normalize).join(" "),
+            effect: normalize(card.effect + " " + card.detailedEffect), sources: card.sources.map(normalize).join(" ")};
     });
 
     function render() {
         const term = normalize(query.value.trim());
         const filtered = rows.filter(({card}) => (!category.value || category.value === card.category ||
             category.value === card.category + "/" + card.subgroup) &&
-            (!station.value || station.value === (card.station || noRecipe)));
+            (!station.value || station.value === (card.station || noRecipe)) &&
+            (!tagFilter.value || card.tagIds.includes(tagFilter.value)));
         let groups;
         let total;
         if (term) {

@@ -70,8 +70,15 @@ def build(language="zh"):
     rules = require("nw/acquisition")
     rarity = require("nw/card_rarity")
     sources = require("nw/sources")
-    notes = require("nw/arsenal").notes
     natural = require("nw/natural_loot")
+    hover = require("nw/hover_data")
+    tags = require("nw/card_tags")
+    identities = require("nw/card_visuals").cards
+    classes = {}
+    for station in STATIONS:
+        for option in array(require("nw/crafting_filter").class_options(station)):
+            classes[option.data] = option.text
+    class_order = {"basic": 1, "modifier": 2, "control": 3}
     icons = icon_indices()
     labels = LABELS | {row[1]: row[2] for row in array(require("nw/weapon_catalog"))}
     for c in array(require("nw/arsenal").cards):
@@ -125,8 +132,6 @@ def build(language="zh"):
         if tier is None:
             continue
         d = defs.spells[card_id]
-        group, title = rules.card_section(card_id)
-        melee = d.kind == "melee"
 
         routes = recipes[card_id].copy()
         first_boss=require("nw/first_boss_reward")
@@ -148,64 +153,28 @@ def build(language="zh"):
         if card_id != "edge_propsign":
             routes.append("极稀有随机掉落 · 最大生命超过 200 的合资格生物，此次既无散卡也无携卡法杖时，标准倍率下有 0.01% 机会从全卡池（道具招牌除外）等概率抽一张。")
 
-        stats = []
-        if d.heal and d.kind == "projectile":
-            stats.append(f"命中治疗 {d.heal:g}")
-        elif d.damage is not None:
-            stats.append(f"基础伤害 {d.damage:g}" + (f" × {d.count} 枚" if d.count and d.count > 1 else ""))
-        elif d.explosion_damage is not None:
-            stats.append(f"基础伤害 {d.explosion_damage:g}")
-        elif card_id == "gunpowder":
-            stats.append("基础伤害 200")
-        if d.engraving == "trident":
-            stats.extend(["水柱伤害 85", "水柱半径 2.75 单位", "加湿半径 2 单位"])
-        elif d.engraving == "staff_lunarplant":
-            stats.extend(["基础位面伤害 10", "单条弹跳链 最多命中 5 次"])
-        elif d.engraving == "voidcloth_boomerang":
-            stats.extend(["满尺寸伤害 27.2 物理 + 27.2 位面", "成长时间 约 0.67 秒"])
-        if d.planar:
-            stats.append(f"基础位面伤害 {d.planar:g}")
-        if d.cooldown:
-            stats.append(f"整次施法冷却下限 {d.cooldown:g} 秒（含触发载荷）")
-        if d.native_field:
-            stats.extend(["生成位置 杖头或载体触发点", "寿命与环境效果 原版星体", "基础移速 0，可用移动修饰启动"])
-        if d.ballistic:
-            stats.extend([f"水平初速 {d.speed:g} 单位/秒", "轨迹 斜向上抛出，落地结算"])
-        elif d.engraving == "shieldofterror":
-            stats.extend(["环绕半径 2 单位", "单盾耐久 50 点", f"持续时间 {d.lifetime:g} 秒"])
-        elif d.engraving == "staff_tornado":
-            stats.extend([f"去程速度 {d.speed:g} 单位/秒", f"触发去程 {d.lifetime:g} 秒", "落点游荡 5 秒"])
-        elif d.speed is not None:
-            stats.extend([f"弹速 {d.speed:g} 单位/秒", f"寿命 {d.lifetime:g} 秒",
-                          f"基础直射距离 {d.speed * d.lifetime:g} 单位（默认无额外射程限制）"])
-        if d.halfangle is not None:
-            stats.append(f"基准散射 ±{d.halfangle:g}°（以 6° 法杖计）")
-        if defs.trajectory[card_id]:
-            stats.append("弹道延寿 +8%（不同类型合计最多 +24%）")
-        if d.lifetime_mult is not None:
-            stats.append(f"飞行寿命倍率 ×{d.lifetime_mult:g}（同组相乘）")
-        if d.reach:
-            stats.append(f"攻击距离 {d.reach:g} 单位")
-        if d.aim_range:
-            stats.append(f"指定距离上限 {d.aim_range:g} 单位")
-        if notes[card_id]:
-            pitch = int(notes[card_id].pitch)
-            names = ("C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B")
-            stats.append(f"基础音高 {names[pitch % 12]}{3 + pitch // 12}")
-        guide.append(dict(id=card_id, name=info.names[card_id], category="近战" if melee else title,
-                          subgroup=title if melee else None, groupOrder=group, rarity=rarity.names[tier],
-                          effect=info.brief(card_id), detailedEffect=info.effects[card_id], mana=d.mana, delay=round(d.delay, 5),
-                          recharge=round(d.recharge, 5), stats=stats, sources=routes,
-                          station=stations.get(card_id), iconIndex=icons[info.icon(card_id)]))
+        # Render the exact same fields and descriptions as the in-game panel.
+        detail = hover.card_details(card_id, False)
+        primary = identities[card_id].primary_class
+        tag_options = array(tags.options(tags.for_card(card_id)))
+        if language == "en":
+            from catalog_locale import translate_tree
+            routes = translate_tree(routes)
+        guide.append(dict(id=card_id, name=detail.title, category=classes[primary],
+                          categoryId=primary, groupOrder=class_order[primary], rarity=rarity.names[tier],
+                          tags=[tag.text for tag in tag_options], tagIds=[tag.id for tag in tag_options],
+                          effect=info.brief(card_id), detailedEffect=detail.effect,
+                          mana=d.mana, delay=round(d.delay, 5), recharge=round(d.recharge, 5),
+                          fields=[[row[1], vm.globals().tostring(row[2])] for row in array(detail.fields)],
+                          sources=routes, station=(require("nw/locale").t(stations[card_id])
+                          if card_id in stations else None), iconIndex=icons[info.icon(card_id)]))
 
     assert {card["id"] for card in guide} == set(public_ids)
     assert all(card["name"] and card["effect"] and card["sources"] for card in guide)
     guide.sort(key=lambda card: (card["groupOrder"], recipe_order.get(card["id"], float("inf"))))
-    result = {"cards": guide}
-    if language == "en":
-        from catalog_locale import translate_tree
-        result = translate_tree(result)
-    return result
+    present = vm.table_from({tag: True for card in guide for tag in card["tagIds"]})
+    return {"cards": guide, "tags": [{"id": tag.id, "text": tag.text}
+                                     for tag in array(tags.options(present))]}
 
 
 class ReleaseHistory(HTMLParser):
