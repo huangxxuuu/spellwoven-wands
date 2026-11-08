@@ -233,5 +233,12 @@
   "略微抬高雷云及落雷起点，闪电顶端藏入云内或云底，并保持镜头旋转与巨型法术下的位置一致。": "Clouds and strike origins are slightly higher, with lightning emerging from inside or beneath the cloud. Alignment is retained across camera angles and enlarged spells.",
   "雷云攻击次数、时间、伤害、范围和其他法术玩法保持不变。": "Strike count, timing, damage, range and other spell mechanics are unchanged.",
   "升级后请重启游戏与世界；房主与参与玩家均需更新。沿用现有存档格式。": "Restart the game and world after updating. Both the host and participating players need the update. The existing save format is retained.",
-  "下载 1.0.1 与离线资料站": "Download 1.0.1 and the offline field guide"
+  "下载 1.0.1 与离线资料站": "Download 1.0.1 and the offline field guide",
+  "新增「施法方向」设置：可在游戏内打开「向导」随时切换，默认使用「目标选择」。设置自动保存在本机，仅对当前玩家生效，不影响世界设置或其他玩家。": "Added Cast Direction: open the in-game Guide to switch at any time. Target Selection is the default. Your choice is saved locally and affects only your player, without changing world settings or other players.",
+  "目标选择：选中物体时，朝它的实际位置施法。例如点击 Boss 的头部，也会朝它脚下的实际位置瞄准。": "Target Selection: when an object is selected, cast toward its actual position. For example, selecting a boss's head aims toward its position on the ground.",
+  "鼠标方向：始终朝鼠标对应的地面位置施法，不受鼠标悬停物体影响。适合需要精确瞄准地面位置的情况。": "Mouse Direction: always cast toward the ground position under the cursor, regardless of any hovered object. Useful for aiming at a precise spot on the ground.",
+  "点击法杖编辑框左上角的「向导」": "Click Guide at the top left of the wand editor",
+  "在向导页面底部切换「施法方向」": "Switch Cast Direction at the bottom of the Guide",
+  "1.0.2 · 施法方向设置": "1.0.2 · Cast Direction",
+  "下载 1.0.2 与离线资料站": "Download 1.0.2 and the offline field guide"
 }

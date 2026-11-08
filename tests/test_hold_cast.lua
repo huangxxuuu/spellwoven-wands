@@ -1,6 +1,8 @@
 -- Exercise the local input adapter on both native click paths. The real SG
 -- and server-side interrupted/successful launches are covered by smoke_input.
 local Hold=require("nw/hold_cast")
+local Direction=require("nw/cast_direction")
+TheSim={SetPersistentString=function(_,_,_,_,cb) cb() end}
 EQUIPSLOTS={HANDS="hands"}
 ACTIONS={NW_CAST={},OTHER={}}
 CONTROL_SECONDARY,CONTROL_PRIMARY="right","left"
@@ -13,6 +15,8 @@ TheFrontEnd={GetActiveScreen=function() return screen end}
 GetTime=function() return now end
 IsPaused=function() return false end
 for _,master in ipairs({true,false}) do
+for _,mode in ipairs({"target","mouse"}) do
+    Direction.set(mode)
     keys,now,ready,hud_item={},0,true,nil
     TheWorld={ismastersim=master}
     local w={components={nw_wand={CanCast=function() return ready end}},IsValid=function() return true end,
@@ -28,10 +32,15 @@ for _,master in ipairs({true,false}) do
         IsEnabled=function() return true end,IsBusy=function() return false end,
         IsAOETargeting=function() return false end,UsingMouse=function() return true end,
         GetRightMouseAction=function(self) return self.act end}
+    p.components={playercontroller=pc}
+    Direction.receive(p,mode,true)
+    TheInput.GetWorldPosition=function() return {x=mouse,z=0} end
+    local tree={IsValid=function() return true end,GetPosition=function() return {x=40,z=0} end}
     function pc:OnUpdate()
         if not ready then self.act=nil;return end
         local point={x=mouse,z=0}
-        self.act={action=self.other and ACTIONS.OTHER or ACTIONS.NW_CAST,invobject=w,
+        self.act={action=self.other and ACTIONS.OTHER or ACTIONS.NW_CAST,invobject=w,doer=p,
+            target=mode=="mouse" and tree or nil,
             GetActionPoint=function() return point end}
     end
     function pc:OnRightClick(down)
@@ -64,4 +73,5 @@ for _,master in ipairs({true,false}) do
     assert(#shots==5,"dragging a HUD panel must not cast, even outside its hitbox")
     p._nw_hud_dragging=nil;frame();assert(#shots==5,"ending drag must not rearm held casting")
     release();press();assert(#shots==6);release()
+end
 end

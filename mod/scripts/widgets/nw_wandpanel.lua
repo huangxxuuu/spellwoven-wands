@@ -11,25 +11,10 @@ local Panel=Class(Widget,function(self,bar)
     self.frame:SetPosition(0,16)
     self.row=self:AddChild(Row(Layout.slot,function() end,Layout.slot_step))
     self.status=self:AddChild(require("widgets/nw_wandstatus")())
-    local Locale=require("nw/locale")
-    local T=Locale.t
-    self.guide=self:AddChild(require("widgets/imagebutton")("images/nw_hud.xml","ring_60.tex"))
-    self.guide.scale_on_focus=false
-    self.guide.move_on_click=false
-    self.guide:ForceImageSize(28,28)
-    self.guide:SetFont(UIFONT)
-    self.guide:SetText("?")
-    self.guide:SetTextSize(24)
-    -- Match ring_60.tex's gold (also used by the cooldown indicator).
-    self.guide:SetTextColour(232/255,190/255,100/255,1)
-    self.guide:SetTextFocusColour(232/255,190/255,100/255,1)
-    self.guide:SetHoverText(T("织法之杖资料站"),{font_size=20,offset_y=-26})
-    self.guide:SetOnClick(function()
-        VisitURL("https://huangxxuuu.github.io/spellwoven-wands/"..(Locale.language=="en" and "en/" or ""),false)
-    end)
+    local T=require("nw/locale").t
     self.manual=self:AddChild(require("widgets/textbutton")())
-    self.manual:SetFont(UIFONT);self.manual:SetTextSize(18);self.manual:SetText(T("向导"))
-    self.manual:SetHoverText(T("三个建筑，开始织法"))
+    self.manual:SetFont(UIFONT);self.manual:SetTextSize(24);self.manual:SetText(T("向导"))
+    self.manual:SetHoverText(T("入门向导与个人设置"))
     self.manual:SetOnClick(function() require("nw/quickguide").open() end)
     self.count=2
     self:Hide()
@@ -57,8 +42,7 @@ function Panel:Refresh()
     if self.count~=count or not self.frame_width then
         self.count=count;self.frame_width=Layout.frame_width(count)
         self.frame:SetSize(self.frame_width,142)
-        self.guide:SetPosition(self.frame_width/2-32,Layout.status_y)
-        self.manual:SetPosition(-self.frame_width/2+32,Layout.status_y)
+        self.manual:SetPosition(-self.frame_width/2+48,Layout.status_y)
     end
     self:PlaceWindow()
     self.row:PlaceHover()
@@ -92,7 +76,7 @@ function Panel:PlaceWindow()
 end
 function Panel:BeginWindowDrag(x,y)
     if self.window_drag then return true end
-    if self.guide and self.guide.focus then return false end
+    if self.manual and self.manual.focus then return false end
     local p=ThePlayer
     if not self.shown or not self.focus or not p or not p.HUD or TheFrontEnd:GetActiveScreen()~=p.HUD then return false end
     local pos,scale=self:GetWorldPosition(),self:GetScale()

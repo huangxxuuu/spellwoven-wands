@@ -80,7 +80,7 @@ local function fn(breakable,beam)
     inst.entity:SetPristine()
     inst.persists=false
     -- Physics stays on the ground plane, as in native staff projectiles.
-    -- A local child renders at the actual wand-tip height without gravity,
+    -- A local child renders at the casting hand's height without gravity,
     -- extra network entities or per-frame transform writes.
     if not beam and not TheNet:IsDedicated() then
         local visual=CreateEntity()

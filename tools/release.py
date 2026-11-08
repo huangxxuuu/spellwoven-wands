@@ -132,12 +132,18 @@ def vdf_quote(value):
     return '"' + str(value).replace('\\', '\\\\').replace('"', '\\"').replace('\r', '').replace('\n', '\\n') + '"'
 
 
+def workshop_changenote(notes):
+    """Render standalone Markdown images in release notes for Steam BBCode."""
+    return re.sub(r'^!\[([^\]\n]*)\]\((https://[^\s)]+)\)[ \t]*$',
+                  lambda m: f'{m[1]}\n[img]{m[2]}[/img]', notes, flags=re.M)
+
+
 def make_vdf(config, directory, description, notes, visibility='preserve'):
     require(str(config['publishedfileid']).isdigit() and int(config['publishedfileid']) > 0,
             'An existing Workshop item ID is required. Creating items is intentionally unsupported.')
     values = dict(appid=config['app_id'], publishedfileid=config['publishedfileid'],
                   contentfolder=(directory / 'content').as_posix(),
-                  previewfile=(directory / 'preview.png').as_posix(), changenote=notes)
+                  previewfile=(directory / 'preview.png').as_posix(), changenote=workshop_changenote(notes))
     # SteamCMD has no per-language metadata option. A default description would
     # overwrite English; localized titles/descriptions have their own API stage.
     if not config.get('workshop_languages'):

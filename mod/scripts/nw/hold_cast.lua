@@ -39,7 +39,7 @@ function M.install(pc)
         if retry_at and GetTime() < retry_at then return end
         local act = pc:GetRightMouseAction()
         if not act or act.action ~= ACTIONS.NW_CAST or act.invobject ~= w then return end
-        if not Cast.available(w,p,act.target and act.target:GetPosition() or act:GetActionPoint()) then return end
+        if not Cast.available(w,p,Cast.aim_point(act)) then return end
         -- The controller rebuilds its mouse actions each update. Submit only the
         -- current wand action, using the game's own host/prediction/no-prediction path.
         retry_at = GetTime() + 1 + (pc.ismastersim and 0 or math.max(0,TheNet:GetAveragePing()) * .002)

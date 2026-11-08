@@ -1,12 +1,13 @@
 # 织法之杖 · Spellwoven Wands
 
-**正式版 1.0.1 · 2026-11-08**
+**正式版 1.0.2 · 2026-11-08**
 
-[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.1)
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.2)
 
-1.0.1 重绘局部雷云：厚暗云层持续翻涌，电光沿三条不同路线在云内传播，分叉闪电与余光依次显现、消退；抬高云体并将落雷起点藏入云底。攻击次数、时间、伤害和范围保持不变。[完整更新说明](docs/releases/1.0.1.txt)
+1.0.2 新增「施法方向」设置：在游戏内「向导」中随时切换「目标选择」与「鼠标方向」，默认目标选择；设置保存在本机，仅对当前玩家生效。[完整更新说明](docs/releases/1.0.2.txt)
 
 收集随机法杖，自由编排法术卡，将战斗、工具与乐器组合进同一套玩法。支持中文与 English；房主启用，参与玩家安装。
+
 
 标签与编辑最终交接：[法杖编辑与标签筛选最终方案](docs/25_法杖编辑与标签筛选最终方案_会话归档.md)。记录24个双字标签、两行单选、“伤害”仅限修饰类、原生容器编辑、逐卡核查及安装／验证边界。
 
@@ -114,6 +115,8 @@ Mod 正式发布后，在 [资料站更新记录](site/dist/updates.html) 顶部
 [Steam 创意工坊介绍（可复制的 BBCode）](docs/Steam创意工坊介绍.txt) · [v0.23.6 玩法评估与建议](docs/0.23.6_玩法评估.md)
 
 ## 当前实现
+
+向导内新增个人设置「施法方向」，无需重进世界即可切换，客户端在本机保存选择。默认「目标选择」朝鼠标选中物体的脚下施法，未选中物体时朝鼠标地面点施法；「鼠标方向」始终朝鼠标对应的地面点施法，适合树林中自由瞄准，但指着物体上半身时可能打偏。客户端进入世界后读取本地选择并立即同步；主动修改后等待 1 秒，连续切换重新计时，只同步最后一次，等待期间施法沿用上次已同步的选择。每次同步后每 60 秒补同步一次，补同步不会提前发送尚在等待的修改。服务器仅在对应玩家实体上临时记录，由模组施法逻辑决定瞄准点，不写世界配置或存档，不影响其他玩家，手柄仍沿用目标选择。使用原版预留的右键动作回调保留地面坐标，不替换 `PlayerController.DoAction` 或原生右键请求的发送回调；原有按住右键连续施法挂接不变。向导保留三座建筑的入门说明，设置使用一行左右切换选项，详细说明仅在鼠标悬停时显示。
 
 玩家法术收集与统计已实现服务端存档（schema v2），包括逐卡收集/使用/伤害、短时最高伤害、达成时间与法杖快照。实体收集册和展示界面仍待后续制作。[统计口径、接口、验证及控制台修复交接](docs/法术收集记录.txt)；[实体收集册设计](docs/21_法术收集册设计与会话交接.md)。
 

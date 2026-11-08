@@ -49,8 +49,6 @@ function Button:SetTextColour(...) self.textcolour={...} end
 function Button:SetTextFocusColour(...) self.textfocuscolour={...} end
 function Button:SetOnClick(fn) self.onclick=fn end
 package.loaded["widgets/imagebutton"]=Button
-local visited,overlay
-VisitURL=function(url,use_overlay) visited,overlay=url,use_overlay end
 package.loaded["widgets/nineslice"]=Class(Widget,function(self)
     Widget._ctor(self);self.mid_center=self:AddChild(Widget())
 end)
@@ -92,27 +90,23 @@ assert(panel.status.cast._nw_tip==require("nw/cast_status").tip(reason))
 reason="NO_MANA";panel:Refresh()
 assert(panel.status.cast._nw_tip==require("nw/cast_status").tip(reason))
 ready=true;panel:Refresh()
-panel.guide.onclick()
-assert(visited=="https://huangxxuuu.github.io/spellwoven-wands/")
-assert(overlay==false,"guide must open the default browser")
-require("nw/locale").configure("en")
-panel.guide.onclick()
-assert(visited=="https://huangxxuuu.github.io/spellwoven-wands/en/")
-require("nw/locale").configure("zh")
-panel.guide.focus=true
+local opened=0
+package.loaded["nw/quickguide"]={open=function() opened=opened+1 end}
+panel.manual.onclick();assert(opened==1)
+panel.manual.focus=true
 assert(not panel:BeginWindowDrag(0,0))
-panel.guide.focus=false
+panel.manual.focus=false
 local gauge_width=panel.status.mana.size[1]
 for count=2,12 do
     capacity=count;panel:Refresh();panel:OnUpdate(.1)
     assert(#panel.row.spells==count and panel.status.mana.size[1]==gauge_width)
     assert(#panel.frame.pieces==9)
     local width=require("nw/hud_layout").frame_width(count)
-    assert(panel.guide.pos.x+14<width/2-16 and panel.guide.pos.y+14<87-16,
-        "guide button overlaps decorative frame")
-    assert(panel.guide.pos.y==panel.status.mana.pos.y and panel.guide.pos.y==panel.status.cast.pos.y)
-    assert(panel.guide.pos.x-14>=panel.status.cast.pos.x+14+8,
-        "guide button overlaps cast indicator")
+    assert(panel.manual.pos.x-30>=-width/2+16 and panel.manual.pos.y+12<87-16,
+        "guide label overlaps decorative frame")
+    assert(panel.manual.pos.y==panel.status.mana.pos.y and panel.manual.pos.y==panel.status.cast.pos.y)
+    assert(panel.manual.pos.x+30<=panel.status.edit.pos.x-13-4,
+        "guide label overlaps edit indicator")
     for row=1,3 do
         local a,b,c=unpack(panel.frame.pieces,(row-1)*3+1,row*3)
         assert(a.size[1]==16 and c.size[1]==16 and b.size[1]==width-32)

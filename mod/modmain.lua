@@ -74,6 +74,7 @@ if GetModConfigData("developer_options") == true then
     end)
 end
 local CastAction=GLOBAL.require("nw/cast_action")
+GLOBAL.require("nw/cast_direction").install(env,GLOBAL)
 local cast=GLOBAL.Action({priority=10,rmb=true,distance=GLOBAL.math.huge,
     mount_valid=true,invalid_hold_action=true,silent_fail=true})
 cast.id="NW_CAST";cast.str=T("施法")

@@ -50,7 +50,8 @@ def copy_atomic(source, destination):
 
 def retired_assets(target, source):
     """Exact retired names only; never delete unrelated locally installed files."""
-    names = ['scripts/nw/network.lua']
+    names = ['scripts/nw/network.lua', 'scripts/nw/projectile_height.lua',
+             'scripts/nw/height_motion.lua', 'scripts/nw/smoke_height.lua']
     names += [f'anim/nw_ground_cards_{i}.zip' for i in range(2)]
     names += [f'images/cards/nw_card_album_{i}.{ext}' for i in range(4) for ext in ('xml', 'tex')]
     names += [f'images/inventoryimages/nw_wands{suffix}.{ext}'

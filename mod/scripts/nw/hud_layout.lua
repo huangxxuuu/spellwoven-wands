@@ -1,7 +1,7 @@
 local M={slot=76,slot_step=82,mana_width=92,mana_height=12,status_y=56}
 function M.frame_width(count)
-    -- Leave room for the status controls and guide button even with two slots.
-    return math.max(300,(count-1)*M.slot_step+M.slot+40)
+    -- Leave room for the larger Guide label and status controls on short wands.
+    return math.max(328,(count-1)*M.slot_step+M.slot+40)
 end
 function M.bounds(count)
     -- Include a small safe margin around the custom frame's fixed-size corners.

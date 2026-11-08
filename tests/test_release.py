@@ -14,6 +14,16 @@ spec.loader.exec_module(release)
 
 
 class ReleaseTests(unittest.TestCase):
+    def test_workshop_images_keep_plain_notes_and_convert_captions(self):
+        plain = '1.0.2\n- 施法方向\n'
+        self.assertEqual(release.workshop_changenote(plain), plain)
+        notes = plain + '\n![向导](https://images.steamusercontent.com/ugc/123/ABC/)\n'
+        expected = plain + '\n向导\n[img]https://images.steamusercontent.com/ugc/123/ABC/[/img]\n'
+        self.assertEqual(release.workshop_changenote(notes), expected)
+        config = dict(app_id=322330, publishedfileid='3834454416', title='织法之杖')
+        self.assertIn('[img]', release.make_vdf(config, Path('/tmp/release'), 'description', notes))
+        self.assertNotIn('![', release.make_vdf(config, Path('/tmp/release'), 'description', notes))
+
     def test_version_progression(self):
         self.assertEqual(release.next_version('0.25.5'), '0.25.6')
         self.assertEqual(release.next_version('0.25.5', bump='minor'), '0.26.0')

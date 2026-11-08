@@ -89,9 +89,9 @@ for _,headless in ipairs({false,true}) do
     if not headless then assert(p._visual.y==1.6 and p._visual.scale==1) end
     local default=make()
     default:Launch({}, {id="arrow",damage=28,speed=20,lifetime=.8},4,5,1,0,function() end)
-    assert(default._height:value()==require("nw/muzzle").default_height and default._shot.height==2)
+    assert(default._height:value()==require("nw/muzzle").default_height and default._shot.height==1.2)
     assert(default.y==0,"flight height must not lift the physical collision plane")
-    if not headless then assert(default._visual.y==2) end
+    if not headless then assert(default._visual.y==1.2) end
     for _,id in ipairs({"spark","spark_hit","spark_timer"}) do
         local fx=make()
         fx:Launch({}, {id=id,base="spark",damage=18,speed=17.5,lifetime=.8},4,5,1,0,function() end,1.6)

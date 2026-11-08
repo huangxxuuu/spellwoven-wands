@@ -1,8 +1,9 @@
 local U=require("nw/util")
 local Visual=require("nw/visual")
-local M={default_height=2}
+local M={default_height=1.2}
 -- Same tip distances as the three held layouts in nw_parts. Animation XML
 -- uses negative Y upwards; GetSymbolPosition's offset uses positive Y upwards.
+-- These offsets only retain the existing horizontal clearance, not flight height.
 function M.offset(capacity)
     local tip=capacity<=4 and 80*Visual.scale.short or capacity<=8 and 94*Visual.scale.medium or 110*Visual.scale.long
     return tip*Visual.held_multiplier
@@ -10,24 +11,23 @@ end
 function M.origin(owner,capacity,dx,dz,aim_distance)
     local x,y,z=owner.Transform:GetWorldPosition()
     local forward=capacity<=4 and 1 or capacity<=8 and 1.2 or 1.4
-    -- The spell is released while the casting arm moves. A valid symbol can
-    -- briefly dip near the ground; never use that low pose as a flight plane.
-    local height=M.default_height+(capacity<=4 and 0 or capacity<=8 and .15 or .3)
+    -- Use the grip itself, without the old tip offset or length-dependent floor.
+    -- The fallback also covers custom characters/headless hosts without a symbol.
+    local height=M.default_height
     local source="fallback"
     if owner.components and owner.components.rider and owner.components.rider:IsRiding() then height=height+1 end
     if owner.AnimState and owner.AnimState.GetSymbolPosition then
         local hx,hy,hz,hand_found=owner.AnimState:GetSymbolPosition("swap_object",0,0,0)
         if hand_found and U.finite(hx) and U.finite(hy) and U.finite(hz)
             and hy-y>.2 and hy-y<4.5 and (hx-x)^2+(hz-z)^2<16 then
-            height=math.max(height,hy-y+.3)
+            height=hy-y
+            source="hand"
         end
         local sx,sy,sz,found=owner.AnimState:GetSymbolPosition("swap_object",0,M.offset(capacity),0)
         -- The symbol may be unavailable on custom characters or headless hosts.
         if found and U.finite(sx) and U.finite(sy) and U.finite(sz)
             and sy-y>.2 and sy-y<4.5 and (sx-x)^2+(sz-z)^2<16 then
             forward=math.max(forward,math.min(1.7,(sx-x)*dx+(sz-z)*dz))
-            source=sy-y<height and "symbol_clamped" or "symbol"
-            height=math.max(height,sy-y)
         end
     end
     if aim_distance then forward=math.min(forward,aim_distance*.8) end

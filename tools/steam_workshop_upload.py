@@ -8,7 +8,7 @@ import re
 import sys
 
 from steam_workshop_metadata import Steam, SubmitResult, U64, U32, BOOL, STR, INVALID, require, save
-from release import verify_hashes
+from release import verify_hashes, workshop_changenote
 
 
 class StringArray(C.Structure):
@@ -46,7 +46,7 @@ def upload(directory, dll=None):
         strings = (STR * len(tags))(*(t.encode('utf8') for t in tags))
         array = StringArray(strings, len(tags))
         require(api.ugc('SetItemTags', BOOL, U64, C.POINTER(StringArray))(handle, C.byref(array)), 'Cannot update version tag.')
-        notes = (directory / 'notes.txt').read_bytes()
+        notes = workshop_changenote((directory / 'notes.txt').read_text(encoding='utf-8')).encode('utf-8')
         require(b'\0' not in notes, 'NUL in release notes.')
         print(f'Uploading frozen {state["version"]} to Workshop {item} ({len(files)} files)...', flush=True)
         result = api.wait(api.ugc('SubmitItemUpdate', U64, U64, STR)(handle, notes), SubmitResult, 3404, timeout=600)

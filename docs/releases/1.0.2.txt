@@ -1,0 +1,20 @@
+织法之杖 1.0.2 · 施法方向设置
+2026-11-08
+
+1. 新增「施法方向」设置：可在游戏内打开「向导」随时切换，默认使用「目标选择」。设置自动保存在本机，仅对当前玩家生效，不影响世界设置或其他玩家。
+
+2. 目标选择：选中物体时，朝它的实际位置施法。例如点击 Boss 的头部，也会朝它脚下的实际位置瞄准。
+
+3. 鼠标方向：始终朝鼠标对应的地面位置施法，不受鼠标悬停物体影响。适合需要精确瞄准地面位置的情况。
+
+Spellwoven Wands 1.0.2 · Cast Direction
+
+1. Added Cast Direction: open the in-game Guide to switch at any time. Target Selection is the default. Your choice is saved locally and affects only your player, without changing world settings or other players.
+
+2. Target Selection: when an object is selected, cast toward its actual position. For example, selecting a boss's head aims toward its position on the ground.
+
+3. Mouse Direction: always cast toward the ground position under the cursor, regardless of any hovered object. Useful for aiming at a precise spot on the ground.
+
+![点击法杖编辑框左上角的「向导」 / Click Guide at the top left of the wand editor](https://images.steamusercontent.com/ugc/17913928003864331956/B51D1E36E83B85C6BB65F17D79F6AB5E99A31361/)
+
+![在向导页面底部切换「施法方向」 / Switch Cast Direction at the bottom of the Guide](https://images.steamusercontent.com/ugc/16596293512774160711/EB6E60EEE88D9AB1254AC2C603E6966B36CAE5B2/)
