@@ -84,6 +84,7 @@ class TrailScene:
 
     def __init__(self, shots):
         self.lua = LuaRuntime(unpack_returned_tuples=True)
+        self.lua.globals().package.path = (ROOT / "mod/scripts/?.lua").as_posix() + ";" + self.lua.globals().package.path
         self.harness = self.lua.execute(MOCK_RUNTIME)
         self.flight = self.lua.execute((ROOT / 'mod/scripts/nw/elemental_flight.lua').read_text(encoding='utf8'))
         self.shots = []
@@ -129,6 +130,7 @@ class TrailScene:
 
 def load_runtime():
     lua = LuaRuntime(unpack_returned_tuples=True)
+    lua.globals().package.path = (ROOT / "mod/scripts/?.lua").as_posix() + ";" + lua.globals().package.path
     module = lua.execute((ROOT / 'mod/scripts/nw/elemental_flight.lua').read_text(encoding='utf8'))
     layout = lua.execute((ROOT / 'mod/scripts/nw/fx_layout.lua').read_text(encoding='utf8'))
     art = {(kind, group, frame): Image.open(RUNTIME / BANK / f'{kind}_{group}_{frame}.png').convert('RGBA')

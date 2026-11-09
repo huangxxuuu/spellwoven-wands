@@ -274,8 +274,11 @@ function M.chain(owner,first,x,z,p,aim_x,aim_z,prefer_front)
     step()
 end
 function M.afterlight(owner,x,z)
+    local Budget=require("nw/entity_limits")
+    local release=Budget.acquire(owner,"fields")
+    if not release then return end
     local light=M.fx("nw_afterlight",x,z)
     local limits=require("nw/spell_limits")
-    if light then limits.track(light,owner,"_nw_lights",limits.lights) end
+    if light then Budget.bind(light,release);limits.track(light,owner,"_nw_lights") else release() end
 end
 return M

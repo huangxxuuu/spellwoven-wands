@@ -79,7 +79,7 @@ ok,why,plan=cmp:CanCast(player);assert(ok and plan.mana_spent==10 and plan.mana_
 cmp.data.runtime.mana=34
 ok,why=cmp:Cast(player,{x=4,z=0},plan);assert(not ok and why=="NO_MANA")
 require("nw/spell_limits").cast=12
-for _,ids in ipairs({{"mana_reduce"},{"repeat_3","repeat_3","scatter"}}) do
+for _,ids in ipairs({{"mana_reduce"}}) do
     setup(ids,120);before=U.copy(cmp.data.runtime)
     assert(not cmp:Cast(player,{x=4,z=0}) and same(before,cmp.data.runtime))
 end

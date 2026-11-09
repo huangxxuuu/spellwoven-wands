@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT / 'tools'))
 class ToolFlightTests(unittest.TestCase):
     def test_motion_sampling_and_cleanup(self):
         vm = LuaRuntime()
+        vm.globals().package.path = (ROOT / "mod/scripts/?.lua").as_posix() + ";" + vm.globals().package.path
         vm.execute('''
 FRAMES=1/30;DEGREES=math.pi/180;now=0;tasks={};entities={}
 ANIM_ORIENTATION={BillBoard=1};TheCamera={heading=0,pitch=35}

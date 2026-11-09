@@ -1,0 +1,16 @@
+织法之杖 1.0.4 · 施法性能优化
+2026-11-10
+
+1. 适当优化施法性能。
+
+2. 性能优化设置项提供默认限制，避免不限量的实体、子弹导致游戏崩溃。
+
+3. 玩家可根据设备性能调整相关设置。
+
+Spellwoven Wands 1.0.4 · Spellcasting Performance
+
+1. Improved spellcasting performance.
+
+2. Performance settings now include default limits to help prevent crashes caused by unlimited spell entities and projectiles.
+
+3. Players can adjust the settings to suit their device performance.

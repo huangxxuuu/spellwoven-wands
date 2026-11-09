@@ -16,7 +16,7 @@ class PreviewTests(unittest.TestCase):
             self.assertIn(ROOT / 'assets_src/projectiles/elemental_v1' / name, watched)
         self.assertIn(ROOT / 'tools/build_elemental_flight.py', watched)
         self.assertIn(ROOT / 'mod/scripts/nw/elemental_flight.lua', watched)
-        for name in ('beam_path.lua', 'beam_visual.lua', 'tool_flight.lua',
+        for name in ('trail_budget.lua', 'beam_path.lua', 'beam_visual.lua', 'tool_flight.lua',
                      'field_stages.lua', 'field_member_visual.lua', 'electric_visual.lua'):
             self.assertIn(ROOT / 'mod/scripts/nw' / name, watched)
         for name in ('build_tool_flight.py', 'build_field_stages.py', 'build_electric_arc.py'):

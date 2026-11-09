@@ -2,7 +2,7 @@ local Effects=require("nw/spell_effects")
 local Target=require("nw/targeting")
 local Hits=require("nw/expanded_hits")
 local Stored=require("nw/persistent_fields")
-local M={crystal_limit=0}
+local M={}
 
 function M.can_break(inst,actor)
     if not inst._nw_break then return false end
@@ -200,8 +200,7 @@ end
 local function electricity(inst,owner,p,x,z)
     local cloud=p.id=="storm_cloud"
     if cloud then
-        limits.track(inst,owner,"_nw_storms",limits.storms)
-        if limits.world_storms>0 then limits.track(inst,TheWorld,"_nw_storms",limits.world_storms) end
+        limits.track(inst,owner,"_nw_storms")
     end
     for i=1,cloud and 3 or 2 do
         local when=Field.time(p,cloud and i*.8 or i-.15)

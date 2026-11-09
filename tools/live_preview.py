@@ -40,7 +40,7 @@ def inputs():
         'build_spell_world.py', 'build_spark_flight.py', 'build_elemental_flight.py',
         'build_tool_flight.py', 'build_field_stages.py', 'spore_stage_art.py', 'build_electric_arc.py', 'native_animation.py', 'build_art_assets.py', 'animation_atlas.py')]
     files += [ROOT / 'mod/scripts/nw' / name for name in (
-        'flight_visual.lua', 'spark_trail.lua', 'elemental_flight.lua', 'beam_path.lua', 'beam_visual.lua',
+        'trail_budget.lua', 'flight_visual.lua', 'spark_trail.lua', 'elemental_flight.lua', 'beam_path.lua', 'beam_visual.lua',
         'tool_flight.lua', 'field_stages.lua', 'field_member_visual.lua', 'electric_visual.lua')]
     files += list((ROOT / 'tools/preview_mod').rglob('*.lua'))
     return sorted(files)
@@ -131,7 +131,7 @@ def build(tools):
     build_electric_arc.build(banks['electric'], destination / 'anim' / (banks['electric']+'.zip'), manifest=False)
     validate_animation_archive(destination / 'anim' / (banks['electric']+'.zip'))
     module_names = {
-        'flight': 'flight_visual', 'trail': 'spark_trail', 'elemental': 'elemental_flight',
+        'budget': 'trail_budget', 'flight': 'flight_visual', 'trail': 'spark_trail', 'elemental': 'elemental_flight',
         'beam_path': 'beam_path', 'beam_visual': 'beam_visual', 'tools': 'tool_flight',
         'fields': 'field_stages', 'members': 'field_member_visual',
         'size': 'projectile_size', 'electric': 'electric_visual',

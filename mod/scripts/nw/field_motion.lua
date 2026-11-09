@@ -67,7 +67,10 @@ end
 function M.start(inst,caster,p,dx,dz,age,saved)
     if require("nw/ground_fields").applies(p) and require("nw/ground_fields").sink(inst) then return false end
     if not require("nw/world_bounds").watch(inst) then return false end
-    local f=p.flags or {};p.flags=f
+    -- Compiled descriptors may be shared by copies. Normalize legacy input on
+    -- a private copy instead of writing back into the static template.
+    if not p.flags then p=require("nw/util").copy(p);p.flags={} end
+    local f=p.flags
     require("nw/field_effects").attach(inst,caster,p,function() return owner(inst,inst._nw_motion or {owner=caster}) end)
     if (p.speed or 0)<=0 and not (f.homing or f.homing_short) and not saved then return end
     local x,_,z=inst.Transform:GetWorldPosition()

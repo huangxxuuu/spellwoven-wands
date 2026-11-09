@@ -69,10 +69,12 @@ local function tick(world)
 end
 
 function M.watch(inst)
-    if not Limits.boundary_cleanup or inst._nw_boundary_watched
+    inst._nw_boundary_candidate=true
+    if not Limits.boundary_cleanup
         or not TheWorld.Map or not TheWorld.Map.IsAboveGroundAtPoint then return true end
     local x,_,z=inst.Transform:GetWorldPosition()
     if M.outside(x,z) then inst:Remove();return false end
+    if inst._nw_boundary_watched then return true end
     inst._nw_boundary_watched=true
     local pool=TheWorld._nw_boundary_entities
     if not pool then pool={items={}};TheWorld._nw_boundary_entities=pool end

@@ -58,9 +58,9 @@ local peak=0
 for i=1,12 do
     step(.5,0)
     peak=math.max(peak,TheWorld._nw_spark_trails.count)
-    assert(created-removed==TheWorld._nw_spark_trails.count and created-removed<=96)
+    assert(created-removed==TheWorld._nw_spark_trails.count and created-removed<=288)
 end
-assert(peak==96)
+assert(peak==288,"unlimited default must retain all 32 complete spark trails")
 alive=false
 for i=1,6 do
     if tick then step(0,0) end

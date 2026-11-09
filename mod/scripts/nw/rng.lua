@@ -10,6 +10,12 @@ function M.new(seed)
         assert(n >= 1 and n == math.floor(n), "invalid random range")
         return math.floor(self:next() * n) + 1
     end
+    -- Reserve one seed, then advance an independent stream. Delayed payloads
+    -- must not mutate the wand's next draw/shuffle state after cast commit.
+    function rng:fork()
+        self:next()
+        return M.new(2147483647-self.state)
+    end
     function rng:shuffle(list)
         for i = #list, 2, -1 do
             local j = self:int(i)

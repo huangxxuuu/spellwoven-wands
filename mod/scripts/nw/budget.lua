@@ -1,4 +1,5 @@
--- Counts active projectiles and future payloads in one ledger.
+-- Generic allocation ledger. Live spell admission uses one short reservation
+-- per actual entity; payload templates never enter the ledger.
 local M = {}
 function M.new(per_player, per_shard)
     assert(per_player > 0 and per_shard >= per_player)

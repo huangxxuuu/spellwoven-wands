@@ -120,11 +120,11 @@ assert(#blasts==3 and E.stats()==0,"every scatter pellet owns a timer payload")
 e=cast("scatter_hit","chain")
 for _,o in ipairs(objects) do o.x=18;P.step(o,1.2,{}) end
 assert(#blasts==3 and E.stats()==0,"each collision carrier owns its expiration event")
--- Queued normal timer and expiry on the same frame retain the prepaid payload.
+-- Queued normal timer and expiry on the same frame retain the payload without reserving capacity.
 e=cast("scatter_timer","chain")
 local queued={}
 for _,o in ipairs(objects) do o.x=18;P.step(o,1.2,{},queued) end
-assert(#blasts==0 and E.stats()==3)
+assert(#blasts==0 and E.stats()==0)
 for group,t in pairs(queued) do group.timer_queued=nil;t.fire(t.x,t.z,t.dx,t.dz) end
 assert(#blasts==3 and E.stats()==0)
 -- Optional range exhaustion is a normal end; administrative Remove stays silent.
@@ -199,7 +199,7 @@ local plan={projectile_count=2,next_state={rng_state=1},blocks={
         damage=12,speed=26,lifetime=.1,flags={},spread=0}}},
     {projectiles={{id="chain",kind="instant",damage=15,flags={},spread=0}}},
 }}
-assert(E.execute(plan,owner,0,0,1,0,1.4) and E.stats()==2)
+assert(E.execute(plan,owner,0,0,1,0,1.4) and E.stats()==1)
 local beam=objects[1];beam.x=3;now=.1;P.step(beam,now,{})
 assert(beam.valid and beam._shot.beam.ended and E.stats()==1 and endpoint==1 and #blasts==1)
 now=.6;P.step(beam,now,{})

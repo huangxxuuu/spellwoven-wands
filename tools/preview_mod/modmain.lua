@@ -20,6 +20,7 @@ local function read(path)
 end
 local function clear()
     if state.tick then state.tick:Cancel(); state.tick=nil end
+    if state.modules and state.modules.budget then state.modules.budget.clear() end
     for _,e in G.ipairs(state.entities) do
         if e._nw_tool_flight then state.modules.tools.detach(e,true) end
         if e:IsValid() then e:Remove() end

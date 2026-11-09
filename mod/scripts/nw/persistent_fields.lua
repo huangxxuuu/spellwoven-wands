@@ -55,14 +55,12 @@ local function track(inst,loading)
     inst:ListenForEvent("onremove",function()
         for i,v in ipairs(list) do if v==inst then table.remove(list,i);break end end
     end)
-    if not loading then
-        local cap=require("nw/expanded_fields").crystal_limit
-        while cap>0 and #list>cap do list[1]:Remove() end
-    end
 end
 function M.start(inst,data,owner,loading)
     inst._nw_stored=Copy(data)
     data=inst._nw_stored
+    require("nw/entity_limits").restore_field(inst,data.userid or data.owner_key,"permanent_fields",data.order)
+    data.order=inst._nw_permanent_order or data.order
     require("nw/projectile_size").field(inst,data.p)
     inst._nw_owner=owner
     if data.neutral and not owner then

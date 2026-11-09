@@ -15,6 +15,7 @@ CreateEntity=function()
     local e={GUID=#entities+1,entity={},Transform={},AnimState={},events={},tasks={},valid=true}
     entities[#entities+1]=e
     for _,key in ipairs({"AddTransform","AddNetwork","SetPristine","SetCanSleep","AddAnimState"}) do e.entity[key]=noop end
+    e.entity.AddNetwork=function() e.networked=true end
     e.entity.AddSoundEmitter=function()
         e.SoundEmitter={PlaySound=function(_,name,handle,volume)
             sounds[#sounds+1]={name=name,volume=volume,x=e.x,y=e.y,z=e.z}
@@ -33,7 +34,10 @@ CreateEntity=function()
     e.AnimState.SetBuild=function(_,v) e.build=v end
     e.AnimState.PlayAnimation=function(_,v) e.anim=v end
     e.AddTag=noop
-    function e:ListenForEvent(event,fn) self.events[event]=fn end
+    function e:ListenForEvent(event,fn)
+        local previous=self.events[event]
+        self.events[event]=previous and function(...) previous(...);fn(...) end or fn
+    end
     function e:DoTaskInTime(delay,fn) self.tasks[#self.tasks+1]={delay=delay,fn=fn} end
     function e:IsValid() return self.valid end
     function e:Remove() self.valid=false end
@@ -71,37 +75,35 @@ for _,headless in ipairs({false,true}) do
         Effects.blast({},10,20,p)
         local root=entities[begin+1]
         assert(spawns[spawnstart+1]=="nw_soft_blast_fx")
-        assert(#spawns==spawnstart+6,"one anchor plus five visuals")
-        for i=spawnstart+2,#spawns do assert(spawns[i]=="nw_silent_explode_small") end
+        assert(#spawns==spawnstart+1,"only the burst anchor is replicated")
+        assert(#entities==begin+(headless and 1 or 6),"dedicated servers create no smoke entities")
         assert(#sounds==beforesound+1 and sounds[#sounds].volume==.35)
         assert(sounds[#sounds].name=="dontstarve/common/blackpowder_explo")
         assert(sounds[#sounds].x==10 and sounds[#sounds].y==0 and sounds[#sounds].z==20)
         assert(#hits==beforehit+2,"area-hit dispatch must not depend on sound")
         root:SetRadius(p.radius*2)
-        assert(#sounds==beforesound+1 and #spawns==spawnstart+6,"resizing cannot replay a burst")
-        local proxies={}
-        for i=begin+2,begin+6 do proxies[#proxies+1]=entities[i] end
-        local beforelocal=#entities
-        for _,proxy in ipairs(proxies) do
-            assert(not proxy.SoundEmitter)
-            for _,task in ipairs(proxy.tasks) do
-                if task.delay==0 then task.fn(proxy) end
-            end
-        end
-        assert(#entities==beforelocal+(headless and 0 or 5))
-        for i=beforelocal+1,#entities do
+        assert(#sounds==beforesound+1 and #spawns==spawnstart+1,"resizing cannot replay a burst")
+        local after=#entities
+        for _,task in ipairs(root.tasks) do if task.delay==0 then task.fn(root) end end
+        if root.events.nw_blastradiusdirty then root.events.nw_blastradiusdirty() end
+        assert(#entities==after,"deferred initialization/dirty cannot duplicate visuals")
+        local networks=0
+        for i=begin+1,#entities do if entities[i].networked then networks=networks+1 end end
+        assert(networks==1,"one network entity replaces six for each soft burst")
+        -- Removing the anchor must not cut short the detached native animation.
+        root:Remove()
+        for i=begin+2,#entities do
             local fx=entities[i]
-            assert(not fx.SoundEmitter and fx.bank=="explode" and fx.build=="explode" and fx.anim=="small")
-            local proxy=proxies[i-beforelocal]
-            assert(fx.x==proxy.x and fx.z==proxy.z and fx.sx==proxy.sx,"native proxy registration/scale retained")
+            assert(fx.valid and not fx.networked and not fx.SoundEmitter and fx.bank=="explode" and fx.build=="explode" and fx.anim=="small")
+            local index=i-begin-2
+            local r=index==0 and 0 or p.radius*.38
+            assert(fx.x==10+math.cos(index*2.399)*r and fx.z==20+math.sin(index*2.399)*r and fx.y==.15)
+            assert(fx.sx==math.max(.25,p.radius/3)*(index==0 and 1.1 or .65),"same radius, layout and scale")
             fx.events.animover(fx);assert(not fx.valid)
         end
-        for _,proxy in ipairs(proxies) do
-            for _,task in ipairs(proxy.tasks) do if task.delay==1 then task.fn(proxy) end end
-            assert(not proxy.valid)
-        end
-        assert(root.tasks[1].delay==1,"sound emitter survives its short one-shot")
-        root.tasks[1].fn(root);assert(not root.valid)
+        local expires=false
+        for _,task in ipairs(root.tasks) do if task.delay==1 then expires=true;task.fn(root) end end
+        assert(expires and not root.valid,"sound emitter retains its one-second lifetime")
     end
 end
 assert(#hits==12 and modifiers==12)
@@ -119,9 +121,30 @@ TheWorld.ismastersim=false;dedicated=false
 before=#sounds
 local replica=factories.nw_soft_blast_fx()
 assert(not replica.SetRadius)
-local proxy=factories.nw_silent_explode_small()
-proxy.tasks[1].fn(proxy)
-assert(not entities[#entities].SoundEmitter and #sounds==before)
+local first=#entities
+for _,task in ipairs(replica.tasks) do if task.delay==0 then task.fn(replica) end end
+assert(#entities==first,"wait for a valid radius; no zero-radius flash")
+replica.Transform:SetPosition(-10,0,40)
+replica._radius:set(3)
+replica.events.nw_blastradiusdirty()
+assert(#entities==first+5 and #sounds==before,"replica renders five silent local animations")
+assert(entities[first+1].x==-10 and entities[first+1].z==40 and entities[first+1].sx==1.1)
+replica._radius:set(4);replica.events.nw_blastradiusdirty()
+assert(#entities==first+5,"radius corrections must not replay the burst")
+for i=first+1,#entities do assert(not entities[i].networked and not entities[i].SoundEmitter);entities[i].events.animover(entities[i]) end
+-- Initial state can already contain the radius when a client receives the anchor.
+local initialized=factories.nw_soft_blast_fx()
+initialized.Transform:SetPosition(6,0,7);initialized._radius:set(1)
+first=#entities
+for _,task in ipairs(initialized.tasks) do if task.delay==0 then task.fn(initialized) end end
+assert(#entities==first+5 and entities[first+1].x==6 and entities[first+1].z==7)
+-- Dedicated replicas likewise never allocate animation entities.
+dedicated=true
+local headless=factories.nw_soft_blast_fx()
+first=#entities;headless._radius:set(3)
+headless.events.nw_blastradiusdirty()
+for _,task in ipairs(headless.tasks) do if task.delay==0 then task.fn(headless) end end
+assert(#entities==first)
 -- Exercise the actual terminal beam descriptor, which intentionally carries no
 -- spell id into its shared damage handler.
 package.loaded["nw/expanded_hits"]=nil
@@ -131,4 +154,4 @@ Effects.blast=function(_,x,z,p) terminal=p end
 local flags={}
 Hits.finish({owner={},p={id="end_beam",end_damage=16,flags=flags,size_mult=2.5}},1,2)
 assert(terminal.quiet_burst and terminal.damage==16 and terminal.radius==3.75 and terminal.flags==flags)
-print("soft bursts: five silent native visuals, one 0.35-volume sound, unchanged area hits, server/client cleanup")
+print("soft bursts: 6 -> 1 replicated entity, five local visuals, unchanged sound/area hits, host/client/dedicated cleanup")

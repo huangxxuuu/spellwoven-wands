@@ -18,6 +18,7 @@ SMALL = ImageFont.truetype('C:/Windows/Fonts/arial.ttf', 14)
 ART = {(kind, group, frame): Image.open(RUNTIME / BANK / f'{kind}_{group}_{frame}.png').convert('RGBA')
        for kind in ('fire', 'frost') for group in ('head', 'tail', 'hit') for frame in range(6)}
 LUA = LuaRuntime(unpack_returned_tuples=True)
+LUA.globals().package.path = (ROOT / "mod/scripts/?.lua").as_posix() + ";" + LUA.globals().package.path
 FLIGHT = LUA.execute((ROOT / 'mod/scripts/nw/elemental_flight.lua').read_text(encoding='utf8'))
 
 

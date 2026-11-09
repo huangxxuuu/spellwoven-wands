@@ -101,6 +101,8 @@ for count=2,12 do
     capacity=count;panel:Refresh();panel:OnUpdate(.1)
     assert(#panel.row.spells==count and panel.status.mana.size[1]==gauge_width)
     assert(#panel.frame.pieces==9)
+    assert(panel.frame.pieces[5].texture=="square.tex" and panel.frame.pieces[5].tint[4]==1,
+        "all shared panels need an opaque solid center, without the old transparent bottom strip")
     local width=require("nw/hud_layout").frame_width(count)
     assert(panel.manual.pos.x-30>=-width/2+16 and panel.manual.pos.y+12<87-16,
         "guide label overlaps decorative frame")

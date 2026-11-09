@@ -8,8 +8,14 @@ local Frame=Class(Widget,function(self)
     self.pieces={}
     for row=1,3 do
         for col=1,3 do
-            self.pieces[#self.pieces+1]=self:AddChild(Image("images/nw_frame.xml",
-                string.format("frame_%d_%d.tex",row,col)))
+            local center=row==2 and col==2
+            local piece=self:AddChild(Image(center and "images/global.xml" or "images/nw_frame.xml",
+                center and "square.tex" or string.format("frame_%d_%d.tex",row,col)))
+            -- The decorative center texture has translucent patches near its
+            -- bottom. An opaque solid fill prevents the world/HUD showing through.
+            if center then piece:SetTint(.055,.05,.045,1) end
+            piece:SetClickable(false)
+            self.pieces[#self.pieces+1]=piece
         end
     end
 end)

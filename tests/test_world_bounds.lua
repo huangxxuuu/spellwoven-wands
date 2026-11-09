@@ -107,7 +107,7 @@ local plan={projectile_count=2,next_state={rng_state=1},blocks={
     {projectiles={{id="end_beam",kind="projectile",event="hit",payload=2,end_damage=16,flags={},spread=0}}},
     {projectiles={{id="explosion",kind="instant",flags={},spread=0,damage=16,radius=2}}},
 }}
-assert(E.execute(plan,owner,0,0,1,0,1.4) and E.stats()==2)
+assert(E.execute(plan,owner,0,0,1,0,1.4) and E.stats()==1)
 projectile.x=100;P.step(projectile,now+1,{})
 assert(not projectile.valid and E.stats()==0 and fired==0,"boundary cleanup releases carrier and reserved child silently")
 -- A timer beyond the boundary is neither reached nor flushed on removal.

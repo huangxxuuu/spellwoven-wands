@@ -26,17 +26,21 @@ assert(Cards.codes.frost_timer==45 and Cards.codes.mana_reduce==46 and Cards.cod
 for _,seq in ipairs({{"repeat_2","double","spark","arrow"},{"double","spark","repeat_2","arrow"}}) do
     local p=compile(seq)
     assert(p.projectile_count==4 and p.mana_spent==50)
-    for i,id in ipairs({"spark","arrow","spark","arrow"}) do assert(p.blocks[1].projectiles[i].id==id) end
+    assert(p.blocks[1].copies==2 and #p.blocks[1].projectiles==2)
+    for i,id in ipairs({"spark","arrow"}) do assert(p.blocks[1].projectiles[i].id==id) end
 end
 local outer=compile({"repeat_2","arrow_hit","slash"})
 local inner=compile({"arrow_hit","repeat_2","slash"})
 assert(outer.projectile_count==4 and inner.projectile_count==3 and outer.mana_spent==66 and inner.mana_spent==66)
-assert(outer.blocks[1].projectiles[1].payload~=outer.blocks[1].projectiles[2].payload)
-assert(#inner.blocks[2].projectiles==2)
+assert(#outer.blocks==2 and outer.blocks[1].copies==2 and #outer.blocks[1].projectiles==1)
+assert(#inner.blocks[2].projectiles==1 and inner.blocks[2].copies==2)
 local quad=compile({"repeat_4","arrow_hit","frost"})
 assert(quad.projectile_count==8 and quad.mana_spent==92)
-for i,p in ipairs(quad.blocks[1].projectiles) do
-    local ice=quad.blocks[p.payload].projectiles[1]
+local resolve=require("nw/cast_templates").resolver()
+assert(quad.blocks[1].copies==4)
+for i=1,4 do
+    local p=resolve(quad.blocks[1].projectiles[1],.45,i>1)
+    local ice=resolve(quad.blocks[p.payload].projectiles[1],.45,i>1)
     assert(math.abs(p.damage-9.9)<.001 and math.abs(ice.damage-4.05)<.001)
     assert((ice.freeze~=nil)==(i==1))
 end
@@ -46,8 +50,9 @@ assert(#lanes==3 and lanes[1].formation==-20 and lanes[2].formation==0 and lanes
 assert(fan.blocks[lanes[1].payload].projectiles[1].formation==nil)
 local mod=compile({"heavy_shot","arrow"}).blocks[1].projectiles[1]
 assert(mod.damage==34 and mod.speed==16.25 and mod.spread>=2)
-local voices=compile({"repeat_4","chord_d"}).blocks[1].projectiles
-assert(#voices==4 and not voices[1].suppress_support and voices[4].suppress_support)
+local voices=compile({"repeat_4","chord_d"}).blocks[1]
+assert(voices.copies==4 and #voices.projectiles==1)
+assert(not resolve(voices.projectiles[1],.45,false).suppress_support and resolve(voices.projectiles[1],.45,true).suppress_support)
 local six=compile({"repeat_3","repeat_2","mana_reduce","spark"})
 assert(six.projectile_count==6 and six.mana_spent==60 and #six.trace==4)
 local discounted=compile({"mana_reduce","repeat_3","arrow"})
@@ -110,7 +115,7 @@ end
 for _,fire in ipairs({true,false}) do
     objects={}
     assert(E.execute(compile({"scatter_hit","spark_timer","arrow"}),owner,1,3,1,0))
-    assert(#objects==3 and E.stats()==9)
+    assert(#objects==3 and E.stats()==3)
     if fire then
         for i=1,3 do objects[i]._shot.fire(9,12,0,1) end
         assert(#objects==6 and objects[4].x==9 and objects[4].z==12)
@@ -124,28 +129,26 @@ objects={}
 -- Default configuration permits more than both former concurrent caps.
 assert(E.execute(compile({"pierce_all","arrow_hit","spark_timer","arrow"}),owner,0,0,1,0))
 for _=1,90 do objects[1]._shot.fire(0,0,1,0) end
-assert(#objects==91 and E.stats()==181)
+assert(#objects==91 and E.stats()==91)
 for _,obj in ipairs(objects) do obj:Remove() end
 assert(E.stats()==0)
-E.set_projectile_limit(true)
+E.set_projectile_limit(25)
 objects={}
 assert(E.execute(compile({"pierce_all","arrow_hit","spark_timer","arrow"}),owner,0,0,1,0))
-for _=1,50 do objects[1]._shot.fire(0,0,1,0) end
-assert(E.stats()==23 and #objects==12,"replays exceeded concurrent subtree budget")
+for _=1,50 do assert(objects[1]._shot.fire(0,0,1,0)) end
+assert(E.stats()==25 and #objects==25,"only live entities consume capacity")
 objects[2]:Remove()
 objects[1]._shot.fire(0,0,1,0)
-assert(#objects==13 and E.stats()==23,"replay did not resume after capacity freed")
+assert(#objects==26 and E.stats()==25,"emission resumes after capacity is freed")
 for i,obj in ipairs(objects) do if i~=2 then obj:Remove() end end
 assert(E.stats()==0)
 objects={}
 local single=compile({"spark"})
-for i=1,160 do
-    assert(E.execute(single,{GUID=math.ceil(i/24)},0,0,1,0))
-end
-local ok,err=E.execute(single,{GUID=100},0,0,1,0)
-assert(not ok and err=="PROJECTILE_LIMIT")
-E.set_projectile_limit(false)
-assert(E.execute(single,{GUID=1},0,0,1,0) and E.stats()==161)
+for i=1,200 do assert(E.execute(single,{GUID=math.ceil(i/25)},0,0,1,0)) end
+assert(E.stats()==200,"no hidden 160-entity shard cap")
+assert(E.execute(single,{GUID=1},0,0,1,0) and E.stats()==200,"full player skips rather than rejecting cast")
+E.set_projectile_limit(0)
+assert(E.execute(single,{GUID=1},0,0,1,0) and E.stats()==201)
 for _,obj in ipairs(objects) do obj:Remove() end
 assert(E.stats()==0)
 print("spell lab: 100 loadable cards, 12 imprint variants, 3 legacy IDs, geometry, timing and shared payload ownership")

@@ -1,6 +1,6 @@
 RemovePhysicsColliders=function(e) e.no_terrain_collision=true end
 -- Validate both prefab branches: a local elevated child, no gravity correction
--- writes, immutable network schema, dirty updates and explicit child cleanup.
+-- writes, caster identity on both peers, dirty updates and explicit child cleanup.
 Asset=function() end;Prefab=function(_,fn) return fn end
 local dedicated=false
 TheNet={IsDedicated=function() return dedicated end};TheWorld={ismastersim=false,DoPeriodicTask=function() return {Cancel=function() end} end}
@@ -55,7 +55,7 @@ MakeInventoryPhysics=function(e) e.Physics={SetMotorVel=function(_,s) e.speed=s 
     GetVelocity=function() return e.speed or 0,0,0 end,
     SetFriction=function(_,v) e.friction=v end,SetRestitution=function(_,v) e.restitution=v end} end
 local function net() return {v=0,set=function(self,v) self.v=v end,value=function(self) return self.v end} end
-net_byte=net;net_float=net
+net_byte=net;net_float=net;net_string=net
 ANIM_ORIENTATION={OnGround=1,BillBoard=2,Default=3};TheCamera={heading=0,pitch=35};DEGREES=math.pi/180
 local make=require("prefabs/nw_projectile")
 local client=make();local v=client._visual
@@ -84,11 +84,13 @@ TheWorld.ismastersim=true;DEGREES=math.pi/180
 for _,headless in ipairs({false,true}) do
     dedicated=headless
     local p=make();assert((p._visual==nil)==headless)
-    p:Launch({}, {id="arrow",damage=28,speed=20,lifetime=.8},4,5,1,0,function() end,1.6)
+    p:Launch({userid="KU_caster"}, {id="arrow",damage=28,speed=20,lifetime=.8},4,5,1,0,function() end,1.6)
+    assert(p._nw_trail_userid:value()=="KU_caster","caster identity must replicate on host and dedicated server")
     assert(p.y==0 and p.x==4 and p.z==5 and p.speed==20 and p._height:value()==1.6)
     if not headless then assert(p._visual.y==1.6 and p._visual.scale==1) end
     local default=make()
     default:Launch({}, {id="arrow",damage=28,speed=20,lifetime=.8},4,5,1,0,function() end)
+    assert(default._nw_trail_userid:value()=="","neutral casters must not inherit player priority")
     assert(default._height:value()==require("nw/muzzle").default_height and default._shot.height==1.2)
     assert(default.y==0,"flight height must not lift the physical collision plane")
     if not headless then assert(default._visual.y==1.2) end

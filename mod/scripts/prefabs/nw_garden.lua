@@ -22,7 +22,7 @@ local function sentry(inst,owner,p,x,z)
     inst.components.follower:SetLeader(owner)
     inst.components.follower:StopLeashing()
     local limits=require("nw/spell_limits")
-    limits.track(inst,owner,"_nw_sentries",limits.sentries)
+    limits.track(inst,owner,"_nw_sentries")
     local shots,closing,fire_until=0,false,0
     local lifetime=require("nw/field_effects").time(p,5.7)
     local deadline=GetTime()+lifetime

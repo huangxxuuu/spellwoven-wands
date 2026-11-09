@@ -106,25 +106,28 @@ local function effect(name,animation,seconds,light)
                 local scale=layout.blast_scale(inst._radius:value())
                 inst.AnimState:SetScale(scale,scale)
             end
+            local burst=name=="nw_soft_blast_fx" and require("nw/burst_visual").attach(inst) or nil
             if TheWorld.ismastersim then
                 inst.SetRadius=function(_,radius)
                     inst._radius:set(radius);resize()
                     if inst._nw_burst_started then return end
                     inst._nw_burst_started=true
-                    local x,_,z=inst.Transform:GetWorldPosition()
-                    -- Native billboards: rising translucent fire/smoke at several depths.
-                    for i=0,4 do
-                        local a=i*2.399
-                        local fx=SpawnPrefab(name=="nw_soft_blast_fx" and "nw_silent_explode_small" or "explode_small")
-                        if fx then
-                            local r=i==0 and 0 or radius*.38
-                            fx.Transform:SetPosition(x+math.cos(a)*r,.15,z+math.sin(a)*r)
-                            local scale=math.max(.25,radius/3)*(i==0 and 1.1 or .65)
-                            fx.Transform:SetScale(scale,scale,scale)
-                        end
-                    end
                     if name=="nw_soft_blast_fx" then
+                        if burst then burst() end
                         inst.SoundEmitter:PlaySound("dontstarve/common/blackpowder_explo",nil,.35)
+                    else
+                        local x,_,z=inst.Transform:GetWorldPosition()
+                        -- Native billboards retain their individual explosion sounds.
+                        for i=0,4 do
+                            local a=i*2.399
+                            local fx=SpawnPrefab("explode_small")
+                            if fx then
+                                local r=i==0 and 0 or radius*.38
+                                fx.Transform:SetPosition(x+math.cos(a)*r,.15,z+math.sin(a)*r)
+                                local scale=math.max(.25,radius/3)*(i==0 and 1.1 or .65)
+                                fx.Transform:SetScale(scale,scale,scale)
+                            end
+                        end
                     end
                 end
             else

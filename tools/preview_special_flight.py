@@ -61,6 +61,7 @@ def animation_groups():
 
 def lua_environment():
     lua = LuaRuntime(unpack_returned_tuples=True)
+    lua.globals().package.path = (ROOT / "mod/scripts/?.lua").as_posix() + ";" + lua.globals().package.path
     # The renderer only consults instrument metadata. Do not load unrelated
     # weapon, locale, or gameplay modules to make this offline display work.
     notes = lua.table_from({name: lua.table_from({"instrument": "ocarina"}) for name in NOTES})

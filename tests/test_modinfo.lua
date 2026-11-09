@@ -17,15 +17,15 @@ for i=1,#locales+1 do
         file:close()
     end
     local rows=env.configuration_options
-    assert(#rows==21 and rows[1].name=="language" and rows[2].name=="starting_wand")
+    assert(#rows==19 and rows[1].name=="language" and rows[2].name=="starting_wand")
     assert(rows[3].name=="crafting_class_filter" and rows[3].default==true)
     assert(rows[3].options[1].data==true and rows[3].options[2].data==false)
     assert(env.description:find((chinese and "版本：" or "Version: ")..env.version,1,true))
     assert(env.description:match("%d%d%d%d%-%d%d%-%d%d"))
     assert(rows[4].name==(chinese and "掉落率" or "Drop rates"))
     assert(rows[7].name==(chinese and "性能优化" or "Performance"))
-    assert(rows[19].name==(chinese and "开发者设置" or "Developer settings"))
-    assert(rows[20].name=="developer_options" and rows[21].name=="development_smoke")
+    assert(rows[17].name==(chinese and "开发者设置" or "Developer settings"))
+    assert(rows[18].name=="developer_options" and rows[19].name=="development_smoke")
     local seen={}
     for _,row in ipairs(rows) do
         assert(not seen[row.name]);seen[row.name]=true
@@ -40,6 +40,7 @@ for i=1,#locales+1 do
         assert(#row.options==#rates)
         for n,rate in ipairs(rates) do assert(row.options[n].data==rate) end
     end
-    for n=8,18 do assert(rows[n].default==false or rows[n].default==0) end
+    local defaults={client_trail_limit=1700,limit_projectiles=600,limit_fields=200,limit_permanent_fields=100,limit_range=0,limit_depth=5,boundary_cleanup=true,permanent_motion_cleanup=true,sync_performance=true}
+    for n=8,16 do assert(rows[n].default==defaults[rows[n].name]) end
 end
 print("modinfo: restricted startup sandbox, seven locales, section order, rate options and defaults")

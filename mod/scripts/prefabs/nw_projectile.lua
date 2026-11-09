@@ -71,6 +71,9 @@ local function fn(breakable,beam)
     inst._spell=net_byte(inst.GUID,"nw_projectile.spell","nw_projectiledirty")
     inst._height=net_float(inst.GUID,"nw_projectile.height","nw_projectiledirty")
     inst._size=net_float(inst.GUID,"nw_projectile.size","nw_projectiledirty")
+    -- One caster ID per projectile; tails themselves remain local entities.
+    -- A userid also survives the carrier/player leaving replication range.
+    inst._nw_trail_userid=net_string(inst.GUID,"nw_projectile.trail_userid","nw_trailownerdirty")
     -- Radians + 4 reserves zero for 'not received', including shots aimed at 0.
     inst._launch_heading=net_float(inst.GUID,"nw_projectile.launch_heading","nw_projectiledirty")
     if beam then
@@ -116,6 +119,7 @@ local function fn(breakable,beam)
         end
     end
     function inst:Launch(owner, descriptor, x,z, dx,dz, onremove,height)
+        self._nw_trail_userid:set(owner and type(owner.userid)=="string" and owner.userid or "")
         descriptor.flags=descriptor.flags or {}
         if require("nw/arsenal").notes[descriptor.id] then
             require("nw/expanded_fields").sound(owner,x,z,descriptor.id,descriptor.pitch,descriptor.beats)

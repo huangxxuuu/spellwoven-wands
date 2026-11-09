@@ -1,18 +1,22 @@
 local T=GLOBAL.require("nw/locale").t
 GLOBAL.require("nw/locale").install(env,GLOBAL)
+GLOBAL.require("nw/trail_budget").install(env,GLOBAL)
 PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_dustbox", "nw_emberlamp", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_gunpowder" }
 Assets={Asset("ATLAS","images/nw_guide.xml"),Asset("IMAGE","images/nw_guide.tex"),Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
     Asset("SOUNDPACKAGE","sound/nw_instruments.fev"),Asset("SOUND","sound/nw_instruments.fsb"),
     Asset("ATLAS","images/nw_hud.xml"),Asset("IMAGE","images/nw_hud.tex"),
     Asset("ATLAS","images/nw_frame.xml"),Asset("IMAGE","images/nw_frame.tex")}
-GLOBAL.require("nw/expanded_fields").crystal_limit=GetModConfigData("crystal_limit") or 0
 local limits=GLOBAL.require("nw/spell_limits")
-for _,key in GLOBAL.ipairs({"sentries","storms","world_storms","lights","cast","range","depth"}) do
+for _,key in GLOBAL.ipairs({"range","depth"}) do
     limits[key]=GetModConfigData("limit_"..key) or 0
 end
+if limits.range==30 then limits.range=60 end
 limits.boundary_cleanup=GetModConfigData("boundary_cleanup") == true
 limits.permanent_motion_cleanup=GetModConfigData("permanent_motion_cleanup") == true
 GLOBAL.require("nw/executor").set_projectile_limit(GetModConfigData("limit_projectiles"))
+GLOBAL.require("nw/entity_limits").configure("fields",GetModConfigData("limit_fields"))
+GLOBAL.require("nw/entity_limits").configure("permanent_fields",GetModConfigData("limit_permanent_fields"))
+GLOBAL.require("nw/performance_settings").install(env,GLOBAL)
 RegisterInventoryItemAtlas("images/inventoryimages/nw_icons.xml", "nw_wand.tex")
 local Visual=GLOBAL.require("nw/visual")
 for code=0,Visual.count-1 do

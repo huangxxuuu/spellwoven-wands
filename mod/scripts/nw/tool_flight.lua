@@ -1,12 +1,13 @@
 -- Client-only native tool artwork and a distance-sampled orange orb trail.
 local M={}
+local Budget=require("nw/trail_budget")
 local BANK="nw_tool_flight"
 local FRAME=1/30
 local TAU=2*math.pi
 local DIRECTIONS=128
 local supported={fishingrod=true,oceanfishingrod=true,trident=true,farm_hoe=true,yoth_lance=true,orange_bolt=true}
 local animation_period={orange_bolt=.2,oceanfishingrod=8/30}
-local MAX_PARTS,SHOT_PARTS,MAX_BIRTHS=384,128,32
+local SHOT_PARTS,MAX_BIRTHS=128,32
 
 local function visible(inst)
     while inst do
@@ -44,11 +45,14 @@ local function head(s,now)
         if period then s.visual.AnimState:SetTime(math.max(0,(now-s.started+s.phase)%period)) end
     end
 end
+local function release(part)
+    if part.fx:IsValid() then part.fx:Remove() end
+    part.owner.parts[part.slot]=nil
+    part.pool.count=part.pool.count-1
+end
 local function discard(pool,s,index)
     local part=s.parts[index]
-    if not part then return end
-    if part.fx:IsValid() then part.fx:Remove() end
-    s.parts[index]=nil;pool.count=pool.count-1
+    if part then Budget.remove(part) end
 end
 local function face_tail(part,now)
     local dir=direction(part.dx,part.dy,part.dz)
@@ -60,10 +64,10 @@ local function face_tail(part,now)
     end
 end
 local function emit(pool,s,x,y,z,dx,dy,dz,born,now)
+    if not Budget.can_emit(s.inst) then return end
     local index=s.next
     local part=s.parts[index]
     if not part then
-        if pool.count>=MAX_PARTS then return end
         local fx=CreateEntity()
         fx.entity:AddTransform();fx.entity:AddAnimState();fx.entity:SetCanSleep(false)
         fx:AddTag("FX");fx:AddTag("NOCLICK");fx.persists=false
@@ -77,6 +81,8 @@ local function emit(pool,s,x,y,z,dx,dy,dz,born,now)
     part.fx.Transform:SetScale(s.scale,s.scale,s.scale)
     part.dx,part.dy,part.dz=dx,dy,dz
     part.born,part.life,part.direction=born,M.trail_timing(s.scale),nil
+    part.owner,part.slot,part.pool=s,index,pool
+    Budget.track(part,born,release)
     face_tail(part,now)
 end
 local function trail(pool,s,x,y,z,dx,dy,dz,distance,now)

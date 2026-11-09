@@ -19,6 +19,7 @@ local function start(inst,data,caster)
         caster=require("nw/payload_caster").neutral(x,z)
     end
     inst._nw_star=Copy(data);inst._nw_owner=caster;inst._nw_motion_owner=owner
+    require("nw/entity_limits").restore_field(inst,data.userid or caster)
     require("nw/payload_caster").retain(caster,inst)
     require("nw/giant_stars").apply(inst,data.p)
     require("nw/field_motion").start(inst,owner(inst),data.p,data.dx,data.dz,data.age,data.motion)

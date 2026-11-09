@@ -2,45 +2,7 @@ local U = require("nw/util")
 local RNG = require("nw/rng")
 local D = require("nw/definitions")
 local M = {}
-local Settings=require("nw/spell_limits")
--- Materialize each virtual carrier with its own child block. This keeps the
--- executor's scatter rolls, one-shot triggers and budget releases independent.
-local function expand(outputs)
-    local expanded = {}
-    local function visit(id, scale, secondary)
-        local source = outputs[id]
-        local block = { id = #expanded+1, source_id = id, depth = source.depth,
-            modifiers = source.modifiers, delay = source.delay, projectiles = {} }
-        expanded[block.id] = block
-        if #source.projectiles > 0 then
-            for copy = 1, source.copies or 1 do
-                for _, original in ipairs(source.projectiles) do
-                    local p = U.copy(original)
-                    local fraction = scale * (source.copy_damage or 1)
-                    local limited = secondary or (source.copy_damage and copy > 1)
-                    if fraction ~= 1 then
-                        p.effect_scale=fraction
-                        for _, key in ipairs({"damage","jump_damage","burn_damage","end_damage","planar","heal"}) do
-                            if p[key] then p[key] = p[key] * fraction end
-                        end
-                    end
-                    if limited then
-                        p.flags.melee_mark=nil
-                        p.freeze, p.flags.heal_ally, p.flags.leech, p.flags.knockback = nil,nil,nil,nil
-                        p.secondary=true
-                        p.suppress_support = p.kind=="note" or p.id=="vital_ring" or p.id=="vortex"
-                            or p.id=="rain_cloud" or p.id=="guard_ring" or p.id=="detonate"
-                    end
-                    if p.payload then p.payload = visit(p.payload, fraction, limited) end
-                    block.projectiles[#block.projectiles+1] = p
-                end
-            end
-        end
-        return block.id
-    end
-    visit(1,1,false)
-    return expanded
-end
+-- Compiled blocks stay compact and immutable, including repeated payloads.
 function M.initial(cards, stats, seed)
     local deck = {}
     for _, card in ipairs(cards) do if card then deck[#deck+1] = card.card_uid end end
@@ -55,7 +17,9 @@ function M.compile(wand, definitions, limits)
     -- Keep malformed-plan guards without turning the former 32-node ceiling
     -- into a hidden depth cap for larger card decks.
     local max_steps, max_nodes = limits.steps or math.max(128,#wand.cards*2), limits.nodes or math.max(32,#wand.cards*2)
-    local max_depth, max_projectiles = limits.depth or Settings.depth, limits.projectiles or Settings.cast
+    -- Runtime performance limits skip individual emissions, never reject a draw.
+    -- Explicit caller-provided limits remain available for diagnostics.
+    local max_depth, max_projectiles = limits.depth or 0, limits.projectiles or 0
     if max_depth==0 then max_depth=math.huge end
     if max_projectiles==0 then max_projectiles=math.huge end
     local stats, state = wand.stats, U.copy(wand.runtime)
@@ -76,7 +40,7 @@ function M.compile(wand, definitions, limits)
     for id in pairs(cards) do if not seen[id] then return nil, "INVALID_DECK" end end
     local rng = RNG.new(state.rng_state)
     local hand, trace, blocks = {}, {}, {}
-    local repeated, mana_required, next_afford = false, 0, math.huge
+    local mana_required, next_afford = 0, math.huge
     local wrapped, steps, nodes, error_code = false, 0, 0, nil
     local function reorder(list)
         table.sort(list, function(a,b) return slots[a] < slots[b] end)
@@ -97,7 +61,6 @@ function M.compile(wand, definitions, limits)
         if d.copies then
             b.copies = math.min(max_projectiles+1, (b.copies or 1) * d.copies)
             if d.copy_damage then b.copy_damage=(b.copy_damage or 1)*d.copy_damage end
-            repeated = true
         end
         if D.trajectory[d.id] then m.paths[d.id]=true end
         if d.damage_mult then m.damage_mult=(m.damage_mult or 1)*d.damage_mult end
@@ -201,6 +164,8 @@ function M.compile(wand, definitions, limits)
     for _ = 1, stats.draw_count do draw(root, false) end
     if error_code then return nil, error_code end
     local total, cooldown_floor = 0, 0
+    -- Like Noita's draw_shot: finish drawing the shared cast state before
+    -- applying it to every projectile in that block. Payloads have fresh state.
     for _, b in ipairs(blocks) do
         local m = b.modifiers
         local paths=0
@@ -252,30 +217,12 @@ function M.compile(wand, definitions, limits)
             total = total + (p.count or 1)
         end
     end
-    if repeated then
-        -- Children are created after parents. Price the full tree, including
-        -- unlaunched payloads, before allocating any copies.
-        local sizes = {}
-        for i = #blocks, 1, -1 do
-            local count = 0
-            for _, p in ipairs(blocks[i].projectiles) do
-                count = count + (p.count or 1) * (1 + (sizes[p.payload] or 0))
-            end
-            sizes[i] = count * (blocks[i].copies or 1)
-            if sizes[i] > max_projectiles then return nil, "PROJECTILE_LIMIT" end
-        end
-        total = sizes[1]
-        if not limits.defer_copies then blocks = expand(blocks) end
-    else
-        local sizes={}
-        for i=#blocks,1,-1 do
-            local count=0
-            for _,p in ipairs(blocks[i].projectiles) do count=count+(p.count or 1)*(1+(sizes[p.payload] or 0)) end
-            sizes[i]=count
-        end
-        total=sizes[1]
-        if total>max_projectiles then return nil,"PROJECTILE_LIMIT" end
+    local sizes,err=require("nw/cast_templates").sizes(blocks)
+    if not sizes then return nil,err end
+    for _,count in ipairs(sizes) do
+        if count>max_projectiles then return nil,"PROJECTILE_LIMIT" end
     end
+    total=sizes[1]
     for _, id in ipairs(hand) do state.discard[#state.discard+1] = id end
     local recharge = wrapped or #state.deck == 0
     -- Zero adds no wand wait; native attack states still gate real casts.
@@ -292,7 +239,6 @@ function M.compile(wand, definitions, limits)
     local mana_spent = wand.runtime.mana - state.mana
     state.mana = math.min(stats.mana_max, state.mana)
     return { next_state = state, root_block = root.id, blocks = blocks, trace = trace,
-        expand_on_launch = repeated and limits.defer_copies and expand or nil,
         wrapped = wrapped, recharged = recharge, projectile_count = total,
         mana_spent = mana_spent, mana_required = mana_required, next_afford = next_afford,
         cooldown = math.max(state.remaining_cast, state.remaining_recharge) }

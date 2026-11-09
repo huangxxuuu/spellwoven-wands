@@ -3,14 +3,14 @@ from functools import lru_cache
 from pathlib import Path
 from xml.etree import ElementTree as ET
 from zipfile import ZipFile
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageChops
 from lupa.lua51 import LuaRuntime
 from native_animation import GAME, texture
 
 ROOT = Path(__file__).resolve().parents[1]
 
 BACKEND = '''
-UIFONT="ui";MOVE_LEFT=1;MOVE_RIGHT=2;MOVE_UP=3;MOVE_DOWN=4
+UIFONT="ui";MOVE_LEFT=1;MOVE_RIGHT=2;MOVE_UP=3;MOVE_DOWN=4;ANCHOR_LEFT=1
 Class=function(base,ctor)
     local c={_ctor=ctor};c.__index=c
     return setmetatable(c,{__index=base,__call=function(cls,...)
@@ -21,6 +21,12 @@ local function widget(kind)
     local w={kind=kind,children={},x=0,y=0,tint={1,1,1,1},inst={IsValid=function() return true end}}
     function w:AddChild(child) self.children[#self.children+1]=child;child.parent=self;return child end
     function w:Kill() self.dead=true end
+    function w:Show() self.hidden=false end
+    function w:Hide() self.hidden=true end
+    function w:Enable() self.enabled=true end
+    function w:Disable() self.enabled=false end
+    w.inst.DoPeriodicTask=function() return {Cancel=function() end} end
+    w.inst.ListenForEvent=function() end
     function w:MoveToBack()
         for i,child in ipairs(self.parent.children) do if child==self then table.remove(self.parent.children,i);break end end
         table.insert(self.parent.children,1,self)
@@ -33,6 +39,7 @@ local function widget(kind)
     function w:SetTint(...) self.tint={...} end
     w.SetColour=w.SetTint
     function w:SetString(value) self.text=value end
+    function w:SetHAlign(value) self.halign=value end
     function w:SetClickable() end
     function w:SetHoverText(text,params) self.tip=text;self.tipparams=params end
     function w:EnableWordWrap() end
@@ -43,9 +50,9 @@ local function widget(kind)
     function w:SetOnClick(fn) self.onclick=fn end
     return w
 end
-package.loaded["widgets/widget"]={_ctor=function(self)
+package.loaded["widgets/widget"]=Class(nil,function(self)
     for k,v in pairs(widget("widget")) do if self[k]==nil then self[k]=v end end
-end}
+end)
 package.loaded["widgets/image"]=function(atlas,name)
     local w=widget("image");w.atlas=atlas;w.texture=name;return w
 end
@@ -55,6 +62,12 @@ end
 package.loaded["widgets/text"]=function(font,size,text)
     local w=widget("text");w.fontsize=size;w.text=text;return w
 end
+package.loaded["widgets/textbutton"]=function()
+    local w=widget("text");w.fontsize=21
+    w.SetText=w.SetString;w.SetFont=function() end
+    w.SetTextSize=function(self,size) self.fontsize=size end
+    return w
+end
 package.loaded["widgets/spinner"]=function(options,width,height,textinfo)
     local w=widget("spinner");w.options=options
     w.text=w:AddChild(require("widgets/text")(textinfo.font,textinfo.size,options[1].text))
@@ -62,6 +75,15 @@ package.loaded["widgets/spinner"]=function(options,width,height,textinfo)
     w.rightimage=w:AddChild(require("widgets/image")("images/ui.xml","arrow2_right.tex"))
     for _,arrow in ipairs({w.leftimage,w.rightimage}) do arrow:SetSize(height,height) end
     w.leftimage:SetPosition(-width/2+height/2,0);w.rightimage:SetPosition(width/2-height/2,0)
+    function w:Enable()
+        self.enabled=true
+        self.leftimage:SetTint(1,1,1,1);self.rightimage:SetTint(1,1,1,1)
+    end
+    function w:Disable()
+        self.enabled=false
+        self.leftimage:SetTint(.45,.45,.45,1);self.rightimage:SetTint(.45,.45,.45,1)
+    end
+    function w:SetOptions(options) self.options=options end
     function w:SetSelectedIndex(index) self.index=index;self.text:SetString(self.options[index].text) end
     function w:SetTextColour(...) self.text:SetColour(...) end
     function w:SetWrapEnabled() end
@@ -83,12 +105,13 @@ package.loaded["screens/popupdialog"]=function(title,_,buttons)
     end
     return w
 end
-local stored
-TheSim={GetPersistentString=function(_,_,cb) cb(stored~=nil,stored) end,
-    SetPersistentString=function(_,_,value,_,cb) stored=value;cb() end}
+local stored={}
+TheSim={GetPersistentString=function(_,key,cb) cb(stored[key]~=nil,stored[key]) end,
+    SetPersistentString=function(_,key,value,_,cb) stored[key]=value;cb() end}
 local active
 TheFrontEnd={PushScreen=function(_,screen) active=screen end,PopScreen=function() active=nil end}
 VisitURL=function() end
+local settings=require("nw/performance_settings");settings.query=function() end
 '''
 
 
@@ -120,7 +143,7 @@ def render(screen, language, hover=False):
     draw.text((16,12), 'LUA LAYOUT + GAME TEXTURES / SUBSTITUTE FONT / NOT AN IN-GAME SCREENSHOT', fill='#bfc7bb')
     fontpath = 'C:/Windows/Fonts/msyh.ttc' if language == 'zh' else 'C:/Windows/Fonts/arial.ttf'
     def visit(node, x=480, y=360):
-        if node.dead:
+        if node.dead or node.hidden:
             return
         x += node.x or 0
         y -= node.y or 0
@@ -130,6 +153,7 @@ def render(screen, language, hover=False):
                 tile = Image.new('RGBA', (w,h), colour(node.tint))
             else:
                 tile = sprite(node.atlas,node.texture).resize((w,h), Image.Resampling.LANCZOS)
+                tile = ImageChops.multiply(tile, Image.new("RGBA", tile.size, colour(node.tint)))
             canvas.alpha_composite(tile,(round(x-w/2),round(y-h/2)))
         elif node.kind == 'text':
             font = ImageFont.truetype(fontpath, round(node.fontsize))
@@ -148,17 +172,17 @@ def render(screen, language, hover=False):
             height=len(lines)*node.fontsize*1.2
             assert not node.h or height<=node.h+1, f'{language} text overflow: {node.text!r}: {height} > {node.h}'
             for i,line in enumerate(lines):
-                draw.text((x,y-height/2+i*node.fontsize*1.2),line,font=font,fill=colour(node.tint),anchor='mt')
+                draw.text((x-node.w/2 if node.halign==1 else x,y-height/2+i*node.fontsize*1.2),line,font=font,fill=colour(node.tint),anchor='lt' if node.halign==1 else 'mt')
         for _,child in node.children.items():
             visit(child,x,y)
     visit(screen)
     if hover:
-        direction=screen.direction
+        direction=screen.direction.text
         p=direction.tipparams
         tile=sprite('images/frontend.xml','scribble_black.tex').resize((round(p.region_w*1.5),round(p.region_h*2)))
         canvas.alpha_composite(tile,(round(480-tile.width/2),round(370-tile.height/2)))
         text={'kind':'text','fontsize':p.font_size,'text':direction.tip,'w':p.region_w,'h':p.region_h,
-              'tint':{1:1,2:1,3:1,4:1},'children':{},'x':0,'y':-10}
+              'tint':p.colour,'children':{},'x':0,'y':-10}
         # Reuse the same text layout/overflow check as ordinary Lua labels.
         visit(vm_table(text))
     return canvas.convert('RGB')
@@ -183,14 +207,29 @@ def main():
     for language in ('zh','en'):
         locale.configure(language,language)
         screen=guide.open()
-        assert sum(child.kind=='spinner' for _,child in screen.proot.children.items())==1
-        screen.direction.SetSelected(screen.direction,'target');assert direction.get()=='target'
+        assert screen.direction is not None and screen.trail_limit is not None
+        render(screen,language).save(output/f'quickguide_{language}_intro.png')
+        screen.select_page('personal')
+        screen.direction.SetSelected(screen.direction,'target');assert direction.get()=='target' 
         render(screen,language).save(output/f'quickguide_{language}_target.png')
         screen.direction.SetSelected(screen.direction,'mouse');assert direction.get()=='mouse'
         render(screen,language).save(output/f'quickguide_{language}_mouse.png')
         render(screen,language,hover=True).save(output/f'quickguide_{language}_mouse_hover.png')
         reopened=guide.open();assert direction.get()=='mouse'
-        assert reopened.direction.index==2 and reopened.direction.tip==screen.direction.tip
+        assert reopened.direction.index==2 and reopened.direction.text.tip==screen.direction.text.tip
+        screen.trail_limit.SetSelected(screen.trail_limit,1700)
+        render(screen,language).save(output/f'quickguide_{language}_personal.png')
+        settings=vm.eval('require("nw/performance_settings")')
+        for _,spec in settings.specs.items():
+            settings.client_values[spec.key]=({"limit_projectiles":600,"limit_fields":200,"limit_permanent_fields":100,"limit_range":0,"limit_depth":5,"boundary_cleanup":True,"permanent_motion_cleanup":True,"sync_performance":True})[spec.key]
+        settings.synced=True
+        settings.allowed=False
+        screen.select_page('performance')
+        screen.performance.refresh()
+        render(screen,language).save(output/f'quickguide_{language}_readonly.png')
+        settings.allowed=True
+        screen.performance.refresh()
+        render(screen,language).save(output/f'quickguide_{language}_admin.png')
     print(f'PASS guide constructor, choice callbacks, reopen, and bilingual text fit; previews: {output}')
 
 

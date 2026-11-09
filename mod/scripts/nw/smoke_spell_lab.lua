@@ -60,12 +60,12 @@ function M.run(x,z,done)
         local e=SpawnPrefab("nw_target_dummy");e.Transform:SetPosition(x+a,0,z+b)
         targets[#targets+1]=e;return e
     end
-    local function cast(ids,defer_copies,aim)
+    local function cast(ids,aim)
         local w=require("nw/generator").starter();w.stats.spread=0;w.stats.mana_max=600
         w.cards={}
         for i,id in ipairs(ids) do w.cards[i]={spell_id=id,card_uid=tostring(i)} end
         w.runtime=Compiler.initial(w.cards,w.stats,71)
-        local plan=assert(Compiler.compile(w,nil,{defer_copies=defer_copies}))
+        local plan=assert(Compiler.compile(w))
         assert(Executor.execute(plan,owner,x,z,1,0,1.4,aim))
         return plan
     end
@@ -319,7 +319,7 @@ function M.run(x,z,done)
     end
     stages[#stages+1]=function()
         local dummy=target(3,0)
-        cast({"edge_chum"},nil,{x=x+8,z=z})
+        cast({"edge_chum"},{x=x+8,z=z})
         local e=last_shot("chum")
         local landed
         e:ListenForEvent("onremove",function() landed={e.Transform:GetWorldPosition()} end)
@@ -348,7 +348,7 @@ function M.run(x,z,done)
         local tx,tz=map:GetTileCoordsAtPoint(cx,0,z)
         local old=map:GetTile(tx,tz)
         map:SetTile(tx,tz,WORLD_TILES.FARMING_SOIL)
-        cast({"edge_farm_hoe"},nil,{x=cx,z=z})
+        cast({"edge_farm_hoe"},{x=cx,z=z})
         local hoe=last_shot("farm_hoe")
         return 1.5,function()
             local soil=TheSim:FindEntities(cx,0,z,1.2,{"soil"})
@@ -381,7 +381,7 @@ function M.run(x,z,done)
     end
     stages[#stages+1]=function()
         local px=x+6
-        cast({"edge_staff_tornado"},false,Vector3(px,0,z))
+        cast({"edge_staff_tornado"},Vector3(px,0,z))
         local shot=TheWorld._nw_projectiles.items[#TheWorld._nw_projectiles.items]
         local tornado=shot._shot.native
         targets[#targets+1]=tornado
@@ -435,7 +435,7 @@ function M.run(x,z,done)
         cast({"sleep_crystal"})
         local far=owner._nw_crystals[2]
         near.Physics:Teleport(x+2,0,z);far.Physics:Teleport(x+9,0,z)
-        cast({"detonate"},false,Vector3(x+9,0,z))
+        cast({"detonate"},Vector3(x+9,0,z))
         assert(near:IsValid() and not far:IsValid(),"NW_REVIEW: detonator ignored aim")
         near._nw_break()
         return .4,function() end
@@ -479,39 +479,40 @@ function M.run(x,z,done)
         end
     end
     stages[#stages+1]=function()
-        local limits=require("nw/spell_limits")
-        local oldcast,oldplants=limits.cast,limits.sentries
-        limits.cast,limits.sentries=0,0
-        local plan=cast({"repeat_3","repeat_3","scatter"},true)
+        local live=require("nw/entity_limits")
+        local oldfields,oldprojectiles=live.fields,live.projectiles
+        live.configure("fields",0);live.configure("projectiles",0)
+        local plan=cast({"repeat_3","repeat_3","scatter"})
         assert(plan.projectile_count==27 and Executor.stats()==27,"NW_LIMIT: 27 attack entities")
         for i=1,3 do cast({"spore_sentry"}) end
         local plants=owner._nw_sentries
         assert(#plants==3 and plants[1]:IsValid(),"NW_LIMIT: default sentries capped")
         while #plants>0 do plants[1]:Remove() end
-        limits.sentries=2
-        for i=1,2 do cast({"spore_sentry"}) end
+        live.configure("fields",25)
+        for i=1,25 do cast({"spore_sentry"}) end
         local first=plants[1]
         cast({"spore_sentry"})
-        assert(#plants==2 and not first:IsValid(),"NW_LIMIT: configured sentry cap ignored")
+        assert(#plants==25 and first:IsValid(),"NW_LIMIT: shared field admission must preserve old entities")
         while #plants>0 do plants[1]:Remove() end
-        limits.cast,limits.sentries=oldcast,oldplants
+        live.configure("fields",oldfields);live.configure("projectiles",oldprojectiles)
         return 2,function() print("NW_LIMIT_PASS: 27 real projectiles, unlimited and capped sentries") end
     end
     stages[#stages+1]=function()
-        local fields=require("nw/expanded_fields")
-        local configured=fields.crystal_limit
-        for _,cap in ipairs({0,30}) do
-            fields.crystal_limit=cap
-            for i=1,30 do cast({i%2==0 and "sleep_crystal" or "crystal_mine"}) end
+        local live=require("nw/entity_limits")
+        local configured=live.permanent_fields
+        for _,cap in ipairs({0,25}) do
+            live.configure("permanent_fields",cap)
+            for i=1,25 do cast({i%2==0 and "sleep_crystal" or "crystal_mine"}) end
             local list=owner._nw_crystals
-            assert(#list==30,"NW_CRYSTAL: fewer than 30 live crystals")
+            assert(#list==25,"NW_CRYSTAL: fewer than 25 live crystals")
             local first,second=list[1],list[2]
             cast({"sleep_crystal"})
-            assert(#list==(cap==0 and 31 or 30) and first:IsValid()==(cap==0) and second:IsValid())
+            assert(#list==(cap==0 and 26 or 25) and first:IsValid()==(cap==0) and second:IsValid())
+            live.configure("permanent_fields",0)
             cast({"detonate"})
             assert(#list==0,"NW_CRYSTAL: partial cleanup")
         end
-        fields.crystal_limit=configured
+        live.configure("permanent_fields",configured)
         cast({"spore_sentry"})
         local plant=owner._nw_sentries[1]
         local hound=SpawnPrefab("hound")

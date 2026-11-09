@@ -48,7 +48,7 @@ assert(stars.count==4 and stars.damage==8.5 and stars.lifetime==1)
 local echo=cast({"repeat_4","payload_egg","end_beam"})
 assert(echo.projectile_count==8)
 for _,egg in ipairs(echo.blocks[1].projectiles) do
-    local beam=echo.blocks[egg.payload].projectiles[1]
+    local beam=require("nw/cast_templates").resolver()(echo.blocks[egg.payload].projectiles[1],.45,false)
     assert(math.abs(beam.end_damage-7.2)<1e-6)
 end
 local Flight=require("nw/flight")

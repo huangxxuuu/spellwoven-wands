@@ -1,11 +1,10 @@
 -- Local animated spell bodies and detached trails. Gameplay stays on nw_projectile.
 local M={}
+local Budget=require("nw/trail_budget")
 local FRAME=1/30
 local CLIP_TIME=6*FRAME
 local BASE_TRAIL_LIFE=.2
 local MAX_SAMPLE_DT=.2
-local CLIENT_LIMIT=128
-local ARROW_LIMIT=256
 local ARROW_SLOTS=128
 local MAX_PATH_BIRTHS=64
 local BANK="nw_elemental_flight"
@@ -131,42 +130,24 @@ local function face_segment(s,part,age,force)
     end
 end
 
-local function oldest_arrow(pool)
-    local oldest
-    for _,shot in ipairs(pool.shots) do
-        if profiles[shot.id].spatial then
-            for _,part in pairs(shot.parts) do
-                if not oldest or part.born<oldest.born then oldest=part end
-            end
-        end
-    end
-    return oldest
+local function discard(part)
+    part.fx:Remove()
+    part.owner.parts[part.slot]=nil
+    part.pool.count=part.pool.count-1
+    if part.arrow then part.pool.arrow_count=part.pool.arrow_count-1 end
 end
 
 local function emit(pool,s,born,now,x,y,z,dx,dz,dt,distance,anchored)
+    if not Budget.can_emit(s.inst) then return end
     local profile=profiles[s.id]
     local part=s.parts[s.next]
     -- A later size correction may increase the birth rate. Let older, larger
     -- particles finish their original lifetime instead of cutting them short.
     if part and now-part.born<part.lifetime-.00001 and not profile.spatial then return end
     if not part then
-        if profile.spatial then
-            if pool.arrow_count>=ARROW_LIMIT then
-                -- Preserve arrow/lance front connections under load by recycling
-                -- the oldest spatial tail. Timed particles keep their lifetime.
-                part=oldest_arrow(pool)
-                if not part then return end
-                part.owner.parts[part.slot]=nil
-            else
-                part=new_segment()
-                pool.arrow_count=pool.arrow_count+1
-                pool.count=pool.count+1
-            end
-        else
-            if pool.count-pool.arrow_count>=CLIENT_LIMIT then return end
-            part=new_segment()
-            pool.count=pool.count+1
-        end
+        part=new_segment()
+        pool.count=pool.count+1
+        if profile.spatial then pool.arrow_count=pool.arrow_count+1 end
         s.parts[s.next]=part
     end
     part.owner,part.slot=s,s.next
@@ -174,6 +155,8 @@ local function emit(pool,s,born,now,x,y,z,dx,dz,dt,distance,anchored)
     s.next=s.next%s.slots+1
     local scale=math.max(1,s.inst._size:value())
     part.born=born
+    part.pool=pool
+    Budget.track(part,born,discard)
     part.lifetime=s.lifetime
     part.playback=CLIP_TIME/part.lifetime
     local offset=anchored and 0 or profile.offset*scale
@@ -276,10 +259,7 @@ local function update(pool,s,now)
     for index,part in pairs(s.parts) do
         local age=now-part.born
         if age>=part.lifetime-.00001 then
-            part.fx:Remove()
-            s.parts[index]=nil
-            pool.count=pool.count-1
-            if part.arrow then pool.arrow_count=pool.arrow_count-1 end
+            Budget.remove(part)
         else
             part.fx.Transform:SetPosition(part.x+age*part.vx,part.y,part.z+age*part.vz)
             face_segment(s,part,age,false)
@@ -328,8 +308,8 @@ function M.attach(inst,id)
     local s={inst=inst,visual=visual,id=id,x=x,z=z,time=now,started=now,
         phase=((inst.GUID or 0)%(profile.head_frames or 6))*FRAME,speed=speed(inst),scale=scale,lifetime=lifetime,interval=interval,
         head_playback=profile.head_playback or 1,head_time=(profile.head_frames or 6)*FRAME,
-        -- Spatial tails share a separate pool; timed lifetimes and intervals
-        -- grow together, preserving each kind's slot budget.
+        -- Per-shot reuse slots preserve the accepted lifetime/spacing. All
+        -- kinds now share the optional client-wide oldest-first budget.
         slots=profile.spatial and ARROW_SLOTS or math.ceil((profile.life or BASE_TRAIL_LIFE)*profile.rate),
         next_emit=now+interval*(profile.stagger and ((inst.GUID or 0)%3+1)/3 or 1),next=1,parts={}}
     inst._nw_elemental_flight=s

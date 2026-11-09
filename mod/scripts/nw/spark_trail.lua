@@ -1,9 +1,9 @@
 -- Cosmetic only. One client-side clock samples replicated motion for all sparks.
 local M={}
+local Budget=require("nw/trail_budget")
 local LIFETIME=6*FRAMES
 local INTERVAL=2*FRAMES/3 -- 45 births/s along a path sampled at 30 Hz
 local SLOTS=math.ceil(LIFETIME/INTERVAL)
-local CLIENT_LIMIT=96
 local TAIL_OFFSET=.42
 
 local function new_segment()
@@ -21,17 +21,25 @@ local function new_segment()
     return {fx=fx}
 end
 
+local function discard(part)
+    part.fx:Remove()
+    part.owner.parts[part.slot]=nil
+    part.pool.count=part.pool.count-1
+end
+
 local function emit(pool,s,born,age,x,y,z,dx,dz,dt,distance)
+    if not Budget.can_emit(s.inst) then return end
     local index=s.next
     local part=s.parts[index]
     if not part then
-        if pool.count>=CLIENT_LIMIT then return end
         part=new_segment()
         s.parts[index]=part
         pool.count=pool.count+1
     end
     s.next=index%SLOTS+1
     part.born=born
+    part.owner,part.slot,part.pool=s,index,pool
+    Budget.track(part,born,discard)
     local scale=s.inst._size and math.max(1,s.inst._size:value()) or 1
     part.x,part.y,part.z=x-TAIL_OFFSET*scale*dx/distance,y,z-TAIL_OFFSET*scale*dz/distance
     if scale~=1 then part.fx.Transform:SetScale(scale,scale,scale) end
@@ -71,9 +79,7 @@ local function update(pool,s,now)
     for index,part in pairs(s.parts) do
         local age=now-part.born
         if age>=LIFETIME-.00001 then
-            part.fx:Remove()
-            s.parts[index]=nil
-            pool.count=pool.count-1
+            Budget.remove(part)
         else
             local tx,tz=part.x+age*part.vx,part.z+age*part.vz
             part.fx.Transform:SetPosition(tx,part.y,tz)

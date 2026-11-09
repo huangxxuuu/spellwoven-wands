@@ -244,5 +244,10 @@
   "新增物品「粉尘收纳盒」：可随身携带，单格无限收纳奥术粉尘，支持在物品栏、背包内和地面打开。制作：奥术台，木板×1、金块×2、蛛丝×2、奥术粉尘×4。": "New item: Arcane Dust Coffer. A portable, single-slot container with unlimited Arcane Dust storage. Open it in your inventory, backpack, or on the ground. Craft at an Arcane Workbench with 1 Board, 2 Gold Nuggets, 2 Silk, and 4 Arcane Dust.",
   "新增建筑「奥术余烬灯」：无限收纳奥术粉尘，点燃后消耗粉尘提供柔和紫光，可随时熄灭。制作：炼金引擎解锁，石砖×2、金块×2、紫宝石×1、奥术粉尘×4。": "New structure: Arcane Ember Lamp. Stores unlimited Arcane Dust and burns it to provide a soft violet light. It can be extinguished at any time. Prototype at an Alchemy Engine with 2 Cut Stone, 2 Gold Nuggets, 1 Purple Gem, and 4 Arcane Dust.",
   "1.0.3 · 新增物品与建筑": "1.0.3 · New Item and Structure",
-  "下载 1.0.3 与离线资料站": "Download 1.0.3 and the offline field guide"
+  "下载 1.0.3 与离线资料站": "Download 1.0.3 and the offline field guide",
+  "适当优化施法性能。": "Improved spellcasting performance.",
+  "性能优化设置项提供默认限制，避免不限量的实体、子弹导致游戏崩溃。": "Performance settings now include default limits to help prevent crashes caused by unlimited spell entities and projectiles.",
+  "玩家可根据设备性能调整相关设置。": "Players can adjust the settings to suit their device performance.",
+  "1.0.4 · 施法性能优化": "1.0.4 · Spellcasting Performance",
+  "下载 1.0.4 与离线资料站": "Download 1.0.4 and the offline field guide"
 }

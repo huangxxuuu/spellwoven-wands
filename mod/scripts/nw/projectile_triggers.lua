@@ -22,8 +22,8 @@ function M.timer(s,x,z,timers)
     end
     g.timer_queued=true
 end
--- Call only for gameplay termination, before the entity releases its ledger
--- reservation. Raw Remove (shutdown, invalid owner, failed spawn) stays silent.
+-- Call only for gameplay termination, before the entity releases its live slot.
+-- Raw Remove (shutdown, invalid owner, failed spawn) stays silent.
 function M.finish(s,x,z)
     if s.payload_finished then return end
     s.payload_finished=true

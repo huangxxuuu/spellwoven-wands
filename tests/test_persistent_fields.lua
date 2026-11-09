@@ -92,10 +92,15 @@ assert(save.placement.arm_left==0)
 local restored=entity();Stored.install(restored);restored.OnLoad(restored,Copy(save))
 assert(restored._nw_owner==owner and restored._nw_armed_at==now)
 assert(restored.animation=="crystal_mine_idle","loading a permanent field does not replay arrival")
-Fields.crystal_limit=1
+local Live=require("nw/entity_limits")
+Live.configure("permanent_fields",25)
+for i=1,24 do execute({{projectiles={shot("sleep_crystal")}}}) end
+local before=#placed
 execute({{projectiles={shot("sleep_crystal")}}})
-assert(not restored.valid and #owner._nw_crystals==1)
-owner._nw_crystals[1]:Remove();Fields.crystal_limit=0
+assert(not restored.valid and #owner._nw_crystals==25 and #placed==before+1)
+assert(blasts==1,"replacement must silently remove, never detonate")
+while #owner._nw_crystals>0 do owner._nw_crystals[1]:Remove() end
+Live.configure("permanent_fields",0)
 -- Loading entities in reverse order must not change which placement is oldest.
 execute({{projectiles={shot("sleep_crystal"),shot("sleep_crystal")}}})
 local records={}
@@ -103,10 +108,13 @@ for _,e in ipairs(owner._nw_crystals) do local data={};e.OnSave(e,data);records[
 while #owner._nw_crystals>0 do owner._nw_crystals[1]:Remove() end
 local backwards={}
 for i=2,1,-1 do local e=entity();Stored.install(e);e.OnLoad(e,records[i]);backwards[i]=e end
-Fields.crystal_limit=2;execute({{projectiles={shot("sleep_crystal")}}})
-assert(not backwards[1].valid and backwards[2].valid)
+Live.configure("permanent_fields",25)
+for i=1,23 do execute({{projectiles={shot("sleep_crystal")}}}) end
+before=#placed;execute({{projectiles={shot("sleep_crystal")}}})
+assert(not backwards[1].valid and backwards[2].valid and #placed==before+1)
+assert(Live.owner_used(owner,"permanent_fields")==25,"loaded fields retain stable player ownership")
 while #owner._nw_crystals>0 do owner._nw_crystals[1]:Remove() end
-Fields.crystal_limit=0
+Live.configure("permanent_fields",0)
 -- Moving placements pause while ghost/offline and retain heading across saves.
 local moving=shot("sleep_crystal");moving.speed=6;moving.field_drive=true
 execute({{projectiles={moving}}});local mover=placed[#placed]
@@ -122,7 +130,7 @@ local asleep_save={};sleeping_mover.OnSave(sleeping_mover,asleep_save)
 assert(asleep_save.placement.age==motion_save.placement.age and sleeping_mover.speed==0)
 sleeping_mover:Remove();owner.ghost=false
 -- An egg frees its entire pending subtree, stores no functions or entities,
--- and keeps both nested triggers and the rolled spread on save/load.
+-- and keeps nested templates and a private RNG seed across save/load.
 local arrow=shot("arrow");arrow.damage=37;arrow.flags={targets={hostile=true}};arrow.spread=7
 execute({{projectiles={shot("payload_egg",2)}},{projectiles={shot("payload_egg",3)}},{projectiles={arrow}}})
 local egg=placed[#placed]
@@ -132,7 +140,8 @@ local function serializable(data)
     if type(data)=="table" then for k,v in pairs(data) do serializable(k);serializable(v) end end
 end
 local eggsave={};egg.OnSave(egg,eggsave);serializable(eggsave)
-local angle=eggsave.placement.payload.angles[2][1][1]
+assert(not eggsave.placement.payload.angles and #eggsave.placement.payload.blocks==2)
+assert(eggsave.placement.payload.next_state.rng_state>0)
 tick(egg,250);assert(egg.valid)
 egg:Remove()
 local loaded=entity();Stored.install(loaded);loaded.OnLoad(loaded,Copy(eggsave))
@@ -140,20 +149,25 @@ loaded.x=8;loaded.z=3
 loaded._nw_break(owner);assert(not loaded.valid and Executor.stats()==0)
 local nested=placed[#placed]
 assert(nested~=egg and nested.valid)
+local nested_seed=nested._nw_stored.payload.next_state.rng_state
+local expected_rng=require("nw/rng").new(nested_seed):fork()
+local angle=(expected_rng:next()*2-1)*7*DEGREES
 nested._nw_break(owner);nested._nw_break(owner)
 assert(#fired==1 and fired[1].p.damage==37 and fired[1].p.flags.targets.hostile)
 assert(fired[1].x==8 and fired[1].z==3 and math.abs(fired[1].dx-math.cos(angle))<1e-9)
--- A saturated live-entity limit must keep the egg for a later retry.
+-- A saturated pool consumes the egg trigger but skips its new projectiles.
 execute({{projectiles={shot("payload_egg",2)}},{projectiles={shot("arrow"),shot("arrow")}}})
-egg=placed[#placed];Executor.set_projectile_limit(true)
+egg=placed[#placed];Executor.set_projectile_limit(25)
 local many={}
-for i=1,23 do many[i]=shot("held") end
+for i=1,25 do many[i]=shot("held") end
 execute({{projectiles=many}})
-egg._nw_break(owner);assert(egg.valid and not egg._nw_spent and Executor.stats()==23)
-held[1]();egg._nw_break(owner)
-assert(not egg.valid and #fired==3 and Executor.stats()==22)
+egg._nw_break(owner);assert(not egg.valid and egg._nw_spent and Executor.stats()==25 and #fired==1)
+held[1]()
+execute({{projectiles={shot("payload_egg",2)}},{projectiles={shot("arrow"),shot("arrow")}}})
+egg=placed[#placed];egg._nw_break(owner)
+assert(not egg.valid and #fired==2 and Executor.stats()==24,"partial payload uses the single available slot")
 for i=2,#held do held[i]() end
-assert(Executor.stats()==0);Executor.set_projectile_limit(false)
+assert(Executor.stats()==0);Executor.set_projectile_limit(0)
 -- The placer may have left this shard while their entity remains valid.
 -- Only the current triggerer owns the payload, including nested eggs.
 execute({{projectiles={shot("payload_egg",2)}},{projectiles={shot("payload_egg",3)}},{projectiles={shot("arrow")}}})
@@ -167,4 +181,28 @@ local third=entity("KU_next_triggerer");AllPlayers={third}
 next_egg._nw_break(third)
 assert(not next_egg.valid and fired[#fired].caster==third,"nested egg changes attribution on each trigger")
 assert(Executor.stats()==0)
+-- Real persistent-field save/load retains repeat counts, independent seeds and
+-- inherited secondary restrictions without expanding the stored payload.
+local leaf=shot("arrow");leaf.freeze=1;leaf.spread=7
+local repeated={next_state={rng_state=71},projectile_count=16,blocks={
+    {copies=4,copy_damage=.45,projectiles={shot("payload_egg",2)}},
+    {copies=3,projectiles={leaf}},
+}}
+local start=#placed
+assert(Executor.execute(repeated,third,0,0,1,0,1.4) and Executor.stats()==0)
+local first,second=placed[start+1],placed[start+2]
+local a,b=first._nw_stored.payload,second._nw_stored.payload
+assert(#a.blocks==1 and a.blocks[1].copies==3 and a.projectile_count==3)
+assert(a.payload_scale==.45 and not a.payload_secondary and b.payload_secondary)
+assert(a.next_state.rng_state~=b.next_state.rng_state and not a.angles and not b.angles)
+local saved={};second.OnSave(second,saved);serializable(saved);second:Remove()
+local again=entity();Stored.install(again);again.OnLoad(again,Copy(saved))
+local count=#fired
+first._nw_break(third);again._nw_break(third)
+assert(#fired==count+6 and Executor.stats()==0)
+for i=count+1,count+6 do
+    assert(math.abs(fired[i].p.damage-22*.45)<1e-9)
+    assert((fired[i].p.freeze~=nil)==(i<=count+3))
+end
+placed[start+3]:Remove();placed[start+4]:Remove()
 print("persistent fields: expiry, ghost/offline, reconnect, save/load, caps, motion, nested payloads, spread and budget retry")

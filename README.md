@@ -1,10 +1,10 @@
 # 织法之杖 · Spellwoven Wands
 
-**正式版 1.0.2 · 2026-11-08**
+**正式版 1.0.4 · 2026-11-10**
 
-[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.2)
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.4)
 
-1.0.2 新增「施法方向」设置：在游戏内「向导」中随时切换「目标选择」与「鼠标方向」，默认目标选择；设置保存在本机，仅对当前玩家生效。[完整更新说明](docs/releases/1.0.2.txt)
+1.0.4 适当优化施法性能，为性能设置提供默认限制；玩家可根据设备性能调整相关设置。[更新说明](docs/releases/1.0.4-public.txt) · [完整改动记录](docs/releases/1.0.4-commit.txt)
 
 收集随机法杖，自由编排法术卡，将战斗、工具与乐器组合进同一套玩法。支持中文与 English；房主启用，参与玩家安装。
 

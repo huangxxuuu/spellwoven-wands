@@ -21,4 +21,10 @@ w.data.runtime.remaining_cast=0;assert(w:CanCast(player));assert(calls==2)
 w:SetTestLoadout("double");assert(w:CanCast(player));local n=calls
 w.data.config_revision=w.data.config_revision+1;assert(w:CanCast(player));assert(calls==n+1)
 local saved=w:OnSave();w:OnLoad(saved);assert(w:CanCast(player));assert(calls==n+2)
-print("readiness cache: 1000 unchanged probes compile zero times; mana threshold/cooldown/config/load invalidation")
+local oldplan=assert(w:ReadyPlan())
+local Limits=require("nw/spell_limits");Limits.depth=1
+local before=calls
+assert(w:ReadyPlan()==oldplan and calls==before,"runtime emission limits must not invalidate the spell draw")
+assert(w:CanCast(player,oldplan),"emission limits must not reject an already prepared cast")
+Limits.depth=0
+print("readiness cache: draw remains valid across runtime emission-limit changes")

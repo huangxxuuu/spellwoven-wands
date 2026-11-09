@@ -13,7 +13,7 @@ local function tip(widget,text)
     if widget._nw_tip==text then return end
     widget._nw_tip=text
     widget:SetHoverText(text,{font_size=17,bg_atlas="images/global.xml",bg_texture="square.tex"})
-    widget.hovertext_bg:SetTint(.07,.06,.09,.96)
+    widget.hovertext_bg:SetTint(.055,.05,.045,1)
 end
 local Status=Class(Widget,function(self)
     Widget._ctor(self,"nw_wandstatus")

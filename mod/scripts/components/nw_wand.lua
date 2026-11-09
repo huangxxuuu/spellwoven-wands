@@ -15,10 +15,10 @@ function Wand:ReadyPlan()
     local mana=r.mana
     local c=self._ready_cache
     if not c or c.runtime~=r or c.revision~=d.config_revision or mana<c.low or mana>=c.high then
-        local plan,err=Compiler.compile(d,nil,{defer_copies=true})
+        local plan,err=Compiler.compile(d)
         if err=="DUPLICATE_CARD" and require("nw/card_identity").repair(d) then
             r=d.runtime
-            plan,err=Compiler.compile(d,nil,{defer_copies=true})
+            plan,err=Compiler.compile(d)
         end
         if plan then plan._source_runtime=r;plan._config_revision=d.config_revision end
         c={runtime=r,revision=d.config_revision,low=plan and plan.mana_required or math.floor(mana),

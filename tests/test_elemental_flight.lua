@@ -211,7 +211,7 @@ advance({{fast,10,0}},.5)
 assert(TheWorld._nw_elemental_flights.count==0,"a late frame does not emit a catch-up trail")
 retire()
 
--- Both kinds share a hard budget, while all heads continue to animate.
+-- Unlimited default retains all tails beyond the former 128-segment cap.
 local crowd={}
 for i=1,40 do crowd[i]=shot(i%2==0 and "fire" or "frost",i+20,i%2==0 and 100 or 1) end
 local peak=0
@@ -221,9 +221,9 @@ for _=1,30 do
     advance(moves)
     local count=TheWorld._nw_elemental_flights.count
     peak=math.max(peak,count)
-    assert(count<=128 and created-removed==count)
+    assert(count<=200 and created-removed==count)
 end
-assert(peak==128)
+assert(peak>128)
 for _,s in ipairs(crowd) do assert(s._visual.anim and s._visual.loop) end
 retire()
 
@@ -336,8 +336,9 @@ local newest=ordered_parts(cut)
 assert(newest[#newest].x>90)
 retire()
 
--- Keep new fronts for every arrow when the separate arrow budget fills;
--- ordinary spell fragments still have their original independent allowance.
+-- A shared admission limit skips births and lets old arrow/fire tails fade.
+local Budget=require("nw/trail_budget")
+Budget.configure(500)
 local arrows={}
 local protected=shot("fire",129)
 for index=1,8 do arrows[index]=shot("arrow",130+index) end
@@ -346,13 +347,12 @@ for _=1,30 do
     for _,s in ipairs(arrows) do moves[#moves+1]={s,25*FRAME,0} end
     advance(moves)
     local pool=TheWorld._nw_elemental_flights
-    assert(pool.arrow_count<=256 and pool.count-pool.arrow_count<=128 and pool.count<=384)
+    assert(pool.arrow_count<=pool.count and pool.count<=375)
     assert(created-removed==pool.count)
-    for _,s in ipairs(arrows) do connected(s,0) end
 end
-assert(TheWorld._nw_elemental_flights.arrow_count==256)
-assert(next(protected._nw_elemental_flight.parts),"short arrows must not starve other spell tails")
+assert(TheWorld._nw_elemental_flights.count>0 and TheWorld._nw_elemental_flights.count<=375)
 retire()
+Budget.configure(0)
 
 -- Scatter keeps big, medium and small ages visible together. GUID staggering
 -- offsets the three pellets instead of replacing one synchronized crumb.
