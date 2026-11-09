@@ -1,0 +1,77 @@
+{
+  "use": "local style and movement reference only; not shipped as mod art",
+  "game": "E:/SteamLibrary/steamapps/common/Don't Starve Together",
+  "prefab": "nightlight",
+  "body_bank_build": "nightmare_torch",
+  "body_clips": [
+    [
+      "nightmare_torch",
+      30.0,
+      1
+    ],
+    [
+      "idle",
+      30.0,
+      1
+    ],
+    [
+      "hit",
+      30.0,
+      11
+    ],
+    [
+      "place",
+      30.0,
+      17
+    ]
+  ],
+  "flame_prefab": "nightlight_flame",
+  "flame_bank_build": "campfire_fire",
+  "flame_symbol": "flames_wide",
+  "flame_clips": [
+    [
+      "level1",
+      30.0,
+      16
+    ],
+    [
+      "level1a",
+      30.0,
+      16
+    ],
+    [
+      "level2",
+      30.0,
+      16
+    ],
+    [
+      "level3",
+      30.0,
+      16
+    ],
+    [
+      "level4",
+      30.0,
+      16
+    ]
+  ],
+  "flame_mult_colour": [
+    0,
+    0,
+    0,
+    0.6
+  ],
+  "flame_attachment_symbol": "fire_marker",
+  "idle_attachment_native": [
+    5.35,
+    -290.6
+  ],
+  "loop": "16 animation frames / 30 fps; 8 drawings held for 2 frames each",
+  "transitions": "nightlight_flame firelevels only declare anim, no pre or pst; ignition starts loop directly and extinguish removes FX",
+  "source_scripts": [
+    "scripts/prefabs/nightlight.lua",
+    "scripts/prefabs/nightlight_flame.lua",
+    "scripts/components/firefx.lua"
+  ],
+  "custom_art_recommendation": "Preserve approved lamp cyan/lilac flame colours. Use 8 individually drawn flame poses in a 16-frame/30-fps loop. Add new ignition (ember to expanding flame) and extinguish (narrowing flame to wisp) clips since native nightlight has neither."
+}

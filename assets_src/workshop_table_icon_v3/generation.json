@@ -1,0 +1,57 @@
+{
+  "category": "宣传图",
+  "mode": "built-in image_gen",
+  "prompt": "prompt.txt",
+  "standards_read": [
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/01_宣传图规范.md"
+  ],
+  "references": [
+    {
+      "image": 1,
+      "path": "assets_src/workshop_table_icon_v2/source.png",
+      "role": "Edit target; preserve scene except ice-card geometry and complete wand."
+    },
+    {
+      "image": 2,
+      "path": "assets_src/workshop_table_icon_v3/wand_reference_horizontal.png",
+      "role": "Complete actual mod wand, rotated rigidly 90 degrees counterclockwise from assets_src/mod_icon_v2/revision_04/wand_reference.png. Preserve axis, connections and proportions."
+    },
+    {
+      "image": 3,
+      "path": "assets_src/workshop_table_icon_v3/hex_geometry_reference.png",
+      "role": "Mathematical regular pointy-top hexagon guide; six equal sides, top/bottom vertices and vertical left/right sides. Center (300,300), circumradius 250, vertex angles -90+60*i; inner circumradii 237 and 228."
+    }
+  ],
+  "outputs": {
+    "source": {
+      "path": "source.png",
+      "width": 1254,
+      "height": 1254
+    },
+    "workshop": {
+      "path": "preview_512.png",
+      "width": 512,
+      "height": 512
+    },
+    "thumbnail": {
+      "path": "preview_256.png",
+      "width": 256,
+      "height": 256
+    }
+  },
+  "review": {
+    "sizes_checked": [
+      1254,
+      512,
+      256
+    ],
+    "independent_review": true,
+    "findings": [
+      "Ice-card silhouette corrected to pointy-top regular hexagon with consistent inset borders.",
+      "Crystal, gold socket, shaft and blue pommel aligned as one complete wand.",
+      "No forced card contact or branch; middle shaft has a narrow visible clearance above the tabletop and offset cast shadow."
+    ]
+  }
+}

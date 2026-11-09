@@ -1,0 +1,23 @@
+官方参考与本次应用
+
+Klei 官网室内暗场宣传图
+官方页面：https://www.klei.com/games/dont-starve-together/
+原图：https://assets.klei.com/f/259446/1920x1080/cc6431b02f/ds-feature.jpg
+本地：references/klei_dst_feature.jpg
+本次参考职责：环境压暗、保留局部亮区；不复制纹理和人物。
+
+Wilson in the Constant
+官方页面：https://www.klei.com/games/dont-starve/
+原图：https://assets.klei.com/f/259446/900x544/1c721c36ba/don-t-starve-wilson-constant.png
+本地：references/klei_wilson_constant.png
+本次参考职责：暗紫环境与重点亮面层次。
+
+Depths of Duplicity
+官方页面：https://www.klei.com/games/dont-starve-together/
+原图：https://assets.klei.com/f/259446/2800x1575/4fedf7a45a/dst_depths-of-duplicity_update.png
+本地：references/klei_depths_of_duplicity.png
+本次参考职责：冷色暗部和少量暖色受光边。
+
+画面分析为本次目视观察：整体采用深灰褐与暗紫环境，左上已有烛火形成克制的暖亮区域，中央卡组与书名保留识别对比。只借鉴光色组织，不复制官方图中的人物、场景、文字、商标或纹理。
+中文版以v6/zh为原图；英文标题形象沿用v5/en，并匹配本轮中文暗色场景。
+

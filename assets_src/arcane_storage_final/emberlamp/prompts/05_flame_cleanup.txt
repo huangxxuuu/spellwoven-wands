@@ -1,0 +1,5 @@
+Use case: background-extraction
+Asset type: exact eight-frame fire sprite sheet cleanup, transparent RGBA.
+CHANGE ONLY: remove ALL the glow, all halos, all soft blurred colored light, all background. Each of the eight flames must be an isolated SHARP-EDGED CUTOUT on genuine transparent alpha=0 background. Every pixel outside the hard silhouette and its antialiased edge must be completely transparent. There must be ZERO aura or blurred light. Preserve only the crisp solid-colored flame tongues. Do not retain the wide dark turquoise glow, purple underglow or ivory glow at tips. None of the black preview background may remain. No ground shadow.
+KEEP exactly: eight flames, all eight distinct silhouette drawings, cyan/teal/lilac/ivory palette, exact positions and scale, 4x2 grid, sprite alignment, solid color shapes inside each flame and the small detached flame tip in the fourth cell.
+No hardware, no bowl, no text, no frame or grid. This is a technical cleanup for crisp game sprites, not a luminous illustration.

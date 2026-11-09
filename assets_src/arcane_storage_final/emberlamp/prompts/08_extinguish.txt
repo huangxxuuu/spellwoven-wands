@@ -1,0 +1,12 @@
+Use case: stylized-concept
+Asset type: six-frame EXTINGUISH animation sheet, independent flame layer for a Don't Starve Together world lamp.
+Image1 is the accepted flame-loop sprite sheet: preserve exact teal/cyan, mint, lilac and ivory paint colors and nested tongue design. Image2 is the ignition sheet to match the rendering. No lamp hardware or fuel.
+One sheet, EXACTLY SIX keyframes in 3 columns by 2 rows, chronological reading order. Every cell same size, root fixed at bottom center with generous margin. Only the sharp-edged flame cutout in each cell, truly transparent everywhere else.
+Frame1: regular stable medium cyan flame with curved tips and lilac/ivory core, same as first loop drawing.
+Frame2: flame bends right and contracts to 80 percent height, tip losing ivory.
+Frame3: lower forked cyan flame at 55 percent height, lilac core spreads wider.
+Frame4: low lilac ember tuft with one thin mint tongue, 30 percent height.
+Frame5: tiny curling purple and teal wisp bent left, 15 percent height.
+Frame6: minute violet ember fleck at root, 5 percent height.
+These are six handdrawn changing silhouettes, not the same shape uniformly scaled. Diminish organically, retain root location. No diffuse fog or smoke cloud. Absolutely no luminous aura, no glow, no bloom or ground shadow. Use only flat solid color planes and shaped highlights.
+Prioritize original DST handdrawn 2D art norms: intentional curved silhouette, variable ink contour, sparse interior details, no realistic fire, no 3D, no grain, no perfect vector duplication. Transparent RGBA background, no labels, numbers, gridlines, border or other object.

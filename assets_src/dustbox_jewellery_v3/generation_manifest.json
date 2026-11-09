@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-09",
+  "status": "appearance_approved_full_art_generated",
+  "approval_note": "用户确认首饰盒外观，并于2026-11-09授权生成全部素材及三档存量、开合动画。",
+  "production_assets": "../arcane_storage_final/dustbox/",
+  "method": "built-in image_gen",
+  "asset": "dustbox_jewellery_appearance.png",
+  "original_source": "C:\\Users\\85183\\.codex\\generated_images\\01a1be89-b794-7b21-a943-863736c7c8bb\\exec-ba0d0e70-934a-47db-ace4-a93620b6a675.png",
+  "prompt": "prompt.txt",
+  "size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "input_images": [
+    {
+      "path": "references/oval_jewellery_lining.jpg",
+      "role": "shape and shallow jewellery box construction"
+    },
+    {
+      "path": "../../test_reports/native_style_reference/items_contact.png",
+      "role": "primary native DST style"
+    },
+    {
+      "path": "../arcane_storage_v2/originals/emberlamp_appearance.png",
+      "role": "approved lamp, secondary material and palette only"
+    }
+  ],
+  "checks": [
+    "one complete open jewellery case",
+    "thin lid and shallow footless body",
+    "single dust compartment",
+    "small clasp, no heavy chest bands",
+    "corners fully transparent"
+  ],
+  "scope": "Only one appearance image; no additional state images, animation, runtime changes or install."
+}

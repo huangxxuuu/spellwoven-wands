@@ -1,0 +1,277 @@
+{
+  "asset": "emberlamp_extinguish_r2",
+  "category": "world_animation_part",
+  "source": "originals/r2_extinguish.png",
+  "prompt": "prompts/r2_extinguish.txt",
+  "source_sha256": "7735700bccba33b80fee5261fa69894c2224bf0a3161af9e80755683ada8e30b",
+  "source_generated_file": "exec-aa4d399f-6847-4a9f-8e19-c6320bb56f11.png",
+  "source_size": [
+    1586,
+    992
+  ],
+  "source_cell_size": [
+    397,
+    496
+  ],
+  "canvas": [
+    128,
+    160
+  ],
+  "anchor": [
+    65,
+    143
+  ],
+  "source_anchor": [
+    201,
+    444
+  ],
+  "steady_first_frame_bounds": [
+    29,
+    40,
+    102,
+    143
+  ],
+  "steady_first_frame_dimensions": [
+    73,
+    103
+  ],
+  "fps": 30,
+  "frame_indices": [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8
+  ],
+  "duration_seconds": 0.6,
+  "frames": [
+    {
+      "index": 0,
+      "path": "layers\\r2_extinguish_00.png",
+      "source_cell": [
+        0,
+        0,
+        397,
+        496
+      ],
+      "alpha_bounds": [
+        29,
+        40,
+        102,
+        143
+      ],
+      "occupied_pixels": 4102,
+      "bottom": 143,
+      "centroid": [
+        65.9,
+        101.88
+      ]
+    },
+    {
+      "index": 1,
+      "path": "layers\\r2_extinguish_01.png",
+      "source_cell": [
+        396,
+        0,
+        793,
+        496
+      ],
+      "alpha_bounds": [
+        28,
+        30,
+        102,
+        143
+      ],
+      "occupied_pixels": 3034,
+      "bottom": 143,
+      "centroid": [
+        65.35,
+        90.66
+      ]
+    },
+    {
+      "index": 2,
+      "path": "layers\\r2_extinguish_02.png",
+      "source_cell": [
+        793,
+        0,
+        1190,
+        496
+      ],
+      "alpha_bounds": [
+        29,
+        24,
+        99,
+        128
+      ],
+      "occupied_pixels": 2271,
+      "bottom": 128,
+      "centroid": [
+        64.32,
+        82.55
+      ]
+    },
+    {
+      "index": 3,
+      "path": "layers\\r2_extinguish_03.png",
+      "source_cell": [
+        1190,
+        0,
+        1587,
+        496
+      ],
+      "alpha_bounds": [
+        31,
+        13,
+        98,
+        113
+      ],
+      "occupied_pixels": 1491,
+      "bottom": 113,
+      "centroid": [
+        64.13,
+        68.56
+      ]
+    },
+    {
+      "index": 4,
+      "path": "layers\\r2_extinguish_04.png",
+      "source_cell": [
+        0,
+        496,
+        397,
+        992
+      ],
+      "alpha_bounds": [
+        40,
+        24,
+        80,
+        85
+      ],
+      "occupied_pixels": 459,
+      "bottom": 85,
+      "centroid": [
+        60.29,
+        54.65
+      ]
+    },
+    {
+      "index": 5,
+      "path": "layers\\r2_extinguish_05.png",
+      "source_cell": [
+        396,
+        496,
+        793,
+        992
+      ],
+      "alpha_bounds": [
+        49,
+        24,
+        78,
+        63
+      ],
+      "occupied_pixels": 191,
+      "bottom": 63,
+      "centroid": [
+        62.56,
+        43.49
+      ]
+    },
+    {
+      "index": 6,
+      "path": "layers\\r2_extinguish_06.png",
+      "source_cell": [
+        793,
+        496,
+        1190,
+        992
+      ],
+      "alpha_bounds": [
+        54,
+        21,
+        77,
+        46
+      ],
+      "occupied_pixels": 59,
+      "bottom": 46,
+      "centroid": [
+        64.41,
+        33.14
+      ]
+    },
+    {
+      "index": 7,
+      "path": "layers\\r2_extinguish_07.png",
+      "source_cell": [
+        1190,
+        496,
+        1587,
+        992
+      ],
+      "alpha_bounds": [
+        66,
+        17,
+        71,
+        24
+      ],
+      "occupied_pixels": 18,
+      "bottom": 24,
+      "centroid": [
+        67.72,
+        19.83
+      ]
+    },
+    {
+      "index": 8,
+      "path": "layers/r2_extinguish_08.png",
+      "transparent_terminal_frame": true
+    }
+  ],
+  "registration": "All PNGs retain the full same-size cell and same anchor. No per-frame cropping to alpha bounds, resizing to different heights, shifting to bottom or recentering is allowed.",
+  "world_example": {
+    "uniform_scale": 0.42,
+    "root": [
+      174,
+      194
+    ],
+    "resized_canvas": [
+      54,
+      67
+    ],
+    "offset": [
+      147,
+      134
+    ]
+  },
+  "motion": "Root pinches, detaches into rising curled tongues, fragments thin and disappear upward. Bottom edge rises monotonically; this is not downward compression.",
+  "alpha": "Only <=8 near-zero generator alpha noise removed for exports; source unchanged.",
+  "checks": {
+    "same_canvas": true,
+    "bottom_moves_upward": true,
+    "bottoms": [
+      143,
+      143,
+      128,
+      113,
+      85,
+      63,
+      46,
+      24
+    ],
+    "terminal_empty": true
+  },
+  "integration": "Use the same transform for all nine frames. Parent may choose one constant scale per fuel state, never a different frame size. Match frame 0 to a normal loop pose, append terminal transparent frame."
+}

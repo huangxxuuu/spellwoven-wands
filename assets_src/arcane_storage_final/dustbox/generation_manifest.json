@@ -1,0 +1,252 @@
+{
+  "date": "2026-11-09",
+  "method": "built-in image_gen",
+  "approved_identity": "assets_src/dustbox_jewellery_v3/dustbox_jewellery_appearance.png",
+  "status": "complete art package; staged, no gameplay integration",
+  "sources": [
+    {
+      "file": "originals/open_half.png",
+      "prompt": "prompts/00_approved_open_half.txt",
+      "source": "assets_src/dustbox_jewellery_v3/dustbox_jewellery_appearance.png",
+      "role": "approved existing appearance",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "0857e862ae4e2420f335653e646802718e54417e19b98b0bdccde77cdf10e268"
+    },
+    {
+      "file": "originals/open_empty.png",
+      "prompt": "prompts/01_world_empty.txt",
+      "source": "exec-fb2166ce-7ff0-414c-ab58-80ca181f7d6e.png",
+      "role": "world empty",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "cdd38a352f9eeb8f37060122935e2f5ca20680dba32ac3c18b59f07dc01532db"
+    },
+    {
+      "file": "originals/open_full.png",
+      "prompt": "prompts/02_world_full.txt",
+      "source": "exec-e74de38b-2f37-435a-b09e-964068e22ca5.png",
+      "role": "world full",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "c0e82a5fe396e01c6f9405f39b5ed77366e2d814b9eafc85f29245710a4d3194"
+    },
+    {
+      "file": "originals/closed.png",
+      "prompt": "prompts/03_world_closed.txt",
+      "source": "exec-c294c6f5-0a51-4c7d-a42a-a94ac4375018.png",
+      "role": "world closed",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "eccca768525c3a099711ac9e4a790c820ffa853b1be8256325c49a318cbfda64",
+      "status": "superseded_by_r2_volume_correction; preserved for provenance"
+    },
+    {
+      "file": "originals/icon_closed.png",
+      "prompt": "prompts/04_inventory_closed.txt",
+      "source": "exec-2dec5ca9-2aa7-4b01-93af-e70a9e769af9.png",
+      "role": "inventory closed",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "c642308747159c9cca829f3e8b09d929bcd044f4372524f1642f3a5e9e2917b6",
+      "status": "superseded_by_r2_volume_correction; preserved for provenance"
+    },
+    {
+      "file": "originals/icon_open_empty.png",
+      "prompt": "prompts/05_inventory_open_empty.txt",
+      "source": "exec-2351120d-4d5e-4a6d-8698-1e600e83974b.png",
+      "role": "inventory empty",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "4a35126b5bdf4b378e892db83eb99256c0a0d6a194b524373c5e90e12cba65d0"
+    },
+    {
+      "file": "originals/icon_open_half.png",
+      "prompt": "prompts/06_inventory_open_half.txt",
+      "source": "exec-eda05263-a383-49d7-a3ec-f297b3290ccd.png",
+      "role": "inventory half",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "e15e63df830c70d8cb0ba3b053de0e3c70e1f44fe1f98f4adc0de80d33eabd51"
+    },
+    {
+      "file": "originals/icon_open_full.png",
+      "prompt": "prompts/07_inventory_open_full.txt",
+      "source": "exec-31f54bd1-2e86-41f5-8e6c-b0ddeee61065.png",
+      "role": "inventory full",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "42871997f113a3e0530f7047438b8de5a6b5a4507f6d8c7962fe0a7b0a9f706d"
+    },
+    {
+      "file": "originals/r2_closed_volume.png",
+      "prompt": "prompts/r2_01_world_closed_volume.txt",
+      "source": "exec-ff7c6e8b-2cd9-48d1-a38f-ba13f76b5178.png",
+      "role": "world closed solid octagonal lid",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "94d3b70cc7bc69d262b8bb0f9b13f88001c4acdea08f34c0eff061646426aa52"
+    },
+    {
+      "file": "originals/r2_icon_closed_volume.png",
+      "prompt": "prompts/r2_02_inventory_closed_volume.txt",
+      "source": "exec-55762e55-a8ba-4f82-a6ef-23438320da27.png",
+      "role": "dedicated closed inventory icon with cap volume",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "d789511d9e97bdf4d5221e8a5c42c89a8fb741bb744ab8c154133a187c11dec7"
+    },
+    {
+      "file": "originals/r2_lid_edge_pose.png",
+      "prompt": "prompts/r2_03_world_lid_edge_pose.txt",
+      "source": "exec-e2a9646e-d4d3-4375-91e6-3ba1b4e3dd52.png",
+      "role": "intermediate-angle visual construction reference; runtime uses split face and edge projection",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "7b72df0e764ef78767cc8e35e61444f5017d52d3049bec44b73003a3a1a5c099"
+    },
+    {
+      "file": "originals/r2_ground_ink_shadow.png",
+      "prompt": "prompts/r2_04_ground_ink_shadow.txt",
+      "source": "exec-2887afea-42c2-473f-ac19-a1fba468f610.png",
+      "role": "independent contact shadow in original Polar Bearger Bin brush style",
+      "dimensions": [
+        2164,
+        726
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "af8be67e2655d665d6b3b5fd5f29a2b00c99883e7a19a675d6dafe730b8759ea"
+    },
+    {
+      "file": "concepts/lid_alignment_r3/closed_aligned.png",
+      "prompt": "concepts/lid_alignment_r3/prompt.txt",
+      "source": "C:/Users/85183/.codex/generated_images/01a1be89-b794-7b21-a943-863736c7c8bb/exec-cd7d8663-6f5a-4122-8458-ad9cc5086aba.png",
+      "role": "user-approved closed rear-outline correction reference; runtime retains existing two-sided cap and masks stationary rear rim",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "96849be01a7cbaee7b807a716bf5cb7a3c5c171621f56021a1d622dac98da4b9"
+    }
+  ],
+  "read_specs": [
+    "AGENTS.md",
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/02_游戏内建筑规范.md",
+    "docs/art/03_游戏内物品栏贴图规范.md"
+  ],
+  "roles": {
+    "world style": "test_reports/native_style_reference/buildings_contact.png",
+    "inventory style": "test_reports/native_style_reference/inventory/inventory_contact.png",
+    "ground style": "test_reports/arcane_storage_native/r2_bearger/ground_world_pose.png, exact native bank/build beargerfur_sack ground symbol"
+  },
+  "derived_by": "tools/build_dustbox_jewellery_art.py",
+  "revision": "r3_closed_rear_rim_occlusion",
+  "revision_specs_read_again": true,
+  "changes": [
+    "Hide rear gold rim and hinge remnants protruding beyond the nearly closed cap at 0 and 4 degrees.",
+    "Keep all 11-degree-and-later poses, full-open fill states, raised cap volume, anchor, scale, ink shadow and inventory artwork unchanged.",
+    "Regenerate all three fill-state clips; close reverses the same 13 frames at 30 fps.",
+    "Preserve portable asset_directory lookup and versioned R2 previews; add R3 previews and occlusion checks."
+  ],
+  "revision_history": [
+    {
+      "revision": "r2_raised_octagonal_lid_and_native_ink_shadow",
+      "changes": [
+        "Closed cap gains raised octagonal face, bevel and side wall.",
+        "Runtime projects face and edge depth independently; full open approved identity remains.",
+        "One generated irregular ink shadow replaces ellipse in runtime frames and previews.",
+        "Engine DynamicShadow must be disabled on future integration; no gameplay/mod changes in this art task."
+      ]
+    }
+  ],
+  "revision_method": "No new image generation for animation. Split existing body rear rim and front body, then mask rear rim and contents behind current cap silhouette only at 0/4 degrees. Keep generated originals unchanged.",
+  "approved_closed_reference": "concepts/lid_alignment_r3/closed_aligned.png"
+}

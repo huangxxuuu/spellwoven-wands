@@ -1,0 +1,98 @@
+{
+  "category": "宣传图",
+  "mode": "built-in image_gen",
+  "standards_read": [
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/01_宣传图规范.md"
+  ],
+  "official_reference_sources": [
+    {
+      "name": "Klei 官网室内暗场宣传图",
+      "page": "https://www.klei.com/games/dont-starve-together/",
+      "url": "https://assets.klei.com/f/259446/1920x1080/cc6431b02f/ds-feature.jpg",
+      "file": "references/klei_dst_feature.jpg",
+      "role": "环境压暗、保留局部亮区；不复制纹理和人物。"
+    },
+    {
+      "name": "Wilson in the Constant",
+      "page": "https://www.klei.com/games/dont-starve/",
+      "url": "https://assets.klei.com/f/259446/900x544/1c721c36ba/don-t-starve-wilson-constant.png",
+      "file": "references/klei_wilson_constant.png",
+      "role": "暗紫环境与重点亮面层次。"
+    },
+    {
+      "name": "Depths of Duplicity",
+      "page": "https://www.klei.com/games/dont-starve-together/",
+      "url": "https://assets.klei.com/f/259446/2800x1575/4fedf7a45a/dst_depths-of-duplicity_update.png",
+      "file": "references/klei_depths_of_duplicity.png",
+      "role": "冷色暗部和少量暖色受光边。"
+    }
+  ],
+  "variants": {
+    "zh": {
+      "prompt": "zh/prompt.txt",
+      "source": "zh/source.png",
+      "workshop": "zh/preview_512.png",
+      "thumbnail": "zh/preview_256.png",
+      "references": [
+        {
+          "image": 1,
+          "path": "assets_src/workshop_table_icon_v6/zh/source.png",
+          "role": "Latest approved Chinese edit target."
+        },
+        {
+          "image": 2,
+          "path": "assets_src/workshop_table_icon_v7/references/klei_dst_feature.jpg",
+          "role": "环境压暗、保留局部亮区；不复制纹理和人物。"
+        },
+        {
+          "image": 3,
+          "path": "assets_src/workshop_table_icon_v7/references/klei_wilson_constant.png",
+          "role": "暗紫环境与重点亮面层次。"
+        },
+        {
+          "image": 4,
+          "path": "assets_src/workshop_table_icon_v7/references/klei_depths_of_duplicity.png",
+          "role": "冷色暗部和少量暖色受光边。"
+        }
+      ]
+    },
+    "en": {
+      "prompt": "en/prompt.txt",
+      "source": "en/source.png",
+      "workshop": "en/preview_512.png",
+      "thumbnail": "en/preview_256.png",
+      "references": [
+        {
+          "image": 1,
+          "path": "assets_src/workshop_table_icon_v7/zh/source.png",
+          "role": "Matched dark lighting and composition; edit title only."
+        },
+        {
+          "image": 2,
+          "path": "assets_src/workshop_table_icon_v5/en/source.png",
+          "role": "Latest approved English glyphs, spelling, placement; original bright lighting not copied."
+        }
+      ]
+    }
+  },
+  "source_dimensions": [
+    1254,
+    1254
+  ],
+  "review": {
+    "sizes_checked": [
+      1254,
+      512,
+      256
+    ],
+    "independent_review": true,
+    "findings": [
+      "Dark purple/grey-brown environment and localized warm candle light visibly deepen mood.",
+      "Chinese and English titles verified; latest approved Chinese letterform design retained.",
+      "Cards, card symbols, green wand head and native materials remain readable at thumbnail sizes.",
+      "Correct hexagon, diagonal coaxial wand, shaft clearance, closed upright book support and dust contacts preserved."
+    ]
+  }
+}

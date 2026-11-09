@@ -1,4 +1,6 @@
-[h1]织法之杖：你的下一发法术，由你编织[/h1]
+[h1]织法之杖：给 Boss 一点 Noita 震撼[/h1]
+[b]收集法杖，排列法术卡，把追踪、触发和多重施法编成自己的连招。[/b]
+
 [b]1.0.0 正式版现已发布[/b]
 [url=https://huangxxuuu.github.io/spellwoven-wands/]中文资料站与完整法术图鉴[/url]　|　[url=https://github.com/huangxxuuu/spellwoven-wands/issues]问题反馈[/url]
 

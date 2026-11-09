@@ -1,4 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="128" height="128">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 0 72 72" width="144" height="144">
+<!-- World-only ink footprint: bottle occludes the dense centre. -->
+<g id="ground-shadow" fill="#211b20">
+<path d="m4 56.8 12.7-.7 5.8.5-8.4.5-5.6.3z m39.7.2 13.6-.8 5.3.6-9.1.7-7.5.2z" opacity=".66"/>
+<path d="m7 59.3 9.5-1 12.2.5 10.7-1.2 13.7.6 4.6.9-10.5.5 5.5.8-13.7 1.3-12.9-.2-6.7-1-10 .1 3.7-.7z"/>
+<path d="m3.1 61.5 8.8-.6 4.8.4-7.1.5z m43.8.7 13.8-.7-3 1.1-8.8.4z" opacity=".8"/>
+<path d="m12.2 63 13.4-.6 7.8.5-4.6.6-12.5.2z m24.3.6 10.5-.5 5.4.4-8.3.7z"/>
+<path d="m6.4 64.2 5.9-.3 3 .4-6.5.3z m15.7 1.4 12.6-.4 5.4.6-10.8.4z m28.1-.5 7-.3 2.6.4-6.2.4z" opacity=".57"/>
+</g>
 <g stroke="#231b25" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round">
 <path fill="#66505e" d="m20 6 14-4 5 9-4 3 2 8c12 2 20 14 20 24-1 8-9 14-21 15C20 62 9 57 8 47c-2-9 4-18 14-24l-1-9-3-2z"/>
 <path fill="#ced5cc" d="m24 14 7-2 2 13c12 2 20 14 19 22-1 7-8 11-18 12-13 1-22-4-23-12-1-7 4-17 15-21z"/>

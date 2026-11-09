@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "bank": "nw_dustbox",
+  "canvas": [
+    160,
+    160
+  ],
+  "anchor": [
+    80,
+    148
+  ],
+  "clips": {
+    "closed_empty": {
+      "fps": 30,
+      "frames": [
+        "world/closed_empty.png"
+      ]
+    },
+    "opened_empty": {
+      "fps": 30,
+      "frames": [
+        "world/opened_empty.png"
+      ]
+    },
+    "open_empty": {
+      "fps": 30,
+      "frames": [
+        "world/open_empty_00.png",
+        "world/open_empty_01.png",
+        "world/open_empty_02.png",
+        "world/open_empty_03.png",
+        "world/open_empty_04.png",
+        "world/open_empty_05.png",
+        "world/open_empty_06.png",
+        "world/open_empty_07.png",
+        "world/open_empty_08.png",
+        "world/open_empty_09.png",
+        "world/open_empty_10.png",
+        "world/open_empty_11.png",
+        "world/open_empty_12.png"
+      ]
+    },
+    "close_empty": {
+      "fps": 30,
+      "frames": [
+        "world/open_empty_12.png",
+        "world/open_empty_11.png",
+        "world/open_empty_10.png",
+        "world/open_empty_09.png",
+        "world/open_empty_08.png",
+        "world/open_empty_07.png",
+        "world/open_empty_06.png",
+        "world/open_empty_05.png",
+        "world/open_empty_04.png",
+        "world/open_empty_03.png",
+        "world/open_empty_02.png",
+        "world/open_empty_01.png",
+        "world/open_empty_00.png"
+      ]
+    },
+    "closed_half": {
+      "fps": 30,
+      "frames": [
+        "world/closed_half.png"
+      ]
+    },
+    "opened_half": {
+      "fps": 30,
+      "frames": [
+        "world/opened_half.png"
+      ]
+    },
+    "open_half": {
+      "fps": 30,
+      "frames": [
+        "world/open_half_00.png",
+        "world/open_half_01.png",
+        "world/open_half_02.png",
+        "world/open_half_03.png",
+        "world/open_half_04.png",
+        "world/open_half_05.png",
+        "world/open_half_06.png",
+        "world/open_half_07.png",
+        "world/open_half_08.png",
+        "world/open_half_09.png",
+        "world/open_half_10.png",
+        "world/open_half_11.png",
+        "world/open_half_12.png"
+      ]
+    },
+    "close_half": {
+      "fps": 30,
+      "frames": [
+        "world/open_half_12.png",
+        "world/open_half_11.png",
+        "world/open_half_10.png",
+        "world/open_half_09.png",
+        "world/open_half_08.png",
+        "world/open_half_07.png",
+        "world/open_half_06.png",
+        "world/open_half_05.png",
+        "world/open_half_04.png",
+        "world/open_half_03.png",
+        "world/open_half_02.png",
+        "world/open_half_01.png",
+        "world/open_half_00.png"
+      ]
+    },
+    "closed_full": {
+      "fps": 30,
+      "frames": [
+        "world/closed_full.png"
+      ]
+    },
+    "opened_full": {
+      "fps": 30,
+      "frames": [
+        "world/opened_full.png"
+      ]
+    },
+    "open_full": {
+      "fps": 30,
+      "frames": [
+        "world/open_full_00.png",
+        "world/open_full_01.png",
+        "world/open_full_02.png",
+        "world/open_full_03.png",
+        "world/open_full_04.png",
+        "world/open_full_05.png",
+        "world/open_full_06.png",
+        "world/open_full_07.png",
+        "world/open_full_08.png",
+        "world/open_full_09.png",
+        "world/open_full_10.png",
+        "world/open_full_11.png",
+        "world/open_full_12.png"
+      ]
+    },
+    "close_full": {
+      "fps": 30,
+      "frames": [
+        "world/open_full_12.png",
+        "world/open_full_11.png",
+        "world/open_full_10.png",
+        "world/open_full_09.png",
+        "world/open_full_08.png",
+        "world/open_full_07.png",
+        "world/open_full_06.png",
+        "world/open_full_05.png",
+        "world/open_full_04.png",
+        "world/open_full_03.png",
+        "world/open_full_02.png",
+        "world/open_full_01.png",
+        "world/open_full_00.png"
+      ]
+    }
+  },
+  "aliases": {
+    "closed": "closed_empty",
+    "open": "open_half",
+    "opened": "opened_half",
+    "close": "close_half"
+  },
+  "icons": {
+    "nw_dustbox": "inventory/nw_dustbox.png",
+    "nw_dustbox_open_empty": "inventory/nw_dustbox_open_empty.png",
+    "nw_dustbox_open_half": "inventory/nw_dustbox_open_half.png",
+    "nw_dustbox_open_full": "inventory/nw_dustbox_open_full.png",
+    "nw_dustbox_open": "inventory/nw_dustbox_open.png"
+  },
+  "shadow": {
+    "mode": "baked",
+    "layer": "parts/r2_ground_shadow.png",
+    "engine_dynamic_shadow": false,
+    "reference": "test_reports/arcane_storage_native/r2_bearger/ground_world_pose.png",
+    "note": "Single generated ink-contact layer in world frames; disable DynamicShadow on integration. Icons contain no ground shadow."
+  },
+  "source_canvas": [
+    1254,
+    1254
+  ],
+  "source_anchor": [
+    627,
+    1048
+  ],
+  "runtime_scale_from_source": 0.125,
+  "lid_angles_degrees": [
+    0,
+    4,
+    11,
+    22,
+    36,
+    51,
+    65,
+    78,
+    88,
+    95,
+    98,
+    97,
+    96
+  ],
+  "revision": "r3_closed_rear_rim_occlusion",
+  "approved_closed_reference": "concepts/lid_alignment_r3/closed_aligned.png",
+  "rear_occlusion": {
+    "affected_angles": [
+      0,
+      4
+    ],
+    "restored_from_angle": 11,
+    "parts": [
+      "parts/r3_body_front.png",
+      "parts/r3_rear_rim.png"
+    ],
+    "method": "Clip the rear body/contents behind the projected cap silhouette; preserve face and edge geometry."
+  },
+  "lid_volume": "Face foreshortening and physical edge depth are sampled separately; depth does not collapse at camera-plane crossing.",
+  "fill_semantics": "Empty/half/full are illustrative content-depth states, not finite storage capacity.",
+  "integration": "Staged art only; no gameplay thresholds or prefab changes."
+}

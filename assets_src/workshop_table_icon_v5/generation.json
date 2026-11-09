@@ -1,0 +1,95 @@
+{
+  "category": "宣传图",
+  "mode": "built-in image_gen",
+  "standards_read": [
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/01_宣传图规范.md"
+  ],
+  "lettering_notes": "lettering_notes.txt",
+  "variants": {
+    "zh": {
+      "prompt": "zh/prompt.txt",
+      "text": [
+        "织法",
+        "之杖"
+      ],
+      "source": "zh/source.png",
+      "workshop": "zh/preview_512.png",
+      "thumbnail": "zh/preview_256.png",
+      "references": [
+        {
+          "image": 1,
+          "path": "assets_src/workshop_table_icon_v4/source.png",
+          "role": "Edit target and established scene."
+        },
+        {
+          "image": 2,
+          "path": "C:/Users/85183/.codex/codex-remote-attachments/01a1beb4-210c-7f91-8c6e-6ce3a584e560/D3DAF6A9-BA9D-4EF1-8BDF-C5D3DB497A2A/5-照片-5.jpg",
+          "role": "Closed upright book construction and support sketch."
+        },
+        {
+          "image": 3,
+          "path": "C:/Users/85183/.codex/codex-remote-attachments/01a1beb4-210c-7f91-8c6e-6ce3a584e560/D3DAF6A9-BA9D-4EF1-8BDF-C5D3DB497A2A/2-照片-2.jpg",
+          "role": "Chinese lettering style."
+        },
+        {
+          "image": 4,
+          "path": "C:/Users/85183/.codex/codex-remote-attachments/01a1beb4-210c-7f91-8c6e-6ce3a584e560/D3DAF6A9-BA9D-4EF1-8BDF-C5D3DB497A2A/4-照片-4.jpg",
+          "role": "Angular hand-drawn title language."
+        },
+        {
+          "image": 5,
+          "path": "C:/Users/85183/.codex/codex-remote-attachments/01a1beb4-210c-7f91-8c6e-6ce3a584e560/D3DAF6A9-BA9D-4EF1-8BDF-C5D3DB497A2A/1-照片-1.jpg",
+          "role": "Hand-drawn stroke gesture only; no dense scratch texture."
+        }
+      ]
+    },
+    "en": {
+      "prompt": "en/prompt.txt",
+      "text": [
+        "Spellwoven",
+        "Wands"
+      ],
+      "source": "en/source.png",
+      "workshop": "en/preview_512.png",
+      "thumbnail": "en/preview_256.png",
+      "references": [
+        {
+          "image": 1,
+          "path": "assets_src/workshop_table_icon_v5/zh/source.png",
+          "role": "Approved structure; replace only Chinese title with English."
+        },
+        {
+          "image": 2,
+          "path": "C:/Users/85183/.codex/codex-remote-attachments/01a1beb4-210c-7f91-8c6e-6ce3a584e560/D3DAF6A9-BA9D-4EF1-8BDF-C5D3DB497A2A/4-照片-4.jpg",
+          "role": "English narrow tall angular lettering."
+        },
+        {
+          "image": 3,
+          "path": "C:/Users/85183/.codex/codex-remote-attachments/01a1beb4-210c-7f91-8c6e-6ce3a584e560/D3DAF6A9-BA9D-4EF1-8BDF-C5D3DB497A2A/1-照片-1.jpg",
+          "role": "Controlled irregular lettering gesture."
+        }
+      ]
+    }
+  },
+  "source_dimensions": [
+    1254,
+    1254
+  ],
+  "validation": {
+    "sizes_viewed": [
+      1254,
+      512,
+      256
+    ],
+    "independent_review": true,
+    "text_checked": true,
+    "notes": [
+      "Chinese title and English title verified character by character.",
+      "Closed book, page block, clasp, corner protectors, lower wooden ledge and rear triangular support are visible.",
+      "Same book design and scene composition retained in both language variants.",
+      "Established card geometry, consistent rendering, diagonal coaxial wand and spilled dust retained."
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-"""Build the four hand-inked material sprites and the workbench's crafting icon."""
+"""Build material sprites and inventory icons for supplies, coffer and workbench."""
 from io import BytesIO
 from pathlib import Path
 import subprocess
@@ -12,19 +12,31 @@ tools = Path("E:/SteamLibrary/steamapps/common/Don't Starve Mod Tools/mod_tools"
 build = ET.Element("Build", name="nw_supplies")
 animations = ET.Element("Anims")
 images = {}
+inventory_images = {}
+ET.register_namespace("", "http://www.w3.org/2000/svg")
 for path in sorted((ROOT / "assets_src/supplies").glob("*.svg")):
-    encoded = resvg_py.svg_to_bytes(svg_path=str(path))
+    source = ET.parse(path).getroot()
+    # Keep the original 2px/unit body size and position; add margins for ink.
+    encoded = resvg_py.svg_to_bytes(svg_string=ET.tostring(source, encoding="unicode"))
     sprite = Image.open(BytesIO(encoded)).convert("RGBA")
     images[path.stem] = sprite
     # The compiler uses PNG dimensions for vertices; Frame w/h do not resize it.
-    # Anchor every material at the bottom centre and match its clickable bounds.
+    # Body still starts at y=-124; the extended footprint reaches below y=0.
     w,h=sprite.size
-    cy=4-h/2
+    cy=20-h/2
     frame(build,path.stem,path.stem,(w,h),(0,cy))
     anim(animations,path.stem,"nw_supplies",[(path.stem,0,0)])
     animations[-1][0].attrib.update(x="0",y=str(cy),w=str(w),h=str(h))
+    source = ET.parse(path).getroot()
+    source.remove(next(node for node in source if node.get("id") == "ground-shadow"))
+    source.attrib.update(viewBox="0 0 64 64", width="128", height="128")
+    encoded = resvg_py.svg_to_bytes(svg_string=ET.tostring(source, encoding="unicode"))
+    inventory_images[path.stem] = Image.open(BytesIO(encoded)).convert("RGBA")
 compile_bank("nw_supplies",build,animations,images,tools)
+images = inventory_images
 images["nw_workbench"] = resize("workbench",(64,64))
+for name in ("nw_dustbox", "nw_dustbox_open"):
+    images[name] = Image.open(ROOT / "assets_src/dustbox" / (name+".png")).convert("RGBA")
 sheet = Image.new("RGBA",(1024,256))
 atlas = ET.Element("Atlas")
 ET.SubElement(atlas,"Texture",filename="nw_supplies.tex")

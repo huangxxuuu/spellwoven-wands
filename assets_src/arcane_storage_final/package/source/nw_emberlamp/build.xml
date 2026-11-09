@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Build name="nw_emberlamp">
+  <Symbol name="pose_000">
+    <Frame framenum="0" duration="1" image="pose_000" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_001">
+    <Frame framenum="0" duration="1" image="pose_001" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_002">
+    <Frame framenum="0" duration="1" image="pose_002" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_003">
+    <Frame framenum="0" duration="1" image="pose_003" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_004">
+    <Frame framenum="0" duration="1" image="pose_004" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_005">
+    <Frame framenum="0" duration="1" image="pose_005" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_006">
+    <Frame framenum="0" duration="1" image="pose_006" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_007">
+    <Frame framenum="0" duration="1" image="pose_007" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_008">
+    <Frame framenum="0" duration="1" image="pose_008" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_009">
+    <Frame framenum="0" duration="1" image="pose_009" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_010">
+    <Frame framenum="0" duration="1" image="pose_010" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_011">
+    <Frame framenum="0" duration="1" image="pose_011" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_012">
+    <Frame framenum="0" duration="1" image="pose_012" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_013">
+    <Frame framenum="0" duration="1" image="pose_013" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_014">
+    <Frame framenum="0" duration="1" image="pose_014" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_015">
+    <Frame framenum="0" duration="1" image="pose_015" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_016">
+    <Frame framenum="0" duration="1" image="pose_016" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_017">
+    <Frame framenum="0" duration="1" image="pose_017" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_018">
+    <Frame framenum="0" duration="1" image="pose_018" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_019">
+    <Frame framenum="0" duration="1" image="pose_019" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_020">
+    <Frame framenum="0" duration="1" image="pose_020" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_021">
+    <Frame framenum="0" duration="1" image="pose_021" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_022">
+    <Frame framenum="0" duration="1" image="pose_022" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_023">
+    <Frame framenum="0" duration="1" image="pose_023" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_024">
+    <Frame framenum="0" duration="1" image="pose_024" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_025">
+    <Frame framenum="0" duration="1" image="pose_025" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_026">
+    <Frame framenum="0" duration="1" image="pose_026" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_027">
+    <Frame framenum="0" duration="1" image="pose_027" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_028">
+    <Frame framenum="0" duration="1" image="pose_028" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_029">
+    <Frame framenum="0" duration="1" image="pose_029" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_030">
+    <Frame framenum="0" duration="1" image="pose_030" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_031">
+    <Frame framenum="0" duration="1" image="pose_031" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_032">
+    <Frame framenum="0" duration="1" image="pose_032" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_033">
+    <Frame framenum="0" duration="1" image="pose_033" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_034">
+    <Frame framenum="0" duration="1" image="pose_034" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_035">
+    <Frame framenum="0" duration="1" image="pose_035" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_036">
+    <Frame framenum="0" duration="1" image="pose_036" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_037">
+    <Frame framenum="0" duration="1" image="pose_037" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_038">
+    <Frame framenum="0" duration="1" image="pose_038" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_039">
+    <Frame framenum="0" duration="1" image="pose_039" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_040">
+    <Frame framenum="0" duration="1" image="pose_040" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_041">
+    <Frame framenum="0" duration="1" image="pose_041" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_042">
+    <Frame framenum="0" duration="1" image="pose_042" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_043">
+    <Frame framenum="0" duration="1" image="pose_043" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_044">
+    <Frame framenum="0" duration="1" image="pose_044" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_045">
+    <Frame framenum="0" duration="1" image="pose_045" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+  <Symbol name="pose_046">
+    <Frame framenum="0" duration="1" image="pose_046" x="0.0" y="-142.0" w="256" h="320" />
+  </Symbol>
+</Build>

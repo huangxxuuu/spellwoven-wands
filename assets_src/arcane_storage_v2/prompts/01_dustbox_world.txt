@@ -1,0 +1,29 @@
+
+以《饥荒》《饥荒联机版》原版二维手绘美术为视觉依据。画面具有古怪、略阴郁而带幽默感的气质，以清楚的剪影、有节奏的墨线、可辨认的大色块和有选择的材质笔触建立统一风格。
+
+造型使用明确的大弧线、适量尖角、轻微不对称和有目的的比例夸张；边缘可略歪，局部可有卷曲和尖收，物件的支撑、连接、朝向与透视必须清楚。保留主体最有辨识度的形状，缩小后仍能读懂。
+
+线条具有主次：外轮廓与重要遮挡接缝较重，内部结构线较细，材质细线更轻。转折处可出现黑色楔形、少量复笔与自然收尖，控制不规则程度，保持线条明确。根据最终显示尺寸调整线宽；宣传场景中的主体轮廓可以比独立小图标更轻。
+
+以物体固有色和少量明确的亮面、暗面塑造体积，允许局部轻微色差与柔和过渡。高光画成有形状的白色、奶白色或浅色块、短线和长条。木材、石材与环境可用灰褐、灰绿、蓝灰等安静颜色；金属、宝石、火焰和关键标识允许使用鲜明的黄色、红色、蓝色、紫色或其他与对象一致的颜色，主次色彩服从识别和构图。
+
+纹理随材质和形体方向分布：木纹沿木材长轴，石材以块面与少量裂缝表现，金属用接缝、边缘短划痕与明确高光，宝石用少数大切面和利落亮条，布料与皮膜用褶线、缝线和张力结构。排线集中在必要的暗面、转折、接缝和局部接触阴影，保留完整、干净的大色面。纸张和玻璃根据其自身材质表现，表面纹理保持克制。
+
+根据用途组织轮廓、遮挡、明度、色彩和疏密。主要形状清楚，次要区域减少细节；宣传图的环境可使用简化剪影、低对比色层与轻微雾气，独立建筑和物品栏贴图按各自规范处理透明背景与阴影。物件内部保持可信的光线方向与连接关系。手绘感来自造型和笔触选择，材质之间保持明确区别。
+
+避免项
+
+避免：整幅统一羊皮纸底纹、均匀噪点、强烈泛黄滤镜、所有表面同样脏旧、到处添加破口裂纹、覆盖全图的密集排线、所有线条等粗、每条边缘都重复描黑或故意起刺、精确光滑的矢量几何感、复杂写实反射、塑料般的三维渲染、过度环境光遮蔽、无依据的强泛光、细节淹没剪影。边框、文字、符文、粒子和磨损程度仅按具体画面要求添加，不作为固定风格配件。不要复制视频压缩块、低分辨率锯齿或参考板标签。
+
+
+必读：docs/art/02_游戏内建筑规范.md
+生成《饥荒联机版》游戏内建筑的独立二维手绘源贴图。以指定原版建筑和本项目目标资源为视角、比例及落地点参考，完整保留主体、支脚、顶部和突出部件。剪影清楚，支撑结构、接口和前后遮挡可信。外轮廓和关键接缝较重，内部结构及材质线较轻；使用明确的大色块、少量硬边高光和局部暗面排线。木纹、金属划痕和石材裂缝顺着结构分布，避免细节淹没部件。真正透明背景，镂空处保持透明；地影、发光和活动部件按指定资源分层处理。保持与周边原版建筑相容的视觉尺度和绘制密度。
+
+
+Use case: stylized-concept. Asset type: one production animation spritesheet of one portable ARCANE DUST COFFER for Don't Starve Together. This is a WORLD sprite sheet, not a UI icon or promotional illustration.
+
+最高优先：遵守上文原版手绘画风，清楚大形、主次墨线、少量硬边高光。与本项目三座已有奥术建筑共用材料家族：深灰褐旧木材、温暖黄铜包边和接头、深紫少量布/衬里、鲜明魔力焦点；不要复制它们偏密的颗粒和细小刻纹。
+
+SUBJECT DESIGN: a compact squat wooden dust coffer, a little wider than it is deep, with a gently bowed hinged lid, two uneven broad warm brass binding strips, clear large dark wooden panels with only two or three tapered grain marks each, four tiny integrated stub feet. Broad front face has ONE large simple purple lozenge gemstone clasp set in a small brass diamond; this is the recognizable dust-storage identity, no writing or ornate sigils. Slight whimsical asymmetry, confident heavy variable ink contour, thinner selective seams. Hand-painted flat color planes with few highlights, not vector geometry, not a realistic rendering. Inside: a single deep undivided basin lined in dark plum with a modest mound of pale lavender arcane crystal powder, a few clear light facets. No partitions, no bottles, no unrelated tools. Camera fixed front-three-quarter viewed slightly from above; front face broad, right side visible; the lid hinges along the rear top edge. Both hinges attached and structurally convincing. Interior only appears when lid opens. Closed lid fully meets rim.
+
+OUTPUT: exactly ONE transparent 1536x1024 PNG sprite sheet, 3 columns by 2 rows of equal 512x512 cells, no drawn grid lines or labels. Six sequential poses in reading order: lid completely closed, 15 degrees open, 35 degrees open, 55 degrees open, 75 degrees open, 95 degrees fully open. ONE identical coffer per cell. Keep the base absolutely identical at the same local coordinates and pixel scale in all six cells, never scale down when lid opens. Base fills local x 75..437 and rests at local y 445, front upper rim around y 300; reserve clear space above for the lid. Entire lid and every foot must fit within each cell with transparent margins. The static body, clasp, panels, feet, camera, colors and hinges must remain identical across all six frames; only rigid lid angle and its natural occlusion change. No external floating particles. Large clean shapes, enough source detail to reduce to a 160x160 world sprite. NO baked ground shadow: the engine will supply a separate ground shadow. Truly transparent alpha everywhere outside each object and in any holes. No white rectangle, no checkerboard drawing, no backdrop, no ground surface, no text, no numbers, no labels. This is one animation asset, not six design alternatives.

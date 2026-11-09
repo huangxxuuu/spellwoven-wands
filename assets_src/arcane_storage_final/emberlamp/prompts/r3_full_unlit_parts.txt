@@ -1,0 +1,7 @@
+Use case: precise-object-edit.
+Asset type: source art for a Don't Starve Together in-world lamp animation. Edit the supplied approved comparison board.
+Preserve BOTH lamp bodies, layout, proportions, transparent background, left EMPTY lamp and its charred braided wick and small gold fixing ring EXACTLY.
+On the RIGHT FULL-FUEL lamp, extinguish/remove the teal magical flame COMPLETELY. Remove all teal, mint, lilac fire glow, ivory flame tips and light haze from the open space under the canopy. The canopy, ribs and empty air above the fuel remain unchanged and transparent.
+KEEP the existing full mound of purple powder, particularly its sloping FOREGROUND mound wrapping around the wick, its dark perimeter and its existing height and width. Do NOT lower or move the powder. Beneath the removed fire, reveal ONLY a very short natural charcoal-black wick tip projecting from the center of the powder. The rest of the wick and its entire gold fixing ring remain completely buried. No gold oval is visible on the right. No long exposed stalk. No flame, smoke, glowing ember, spark or halo.
+The left empty wick remains fully visible in its socket. The right is the SAME lamp with FULL powder and NO FIRE.
+This is not a redesign. Preserve the native DST ink-line hierarchy, simple color facets, silhouette, grounded stone base and tight contact shadow. Do not add texture, new marks, text or borders. Genuine transparent alpha, including all interior openings.

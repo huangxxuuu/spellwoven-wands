@@ -1,0 +1,82 @@
+{
+  "category": "宣传图 / Steam Workshop square artwork",
+  "generation_mode": "built-in image_gen",
+  "standards_read": [
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/01_宣传图规范.md"
+  ],
+  "redraw": {
+    "prompt": "prompt.txt",
+    "output": "draft_01.png",
+    "references": [
+      {
+        "image": 1,
+        "path": "assets_src/workshop_table_icon_v1/source.png",
+        "role": "Edit target; subject and broad composition only. Excess texture and isolated prop placement must be corrected."
+      },
+      {
+        "image": 2,
+        "path": "test_reports/native_style_reference/items_contact.png",
+        "role": "Native world-item identity, silhouette, color, facets and highlights."
+      },
+      {
+        "image": 3,
+        "path": "test_reports/native_style_reference/inventory/inventory_contact.png",
+        "role": "Identity and color cross-check only; not layout or scene perspective."
+      },
+      {
+        "image": 4,
+        "path": "assets_src/mod_icon_v2/revision_04/wand_reference.png",
+        "role": "Assembled mod wand identity, proportions and connections."
+      }
+    ]
+  },
+  "refinement": {
+    "prompt": "refine_wand_prompt.txt",
+    "output": "source.png",
+    "references": [
+      {
+        "image": 1,
+        "path": "assets_src/workshop_table_icon_v2/draft_01.png",
+        "role": "Edit target; correct only malformed wand branch and physical placement."
+      },
+      {
+        "image": 2,
+        "path": "assets_src/mod_icon_v2/revision_04/wand_reference.png",
+        "role": "Correct single-shaft complete wand reference."
+      }
+    ]
+  },
+  "outputs": {
+    "source": {
+      "path": "source.png",
+      "width": 1254,
+      "height": 1254
+    },
+    "workshop_preview": {
+      "path": "preview_512.png",
+      "width": 512,
+      "height": 512
+    },
+    "thumbnail_check": {
+      "path": "preview_256.png",
+      "width": 256,
+      "height": 256
+    }
+  },
+  "validation": {
+    "viewed_full_image": true,
+    "viewed_sizes": [
+      512,
+      256
+    ],
+    "notes": [
+      "Full-surface grain and dense scratches reduced; material-specific marks and clean paper areas retained.",
+      "Book overlaps card stack; main cards overlap; spill continues from bottle onto card border; gem fragments share purple powder area.",
+      "Purple/blue gems, bright irregular gold nugget and bat wing follow native reference silhouettes and colors.",
+      "Erroneous third wand branch removed; head, shaft and round blue tail remain connected.",
+      "Source and both actual prompts saved in project. Preview sizes follow tools/build_mod_icon.py; previews do not change runtime assets."
+    ]
+  }
+}

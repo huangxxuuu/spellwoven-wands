@@ -1,0 +1,34 @@
+R3 独立素材包构建（Windows / macOS / Linux，Python 3.9或更新版本）
+
+在解压目录执行：
+  python3 -m pip install -r requirements.txt
+  python3 tools/package_arcane_storage_art.py
+
+默认命令校验源帧、动画清单和随包已编译资源的SHA256，再输出package/。
+这个步骤不调用Windows程序，不依赖游戏安装目录，也不重新编译ANIM或TEX。
+查看动画：package/review_r3.html（review.html为同内容入口）。
+新打包文件：package/arcane_storage_art_r3_portable.zip。
+arcane_storage_art_r3.zip与arcane_storage_art_bundle.zip是相同内容的下载别名。
+其他版本的命名ZIP与预览页保持不变；bundle别名始终指向本次输出。
+包内runtime/本身已包含编译好的游戏资源；只查看动画可直接打开review/review_r3.html。
+脚本按自身位置识别文件，支持从其他工作目录使用脚本绝对路径执行。
+
+修改美术后：
+  python3 tools/build_dustbox_jewellery_art.py
+  python3 tools/build_emberlamp_art.py
+  python3 emberlamp/export_inventory.py
+  python3 tools/package_arcane_storage_art.py --preview-only
+
+PNG导出和预览支持跨平台。若运行帧、图标或动画清单发生变化，默认打包会拒绝沿用旧编译资源。
+本包的原生编译流程使用Windows版Klei工具链。在有该工具链的Windows环境中执行：
+  python tools/package_arcane_storage_art.py --recompile --tools "实际的mod_tools目录"
+也可设置DST_MOD_TOOLS环境变量。--recompile会重新生成ANIM/BILD/TEX，而不是复用旧文件。
+
+其他参数：
+  --validate-only 只检查当前PNG与清单，不写输出。
+  --source PATH 显式指定包含dustbox/emberlamp的目录；通常无需设置。
+  --asset dustbox / --asset emberlamp 可用于单物预览、校验或重新编译。
+  默认复用模式保留两件物品共享的图标图集，需完整保留随包的两件物品。
+
+完整仓库仍可直接运行tools/package_arcane_storage_art.py；在仓库内默认使用原生编译流程。
+两个PNG导出脚本同时兼容仓库与解压目录。重打包不会修改mod/或安装到游戏。

@@ -1,0 +1,24 @@
+{
+  "generator": "built-in image_gen",
+  "use_case": "precise-object-edit / compositing",
+  "revision": "03",
+  "source": "source.png",
+  "prompt": "prompt.txt",
+  "references": [
+    "assets_src/mod_icon_v2/revision_02/source.png",
+    "assets_src/mod_icon_v2/revision_03/wand_reference.png",
+    "assets_src/mod_icon_v2/revision_03/wand_reference_diagonal.png"
+  ],
+  "assembled_wand": "revision_03/reference.json",
+  "theme": "Actual assembled green single-crystal medium wand with pointed deep-blue diamond tail, Homing and Fire Bolt cards; fire trajectory starts at crystal tip, turns clockwise down the right side, then left-down at the bottom with aligned projectile",
+  "background": "opaque deep blue-grey",
+  "workshop_output": "assets_src/mod_icon.png",
+  "game_png": "assets_src/mod_icon_v2/game_256.png",
+  "game_texture": "mod/modicon.tex",
+  "previous_assets": [
+    "previous/",
+    "revision_01/",
+    "revision_02/"
+  ],
+  "published": false
+}

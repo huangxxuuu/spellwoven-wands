@@ -6,6 +6,7 @@ local function material(id, spec)
         local inst = CreateEntity()
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
+        -- Ground ink is baked into the sprite, like houndstooth and potions.
         inst.entity:AddNetwork()
         MakeInventoryPhysics(inst)
         inst.AnimState:SetBank("nw_supplies")

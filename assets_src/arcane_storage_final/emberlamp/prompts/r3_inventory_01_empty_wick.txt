@@ -1,0 +1,7 @@
+Use case: precise-object-edit.
+Asset type: Don't Starve Together INVENTORY ICON master, one single lamp, true transparent background.
+Edit INPUT 1, the approved independent simplified UI artwork. Keep its exact canvas layout, scale, brass C arm, hanging rings, faceted dark canopy, ribs, shallow brass bowl, purple diamond, bolts and grounded stone base unchanged. This is NOT a new world sprite; keep the simplified big color planes, strong silhouette, sparse internal lines and limited hard highlights that read at 64 and 32 pixels. No ground shadow.
+
+Add ONLY a permanent wick inside the EMPTY, UNLIT bowl. In the center of the tray floor, draw a tiny low brass fixing eyelet holding a short charcoal-purple braided wick. The slightly bent wick projects upward about one quarter of the open cavity height and is thick enough to read as a short dark stroke at icon size. Use just two broad diagonal fiber marks, not detailed rope texture. The wick and tiny eyelet belong inside the bowl, behind its front rim and front diamond. No powder and no flame.
+
+INPUT 2 is the approved world-design reference ONLY for wick identity, location and empty-state persistence; do not copy its extra world texture, ground shadow, composition or two-view layout. Preserve the exact simplified proportions and UI artwork of INPUT 1. Transparent openings and true transparent alpha around the whole object. No background, no text, no outline badge, no glow, no 3D surface rendering.

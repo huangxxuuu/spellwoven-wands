@@ -1,0 +1,104 @@
+{
+  "purpose": "Full wand assembled directly from the active mod runtime textures; transparent visual reference, no image generation.",
+  "manifest": "assets_src/art_v1/manifest.json",
+  "layout": "medium",
+  "draw_order_back_to_front": [
+    "body",
+    "tail",
+    "head"
+  ],
+  "world_pixels_to_output_pixels": 8,
+  "source_pixels_to_output_pixels": 4,
+  "placement": "Uses build_wand_icons.py origin (96,128), manifest world_size and medium layout; original socket alignment is retained.",
+  "joint_overlap_world_pixels": {
+    "head_body": 4,
+    "body_tail": 4
+  },
+  "parts": [
+    {
+      "slot": "body",
+      "id": "body_02_medium",
+      "source": "assets_src/art_v1/runtime/nw_parts/body_02_medium.png",
+      "source_pixels": [
+        72,
+        104
+      ],
+      "world_size": [
+        36,
+        52
+      ],
+      "layout_center": [
+        0,
+        0
+      ],
+      "canvas_top_left_world": [
+        78,
+        102
+      ]
+    },
+    {
+      "slot": "tail",
+      "id": "tail_diamond_blue",
+      "source": "assets_src/art_v1/runtime/nw_parts/tail_diamond_blue.png",
+      "source_pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "layout_center": [
+        0,
+        34.0
+      ],
+      "canvas_top_left_world": [
+        71,
+        150
+      ]
+    },
+    {
+      "slot": "head",
+      "id": "head_crystal_1_green",
+      "source": "assets_src/art_v1/runtime/nw_parts/head_crystal_1_green.png",
+      "source_pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "layout_center": [
+        0,
+        -58.0
+      ],
+      "canvas_top_left_world": [
+        47,
+        34
+      ]
+    }
+  ],
+  "outputs": {
+    "wand_reference.png": {
+      "pixels": [
+        558,
+        1248
+      ],
+      "rotation_degrees": 0,
+      "nonuniform_scaling": false,
+      "padding_pixels": 64
+    },
+    "wand_reference_diagonal.png": {
+      "pixels": [
+        935,
+        935
+      ],
+      "rotation_degrees_clockwise": 45,
+      "nonuniform_scaling": false,
+      "padding_pixels": 64
+    }
+  },
+  "note": "The inventory-only 1.32 horizontal widening and -36 degree rotation in build_wand_icons.py are intentionally not applied to the upright world-proportion reference. The diagonal variant is one rigid rotation of the complete assembled wand.",
+  "appearance_code": 553
+}

@@ -1,0 +1,147 @@
+{
+  "purpose": "Complete transparent wand reference assembled from actual runtime textures; no generated or redrawn parts.",
+  "manifest": "assets_src/art_v1/manifest.json",
+  "layout": "long",
+  "draw_order_back_to_front": [
+    "body",
+    "tail",
+    "head"
+  ],
+  "world_pixels_to_output_pixels": 8,
+  "source_pixels_to_output_pixels": 4,
+  "placement": "build_wand_icons.py origin (96,128), manifest world_size and long layout; source socket alignment retained.",
+  "joint_overlap_world_pixels": {
+    "head_body": 4,
+    "body_tail": 4
+  },
+  "parts": [
+    {
+      "slot": "body",
+      "id": "body_02_long",
+      "source": "assets_src/art_v1/runtime/nw_parts/body_02_long.png",
+      "source_pixels": [
+        72,
+        168
+      ],
+      "world_size": [
+        36,
+        84
+      ],
+      "layout_center": [
+        0,
+        0
+      ],
+      "canvas_top_left_world": [
+        78,
+        86
+      ]
+    },
+    {
+      "slot": "tail",
+      "id": "tail_round_blue",
+      "source": "assets_src/art_v1/runtime/nw_parts/tail_round_blue.png",
+      "source_pixels": [
+        100,
+        48
+      ],
+      "world_size": [
+        50,
+        24
+      ],
+      "layout_center": [
+        0,
+        50.0
+      ],
+      "canvas_top_left_world": [
+        71,
+        166
+      ]
+    },
+    {
+      "slot": "head",
+      "id": "head_crystal_1_green",
+      "source": "assets_src/art_v1/runtime/nw_parts/head_crystal_1_green.png",
+      "source_pixels": [
+        196,
+        144
+      ],
+      "world_size": [
+        98,
+        72
+      ],
+      "layout_center": [
+        0,
+        -74.0
+      ],
+      "canvas_top_left_world": [
+        47,
+        18
+      ]
+    }
+  ],
+  "outputs": {
+    "wand_reference.png": {
+      "pixels": [
+        558,
+        1504
+      ],
+      "rotation_degrees": 0,
+      "nonuniform_scaling": false,
+      "padding_pixels": 64
+    },
+    "wand_reference_diagonal.png": {
+      "pixels": [
+        1115,
+        1119
+      ],
+      "rotation_degrees_clockwise": 45,
+      "nonuniform_scaling": false,
+      "padding_pixels": 64
+    }
+  },
+  "medium_comparison": {
+    "body_world_size_before": [
+      36,
+      52
+    ],
+    "body_world_size_after": [
+      36,
+      84
+    ],
+    "body_length_increase_percent": 61.53846153846154,
+    "layout_centers_before": {
+      "head": [
+        0,
+        -58.0
+      ],
+      "body": [
+        0,
+        0
+      ],
+      "tail": [
+        0,
+        34.0
+      ]
+    },
+    "layout_centers_after": {
+      "head": [
+        0,
+        -74.0
+      ],
+      "body": [
+        0,
+        0
+      ],
+      "tail": [
+        0,
+        50.0
+      ]
+    },
+    "overall_uncropped_assembly_height_world_before": 140,
+    "overall_uncropped_assembly_height_world_after": 172,
+    "head_and_tail_world_dimensions_unchanged": true,
+    "tail_shape_changed": "diamond_blue to round_blue"
+  },
+  "note": "No inventory-only 1.32 horizontal widening. The diagonal reference is a rigid 45 degree clockwise rotation of the full assembled wand, matching revision_03 reference orientation; keep the existing artwork inclination when drawing it into the icon.",
+  "appearance_code": 565
+}

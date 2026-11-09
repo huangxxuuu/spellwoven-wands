@@ -114,11 +114,11 @@ with zipfile.ZipFile(ROOT/'mod/anim/nw_supplies.zip') as supplies:
                     start,count=material_ranges[sym]
                     xy=[(a*x+c*y+tx,b*x+d*y+ty) for x,y in vertices[start:start+count]]
                     assert all(abs(x-cx)<=w/2+.01 and abs(y-cy)<=h/2+.01 for x,y in xy),clip
-                    assert abs(cx)<.01 and abs(cy+h/2)<=5 and w==h==128,clip+' ground/click bounds'
+                    assert abs(cx)<.01 and abs(cy-h/2+124)<.01 and abs(cy+h/2-20)<.01 and w==h==144,clip+' ground/click bounds'
                     assert abs(tx)<.01 and abs(ty)<.01,clip+' unexpected animation translation'
                     tested.add(clip)
     assert tested==expected
-    print("PASS: all four material meshes fit their 128px click bounds around bottom-centred pivots")
+    print("PASS: all four material meshes fit their 144px click bounds; body origin preserved, ink footprint included")
 # Read compiled part geometry as the engine does, including the actual sprite
 # dimensions rather than just the XML Frame w/h metadata.
 with zipfile.ZipFile(ROOT/'mod/anim/nw_parts.zip') as z:

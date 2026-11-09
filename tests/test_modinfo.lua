@@ -9,12 +9,17 @@ for i=1,#locales+1 do
     local fn=assert(loadfile("mod/modinfo.lua"))
     setfenv(fn,env)
     fn()
-    assert(env.author=="yuejian" and env.icon_atlas=="modicon.xml" and env.icon=="modicon.tex")
+    local chinese=i<=4
+    local icon_name=chinese and "modicon" or "modicon_en"
+    assert(env.author=="yuejian" and env.icon_atlas==icon_name..".xml" and env.icon==icon_name..".tex")
+    for _,extension in ipairs({".xml", ".tex"}) do
+        local file=assert(io.open("mod/"..icon_name..extension,"rb"))
+        file:close()
+    end
     local rows=env.configuration_options
     assert(#rows==21 and rows[1].name=="language" and rows[2].name=="starting_wand")
     assert(rows[3].name=="crafting_class_filter" and rows[3].default==true)
     assert(rows[3].options[1].data==true and rows[3].options[2].data==false)
-    local chinese=i<=4
     assert(env.description:find((chinese and "版本：" or "Version: ")..env.version,1,true))
     assert(env.description:match("%d%d%d%d%-%d%d%-%d%d"))
     assert(rows[4].name==(chinese and "掉落率" or "Drop rates"))

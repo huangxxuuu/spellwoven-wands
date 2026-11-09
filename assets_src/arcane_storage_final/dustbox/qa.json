@@ -1,0 +1,41 @@
+{
+  "alpha_noise_cleanup": "Runtime only: A<=8 -> transparent; A>=250 -> opaque; source untouched.",
+  "world_canvas": [
+    160,
+    160
+  ],
+  "world_anchor": [
+    80,
+    148
+  ],
+  "runtime_max_width": 144,
+  "world_rgba_frames": 45,
+  "clips_with_aliases": 16,
+  "inventory_icons": 5,
+  "closed_equal_all_levels": true,
+  "fixed_lower_body_rows_135_to_159": true,
+  "source_parts": 13,
+  "shadow_mode": "single baked ink layer; no ellipse",
+  "shadow_alpha_bounds": [
+    8,
+    132,
+    152,
+    156
+  ],
+  "lid_edge_depth_source_pixels": {
+    "outside": 70,
+    "inside": 60
+  },
+  "revision": "r3_closed_rear_rim_occlusion",
+  "rear_occlusion": {
+    "0": {
+      "rear_pixels_hidden": 15632,
+      "rear_pixels_remaining_outside_cap": 0
+    },
+    "4": {
+      "rear_pixels_hidden": 4258,
+      "rear_pixels_remaining_outside_cap": 0
+    }
+  },
+  "artwork_origin": "All visible surfaces generated with built-in image_gen; masks and transforms only in this build."
+}

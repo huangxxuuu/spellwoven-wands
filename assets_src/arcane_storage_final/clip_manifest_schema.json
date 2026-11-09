@@ -1,0 +1,16 @@
+{
+  "description": "Example contract, not a production asset manifest. All frame paths are relative to the asset directory; frame PNGs share the canvas. Anchor is the ground point in source pixels. Repeat frame paths to hold poses. Aliases refer directly to an existing clip. Icons are authored at the current project target of 64 x 64.",
+  "version": 1,
+  "bank": "nw_dustbox",
+  "canvas": [256, 224],
+  "anchor": [128, 210],
+  "clips": {
+    "closed_empty": {"fps": 30, "frames": ["world/closed.png"]},
+    "open_empty": {"fps": 30, "frames": ["world/closed.png", "world/open_empty_01.png", "world/opened_empty.png"]},
+    "opened_empty": {"fps": 30, "frames": ["world/opened_empty.png"]},
+    "close_empty": {"fps": 30, "frames": ["world/opened_empty.png", "world/open_empty_01.png", "world/closed.png"]}
+  },
+  "aliases": {"closed": "closed_empty", "open": "open_empty", "opened": "opened_empty", "close": "close_empty"},
+  "icons": {"nw_dustbox": "inventory/nw_dustbox.png", "nw_dustbox_open_empty": "inventory/nw_dustbox_open_empty.png"},
+  "shadow": {"mode": "dynamic", "size": [1.6, 0.8]}
+}

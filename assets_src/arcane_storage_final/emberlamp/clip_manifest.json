@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "art_revision": "r3",
+  "bank": "nw_emberlamp",
+  "canvas": [
+    256,
+    320
+  ],
+  "anchor": [
+    128,
+    302
+  ],
+  "clips": {
+    "off_empty": {
+      "fps": 30,
+      "frames": [
+        "world/off_empty.png"
+      ]
+    },
+    "off_half": {
+      "fps": 30,
+      "frames": [
+        "world/off_half.png"
+      ]
+    },
+    "burn_half": {
+      "fps": 30,
+      "frames": [
+        "world/burn_00_half.png",
+        "world/burn_00_half.png",
+        "world/burn_01_half.png",
+        "world/burn_01_half.png",
+        "world/burn_02_half.png",
+        "world/burn_02_half.png",
+        "world/burn_03_half.png",
+        "world/burn_03_half.png",
+        "world/burn_04_half.png",
+        "world/burn_04_half.png",
+        "world/burn_05_half.png",
+        "world/burn_05_half.png",
+        "world/burn_06_half.png",
+        "world/burn_06_half.png",
+        "world/burn_07_half.png",
+        "world/burn_07_half.png"
+      ]
+    },
+    "on_half": {
+      "fps": 30,
+      "frames": [
+        "world/burn_00_half.png"
+      ]
+    },
+    "ignite_half": {
+      "fps": 30,
+      "frames": [
+        "world/off_half.png",
+        "world/off_half.png",
+        "world/ignite_00_half.png",
+        "world/ignite_00_half.png",
+        "world/ignite_01_half.png",
+        "world/ignite_01_half.png",
+        "world/ignite_02_half.png",
+        "world/ignite_02_half.png",
+        "world/ignite_03_half.png",
+        "world/ignite_03_half.png",
+        "world/ignite_04_half.png",
+        "world/ignite_04_half.png",
+        "world/ignite_05_half.png",
+        "world/ignite_05_half.png",
+        "world/burn_00_half.png",
+        "world/burn_00_half.png"
+      ]
+    },
+    "extinguish_half": {
+      "fps": 30,
+      "frames": [
+        "world/burn_00_half.png",
+        "world/burn_00_half.png",
+        "world/extinguish_00_half.png",
+        "world/extinguish_00_half.png",
+        "world/extinguish_01_half.png",
+        "world/extinguish_01_half.png",
+        "world/extinguish_02_half.png",
+        "world/extinguish_02_half.png",
+        "world/extinguish_03_half.png",
+        "world/extinguish_03_half.png",
+        "world/extinguish_04_half.png",
+        "world/extinguish_04_half.png",
+        "world/extinguish_05_half.png",
+        "world/extinguish_05_half.png",
+        "world/extinguish_06_half.png",
+        "world/extinguish_06_half.png",
+        "world/extinguish_07_half.png",
+        "world/extinguish_07_half.png",
+        "world/extinguish_08_half.png",
+        "world/extinguish_08_half.png"
+      ]
+    },
+    "off_full": {
+      "fps": 30,
+      "frames": [
+        "world/off_full.png"
+      ]
+    },
+    "burn_full": {
+      "fps": 30,
+      "frames": [
+        "world/burn_00_full.png",
+        "world/burn_00_full.png",
+        "world/burn_01_full.png",
+        "world/burn_01_full.png",
+        "world/burn_02_full.png",
+        "world/burn_02_full.png",
+        "world/burn_03_full.png",
+        "world/burn_03_full.png",
+        "world/burn_04_full.png",
+        "world/burn_04_full.png",
+        "world/burn_05_full.png",
+        "world/burn_05_full.png",
+        "world/burn_06_full.png",
+        "world/burn_06_full.png",
+        "world/burn_07_full.png",
+        "world/burn_07_full.png"
+      ]
+    },
+    "on_full": {
+      "fps": 30,
+      "frames": [
+        "world/burn_00_full.png"
+      ]
+    },
+    "ignite_full": {
+      "fps": 30,
+      "frames": [
+        "world/off_full.png",
+        "world/off_full.png",
+        "world/ignite_00_full.png",
+        "world/ignite_00_full.png",
+        "world/ignite_01_full.png",
+        "world/ignite_01_full.png",
+        "world/ignite_02_full.png",
+        "world/ignite_02_full.png",
+        "world/ignite_03_full.png",
+        "world/ignite_03_full.png",
+        "world/ignite_04_full.png",
+        "world/ignite_04_full.png",
+        "world/ignite_05_full.png",
+        "world/ignite_05_full.png",
+        "world/burn_00_full.png",
+        "world/burn_00_full.png"
+      ]
+    },
+    "extinguish_full": {
+      "fps": 30,
+      "frames": [
+        "world/burn_00_full.png",
+        "world/burn_00_full.png",
+        "world/extinguish_00_full.png",
+        "world/extinguish_00_full.png",
+        "world/extinguish_01_full.png",
+        "world/extinguish_01_full.png",
+        "world/extinguish_02_full.png",
+        "world/extinguish_02_full.png",
+        "world/extinguish_03_full.png",
+        "world/extinguish_03_full.png",
+        "world/extinguish_04_full.png",
+        "world/extinguish_04_full.png",
+        "world/extinguish_05_full.png",
+        "world/extinguish_05_full.png",
+        "world/extinguish_06_full.png",
+        "world/extinguish_06_full.png",
+        "world/extinguish_07_full.png",
+        "world/extinguish_07_full.png",
+        "world/extinguish_08_full.png",
+        "world/extinguish_08_full.png"
+      ]
+    }
+  },
+  "aliases": {
+    "idle": "off_empty",
+    "on": "burn_full",
+    "off": "off_full",
+    "turn_on": "ignite_full",
+    "turn_off": "extinguish_full"
+  },
+  "icons": {
+    "nw_emberlamp": "inventory/nw_emberlamp.png",
+    "nw_emberlamp_empty": "inventory/nw_emberlamp_empty.png",
+    "nw_emberlamp_half": "inventory/nw_emberlamp_half.png",
+    "nw_emberlamp_full": "inventory/nw_emberlamp_full.png",
+    "nw_emberlamp_half_lit": "inventory/nw_emberlamp_half_lit.png",
+    "nw_emberlamp_full_lit": "inventory/nw_emberlamp_full_lit.png"
+  },
+  "shadow": {
+    "mode": "baked_handdrawn_contact",
+    "layer": "layers/ground_shadow.png",
+    "source": "originals/r2_ground_contact.png",
+    "reference": "test_reports/arcane_storage_native/r2_bearger/reference_board.png",
+    "dynamic_shadow": false
+  },
+  "notes": [
+    "Empty state is unlit; no burning animation for empty fuel.",
+    "Fixed body reused bit-for-bit. Powder, permanent wick and flame are independent layers.",
+    "Full fuel uses the approved surrounding mound with its black ink perimeter; fixing ring is buried.",
+    "Central and corner stones share the ground plane; no elevated central rock or arch gap.",
+    "Extinguish uses fixed-scale handdrawn detach/rise/dissolve cells, never per-frame compression.",
+    "Native nightlight movement reference: eight distinct drawings held two frames at 30fps.",
+    "Draw order: ground, body, wick, enclosing foreground powder, front flame.",
+    "Wick tip is inside fire; only its local footprint receives light softness and partial transmission.",
+    "Wick lighting varies with eight loop poses and returns to the exact unlit state after extinction.",
+    "Ignition begins at the fixed wick tip, then the growing flame wraps down to the fuel surface.",
+    "Fire root is registered on the visible powder surface; full pile has less headroom.",
+    "World export is 0.25 source scale, independent from dedicated 64px UI artwork.",
+    "Alpha <=8 discarded and >=247 normalized for export only; generated sources unchanged.",
+    "Fuel visual thresholds and consumption mechanics are not implemented by this art package."
+  ]
+}

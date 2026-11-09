@@ -35,6 +35,8 @@
 
 Collect randomized wands and arrange spell cards to create your own attacks in Don't Starve Together. Combine homing, impact and timed payloads, turn familiar weapons into spells, and experiment with friends. Inspired by Noita. Chinese and English are supported.
 
+美术生成入口：[共同画风规范](docs/26_饥荒原版画风与生图基础规范.md) · [宣传图](docs/art/01_宣传图规范.md) · [游戏内建筑](docs/art/02_游戏内建筑规范.md) · [游戏内物品栏贴图](docs/art/03_游戏内物品栏贴图规范.md)。生图前必读流程见 [AGENTS.md](AGENTS.md)。
+
 ## 源码与网站
 
 本仓库同时维护 Mod 和资料站。`mod/` 可复制到游戏的 `mods/nw_weave_dev/` 中使用；房主在世界设置中启用，参与玩家也需安装。更新后重启游戏与世界。
@@ -116,6 +118,8 @@ Mod 正式发布后，在 [资料站更新记录](site/dist/updates.html) 顶部
 
 ## 当前实现
 
+2026-11-09 本地增量：奥术粉尘、两种核心增加原版动态地面阴影；粉尘描述补充生灵吸纳游离魔力的来源。「粉尘收纳盒」在奥术台用木板 ×1、金块 ×2、蛛丝 ×2、奥术粉尘 ×4 制作，可在人物物品栏、背包和地面直接打开。「奥术余烬灯」在炼金引擎旁用石砖 ×2、金块 ×2、紫宝石 ×1、粉尘 ×4 解锁；左键打开容器，右键点燃或熄灭。两者都用原版单格无限堆叠，只接受粉尘；0 个为空，1–80 个为半满，81 个起为全满。灯仅点燃时消耗，每个粉尘持续 60 秒；半满／全满照明半径为 3.5／5 单位，使用柔和青紫光。已接入确认的 R3 开合、点燃、燃烧和熄灭动画，接地阴影包含在世界贴图中。[实现与参数](docs/粉尘收纳与材料消耗_高度碰撞方案.txt) · [动画预览](assets_src/arcane_storage_final/package/review_r3.html)。核心销毁和高度碰撞仍为提案。
+
 向导内新增个人设置「施法方向」，无需重进世界即可切换，客户端在本机保存选择。默认「目标选择」朝鼠标选中物体的脚下施法，未选中物体时朝鼠标地面点施法；「鼠标方向」始终朝鼠标对应的地面点施法，适合树林中自由瞄准，但指着物体上半身时可能打偏。客户端进入世界后读取本地选择并立即同步；主动修改后等待 1 秒，连续切换重新计时，只同步最后一次，等待期间施法沿用上次已同步的选择。每次同步后每 60 秒补同步一次，补同步不会提前发送尚在等待的修改。服务器仅在对应玩家实体上临时记录，由模组施法逻辑决定瞄准点，不写世界配置或存档，不影响其他玩家，手柄仍沿用目标选择。使用原版预留的右键动作回调保留地面坐标，不替换 `PlayerController.DoAction` 或原生右键请求的发送回调；原有按住右键连续施法挂接不变。向导保留三座建筑的入门说明，设置使用一行左右切换选项，详细说明仅在鼠标悬停时显示。
 
 玩家法术收集与统计已实现服务端存档（schema v2），包括逐卡收集/使用/伤害、短时最高伤害、达成时间与法杖快照。实体收集册和展示界面仍待后续制作。[统计口径、接口、验证及控制台修复交接](docs/法术收集记录.txt)；[实体收集册设计](docs/21_法术收集册设计与会话交接.md)。
@@ -150,9 +154,12 @@ Mod 正式发布后，在 [资料站更新记录](site/dist/updates.html) 顶部
 .\.venv\Scripts\python.exe tools/build_assets.py
 .\.venv\Scripts\python.exe tools/check_art_assets.py
 .\.venv\Scripts\python.exe tools/build_supplies.py
+.\.venv\Scripts\python.exe tools/sync_arcane_storage_art.py
 ```
 
 使用本机官方 Mod Tools 的 Python 2.7、buildanimation.py 和 TextureConverter.exe。原始素材、四张库存简化重绘和提示词保存在 assets_src/art_v1；运行资源按游戏尺寸导出，不预生成 12 张完整法杖图。旧 assets_src/prototype 仅作为历史留档。见 [美术规格](docs/06_美术风格与资源规格.md)和[法术参数](docs/07_法术说明与参数.md)。
+
+收纳盒和余烬灯的确认稿位于 `assets_src/arcane_storage_final`，已有编译资源可直接通过上面的同步命令安装到 `mod/`。修改源动画后先运行 `tools/package_arcane_storage_art.py` 再同步。`tools/build_dustbox.py` 与 `assets_src/dustbox` 是旧版暗木盒的历史生成器，不用于当前 R3 资源。
 
 ## 自动测试
 

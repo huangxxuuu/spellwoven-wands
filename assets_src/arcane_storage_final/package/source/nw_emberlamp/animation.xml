@@ -1,0 +1,524 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Anims>
+  <anim name="off_empty" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_000" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="off_half" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_001" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="burn_half" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_002" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_002" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_003" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_003" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_004" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_004" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_005" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_005" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_006" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_006" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_007" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_007" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_008" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_008" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_009" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_009" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="on_half" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_002" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="ignite_half" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_001" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_001" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_010" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_010" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_011" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_011" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_012" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_012" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_013" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_013" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_014" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_014" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_015" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_015" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_002" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_002" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="extinguish_half" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_002" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_002" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_016" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_016" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_017" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_017" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_018" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_018" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_019" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_019" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_020" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_020" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_021" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_021" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_022" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_022" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_023" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_023" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_001" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_001" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="off_full" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_024" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="burn_full" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_026" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_026" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_027" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_027" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_028" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_028" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_029" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_029" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_030" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_030" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_031" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_031" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_032" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_032" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="on_full" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="ignite_full" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_024" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_024" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_033" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_033" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_034" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_034" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_035" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_035" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_036" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_036" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_037" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_037" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_038" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_038" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="extinguish_full" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_039" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_039" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_040" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_040" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_041" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_041" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_042" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_042" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_043" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_043" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_044" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_044" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_045" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_045" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_046" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_046" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_024" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_024" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="idle" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_000" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="on" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_026" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_026" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_027" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_027" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_028" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_028" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_029" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_029" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_030" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_030" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_031" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_031" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_032" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_032" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="off" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_024" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="turn_on" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_024" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_024" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_033" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_033" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_034" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_034" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_035" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_035" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_036" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_036" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_037" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_037" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_038" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_038" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+  <anim name="turn_off" root="nw_emberlamp" framerate="30">
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_025" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_039" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_039" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_040" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_040" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_041" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_041" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_042" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_042" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_043" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_043" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_044" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_044" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_045" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_045" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_046" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_046" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_024" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+    <frame x="0.0" y="-142.0" w="256" h="320">
+      <element name="pose_024" frame="0" layername="body" z_index="0" m_a="1" m_b="0" m_c="0" m_d="1" m_tx="0" m_ty="0" />
+    </frame>
+  </anim>
+</Anims>

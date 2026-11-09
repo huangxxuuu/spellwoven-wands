@@ -1,0 +1,189 @@
+{
+  "date": "2026-11-09",
+  "revision": 3,
+  "method": "built-in image_gen",
+  "category": "world_building_and_animation",
+  "approved_identity": "assets_src/arcane_storage_v2/originals/emberlamp_appearance.png",
+  "style_priority": [
+    "local art specifications",
+    "native DST references",
+    "approved identity and existing stations"
+  ],
+  "read_specs": [
+    "AGENTS.md",
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/02_游戏内建筑规范.md",
+    "docs/art/03_游戏内物品栏贴图规范.md"
+  ],
+  "reference_roles": {
+    "approved_lamp": "identity, palette and proportions",
+    "nightlight_flame_contact": "motion silhouette and timing only",
+    "approved_jewellery_box": "fine powder surface only"
+  },
+  "generated": [
+    {
+      "file": "originals/empty_world.png",
+      "prompt": "prompts/01_empty_world.txt",
+      "source": "exec-c0f97faa-d55d-497c-b5b9-fc46b0213d55.png",
+      "status": "superseded_ground_contact_revision",
+      "sha256": "12b584fc3f8ee1897acbf0f48ecaea6ee1d43680fcce4dd6092b44ff40c57cf6",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "originals/half_world.png",
+      "prompt": "prompts/02_half_world.txt",
+      "source": "exec-a9b41db1-3cd3-4912-802c-69aa8386399e.png",
+      "status": "fuel_only",
+      "sha256": "ad5eff908ba797d825a538dcc8096506bb75ebfa63c05eb0d3ad95bac28f81d5",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "originals/full_world.png",
+      "prompt": "prompts/03_full_world.txt",
+      "source": "exec-d7d18ca0-7eec-4038-9f56-76e18ebd2b4b.png",
+      "status": "superseded_r3_surrounding_mound",
+      "sha256": "bf036a891dc4df68116d943aeaa0956e87db34993805960b3fa15b2d7b4c4202",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "originals/flame_loop_glow_rejected.png",
+      "prompt": "prompts/04_flame_loop.txt",
+      "source": "exec-8a6a3322-d24e-4b8a-9458-16b19c040683.png",
+      "status": "superseded",
+      "sha256": "a1c31f28d5f01b5d87cf196d0c17634e2ab9aa04586f8da8ba85cf6dcaaa338d",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "file": "originals/flame_loop.png",
+      "prompt": "prompts/05_flame_cleanup.txt",
+      "source": "exec-adc469ff-0520-44dd-aac4-b652662773f6.png",
+      "status": "selected",
+      "sha256": "9a57bb57aad269c2b829d4badf226da5449601977b44168a30f89f2ed46f1692",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "file": "originals/ignite.png",
+      "prompt": "prompts/07_ignite.txt",
+      "source": "exec-a0f2198a-246c-4d9d-96f4-206136067493.png",
+      "status": "selected",
+      "sha256": "50db2757fa1ecd3d503bf2d74478505c136a9ae77960b40276f4e4692d9cecd5",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "file": "originals/extinguish.png",
+      "prompt": "prompts/08_extinguish.txt",
+      "source": "exec-aa20eb81-a931-4c1f-8cab-06b4a0d87afa.png",
+      "status": "superseded_compressed_motion",
+      "sha256": "67f2d6d893728e8894d1bc80b386e25782fa18656d350219b9f70c77e4b058a2",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "file": "originals/full_world_powder.png",
+      "prompt": "prompts/09_full_dust_surface.txt",
+      "source": "exec-e2b56014-99d8-4a84-bdf3-c26882858062.png",
+      "status": "superseded_user_prefers_black_outline",
+      "sha256": "b90b2db60172797fe04d0bba30d6077d51ad2173f30199e68fc70282a097bb18",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "originals/r2_empty_grounded.png",
+      "prompt": "prompts/r2_grounded_base.txt",
+      "source": "exec-923c5f0d-eb19-4549-8dc9-e5f96bf171fc.png",
+      "status": "selected_grounded_body",
+      "sha256": "0630ccdacfe222a8d365cc86216a380aea4efb79e8cc7b83a7d6f01f5bc7598a",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "originals/r2_ground_contact.png",
+      "prompt": "prompts/r2_ground_contact.txt",
+      "source": "exec-b726b77c-2b03-4ef4-b29c-b889bf44c603.png",
+      "status": "selected_contact_shadow_and_soil",
+      "sha256": "156ae17e53dbd303cd9aafd785232bce2b08f2530d03772195a210201022e7b8",
+      "size": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "originals/r2_extinguish.png",
+      "prompt": "prompts/r2_extinguish.txt",
+      "source": "exec-aa4d399f-6847-4a9f-8e19-c6320bb56f11.png",
+      "status": "selected_rising_extinguish",
+      "sha256": "7735700bccba33b80fee5261fa69894c2224bf0a3161af9e80755683ada8e30b",
+      "size": [
+        1586,
+        992
+      ]
+    },
+    {
+      "file": "originals/r3_unlit_wick_fuel.png",
+      "prompt": "prompts/r3_full_unlit_parts.txt",
+      "source": "exec-6425fdb1-aa51-428d-ab06-d48c2ae2e8e9.png",
+      "status": "selected_permanent_wick_and_surrounding_full_fuel",
+      "sha256": "3ce061fb57abaedef54fe11a83cad47bd1e96ca50d33da5639998b3df7df8740",
+      "size": [
+        1774,
+        887
+      ]
+    }
+  ],
+  "inventory": "inventory_manifest.json",
+  "export": "clip_manifest.json",
+  "approved_wick_design": "concepts/wick_r4/wick_comparison_full.png",
+  "separation": "Canonical grounded body. Generated cord with socket reused at one fixed position; foreground powder buries its foot. Existing generated fire drawings render in front with local wick light transmission.",
+  "part_registration": {
+    "wick": {
+      "source_anchor": [
+        602,
+        556
+      ],
+      "scale": 0.27,
+      "world_anchor": [
+        174,
+        195
+      ]
+    },
+    "full_fuel": {
+      "source_anchor": [
+        1380,
+        556
+      ],
+      "scale": 0.315,
+      "world_anchor": [
+        174,
+        195
+      ]
+    }
+  },
+  "native_reference": "test_reports/arcane_storage_native/manifest.json",
+  "ground_reference": "test_reports/arcane_storage_native/r2_bearger/manifest.json",
+  "extinguish_registration": "r2_extinguish_clip.json"
+}

@@ -36,6 +36,12 @@ function M.install(env)
     env.AddRecipe2("nw_disassembler",{Ingredient("cutstone",2),Ingredient("purplegem",1),
         Ingredient("nw_dust",4,Rules.atlas)},TECH.SCIENCE_TWO,{placer="nw_disassembler_placer",
         image="nw_disassembler.tex",atlas=Rules.station_atlas},{"PROTOTYPERS","MAGIC"})
+    STRINGS.RECIPE_DESC.NW_EMBERLAMP=T("无限收纳奥术粉尘，点燃后将魔力缓缓化为青紫幽光。")
+    env.AddRecipe2("nw_emberlamp",{Ingredient("cutstone",2),Ingredient("goldnugget",2),
+        Ingredient("purplegem",1),Ingredient("nw_dust",4,Rules.atlas)},TECH.SCIENCE_TWO,
+        {placer="nw_emberlamp_placer",min_spacing=require("nw/arcane_storage").LAMP_MIN_SPACING,
+            atlas=require("nw/arcane_storage").atlas,
+            image="nw_emberlamp.tex"},{"LIGHT","STRUCTURES","MAGIC"})
     local function register_product(row)
         local ingredients = {}
         for i, v in ipairs(row.ingredients) do
@@ -48,8 +54,10 @@ function M.install(env)
         STRINGS.RECIPE_DESC[key] = row.card and require("nw/spell_info").tooltip(row.card)
             or row.tier == 0 and T("两格，非乱序，内置一张火花弹。")
             or row.tier and T("随机属性，空槽可自行装卡。")
+            or row.description
             or Rules.materials[row.product][2]
         local image,atlas=row.icon,row.card and Rules.card_atlas or Rules.atlas
+        if row.product=="nw_dustbox" then atlas=require("nw/arcane_storage").atlas end
         if row.tier then
             local code=Visual.recipe_code(row.tier)
             image,atlas=Visual.icon(code),Visual.atlas(code)

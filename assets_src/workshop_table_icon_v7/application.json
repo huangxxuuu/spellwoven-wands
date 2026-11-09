@@ -1,0 +1,29 @@
+{
+  "artwork": "Approved v7 source images; resized only, no crop or recolor",
+  "workshop_preview": "assets_src/mod_icon.png",
+  "workshop_preview_language": "zh",
+  "workshop_preview_published": true,
+  "workshop_receipt": "dist/workshop-metadata/main-preview-20261109-151747-348778.json",
+  "workshop_verified_url": "https://images.steamusercontent.com/ugc/16503356582083898975/258D01014D4B8AC9C5A46AECBACF363549F37F3E/",
+  "game_icons": {
+    "zh": [
+      "mod/modicon.xml",
+      "mod/modicon.tex"
+    ],
+    "en": [
+      "mod/modicon_en.xml",
+      "mod/modicon_en.tex"
+    ]
+  },
+  "game_language": "modinfo.lua locale: Chinese locales use zh; all other locales use en; restart game after changing language",
+  "local_install": "E:/SteamLibrary/steamapps/common/Don't Starve Together/mods/nw_weave_dev",
+  "mod_content_published": false,
+  "verification": [
+    "Lua 5.1 restricted modinfo sandbox: seven locales passed",
+    "Atlas references and KTEX magic passed",
+    "256px images exactly match complete source resizing",
+    "Five installed files SHA-256 verified",
+    "Public Workshop preview bytes equal assets_src/mod_icon.png",
+    "Both original localized titles/descriptions and content identifiers preserved"
+  ]
+}

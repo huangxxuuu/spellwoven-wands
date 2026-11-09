@@ -1,0 +1,10 @@
+Use case: precise-object-edit.
+Asset type: one transparent Don't Starve Together inventory-icon master, HALF FUEL and LIT.
+Input 1 is the independent simplified UI icon to edit. Keep its complete silhouette, exact canvas placement and scale, brass C arm, canopy, ribs, bowl, front purple diamond and grounded stone base. No ground shadow. Preserve big color planes and sparse strokes readable at 64/32 pixels.
+Input 2 shows the new permanent wick for this exact UI lamp. Input 3 is the approved world design, used ONLY for how fuel wraps the wick and how the flame encloses it; do not copy its world texture or two-view layout.
+
+Update only the bowl contents and flame. Raise the half-filled purple powder into a LOW irregular mound around the wick's foot, including powder visibly IN FRONT of the lower wick. The gold fixing eyelet is mostly buried. This remains visibly lower than a full mound; keep a generous open cavity. Retain a clear black ink perimeter around the fuel and one or two broad pale flecks.
+
+The short exposed wick protrudes from the middle of this low powder bed. The teal/mint/lilac/ivory flame extends down around it and encloses it on all sides. Inside the lower lilac flame core, show only a restrained, softened plum-gray wick segment with no fine braiding and a tiny hot tip; a pale front tongue overlaps part of it. There must be no opaque black rope in front of the fire, no detached fire, no gold oval exposed in front of the powder, and no horizontal cutoff at the powder rim. The flame is the visually dominant colored shape and the wick is a subtle internal detail.
+
+Keep the existing stylized flame height and color identity with crisp flowing pointed silhouette; adjust its base to meet the fuel and enclose the wick. No broad glow, gradient haze or overall translucency wash. All openings and surroundings remain genuinely transparent. No text, labels, backdrop, 3D shading or new ornaments.

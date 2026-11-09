@@ -5,7 +5,7 @@ M.atlas = "images/inventoryimages/nw_supplies.xml"
 M.station_atlas = "images/inventoryimages/nw_stations.xml"
 M.card_atlas = "images/inventoryimages/nw_icons.xml"
 M.materials = {
-    nw_dust = { T("奥术粉尘"), T("宝石碾出的晶粉，用于制杖和浸染空白卡。"), 40 },
+    nw_dust = { T("奥术粉尘"), T("宝石中沉睡的魔力，研磨后凝成晶粉；吸纳游离魔力的生灵陨落时，也会留下这样的余烬。可用于制杖与浸染空白卡。"), 40 },
     nw_blank = { T("空白法术卡"), T("用粉尘浸过的莎草纸，可以在奥术台刻写法术。"), 20 },
     nw_beast_core = { T("巨兽核心"), T("季节巨兽留下的核心，用于精良法杖和三重施法卡。"), 10 },
     nw_overlord_core = { T("霸主核心"), T("强大首领的核心，可以在奥术台制作稀有法杖。"), 10 },
@@ -26,6 +26,8 @@ for _, gem in ipairs({"redgem","bluegem","purplegem"}) do
     recipe("nw_dust_"..gem, "nw_dust", M.materials.nw_dust[1], {{gem,1},{"goldnugget",1}}, 4)
 end
 recipe("nw_blank", "nw_blank", T("空白法术卡"), {{"papyrus",1},{"charcoal",2},{"nw_dust",2}}, 2)
+recipe("nw_dustbox", "nw_dustbox", T("粉尘收纳盒"), {{"boards",1},{"goldnugget",2},{"silk",2},{"nw_dust",4}}).description =
+    T("随身携带的一格收纳盒，只收纳奥术粉尘，盒内可无限堆叠。")
 for _, v in ipairs({
     {"deerclops_eyeball",1,"nw_beast_core"}, {"bearger_fur",1,"nw_beast_core"},
     {"goose_feather",5,"nw_beast_core"}, {"dragon_scales",1,"nw_overlord_core"},

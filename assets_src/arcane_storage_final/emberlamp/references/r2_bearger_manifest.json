@@ -1,0 +1,63 @@
+{
+  "source_archive": "E:/SteamLibrary/steamapps/common/Don't Starve Together/data/anim/beargerfur_sack.zip",
+  "prefab": "beargerfur_sack",
+  "bank": "beargerfur_sack",
+  "build": "beargerfur_sack",
+  "english_name": "Polar Bearger Bin",
+  "chinese_name": "极地熊獾桶",
+  "translation_source": "scripts/languages/chinese_s.po: STRINGS.NAMES.BEARGERFUR_SACK",
+  "uses_dynamic_shadow_in_prefab": false,
+  "ground_symbol": {
+    "name": "ground",
+    "frame": 0,
+    "size": [
+      100,
+      38
+    ],
+    "origin": [
+      -49,
+      -17
+    ],
+    "closed_world_origin": [
+      -85,
+      -12
+    ]
+  },
+  "clips": [
+    {
+      "name": "closed",
+      "fps": 30.0,
+      "frames": 1
+    },
+    {
+      "name": "opened",
+      "fps": 30.0,
+      "frames": 32
+    },
+    {
+      "name": "open",
+      "fps": 30.0,
+      "frames": 15
+    },
+    {
+      "name": "close",
+      "fps": 30.0,
+      "frames": 13
+    }
+  ],
+  "closed_ground_transform": [
+    [
+      2442994439,
+      0,
+      2442994439,
+      1.3957209587097168,
+      0.0,
+      0.13090519607067108,
+      0.9199982285499573,
+      -13.699999809265137,
+      3.799999952316284,
+      3.0
+    ]
+  ],
+  "scope": "Read-only native artwork extraction for style and contact-shadow reference; no generated or repainted pixels."
+}

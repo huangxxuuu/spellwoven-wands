@@ -1,0 +1,47 @@
+地面物品阴影重制 — 2026-11-09
+
+范围：奥术粉尘、野兽核心、霸主核心、空白法术卡。
+类别：游戏内世界贴图，参照游戏内建筑规范中的透明源图、分层与落点要求。
+本次直接编辑现有 SVG 源稿，没有调用生图工具，没有生图 Prompt。
+四份源稿位于上级目录 nw_dust.svg、nw_beast_core.svg、nw_overlord_core.svg、nw_blank.svg。
+本目录 PNG 为单独导出的 ground-shadow 层，透明画布 144×144。
+完整透明成品在 assets_src/art_v1/runtime/nw_supplies/，运行包为 mod/anim/nw_supplies.zip。
+
+原版拆包依据
+本机 E:/SteamLibrary/steamapps/common/Don't Starve Together/data/anim/：
+1. hounds_tooth.zip / idle：tooth01，首帧只有一个 element。
+2. halloween_potions.zip / bravery_large：halloween_potions_01 的 frame 4，首帧只有一个 element。
+3. 同包 sanity_large / health_small：分别为 frame 2 / 7，同样只有一个 element。
+这些 symbol 的原始图像中已经包含主体和贴地的墨线，不存在独立圆形地影层。
+scripts.zip 中 houndstooth.lua、halloweenpotion_buffs.lua 没有 AddDynamicShadow。
+原版的排线紧贴下轮廓，中心黑块被物品压住；外围横向短笔长短、粗细与间隔不同。
+本次观察范围是实际 build/anim/atlas 重建及 prefab 源码，不是实时游戏截图。
+
+具体绘制
+瓶底：较宽的接触墨块，左右疏密不对称，外围少量短线。
+野兽核心：较窄的接触区，短线集中在底部尖角两侧。
+霸主核心：底部黑块稍重，外围碎笔更宽，避免与主体轮廓分离。
+卡牌：阴影沿前后纸角倾斜展开，密处压在后卡尖角下面，右侧较疏。
+所有地影均使用尖收的填充笔形、间断细线与少量透明度变化，没有椭圆或模糊滤镜。
+ground-shadow 是 SVG 第一层，物品主体绘制在其上；编译后合为一个 symbol。
+
+构建与定位
+源 SVG 从 128×128 / viewBox 0 0 64 64 改为 144×144 / viewBox -4 0 72 72。
+每个 SVG 单位仍为 2 像素。横向各增加 8 像素，底部增加 16 像素，不缩放主体。
+动画顶边仍为 -124，左右为 -72/+72，底边为 +20；边界包含新地影。
+物品栏构建先移除 ground-shadow，再恢复原来的 128×128 画布，保持旧图标。
+nw_materials.lua 移除了粉尘和两种核心的 DynamicShadow，避免叠出第二份椭圆阴影。
+
+验证与复现
+.venv/Scripts/python.exe -X utf8 tools/build_supplies.py
+.venv/Scripts/python.exe -X utf8 tools/check_art_assets.py
+.venv/Scripts/python.exe -X utf8 tools/preview_material_shadows.py
+以上检查通过。逐像素核对四件主体完全不变；物品栏 tex/xml 的 SHA-256 与修改前相同。
+编译前后在动画坐标中核对 Alpha 边界，确认编译器透明块裁切没有删掉阴影。
+原版 symbol、完整帧、构建元素和对照图保存在 test_reports/material_ground_shadows/。
+编译后的对照图为 compiled_comparison.png；verification.json 记录来源、坐标及验证结果。
+
+交付状态
+项目内源图和编译资源已完成。未进行实机视觉验收。
+完成时客户端与两个本地服务器仍在运行，尚未更新游戏 mods/nw_weave_dev 中的资源。
+全部退出后可运行 .venv/Scripts/python.exe tools/install_mod.py，同步后重启游戏及世界。

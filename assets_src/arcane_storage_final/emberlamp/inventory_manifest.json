@@ -1,0 +1,212 @@
+{
+  "revision": 3,
+  "category": "game_inventory_icon",
+  "tool": "built-in image_gen",
+  "runtime_size": [
+    64,
+    64
+  ],
+  "auxiliary_readability_size": [
+    32,
+    32
+  ],
+  "target_size_basis": "Existing nw_arcane_storage atlas and supply inventory tiles use 64 pixels.",
+  "common_crop": [
+    305,
+    78,
+    922,
+    1180
+  ],
+  "resized_size": [
+    34,
+    60
+  ],
+  "common_offset": [
+    15,
+    2
+  ],
+  "source_alpha_noise_threshold": 8,
+  "processing": "Five separate generated UI variants supply the same cavity rectangle; one existing independent UI body and grounded base are reused. Alpha normalization, fixed crop, common scale and PNG export only.",
+  "fixed_body": {
+    "source": "inventory_sources/r2_empty.png",
+    "mutable_content_bounds": [
+      616,
+      544,
+      839,
+      787
+    ],
+    "all_pixels_outside_patch_identical": true
+  },
+  "grounded_base": {
+    "source": "inventory_sources/r2_empty.png",
+    "patch_bounds": [
+      0,
+      990,
+      1254,
+      1254
+    ],
+    "all_states_identical": true,
+    "design": "The central large stone and corner stones share a ground plane; no floating undercut."
+  },
+  "approved_identity": "concepts/wick_r4/wick_comparison_full.png",
+  "full_fuel_selection": {
+    "source": "inventory_sources/r3_full_unlit_generated.png",
+    "design": "Raised purple fuel retains a dark outer perimeter, surrounds the wick and fully buries its fixing eyelet."
+  },
+  "wick": {
+    "empty": "Permanent unlit wick and small fixing eyelet remain visible.",
+    "half": "Low surrounding powder buries the foot and eyelet, leaving a short wick.",
+    "full": "Full mound buries the eyelet and almost all wick, leaving its tip.",
+    "lit": "Muted wick detail sits inside the lower flame core and is partially covered by foreground fire."
+  },
+  "sources": {
+    "empty": {
+      "source": "inventory_sources/r3_empty.png",
+      "path": "inventory/nw_emberlamp_empty.png",
+      "size": [
+        64,
+        64
+      ],
+      "original_content_source": "inventory_sources/r3_empty_wick_generated.png",
+      "content_layer": "inventory_sources/r3_contents_empty.png",
+      "source_sha256": "f1173003fc26089d4a5e5ee329bc922923cb3f964f84928c127262a26b8639d7",
+      "generated_source_sha256": "d73ad05b4e07021000c343d3900c149af70b34ec996d813fe43e8a27c44213b4",
+      "output_sha256": "4ea420aab065cc69064aacc870b4d868d5527533bccd925fe2590038d164cc6c",
+      "alpha_bounds": [
+        15,
+        2,
+        49,
+        62
+      ]
+    },
+    "half": {
+      "source": "inventory_sources/r3_half.png",
+      "path": "inventory/nw_emberlamp_half.png",
+      "size": [
+        64,
+        64
+      ],
+      "original_content_source": "inventory_sources/r3_half_unlit_generated.png",
+      "content_layer": "inventory_sources/r3_contents_half.png",
+      "source_sha256": "6ebb89fec4c5fe1c27474b10221965c61e8d0b3e7706af15a6f62f0f17029518",
+      "generated_source_sha256": "4b2d4c107ddeb938ef8601a274ba6e93a2a0eb031f4603bf083a0dbe725a4cc9",
+      "output_sha256": "239b5cd9853fa4e73ac35ba8da472d30cbf954be4cae2c76bc598fd966285128",
+      "alpha_bounds": [
+        15,
+        2,
+        49,
+        62
+      ]
+    },
+    "full": {
+      "source": "inventory_sources/r3_full.png",
+      "path": "inventory/nw_emberlamp_full.png",
+      "size": [
+        64,
+        64
+      ],
+      "original_content_source": "inventory_sources/r3_full_unlit_generated.png",
+      "content_layer": "inventory_sources/r3_contents_full.png",
+      "source_sha256": "54e84ba99372794425f03ebbe9984570875036caf131faa4f2f228cbcca27591",
+      "generated_source_sha256": "c8ff9a8ba26e48c4754d7cbb68d03e70afc6e22331db959a10dc15d66f1bcd4a",
+      "output_sha256": "fd5cf3d687b53be6365f49aa0a5881c220bbf0e45d6d3776b9508dcc7ca3ad4f",
+      "alpha_bounds": [
+        15,
+        2,
+        49,
+        62
+      ]
+    },
+    "half_lit": {
+      "source": "inventory_sources/r3_half_lit.png",
+      "path": "inventory/nw_emberlamp_half_lit.png",
+      "size": [
+        64,
+        64
+      ],
+      "original_content_source": "inventory_sources/r3_half_lit_generated.png",
+      "content_layer": "inventory_sources/r3_contents_half_lit.png",
+      "source_sha256": "9ac487bc616045ea9a0e8e61d73abb982e504252edf85455a0b6d2ecfcb6352f",
+      "generated_source_sha256": "3d977ef8a420a49f53021f8d26a2fa9c374d412a064b709f694d3b83b3edca8b",
+      "output_sha256": "082d24cc8748942960e9a2e9aa46995fb07dbfc1ca8cd2abe5825fae1d121599",
+      "alpha_bounds": [
+        15,
+        2,
+        49,
+        62
+      ]
+    },
+    "full_lit": {
+      "source": "inventory_sources/r3_full_lit.png",
+      "path": "inventory/nw_emberlamp_full_lit.png",
+      "size": [
+        64,
+        64
+      ],
+      "original_content_source": "inventory_sources/r3_full_lit_generated.png",
+      "content_layer": "inventory_sources/r3_contents_full_lit.png",
+      "source_sha256": "1fb5ac935df03279695ff04934748fb8968142721428a288a72f9f1925ae8694",
+      "generated_source_sha256": "705eaf27d776ed813c67a8031cc90032a5c8ff4758172181fc4acbdc0a494370",
+      "output_sha256": "0375cc57a2a93e3ae9d401f6e1b4aaad2f8589ba874ed136a03d89491beb30be",
+      "alpha_bounds": [
+        15,
+        2,
+        49,
+        62
+      ]
+    }
+  },
+  "alias": {
+    "inventory/nw_emberlamp.png": "inventory/nw_emberlamp_full_lit.png"
+  },
+  "prompt_files": [
+    "prompts/r3_inventory_01_empty_wick.txt",
+    "prompts/r3_inventory_02_half_lit.txt",
+    "prompts/r3_inventory_03_full_lit.txt",
+    "prompts/r3_inventory_04_half_unlit.txt",
+    "prompts/r3_inventory_05_full_unlit.txt"
+  ],
+  "r3_generated": [
+    {
+      "state": "empty",
+      "file": "inventory_sources/r3_empty_wick_generated.png",
+      "prompt": "prompts/r3_inventory_01_empty_wick.txt",
+      "source": "exec-ad46cbf0-2b7d-4f01-be00-36490763474c.png"
+    },
+    {
+      "state": "half",
+      "file": "inventory_sources/r3_half_unlit_generated.png",
+      "prompt": "prompts/r3_inventory_04_half_unlit.txt",
+      "source": "exec-e79629bd-97f7-4a94-ac96-0686c8a3ba89.png"
+    },
+    {
+      "state": "full",
+      "file": "inventory_sources/r3_full_unlit_generated.png",
+      "prompt": "prompts/r3_inventory_05_full_unlit.txt",
+      "source": "exec-35ea6bc4-4d18-43b4-bab8-abd98b8f6a5c.png"
+    },
+    {
+      "state": "half_lit",
+      "file": "inventory_sources/r3_half_lit_generated.png",
+      "prompt": "prompts/r3_inventory_02_half_lit.txt",
+      "source": "exec-bb51956a-654d-481f-a888-e1a329326f7f.png"
+    },
+    {
+      "state": "full_lit",
+      "file": "inventory_sources/r3_full_lit_generated.png",
+      "prompt": "prompts/r3_inventory_03_full_lit.txt",
+      "source": "exec-0d0e16b7-cbe1-4b4c-a719-a15754c0620b.png"
+    }
+  ],
+  "review": "inventory_review/r3_inventory_contact.png",
+  "detail_review": "inventory_review/r3_contents_detail.png",
+  "validation": {
+    "RGBA": true,
+    "transparent_corners": true,
+    "consistent_canvas_scale_and_offset": true,
+    "five_distinct_states": true,
+    "ground_shadow_in_icons": false,
+    "world_sprite_downscaled_as_icon": false
+  },
+  "rebuild_command_portable_bundle": "python3 emberlamp/export_inventory.py"
+}

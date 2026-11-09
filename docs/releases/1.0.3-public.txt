@@ -1,0 +1,12 @@
+织法之杖 1.0.3 · 新增物品与建筑
+2026-11-09
+
+1. 新增物品「粉尘收纳盒」：可随身携带，单格无限收纳奥术粉尘，支持在物品栏、背包内和地面打开。制作：奥术台，木板×1、金块×2、蛛丝×2、奥术粉尘×4。
+
+2. 新增建筑「奥术余烬灯」：无限收纳奥术粉尘，点燃后消耗粉尘提供柔和紫光，可随时熄灭。制作：炼金引擎解锁，石砖×2、金块×2、紫宝石×1、奥术粉尘×4。
+
+Spellwoven Wands 1.0.3 · New Item and Structure
+
+1. New item: Arcane Dust Coffer. A portable, single-slot container with unlimited Arcane Dust storage. Open it in your inventory, backpack, or on the ground. Craft at an Arcane Workbench with 1 Board, 2 Gold Nuggets, 2 Silk, and 4 Arcane Dust.
+
+2. New structure: Arcane Ember Lamp. Stores unlimited Arcane Dust and burns it to provide a soft violet light. It can be extinguished at any time. Prototype at an Alchemy Engine with 2 Cut Stone, 2 Gold Nuggets, 1 Purple Gem, and 4 Arcane Dust.

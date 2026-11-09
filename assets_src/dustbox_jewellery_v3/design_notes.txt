@@ -1,0 +1,25 @@
+2026-11-09 粉尘收纳盒：首饰匣方向，单图审阅阶段
+
+用户要求：余烬灯保留最后确认的外观；粉尘盒重新设计为小巧、可放进背包的首饰盒。先网上调研，再设计。继续遵守每件先出一张外观稿、确认后才生成相关素材的限制。
+
+本次已重新完整阅读：AGENTS.md、docs/26_饥荒原版画风与生图基础规范.md、docs/DST生图基础提示词.txt、docs/art/02_游戏内建筑规范.md、docs/art/03_游戏内物品栏贴图规范.md。
+类别：游戏世界小物件外观预览，按建筑规范处理整体、透视、锚点与透明图；以小尺寸可读性约束细节。不制作运行图标、动画或其他状态。
+
+参考来源：
+1. Love After Love：Vintage Indian Bone Oval shaped Jewellery Box
+https://loveafterlove.com.au/products/vintage-indian-bone-oval-shaped-jewellery-box
+已查看商品实拍，仅取椭圆浅盒、薄铰链盖、小黄铜扣与整腔绒衬的功能形制。
+图片保存在 references/oval_jewellery_lining.jpg，仅作研究及生成参考，不用于游戏贴图。
+2. Science Museum Group：Brass oval snuff box，A210681，1800–1850。
+https://collection.sciencemuseumgroup.org.uk/objects/co158093/brass-oval-snuff-box
+官方数据：70 × 46 × 21 mm。借鉴掌心盒的低厚度、无脚和简单铰接盖；图片下载失败，未将其图片传给生图工具。
+3. Ørskov Copenhagen：Small Jewellery Box。
+https://orskov.com/shop/storage-eng/jewellery-boxes-storage-eng/small-jewellery-box/
+官方产品信息：8 × 7 × 5 cm，便携皮质首饰盒。借鉴轻巧包覆式外壳，不取现代拉链和内部隔格。
+
+设计选择：约8 × 6 × 2.5 cm的心理尺度；低扁圆角八角形；深梅紫皮包木胎；细黄铜口沿；小拇指扣嵌一点浅紫色；平底无脚；薄平盖；单个浅粉尘槽。开盖约65度，一图展示内外关系。
+外观不沿用前稿大型宝箱的板条、粗箍、四足和大宝石锁牌。地方画风规范优先，其次用黄铜与紫色呼应已确认余烬灯。
+
+生图：内置 image_gen；实际提示词见 prompt.txt。原始输出保留真实Alpha，不用代码重绘。生成后记录文件及验收信息。
+
+完成：dustbox_jewellery_appearance.png，1254×1254 RGBA。已检查完整单体、无脚浅盒、薄盖、小扣、单格与透明四角。当前只提交此图待确认。

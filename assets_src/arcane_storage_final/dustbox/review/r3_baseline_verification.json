@@ -1,0 +1,25 @@
+{
+  "changed_files": [
+    "world/closed_empty.png",
+    "world/closed_full.png",
+    "world/closed_half.png",
+    "world/open_empty_00.png",
+    "world/open_empty_01.png",
+    "world/open_full_00.png",
+    "world/open_full_01.png",
+    "world/open_half_00.png",
+    "world/open_half_01.png"
+  ],
+  "unchanged_source_originals": 12,
+  "unchanged_inventory_icons": 5,
+  "unchanged_world_pngs": 36,
+  "only_closed_and_4_degree_frames_changed": true,
+  "all_frames_safe_rgba160": true,
+  "close_exactly_reverses_open": true,
+  "bounds_union": [
+    8,
+    38,
+    152,
+    156
+  ]
+}

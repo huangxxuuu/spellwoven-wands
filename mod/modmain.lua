@@ -1,6 +1,6 @@
 local T=GLOBAL.require("nw/locale").t
 GLOBAL.require("nw/locale").install(env,GLOBAL)
-PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_gunpowder" }
+PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_dustbox", "nw_emberlamp", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_gunpowder" }
 Assets={Asset("ATLAS","images/nw_guide.xml"),Asset("IMAGE","images/nw_guide.tex"),Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
     Asset("SOUNDPACKAGE","sound/nw_instruments.fev"),Asset("SOUND","sound/nw_instruments.fsb"),
     Asset("ATLAS","images/nw_hud.xml"),Asset("IMAGE","images/nw_hud.tex"),
@@ -53,6 +53,7 @@ GLOBAL.STRINGS.CHARACTERS.GENERIC.DESCRIBE.NW_ENGRAVER=T("放入两件同种武�
 GLOBAL.STRINGS.NAMES.NW_DISASSEMBLER=T("奥术分解炉")
 GLOBAL.STRINGS.RECIPE_DESC.NW_DISASSEMBLER=T("将附近地上的法术卡和法杖分解为粉尘。")
 GLOBAL.STRINGS.CHARACTERS.GENERIC.DESCRIBE.NW_DISASSEMBLER=T("持续操作时分解四单位内的物品。随时走开即可停止。")
+GLOBAL.require("nw/dustbox").install(env)
 GLOBAL.require("nw/crafting").install(env)
 GLOBAL.require("nw/rewards").install(env)
 GLOBAL.require("nw/first_boss_reward").install(env)
@@ -105,7 +106,11 @@ if not GLOBAL.TheNet:IsDedicated() then
         self.nw_wandpanel=self.inv.root:AddChild(GLOBAL.require("widgets/nw_wandpanel")(self.inv))
     end)
 end
-if GetModConfigData("development_smoke")=="crafting" then
+if GetModConfigData("development_smoke")=="dustbox" then
+    AddSimPostInit(function()
+        if GLOBAL.TheWorld.ismastersim then GLOBAL.TheWorld:DoTaskInTime(2,GLOBAL.require("nw/smoke_dustbox").run) end
+    end)
+elseif GetModConfigData("development_smoke")=="crafting" then
     AddSimPostInit(function()
         if GLOBAL.TheWorld.ismastersim then GLOBAL.TheWorld:DoTaskInTime(2,GLOBAL.require("nw/smoke_crafting_filter").run) end
     end)

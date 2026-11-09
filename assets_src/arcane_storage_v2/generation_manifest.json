@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-09",
+  "method": "built-in image_gen",
+  "status": "余烬灯保留已确认外观；首饰盒新方案亦获确认；全套美术已生成于arcane_storage_final",
+  "production_assets": "../arcane_storage_final/",
+  "selected": [
+    {
+      "asset": "dustbox_appearance.png",
+      "source": "exec-324b9bb4-c0f0-421f-912d-e11177a3c5c0.png",
+      "prompt": "prompts/04_dustbox_appearance_corrected.txt",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "stage": "superseded_jewellery_redesign_requested"
+    },
+    {
+      "asset": "emberlamp_appearance.png",
+      "source": "exec-05b127d8-3508-4764-85a7-79f196fc37ec.png",
+      "prompt": "prompts/05_emberlamp_appearance_corrected.txt",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "stage": "appearance_approved",
+      "approval_note": "用户明确：最后这个灯的外观可以保留。2026-11-09"
+    }
+  ],
+  "read_specs": [
+    "AGENTS.md",
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/02_游戏内建筑规范.md",
+    "docs/art/03_游戏内物品栏贴图规范.md"
+  ],
+  "reference_roles": {
+    "references/superseded_dustbox_sheet.png": "用户补充只要单体预览前已提交的生成结果，仅为最终单体编辑输入，不作为动画交付",
+    "references/superseded_lamp.png": "被淘汰的灯具初稿，仅为修正输入",
+    "../../test_reports/native_style_reference/buildings_contact.png": "原版线条与色块第一优先参考",
+    "../stations/lineup.png": "现有三建筑材料、色彩第二优先参考"
+  }
+}

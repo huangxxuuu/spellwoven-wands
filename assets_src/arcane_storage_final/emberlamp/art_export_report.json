@@ -1,0 +1,187 @@
+{
+  "art_revision": "r3",
+  "canvas": [
+    256,
+    320
+  ],
+  "anchor": [
+    128,
+    302
+  ],
+  "world_frames": 49,
+  "clips": 11,
+  "loop_drawings": 8,
+  "ignition_drawings": 6,
+  "extinguish_drawings": 8,
+  "extinguish_terminal_empty": true,
+  "extinguish_fixed_transform": true,
+  "body_static": true,
+  "permanent_wick": true,
+  "wick_visible_pixels_by_fuel": {
+    "empty": 158,
+    "half": 75,
+    "full": 41
+  },
+  "draw_order": [
+    "ground",
+    "body",
+    "wick",
+    "foreground_fuel",
+    "front_fire"
+  ],
+  "extinguish_matches_off": true,
+  "loop_flame_bounds": {
+    "half_00": [
+      155,
+      150,
+      195,
+      194
+    ],
+    "half_01": [
+      155,
+      147,
+      195,
+      194
+    ],
+    "half_02": [
+      155,
+      144,
+      195,
+      194
+    ],
+    "half_03": [
+      155,
+      143,
+      195,
+      194
+    ],
+    "half_04": [
+      155,
+      143,
+      195,
+      194
+    ],
+    "half_05": [
+      155,
+      146,
+      195,
+      194
+    ],
+    "half_06": [
+      155,
+      149,
+      195,
+      194
+    ],
+    "half_07": [
+      155,
+      152,
+      195,
+      194
+    ],
+    "full_00": [
+      155,
+      149,
+      195,
+      185
+    ],
+    "full_01": [
+      155,
+      146,
+      195,
+      185
+    ],
+    "full_02": [
+      155,
+      144,
+      195,
+      185
+    ],
+    "full_03": [
+      155,
+      142,
+      195,
+      185
+    ],
+    "full_04": [
+      155,
+      143,
+      195,
+      185
+    ],
+    "full_05": [
+      155,
+      146,
+      195,
+      185
+    ],
+    "full_06": [
+      155,
+      148,
+      195,
+      185
+    ],
+    "full_07": [
+      155,
+      150,
+      195,
+      185
+    ]
+  },
+  "wick_heat_by_frame": {
+    "off_empty": 0,
+    "off_half": 0,
+    "burn_00_half": 0.82,
+    "burn_01_half": 0.93,
+    "burn_02_half": 1,
+    "burn_03_half": 0.88,
+    "burn_04_half": 0.76,
+    "burn_05_half": 0.91,
+    "burn_06_half": 0.98,
+    "burn_07_half": 0.86,
+    "ignite_00_half": 0.12,
+    "ignite_01_half": 0.28,
+    "ignite_02_half": 0.45,
+    "ignite_03_half": 0.64,
+    "ignite_04_half": 0.82,
+    "ignite_05_half": 0.82,
+    "extinguish_00_half": 0.82,
+    "extinguish_01_half": 0.72,
+    "extinguish_02_half": 0.46,
+    "extinguish_03_half": 0.25,
+    "extinguish_04_half": 0.1,
+    "extinguish_05_half": 0.04,
+    "extinguish_06_half": 0,
+    "extinguish_07_half": 0,
+    "extinguish_08_half": 0,
+    "off_full": 0,
+    "burn_00_full": 0.82,
+    "burn_01_full": 0.93,
+    "burn_02_full": 1,
+    "burn_03_full": 0.88,
+    "burn_04_full": 0.76,
+    "burn_05_full": 0.91,
+    "burn_06_full": 0.98,
+    "burn_07_full": 0.86,
+    "ignite_00_full": 0.12,
+    "ignite_01_full": 0.28,
+    "ignite_02_full": 0.45,
+    "ignite_03_full": 0.64,
+    "ignite_04_full": 0.82,
+    "ignite_05_full": 0.82,
+    "extinguish_00_full": 0.82,
+    "extinguish_01_full": 0.72,
+    "extinguish_02_full": 0.46,
+    "extinguish_03_full": 0.25,
+    "extinguish_04_full": 0.1,
+    "extinguish_05_full": 0.04,
+    "extinguish_06_full": 0,
+    "extinguish_07_full": 0,
+    "extinguish_08_full": 0
+  },
+  "central_stone_bottom_range": [
+    298,
+    301
+  ],
+  "checked_fixed_body_pixels": 20029
+}

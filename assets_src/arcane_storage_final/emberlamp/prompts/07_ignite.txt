@@ -1,0 +1,12 @@
+Use case: stylized-concept
+Asset type: six-keyframe IGNITION animation sprite sheet, independent fire layer for a Don't Starve Together lamp.
+Input image1 is the approved arcane lamp for exact flame color and shape identity. Image2 is the accepted eight-frame flame loop for painting style. Draw ONLY flame shapes, no lamp or fuel or bowl.
+Generate ONE 3-column by 2-row sheet with exactly six distinct successive handdrawn ignition frames in reading order. Each cell same size and fire root anchored at the exact same bottom-center location. Transparent RGBA background, sharp cutout edges with no glow. 
+Frame1: tiny curling turquoise spark with a lilac dot at ground root, 12 percent of final height.
+Frame2: low forked lavender and mint ember tongue, 25 percent height.
+Frame3: narrow cyan tongue unfurls left with tiny ivory tip, 45 percent height.
+Frame4: two cyan curled tongues with purple/ivory core, 75 percent height.
+Frame5: tall thin overshoot tongue, 110 percent final height, same wide root, bright small ivory tip.
+Frame6: settled stable flame matching the first flame of image2, 100 percent height, dark teal outer contour, turquoise outer body, mint inner tongue, lilac small inner flame and ivory center/tip.
+Do not repeat identical shapes at different sizes: each intermediate is a purposeful flowing flame drawing. Within cells preserve same maximum scale and fixed root so this can be sliced directly. Keep large transparent margins. Six frames only, no numbers or labels or gridlines or captions.
+Local norms: original DST 2D handdrawn ink shape, large simple color planes, variable contour, restrained hard-edged highlights, no photographic fire, no 3D, no gradients or grain, no bloom or glow or smoky background. All space outside the sharp-edged flame cutouts must be fully transparent.

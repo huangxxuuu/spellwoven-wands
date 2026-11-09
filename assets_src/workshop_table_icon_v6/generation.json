@@ -1,0 +1,54 @@
+{
+  "category": "宣传图",
+  "mode": "built-in image_gen",
+  "scope": "Chinese book-cover letterforms only",
+  "standards_read": [
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/01_宣传图规范.md"
+  ],
+  "prompt": "zh/prompt.txt",
+  "references": [
+    {
+      "image": 1,
+      "path": "assets_src/workshop_table_icon_v5/zh/source.png",
+      "role": "Edit target; preserve title color, two-line layout, book and scene."
+    },
+    {
+      "image": 2,
+      "path": "C:/Users/85183/.codex/codex-remote-attachments/01a1beb4-210c-7f91-8c6e-6ce3a584e560/7DA92215-1691-41EA-A763-3102F6606763/1-照片-1.jpg",
+      "role": "Authoritative Chinese glyph silhouettes, curled hook, angular stroke proportions and broad pointed terminals; do not copy colors or green background."
+    }
+  ],
+  "outputs": {
+    "source": {
+      "path": "zh/source.png",
+      "width": 1254,
+      "height": 1254
+    },
+    "workshop": "zh/preview_512.png",
+    "thumbnail": "zh/preview_256.png"
+  },
+  "english_version": {
+    "path": "assets_src/workshop_table_icon_v5/en/source.png",
+    "modified": false
+  },
+  "validation": {
+    "sizes_checked": [
+      1254,
+      512,
+      256
+    ],
+    "text": [
+      "织法",
+      "之杖"
+    ],
+    "independent_review": true,
+    "findings": [
+      "Correct four Chinese characters and two-line layout.",
+      "Reference curled hook and wedge-shaped strokes reflected in new letterforms.",
+      "Existing cream-gold title color retained; no green background or fringe.",
+      "Book, support, cards, wand and tabletop composition preserved."
+    ]
+  }
+}

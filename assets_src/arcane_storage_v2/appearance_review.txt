@@ -1,0 +1,16 @@
+2026-11-09 外观审阅
+
+本轮仅交付 originals/dustbox_appearance.png 与 originals/emberlamp_appearance.png 两张单体外观稿。
+收纳盒：开盖状态，深木色、黄铜束边、紫晶扣和单腔粉尘。
+余烬灯：点亮状态，低矮石座、黄铜弯臂、悬吊开放灯腔、青紫火芯。
+
+已完整读取共同规范、基础提示词、建筑及物品栏规范，本轮两图均按游戏世界单体类别制作。
+原版线条与大色块优先，其次参考三座现有建筑的材料与颜色。
+使用内置 image_gen；实际最终提示词为 prompts/04_dustbox_appearance_corrected.txt 和 prompts/05_emberlamp_appearance_corrected.txt。
+图像保留工具原始RGBA，未用代码重绘。尺寸与Alpha见 generation_manifest.json。
+references 仅保留复现编辑所需的淘汰输入，并非待验收的追加素材。
+
+当前阶段：等待用户确认外观；不继续生成库存图、其他状态、开合动画或运行图集。
+未修改游戏代码、未替换已安装贴图。
+
+2026-11-09 用户反馈：余烬灯最后外观确认保留。粉尘收纳盒改为首饰盒方向；新版外观见 ../dustbox_jewellery_v3/dustbox_jewellery_appearance.png，仍等待确认。

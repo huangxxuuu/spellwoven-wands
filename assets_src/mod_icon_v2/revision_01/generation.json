@@ -1,0 +1,20 @@
+{
+  "generator": "built-in image_gen",
+  "use_case": "compositing / ads-marketing",
+  "source": "source.png",
+  "prompt": "prompt.txt",
+  "references": [
+    "assets_src/art_v1/runtime/nw_parts/head_crystal_1_green.png",
+    "assets_src/art_v1/runtime/nw_parts/body_02_medium.png",
+    "assets_src/spell_cards_composed/v1/album/homing.png",
+    "assets_src/spell_cards_composed/v1/album/fire.png",
+    "assets_src/art_v1/runtime/nw_elemental_flight/fire_head_0.png"
+  ],
+  "theme": "Green single-crystal wand, Homing and Fire Bolt cards, one homing fire projectile",
+  "background": "opaque deep blue-grey",
+  "workshop_output": "assets_src/mod_icon.png",
+  "game_png": "assets_src/mod_icon_v2/game_256.png",
+  "game_texture": "mod/modicon.tex",
+  "previous_assets": "previous/",
+  "published": false
+}

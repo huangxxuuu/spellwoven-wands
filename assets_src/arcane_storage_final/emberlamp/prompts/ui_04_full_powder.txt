@@ -1,0 +1,5 @@
+Use case: precise-object-edit
+Asset type: DST 64-pixel inventory icon, full unlit variant.
+Image 1 is the exact icon edit target. Image 2 is reference ONLY for the loose granular lavender powder material.
+Change ONLY the purple contents inside the lantern bowl in Image 1. Replace the single faceted angular crystal-looking lump with a broad gently bumpy mound of loose fine lavender arcane dust, like coloured fine sand. Two or three uneven low humps, a simple lavender body colour and one restrained darker underside. At most two tiny pale specks. No planar gemstone faces, no straight triangular mountain silhouette, no large white diamond highlights. The separate small purple diamond on the FRONT of the brass bowl is still a real faceted gemstone and must stay untouched.
+Keep all other pixels, silhouette, proportions, canvas, position, brass frame, suspension rings, cap, feet, base, black ink lines and flat icon shading unchanged. It remains UNLIT: no flame, no smoke, no glow. Genuine transparent background and holes, no ground shadow, no label. Simplified original Don't Starve Together hand-inked small UI art; no noisy stippling, no photorealism.
