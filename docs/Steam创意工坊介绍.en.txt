@@ -54,7 +54,7 @@ Each station has a different job:
 [*][b]Weapon Engraving Table[/b]: turn recipe weapons and tools into spell cards.
 [*][b]Arcane Recycler[/b]: recover Arcane Dust from unwanted cards, piles, and wands lying nearby. Put anything you want to keep safely away first.
 [/list]
-[img]https://images.steamusercontent.com/ugc/9463565764347824291/6C4F2133ED5C287970A12E01F87D30D2A6C091D8/[/img]
+[img]https://images.steamusercontent.com/ugc/17760329614787864883/E59A6944E92CDD58C8A8C9B89BBA72D8B564682E/[/img]
 [i]Left to right: Arcane Workbench, Weapon Engraving Table, Arcane Recycler.[/i]
 
 Collect cards through crafting, engraving, creature drops, and boss rewards. Some are loot-only. Wands have different rarities and randomized stats. Stack loose cards into piles of up to [b]25[/b], and name your wands with a Feather Pencil.

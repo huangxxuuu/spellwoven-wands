@@ -1,5 +1,7 @@
-"""Compile the selected A3/B2 painting into DST world sprites and UI atlases."""
+"""Compile the selected building paintings and matching furnace states for DST."""
 from pathlib import Path
+import hashlib
+import json
 import math
 import subprocess
 from xml.etree import ElementTree as ET
@@ -7,18 +9,29 @@ from PIL import Image, ImageOps, ImageDraw, ImageFilter
 from build_art_assets import ROOT, anim, compile_bank, frame
 
 tools=Path("E:/SteamLibrary/steamapps/common/Don't Starve Mod Tools/mod_tools")
-master=Image.open(ROOT/"assets_src/stations/stations.png").convert("RGBA")
-assert master.size==(1774,887)
+selection=json.loads((ROOT/"assets_src/stations/selected.json").read_text(encoding="utf8"))
 bank="nw_stations"
 build=ET.Element("Build",name=bank)
 animations=ET.Element("Anims")
 images={}
-def sprite(box):
-    art=master.crop(box)
+source_transforms={}
+
+def sprite(name):
+    spec=selection["buildings"][name]
+    art=Image.open(ROOT/spec["source"]).convert("RGBA")
+    assert list(art.size)==spec["source_size"], f"{name}: source registration changed"
+    assert art.getchannel("A").getextrema()[0]==0, f"{name}: expected transparency"
     art.putalpha(art.getchannel("A").point(lambda a: 0 if a<9 else a))
-    return art.resize((round(art.width*320/art.height),320),Image.Resampling.LANCZOS)
-images["engraver"]=sprite((60,40,821,848))
-images["furnace"]=sprite((1018,93,1710,832))
+    size=tuple(spec["body_size"])
+    inset=spec.get("inset",0)
+    fitted=ImageOps.contain(art,(size[0]-inset*2,size[1]-inset*2),Image.Resampling.LANCZOS)
+    offset=((size[0]-fitted.width)//2,(size[1]-fitted.height)//2)
+    source_transforms[name]=(fitted.width/art.width,fitted.height/art.height,*offset)
+    out=Image.new("RGBA",size)
+    out.alpha_composite(fitted,offset)
+    return out
+for name in ("workbench","engraver","furnace"):
+    images[name]=sprite(name)
 # The native researchlab2 idle frame uses a 212x55 machine_shadow symbol:
 # broken horizontal ink strokes with transparent turf between strokes.
 from io import BytesIO
@@ -26,11 +39,10 @@ import resvg_py
 shadow=Image.open(ROOT/"assets_src/stations/researchlab2_machine_shadow.png").convert("RGBA")
 soil=Image.open(BytesIO(resvg_py.svg_to_bytes(svg_path=str(ROOT/"assets_src/stations/foot_soil.svg")))).convert("RGBA")
 icons=images.copy()
-images["workbench"]=Image.open(ROOT/"assets_src/art_v1/runtime/nw_objects/workbench.png").convert("RGBA")
 footprints={
-    "workbench":((-3,189,259,252),[(28,217,44),(182,243,53),(233,208,34),(90,190,30)]),
-    "engraver":((-2,264,299,322),[(71,310,60),(260,298,54),(30,291,42)]),
-    "furnace":((-8,258,307,326),[(66,306,74),(246,305,77)]),
+    "workbench":((-3,189,259,252),[(31,225,44),(176,247,53),(232,213,34),(92,198,30)]),
+    "engraver":((-2,264,299,322),[(77,314,60),(268,306,54),(28,302,42)]),
+    "furnace":((-8,258,307,326),[(76,314,74),(235,315,77)]),
 }
 def grounded(art,name):
     margin=16
@@ -50,17 +62,20 @@ for name,art in images.items():
 
 # An additive light pass over the hanging gem and inner rim. All phases
 # share the camera, pivot and stone silhouette of the idle painting.
-factor=320/739
-def point(x,y):return ((x-1018)*factor,(y-93)*factor)
+def point(x,y):
+    sx,sy,ox,oy=source_transforms["furnace"]
+    return (ox+x*sx,oy+y*sy)
 def active_frame(phase,flash):
     base=images["furnace"]
     light=Image.new("RGBA",base.size)
     draw=ImageDraw.Draw(light)
     glow=.7+.3*math.cos(phase)
-    draw.polygon([point(x,y) for x,y in [(1394,246),(1413,248),(1435,292),(1395,365),(1355,292),(1377,247)]],
+    glow_spec=selection["furnace_glow"]
+    draw.polygon([point(x,y) for x,y in glow_spec["gem_polygon"]],
                  fill=(54,244,234,round(40+72*glow)))
-    cx,cy=point(1376,435)
-    rx,ry=60,12
+    cx,cy=point(*glow_spec["mouth_center"])
+    sx,sy,_,_=source_transforms["furnace"]
+    rx,ry=glow_spec["mouth_radii"][0]*sx,glow_spec["mouth_radii"][1]*sy
     draw.ellipse((cx-rx,cy-ry,cx+rx,cy+ry),fill=(15,183,180,round(100+75*glow)))
     pts=[]
     for j in range(110):
@@ -101,11 +116,13 @@ compile_bank(bank,build,animations,images,tools)
 atlas=ET.Element("Atlas")
 ET.SubElement(atlas,"Texture",filename="nw_stations.tex")
 entries=ET.SubElement(atlas,"Elements")
-sheet=Image.new("RGBA",(512,256))
-for key,source,x,size in [("nw_engraver","engraver",0,64),("nw_disassembler","furnace",64,64),("nw_engraver_station","engraver",256,256)]:
+sheet=Image.new("RGBA",(1024,256))
+for key,source,x,size in [("nw_engraver","engraver",0,64),("nw_disassembler","furnace",64,64),
+                          ("nw_workbench","workbench",128,64),
+                          ("nw_engraver_station","engraver",256,256),("nw_workbench_station","workbench",512,256)]:
     img=ImageOps.contain(icons[source],(round(size*.90),round(size*.90)),Image.Resampling.LANCZOS)
     sheet.alpha_composite(img,(x+(size-img.width)//2,(size-img.height)//2))
-    ET.SubElement(entries,"Element",name=key+".tex",u1=str(x/512),u2=str((x+size)/512),v1=str(1-size/256),v2="1")
+    ET.SubElement(entries,"Element",name=key+".tex",u1=str(x/sheet.width),u2=str((x+size)/sheet.width),v1=str(1-size/256),v2="1")
 dest=ROOT/"mod/images/inventoryimages"
 ET.ElementTree(atlas).write(dest/"nw_stations.xml",encoding="utf8")
 png=ROOT/"dist/intermediate/nw_stations.png";sheet.save(png)
@@ -118,3 +135,11 @@ for index,(img,scale) in enumerate([(images["workbench"],1.48),
     img=img.resize((round(img.width*factor),round(img.height*factor)),Image.Resampling.LANCZOS)
     preview.alpha_composite(img,(135+270*index-img.width//2,281-img.height))
 preview.convert("RGB").save(ROOT/"assets_src/stations/lineup.png")
+report={"selection":selection["label"],"sources":{
+    name:{"path":spec["source"],"sha256":hashlib.sha256((ROOT/spec["source"]).read_bytes()).hexdigest(),
+          "body_size":spec["body_size"],"compiled_frame_size":list(images[name].size)}
+    for name,spec in selection["buildings"].items()},
+    "animation_frames":{seq.get("name"):len(seq) for seq in animations},
+    "animation_archive":"mod/anim/nw_stations.zip","inventory_atlas":"mod/images/inventoryimages/nw_stations.xml"}
+(ROOT/"assets_src/stations/build_report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
+print(f"PASS: {selection['label']}; world bodies, 8 active + 3 pulse frames, and 5 station UI entries")

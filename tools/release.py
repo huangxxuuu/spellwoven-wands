@@ -1,8 +1,7 @@
-"""Version, validate, freeze, commit and publish one reproducible release.
+"""Prepare, commit and publish a reviewed code release to Steam, GitHub and Pages.
 
-Default mode only prints a plan. Private releases never deploy Pages. Steam
-visibility is omitted from VDF unless explicitly supplied, preserving the item.
-No credentials are saved; SteamCMD inherits the terminal for login/Steam Guard.
+Public notes require explicit human confirmation. Workshop previews, titles,
+descriptions and visibility are never changed by this coordinator.
 """
 from __future__ import annotations
 
@@ -119,14 +118,6 @@ def update_version(root, version):
     # Historical documents and the last-upload receipt intentionally keep their versions.
 
 
-def workshop_description(source, omitted):
-    sections = re.split(r'(?=\[h2\])', source)
-    text = ''.join(s for s in sections if not any(s.startswith(f'[h2]{h}[/h2]') for h in omitted))
-    require(0 < len(text.encode('utf-8')) < 8000,
-            'Steam description must be below 8000 UTF-8 bytes; shorten it or configure omitted headings.')
-    return text
-
-
 def vdf_quote(value):
     require('\x00' not in str(value), 'NUL is not allowed in VDF.')
     return '"' + str(value).replace('\\', '\\\\').replace('"', '\\"').replace('\r', '').replace('\n', '\\n') + '"'
@@ -138,18 +129,12 @@ def workshop_changenote(notes):
                   lambda m: f'{m[1]}\n[img]{m[2]}[/img]', notes, flags=re.M)
 
 
-def make_vdf(config, directory, description, notes, visibility='preserve'):
+def make_vdf(config, directory, notes):
     require(str(config['publishedfileid']).isdigit() and int(config['publishedfileid']) > 0,
             'An existing Workshop item ID is required. Creating items is intentionally unsupported.')
     values = dict(appid=config['app_id'], publishedfileid=config['publishedfileid'],
-                  contentfolder=(directory / 'content').as_posix(),
-                  previewfile=(directory / 'preview.png').as_posix(), changenote=workshop_changenote(notes))
-    # SteamCMD has no per-language metadata option. A default description would
-    # overwrite English; localized titles/descriptions have their own API stage.
-    if not config.get('workshop_languages'):
-        values.update(title=config['title'], description=description)
-    if visibility != 'preserve':
-        values['visibility'] = {'public': 0, 'friends': 1, 'hidden': 2, 'unlisted': 3}[visibility]
+                  contentfolder=(directory / 'content').as_posix(), changenote=workshop_changenote(notes))
+    # No preview/title/description/visibility keys, even in legacy configurations.
     return '"workshopitem"\n{\n' + ''.join(f'  {vdf_quote(k)} {vdf_quote(v)}\n' for k, v in values.items()) + '}\n'
 
 
@@ -186,7 +171,11 @@ def validate_checkout(checkout, config):
     require(git(checkout, 'branch', '--show-current') == config['branch'], 'Wrong release branch.')
 
 
-def prepare(root, config, version, audience, visibility, notes):
+def prepare(root, config, version, audience, visibility, notes, commit_notes, notes_approved=False):
+    require(notes_approved and notes.strip(), 'Human approval of public notes is required before preparation.')
+    require(commit_notes.startswith(f'Release v{version}\n\n') and commit_notes.split('\n\n', 1)[1].strip(),
+            'Full commit record must begin with Release vVERSION, a blank line and the complete changes.')
+    require(visibility == 'preserve', 'Code releases preserve Workshop visibility.')
     checkout = (root / config['export_directory']).resolve()
     require(checkout.is_relative_to((root / 'dist').resolve()), 'Export must be inside dist/.')
     directory = root / 'dist/releases' / version
@@ -215,7 +204,6 @@ def prepare(root, config, version, audience, visibility, notes):
     run([sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_release*.py'], checkout)
     directory.mkdir(parents=True)
     shutil.copytree(checkout / 'mod', directory / 'content')
-    shutil.copy2(checkout / config['preview'], directory / 'preview.png')
     package = directory / f'spellwoven-wands-{version}.zip'
     shutil.copy2(checkout / f'dist/nw_weave_dev-{version}.zip', package)
     site_zip = directory / f'field-guide-{version}.zip'
@@ -223,21 +211,12 @@ def prepare(root, config, version, audience, visibility, notes):
         for path in sorted((checkout / 'site/public').rglob('*')):
             if path.is_file():
                 archive.write(path, path.relative_to(checkout / 'site/public').as_posix())
-    description = workshop_description((checkout / config['description']).read_text(encoding='utf-8-sig'),
-                                      config['description_omit_headings'])
-    (directory / 'description.txt').write_text(description, encoding='utf-8')
-    if config.get('workshop_languages'):
-        localized = {key: config[key] for key in ('app_id', 'publishedfileid')}
-        localized['languages'] = {language: {'title': row['title'],
-            'description': workshop_description((checkout / row['description']).read_text(encoding='utf-8-sig'), [])}
-            for language, row in config['workshop_languages'].items()}
-        save(directory / 'workshop-localizations.json', localized)
-        run([sys.executable, 'tools/steam_workshop_metadata.py', '--snapshot',
-             directory / 'workshop-localizations.json'], checkout)
     (directory / 'notes.txt').write_text(notes, encoding='utf-8')
-    (directory / 'workshop.vdf').write_text(make_vdf(config, directory, description, notes, visibility), encoding='utf-8')
+    (directory / 'commit.txt').write_text(commit_notes, encoding='utf-8')
+    (directory / 'workshop.vdf').write_text(make_vdf(config, directory, notes), encoding='utf-8')
     source_paths = read_json(checkout / '.nw_public_export')['files']
-    state = dict(version=version, audience=audience, steam_visibility=visibility, config=config,
+    state = dict(release_kind='code', approved_notes_sha256=digest(directory / 'notes.txt'),
+                 version=version, audience=audience, steam_visibility=visibility, config=config,
                  checkout=str(checkout), base_commit=git(checkout, 'rev-parse', 'HEAD'), steps={},
                  source_hashes=hashes(checkout, source_paths))
     # SteamCMD rewrites the VDF. Regenerate it from immutable inputs on each retry.
@@ -249,13 +228,13 @@ def prepare(root, config, version, audience, visibility, notes):
 
 
 def steam_upload(executable, username, directory, config, visibility):
+    require(visibility == 'preserve', 'Code releases preserve Workshop visibility.')
     require(executable and Path(executable).is_file(), 'Supply --steamcmd PATH or install steamcmd on PATH.')
     require(username and re.fullmatch(r'[A-Za-z0-9_@.\-]+', username), 'Supply --steam-user (login name, not display name).')
     log = Path(executable).resolve().parent / 'logs/workshop_log.txt'
     offset = log.stat().st_size if log.exists() else 0
     (directory / 'workshop.vdf').write_text(make_vdf(config, directory,
-        (directory / 'description.txt').read_text(encoding='utf-8'),
-        (directory / 'notes.txt').read_text(encoding='utf-8'), visibility), encoding='utf-8')
+        (directory / 'notes.txt').read_text(encoding='utf-8')), encoding='utf-8')
     # Inherit stdin/stdout. Never capture the password/Steam Guard conversation.
     run([executable, '+login', username, '+workshop_build_item', directory / 'workshop.vdf', '+quit'], directory)
     require(log.exists(), f'No Steam upload log found: {log}. Upload remains unconfirmed.')
@@ -294,10 +273,13 @@ def pages_deploy(config, commit, deadline_seconds=900):
     raise ReleaseError(f'Pages timeout; inspect gh run view {run_id}. The release journal retains earlier successes.')
 
 
-def publish(directory, state, args):
+def validate_release(directory, state):
+    require(state.get('release_kind') == 'code',
+            'Legacy snapshots are not code-only releases; do not resume them with this coordinator.')
+    require(state['steam_visibility'] == 'preserve', 'Code releases preserve Workshop visibility.')
+    require(state.get('approved_notes_sha256') == digest(directory / 'notes.txt'),
+            'Approved public notes changed or approval is missing.')
     config, checkout = state['config'], Path(state['checkout'])
-    repo, version = config['repository'], state['version']
-    state_path = directory / 'state.json'
     validate_checkout(checkout, config)
     verify_hashes(checkout, state['source_hashes'])
     verify_hashes(directory, state['artifact_hashes'])
@@ -307,6 +289,36 @@ def publish(directory, state, args):
     source_files = {p for p in git(checkout, 'ls-files', '--cached', '--others', '--exclude-standard', '-z').split('\0')
                     if p and (checkout / p).is_file()}
     require(source_files == set(state['source_hashes']), 'Unexpected source files in the release checkout.')
+
+
+def commit_release(directory, state):
+    validate_release(directory, state)
+    checkout = Path(state['checkout'])
+    expected = (directory / 'commit.txt').read_text(encoding='utf-8').strip()
+    head = git(checkout, 'rev-parse', 'HEAD')
+    if head == state['base_commit']:
+        require('commit' not in state['steps'], 'Previously committed checkout was moved backwards.')
+        git(checkout, 'add', '--all')
+        git(checkout, 'commit', '--cleanup=verbatim', '--file', str(directory / 'commit.txt'))
+    else:
+        require(git(checkout, 'log', '-1', '--format=%B') == expected
+                and git(checkout, 'rev-parse', 'HEAD^') == state['base_commit'],
+                'Checkout advanced outside this release or full commit record differs.')
+    require(git(checkout, 'log', '-1', '--format=%B') == expected, 'Commit message differs from the full frozen record.')
+    require(not git(checkout, 'status', '--porcelain'), 'Uncommitted files remain after release commit.')
+    head = git(checkout, 'rev-parse', 'HEAD')
+    require(state['steps'].get('commit', head) == head, 'Recorded release commit differs.')
+    state['steps']['commit'] = head
+    save(directory / 'state.json', state)
+    print(f'Committed {head}. Nothing pushed or uploaded.', flush=True)
+
+
+def publish(directory, state, args):
+    validate_release(directory, state)
+    require(state['steps'].get('commit'), 'Commit the prepared release with --mode commit before publishing.')
+    config, checkout = state['config'], Path(state['checkout'])
+    repo, version = config['repository'], state['version']
+    state_path = directory / 'state.json'
     check_audience(state['audience'], state['steam_visibility'],
                    gh_json('repo', 'view', repo, '--json', 'visibility'))
     native = getattr(args, 'steam_backend', 'steamcmd') == 'native'
@@ -327,19 +339,6 @@ def publish(directory, state, args):
             state['steps'][name] = action() or True
             save(state_path, state)
 
-    def commit_source():
-        head = git(checkout, 'rev-parse', 'HEAD')
-        if head == state['base_commit']:
-            git(checkout, 'add', '--all')
-            git(checkout, 'commit', '-m', f'Release v{version}')
-        else:
-            require(git(checkout, 'log', '-1', '--format=%s') == f'Release v{version}'
-                    and git(checkout, 'rev-parse', 'HEAD^') == state['base_commit'],
-                    'Checkout advanced outside this release.')
-        require(not git(checkout, 'status', '--porcelain'), 'Uncommitted files remain after release commit.')
-        return git(checkout, 'rev-parse', 'HEAD')
-
-    step('commit', commit_source)
     require(git(checkout, 'rev-parse', 'HEAD') == state['steps']['commit'], 'Checkout no longer matches the release commit.')
     tag = f'v{version}'
 
@@ -370,9 +369,6 @@ def publish(directory, state, args):
         step('steam', lambda: native_upload(directory, getattr(args, 'steam_api_dll', None)))
     else:
         step('steam', lambda: steam_upload(executable, args.steam_user, directory, config, state['steam_visibility']))
-    if config.get('workshop_languages'):
-        step('steam_metadata', lambda: publish_metadata(directory / 'workshop-localizations.json',
-                                                       getattr(args, 'steam_api_dll', None)))
     if state['audience'] == 'public':
         step('pages', lambda: pages_deploy(config, state['steps']['commit']))
     else:
@@ -391,30 +387,45 @@ def native_upload(directory, dll=None):
     return True
 
 
-def publish_metadata(snapshot=None, dll=None):
-    command = [sys.executable, ROOT / 'tools/steam_workshop_metadata.py', '--mode', 'publish']
-    if snapshot:
-        command += ['--snapshot', snapshot]
-    if dll:
-        command += ['--steam-api-dll', dll]
-    run(command)
-    return True
+@contextmanager
+def github_auth():
+    """Use normal gh auth, or the existing Git credential for github.com in memory."""
+    if os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN'):
+        yield
+        return
+    status = subprocess.run(['gh', 'auth', 'status'], capture_output=True)
+    if status.returncode == 0:
+        yield
+        return
+    env = dict(os.environ, GCM_INTERACTIVE='Never', GIT_TERMINAL_PROMPT='0')
+    result = subprocess.run(['git', 'credential', 'fill'], input='protocol=https\nhost=github.com\n\n',
+                            text=True, capture_output=True, env=env)
+    fields = dict(line.split('=', 1) for line in result.stdout.splitlines() if '=' in line)
+    require(result.returncode == 0 and fields.get('password'),
+            'GitHub authentication unavailable. Run gh auth login, then retry.')
+    os.environ['GH_TOKEN'] = fields['password']
+    try:
+        yield
+    finally:
+        os.environ.pop('GH_TOKEN', None)
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--mode', choices=['plan', 'prepare', 'publish', 'workshop'], default='plan')
+    parser.add_argument('--mode', choices=['plan', 'prepare', 'commit', 'publish'], default='plan')
     versions = parser.add_mutually_exclusive_group()
     versions.add_argument('--version')
     versions.add_argument('--bump', choices=['patch', 'minor', 'major'])
     versions.add_argument('--resume', metavar='VERSION')
     parser.add_argument('--audience', choices=['private', 'public'], default='private')
-    parser.add_argument('--steam-visibility', choices=['preserve', 'hidden', 'friends', 'unlisted', 'public'], default='preserve')
+    parser.add_argument('--steam-backend', choices=['steamcmd', 'native'], default='native')
     parser.add_argument('--steamcmd', default=os.environ.get('STEAMCMD_PATH'))
-    parser.add_argument('--steam-backend', choices=['steamcmd', 'native'], default='steamcmd')
     parser.add_argument('--steam-user', default=os.environ.get('STEAM_USER'))
     parser.add_argument('--steam-api-dll', default=os.environ.get('STEAM_API_DLL'))
     parser.add_argument('--notes-file', type=Path)
+    parser.add_argument('--commit-file', type=Path)
+    parser.add_argument('--notes-approved', action='store_true',
+                        help='Only set after the user explicitly approves the public notes in this release.')
     args = parser.parse_args(argv)
     with (nullcontext() if args.mode == 'plan' else release_lock(ROOT)):
         execute(args)
@@ -422,54 +433,38 @@ def main(argv=None):
 
 def execute(args):
     config = read_json(ROOT / 'tools/release_config.json')
-    if args.mode == 'workshop':
-        require(not (args.version or args.bump or args.resume or args.notes_file) and args.steam_visibility == 'preserve',
-                'Workshop-only mode does not change version, content, notes or visibility.')
-        publish_metadata(dll=args.steam_api_dll)
-        return
-    require(args.audience == 'public' or args.steam_visibility in ('preserve', 'hidden'),
-            'Private releases cannot set public/friends/unlisted Steam visibility.')
     if args.resume:
         require(re.fullmatch(r'\d+\.\d+\.\d+', args.resume), 'Invalid resume version.')
+        require(args.mode in ('plan', 'commit', 'publish'), '--resume is for plan, commit or publish.')
+        require(not (args.notes_file or args.commit_file or args.notes_approved),
+                'Resume uses frozen notes and approval; do not supply replacements.')
         directory = ROOT / 'dist/releases' / args.resume
         state = read_json(directory / 'state.json')
         if args.mode == 'plan':
-            print(json.dumps({k: state[k] for k in ('version', 'audience', 'steam_visibility', 'steps')}, ensure_ascii=False, indent=2))
+            print(json.dumps({k: state[k] for k in ('version', 'audience', 'steps')}, ensure_ascii=False, indent=2))
             return
-        require(args.mode == 'publish', '--resume is for plan or publish, not prepare.')
-        # Stored audience wins; flags cannot silently promote a private snapshot.
-        require(args.audience == state['audience'] and args.steam_visibility == state['steam_visibility'],
-                'Resume requires the same audience/visibility flags as preparation.')
-    else:
-        version = next_version(current_version(ROOT), args.version, args.bump)
-        notes = args.notes_file.read_text(encoding='utf-8-sig') if args.notes_file else f'织法之杖 v{version}'
-        if args.mode == 'plan':
-            print(f'PLAN {current_version(ROOT)} -> {version}; {args.audience}; Steam visibility: {args.steam_visibility}\n'
-                  f'GitHub: {config["repository"]}; Workshop: {config["publishedfileid"]}\n'
-                  'Version -> export -> tests -> ZIPs -> commit/tag/push -> draft GitHub release -> Steam content -> Chinese/English metadata verification -> website -> finish release\n'
-                  + ('Website: private downloadable ZIP only.' if args.audience == 'private' else 'Website: public GitHub Pages.')
-                  + '\nNo files or remote services were changed. Use --mode prepare or --mode publish.')
-            return
-        # Fail before version changes if a live publish cannot run.
-        if args.mode == 'publish':
-            check_audience(args.audience, args.steam_visibility, gh_json('repo', 'view', config['repository'], '--json', 'visibility'))
-            if args.steam_backend == 'native':
-                require(args.steam_visibility == 'preserve', 'Native upload preserves current Steam visibility.')
-                command = [sys.executable, ROOT / 'tools/steam_workshop_metadata.py', '--mode', 'check']
-                if args.steam_api_dll:
-                    command += ['--steam-api-dll', args.steam_api_dll]
-                run(command)
-            else:
-                executable = args.steamcmd or shutil.which('steamcmd') or shutil.which('steamcmd.exe')
-                require(executable and Path(executable).is_file(), 'Publishing requires an installed SteamCMD executable.')
-                require(args.steam_user and re.fullmatch(r'[A-Za-z0-9_@.\-]+', args.steam_user),
-                        'Supply --steam-user LOGIN (not the display name).')
-            if args.audience == 'public':
-                pages = gh_json('api', f'repos/{config["repository"]}/pages')
-                require(pages.get('build_type') == 'workflow', 'Enable GitHub Pages with source GitHub Actions first.')
-        directory, state = prepare(ROOT, config, version, args.audience, args.steam_visibility, notes)
-    if args.mode == 'publish':
-        publish(directory, state, args)
+        require(args.audience == state['audience'], 'Resume requires the same audience as preparation.')
+        if args.mode == 'commit':
+            commit_release(directory, state)
+        else:
+            with github_auth():
+                publish(directory, state, args)
+        return
+    require(args.mode in ('plan', 'prepare'), 'Commit/publish requires --resume VERSION after preparation.')
+    version = next_version(current_version(ROOT), args.version, args.bump)
+    if args.mode == 'plan':
+        print(f'PLAN {current_version(ROOT)} -> {version}; {args.audience}\n'
+              'Review complete changes -> user approves public notes -> prepare version/files/tests -> commit full record -> publish\n'
+              'Publish: Git push/tag + GitHub Release + Steam content/changenote/version tag + Pages (public only).\n'
+              'Workshop preview, title, description and visibility are preserved. No files or services changed.')
+        return
+    require(args.notes_approved and args.notes_file and args.commit_file,
+            'After human confirmation, supply --notes-approved, --notes-file and --commit-file.')
+    notes = args.notes_file.read_text(encoding='utf-8-sig')
+    commit_notes = args.commit_file.read_text(encoding='utf-8-sig')
+    with github_auth():
+        check_audience(args.audience, 'preserve', gh_json('repo', 'view', config['repository'], '--json', 'visibility'))
+        prepare(ROOT, config, version, args.audience, 'preserve', notes, commit_notes, notes_approved=True)
 
 
 if __name__ == '__main__':

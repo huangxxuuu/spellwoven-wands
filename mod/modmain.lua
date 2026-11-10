@@ -1,6 +1,8 @@
 local T=GLOBAL.require("nw/locale").t
 GLOBAL.require("nw/locale").install(env,GLOBAL)
 GLOBAL.require("nw/trail_budget").install(env,GLOBAL)
+GLOBAL.require("nw/limit_feedback").install(env,GLOBAL)
+GLOBAL.require("nw/dummy_trials").install(env)
 PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_dustbox", "nw_emberlamp", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_gunpowder" }
 Assets={Asset("ATLAS","images/nw_guide.xml"),Asset("IMAGE","images/nw_guide.tex"),Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
     Asset("SOUNDPACKAGE","sound/nw_instruments.fev"),Asset("SOUND","sound/nw_instruments.fsb"),

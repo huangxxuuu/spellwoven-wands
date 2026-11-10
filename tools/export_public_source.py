@@ -19,10 +19,13 @@ marker = dest / '.nw_public_export'
 if dest.exists() and any(dest.iterdir()):
     assert marker.is_file() and json.loads(marker.read_text('utf8'))['workspace'] == str(ROOT), 'Unowned export directory'
 dest.mkdir(parents=True, exist_ok=True)
-files = [ROOT / n for n in ('.gitignore', '.gitattributes', 'README.md', 'LICENSE', 'THIRD_PARTY_NOTICES.txt', 'release.ps1')]
+files = [ROOT / n for n in ('.gitignore', '.gitattributes', 'AGENTS.md', 'README.md', 'LICENSE', 'THIRD_PARTY_NOTICES.txt', 'release.ps1')]
 for folder in ('.github', 'mod', 'site', 'assets_src', 'docs', 'tests', 'tools'):
     for source in (ROOT / folder).rglob('*'):
         if not source.is_file() or source.is_symlink() or '__pycache__' in source.parts or source.suffix == '.pyc':
+            continue
+        # Retain art sources, prompts and usage manifests, not temporary CLI logs.
+        if source.suffix == '.log' or '.stdout.' in source.name or '.stderr.' in source.name:
             continue
         relative = source.relative_to(ROOT)
         if relative.parts[:2] == ('site', 'public'):

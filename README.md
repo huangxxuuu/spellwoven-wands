@@ -1,8 +1,10 @@
 # 织法之杖 · Spellwoven Wands
 
-**正式版 1.0.4 · 2026-11-10**
+**正式版 1.0.5 · 2026-11-10**
 
-[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.4)
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.5)
+
+1.0.5 微调三座建筑贴图，新增可在个人设置中关闭的法术实体上限角色语音提示；法术测试拳击袋提供连击、10 秒和 30 秒伤害测试模式。[更新说明](docs/releases/1.0.5-public.txt) · [完整改动记录](docs/releases/1.0.5-commit.txt)
 
 1.0.4 适当优化施法性能，为性能设置提供默认限制；玩家可根据设备性能调整相关设置。[更新说明](docs/releases/1.0.4-public.txt) · [完整改动记录](docs/releases/1.0.4-commit.txt)
 
@@ -69,18 +71,16 @@ python -m http.server 8765 --directory site/public
 
 ## 版本发布
 
-统一入口为 `release.ps1`（或 `python tools/release.py`）。默认只打印计划；默认发布受众是私有，Steam 保留当前可见性，资料站作为私有 Release 的 ZIP 附件保存。脚本不会自动公开 GitHub 仓库。
+发布前实际读取 [发布流程](docs/发布流程.txt)：先整理完整改动，由作者确认对外条目，再保存精简的中英文更新记录与完整 Git 记录。已确认的内容按 `prepare → commit → publish` 执行。默认只显示计划；代码发布保留工坊封面、标题、描述及可见性。
 
 ```powershell
-# 只看计划
-.\release.ps1 --version 0.25.6
-# 更新版本、检查并冻结文件，不上传
-.\release.ps1 --mode prepare --version 0.25.6
-# 发布冻结版本，首次 Steam 登录可能需要密码/验证码
-.\release.ps1 --mode publish --resume 0.25.6 --steamcmd "D:\Tools\SteamCMD\steamcmd.exe" --steam-user YOUR_LOGIN
+# 以下仅在本次对外说明已获作者确认后执行；版本号按实际替换
+.\release.ps1 --mode prepare --version 1.0.5 --audience public --notes-file docs/releases/1.0.5-public.txt --commit-file docs/releases/1.0.5-commit.txt --notes-approved
+.\release.ps1 --mode commit --resume 1.0.5 --audience public
+.\release.ps1 --mode publish --resume 1.0.5 --audience public
 ```
 
-提交发生在独立发布 checkout，原工作区不自动提交。发布包含 Git 提交与标签、GitHub Release 附件、Steam 更新及资料站；记录在 `dist/releases/<版本>/state.json`，失败后用 `--resume` 继续。公开发布需要明确使用 `--audience public`，工坊公开还需要 `--steam-visibility public`。完整依赖、说明文件、失败恢复和首次公开步骤见 [发布流程](docs/发布流程.txt)，目标配置见 [release_config.json](tools/release_config.json)。
+提交发生在独立发布 checkout，完整 commit 正文来自冻结记录。发布同步 GitHub 源码、标签和 Release、Steam Mod 内容以及中英文资料站。原生 Steam 上传默认使用当前已登录账号；失败后用同版本 `--resume` 恢复。封面和介绍通过独立工具另行更新，具体命令见发布流程。
 
 ## 本地开发与测试说明
 

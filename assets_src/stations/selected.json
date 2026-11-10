@@ -1,0 +1,27 @@
+{
+  "label": "Workbench B2; engraver and furnace B1 — user selected 2026-11-10",
+  "buildings": {
+    "workbench": {
+      "source": "assets_src/stations_art_directions_20261110/B_round_2/workbench.png",
+      "source_size": [1254, 1254],
+      "body_size": [256, 256],
+      "inset": 4
+    },
+    "engraver": {
+      "source": "assets_src/stations_art_directions_20261110/B_round_1/engraver.png",
+      "source_size": [1216, 1294],
+      "body_size": [301, 320]
+    },
+    "furnace": {
+      "source": "assets_src/stations_art_directions_20261110/B_round_1/furnace.png",
+      "source_size": [1213, 1296],
+      "body_size": [300, 320]
+    }
+  },
+  "furnace_glow": {
+    "coordinate_space": "B1 furnace source pixels before runtime fitting",
+    "gem_polygon": [[644, 278], [679, 277], [733, 352], [665, 481], [596, 352]],
+    "mouth_center": [630, 606],
+    "mouth_radii": [240, 42]
+  }
+}

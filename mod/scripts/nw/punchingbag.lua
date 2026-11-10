@@ -29,8 +29,18 @@ local function replace_listener(inst,event,fn)
 end
 function M.setup(inst)
     inst._nw_combo={total=0}
+    require("nw/dummy_trials").setup(inst)
+    local describe=inst.components.inspectable.descriptionfn
+    inst.components.inspectable.descriptionfn=function(self,viewer,...)
+        local original=describe and describe(self,viewer,...) or ""
+        return (original or "").."\n"..require("nw/locale").for_player(viewer,
+            "空手右键切换连击/10秒/30秒；测试中或结束后右键重置，再次右键切换。仅统计选定测试者。")
+    end
     replace_listener(inst,"healthdelta",function(self,data)
-        if data and M.accumulate(self._nw_combo,data.amount,GetTime()) then M.digits(self,self._nw_combo.total) end
+        if data and M.accumulate(self._nw_combo,data.amount,GetTime()) then
+            require("nw/dummy_trials").hit(self,self._nw_health_owner,-data.amount)
+            M.digits(self,self._nw_combo.total)
+        end
     end)
     -- A blocked/zero-damage attack is not another damage event and cannot clear the total.
     replace_listener(inst,"blocked",function() end)
@@ -66,16 +76,21 @@ function M.visual(inst)
     label.Label:SetFont(NUMBERFONT);label.Label:SetColour(.1,.08,.06)
     label.Label:SetWorldOffset(0,.35,0)
     local function refresh()
-        local text=inst._nw_combo_text:value()
+        local trial=require("nw/dummy_trials").display(inst._nw_trial_text:value())
+        local text=trial~="" and trial or inst._nw_combo_text:value()
         local overflow=text~=""
         for i=1,4 do
             if overflow then inst.AnimState:HideSymbol("column"..i) else inst.AnimState:ShowSymbol("column"..i) end
         end
-        label.Label:SetFontSize(math.max(12,math.min(32,180/math.max(1,#text))))
+        label.Label:SetWorldOffset(0,trial~="" and 3.5 or .35,0)
+        label.Label:SetFont(trial~="" and UIFONT or NUMBERFONT)
+        if trial~="" then label.Label:SetColour(unpack(NORMAL_TEXT_COLOUR))
+        else label.Label:SetColour(.1,.08,.06) end
+        label.Label:SetFontSize(trial~="" and 16 or math.max(12,math.min(32,180/math.max(1,#text))))
         label.Label:SetText(text);label.Label:Enable(overflow and not inst:HasTag("burnt"))
     end
     inst._nw_combo_refresh=refresh
-    inst:ListenForEvent("nw_combo_dirty",refresh);refresh()
+    inst:ListenForEvent("nw_combo_dirty",refresh);inst:ListenForEvent("nw_trial_dirty",refresh);refresh()
     inst:ListenForEvent("burnt",function() badge:Hide();label.Label:Enable(false) end)
     inst:ListenForEvent("onremove",function() badge:Remove();label:Remove() end)
 end

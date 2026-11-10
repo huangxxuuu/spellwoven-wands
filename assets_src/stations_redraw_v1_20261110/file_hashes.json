@@ -1,0 +1,42 @@
+[
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\docs\\26_饥荒原版画风与生图基础规范.md",
+    "SHA256": "BFDE0F97CAA6C3A3B56794D6FADA1C973A5765E2CAC789C80B29C27B6EBCD982"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\docs\\DST生图基础提示词.txt",
+    "SHA256": "F58702D84019C21740F19FF0427CD2CEB9F09FCA4F2078D76A4A8FBEA8715D25"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\docs\\art\\02_游戏内建筑规范.md",
+    "SHA256": "78BE840C29DF2A8D2620A78A59269F2CB0EC10F6416B12DC81343C69E53844BA"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\docs\\art\\03_游戏内物品栏贴图规范.md",
+    "SHA256": "D078C921596E365B6A242131D5AD2B6EB5D3684862D7FD389A951DBD63DC3ABF"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v1_20261110\\workbench\\source.png",
+    "SHA256": "68F4C53BB0DC45CF54CFAE9EA7748604B1ADE9F7D126136225E932EB8A4F9A8B"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v1_20261110\\engraver\\source.png",
+    "SHA256": "E02CC63D18DD5F60E98C92930BEF99DA1D49D00BC6F64A5FECB16CCF81B8AD02"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v1_20261110\\furnace\\source.png",
+    "SHA256": "16EFB7214CAEFFB61B1C962100FDEE33BB2C1F77DC1A0BEB066858D11CA94D88"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v1_20261110\\workbench\\prompt.txt",
+    "SHA256": "036763BC0BE2E89AD092A533E85D16AB551A653F9BC0FF961878620B7E18EBAB"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v1_20261110\\engraver\\prompt.txt",
+    "SHA256": "8A97E332257D0CF2707B09FFE918BB2D79F9B433AE0DFBAFB2552188CB3C36D4"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v1_20261110\\furnace\\prompt.txt",
+    "SHA256": "FF526F696D4F574F396E0FA93D362E3B0D7DF4EA065B2104E8807E8B9B8950A5"
+  }
+]

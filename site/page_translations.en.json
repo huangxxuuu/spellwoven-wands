@@ -249,5 +249,10 @@
   "性能优化设置项提供默认限制，避免不限量的实体、子弹导致游戏崩溃。": "Performance settings now include default limits to help prevent crashes caused by unlimited spell entities and projectiles.",
   "玩家可根据设备性能调整相关设置。": "Players can adjust the settings to suit their device performance.",
   "1.0.4 · 施法性能优化": "1.0.4 · Spellcasting Performance",
-  "下载 1.0.4 与离线资料站": "Download 1.0.4 and the offline field guide"
+  "下载 1.0.4 与离线资料站": "Download 1.0.4 and the offline field guide",
+  "1.0.5 · 建筑贴图与法术测试": "1.0.5 · Structure Textures and Spell Testing",
+  "微调奥术台、武器刻印台、奥术分解炉三座建筑的贴图。": "Minor texture adjustments to the Arcane Workbench, Weapon Engraving Table, and Arcane Recycler.",
+  "法术实体达到上限时，角色会发出语音提示，可在个人设置中关闭。": "Characters now give a spoken alert when spell entities reach their limit. This can be disabled in personal settings.",
+  "法术测试拳击袋提供连击、10 秒和 30 秒伤害测试模式。": "The Spell Test Punching Bag now offers combo, 10-second, and 30-second damage testing modes.",
+  "下载 1.0.5 与离线资料站": "Download 1.0.5 and the offline field guide"
 }

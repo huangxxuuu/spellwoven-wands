@@ -9,6 +9,7 @@ function M.open()
     local Text=require("widgets/text")
     local Direction=require("nw/cast_direction")
     local Trail=require("nw/trail_budget")
+    local Feedback=require("nw/limit_feedback")
     local Settings=require("nw/performance_settings")
     local L=Settings.text
     local screen=Popup(T("织法之杖"),"",{
@@ -103,9 +104,22 @@ function M.open()
     end
     trail:SetOnChangedFn(function(value) Trail.set(value);refresh_trail() end)
     refresh_trail();Trail.load(refresh_trail)
+    label(personal,18,L("限制触发时角色说话","Character speech on spell limits"),-150,-11,310,34):SetHAlign(ANCHOR_LEFT)
+    local speech=personal:AddChild(Spinner({{text=L("关闭","Off"),data=false},{text=L("开启","On"),data=true}},250,34,{font=UIFONT,size=18},false,nil,nil,true))
+    speech:SetPosition(175,-11);speech:SetTextColour(unpack(cream));speech:SetWrapEnabled(true)
+    screen.limit_speech=speech
+    local function refresh_speech()
+        if screen.inst:IsValid() then speech:SetSelectedIndex(Feedback.enabled and 2 or 1) end
+    end
+    speech:SetOnChangedFn(function(value) Feedback.set(value);refresh_speech() end)
+    screen.option_tip(speech,L("仅在实体数量或载荷层数限制实际生效时说话。每位玩家最多每30秒一次。自动保存到本机。",
+        "Speak only when an entity or payload-depth limit takes effect. At most once per player every 30 seconds. Saved on this device."))
+    refresh_speech();Feedback.load(refresh_speech)
     direction:SetFocusChangeDir(MOVE_DOWN,trail)
     trail:SetFocusChangeDir(MOVE_UP,direction)
-    trail:SetFocusChangeDir(MOVE_DOWN,screen.menu)
+    trail:SetFocusChangeDir(MOVE_DOWN,speech)
+    speech:SetFocusChangeDir(MOVE_UP,trail)
+    speech:SetFocusChangeDir(MOVE_DOWN,screen.menu)
     refresh_direction();Direction.load(refresh_direction)
 
     screen.tabs={}
@@ -113,7 +127,7 @@ function M.open()
     local pages={guide=guide,personal=personal}
     local order={"guide","personal","performance"}
     local function focus_target(key)
-        if key=="personal" then return direction,trail end
+        if key=="personal" then return direction,speech end
         if key=="performance" and Settings.synced and Settings.allowed and not Settings.pending then
             return screen.performance.rows[1].spinner,screen.performance.rows[#Settings.specs].spinner
         end

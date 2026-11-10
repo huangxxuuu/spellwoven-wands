@@ -21,8 +21,8 @@ class ReleaseTests(unittest.TestCase):
         expected = plain + '\n向导\n[img]https://images.steamusercontent.com/ugc/123/ABC/[/img]\n'
         self.assertEqual(release.workshop_changenote(notes), expected)
         config = dict(app_id=322330, publishedfileid='3834454416', title='织法之杖')
-        self.assertIn('[img]', release.make_vdf(config, Path('/tmp/release'), 'description', notes))
-        self.assertNotIn('![', release.make_vdf(config, Path('/tmp/release'), 'description', notes))
+        self.assertIn('[img]', release.make_vdf(config, Path('/tmp/release'), notes))
+        self.assertNotIn('![', release.make_vdf(config, Path('/tmp/release'), notes))
 
     def test_version_progression(self):
         self.assertEqual(release.next_version('0.25.5'), '0.25.6')
@@ -44,22 +44,16 @@ class ReleaseTests(unittest.TestCase):
             self.assertIn('历史 0.25.5', (root / 'README.md').read_text(encoding='utf-8'))
             self.assertIn('-- old 0.25.5', (root / 'mod/modinfo.lua').read_text(encoding='utf-8'))
 
-    def test_description_limit_is_utf8_bytes_not_characters(self):
-        with self.assertRaises(release.ReleaseError):
-            release.workshop_description('字' * 2700, [])
-        text = '[h2]保留[/h2]玩法\n[h2]日志[/h2]详细步骤\n[h2]最后[/h2]末尾'
-        self.assertEqual(release.workshop_description(text, ['日志']), '[h2]保留[/h2]玩法\n[h2]最后[/h2]末尾')
-
-    def test_default_steam_preserves_visibility_and_id(self):
-        config = dict(app_id=322330, publishedfileid='3834454416', title='织法之杖')
-        text = release.make_vdf(config, Path('/tmp/release'), 'A "quote"\nB \\ C', 'v1')
-        self.assertNotIn('"visibility"', text)
+    def test_code_vdf_never_contains_presentation_fields(self):
+        config = dict(app_id=322330, publishedfileid='3834454416', title='title', preview='cover', description='intro')
+        text = release.make_vdf(config, Path('/tmp/release'), 'notes')
+        for field in ('previewfile', 'title', 'description', 'visibility'):
+            self.assertNotIn(f'"{field}"', text)
         self.assertIn('"publishedfileid" "3834454416"', text)
-        self.assertIn('A \\"quote\\"\\nB \\\\ C', text)
-        self.assertIn('"visibility" "2"', release.make_vdf(config, Path('/tmp/release'), 'a', 'b', 'hidden'))
+        self.assertIn('"changenote" "notes"', text)
         config['publishedfileid'] = '0'
         with self.assertRaises(release.ReleaseError):
-            release.make_vdf(config, Path('/tmp'), 'a', 'b')
+            release.make_vdf(config, Path('/tmp'), 'notes')
 
     def test_private_mode_rejects_exposure(self):
         release.check_audience('private', 'preserve', {'visibility': 'PRIVATE'})
@@ -71,48 +65,22 @@ class ReleaseTests(unittest.TestCase):
     def test_localized_release_does_not_overwrite_english_with_default_vdf_text(self):
         config = dict(app_id=322330, publishedfileid='3834454416', title='织法之杖',
                       workshop_languages={'schinese': {}, 'english': {}})
-        text = release.make_vdf(config, Path('/tmp/release'), '中文默认描述', 'notes')
+        text = release.make_vdf(config, Path('/tmp/release'), 'notes')
         self.assertNotIn('"description"', text)
         self.assertNotIn('"title"', text)
         self.assertNotIn('"visibility"', text)
 
-    def test_workshop_only_mode_does_not_bump_or_publish_content(self):
-        with patch.object(release, 'publish_metadata', return_value=True) as publish, \
-             patch.object(release, 'release_lock', return_value=release.nullcontext()), \
-             patch.object(release, 'prepare', side_effect=AssertionError('content release')):
-            release.main(['--mode', 'workshop'])
-            publish.assert_called_once_with(dll=None)
-
-    def test_metadata_failure_does_not_finish_release_and_resume_uses_frozen_text(self):
-        with tempfile.TemporaryDirectory() as d:
-            directory = Path(d)
-            checkout = directory / 'source'
-            checkout.mkdir()
-            (directory / 'content').mkdir()
-            exe = directory / 'steamcmd.exe'
-            exe.touch()
-            config = dict(repository='owner/repo', branch='main', publishedfileid='123',
-                          workshop_languages={'schinese': {}, 'english': {}})
-            state = dict(config=config, checkout=str(checkout), version='1.2.3', audience='private',
-                         steam_visibility='preserve', source_hashes={}, artifact_hashes={},
-                         steps=dict(commit='abc', push=True, github_draft=True, steam=True))
-            args = type('Args', (), dict(steamcmd=str(exe), steam_user='login', steam_api_dll='dll'))()
-            with patch.object(release, 'validate_checkout'), \
-                 patch.object(release, 'git', side_effect=lambda path, *a: '' if a[0] == 'ls-files' else 'abc'), \
-                 patch.object(release, 'gh_json', return_value={'visibility': 'PRIVATE'}), \
-                 patch.object(release, 'run', return_value=subprocess.CompletedProcess([], 0)), \
-                 patch.object(release, 'steam_upload', side_effect=AssertionError('duplicate content upload')), \
-                 patch.object(release, 'publish_metadata', side_effect=release.ReleaseError('metadata failed')) as metadata:
-                with self.assertRaises(release.ReleaseError):
-                    release.publish(directory, state, args)
-                self.assertNotIn('github_release', state['steps'])
-                self.assertNotIn('steam_metadata', state['steps'])
-                metadata.assert_called_once_with(directory / 'workshop-localizations.json', 'dll')
-                metadata.side_effect = None
-                metadata.return_value = True
-                release.publish(directory, state, args)
-                self.assertTrue(state['steps']['steam_metadata'])
-                self.assertTrue(state['steps']['github_release'])
+    def test_unapproved_or_uncommitted_release_cannot_start(self):
+        with patch.object(release, 'github_auth', side_effect=AssertionError('connected before approval')), \
+             patch.object(release, 'release_lock', return_value=release.nullcontext()):
+            with self.assertRaises(release.ReleaseError):
+                release.main(['--mode', 'prepare', '--bump', 'patch'])
+            with self.assertRaises(release.ReleaseError):
+                release.main(['--mode', 'publish', '--bump', 'patch'])
+        with patch.object(release, 'validate_release'), \
+             patch.object(release, 'gh_json', side_effect=AssertionError('published before commit')):
+            with self.assertRaises(release.ReleaseError):
+                release.publish(Path('/tmp'), {'steps': {}}, None)
 
     def test_default_plan_never_runs_commands_or_changes_files(self):
         with patch.object(release, 'run', side_effect=AssertionError('plan executed a command')), \
@@ -132,10 +100,14 @@ class ReleaseTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)
             (root / 'tools').mkdir()
-            for name in ('.gitignore', '.gitattributes', 'README.md', 'LICENSE', 'THIRD_PARTY_NOTICES.txt', 'release.ps1'):
+            for name in ('.gitignore', '.gitattributes', 'AGENTS.md', 'README.md', 'LICENSE', 'THIRD_PARTY_NOTICES.txt', 'release.ps1'):
                 (root / name).touch()
             script = root / 'tools/export_public_source.py'
             script.write_text((ROOT / 'tools/export_public_source.py').read_text(encoding='utf-8'), encoding='utf-8')
+            art = root / 'assets_src/example'
+            art.mkdir(parents=True)
+            for name in ('prompt.txt', 'usage.json', 'image.png', 'run.log', 'run.stdout.json', 'run.stderr.txt'):
+                (art / name).write_text('fixture')
             dest = root / 'dist/export'
             dest.mkdir(parents=True)
             (dest / 'obsolete.txt').write_text('old')
@@ -145,6 +117,11 @@ class ReleaseTests(unittest.TestCase):
             subprocess.run([sys.executable, str(script), '--output', str(dest), '--prune'], check=True, capture_output=True)
             self.assertFalse((dest / 'obsolete.txt').exists())
             self.assertTrue((dest / 'unmanaged.txt').exists())
+            for name in ('prompt.txt', 'usage.json', 'image.png'):
+                self.assertTrue((dest / 'assets_src/example' / name).is_file())
+            for name in ('run.log', 'run.stdout.json', 'run.stderr.txt'):
+                self.assertFalse((dest / 'assets_src/example' / name).exists())
+                self.assertTrue((art / name).is_file(), 'Local generation logs must be retained')
             outside = root / 'keep.txt'
             outside.write_text('keep')
             release.save(dest / '.nw_public_export', {'workspace': str(root), 'files': ['../../keep.txt']})
@@ -217,7 +194,9 @@ class ReleaseTests(unittest.TestCase):
             exe = directory / 'steamcmd.exe'
             exe.touch()
             config = dict(repository='owner/repo', branch='main', publishedfileid='123')
-            state = dict(config=config, checkout=str(checkout), version='1.2.3', audience='private',
+            (directory / 'notes.txt').write_text('approved notes', encoding='utf-8')
+            state = dict(release_kind='code', approved_notes_sha256=release.digest(directory / 'notes.txt'),
+                         config=config, checkout=str(checkout), version='1.2.3', audience='private',
                          steam_visibility='preserve', source_hashes={}, artifact_hashes={},
                          steps=dict(commit='abc', push=True, github_draft=True, steam=True))
             args = type('Args', (), dict(steamcmd=str(exe), steam_user='login'))()

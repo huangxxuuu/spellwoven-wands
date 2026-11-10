@@ -15,11 +15,11 @@ import steam_workshop_upload as upload
 class NativeUploadTests(unittest.TestCase):
     def fixture(self, root):
         (root / 'content').mkdir()
-        for name, value in [('content/modinfo.lua', 'version = "1.2.3"'), ('preview.png', 'preview'), ('notes.txt', 'notes')]:
+        for name, value in [('content/modinfo.lua', 'version = "1.2.3"'), ('notes.txt', 'notes')]:
             (root / name).write_text(value, encoding='utf8')
         hashes = {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in root.rglob('*') if p.is_file()}
-        (root / 'state.json').write_text(json.dumps(dict(version='1.2.3', steam_visibility='preserve',
+        (root / 'state.json').write_text(json.dumps(dict(release_kind='code', approved_notes_sha256=hashes['notes.txt'], version='1.2.3', steam_visibility='preserve',
             artifact_hashes=hashes, config=dict(app_id=322330, publishedfileid='3834454416'))), encoding='utf8')
 
     def test_tampered_and_extra_content_never_connects_to_steam(self):
@@ -31,9 +31,9 @@ class NativeUploadTests(unittest.TestCase):
                 with self.assertRaises(RuntimeError):
                     upload.upload(root)
 
-    def test_only_content_preview_and_version_tag_change(self):
+    def test_only_content_and_version_tag_change(self):
         calls = []
-        before = dict(owner=1, visibility=3, tags='item,all_clients_require_mod,version:0.25.5', tags_truncated=False)
+        before = dict(owner=1, visibility=3, tags='item,all_clients_require_mod,version:0.25.5', tags_truncated=False, title='title', description='description', preview=123, preview_size=100)
         class Steam:
             owner, app_id = 1, 322330
             def __init__(self, *args): self.reads = 0
@@ -41,7 +41,7 @@ class NativeUploadTests(unittest.TestCase):
             def __exit__(self, *args): pass
             def read(self, *args):
                 self.reads += 1
-                return dict(before, tags=before['tags'] if self.reads == 1 else 'item,all_clients_require_mod,version:1.2.3')
+                return dict(before, tags=before['tags'] if self.reads <= 2 else 'item,all_clients_require_mod,version:1.2.3')
             def ugc(self, name, *args):
                 calls.append(name)
                 return lambda *values: 1
@@ -53,7 +53,7 @@ class NativeUploadTests(unittest.TestCase):
             upload.upload(root)
             receipt = json.loads(next(root.glob('steam-api-upload-*.json')).read_text())
             self.assertTrue(receipt['complete'])
-            self.assertEqual(calls, ['StartItemUpdate', 'SetItemContent', 'SetItemPreview', 'SetItemTags', 'SubmitItemUpdate'])
+            self.assertEqual(calls, ['StartItemUpdate', 'SetItemContent', 'SetItemTags', 'SubmitItemUpdate'])
 
 
 if __name__ == '__main__':

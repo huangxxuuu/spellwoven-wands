@@ -42,12 +42,13 @@ function M.acquire(owner,kind,loading)
             oldest.inst._nw_budget_evicted=true
             oldest.inst:Remove() -- silent removal: never break/detonate/release the payload
             oldest.release() -- idempotent, also supports native removal callbacks
+            require("nw/limit_feedback").limited(owner)
         end
     end
     if loading then ledger.per_player=math.huge end
     local token=ledger:reserve(key,1)
     ledger.per_player=cap
-    if not token then return end
+    if not token then require("nw/limit_feedback").limited(owner);return end
     ledger:activate(token,1)
     local done=false
     local record={owner=key,kind=kind}

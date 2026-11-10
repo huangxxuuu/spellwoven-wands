@@ -1,0 +1,81 @@
+{
+  "source_prompt": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_art_directions_20261110\\B_round_3\\workbench.prompt.txt",
+  "prompt_sha256": "4c9e9f97f91e6c36a163393615ac11b40bcb5bfdb476151fb242ed22f0996654",
+  "references": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\workbench\\source.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\workbench\\draft_01.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_storage_final\\emberlamp\\originals\\r2_empty_grounded.png"
+  ],
+  "reference_sha256": [
+    "2888adc2f6110fa139e7d61d8f611f994966ca72cf48f1249c20fa1a2868c365",
+    "07230720e3a99f946223ee2e06fc3ec95e936d7ec8b5b12b92f5f8cc49654847",
+    "0630ccdacfe222a8d365cc86216a380aea4efb79e8cc7b83a7d6f01f5bc7598a"
+  ],
+  "model": "gpt-image-2.5-flare",
+  "size": "1024x1024",
+  "quality": "high",
+  "background": "transparent",
+  "requested_runs": 3,
+  "runs": [
+    {
+      "test": 1,
+      "elapsed_seconds": 28.94,
+      "exit_code": 0,
+      "output": "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_workbench_api_test_20261110\\test-1.png",
+      "usage": {
+        "input_tokens": 5332,
+        "input_tokens_details": {
+          "image_tokens": 4563,
+          "text_tokens": 769
+        },
+        "output_tokens": 1756,
+        "total_tokens": 7088,
+        "output_tokens_details": {
+          "image_tokens": 1756,
+          "text_tokens": 0
+        }
+      },
+      "metadata": "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_workbench_api_test_20261110\\test-1.png.json"
+    },
+    {
+      "test": 2,
+      "elapsed_seconds": 29.28,
+      "exit_code": 0,
+      "output": "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_workbench_api_test_20261110\\test-2.png",
+      "usage": {
+        "input_tokens": 5332,
+        "input_tokens_details": {
+          "image_tokens": 4563,
+          "text_tokens": 769
+        },
+        "output_tokens": 1756,
+        "total_tokens": 7088,
+        "output_tokens_details": {
+          "image_tokens": 1756,
+          "text_tokens": 0
+        }
+      },
+      "metadata": "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_workbench_api_test_20261110\\test-2.png.json"
+    },
+    {
+      "test": 3,
+      "elapsed_seconds": 30.12,
+      "exit_code": 0,
+      "output": "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_workbench_api_test_20261110\\test-3.png",
+      "usage": {
+        "input_tokens": 5332,
+        "input_tokens_details": {
+          "image_tokens": 4563,
+          "text_tokens": 769
+        },
+        "output_tokens": 1756,
+        "total_tokens": 7088,
+        "output_tokens_details": {
+          "image_tokens": 1756,
+          "text_tokens": 0
+        }
+      },
+      "metadata": "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_workbench_api_test_20261110\\test-3.png.json"
+    }
+  ]
+}

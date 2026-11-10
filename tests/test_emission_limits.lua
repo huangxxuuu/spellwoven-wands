@@ -2,6 +2,8 @@ local E=require("nw/executor")
 local C=require("nw/compiler")
 local Live=require("nw/entity_limits")
 local Limits=require("nw/spell_limits")
+local feedbacks={}
+require("nw/limit_feedback").limited=function(owner) feedbacks[#feedbacks+1]=owner end
 DEGREES=math.pi/180;FRAMES=1/30
 GetTime=function() return 0 end
 local shots={}
@@ -39,6 +41,7 @@ for _,cap in ipairs({25,50,100,200,300,400,500,600,700,800}) do
     E.set_projectile_limit(cap)
     local p=cast({"repeat_3","repeat_3","repeat_3","repeat_3","repeat_3","repeat_3","repeat_3","spark_hit","arrow"})
     assert(p.projectile_count==4374 and #shots==cap and E.stats()==cap)
+    assert(feedbacks[#feedbacks]==owner,"actual partial suppression reports its caster")
     assert(shots[1]._shot.fire(0,0,1,0) and #shots==cap,"full payload consumes trigger without allocating")
     shots[cap]:Remove()
     assert(shots[1]._shot.fire(0,0,1,0) and #shots==cap+1 and E.stats()==cap)
@@ -63,9 +66,12 @@ Effects.blast=oldblast
 E.set_projectile_limit(0);clear()
 -- Depth is checked when a child fires, including changes after the carrier launched.
 Limits.depth=1
+feedbacks={}
 cast({"spark_hit","spark_hit","arrow"})
 assert(#shots==1 and shots[1]._shot.fire(0,0,1,0) and #shots==2)
+assert(#feedbacks==0,"compilation and allowed payloads do not report a limit")
 assert(shots[2]._shot.fire(0,0,1,0) and #shots==2)
+assert(#feedbacks==1 and feedbacks[1]==owner,"actual payload-depth suppression reports its caster")
 Limits.depth=2;assert(shots[2]._shot.fire(0,0,1,0) and #shots==3)
 clear();Limits.depth=0
 -- Independent shared pools prevent stationary fields from starving projectiles.

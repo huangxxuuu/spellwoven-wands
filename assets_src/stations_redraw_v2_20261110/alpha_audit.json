@@ -1,0 +1,68 @@
+[
+  {
+    "source": {
+      "width": 1254,
+      "height": 1254,
+      "alpha_bounds_threshold_9": [
+        28,
+        19,
+        1227,
+        1249
+      ],
+      "transparent_pixels": 818123,
+      "partially_transparent_pixels": 751604,
+      "opaque_pixels": 2789,
+      "visible_border_pixels": 0
+    },
+    "target_body_pixels": [
+      256,
+      256
+    ],
+    "asset": "workbench",
+    "prefab_scale": 1.48
+  },
+  {
+    "source": {
+      "width": 1216,
+      "height": 1293,
+      "alpha_bounds_threshold_9": [
+        17,
+        6,
+        1183,
+        1290
+      ],
+      "transparent_pixels": 681022,
+      "partially_transparent_pixels": 890441,
+      "opaque_pixels": 825,
+      "visible_border_pixels": 0
+    },
+    "target_body_pixels": [
+      301,
+      320
+    ],
+    "asset": "engraver",
+    "prefab_scale": 1.0
+  },
+  {
+    "source": {
+      "width": 1213,
+      "height": 1296,
+      "alpha_bounds_threshold_9": [
+        25,
+        8,
+        1190,
+        1295
+      ],
+      "transparent_pixels": 664587,
+      "partially_transparent_pixels": 906245,
+      "opaque_pixels": 1216,
+      "visible_border_pixels": 0
+    },
+    "target_body_pixels": [
+      300,
+      320
+    ],
+    "asset": "furnace",
+    "prefab_scale": 1.0
+  }
+]

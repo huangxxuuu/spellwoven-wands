@@ -1,5 +1,6 @@
 #!/usr/bin/env pwsh
-# Forward all arguments to the release coordinator; Python never invokes a shell.
+# See docs/发布流程.txt: review -> human-approved notes -> prepare -> commit -> publish.
+# Code releases preserve Workshop preview/title/description. Python never invokes a shell.
 $ErrorActionPreference = 'Stop'
 $python = Join-Path $PSScriptRoot '.venv/Scripts/python.exe'
 if (-not (Test-Path -LiteralPath $python)) { $python = 'python' }

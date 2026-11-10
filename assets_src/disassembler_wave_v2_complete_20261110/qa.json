@@ -1,0 +1,46 @@
+{
+  "date_local": "2026-11-10",
+  "timezone": "Asia/Shanghai",
+  "user_selection": "方案二；做完整动画",
+  "artwork": {
+    "source": "assets_src/disassembler_wave_redesign_20261110/originals/20261110T125727Z_f4460713/image-2.png",
+    "prompt": "assets_src/disassembler_wave_redesign_20261110/prompt.txt",
+    "new_generation_requests": 0,
+    "method": "沿用用户选中的Prompt生成原画，拆出19个弧片/晶片/符纹；将原画还原为俯视地平面，再用原生动画矩阵逐片编排。结束时34个碎片全部从原画像素中选取，没有另画替代美术。"
+  },
+  "animation": {
+    "bank": "nw_furnace_wave",
+    "grow": "60帧 / 30fps / 2秒；各部件分别位移、转向与舒展。",
+    "loop": "60帧 / 30fps / 2秒可循环；满范围保持，弧片与晶片错开微动，符纹明暗变化。",
+    "release": "18帧 / 30fps / 0.6秒；前方金弧先拆开，不等宽弯折断口，各长弧错时拉开，再淡出。",
+    "gameplay_radius": 4,
+    "source_resolution_vs_runtime": "原画源像素保留；编译采样为动画坐标的0.5倍，矩阵补偿保持同一范围。",
+    "packing": "单页2048图集，避免旧编译器第二页UV错位；构建入口强制最多1页。"
+  },
+  "runtime": {
+    "module": "mod/scripts/nw/furnace_visual.lua",
+    "prefab": "mod/scripts/prefabs/nw_disassembler.lua",
+    "cleanup": "正常完成、空扫描、中途取消都进入结束效果；回收任务立即停止；拆除立即清理且不重建FX。",
+    "interruption": "中途取消固定结束时范围，不跳到满幅；结束光照固定半径并降低强度。",
+    "network": "阶段年龄与序号同步，展开/结束每0.25秒校时；重复dirty不重播；支持晚加入与快速重启；独服不创建本地FX。"
+  },
+  "validation": {
+    "test_furnace_visual_py": "PASS：6项，含正常/空扫描/中断三种回收结束子场景。",
+    "test_furnace_wave_art_py": "PASS：5项，直接解码最终编译包，检查源图、图集、范围、连续接点、循环变化与原范围消散。",
+    "test_acquisition_lua": "PASS：按项目run_tests同等TheWorld身份生成器测试环境运行。",
+    "lua_51_syntax": "PASS：新增与修改的运行时模块。",
+    "source_selected": "方案02原图保留不变；具体SHA256见manifest.json。",
+    "compiled_archive": "原生编译通过；具体图集与归档SHA256见manifest.json。",
+    "visual": "最终独立美术复核通过：身份、尺度、边缘、连续接点正常；5.10–5.17秒前方金弧先裂，5.20–5.30秒两侧错开拉开，约5.33秒后主要淡出。缩小后仍可读，未见明显跳变或回缩。",
+    "actual_game_session": "未进行",
+    "installed_to_game": false,
+    "published": false
+  },
+  "preview": {
+    "furnace": "previews/furnace-wave.gif",
+    "effect_only": "previews/wave-only.gif",
+    "keyframes": "previews/keyframes.png",
+    "description": "从编译后的anim.bin/build.bin/KTEX解码，按35度相机投影离线合成。2秒展开、3秒持续、0.6秒结束、0.5秒停顿，共6.1秒。炉体使用已确认源图作比例参考。",
+    "not_game_capture": true
+  }
+}

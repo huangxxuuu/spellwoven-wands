@@ -1,4 +1,5 @@
 local function scale(inst) inst.AnimState:SetScale(1.48,1.48) end
+local function engraver_scale(inst) inst.AnimState:SetScale(1.1,1.1) end
 local function make_station(name,bank,pose)
     local function fn()
         local inst=CreateEntity()
@@ -8,6 +9,7 @@ local function make_station(name,bank,pose)
         if name=="nw_workbench" then
             scale(inst)
         else
+            engraver_scale(inst)
             inst.entity:AddMiniMapEntity()
             inst.MiniMapEntity:SetIcon("nw_engraver.tex")
         end
@@ -37,5 +39,5 @@ local function make_station(name,bank,pose)
 end
 return make_station("nw_workbench","nw_stations","workbench"),
     make_station("nw_engraver","nw_stations","engraver"),
-    MakePlacer("nw_engraver_placer","nw_stations","nw_stations","engraver"),
+    MakePlacer("nw_engraver_placer","nw_stations","nw_stations","engraver",nil,nil,nil,nil,nil,nil,engraver_scale),
     MakePlacer("nw_workbench_placer","nw_stations","nw_stations","workbench",nil,nil,nil,nil,nil,nil,scale)

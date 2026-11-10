@@ -1,0 +1,50 @@
+{
+  "selection": "Workbench B2; engraver and furnace B1 — user selected 2026-11-10",
+  "sources": {
+    "workbench": {
+      "path": "assets_src/stations_art_directions_20261110/B_round_2/workbench.png",
+      "sha256": "95136d41a493f2f2121e9bfd99516e10d5461428399c1b6b5356d399bcd5e44f",
+      "body_size": [
+        256,
+        256
+      ],
+      "compiled_frame_size": [
+        288,
+        288
+      ]
+    },
+    "engraver": {
+      "path": "assets_src/stations_art_directions_20261110/B_round_1/engraver.png",
+      "sha256": "17a3e37b2d93b573b4d30036ffc286b5fc354a4dd61646023523abc666e55cbd",
+      "body_size": [
+        301,
+        320
+      ],
+      "compiled_frame_size": [
+        333,
+        352
+      ]
+    },
+    "furnace": {
+      "path": "assets_src/stations_art_directions_20261110/B_round_1/furnace.png",
+      "sha256": "9497c2955c0570c7279157de78c5c4a264dd028c820407207d4e7d342a05a991",
+      "body_size": [
+        300,
+        320
+      ],
+      "compiled_frame_size": [
+        332,
+        352
+      ]
+    }
+  },
+  "animation_frames": {
+    "workbench": 1,
+    "engraver": 1,
+    "furnace": 1,
+    "active": 8,
+    "pulse": 3
+  },
+  "animation_archive": "mod/anim/nw_stations.zip",
+  "inventory_atlas": "mod/images/inventoryimages/nw_stations.xml"
+}

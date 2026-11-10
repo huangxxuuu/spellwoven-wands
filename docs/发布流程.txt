@@ -1,143 +1,115 @@
-织法之杖：版本发布脚本
-====================
+织法之杖：代码版本发布流程
+更新日期：2026-11-10
 
-入口：项目根目录 release.ps1；跨平台入口：python tools/release.py。
-配置：tools/release_config.json。现有 Steam 条目固定为 3834454416，禁止创建新条目。
-默认是只读计划，不修改版本、不提交、不推送、不上传。
+一、每次发布必须遵循的顺序
 
-对外版本更新记录的写法（2026-11-08 起适用）
+1. 整理完整改动
+以最近一次成功正式发布的 dist/releases/<版本>/content 和发布回执为基线，比较当前源码。
+整理新增、调整、修复、默认配置变化、验证结果和未完成事项，先写入 docs/未发布改动.txt，交给用户审阅。
+不要用开发工作区的旧 Git HEAD 代替上次正式版本基线；不要把已经发布的功能再次列为新增。
 
-适用于 Steam 创意工坊、GitHub Release、资料站等对外发布的中英文更新记录：
-· 内容保持简短，只说明改了什么、修复了什么或新增了什么，不详细解释原因与实现过程。
-· 不涉及数值、玩法改动、Bug 修复或新功能时，整体概括、一笔带过即可。
-  例如雷云美术与动画调整，只需写“优化雷云动画表现”。
-· 涉及数值、玩法改动、Bug 修复或新功能时，也只简要说明具体内容，不展开分析。
-· 此规则仅用于后续发布；本次已发布的 v1.0.1 更新记录及更早历史记录不追溯修改。
+2. 用户人工确认对外内容
+由用户决定哪些条目写入 Steam 更新记录、GitHub Release 和资料站。
+确认前可以整理、检查、测试，但不得提升版本、准备正式快照、提交发布 commit 或上传。
+如果用户已经在本轮明确给出更新说明并要求发布，就视为已确认，不重复询问。
+对外说明保持简短，只说明新增、调整和修复；不把实现过程全部写进去。
+确认后发现新的实质改动，或者对外说明增加了用户未选定的内容，先更新完整记录并重新确认相关内容。
 
-只更新创意工坊中英文标题与介绍：
-  .\release.ps1 --mode workshop
+3. 助手完成发布资料与版本准备
+确定新版本号（通常 patch +1），准备两个 UTF-8 文件：
+  docs/releases/X.Y.Z-public.txt：仅用户确认的中英文对外更新记录。
+  docs/releases/X.Y.Z-commit.txt：第一行必须是 Release vX.Y.Z，空一行后记录全部改动和验证边界。
+英文翻译与中文条目一一对应，不擅自添加宣传承诺。
+更新 site/dist/updates.html，添加对应 data-release-version 的新记录，并更新 site/page_translations.en.json；英文页面由构建脚本生成。
+更新 README 的当前版本、下载链接和本轮简介，保留历史版本记录。
+执行 prepare：更新 mod/modinfo.lua 的版本和日期、导出源码、运行检查、打包并冻结文件。
+检查冻结包和 Git 差异，再执行 commit：只在独立发布 checkout 中提交完整改动，暂不推送。
+版本和文案必须进入同一个发布 commit；因此脚本顺序是 prepare → commit → publish。
 
-此模式直接调用 Steam 的 ISteamUGC 接口，不需要 SteamCMD，不改版本、不上传 Mod 文件、
-不发布 GitHub/资料站，也不改变工坊可见性。需要 Windows、64 位 Python，Steam 客户端
-已登录该条目的作者账号，并已安装饥荒联机版。默认自动寻找游戏 bin64/steam_api64.dll；
-也可传 --steam-api-dll "完整路径"，或设置 STEAM_API_DLL。脚本不读取密码或浏览器 Cookie。
+4. 执行代码发布脚本
+publish 必须使用已经准备且提交过的同一版本；不允许跳过前两步临时打包发布。
+它依次执行：Git main 与版本标签原子推送 → GitHub 草稿及附件 → Steam Mod 内容更新 → 公开资料站部署 → GitHub 正式 Release。
+完成后核对 Steam 回执、GitHub Release 非草稿状态、资料站中英文版本和更新记录。
+若用户要求安装，使用 tools/install_mod.py；安装器禁止游戏运行时覆盖本地文件。
 
-中英文来源在 tools/release_config.json 的 workshop_languages 中：
-  schinese：docs/Steam创意工坊介绍.txt（标题：织法之杖）
-  english：docs/Steam创意工坊介绍.en.txt（标题：Spellwoven Wands）
-Steam 未指定语言时会写入英文栏，因此不能把中文描述作为无语言的默认描述上传。
-新发布的 workshop.vdf 不再写入 title/description；内容上传后，由独立步骤分别指定语言提交。
-提交后读取完整介绍，逐字核对，并核验可见性、文件和预览信息保持不变。
-旧描述备份与校验回执保存在 dist/workshop-metadata/，失败重试会跳过已经匹配的语言。
+二、脚本入口与命令
 
-仅查看两种语言是否与本地一致（只读）：
-  .venv\Scripts\python.exe tools/steam_workshop_metadata.py --mode check
-只预览字节数、不连接 Steam：
-  .venv\Scripts\python.exe tools/steam_workshop_metadata.py
+入口为项目根目录 release.ps1；跨平台等价入口为 python tools/release.py。
+默认只显示计划，不改文件、不提交、不上传。默认 Steam 后端为 native，使用本机已登录的 Steam 客户端。
+以下以尚未发布的 1.0.5 为示例；实际版本按当次确认替换。
 
-一、首次准备
+只看计划：
+  .\release.ps1 --version 1.0.5 --audience public
 
-1. Python 3.12+，安装依赖：python -m pip install -r tools/requirements-dev.txt。
-2. 安装 Git、GitHub CLI，执行 gh auth login，并配置 Git 提交者姓名和邮箱。
-3. 安装 Valve 官方 SteamCMD。下载与登录说明：
-   https://developer.valvesoftware.com/wiki/SteamCMD
-   用拥有本工坊条目的 Steam 账号登录；不是 anonymous。
-   脚本不会保存密码或验证码。首次运行会在 SteamCMD 终端要求输入。
-   如果 SteamCMD 的登录会话与正在运行的游戏冲突，先退出游戏。
-4. 首次公开网站前，在 GitHub 仓库 Settings / Pages 中选择 GitHub Actions。
-   私有测试不需要开启 Pages，也不会尝试开启它。
+仅在用户确认对外内容后准备：
+  .\release.ps1 --mode prepare --version 1.0.5 --audience public --notes-file docs/releases/1.0.5-public.txt --commit-file docs/releases/1.0.5-commit.txt --notes-approved
 
-二、当前推荐：隐藏测试发布
+检查差异并提交（只写本地发布仓库）：
+  git -C dist/github-public diff --stat
+  .\release.ps1 --mode commit --resume 1.0.5 --audience public
 
-本机已登录 Steam、已安装饥荒联机版时，也可以直接使用原生 Steam API 完整发布：
-  .\release.ps1 --mode publish --bump patch --steam-backend native --notes-file .\更新说明.txt
-该方式不需要 SteamCMD 或 --steam-user，保持当前工坊可见性，更新文件、预览图和版本标签，
-随后分别提交并核验中英文介绍。它只接受 --steam-visibility preserve。
-中断后使用同一版本恢复：
-  .\release.ps1 --mode publish --resume 0.25.8 --steam-backend native
-原生上传的成功回执与上传前状态保存在该版本目录的 steam-api-upload-*.json。
+发布已提交的冻结版本：
+  .\release.ps1 --mode publish --resume 1.0.5 --audience public
 
-在 PowerShell 中进入项目根目录，先预览：
-  .\release.ps1 --version 0.25.6
+--notes-approved 是助手对“本次说明已经用户人工确认”的明确记录，不是允许助手代替用户确认。
+脚本会冻结对外说明的 SHA256 和完整 commit 正文。恢复时不能另传说明文件覆盖它们。
+commit 从冻结的 commit.txt 读取完整正文，不再仅生成一句 Release vX.Y.Z。
 
-只更新本地版本、验证并准备发布文件：
-  .\release.ps1 --mode prepare --version 0.25.6 --notes-file .\更新说明.txt
+三、代码发布的范围
 
-检查 dist/releases/0.25.6 中的 Mod ZIP、资料站 ZIP、description.txt 和 workshop.vdf。
-新准备的版本还会冻结 workshop-localizations.json，包含中英文标题与完整介绍，并纳入哈希校验。
-完整发布在 Steam 内容上传之后执行 steam_metadata 步骤；两种语言全部回读匹配才继续后续流程。
-介绍更新失败时发布会停止，--resume 会保留已完成的内容上传并重试介绍，不能把上传内容成功当作介绍成功。
-历史发布快照没有此文件及步骤时，可用 --mode workshop 单独更新介绍，无需修改旧快照。
-然后使用冻结的同一份内容发布：
-  .\release.ps1 --mode publish --resume 0.25.6 --steamcmd "D:\Tools\SteamCMD\steamcmd.exe" --steam-user YOUR_LOGIN
+Steam 只更新现有条目 3834454416 的 Mod 文件、经确认的更新记录和版本标签。
+不调用 SetItemPreview、SetItemTitle、SetItemDescription 或 SetItemVisibility。
+SteamCMD 的 VDF 同样不包含 previewfile、title、description 或 visibility。
+发布包不再要求工坊封面文件、描述文件或 workshop-localizations.json；配置中保留这些路径供独立工具使用。
+原生上传前后只读核验中英文标题、描述、封面、归属与可见性保持不变。
+该方式也避免给旧 Klei 上传器创建的条目重复提交封面时发生上传失败。
+游戏内资源、modicon 和 modinfo.lua 的本地模组描述仍属于 Mod 文件；这里排除的是工坊页面封面与介绍更新。
 
-也可以一次完成准备与发布（使用新的版本号）：
-  .\release.ps1 --mode publish --bump patch --steamcmd "D:\Tools\SteamCMD\steamcmd.exe" --steam-user YOUR_LOGIN --notes-file .\更新说明.txt
+四、工坊封面与描述独立处理
 
-STEAMCMD_PATH、STEAM_USER 环境变量可代替对应参数。不要把密码放进参数、环境变量或脚本。
-版本可指定 --version X.Y.Z，或使用 --bump patch / minor / major；默认增加 patch。
-准备发布时会同步更新 Mod 描述中的版本号和更新日期（使用执行机器的本地日期）；恢复发布沿用冻结内容中的日期。
-所有命令默认 --audience private：要求 GitHub 仓库为 PRIVATE，否则停止。
-Steam 默认 --steam-visibility preserve，VDF 不写 visibility，保留服务器上的隐藏状态。
-若明确需要重新设为隐藏，可传 --steam-visibility hidden；恢复时必须传同样的选项。
+仅在用户明确要求相关修改时，另行准备、检查并执行：
+  描述和标题只读检查：.venv\Scripts\python.exe tools/steam_workshop_metadata.py --mode check
+  发布中英文描述和标题：.venv\Scripts\python.exe tools/steam_workshop_metadata.py --mode publish
+  发布主封面：.venv\Scripts\python.exe tools/steam_workshop_preview.py
 
-隐藏测试时 GitHub Release 标记为 prerelease，只能被有私有仓库权限的人访问。
-资料站完整中英文静态文件作为 field-guide-X.Y.Z.zip 附件保存；不会部署公开网站。
-解压资料站后可用 python -m http.server 8765 --directory 解压目录 进行本地预览。
-私人账号的私有 GitHub 仓库不等于私有 Pages 网站；脚本不会借此假设网站受到访问限制。
+这些工具不由 release.ps1 自动调用。旧的 --mode workshop 入口已移除，改用上述独立工具。
+美术修改先遵循 AGENTS.md 中的美术规范。封面工具沿用旧 Klei 上传器的兼容路径，并核对公开图片与文件字节一致。
+不要为了代码发布失败而顺手更新封面、描述或改变可见性。
 
-三、完成测试后正式公开
+五、环境与认证
 
-1. 由你在 GitHub 设置中将仓库改为 Public；脚本从不自动切换仓库可见性。
-2. 由你启用 GitHub Pages（Source: GitHub Actions）。
-3. 为正式发布准备一个新的版本，例如：
-   .\release.ps1 --mode publish --version 0.26.0 --audience public --steam-visibility public --steamcmd "D:\Tools\SteamCMD\steamcmd.exe" --steam-user YOUR_LOGIN --notes-file .\正式更新说明.txt
+Python 3.12+，依赖见 tools/requirements-dev.txt；项目入口优先使用 .venv。
+需要 Git 和 GitHub CLI，以及能够访问目标仓库、Release、Actions 和 Pages 的授权。
+GitHub 优先使用 GH_TOKEN/GITHUB_TOKEN 或 gh auth login；未配置 gh 时，可使用 Git Credential Manager 中 github.com 的已有凭据。
+凭据仅进入当前发布进程及子进程环境，不打印、不写入日志、文件或 Git；不要求用户在聊天中提供 token。
+Steam native 需要 Windows、64位Python、已登录的条目作者账号以及 DST 的 steam_api64.dll。
+可用 --steam-api-dll 指定 DLL；默认自动寻找本机 DST 安装。
+可选 SteamCMD：--steam-backend steamcmd --steamcmd "D:\Tools\SteamCMD\steamcmd.exe" --steam-user YOUR_LOGIN。
+SteamCMD 登录密码/验证码只在其交互终端输入，不写入参数或配置。
 
-只有明确传入 --steam-visibility public 才会把工坊条目改成公开；否则继续保留现状。
-公开模式在 Steam 上传后触发 pages.yml 的 deploy_public=true，并等待该次部署成功。
-普通 push、Pull Request、未勾选 deploy_public 的手动工作流以及私有仓库都只构建检查，不部署 Pages。
-工作流需要仓库拥有者有 Actions/Pages 的相应权限；账户套餐限制按 GitHub 实际提示处理。
+发布目标见 tools/release_config.json。默认受众仍为 private；当前正式发布使用 --audience public。
+脚本不改变仓库或工坊可见性。公开仓库和 GitHub Pages（Source: GitHub Actions）须已配置好。
+私有发布仅上传资料站 ZIP 附件，不部署公开 Pages。
 
-四、流水线内容
+六、校验、失败与恢复
 
-1. 验证独立发布 checkout 的来源、分支、干净状态及与 origin/main 的一致性。
-2. 修改 mod/modinfo.lua 的版本以及 README 的当前版本；历史版本记录不作全文替换。
-3. 刷新中英文图鉴/页面版本，按白名单导出源码到 dist/github-public。
-4. 执行 Lua 语法与规则测试、美术资源检查、翻译检查、资料站链接检查和发布流程测试。
-   这些检查不能替代双人游戏、存档兼容性等人工测试；已编译美术必须在发布前更新。
-5. 生成 Mod ZIP、资料站 ZIP、SHA256、Steam 内容快照、预览图、介绍及 VDF。
-6. 只在独立发布 checkout 提交 Release vX.Y.Z，建立 vX.Y.Z 标签，原子推送 main 和标签。
-   开发工作区的原有历史与暂存区不自动提交，避免把存档、日志和研究资料推送出去。
-7. 创建 GitHub 草稿 Release 并上传附件；调用 SteamCMD 更新现有工坊条目。
-8. 公开模式部署资料站；私有模式保留资料站 ZIP。全部成功后结束 GitHub 草稿状态。
+所有正式发布使用 dist/github-public 独立 checkout，开发工作区历史与暂存区不自动提交。
+导出源文件包括 AGENTS.md；不导出游戏存档、凭据、临时日志和研究文件。
+检查范围包括 Lua 语法与规则、资源、本地化、网站链接、发布流程回归测试。
+快照在 dist/releases/X.Y.Z，包含 Mod、资料站ZIP、notes.txt、commit.txt、VDF、哈希与 state.json。
+脚本检查快照、发布源码和当前commit是否一致，拒绝混合版本、额外文件、标签冲突及强制推送。
 
-工坊中文介绍自动省略“遇到 Bug 时，请这样取日志”章节，以保持 UTF-8 正文小于 8000 字节。
-其他正文不会自动截断；仍超长时停止，让作者调整内容或配置省略章节。
-英文介绍原文仍随源码保存，SteamCMD 本流程只更新默认语言正文，不自动设置 Steam 独立语言翻译。
-预览图为 assets_src/mod_icon.png。上传脚本只更新已有条目，不调用创建条目功能。
+查看进度：
+  .\release.ps1 --resume 1.0.5
+恢复发布：
+  .\release.ps1 --mode publish --resume 1.0.5 --audience public
+恢复本地提交：
+  .\release.ps1 --mode commit --resume 1.0.5 --audience public
 
-五、失败恢复与边界
-
-每完成一阶段，dist/releases/X.Y.Z/state.json 立即记录结果。
-脚本使用 dist/.release.lock 阻止两个发布进程同时工作；崩溃遗留锁时，确认记录的进程已结束再删除该锁文件。
-  .\release.ps1 --resume X.Y.Z
-可以只读查看阶段。
-  .\release.ps1 --mode publish --resume X.Y.Z --steamcmd "..." --steam-user YOUR_LOGIN
-继续未完成的阶段；非默认 audience / steam-visibility 需与准备阶段保持一致。
-
-恢复使用冻结内容，不读取后来改动的游戏源码。若发布 checkout、快照内容或标签被改动，脚本停止。
-网络断开恰好发生在远端成功、状态尚未写盘之间时，可能重新上传同一工坊条目；绝不会新建重复条目。
-GitHub 已推送、Steam 失败时，保留 GitHub 草稿；不要重新使用新版本重复准备，应修复登录/网络后恢复。
-SteamCMD 退出码为 0 不代表成功，脚本还要求本次 workshop_log.txt 中出现对应条目的 OK。
-如 Valve 改动日志格式或 SteamCMD 没有本游戏上传权限，脚本明确报错；可用官方 Mod Uploader
-手动更新同一条目，使用冻结的 content、preview.png、description.txt，勿点击 Add 新建条目。
-此时不要伪造 state.json 成功标记；保留记录，确认上传并排查后再恢复自动流程。
-
-准备阶段失败尚未生成 state.json 时，不自动回滚版本和源码，防止覆盖你的编辑。
-根据错误修复；检查失败产生的 dist/releases 目录与发布 checkout 后再准备新的版本。
-对独立发布 checkout 使用 git reset/clean 前必须确认其中没有需要保留的改动。
-这是一条多平台流水线，不能提供跨 Steam/GitHub/Pages 的事务回滚；任何失败都会明确停止。
-
-实现参考：
-https://partner.steamgames.com/doc/features/workshop/implementation#SteamCmd
-https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages
+--resume 沿用原始确认和冻结文件，不读取后来改动的源码；已完成的阶段不会重复执行。
+若 Pages 失败，GitHub Release 保持草稿，Steam 已完成的更新保留；修复或重试时仍使用同一版本。
+原生 Steam 必须返回成功并完成回读核验；SteamCMD 必须在本次日志中确认指定条目 OK。不能手工伪造完成状态。
+脚本通过 dist/.release.lock 防止并行发布。仅确认锁内进程已经结束后才可删除遗留锁。
+准备阶段失败且尚无 state.json 时，保留现场；先检查版本和独立checkout改动，再修复，不自动reset/clean或改用新版本掩盖失败。
+旧版全量发布快照缺少 release_kind=code 和说明确认记录，新脚本拒绝继续上传；可以用 plan 查看历史。确需恢复旧的未完成发布，先明确审核旧流程和剩余动作。
+脚本测试必须使用临时仓库、假 Steam/GitHub 接口，不为验证流程实际发布一个新版本。

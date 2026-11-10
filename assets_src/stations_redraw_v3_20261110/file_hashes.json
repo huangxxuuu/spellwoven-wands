@@ -1,0 +1,42 @@
+[
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\engraver\\prompt_02_material_planes.txt",
+    "SHA256": "34AB82F019575315ACB3329AB885EB2AC7B8D609FB410B736A40CD40A9B7D7A2"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\engraver\\prompt.txt",
+    "SHA256": "B63BBAEC03D48A45DA0B630AF4D965B38259426CB0108AF7586A4559150BB206"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\engraver\\source.png",
+    "SHA256": "667385F26EFBB1646DBAACC416815A155232D5D9040F5055E92FBFE18EEA5B81"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\furnace\\prompt_02_material_planes.txt",
+    "SHA256": "2A1A9ECF557431034BB90B33574F739A251E7937D336EC18ED9D2308DF7C6F81"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\furnace\\prompt.txt",
+    "SHA256": "B49FD95E440DEF432DE6984E1F9DFC6CFE145E54E7714A29167E665C5EFF8D44"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\furnace\\source.png",
+    "SHA256": "70DA60700EB1DDDCA893C17C075867E599F6A04552D76B6D9E5C40BE3445787B"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\references\\lamp_current_body.png",
+    "SHA256": "0630CCDACFE222A8D365CC86216A380AEA4EFB79E8CC7B83A7D6F01F5BC7598A"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\workbench\\prompt_02_material_planes.txt",
+    "SHA256": "05883CC85ECAE87EE7A104F52845548C413B5C5BFBC2482F71FC2C5A41557BA1"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\workbench\\prompt.txt",
+    "SHA256": "1E89FC9418AFFAB03A6DBC10B9E949D33E879B470344A99DBB88A5B417C64D77"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v3_20261110\\workbench\\source.png",
+    "SHA256": "2888ADC2F6110FA139E7D61D8F611F994966CA72CF48F1249C20FA1A2868C365"
+  }
+]

@@ -24,10 +24,12 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim)
     local rng=draw_rng:fork()
     local launch
     launch=function(index,px,pz,ax,az,h,hit_target,scale,secondary,depth)
-        if Limits.depth>0 and depth>Limits.depth then return true end
         local objects={}
         local block=blocks[index]
         if #block.projectiles==0 then return true end
+        if Limits.depth>0 and depth>Limits.depth then
+            require("nw/limit_feedback").limited(owner);return true
+        end
         local fraction=(scale or 1)*(block.copy_damage or 1)
         for copy=1,block.copies or 1 do
             local emitted=0

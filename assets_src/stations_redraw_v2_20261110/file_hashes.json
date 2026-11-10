@@ -1,0 +1,26 @@
+[
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v2_20261110\\engraver\\prompt.txt",
+    "SHA256": "112DFA8324C0621F752106CBC5D95858028417F806142B9BB10085A3C4A04EA4"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v2_20261110\\engraver\\source.png",
+    "SHA256": "F74A994E2FC9898D2958794139B51E557D380E1CFF256A38F2B0FEA0E4803006"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v2_20261110\\furnace\\prompt.txt",
+    "SHA256": "727234C5FC5869632969610CDCE5DCD7201FF97F3EF697CB3E2F2351D9EADDA9"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v2_20261110\\furnace\\source.png",
+    "SHA256": "6B955B668FDDFFB9996EB3B1AF9CA87FF559E9C5E85C6C60486C161863D0DAAE"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v2_20261110\\workbench\\prompt.txt",
+    "SHA256": "5B93716F9B8DE36C70307ADBEE549FC6C7787FBAD86D9EE975ADD9FD866B7EAB"
+  },
+  {
+    "Path": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_redraw_v2_20261110\\workbench\\source.png",
+    "SHA256": "73979F6A888693FE1674E0DE168053DBB043271078B904208E9C05A22BA3B7FF"
+  }
+]

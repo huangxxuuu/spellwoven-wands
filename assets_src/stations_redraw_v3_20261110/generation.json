@@ -1,0 +1,112 @@
+{
+  "date_local": "2026-11-10",
+  "timezone": "Asia/Shanghai",
+  "revision": "v3",
+  "category": "游戏内建筑",
+  "requirement": "三个建筑与当前mod的灯处于同一纹理细节程度；不能以比灯更干净或更繁密为目标。外观设计和主要部件保持。",
+  "generator": "built-in image_gen",
+  "transparent_background": true,
+  "canonical_style_reference": {
+    "file": "references/lamp_current_body.png",
+    "source": "assets_src/arcane_storage_final/emberlamp/originals/r2_empty_grounded.png",
+    "provenance": "tools/build_emberlamp_art.py:191 以此生成现用layers/body.png",
+    "user_screenshot": "references/user_lamp_density.png"
+  },
+  "specifications_read": [
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/02_游戏内建筑规范.md"
+  ],
+  "assets": [
+    {
+      "key": "workbench",
+      "source": "workbench/source.png",
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "round_1": {
+        "target": "references/workbench_v2.png",
+        "prompt": "workbench/prompt.txt",
+        "output": "workbench/draft_01.png",
+        "status": "superseded_excess_tonal_patches",
+        "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-cff84706-d8c4-4599-b3bd-7e34d532c128.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "round_2": {
+        "target": "workbench/draft_01.png",
+        "prompt": "workbench/prompt_02_material_planes.txt",
+        "output": "workbench/source.png",
+        "status": "selected",
+        "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-3c413026-4ec9-42c4-a626-47cbc3c4fab0.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "original_body_pixels": [
+        256,
+        256
+      ]
+    },
+    {
+      "key": "engraver",
+      "source": "engraver/source.png",
+      "source_pixels": [
+        1216,
+        1293
+      ],
+      "round_1": {
+        "target": "references/engraver_v2.png",
+        "prompt": "engraver/prompt.txt",
+        "output": "engraver/draft_01.png",
+        "status": "superseded_excess_tonal_patches",
+        "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-12719f3f-0554-411c-9736-81ffa50a0d68.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "round_2": {
+        "target": "engraver/draft_01.png",
+        "prompt": "engraver/prompt_02_material_planes.txt",
+        "output": "engraver/source.png",
+        "status": "selected",
+        "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-0b3a08cb-646f-4010-9010-565e9f93fedd.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "original_body_pixels": [
+        301,
+        320
+      ]
+    },
+    {
+      "key": "furnace",
+      "source": "furnace/source.png",
+      "source_pixels": [
+        1213,
+        1296
+      ],
+      "round_1": {
+        "target": "references/furnace_v2.png",
+        "prompt": "furnace/prompt.txt",
+        "output": "furnace/draft_01.png",
+        "status": "superseded_excess_tonal_patches",
+        "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-6f8642b0-346c-476a-b185-34a84c28ee39.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "round_2": {
+        "target": "furnace/draft_01.png",
+        "prompt": "furnace/prompt_02_material_planes.txt",
+        "output": "furnace/source.png",
+        "status": "selected",
+        "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-3b43e13c-9dd0-401e-af80-86483bc0d37a.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "original_body_pixels": [
+        300,
+        320
+      ]
+    }
+  ],
+  "qa": {
+    "visual": "已重新查看最终源图、精确灯母版同主体高度对照、深浅背景和目标尺寸预览；独立代理复核可按同一材质标准交付。符号、主要部件及连接完整。",
+    "material": "金属、石材、木材保留与灯同层级的稀疏尖收长纹和连续主色面，纸面及刃面碎色斑已局部合并；没有v1密排线，也没有v2完全光面的过度简化。",
+    "alpha": "RGBA，画布边缘均无alpha>=128像素。工作台/刻印台边缘最大alpha为2/1；炉底两个像素alpha为15/11，视觉主体完整，留白小，后续排版需留边。",
+    "integration": "源图交付；未替换运行贴图、图标或炉光效；未实机验证。"
+  },
+  "previews": [
+    "previews/lamp_density_comparison.png",
+    "previews/before_after.png",
+    "previews/alpha_light_dark.png"
+  ],
+  "reference_policy": "以现用灯世界本体母图为材质细节标尺；不要改用该灯简化UI图标或更早身份概念图替代当前世界画法。"
+}

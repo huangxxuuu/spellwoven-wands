@@ -92,7 +92,7 @@ function M.stop(station)
     station._nw_run=nil
     run.task:Cancel()
     for _,entry in ipairs(run.entries) do release(entry,station) end
-    station:SetNWActive(false)
+    station:SetNWActive(false,true)
 end
 
 function M.start(station,player)

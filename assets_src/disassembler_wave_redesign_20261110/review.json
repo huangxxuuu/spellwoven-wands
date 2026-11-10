@@ -1,0 +1,51 @@
+{
+  "status": "six_candidates_delivered_for_user_review",
+  "generation": {
+    "single_request": true,
+    "requested_images": 6,
+    "received_images": 6,
+    "reference_images": 0,
+    "model": "gpt-image-2.6-flare",
+    "request_id": "req_6d9abc42faeb4513b36a040d1369a37d",
+    "metadata": "originals/20261110T125727Z_f4460713/request.json",
+    "usage": {
+      "input_text_tokens": 7218,
+      "input_image_tokens": 0,
+      "output_image_tokens": 6792,
+      "total_tokens": 14010
+    },
+    "additional_generations_or_retries": 0
+  },
+  "preview": {
+    "comparison": "previews/comparison_6.png",
+    "method": "仅按原始RGBA合成背景、等比缩略、加外部编号；未重绘、改色、变形或添加效果。",
+    "source_images_unchanged": true,
+    "alpha_audit": "alpha_audit.json"
+  },
+  "findings": {
+    "01": "弯月与菱晶身份明确，末段有断裂；环势较完整，初段已出现金色。",
+    "02": "尖梢更强，环绕方向明确；弧形略接近羽片或刃片。",
+    "03": "弧片展开和碎片散布较活跃；内部绘制密度偏高。",
+    "04": "细弯月和菱片可读，金边清楚；起手已有明显环势，展开主要依靠拉长与扩大。",
+    "05": "回钩、尖尾拉伸与分片更明显；青色碎斑偏多，质感略像磨蚀金属刀片。",
+    "06": "优先推荐继续。宽青弧、古金楔形简洁，缩小后仍清楚；首段与满幅跨度明显，末段在同一范围内散开。"
+  },
+  "recommendation": "06",
+  "limitations": [
+    "六张是同一新Prompt的独立采样变体，每张包含四阶段静态概念，不是六种预先指定的不同主题。",
+    "各阶段可以看见弧片拉长、开启、移位和断片，但不构成已经验证的连续动画。",
+    "部分阶段的菱晶仍偏实体宝石，金色在前段已经出现，末段仍有较长弧片。",
+    "实际图形视角比Prompt要求的2:1椭圆更接近俯视；概念确认后需按OnGround运行投影重新制定源帧与锚点。",
+    "没有编译、接入、安装或实机验证。"
+  ],
+  "alpha_review": {
+    "all_sources_have_transparent_pixels": true,
+    "all_sources_visible_border_pixels_at_alpha_16": 0,
+    "actual_white_gray_composites": "未见大面积可见光晕；以实际RGBA合成为准，不能将透明区域RGB误判为背景。"
+  },
+  "independent_art_review": {
+    "scope": "候选04、05、06源图、白灰底合成与缩略图",
+    "recommendation": "06",
+    "candidate_06_phase_widths_at_alpha_16": [259, 536, 699, 701]
+  }
+}

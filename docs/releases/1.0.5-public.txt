@@ -1,0 +1,11 @@
+织法之杖 1.0.5
+
+1. 微调奥术台、武器刻印台、奥术分解炉三座建筑的贴图。
+2. 法术实体达到上限时，角色会发出语音提示，可在个人设置中关闭。
+3. 法术测试拳击袋提供连击、10 秒和 30 秒伤害测试模式。
+
+Spellwoven Wands 1.0.5
+
+1. Minor texture adjustments to the Arcane Workbench, Weapon Engraving Table, and Arcane Recycler.
+2. Characters now give a spoken alert when spell entities reach their limit. This can be disabled in personal settings.
+3. The Spell Test Punching Bag now offers combo, 10-second, and 30-second damage testing modes.

@@ -156,6 +156,7 @@ function Wand:Cast(doer,pos,prepared)
         journal:RecordCast(self.data,plan)
         journal:ObserveWand(self.inst)
     end
+    require("nw/dummy_trials").cast(doer,plan.mana_spent,GetTime())
     self.data.runtime=plan.next_state
     self.cool_total=plan.cooldown
     self:Sync()

@@ -1,0 +1,92 @@
+{
+  "date_local": "2026-11-10",
+  "timezone": "Asia/Shanghai",
+  "revision": "v2",
+  "category": "游戏内建筑",
+  "request": "继续减少三个建筑细碎纹理，以用户所示昨天新增灯的材质线密度为参照，保留整体外观与结构身份。",
+  "generator": "built-in image_gen",
+  "transparent_background": true,
+  "previous_revision": "../stations_redraw_v1_20261110",
+  "specifications_read": [
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/02_游戏内建筑规范.md"
+  ],
+  "user_reference": "references/user_lamp_density.png",
+  "clean_lamp_style_reference": "references/lamp_clean_reference.png",
+  "lamp_world_comparison": "references/lamp_world_unlit.png",
+  "assets": [
+    {
+      "key": "workbench",
+      "source": "workbench/source.png",
+      "actual_prompt": "workbench/prompt.txt",
+      "edit_target": "references/workbench_v1.png",
+      "input_order": [
+        "workbench_v1.png",
+        "user_lamp_density.png",
+        "lamp_clean_reference.png"
+      ],
+      "source_pixels": [
+        1254,
+        1254
+      ],
+      "original_body_pixels": [
+        256,
+        256
+      ],
+      "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-e92093c4-cedf-4014-91ba-dc55b8b94159.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "key": "engraver",
+      "source": "engraver/source.png",
+      "actual_prompt": "engraver/prompt.txt",
+      "edit_target": "references/engraver_v1.png",
+      "input_order": [
+        "engraver_v1.png",
+        "user_lamp_density.png",
+        "lamp_clean_reference.png"
+      ],
+      "source_pixels": [
+        1216,
+        1293
+      ],
+      "original_body_pixels": [
+        301,
+        320
+      ],
+      "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-5fb4a9b9-7e71-49f8-8805-b473c3f45d9f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    },
+    {
+      "key": "furnace",
+      "source": "furnace/source.png",
+      "actual_prompt": "furnace/prompt.txt",
+      "edit_target": "references/furnace_v1.png",
+      "input_order": [
+        "furnace_v1.png",
+        "user_lamp_density.png",
+        "lamp_clean_reference.png"
+      ],
+      "source_pixels": [
+        1213,
+        1296
+      ],
+      "original_body_pixels": [
+        300,
+        320
+      ],
+      "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-227b703f-1831-4bf6-a40a-3991e75f2332.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+    }
+  ],
+  "verification": {
+    "visual": "已查看三张源图、v1/v2对比、与灯同主体高度对比及深浅底预览；独立代理复核。所有主要身份符号、部件与连接均保留，表面细线和成簇排线明显减少。",
+    "alpha": "RGBA源图，alpha>=9的可见主体均未碰画布边缘。生成器原始Alpha未改变；后续构建按已有规则清理alpha<9杂点。统计见alpha_audit.json。",
+    "style": "新图比用户指定灯参照还略干净；主要以大色块和结构线表达材质。",
+    "integration": "纯美术源图交付，尚未替换运行贴图/图标或重新生成动态光效，未实机验证。"
+  },
+  "previews": [
+    "previews/before_after.png",
+    "previews/lamp_density_comparison.png",
+    "previews/alpha_light_dark.png",
+    "previews/native_scale_comparison.png"
+  ]
+}

@@ -20,9 +20,9 @@ function M.install(env)
         STRINGS.NAMES[name:upper()] = spec[1]
         STRINGS.CHARACTERS.GENERIC.DESCRIBE[name:upper()] = spec[2]
     end
-    env.RegisterInventoryItemAtlas(Rules.atlas, "nw_workbench.tex")
+    env.RegisterInventoryItemAtlas(Rules.station_atlas, "nw_workbench.tex")
     STRINGS.RECIPE_DESC.NW_WORKBENCH = T("研磨宝石，制作法杖，刻写和更换法术卡。")
-    env.AddPrototyperDef("nw_workbench", {icon_atlas=Rules.atlas, icon_image="nw_workbench_station.tex",
+    env.AddPrototyperDef("nw_workbench", {icon_atlas=Rules.station_atlas, icon_image="nw_workbench_station.tex",
         is_crafting_station=true, action_str="USE", filter_text=T("奥术台")})
     env.RegisterInventoryItemAtlas(Rules.station_atlas,"nw_engraver.tex")
     env.RegisterInventoryItemAtlas(Rules.station_atlas,"nw_disassembler.tex")
@@ -32,7 +32,7 @@ function M.install(env)
         TECH.SCIENCE_TWO,{placer="nw_engraver_placer",atlas=Rules.station_atlas,image="nw_engraver.tex"},{"PROTOTYPERS","MAGIC"})
     env.AddRecipe2("nw_workbench", {Ingredient("boards",2), Ingredient("cutstone",2),
         Ingredient("goldnugget",4), Ingredient("purplegem",2)}, TECH.SCIENCE_TWO,
-        {placer="nw_workbench_placer", atlas=Rules.atlas,image="nw_workbench.tex"}, {"PROTOTYPERS","MAGIC"})
+        {placer="nw_workbench_placer", atlas=Rules.station_atlas,image="nw_workbench.tex"}, {"PROTOTYPERS","MAGIC"})
     env.AddRecipe2("nw_disassembler",{Ingredient("cutstone",2),Ingredient("purplegem",1),
         Ingredient("nw_dust",4,Rules.atlas)},TECH.SCIENCE_TWO,{placer="nw_disassembler_placer",
         image="nw_disassembler.tex",atlas=Rules.station_atlas},{"PROTOTYPERS","MAGIC"})

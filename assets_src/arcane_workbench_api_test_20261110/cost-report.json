@@ -1,0 +1,92 @@
+{
+  "model": "gpt-image-2.5-flare",
+  "size": "1024x1024",
+  "quality": "high",
+  "background": "transparent",
+  "prompt_source": "D:\\Projects\\AI\\dst_mod\\assets_src\\stations_art_directions_20261110\\B_round_3\\workbench.prompt.txt",
+  "pricing_source": "https://developers.openai.com/api/docs/models/gpt-image-2.5-flare",
+  "pricing_checked_date": "2026-11-10",
+  "usd_per_million_tokens": {
+    "text_input": "5",
+    "image_input": "8",
+    "image_output": "30"
+  },
+  "billing_basis": "Standard direct Images API; no cached-input discount; estimate from returned usage, not an account billing lookup.",
+  "runs": [
+    {
+      "test": 1,
+      "text_input_tokens": 769,
+      "image_input_tokens": 4563,
+      "output_tokens": 1756,
+      "total_tokens": 7088,
+      "estimated_usd": "0.093029",
+      "elapsed_seconds": 28.94,
+      "file": "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_workbench_api_test_20261110\\test-1.png",
+      "image_sha256": "1e9c97778ae050265848cf98d3c421a3880b789e7e9a624db1df4fc3a765f926",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "image_mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "fully_transparent_pixels": 530276,
+      "fully_opaque_pixels": 0
+    },
+    {
+      "test": 2,
+      "text_input_tokens": 769,
+      "image_input_tokens": 4563,
+      "output_tokens": 1756,
+      "total_tokens": 7088,
+      "estimated_usd": "0.093029",
+      "elapsed_seconds": 29.28,
+      "file": "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_workbench_api_test_20261110\\test-2.png",
+      "image_sha256": "e32db37b6c5eb505b04e1acd85c72bf0f4664d8eb0a337d04c1ddae230bfd58f",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "image_mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "fully_transparent_pixels": 530725,
+      "fully_opaque_pixels": 0
+    },
+    {
+      "test": 3,
+      "text_input_tokens": 769,
+      "image_input_tokens": 4563,
+      "output_tokens": 1756,
+      "total_tokens": 7088,
+      "estimated_usd": "0.093029",
+      "elapsed_seconds": 30.12,
+      "file": "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_workbench_api_test_20261110\\test-3.png",
+      "image_sha256": "0618b0e21a5f33c9e6c5b3a74167104b3ff5e76428122e3d1aa2753b1e2237c7",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "image_mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "fully_transparent_pixels": 528554,
+      "fully_opaque_pixels": 0
+    }
+  ],
+  "total_tokens": 21264,
+  "total_estimated_usd": "0.279087",
+  "mean_estimated_usd": "0.093029",
+  "budget_usd_assumed": "100",
+  "estimated_images_for_100_usd": 1074,
+  "estimated_remaining_images_after_these_tests": 1071,
+  "mean_elapsed_seconds": 29.44666666666667,
+  "visual_review": "All three preserve the main workbench silhouette and major props, with richer brown wood and more material facets than the geometric reference. Outputs are visually very similar but have distinct file hashes. RGBA transparency was verified by alpha compositing onto white and gray at 320px: the halo in the raw preview is not visible in composited results. Alpha ranges from 0 to 254, so solid-looking regions are nearly opaque rather than exactly 255. No runtime game integration or in-game validation was performed.",
+  "comparison_preview": "D:\\Projects\\AI\\dst_mod\\assets_src\\arcane_workbench_api_test_20261110\\comparison.png"
+}

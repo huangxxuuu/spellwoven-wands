@@ -1,0 +1,41 @@
+{
+  "date_local": "2026-11-10",
+  "timezone": "Asia/Shanghai",
+  "category": "游戏内建筑附属地面特效；本轮仅候选概念",
+  "request": "完全抛弃现有扩散圆圈，重新设计Prompt，纯文字一次生成6张，表现扩大过程中的形变。",
+  "generator": "D:/Projects/AI/open_xiaoai/local-imagegen/imagegen.py",
+  "operation": "generate",
+  "model": "gpt-image-2.6-flare",
+  "size": "1536x1024",
+  "quality": "medium",
+  "background": "transparent",
+  "n": 6,
+  "input_images": [],
+  "prompt": "prompt.txt",
+  "layout": "每张候选2x2四阶段：聚拢、展开、极限范围、碎散；同Prompt的6个独立采样",
+  "specifications_read": [
+    "AGENTS.md",
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/02_游戏内建筑规范.md",
+    "docs/art/04_本地生图工具调用与模型选择.md"
+  ],
+  "text_style_sources_read": [
+    "assets_src/stations_redraw_v3_20261110/furnace/prompt.txt",
+    "assets_src/stations_redraw_v3_20261110/furnace/prompt_02_material_planes.txt",
+    "assets_src/stations_art_directions_20261110/B_round_3/furnace.prompt.txt"
+  ],
+  "local_visual_checks_only_not_api_inputs": [
+    "assets_src/stations_redraw_v3_20261110/furnace/source.png",
+    "test_reports/native_style_reference/buildings_contact.png"
+  ],
+  "runtime_context": {
+    "prefab": "mod/scripts/prefabs/nw_disassembler.lua",
+    "build": "tools/build_spell_world.py",
+    "existing_clip": "nw_spell_world/recycle_wave",
+    "existing_clip_frame_count": 1,
+    "existing_build_symbol_size": [1200, 1200],
+    "projection": "OnGround；本轮斜视椭圆是概念展示，不能直接当俯视运行贴图接入。",
+    "scope": "不替换运行资源；不编译、不安装、不发布。"
+  }
+}

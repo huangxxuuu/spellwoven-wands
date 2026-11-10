@@ -1,0 +1,37 @@
+三座建筑 v3：与当前mod灯的纹理细节程度对齐
+日期：2026-11-10
+类别：游戏内建筑。使用内置 image_gen。
+用户目标：三座建筑与灯属于同一mod建筑组，应采用同等材质细节标准，不能比灯更干净或更繁密。
+
+精确参照
+references/lamp_current_body.png 来自 assets_src/arcane_storage_final/emberlamp/originals/r2_empty_grounded.png。
+这是 tools/build_emberlamp_art.py 第191行实际读取并生成现用 layers/body.png 的灯本体母图，含截图所示的金属长纹、石材裂线与落地基座。
+references/user_lamp_density.png 保留用户截图。
+本轮不再以早期 approved_lamp.png 或简化物品栏灯图代表当前世界贴图画法。
+
+最终结果
+保留整体造型、部件连接及身份符号。
+补回与灯同层级的少量中长尖收木纹、金属折痕、石材裂线；颜色和高光保留手绘转折。
+主要色面连续，分面随材质和体积布置。纸面、铜台中央及刃面已合并无体积依据的重复多边形色斑。
+比较按同显示尺度和对应材质区域进行，不以整个复杂建筑与灯的总线条数量相等作为标准。
+最终源图经主代理与独立代理重新查看，可按灯的同一材质细节标准交付。
+
+交付文件
+workbench/source.png：奥术台，1254×1254 RGBA。
+engraver/source.png：武器刻印台，1216×1293 RGBA。
+furnace/source.png：奥术分解炉，1213×1296 RGBA。
+各目录 prompt.txt 是首轮对齐实际提示词；draft_01.png 是该轮输出，已由最终source.png替代。
+各目录 prompt_02_material_planes.txt 是最终局部色面校准的实际提示词。
+generation.json 记录两轮来源和最终选择。
+previews/lamp_density_comparison.png：最终三建筑与精确灯母版，按相同主体显示高度对照。
+previews/before_after.png：v2与v3对照。
+previews/alpha_light_dark.png：深浅底透明检查。
+alpha_audit.json：源图尺寸及Alpha统计。
+make_previews.ps1：仅生成验证预览，不修改母图。
+
+边界与后续接入
+本轮仍是源图交付，未替换游戏运行资源、制作栏图标、向导图或动态光效，未实机验证。
+源图保留生成器原始Alpha。所有画布四边均无alpha>=128主体像素；炉图底部两个像素为alpha15和11，视觉主体完整但留白很小，后续排版/入图集要留安全边。
+实际运行本体模板继续为256×256、301×320、300×320。地影、锚点以及炉口/悬晶发光区域必须按照当前构建对齐，不能按母图尺寸直接改变运行尺度。
+v1、v2及v3过程稿均保留，不覆盖旧运行素材。
+

@@ -1,0 +1,19 @@
+Arcane Workbench API benchmark - 2026-11-10
+Model: gpt-image-2.5-flare; 1024x1024; high; transparent PNG
+Prompt: D:\Projects\AI\dst_mod\assets_src\stations_art_directions_20261110\B_round_3\workbench.prompt.txt
+Three identical independent edit requests with the original three reference images.
+
+Test | Text input | Image input | Image output | Total tokens | USD estimate | Seconds
+1 | 769 | 4563 | 1756 | 7088 | 0.093029 | 28.94
+2 | 769 | 4563 | 1756 | 7088 | 0.093029 | 29.28
+3 | 769 | 4563 | 1756 | 7088 | 0.093029 | 30.12
+
+Total tokens: 21264
+Total USD estimate: 0.279087
+Mean USD/image: 0.093029
+USD 100 supports approximately 1074 images under identical settings.
+After these 3 tests, approximately 1071 further images if USD 100 was the starting balance.
+Costs are estimates from actual API usage and published Standard token rates, not verified billing or a balance lookup.
+Pricing source: https://developers.openai.com/api/docs/models/gpt-image-2.5-flare
+
+All three preserve the main workbench silhouette and major props, with richer brown wood and more material facets than the geometric reference. Outputs are visually very similar but have distinct file hashes. RGBA transparency was verified by alpha compositing onto white and gray at 320px: the halo in the raw preview is not visible in composited results. Alpha ranges from 0 to 254, so solid-looking regions are nearly opaque rather than exactly 255. No runtime game integration or in-game validation was performed.

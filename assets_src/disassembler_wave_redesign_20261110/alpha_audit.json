@@ -1,0 +1,116 @@
+[
+  {
+    "alpha": {
+      "width": 1536,
+      "height": 1024,
+      "transparent_pixels": 1208833,
+      "partial_pixels": 364031,
+      "opaque_pixels": 0,
+      "visible_border_pixels": 0,
+      "bounds_alpha_16": [
+        55,
+        31,
+        1452,
+        974
+      ]
+    },
+    "candidate": "01",
+    "source": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_redesign_20261110\\originals\\20261110T125727Z_f4460713\\image-1.png",
+    "sha256": "902A29556AC53654B2FF3B113C0870A403D7D0B9B46B5D8AB9B5C1877DCB1130"
+  },
+  {
+    "alpha": {
+      "width": 1536,
+      "height": 1024,
+      "transparent_pixels": 1143697,
+      "partial_pixels": 429167,
+      "opaque_pixels": 0,
+      "visible_border_pixels": 0,
+      "bounds_alpha_16": [
+        35,
+        57,
+        1514,
+        974
+      ]
+    },
+    "candidate": "02",
+    "source": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_redesign_20261110\\originals\\20261110T125727Z_f4460713\\image-2.png",
+    "sha256": "569D31D4CFDD04B00ADFB9CC143BB9A4A4A04A8417BB9F9F3ECCCD08EDD86490"
+  },
+  {
+    "alpha": {
+      "width": 1536,
+      "height": 1024,
+      "transparent_pixels": 1108746,
+      "partial_pixels": 464118,
+      "opaque_pixels": 0,
+      "visible_border_pixels": 0,
+      "bounds_alpha_16": [
+        48,
+        60,
+        1479,
+        977
+      ]
+    },
+    "candidate": "03",
+    "source": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_redesign_20261110\\originals\\20261110T125727Z_f4460713\\image-3.png",
+    "sha256": "65AF32130CBB3A0A96F4E08EB3C1E2BDEB86A82C4048316CA18B45EDBB405280"
+  },
+  {
+    "alpha": {
+      "width": 1536,
+      "height": 1024,
+      "transparent_pixels": 1216274,
+      "partial_pixels": 356590,
+      "opaque_pixels": 0,
+      "visible_border_pixels": 0,
+      "bounds_alpha_16": [
+        63,
+        70,
+        1472,
+        951
+      ]
+    },
+    "candidate": "04",
+    "source": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_redesign_20261110\\originals\\20261110T125727Z_f4460713\\image-4.png",
+    "sha256": "C6E28E7D35D3DB517DE54B77C13DDD63C8F60428660E71DEB696E66B7E1BCFC0"
+  },
+  {
+    "alpha": {
+      "width": 1536,
+      "height": 1024,
+      "transparent_pixels": 1238269,
+      "partial_pixels": 334595,
+      "opaque_pixels": 0,
+      "visible_border_pixels": 0,
+      "bounds_alpha_16": [
+        53,
+        82,
+        1493,
+        962
+      ]
+    },
+    "candidate": "05",
+    "source": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_redesign_20261110\\originals\\20261110T125727Z_f4460713\\image-5.png",
+    "sha256": "C54932831EA583101B2E1243D1179D23EF7DD618EC698AE0AD5E34F7ABDB1370"
+  },
+  {
+    "alpha": {
+      "width": 1536,
+      "height": 1024,
+      "transparent_pixels": 1114474,
+      "partial_pixels": 458390,
+      "opaque_pixels": 0,
+      "visible_border_pixels": 0,
+      "bounds_alpha_16": [
+        36,
+        95,
+        1502,
+        962
+      ]
+    },
+    "candidate": "06",
+    "source": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_redesign_20261110\\originals\\20261110T125727Z_f4460713\\image-6.png",
+    "sha256": "C0C3B6481F2C521BB4E7DBBDAFA9177694EAB796FFCA203169D01A7FFCF703E7"
+  }
+]

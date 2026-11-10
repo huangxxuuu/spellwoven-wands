@@ -1,0 +1,104 @@
+{
+  "task": "奥术台、武器刻印台、奥术分解炉保留外观的饥荒画风重绘",
+  "date_local": "2026-11-10",
+  "timezone": "Asia/Shanghai",
+  "category": "游戏内建筑",
+  "generator": "built-in image_gen",
+  "transparent_background": true,
+  "specification_files": [
+    "docs/26_饥荒原版画风与生图基础规范.md",
+    "docs/DST生图基础提示词.txt",
+    "docs/art/02_游戏内建筑规范.md"
+  ],
+  "additionally_read": "docs/art/03_游戏内物品栏贴图规范.md",
+  "style_reference": "test_reports/native_style_reference/buildings_contact.png",
+  "output_scope": "三座静态建筑本体透明母图。原有运行资源、UI图标与动态光效未替换。",
+  "assets": [
+    {
+      "key": "workbench",
+      "prompt": "workbench/prompt.txt",
+      "source": "workbench/source.png",
+      "reference": "references/workbench_current.png",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-15298376-40e1-4975-bc80-dbef2fe8756d.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "original_body_size": [
+        256,
+        256
+      ],
+      "original_grounded_frame_size": [
+        288,
+        288
+      ],
+      "original_frame_center": [
+        0,
+        -88
+      ],
+      "prefab_scale": 1.48
+    },
+    {
+      "key": "engraver",
+      "prompt": "engraver/prompt.txt",
+      "source": "engraver/source.png",
+      "reference": "references/engraver_current.png",
+      "source_size": [
+        1217,
+        1293
+      ],
+      "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-58f91989-131e-4c6a-9afa-f3c1a6da7f5c.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "original_body_size": [
+        301,
+        320
+      ],
+      "original_grounded_frame_size": [
+        333,
+        352
+      ],
+      "original_frame_center": [
+        0,
+        -140
+      ],
+      "prefab_scale": 1
+    },
+    {
+      "key": "furnace",
+      "prompt": "furnace/prompt.txt",
+      "source": "furnace/source.png",
+      "reference": "references/furnace_current.png",
+      "source_size": [
+        1213,
+        1297
+      ],
+      "generation_output_hint": "Generated images are saved to C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2 as C:\\Users\\85183\\.codex\\generated_images\\01a1c194-1a69-7432-bb03-611865076ce2\\exec-31033874-01be-4e76-87ce-52682527e07e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "original_body_size": [
+        300,
+        320
+      ],
+      "original_grounded_frame_size": [
+        332,
+        352
+      ],
+      "original_frame_center": [
+        0,
+        -140
+      ],
+      "prefab_scale": 1
+    }
+  ],
+  "previews": [
+    "previews/before_after.png",
+    "previews/native_scale_comparison.png",
+    "previews/alpha_light_dark.png"
+  ],
+  "qa": "人工对照原图、原版建筑、目标尺度和深浅底预览；独立代理复核身份与连接；Alpha边界统计见alpha_audit.json。未进行游戏实机验证。",
+  "integration_notes": [
+    "保持原有本体画布、脚部定位、16像素地影扩边与帧中心；不要根据新母图比例自动改变运行宽度。",
+    "现有build_station_art.py为三建筑合成独立原版地影和泥痕，新母图未烘焙额外地影。",
+    "build_station_art.py的炉口和悬晶加亮区域绑定旧母图坐标，接入时重新定位；active 8帧与pulse 3帧尚未重建。",
+    "新源图保留生成器原始Alpha，极低Alpha杂点后续沿用构建a<9清理。",
+    "炉源图底部留白约2至3像素，主体未裁切；排版或拼图应额外留边。",
+    "若后续制作独立UI图标，应单独按物品栏规范简化并检查真实64/32像素显示；本轮未生成物品栏类别图。"
+  ]
+}
