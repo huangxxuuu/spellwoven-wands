@@ -2,8 +2,13 @@ local T=require("nw/locale").t
 local Rules = require("nw/acquisition")
 local Visual = require("nw/visual")
 local M = {}
+function M.recipe_enabled(row)
+    return not require("nw/balance").is_loot_only()
+        or not (row.card or row.product=="nw_spellcard")
+end
 local function at_station(recipe, player, _, rotation, station)
     local row=Rules.by_name[recipe.name]
+    if row and not M.recipe_enabled(row) then return false end
     local required=row and row.station or "nw_workbench"
     return station and station:IsValid() and station.prefab == required
         and station.components.prototyper:CanUsePrototyper(player) or false

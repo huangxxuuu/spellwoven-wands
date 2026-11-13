@@ -59,6 +59,8 @@ end
 
 function M.show(inst,code,count,layout,separated)
     local pose,id=M.pose(code,count,layout,separated)
+    -- Temporary native-art alias until the new card face is approved/compiled.
+    id=Visual.cards[id].art_id or id
     local bank="nw_card_faces_"..math.floor((Cards.codes[id]-1)/Visual.page_size)
     local anim=inst.AnimState
     anim:SetBuild("nw_card_piles")

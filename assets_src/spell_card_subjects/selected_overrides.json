@@ -10,6 +10,8 @@
   "pitch_semitone_up": "v7_pitch_modifiers/pitch_semitone_up.png",
   "pitch_semitone_down": "v7_pitch_modifiers/pitch_semitone_down.png",
   "giant_shot": "v8_giant_shot/giant_shot.png",
+  "shrink_shot": "v10_shrink_shot/shrink_shot.png",
   "kantele_f": "v9_music_octave/kantele_f.png",
-  "kantele_b": "v9_music_octave/kantele_b.png"
+  "kantele_b": "v9_music_octave/kantele_b.png",
+  "dark": "v11_dark_fog_20261113/dark.png"
 }

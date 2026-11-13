@@ -23,6 +23,8 @@ function M.add(inst,s)
     list[#list+1]=inst;s.armor=50
     inst.Physics:Stop()
     position(owner,inst,#list,#list,true)
+    local x,_,z=inst.Transform:GetWorldPosition()
+    s.x,s.z=x,z
     inst:ListenForEvent("onremove",function()
         for i,shield in ipairs(list) do if shield==inst then table.remove(list,i);break end end
         if #list==0 then owner._nw_shields=nil end
@@ -35,6 +37,10 @@ function M.update(inst,s,now,timers)
     s.age=(s.age or 0)+elapsed;s.remaining=s.remaining-elapsed;s.time=now
     local x,_,z=inst.Transform:GetWorldPosition()
     if require("nw/world_bounds").outside(x,z) then inst:Remove();return end
+    if s.p.flags and s.p.flags.dark then
+        require("nw/dark_fog").trail(inst,s,s.x or x,s.z or z,x,z)
+    end
+    s.x,s.z=x,z
     local triggers=require("nw/projectile_triggers")
     if s.p.event=="timer" and not s.timer_done and s.age+.000001>=(s.p.time or .5) then triggers.timer(s,x,z,timers) end
     if s.remaining<=.000001 then triggers.finish(s,x,z);inst:Remove() end

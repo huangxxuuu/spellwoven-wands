@@ -1,0 +1,278 @@
+{
+  "sheet": "originals\\release_complete_v2.png",
+  "sha256": "6fff5b695607a97115a960f96fbdf01077cca5cdd110ef6c8411ac155fc8dd00",
+  "grid": [
+    4,
+    3
+  ],
+  "cell_size": [
+    512,
+    512
+  ],
+  "frames": [
+    {
+      "path": "frames\\release_000.png",
+      "crop": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "radius": 240.4329428343795,
+      "bbox": [
+        0,
+        3,
+        512,
+        512
+      ],
+      "opaque_pixels": 65654,
+      "sha256": "2a80a95c79c0088e04370fd5212b548de6d9e43b8f5d43dbf5c40c1ab6aa6049"
+    },
+    {
+      "path": "frames\\release_001.png",
+      "crop": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "radius": 241.77055238386663,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 59705,
+      "sha256": "c5690038553cdefcba145be991534e170a0f389b291e7c80a7f4eb2a546652ec"
+    },
+    {
+      "path": "frames\\release_002.png",
+      "crop": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        252
+      ],
+      "radius": 244.92039523077696,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 47078,
+      "sha256": "2b75b37a7bbee3332837d94796a55627d5f014f338d9117f33df9bfffbc1d2fe"
+    },
+    {
+      "path": "frames\\release_003.png",
+      "crop": [
+        1536,
+        0,
+        2048,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 246.4731222669117,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 36705,
+      "sha256": "7f99a00baee97dfdebc6179e0c743682724fc1badf389fa1506f4141b734be03"
+    },
+    {
+      "path": "frames\\release_004.png",
+      "crop": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        252
+      ],
+      "radius": 250.79872407968904,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 31993,
+      "sha256": "b3e6b0e45a56d87f3a86ae06ca6afa3a497e2262c4a1c42e34e9614b5ebd8f65"
+    },
+    {
+      "path": "frames\\release_005.png",
+      "crop": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        251
+      ],
+      "radius": 253.25086376950424,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 24328,
+      "sha256": "55cc631d1db0ebc1534ad9b62d8377ce04b53fed44153c46b08e9129822746aa"
+    },
+    {
+      "path": "frames\\release_006.png",
+      "crop": [
+        1024,
+        512,
+        1536,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        251
+      ],
+      "radius": 253.527118865024,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 16371,
+      "sha256": "9f769bc2deffc006882043f8388bd2354464070808d34ecf109ff371b84b7236"
+    },
+    {
+      "path": "frames\\release_007.png",
+      "crop": [
+        1536,
+        512,
+        2048,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        251
+      ],
+      "radius": 257.93410011086166,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 10325,
+      "sha256": "bc163e468ef9748f5f2bdb274fc3e37952d800a861cf614448b48fdfb7f6c4e6"
+    },
+    {
+      "path": "frames\\release_008.png",
+      "crop": [
+        0,
+        1024,
+        512,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        249
+      ],
+      "radius": 257.70137756713683,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 8186,
+      "sha256": "d4549d80f5e1f3409770ee350abc5a694056c37b79e69b9c949414b38dd6a90c"
+    },
+    {
+      "path": "frames\\release_009.png",
+      "crop": [
+        512,
+        1024,
+        1024,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        244
+      ],
+      "radius": 254.46610776290032,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 2762,
+      "sha256": "f2e470901b15f9ec83b1e387c7d26d33f6b7a715cc968960cd2c118f97c02ad6"
+    },
+    {
+      "path": "frames\\release_010.png",
+      "crop": [
+        1024,
+        1024,
+        1536,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        238
+      ],
+      "radius": 247.49343425634547,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 867,
+      "sha256": "34d53095ae4f91aba8316960a1761ac270553a63e9280ff947f9637662d2f9f7"
+    },
+    {
+      "path": "frames\\release_011.png",
+      "crop": [
+        1536,
+        1024,
+        2048,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        3
+      ],
+      "radius": 0,
+      "bbox": [
+        0,
+        0,
+        511,
+        512
+      ],
+      "opaque_pixels": 0,
+      "sha256": "223cce68b41a03c8af3cdaa8d20c1e3fb770fc874af2d7c0c6830792ca8dd6b0"
+    }
+  ]
+}

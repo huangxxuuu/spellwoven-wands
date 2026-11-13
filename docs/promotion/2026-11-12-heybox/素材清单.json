@@ -1,0 +1,98 @@
+[
+  {
+    "file": "素材/00-封面.png",
+    "source": "assets_src/workshop_table_icon_v7/zh/source.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2272827,
+    "frames": 1,
+    "sha256": "e8c9fc25fb421d90ff1a712e589f151fbab39f5394a5519c402aa586defdb435"
+  },
+  {
+    "file": "素材/01-法术组合.gif",
+    "source": "docs/workshop-media/2026-11-08/01-combos.gif",
+    "width": 640,
+    "height": 360,
+    "bytes": 2139718,
+    "frames": 152,
+    "sha256": "b72c9ab8cabed151c747aa901afe1c3a0586af52d84285369d32956ddab56b8a",
+    "duration_seconds": 12.66
+  },
+  {
+    "file": "素材/02-触发载荷.gif",
+    "source": "docs/workshop-media/2026-11-08/02-payloads.gif",
+    "width": 640,
+    "height": 360,
+    "bytes": 881880,
+    "frames": 79,
+    "sha256": "a25d2f15f66685be4169868d0fa1c7c5a5ec33ad27f1f810780dbe8645c75ff1",
+    "duration_seconds": 6.58
+  },
+  {
+    "file": "素材/03-采收.gif",
+    "source": "docs/workshop-media/2026-11-08/04-harvest.gif",
+    "width": 640,
+    "height": 360,
+    "bytes": 1585842,
+    "frames": 38,
+    "sha256": "5b08de84e85446e5abe87105d5627dadd3e5decc9266379769ad5207a53fc13e",
+    "duration_seconds": 3.16
+  },
+  {
+    "file": "素材/04-海钓.gif",
+    "source": "docs/workshop-media/2026-11-08/05-ocean-fishing.gif",
+    "width": 640,
+    "height": 360,
+    "bytes": 4477464,
+    "frames": 81,
+    "sha256": "c66d49c8b652713bfcf238ad58b78570bb6a40de46b0700710b0c44b719511aa",
+    "duration_seconds": 6.76
+  },
+  {
+    "file": "素材/05-移动星体.gif",
+    "source": "docs/workshop-media/2026-11-08/06-homing-star.gif",
+    "width": 640,
+    "height": 360,
+    "bytes": 7770070,
+    "frames": 59,
+    "sha256": "ccd96566578428a800c6196dba20938642d0e65a3051f8372a6ed0baad5763a6",
+    "duration_seconds": 4.91
+  },
+  {
+    "file": "素材/06-巨化星体.gif",
+    "source": "docs/workshop-media/2026-11-08/07-giant-star.gif",
+    "width": 640,
+    "height": 360,
+    "bytes": 5792721,
+    "frames": 52,
+    "sha256": "096aaa589ce95f49f23af474cd8fce911a6bf91ba9b53dcce8267b6806871c6c",
+    "duration_seconds": 4.33
+  },
+  {
+    "file": "素材/07-乐器演奏.jpg",
+    "source": "docs/workshop-media/2026-11-08/08-music.jpg",
+    "width": 1080,
+    "height": 608,
+    "bytes": 172403,
+    "frames": 1,
+    "sha256": "44b26fccb8649d4e21f6798934475679038e22259ee6f41da9f0173a041e7a83"
+  },
+  {
+    "file": "素材/08-三座设施.png",
+    "source": "docs/workshop-media/2026-11-10/03-stations.png",
+    "width": 810,
+    "height": 310,
+    "bytes": 214742,
+    "frames": 1,
+    "sha256": "7031b2872267644481fe037a638ae65172b4aecaa0e3de9f2b8c66a260b22d67"
+  },
+  {
+    "file": "素材/09-卡牌收纳.jpg",
+    "source": "docs/workshop-media/2026-11-08/03-cardpile.jpg",
+    "width": 1080,
+    "height": 512,
+    "bytes": 146030,
+    "frames": 1,
+    "sha256": "d6d258b71d3f5d59cbb1b29e8edad71c5284eddf241383e640b1f633e087cb81"
+  }
+]

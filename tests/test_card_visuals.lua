@@ -29,8 +29,9 @@ for _,id in ipairs(Cards.order) do
             G.show({AnimState=state},Cards.codes[id],n,bits)
             assert(state.clip==G.pose(Cards.codes[id],n,bits))
             assert(state.build=="nw_card_piles")
-            assert(state.face=="face_"..id)
-            assert(state.facebank=="nw_card_faces_"..math.floor((Cards.codes[id]-1)/V.page_size))
+            local art=V.cards[id].art_id or id
+            assert(state.face=="face_"..art)
+            assert(state.facebank=="nw_card_faces_"..math.floor((Cards.codes[art]-1)/V.page_size))
         end
     end
 end

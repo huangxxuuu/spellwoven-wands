@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-11-13T17:11:04.509179+00:00",
+  "action": "edit",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Draw12 consecutive cels bridging these TWO reference poses of a hand-drawn cyan/gold ground magic animation. Output2048x1536 true transparent PNG, EXACT4 columns x3 rows, each cel512x512. Same fixed canvas coordinates as the references. No labels, grid, floor, background, glow or smoke. Keep all ink safely inside the cell, especially the leftmost diamond and upper cyan tail. Every frame is orthographic top-down and circular, no camera changes.\n\nReference1 is the current starting pose, partway through growing: small hooked cyan/gold strips near the outside, a few tiny diamonds beginning. Reference2 is the TARGET END pose, at its EXACT size and position in the512 canvas. DO NOT ENLARGE reference2. The last cel should closely match reference2's geometry, positions, silhouette, colors and scale, including its approximately20px edge margins. Ignore all low-opacity background haze in the references: output empty true transparent gaps with NO GLOW. Reference2 is the final full size, not a suggestion to fill more of the cell.\n\nAnimate12 smoothly progressing newly drawn poses from just beyond reference1 to exactly reference2. Individual strokes continue a small CLOCKWISE OUTWARD FLOW. Their heads lead, their tails follow and curl; middle curvature changes as thin hooked strips become wider mature scythe-like strokes. Cyan fork tips separate gradually, gold pointed tails extend, and painted inner bright lines stretch and bend with the changing strip contour. Heads and tails do NOT grow at the same rate. Outer motion eases to a stop at the final target range, while local shape motion continues. The circle must not grow past the target and shrink back. Retain the seven main strip identities and color order. The small icy diamonds and two dark purple hollow marks emerge smoothly into their target positions, don't pop abruptly.\n\nRows1–3 form ONE chronological animation, read left-right top-bottom. Changes between neighboring cels are small. Early row progresses from reference1; middle row has nearly mature strips but still thinner/flexed tails; last row gently approaches reference2 with only modest remaining movement. Draw real shape changes and new tail contours/highlights in every cel. No resized copies, no wholesale rotation of the entire effect, no optical flow or blur. Klei-style tapered dark ink contours, muted cyan/antique gold large color planes and sparse highlights. Maintain the original style, no extra symbols, no complete disk, no haze. Large empty center and all gaps must be transparent.\n",
+    "n": 1,
+    "size": "2048x1536",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_keyframes_20261114\\frames\\grow_011.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_keyframes_20261114\\frames\\loop_000.png"
+  ],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_keyframes_20261114\\originals\\grow_finish.png"
+  ],
+  "usage": {
+    "input_tokens": 2581,
+    "input_tokens_details": {
+      "image_tokens": 2048,
+      "text_tokens": 533
+    },
+    "output_tokens": 2223,
+    "total_tokens": 4804,
+    "output_tokens_details": {
+      "image_tokens": 2223,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_3013cffcc9634008b3ecd887dbe8353d",
+  "revised_prompts": [
+    null
+  ]
+}

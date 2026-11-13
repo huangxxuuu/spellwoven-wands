@@ -1,0 +1,328 @@
+{
+  "name": "Candidate A for art review; source finalization only, not compiled",
+  "spatial_processing": "Fixed512 source coordinates only. No per-frame fit, scale, rotate, warp or interpolation.",
+  "expected_frame_slots": 60,
+  "expected_unique_nonempty_poses": 54,
+  "frames": [
+    {
+      "frame": "grow_000.png",
+      "transparent": true,
+      "reason": "Explicit transparent animation endpoint"
+    },
+    {
+      "frame": "grow_001.png",
+      "source": "draft_frames/grow_redraw_001.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_002.png",
+      "source": "draft_frames/grow_redraw_002.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_003.png",
+      "source": "draft_frames/grow_redraw_003.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_004.png",
+      "source": "draft_frames/grow_redraw_004.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_005.png",
+      "source": "draft_frames/grow_redraw_005.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_006.png",
+      "source": "draft_frames/grow_redraw_006.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_007.png",
+      "source": "draft_frames/grow_redraw_007.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_008.png",
+      "source": "draft_frames/grow_redraw_008.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_009.png",
+      "source": "draft_frames/grow_redraw_009.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_010.png",
+      "source": "draft_frames/grow_redraw_010.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_011.png",
+      "source": "draft_frames/grow_redraw_011.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_012.png",
+      "source": "draft_frames/grow_redraw_012.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_013.png",
+      "source": "draft_frames/grow_redraw_013.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_014.png",
+      "source": "draft_frames/grow_redraw_014.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_015.png",
+      "source": "draft_frames/grow_redraw_015.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_016.png",
+      "source": "draft_frames/grow_redraw_016.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_017.png",
+      "source": "draft_frames/grow_redraw_017.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_018.png",
+      "source": "draft_frames/grow_redraw_018.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_019.png",
+      "source": "draft_frames/grow_redraw_019.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_020.png",
+      "source": "draft_frames/grow_redraw_020.png",
+      "alpha_cleanup_at_or_below": 32,
+      "reason": "Approved original redraw cel; constant alpha<=32 background cleanup only"
+    },
+    {
+      "frame": "grow_021.png",
+      "source": "draft_frames/loop_021.png",
+      "reason": "Explicitly shared mature loop21..23 settling poses after bridge API failures; no generated interpolation"
+    },
+    {
+      "frame": "grow_022.png",
+      "source": "draft_frames/loop_022.png",
+      "reason": "Explicitly shared mature loop21..23 settling poses after bridge API failures; no generated interpolation"
+    },
+    {
+      "frame": "grow_023.png",
+      "source": "draft_frames/loop_023.png",
+      "reason": "Explicitly shared mature loop21..23 settling poses after bridge API failures; no generated interpolation"
+    },
+    {
+      "frame": "loop_000.png",
+      "source": "draft_frames/loop_000.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_001.png",
+      "source": "draft_frames/loop_001.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_002.png",
+      "source": "draft_frames/loop_002.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_003.png",
+      "source": "draft_frames/loop_003.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_004.png",
+      "source": "draft_frames/loop_004.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_005.png",
+      "source": "draft_frames/loop_005.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_006.png",
+      "source": "draft_frames/loop_006.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_007.png",
+      "source": "draft_frames/loop_007.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_008.png",
+      "source": "draft_frames/loop_008.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_009.png",
+      "source": "draft_frames/loop_009.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_010.png",
+      "source": "draft_frames/loop_010.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_011.png",
+      "source": "draft_frames/loop_011.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_012.png",
+      "source": "draft_frames/loop_012.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_013.png",
+      "source": "draft_frames/loop_013.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_014.png",
+      "source": "draft_frames/loop_014.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_015.png",
+      "source": "draft_frames/loop_015.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_016.png",
+      "source": "draft_frames/loop_016.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_017.png",
+      "source": "draft_frames/loop_017.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_018.png",
+      "source": "draft_frames/loop_018.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_019.png",
+      "source": "draft_frames/loop_019.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_020.png",
+      "source": "draft_frames/loop_020.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_021.png",
+      "source": "draft_frames/loop_021.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_022.png",
+      "source": "draft_frames/loop_022.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "loop_023.png",
+      "source": "draft_frames/loop_023.png",
+      "reason": "Original independently painted loop cel; existing alpha<=8 cleanup only"
+    },
+    {
+      "frame": "release_000.png",
+      "source": "draft_frames/loop_000.png",
+      "reason": "Explicit exact shared entry pose from loop0"
+    },
+    {
+      "frame": "release_001.png",
+      "source": "draft_frames/release_bridge_001.png",
+      "reason": "Generated bridge pose preserving mature perimeter before breakup"
+    },
+    {
+      "frame": "release_002.png",
+      "source": "draft_frames/release_bridge_002.png",
+      "reason": "Generated bridge pose preserving mature perimeter before breakup"
+    },
+    {
+      "frame": "release_003.png",
+      "source": "draft_frames/release_alpha_003.png",
+      "reason": "Selected transparent release candidate; fixed crop only"
+    },
+    {
+      "frame": "release_004.png",
+      "source": "draft_frames/release_alpha_004.png",
+      "reason": "Selected transparent release candidate; fixed crop only"
+    },
+    {
+      "frame": "release_005.png",
+      "source": "draft_frames/release_alpha_005.png",
+      "reason": "Selected transparent release candidate; fixed crop only"
+    },
+    {
+      "frame": "release_006.png",
+      "source": "draft_frames/release_alpha_006.png",
+      "reason": "Selected transparent release candidate; fixed crop only"
+    },
+    {
+      "frame": "release_007.png",
+      "source": "draft_frames/release_alpha_007.png",
+      "reason": "Selected transparent release candidate; fixed crop only"
+    },
+    {
+      "frame": "release_008.png",
+      "source": "draft_frames/release_alpha_008.png",
+      "reason": "Selected transparent release candidate; fixed crop only"
+    },
+    {
+      "frame": "release_009.png",
+      "source": "draft_frames/release_alpha_009.png",
+      "reason": "Selected transparent release candidate; fixed crop only"
+    },
+    {
+      "frame": "release_010.png",
+      "source": "draft_frames/release_alpha_010.png",
+      "reason": "Selected transparent release candidate; fixed crop only"
+    },
+    {
+      "frame": "release_011.png",
+      "transparent": true,
+      "reason": "Explicit transparent animation endpoint"
+    }
+  ]
+}

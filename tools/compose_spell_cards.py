@@ -203,7 +203,7 @@ def sheet(items, filename, cols=4, cell=(270,320)):
 def main(only_badges=False,only_cards=None):
  OUT.mkdir(parents=True,exist_ok=True)
  roster=json.loads((CAT/'roster.json').read_text(encoding='utf8'))
- for extension in (SUBJECTS/'v7_pitch_modifiers/cards.json',SUBJECTS/'v9_music_octave/cards.json'):
+ for extension in (SUBJECTS/'v7_pitch_modifiers/cards.json',SUBJECTS/'v9_music_octave/cards.json',SUBJECTS/'v10_shrink_shot/cards.json',SUBJECTS/'v11_dark_fog_20261113/cards.json'):
   if extension.exists():
    extra=json.loads(extension.read_text(encoding='utf8'))
    if extra.get('runtime_registered'):

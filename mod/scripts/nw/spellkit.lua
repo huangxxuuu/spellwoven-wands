@@ -6,8 +6,8 @@ local M={}
 M.pages={
     {"基础弹与近战",{"spark","arrow","heavy","scatter","fire","frost","thrust","slash","whirl"}},
     {"弹道",{"sine","spiral","precision","homing","bounce","orbit","phase_wall","homing_rotate"}},
-    {"弹体强化",{"speed_up","speed_down","damage_up","pierce","pierce_all","knockback","giant_shot","short_life"}},
-    {"辅助、多重与触发",{"leech","light","heal_ally","double","triple","imprint_hit","imprint_timer"}},
+    {"弹体强化",{"speed_up","speed_down","damage_up","pierce","pierce_all","knockback","giant_shot","shrink_shot","short_life"}},
+    {"辅助、多重与触发",{"leech","light","dark","heal_ally","double","triple","imprint_hit","imprint_timer"}},
     {"碰撞变体",{}},{"定时变体",{}},
     {"瞬发、法杖修正与倍施",{"explosion","chain","mana_reduce","recharge_down","repeat_2","repeat_3","gunpowder"}},
     {"首批扩充",{"spore_sentry","vital_ring","heavy_shot","trident_cast","chord_d","repeat_4"}},

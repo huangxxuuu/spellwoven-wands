@@ -2,7 +2,7 @@ local S=require("nw/sources")
 local R=require("nw/card_rarity")
 local Catalog=require("nw/natural_loot")
 local function never() error("an ineligible victory rolled the fallback") end
-assert(#R.pool==186)
+assert(#R.pool==188)
 local seen={}
 local n=0
 for _,id in ipairs(R.pool) do
@@ -10,7 +10,7 @@ for _,id in ipairs(R.pool) do
     if id~="edge_propsign" then
         n=n+1
         assert(S.finish_card(201,nil,false,1,function(size)
-            if size then assert(size==185);return n end
+            if size then assert(size==187);return n end
             return .00009999
         end)==id)
     end
@@ -22,6 +22,25 @@ assert(not S.finish_card(10000,nil,false,0,never))
 assert(S.finish_card(10000,"arrow",false,1,never)=="arrow")
 assert(not S.finish_card(300,nil,false,1,function() return .0001 end))
 
+-- Exact fallback boundaries for each configured drop multiplier. Difficulty
+-- changes only this last-chance roll, never the ordinary species/material odds.
+local B=require("nw/balance")
+for _,mode in ipairs({"fun","balanced","balanced_loot"}) do
+    B.configure(mode)
+    for _,mult in ipairs({.5,1,2,3,5,10}) do
+        local chance=(mode=="balanced_loot" and .0005 or .0001)*mult
+        assert(S.finish_card(201,nil,false,mult,function(size)
+            return size and 1 or chance-1e-10
+        end))
+        assert(not S.finish_card(201,nil,false,mult,function() return chance end))
+    end
+    assert(not S.finish_card(200,nil,false,10,never))
+    assert(not S.finish_card(10000,nil,true,10,never))
+    assert(not S.finish_card(10000,nil,false,0,never))
+    assert(S.finish_card(10000,"arrow",false,10,never)=="arrow")
+end
+B.configure("fun")
+
 local function roll(name, values, mult)
     local rule=S.by_prefab[name] or {}
     local pool=S.material_pool(Catalog[name],rule.group)
@@ -30,8 +49,20 @@ local function roll(name, values, mult)
         i=i+1;return assert(values[i], "unexpected roll "..i)
     end).card
 end
+local normal=roll("hound",{1,.004})
+local pool_before=table.concat(S.material_pool(Catalog.hound),",")
+B.configure("balanced_loot")
+assert(roll("hound",{1,.004})==normal)
+assert(table.concat(S.material_pool(Catalog.hound),",")==pool_before,"crafting bans must preserve material loot pools")
+B.configure("fun")
 assert(roll("bee",{0,0})=="spore_sentry" and roll("bee",{0,.999})=="spore_sentry")
-assert(roll("mossling",{0,0})=="trident_cast")
+-- Goose feathers now inscribe both Gust and Trident Cast. The material pool is
+-- sorted, then weighted by rarity: common Gust 1, uncommon Trident Cast .65.
+local feather_pool=S.material_pool(Catalog.mossling)
+assert(#feather_pool==2 and feather_pool[1]=="gust" and feather_pool[2]=="trident_cast")
+local feather_split=1/1.65
+assert(roll("mossling",{0,0})=="gust" and roll("mossling",{0,feather_split-.00001})=="gust")
+assert(roll("mossling",{0,feather_split+.00001})=="trident_cast" and roll("mossling",{0,.999})=="trident_cast")
 assert(roll("crabking",{.99,.02999})=="repeat_4")
 assert(roll("walrus",{.07799,0})=="speed_up" and roll("walrus",{.07799,.999})=="speed_up" and not roll("walrus",{.07801}))
 assert(roll("pigman",{.00499})=="edge_propsign" and not roll("pigman",{.00501}))
@@ -67,7 +98,12 @@ end
 for name,id in pairs({tentacle="edge_tentaclespike",twins="edge_shieldofterror",bat="edge_batbat",lightninggoat="edge_nightstick"}) do
     assert(contains(S.material_pool(Catalog[name]),id))
 end
-assert(roll("spider",{0,.0199,0})=="double" and not roll("spider",{0,.0201}))
+-- Double Cast now uses gears/nightmare fuel, so silk only supplies the two
+-- common cards below; the dense-species total chance remains exactly 2%.
+local silk_pool=S.material_pool(Catalog.spider)
+assert(#silk_pool==2 and silk_pool[1]=="slime" and silk_pool[2]=="speed_down")
+assert(roll("spider",{0,.0199,0})=="slime" and roll("spider",{0,.0199,.49999})=="slime")
+assert(roll("spider",{0,.0199,.50001})=="speed_down" and not roll("spider",{0,.0201}))
 assert(roll("bearger",{.99,.01999})=="pierce_all")
 assert(roll("beequeen",{.99,.02999})=="repeat_3")
 assert(roll("shrouden",{.15999})=="repeat_3")
@@ -90,4 +126,4 @@ for i,id in ipairs({"imprint_hit","imprint_timer","heal_ally"}) do
 end
 local normal=loadout(3,{0,.121,.14,.99,.29})
 assert(normal[1]=="heavy_hit" and normal[2]=="spark_timer")
-print("card sources: 175 distinct fallback cards, gates, exact single-card odds, capped multiplier and boss slots")
+print("card sources: "..n.." distinct fallback cards, gates, exact single-card odds, capped multiplier and boss slots")

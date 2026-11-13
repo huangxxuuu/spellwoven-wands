@@ -1,0 +1,39 @@
+{
+  "purpose": "API guide only; not a runtime frame source",
+  "size": [
+    1024,
+    1024
+  ],
+  "grid": [
+    2,
+    2
+  ],
+  "cell_size": 512,
+  "local_origin": [
+    256,
+    256
+  ],
+  "slots": [
+    {
+      "index": 0,
+      "source": "draft_frames/grow_redraw_018.png",
+      "operation": "exact original-coordinate alpha composite onto white"
+    },
+    {
+      "index": 1,
+      "radius": 250,
+      "operation": "neutral thin gray circle only"
+    },
+    {
+      "index": 2,
+      "radius": 252,
+      "operation": "neutral thin gray circle only"
+    },
+    {
+      "index": 3,
+      "source": "draft_frames/loop_021.png",
+      "operation": "exact original-coordinate alpha composite onto white"
+    }
+  ],
+  "sha256": "2a11f841ffe42413fd0b15d1e277a0948461ac79ac880de45bb242a57f7c8a87"
+}

@@ -92,6 +92,7 @@ local function strike(inst,owner,e,p,x,z,kx,kz)
     end
 end
 function M.launch(inst,owner,p,x,z,dx,dz,onremove)
+    require("nw/balance_damage").tag(inst,p)
     require("nw/projectile_size").visual(inst,require("nw/projectile_size").factor(p))
     if Perf.sample then Perf.sample.melee=Perf.sample.melee+1 end
     inst.Transform:SetPosition(x,0,z);inst.Transform:SetRotation(-math.atan2(dz,dx)/DEGREES)

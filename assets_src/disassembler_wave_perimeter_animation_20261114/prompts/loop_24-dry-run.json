@@ -1,0 +1,18 @@
+{
+  "dry_run": true,
+  "endpoint": "https://api.openai.com/v1/images/edits",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Use case: precise-object-edit / animation cel drawing. Draw ONE complete 24-frame animation sprite sheet, 3072 x 2048 RGBA, exactly 6 columns by 4 rows of 512 x 512 cells. Read in row-major order. No gutters, labels, borders or grid lines. Transparent background. Every cell uses the same center (256,256), same camera and same fixed scale; no per-cell recentering or auto-fit. No pixel of a drawing may approach within 14 pixels of its cell edges.\n\nReference image 1 is the EXACT registered mature pose at 512x512. Reference image 2 is the larger approved source for checking the forty individual arc identities. Preserve the reference's actual two neighboring broken peripheral lanes and staggered gaps. Match every cyan or gold arc's color, angular order, silhouette family and lane. No purple, no crystals or runes. Exactly the reference's forty individual primary arcs; no random additions, deletions, swaps or shared blobs.\n\nThis is a TWO-SECOND LOOP of small, independently painted flowing DEFORMATIONS. The runtime adds the overall circular rotation separately, so DO NOT rotate the whole arrangement or scale the whole image on this sheet. The world radius remains fixed at about 220 pixels. Maintain a large empty center.\n\nEvery successive cel is a fresh drawing of the forty strips subtly flexing and flowing: a curved shoulder swells then relaxes, a hook opens then curls, long tails bend and shorten, twin tail tips separate slightly then gather, and each narrow painted highlight travels along its own strip. Local changes are smooth and staggered among neighboring strips, never simultaneous global pulsing. Each strip's center stays within 3 pixels of its registered position; length/width variations at most about 10–15 percent. Tangential orientation variations only a few degrees. Each arc stays within its own small lane sector, leaving visible transparent air to its neighbors. NO independent arcs may touch, cross, overlap, cover, merge or swap order. All white/cyan highlights belong inside their own stroke; no detached sparkles.\n\nFrame 0 matches the supplied mature pose exactly. Frames 1–5 ease into gentle tip bending: some outer tails lengthen while neighboring inner hooks tighten. Frames 6–11 carry that flex through the head and fork while other arcs begin the opposite part of their flex. Frames 12–17 reverse smoothly: previously extended tails shorten, hooks open, with the local highlight following the bend. Frames 18–23 ease back to the exact registered identity and positions of frame 0; frame 23 is one small time step before frame 0, not a different pose or shifted ring. One smoothly closed drawing cycle across all 24 cels, with no jump between rows or at the loop seam.\n\nUse the reference's Don't Starve Together 2D hand-painted world-asset look: crisp tapered charcoal outlines, pointed asymmetric hooks/forks/notches, simple muted icy-cyan and antique-gold painted planes and restrained pale highlights. Frame-to-frame redraws must change actual curvature and head/tail proportions, not just brightness or image position. No rubbery expansion of the ring, no blur, no baked atmosphere, no disk, no scenery, no text. True alpha everywhere between strokes and throughout the hole.\n",
+    "n": 1,
+    "size": "3072x2048",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "images": [
+    "assets_src\\disassembler_wave_perimeter_animation_20261114\\references\\master_512.png",
+    "assets_src\\disassembler_wave_perimeter_animation_20261114\\references\\approved_f_1024.png"
+  ],
+  "mask": null
+}

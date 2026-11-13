@@ -1,5 +1,6 @@
 local Target=require("nw/targeting")
 local Geometry=require("nw/geometry")
+local Damage=require("nw/balance_damage")
 local M={}
 local exclude={"INLIMBO","FX","DECOR"}
 local include={"_combat","wall"}
@@ -79,8 +80,8 @@ local function deal(owner,e,n,flags,element,p)
     end
     if n<=0 then return 0 end
     local before=h.currenthealth
-    if e.components.combat then e.components.combat:GetAttacked(owner,n,nil,element)
-    else h:DoDelta(-n,nil,element or "nw_spell",nil,owner) end
+    if e.components.combat then Damage.attack(p,owner,e,n,nil,element)
+    else Damage.delta(p,e,-n,nil,element or "nw_spell",nil,owner) end
     local loss=math.max(0,before-math.max(0,h.currenthealth))
     require("nw/journal_damage").record(owner,p,loss)
     leech(owner,flags,loss)
@@ -135,7 +136,7 @@ local function burn(owner,e,p)
         e:ListenForEvent("onextinguish",clear_burn);e:ListenForEvent("death",clear_burn)
         b.task=e:DoTaskInTime(1,burn_tick)
     end
-    b[#b+1]={owner=owner,flags=p.flags,damage=p.burn_damage,left=p.burn_ticks,next=GetTime()+1,journal_id=p.journal_id or p.id}
+    b[#b+1]={owner=owner,flags=p.flags,damage=p.burn_damage,left=p.burn_ticks,next=GetTime()+1,journal_id=p.journal_id or p.id,_nw_root=p._nw_root}
     local ice=e.components.freezable
     if ice and ice:IsFrozen() then ice:Unfreeze()
     elseif e.components.burnable and not e.components.burnable:IsBurning() then
@@ -226,6 +227,7 @@ function M.chain(owner,first,x,z,p,aim_x,aim_z,prefer_front)
     local source_height=.75
     p=require("nw/util").copy(p)
     local hop=0
+    local fog_path={}
     local function step()
         if not M.live(owner) or not owner.components.combat then return end
         hop=hop+1
@@ -255,7 +257,16 @@ function M.chain(owner,first,x,z,p,aim_x,aim_z,prefer_front)
         local dx,dz=tx-x,tz-z
         local fx=M.fx("nw_arc_fx",x,z,source_height)
         if not fx then return end
+        Damage.tag(fx,p)
         fx:SetSpan(dx,dz,e,target_height-source_height)
+        if p.flags.dark then
+            local fog=require("nw/dark_fog")
+            -- Reserve attack points before path samples consume this frame's
+            -- fog budget. Empty hops also trace a real arc and leave fog.
+            fog.leave(owner,x,z,p)
+            fog.leave(owner,tx,tz,p)
+            fog.trail(fog_path,{owner=owner,p=p},x,z,tx,tz,true)
+        end
         if e then
             local h=e.components.health
             local before=h.currenthealth

@@ -1,0 +1,17 @@
+{
+  "dry_run": true,
+  "endpoint": "https://api.openai.com/v1/images/edits",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Precise transparent sprite extraction; preserve this animation artwork and its exact pixel registration. Return 3072x2048 RGBA with the same 24 cells, 6 columns x 4 rows, each 512 square. No labels, borders, guides, scene or new marks.\n\nThe supplied sheet has unwanted broad olive-gray/green matte membranes surrounding many otherwise correct cyan and gold strokes, especially later cels. Remove these membranes and every trace of gray/green background or haze, including wedges between neighboring arcs, the hollow center, and the gaps between the two lanes. All of these empty areas must be genuine alpha=0, not gray, not black, not a checker pattern. This is not merely lowering opacity on the whole sheet.\n\nKeep ONLY the individual cyan and gold hand-inked magical arc strokes with their narrow charcoal outlines and colored painted highlights. Preserve pale cyan and cream highlights INSIDE the arcs. Preserve the short heads and tight hooks in the first row, the newly drawn lengthening tails and opening forks in the middle rows, and mature separated arc silhouettes in the final row. Do not add, delete, redraw, move, rotate, enlarge, recenter or refit these colored objects. Preserve the fixed center (256,256) of every cell and every existing cel's exact size and positions. Each arc must be cleanly isolated by true transparent air. Do not bridge neighbors with a wide dark green or gray patch. Remove external matte films even if they partly touch an outline; keep the real thin black outline attached to the colored arc. Completely empty first cell. No purple, glow, fog or extra particles.\n",
+    "n": 1,
+    "size": "3072x2048",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "images": [
+    "assets_src\\disassembler_wave_perimeter_animation_20261114\\originals\\grow_redraw_24.png"
+  ],
+  "mask": null
+}

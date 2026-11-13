@@ -1,9 +1,10 @@
 local T=GLOBAL.require("nw/locale").t
 GLOBAL.require("nw/locale").install(env,GLOBAL)
+GLOBAL.require("nw/balance").install(env,GLOBAL)
 GLOBAL.require("nw/trail_budget").install(env,GLOBAL)
 GLOBAL.require("nw/limit_feedback").install(env,GLOBAL)
 GLOBAL.require("nw/dummy_trials").install(env)
-PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_dustbox", "nw_emberlamp", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_gunpowder" }
+PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_dustbox", "nw_emberlamp", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_gunpowder", "nw_dark_fog" }
 Assets={Asset("ATLAS","images/nw_guide.xml"),Asset("IMAGE","images/nw_guide.tex"),Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
     Asset("SOUNDPACKAGE","sound/nw_instruments.fev"),Asset("SOUND","sound/nw_instruments.fsb"),
     Asset("ATLAS","images/nw_hud.xml"),Asset("IMAGE","images/nw_hud.tex"),
@@ -43,6 +44,7 @@ GLOBAL.STRINGS.CHARACTERS.GENERIC.DESCRIBE.NW_WAND = T("等待注入法术的实
 AddReplicableComponent("nw_wand")
 AddComponentPostInit("inventory",GLOBAL.require("nw/orbit_shield").install_inventory)
 AddComponentPostInit("combat",GLOBAL.require("nw/orbit_shield").install_combat)
+GLOBAL.require("nw/dark_fog").install(env)
 AddComponentPostInit("temperature",GLOBAL.require("nw/giant_stars").temperature)
 AddComponentPostInit("inventoryitemtemperature",GLOBAL.require("nw/giant_stars").item_temperature)
 AddComponentPostInit("sanity",GLOBAL.require("nw/giant_stars").sanity)
@@ -65,6 +67,7 @@ GLOBAL.require("nw/rewards").install(env)
 GLOBAL.require("nw/first_boss_reward").install(env)
 GLOBAL.require("nw/spelljournal").install(env)
 GLOBAL.require("nw/journal_damage").install(env)
+GLOBAL.require("nw/balance_damage").install(env)
 GLOBAL.STRINGS.NAMES.NW_SPELLPILE=T("法术牌堆")
 GLOBAL.STRINGS.CHARACTERS.GENERIC.DESCRIBE.NW_SPELLPILE=T("打开可以逐张取出法术卡。")
 GLOBAL.require("nw/cardpile").install(env)
@@ -112,7 +115,19 @@ if not GLOBAL.TheNet:IsDedicated() then
         self.nw_wandpanel=self.inv.root:AddChild(GLOBAL.require("widgets/nw_wandpanel")(self.inv))
     end)
 end
-if GetModConfigData("development_smoke")=="dustbox" then
+if GetModConfigData("development_smoke")=="loot_only" then
+    AddSimPostInit(function()
+        if GLOBAL.TheWorld.ismastersim then GLOBAL.TheWorld:DoTaskInTime(2,GLOBAL.require("nw/smoke_loot_only").run) end
+    end)
+elseif GetModConfigData("development_smoke")=="balance" then
+    AddSimPostInit(function()
+        if GLOBAL.TheWorld.ismastersim then GLOBAL.TheWorld:DoTaskInTime(2,GLOBAL.require("nw/smoke_balance").run) end
+    end)
+elseif GetModConfigData("development_smoke")=="dark_fog" then
+    AddSimPostInit(function()
+        if GLOBAL.TheWorld.ismastersim then GLOBAL.TheWorld:DoTaskInTime(2,GLOBAL.require("nw/smoke_dark_fog").run) end
+    end)
+elseif GetModConfigData("development_smoke")=="dustbox" then
     AddSimPostInit(function()
         if GLOBAL.TheWorld.ismastersim then GLOBAL.TheWorld:DoTaskInTime(2,GLOBAL.require("nw/smoke_dustbox").run) end
     end)

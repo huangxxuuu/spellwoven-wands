@@ -116,7 +116,6 @@ local function new_segment()
     fx.AnimState:SetBank(BANK)
     fx.AnimState:SetBuild(BANK)
     fx.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
-    fx.AnimState:SetLightOverride(1)
     return {fx=fx}
 end
 

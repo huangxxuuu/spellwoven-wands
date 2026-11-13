@@ -1,4 +1,5 @@
 local Filter=require("nw/crafting_filter")
+local Balance=require("nw/balance")
 local Rules=require("nw/acquisition")
 local identities=require("nw/card_visuals").cards
 local Tags=require("nw/card_tags")
@@ -72,9 +73,9 @@ package.loaded["widgets/nw_craftingfilters"]=function(options,onclass,ontag)
 end
 local G={UIFONT="test",MOVE_UP=1,MOVE_DOWN=2,TheNet={IsDedicated=function() return false end}}
 local hooks={}
-local setting=false
+local setting=true
 local env={GetModConfigData=function(name,local_only)
-    assert(name=="crafting_class_filter" and local_only==true,"must honor the player's local setting")
+    assert(name=="disable_crafting_filter" and local_only==true,"must honor the player's local setting")
     return setting
 end,AddClassPostConstruct=function(name,fn) hooks[name]=fn end}
 Filter.install(env,G)
@@ -173,7 +174,14 @@ hooks["widgets/redux/craftingmenu_hud"](hud)
 local state=assert(menu.nw_class_filter)
 assert(not state.root.shown and not state.active and Filter.station(menu)==nil)
 assert(menu.itemlist_split:GetPosition().y==100)
+Balance.configure("balanced_loot")
 hud:Open()
+assert(not state.active and not state.root.shown and Filter.station(menu)==nil)
+assert(#menu.filtered_recipes==5 and menu.itemlist_split:GetPosition().y==100 and menu.recipe_grid:GetPosition().y==100,
+    "loot-only starts with native recipes and layout")
+assert(menu.recipe_grid.focus_flow[G.MOVE_UP]==native_up)
+Balance.configure("fun")
+menu:Refresh()
 assert(state.root.shown and state.active and #menu.displayed==5)
 assert(menu.itemlist_split:GetPosition().y==158 and menu.recipe_grid:GetPosition().y==42)
 assert(menu.recipe_grid.focus_flow[G.MOVE_UP]()==state.spinner)
@@ -298,6 +306,22 @@ assert(not state.active)
 hud:Open()
 assert(state.spinner.options[state.spinner.index].data=="all")
 assert(not next(state.root.selected) and #menu.displayed==5,"closing the drawer resets filters")
+-- A world-mode reply received after the menu was built disables both class
+-- and tag filtering, restores native layout/focus, and keeps all native rows.
+state.spinner:Choose("modifier")
+state.root:ToggleTag(homing_tag)
+state.root.tag_focus=true
+Balance.configure("balanced_loot")
+menu:Refresh()
+assert(not state.active and not state.root.shown and #menu.displayed==5)
+assert(menu.recipe_grid:GetPosition().y==100 and menu.itemlist_split:GetPosition().y==100)
+assert(menu.recipe_grid.focus_flow[G.MOVE_UP]==native_up and not state.root:HasFilterFocus())
+hud:Close();hud:Open()
+assert(not state.active and not state.root.shown and #menu.displayed==5)
+Balance.configure("balanced")
+menu:Refresh()
+assert(state.active and state.root.shown and #menu.displayed==5,"other world difficulties keep the existing local preference")
+Balance.configure("fun")
 -- Repeated entries must never accumulate offsets or scale drift.
 for i=1,10 do hud:Close();hud:Open() end
 assert(menu.recipe_grid:GetPosition().y==42)

@@ -1,0 +1,542 @@
+{
+  "sheet": "originals\\grow_full_v3.png",
+  "sha256": "fa719b3d76120a2049a1e68e3e9fda927e44cca8c0b1fb602b31db43fea63d08",
+  "grid": [
+    6,
+    4
+  ],
+  "cell_size": [
+    512,
+    512
+  ],
+  "frames": [
+    {
+      "path": "frames\\grow_000.png",
+      "crop": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        234
+      ],
+      "radius": 18.681541692269406,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 857,
+      "sha256": "c95060f09d3689c09dc37435bfbb3312f5b5188812d27cbaba932d0d6671a0b2"
+    },
+    {
+      "path": "frames\\grow_001.png",
+      "crop": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        245
+      ],
+      "radius": 42.37924020083418,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 1610,
+      "sha256": "e101355ddd37535142dcc1dcbcb87b2944e23fdcc3570fd7aff9e4c29d159772"
+    },
+    {
+      "path": "frames\\grow_002.png",
+      "crop": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        248
+      ],
+      "radius": 65.7875368135941,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 3465,
+      "sha256": "13afcb3c67922e460f01caf581635cbde40a25dafbf456fbc87f0343a1a70889"
+    },
+    {
+      "path": "frames\\grow_003.png",
+      "crop": [
+        1536,
+        0,
+        2048,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        251
+      ],
+      "radius": 86.81589716175259,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 5587,
+      "sha256": "b16d565dc44d4b5c0ebbfde98d35359546c57274833a203bde6af724c1e27ac9"
+    },
+    {
+      "path": "frames\\grow_004.png",
+      "crop": [
+        2048,
+        0,
+        2560,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        252
+      ],
+      "radius": 101.6366075781753,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 7923,
+      "sha256": "c903e39cf8087314d0b37bc726295f5cc16a07436373f260cccbb28297141a84"
+    },
+    {
+      "path": "frames\\grow_005.png",
+      "crop": [
+        2560,
+        0,
+        3072,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        251
+      ],
+      "radius": 121.26417442921878,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 10957,
+      "sha256": "817e31bab5ff2f7a2e9bdbf5fb8129518c03bab1b591219489df4cf16ba99e7c"
+    },
+    {
+      "path": "frames\\grow_006.png",
+      "crop": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        252
+      ],
+      "radius": 127.47156545677157,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 11937,
+      "sha256": "927e5aa0b148badf4b1abc02529552c4ce1888c55857cd8ccbadb4f84cf81183"
+    },
+    {
+      "path": "frames\\grow_007.png",
+      "crop": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        252
+      ],
+      "radius": 139.2300254973761,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 15485,
+      "sha256": "2ca58d91159bcf0d1a712a431f360cd924110e6e2ca2d1cf3e14ca790112df83"
+    },
+    {
+      "path": "frames\\grow_008.png",
+      "crop": [
+        1024,
+        512,
+        1536,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        252
+      ],
+      "radius": 162.69296235547498,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 20428,
+      "sha256": "c570285c094be6f98ed934b9c1362a412b2d4a501f2859c448423ed96e6496f9"
+    },
+    {
+      "path": "frames\\grow_009.png",
+      "crop": [
+        1536,
+        512,
+        2048,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        252
+      ],
+      "radius": 179.35439777156287,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 25467,
+      "sha256": "bd9ca65fd5fddd0a6d879a77d0c831b2201a1611e626a6155db76e4ae4dfc0e3"
+    },
+    {
+      "path": "frames\\grow_010.png",
+      "crop": [
+        2048,
+        512,
+        2560,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        252
+      ],
+      "radius": 201.89601283829256,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 33771,
+      "sha256": "83b94a3e8a62d28daac79c17a2dfed9d0cd11694ccec37848abc5ee0f1bb6a2c"
+    },
+    {
+      "path": "frames\\grow_011.png",
+      "crop": [
+        2560,
+        512,
+        3072,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        252
+      ],
+      "radius": 209.1219739769114,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 38907,
+      "sha256": "7d805b83985606af44e05304dac0ea049289176667d22a59518c17810165981c"
+    },
+    {
+      "path": "frames\\grow_012.png",
+      "crop": [
+        0,
+        1024,
+        512,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        252
+      ],
+      "radius": 216.83173199511182,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 45281,
+      "sha256": "d83807eeaddf2731293ed1249fd84d8aca3d522f306d3fd46280baa3d6f5b0c0"
+    },
+    {
+      "path": "frames\\grow_013.png",
+      "crop": [
+        512,
+        1024,
+        1024,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 223.4390297150433,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 50773,
+      "sha256": "3868af04d074dab78185c2b85d6d47198d33dc7cc3a55ad9b2238d6d7207df28"
+    },
+    {
+      "path": "frames\\grow_014.png",
+      "crop": [
+        1024,
+        1024,
+        1536,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 230.9502110845539,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 57856,
+      "sha256": "a7f8e3ba0ad5b7c891c954962c46b3393d312478e888ba78d31e490bcbc9bb11"
+    },
+    {
+      "path": "frames\\grow_015.png",
+      "crop": [
+        1536,
+        1024,
+        2048,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 238.37994882120435,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 60130,
+      "sha256": "8395bfc53d626e7db11ee32b3c43330fc77e6e82ddb0f3ff6be0b317a32f7e8c"
+    },
+    {
+      "path": "frames\\grow_016.png",
+      "crop": [
+        2048,
+        1024,
+        2560,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 246.78938388836744,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 66789,
+      "sha256": "3dba370f622c2e3aeb1e562613ab658716ed1aac043d9bec08747238e88099a3"
+    },
+    {
+      "path": "frames\\grow_017.png",
+      "crop": [
+        2560,
+        1024,
+        3072,
+        1536
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 250.4156544627352,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 70647,
+      "sha256": "12ac7866691ea65a814326fe9216d25ecc2fc1fbb5207358dc42ca329f244164"
+    },
+    {
+      "path": "frames\\grow_018.png",
+      "crop": [
+        0,
+        1536,
+        512,
+        2048
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 249.83394485137524,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 71511,
+      "sha256": "586deb68679fcb4e1d0fb3f1c3c376a8f5695aaf9ea67f840e23d2d8c69f816b"
+    },
+    {
+      "path": "frames\\grow_019.png",
+      "crop": [
+        512,
+        1536,
+        1024,
+        2048
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 254.20660888340413,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 74450,
+      "sha256": "096acdb42314e26bffb7d29c9a7c81502e2e87519c3d18de8df63f507b1abd9a"
+    },
+    {
+      "path": "frames\\grow_020.png",
+      "crop": [
+        1024,
+        1536,
+        1536,
+        2048
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 257.1089263327899,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 77080,
+      "sha256": "3a1e918dd965086525c41d711310e363ab6bc515ef940d01ec8731dc3b24e9b9"
+    },
+    {
+      "path": "frames\\grow_021.png",
+      "crop": [
+        1536,
+        1536,
+        2048,
+        2048
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 260.86394921491166,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 78735,
+      "sha256": "c54d79f45e69eb1cae80ed8c0be27263aab990b34b045919b1d40a42fef82eaa"
+    },
+    {
+      "path": "frames\\grow_022.png",
+      "crop": [
+        2048,
+        1536,
+        2560,
+        2048
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 261.5205536855564,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 80846,
+      "sha256": "5fac1ba3865b1a825dcd8ac15d48320ff10da5dab3fcf8d49cc95ad39c074072"
+    },
+    {
+      "path": "frames\\grow_023.png",
+      "crop": [
+        2560,
+        1536,
+        3072,
+        2048
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 263.2508309578528,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 84083,
+      "sha256": "05b6f138ef8d65e1bb5a88ed7a4df63d5db5e335ab6f202dc549b67e042e85f8"
+    }
+  ]
+}

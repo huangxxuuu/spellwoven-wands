@@ -8,6 +8,7 @@ import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
 from PIL import Image, ImageDraw
+from lupa.lua51 import LuaRuntime
 
 ROOT=Path(__file__).resolve().parents[1]
 ART=ROOT/'assets_src/art_v1'
@@ -16,7 +17,10 @@ manifest=json.loads((ART/'manifest.json').read_text())
 atlas=Image.open(RUNTIME/'nw_icons.png').convert('RGBA')
 assert atlas.size==(2048,2048)
 elements=ET.parse(ROOT/'mod/images/inventoryimages/nw_icons.xml').findall('./Elements/Element')
-assert len(elements)==223 and len({e.attrib['name'] for e in elements})==223
+vm=LuaRuntime(unpack_returned_tuples=True)
+vm.globals().package.path=(ROOT/'mod/scripts/?.lua').as_posix()+';'+vm.globals().package.path
+expected={'nw_spell_'+id+'.tex' for id in vm.eval('require("nw/cards").order').values()}|{'nw_wand.tex'}
+assert len(elements)==len(expected) and {e.attrib['name'] for e in elements}==expected
 inventory_count=len(elements)
 rects=set();hashes={}
 for e in elements:
@@ -30,6 +34,10 @@ for e in elements:
     assert tile.getchannel('A').getextrema()==(0,255)
     id='wand_icon' if a['name']=='nw_wand.tex' else a['name'][9:-4]
     source=Image.open(RUNTIME/f'icon_{id}.png').convert('RGBA')
+    # alpha_composite clears hidden RGB in fully transparent pixels. Those
+    # channels do not affect the rendered icon; compare every visible pixel.
+    for image in (source,tile):
+        image.paste((0,0,0,0),mask=image.getchannel('A').point(lambda v:255 if v==0 else 0))
     assert source.size==(size,size) and source.tobytes()==tile.tobytes()
     hashes.setdefault(hashlib.sha256(tile.tobytes()).hexdigest(),set()).add(id)
 # The retired, unavailable weak_homing card supplies the new rotation glyph.

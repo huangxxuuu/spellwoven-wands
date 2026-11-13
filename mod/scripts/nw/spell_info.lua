@@ -63,6 +63,8 @@ for _,c in ipairs(require("nw/arsenal").extra_notes) do more[c.id]={c.name,c.nam
 for _,c in ipairs(require("nw/pitch_modifiers").cards) do more[c.id]={c.name,c.name,c.effect} end
 for id,v in pairs(more) do M.names[id],M.short[id],M.effects[id]=v[1],v[2],v[3] end
 M.names.giant_shot=T("弹体巨化");M.short.giant_shot=T("巨化")
+M.names.shrink_shot=T("弹体缩小");M.short.shrink_shot=T("缩小")
+M.effects.shrink_shot=T("缩小远程弹、静态投射物、瞬发效果和近战的外观及实际作用范围。每张 ×0.4，多张相乘，最终最低 ×0.1。与巨化同组时，先合计巨化倍率再乘缩小倍率；一巨化加一缩小恢复原尺寸，与卡牌顺序无关。伤害数值、移动速度和主体寿命不变。星体照明、温度与理智范围同步缩小；哨株和虫群自动攻击范围同步缩小。独立触发载荷需另装缩小。")
 M.names.short_life=T("缩短寿命");M.short.short_life=T("短寿")
 M.names.homing_rotate=T("转向敌人");M.short.homing_rotate=T("转向")
 M.effects.homing_rotate=T("半径 8，每 0.10 秒重选目标，最多转向 360°/秒。只改变方向，不提供速度；静止实体需先获得初速度或外部推动。")
@@ -79,6 +81,8 @@ M.effects.pierce=T("最多命中三次；重复命中同一敌人至少相隔 0.
 M.effects.explosion=T("从杖头或载体触发点立即爆炸一次，半径 3，每个敌人受 25 点基础伤害。")
 M.effects.chain=T("从杖头或触发点放电。首击优先前方敌人，碰撞触发优先命中对象。共 4 个攻击落点，逐跳间隔 0.15 秒，每跳最多 6 单位，首跳 15、后续 10。无目标时沿发射方向 ±85° 空跳 6 单位，再从落点索敌。按原版电武器结算。")..T(" 下雨且施法者潮湿、距当前跳点不超过 6 单位时，后续每跳有 20% 概率反噬，单链最多一次。")
 M.effects.knockback=T("沿命中时弹道方向击退约 1 单位，由目标的原生击退动作结算。")
+M.names.dark=T("暗雾");M.short.dark=T("暗雾")
+M.effects.dark=T("弹体沿途、连锁闪电的攻击点与跳跃路径留下持续 3～5 秒的黑雾。基础半径 2，范围与外观受巨化、缩小影响，不影响玩家。小型生物恐惧停顿 1 秒后慌乱；普通生物目盲，只能感知 3 单位内原本的敌人，失去目标后短暂盲走。暗影生物免控并加速 25%。支持的巨兽优先用原生范围招式驱雾，冷却时尝试可用攻击；均在冷却时在雾中慌乱并持续尝试，1 秒后身体驱散沿途暗雾，离雾即停止。原伤害及效果保留。重叠不叠加。")
 M.effects.light=T("弹体照明半径 2，终止时留光 3 秒，残光数量由世界设置控制。")
 for _,id in ipairs(D.bullets) do
     for _,event in ipairs({"hit","timer"}) do
@@ -90,6 +94,16 @@ for _,id in ipairs(D.bullets) do
 end
 for id in pairs(D.spells) do M.playable[id]=true end
 function M.icon(id) return "nw_spell_"..id..".tex" end
+function M.effect(id)
+    if id=="mana_reduce" then
+        return string.format(T("抽下一张，立即提供 %g 法力支付后续卡。成功施法后剩余法力最多为法杖上限。"),-D.spells[id].mana)
+    end
+    local effect=M.effects[id]
+    if id=="dark" and require("nw/dark_fog").effects_disabled then
+        effect=effect.."\n"..T("（已禁用，只有视觉效果）")
+    end
+    return effect
+end
 function M.detailed_tooltip(id)
     local d=D.spells[id]
     if not d then return T("空法术槽") end
@@ -110,7 +124,7 @@ function M.detailed_tooltip(id)
     end
     if D.trajectory[id] then lines[#lines+1]=T("弹道延寿 +8%（不同类型合计最多 +24%）") end
     if d.kind=="field" and id~="guard_ring" then lines[#lines+1]=T("基础移速 0；加速可推动，追踪可自行起步。") end
-    lines[#lines+1]=T("效果：")..M.effects[id]
+    lines[#lines+1]=T("效果：")..M.effect(id)
     if not M.playable[id] then lines[#lines+1]=T("实战效果尚未开放") end
     return table.concat(lines,"\n")
 end
@@ -130,7 +144,13 @@ M.effects.payload_egg=T("永久保存载荷。直接攻击、范围攻击和爆�
 for id in pairs(require("nw/arsenal").notes) do
     M.effects[id]=(M.effects[id] or "").." "..require("nw/arsenal").tone_description(id)
 end
-M.brief=require("nw/spell_briefs").get
+function M.brief(id)
+    local brief=require("nw/spell_briefs").get(id)
+    if id=="dark" and require("nw/dark_fog").effects_disabled then
+        brief=brief.."\n"..T("（已禁用，只有视觉效果）")
+    end
+    return brief
+end
 function M.tooltip(id)
     return D.spells[id] and M.brief(id) or T("空法术槽")
 end

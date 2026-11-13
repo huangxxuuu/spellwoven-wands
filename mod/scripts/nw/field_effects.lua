@@ -8,7 +8,7 @@ function M.shot(p,id,speed,lifetime)
     local shot={id=id,journal_id=p.journal_id or p.id,kind="projectile",damage=p.damage or 0,
         speed=math.max(2,math.min(60,speed*(m.speed_mult or 1)+(m.speed_add or 0))),
         lifetime=lifetime*(m.lifetime_mult or 1)*require("nw/projectile_size").factor(p),
-        flags=Copy(p.flags or {}),spread=0,size_mult=p.size_mult,max_range=math.max(30,p.radius or 0)}
+        flags=Copy(p.flags or {}),spread=0,size_mult=p.size_mult,max_range=math.max(30,p.radius or 0),_nw_root=p._nw_root}
     for _,key in ipairs({"burn_damage","burn_ticks","freeze","planar","effect_scale"}) do shot[key]=p[key] end
     return shot
 end
@@ -18,6 +18,7 @@ function M.attach(inst,caster,p,resolve)
     if inst._nw_field_effects_attached then return end
     inst._nw_field_effects_attached=true
     local f=p.flags or {}
+    require("nw/dark_fog").attach(inst,caster,p)
     if f.light then
         local glow=SpawnPrefab("nw_flyinglight")
         glow.entity:SetParent(inst.entity)

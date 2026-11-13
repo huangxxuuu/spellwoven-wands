@@ -79,6 +79,7 @@ function M.compile(wand, definitions, limits)
             local old = m.flags[d.flag]
             local value = U.copy(d)
             if d.flag=="giant" then value.mult=(old and old.mult or 0)+2.5 end
+            if d.flag=="shrink" then value.mult=(old and old.mult or 1)*.4 end
             if d.flag=="wet_weak" then value.mult=(old and old.mult or 1)*1.25 end
             if d.flag=="chill_touch" then value.cold=(old and old.cold or 0)+.2 end
             if old and d.amplitude then value.amplitude = math.min(2*d.amplitude, old.amplitude + d.amplitude) end
@@ -200,8 +201,12 @@ function M.compile(wand, definitions, limits)
             end
             p.spread = travels and math.max(0, (p.halfangle or 6)*stats.spread/6 + m.spread_add) or 0
             p.flags = U.copy(m.flags)
-            if m.flags.giant then
-                p.size_mult=m.flags.giant.mult
+            if m.flags.giant or m.flags.shrink then
+                -- Resolve the floor only after combining the whole group, so
+                -- mixed cards are order independent and old giant decks keep
+                -- their additive rule. Trigger payloads have their own flags.
+                p.size_mult=math.max(.1,(m.flags.giant and m.flags.giant.mult or 1)
+                    *(m.flags.shrink and m.flags.shrink.mult or 1))
                 -- Compile physical extents once; saved placements retain these
                 -- resolved values and must not multiply them again on load.
                 for _,key in ipairs({"radius","reach","width","work_radius"}) do

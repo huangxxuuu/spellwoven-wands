@@ -1,0 +1,18 @@
+{
+  "rotation_degrees_per_second": 30,
+  "period_seconds": 12,
+  "continuous_stages": [
+    "grow",
+    "loop"
+  ],
+  "release": "freeze last local angle",
+  "tests_passed": 18,
+  "test_log": "test_reports/2026-11-14-furnace-rotation-tests.txt",
+  "installation_verified_files": 247,
+  "installation_updated_files": 1,
+  "install_log": "test_reports/2026-11-14-furnace-rotation-install.txt",
+  "asset_archive_unchanged_sha256": "17020749f4427bdb3aa772547ca8ae4095cb9183bff3c29b6f02bd5ba5156fb9",
+  "runtime_lua_sha256": "9af07d792e17979fac396193d284f4f5a4a512eb88c7db65b5bc3bfa2ceea9e9",
+  "client_visual_validation": "not performed",
+  "preview": "offline ground-plane simulation using runtime rotation_angle"
+}

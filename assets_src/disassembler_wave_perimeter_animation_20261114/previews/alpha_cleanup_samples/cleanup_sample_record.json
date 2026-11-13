@@ -1,0 +1,152 @@
+{
+  "purpose": "Static background-alpha processing samples only; no selection or runtime changes",
+  "source": "originals/grow_redraw_24.png",
+  "source_sha256": "63d1b6b1070a7297c3d1600b7a1140ec3dd65440583193f60a1cdc1fc50f3564",
+  "invariant": "Fixed512 crop; only selected pixel alpha bytes set0. Every other RGBA byte preserved. No movement, fit, rotation or deformation.",
+  "samples": [
+    {
+      "source_index": 16,
+      "crop": [
+        2048,
+        1024,
+        2560,
+        1536
+      ],
+      "variant": "baseline",
+      "operation": "original fixed-grid crop",
+      "output": "previews/alpha_cleanup_samples/grow_redraw_016_baseline.png",
+      "sha256": "581e71ae4a3570100427c91f6d27e04725d2c857948813c319b1bddfd52a93b1",
+      "cleared_nonzero_pixels": 0,
+      "remaining_visible_pixels": 128193,
+      "remaining_alpha64_pixels": 21373,
+      "core128_pixels_preserved": true,
+      "unselected_rgba_bytes_unchanged": true
+    },
+    {
+      "source_index": 16,
+      "crop": [
+        2048,
+        1024,
+        2560,
+        1536
+      ],
+      "variant": "A_alpha32",
+      "operation": "A: alpha<=32 clear",
+      "output": "previews/alpha_cleanup_samples/grow_redraw_016_A_alpha32.png",
+      "sha256": "0f32f42c9517da6ec7073c1cf45244fbc0006a283a5ee9e6ad2bb16e5057faac",
+      "cleared_nonzero_pixels": 104652,
+      "remaining_visible_pixels": 23541,
+      "remaining_alpha64_pixels": 21373,
+      "core128_pixels_preserved": true,
+      "unselected_rgba_bytes_unchanged": true
+    },
+    {
+      "source_index": 16,
+      "crop": [
+        2048,
+        1024,
+        2560,
+        1536
+      ],
+      "variant": "B_alpha64",
+      "operation": "B: alpha<=64 clear",
+      "output": "previews/alpha_cleanup_samples/grow_redraw_016_B_alpha64.png",
+      "sha256": "22f2d01d33538408866e74c2278bf40f6794159fe952f2dc25d3cae68c51c356",
+      "cleared_nonzero_pixels": 106879,
+      "remaining_visible_pixels": 21314,
+      "remaining_alpha64_pixels": 21314,
+      "core128_pixels_preserved": true,
+      "unselected_rgba_bytes_unchanged": true
+    },
+    {
+      "source_index": 16,
+      "crop": [
+        2048,
+        1024,
+        2560,
+        1536
+      ],
+      "variant": "C_core128_dilate2",
+      "operation": "C: alpha<128 outside MaxFilter5 core support",
+      "output": "previews/alpha_cleanup_samples/grow_redraw_016_C_core128_dilate2.png",
+      "sha256": "e55b59478eb80c6d86b240de0dc783d032053041124053a6b8075d24ec12f682",
+      "cleared_nonzero_pixels": 98839,
+      "remaining_visible_pixels": 29354,
+      "remaining_alpha64_pixels": 21256,
+      "core128_pixels_preserved": true,
+      "unselected_rgba_bytes_unchanged": true
+    },
+    {
+      "source_index": 23,
+      "crop": [
+        2560,
+        1536,
+        3072,
+        2048
+      ],
+      "variant": "baseline",
+      "operation": "original fixed-grid crop",
+      "output": "previews/alpha_cleanup_samples/grow_redraw_023_baseline.png",
+      "sha256": "8e27164f5673c997bac2960940bbf5fd36293e7e340128883ea476ee5e01f0a2",
+      "cleared_nonzero_pixels": 0,
+      "remaining_visible_pixels": 145546,
+      "remaining_alpha64_pixels": 30023,
+      "core128_pixels_preserved": true,
+      "unselected_rgba_bytes_unchanged": true
+    },
+    {
+      "source_index": 23,
+      "crop": [
+        2560,
+        1536,
+        3072,
+        2048
+      ],
+      "variant": "A_alpha32",
+      "operation": "A: alpha<=32 clear",
+      "output": "previews/alpha_cleanup_samples/grow_redraw_023_A_alpha32.png",
+      "sha256": "2f7ba4f79c98c9bce1d75eb38de8186bab846dd81267267c7d9a4d03684d7271",
+      "cleared_nonzero_pixels": 112732,
+      "remaining_visible_pixels": 32814,
+      "remaining_alpha64_pixels": 30023,
+      "core128_pixels_preserved": true,
+      "unselected_rgba_bytes_unchanged": true
+    },
+    {
+      "source_index": 23,
+      "crop": [
+        2560,
+        1536,
+        3072,
+        2048
+      ],
+      "variant": "B_alpha64",
+      "operation": "B: alpha<=64 clear",
+      "output": "previews/alpha_cleanup_samples/grow_redraw_023_B_alpha64.png",
+      "sha256": "549b2151b3bb2151756e6e50ecf0ebcf390e1e45d5525da5c89e7293f3939165",
+      "cleared_nonzero_pixels": 115576,
+      "remaining_visible_pixels": 29970,
+      "remaining_alpha64_pixels": 29970,
+      "core128_pixels_preserved": true,
+      "unselected_rgba_bytes_unchanged": true
+    },
+    {
+      "source_index": 23,
+      "crop": [
+        2560,
+        1536,
+        3072,
+        2048
+      ],
+      "variant": "C_core128_dilate2",
+      "operation": "C: alpha<128 outside MaxFilter5 core support",
+      "output": "previews/alpha_cleanup_samples/grow_redraw_023_C_core128_dilate2.png",
+      "sha256": "30111021a01a762b9a8118d8de7ecee8832cd6eb86b2c9405dcd3bf9c8106827",
+      "cleared_nonzero_pixels": 104755,
+      "remaining_visible_pixels": 40791,
+      "remaining_alpha64_pixels": 29963,
+      "core128_pixels_preserved": true,
+      "unselected_rgba_bytes_unchanged": true
+    }
+  ]
+}

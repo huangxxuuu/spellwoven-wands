@@ -1,0 +1,18 @@
+Use case: stylized-concept / reference-guided game inventory illustration.
+Asset type: transparent central subject for the existing hexagonal Dark Fog (暗雾) spell-modifier card in a Don't Starve Together mod. Generate ONLY the illustration, not the card, paper, frame, or UI.
+
+Primary request: Redraw the Dark Fog card subject as a BLACK shadow-miasma cloud, based on the native shadow miasma in Image 1. The user explicitly requires the main subject color to be black.
+
+Reference roles:
+Image 1 is the actual native miasma particle texture, shown twice over white and gray for inspection. Its RIGHT half is the rolling, irregular dense cloud that supplies the subject identity and overlapping smoke masses. Translate that in-world particulate effect into a deliberately simplified hand-drawn inventory glyph. Do not copy its brown/olive tint, fine particle grain, inspection backgrounds, two-frame layout, or loose specks from the left half. Use black and neutral charcoal instead.
+Image 2 contains genuine DST inventory icons and serves ONLY as a reference for hand-drawn ink contour weight, clear solid color masses, selective shading, and small-size detail density. Do not include any depicted item, labels, grid, gray panel, or pixel aliasing.
+
+Shared visual style: Use the original Don't Starve / Don't Starve Together 2D hand-drawn art language: a clear slightly uncanny silhouette, purposeful irregular curves and tapered angular turns, rhythmic black ink strokes, simple readable large color shapes. Outer contour and the few deep overlaps carry more weight than internal structure marks. Use a few broad shadow and light planes, leaving clean uninterrupted areas. Keep selective hand-painted edges rather than smooth vector geometry, realistic volumetric rendering, plastic shading, or uniform scratch noise.
+
+Inventory treatment: One complete centered subject with a stable silhouette and generous transparent margin. Very few internal lines and sparse texture. Preserve separations between the main lobes at 64 px, with the overall fog identity still readable at 32 px. Actual transparent alpha background. This artwork will be uniformly fitted inside an existing hexagonal card; do not draw that card or any ground plane.
+
+Subject and composition: One compact connected, irregular billowing mass of black miasma. Approximately five or six broad overlapping smoke lobes of unequal sizes merge into a dense dark center and a low spreading base. A few short curling or tapering wisps at the perimeter suggest drifting shadow fog. The cloud is slightly wider than tall, approximately 1.2:1, not a perfect circle or a symmetrical weather-cloud symbol. Let negative gaps between selected outer curls clarify the silhouette without turning the center into a hole or a ring. Keep the entire silhouette inside the middle 78 percent of the 1024-square canvas, fully visible and centered. No separate ground shadow.
+
+Palette: overwhelmingly neutral BLACK and near-black, approximately #101010 and #1B1B1B. A few restrained charcoal planes around #303030 to #424242 describe the broad overlapping billows; these are subordinate, not a bright gray outline. Matte smoky darkness, no bright core, no white highlights, no colored glow. The cloud must read black on the light card paper.
+
+Avoid: eyes, face, skull, creature, limbs, horns, lightning, weapon, star, compass, magic circle, runes, symbols, text, number, frame, paper, background scene, base, colored particles, red/purple/green/brown dominant tones, all-over stippling, micro-hatching, soft airbrush halo, photographic smoke, 3D render, a uniform thick gray piping on every lobe, hard geometric symmetry. No watermark. Return one clean transparent PNG subject.

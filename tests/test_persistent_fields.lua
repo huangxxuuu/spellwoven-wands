@@ -33,7 +33,10 @@ local function entity(userid)
     end
     function e:GetDistanceSqToPoint(x,y,z) return (self.x-x)^2+(self.z-z)^2 end
     e.Transform={GetWorldPosition=function() return e.x,0,e.z end,SetRotation=function() end,
-        SetPosition=function(_,x,y,z) e.x,e.z=x,z end}
+        SetPosition=function(_,x,y,z) e.x,e.z=x,z end,
+        GetScale=function() local s=e.scale or 1;return s,s,s end,SetScale=function(_,s) e.scale=s end}
+    function e:GetPhysicsRadius() return self.body or .1 end
+    function e:SetPhysicsRadiusOverride(r) self.body=r end
     e.AnimState={PlayAnimation=function(_,name) e.animation=name end,PushAnimation=function() end}
     function e:SetStage(id,phase) self.animation=id.."_"..phase end
     e.Physics={Stop=function() end,SetMotorVel=function(_,speed) e.speed=speed end,ClearCollisionMask=function() e.no_terrain_collision=true end}
@@ -205,4 +208,14 @@ for i=count+1,count+6 do
     assert((fired[i].p.freeze~=nil)==(i<=count+3))
 end
 placed[start+3]:Remove();placed[start+4]:Remove()
+-- Compiled extents and scale survive real placement save/load without applying
+-- the modifier a second time, while independent payloads keep normal size.
+local small=shot("payload_egg",2);small.size_mult=.4;small.radius=.72
+execute({{projectiles={small}},{projectiles={shot("arrow")}}})
+local shrunk=placed[#placed];local shrinksave={};shrunk.OnSave(shrunk,shrinksave);serializable(shrinksave);shrunk:Remove()
+local loaded=entity();Stored.install(loaded);loaded.OnLoad(loaded,Copy(shrinksave))
+assert(math.abs(loaded.scale-.4)<1e-9 and math.abs(loaded.body-.04)<1e-9)
+assert(loaded._nw_stored.p.radius==.72 and loaded._nw_stored.p.size_mult==.4)
+assert(not loaded._nw_stored.payload.blocks[1].projectiles[1].size_mult)
+loaded:Remove()
 print("persistent fields: expiry, ghost/offline, reconnect, save/load, caps, motion, nested payloads, spread and budget retry")

@@ -104,5 +104,5 @@ for _,card in ipairs(require("nw/pitch_modifiers").cards) do
     assert(Cards.codes[card.id]>Cards.codes.ocarina_g)
     assert(require("nw/hover_data").card_details(card.id,false).effect)
 end
-assert(#Cards.order==222 and Cards.codes.pitch_octave_up==218 and Cards.codes.pitch_semitone_down==221)
+assert(#Cards.order==224 and Cards.codes.pitch_octave_up==218 and Cards.codes.pitch_semitone_down==221)
 print("pitch cards: accumulation, cancellation, multicast, cast/payload isolation, note identity, audio bounds and recipes passed")

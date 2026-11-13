@@ -1,0 +1,146 @@
+{
+  "sheet": "originals\\release_finish.png",
+  "sha256": "2368ccf7aee10db087250e31592096d8516b7f35ec4bb63561338c746318257b",
+  "grid": [
+    3,
+    2
+  ],
+  "cell_size": [
+    512,
+    512
+  ],
+  "frames": [
+    {
+      "path": "frames\\release_006.png",
+      "crop": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 248.4552273549502,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 24120,
+      "sha256": "9f71f01aa5fe6cd36d489abfb2d120cb9fb3b69f13960e2fffccc85cafdd8405"
+    },
+    {
+      "path": "frames\\release_007.png",
+      "crop": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 251.4358765172544,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 15407,
+      "sha256": "f96e97706eafd3acc60b3277d636283fbce1e0bd077f0e895bb32be10076d149"
+    },
+    {
+      "path": "frames\\release_008.png",
+      "crop": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "radius": 253.12645061312736,
+      "bbox": [
+        0,
+        9,
+        511,
+        512
+      ],
+      "opaque_pixels": 7920,
+      "sha256": "440e82bab4b1dbd346ce9c4c0ffbcdb0c1df00066a386d8577e5236920eb5090"
+    },
+    {
+      "path": "frames\\release_009.png",
+      "crop": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        249
+      ],
+      "radius": 252.76471272707352,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 4700,
+      "sha256": "80e9129a69bc5fff43fa9b64030405de79e014698962f6528a68aec7f91b56db"
+    },
+    {
+      "path": "frames\\release_010.png",
+      "crop": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        245
+      ],
+      "radius": 252.7152547829276,
+      "bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "opaque_pixels": 1389,
+      "sha256": "31ce0af7f0026c47d8866c5e89b8c89f99fa7a250c231743aa88edfc90829f68"
+    },
+    {
+      "path": "frames\\release_011.png",
+      "crop": [
+        1024,
+        512,
+        1536,
+        1024
+      ],
+      "alpha_extrema": [
+        0,
+        2
+      ],
+      "radius": 0,
+      "bbox": [
+        0,
+        0,
+        496,
+        472
+      ],
+      "opaque_pixels": 0,
+      "sha256": "3dcd74514124367d2bcf9771f687dc050d5acaecc8bba2d0c2e87b04bfa31964"
+    }
+  ]
+}

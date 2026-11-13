@@ -1,0 +1,28 @@
+{
+  "source_frame_slots": 60,
+  "unique_nonempty_painted_poses": 51,
+  "empty_endpoints": 2,
+  "border_pixels_alpha64": 0,
+  "archive": {
+    "archive": "D:\\Projects\\AI\\dst_mod\\mod\\anim\\nw_furnace_wave.zip",
+    "build": "nw_furnace_wave",
+    "atlas_count": 2,
+    "vertex_count": 9726,
+    "animation_only": false
+  },
+  "archive_sha256": "17020749f4427bdb3aa772547ca8ae4095cb9183bff3c29b6f02bd5ba5156fb9",
+  "archive_bytes": 2487346,
+  "geometry_size": 1240,
+  "texture_size": 384,
+  "targeted_tests": {
+    "passed": 13,
+    "log": "test_reports/2026-11-14-furnace-keyframes-tests.txt"
+  },
+  "installation": {
+    "verified_files": 247,
+    "updated_files": 2,
+    "log": "test_reports/2026-11-14-furnace-keyframes-install.txt"
+  },
+  "client_visual_validation": "not performed",
+  "art_review": "Final selection accepted after removal of overshooting and clipped growth frames; mild hand-drawn pose changes and restrained rotation remain."
+}

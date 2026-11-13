@@ -1,0 +1,230 @@
+{
+  "purpose": "API-only material and placement references; never runtime animation frames",
+  "source": "references/approved_f_1024.png",
+  "source_sha256": "41370a252e3d06611f1a61b2014fa6b8a637a54eb469742aeb5475e3bda2ce39",
+  "component_rule": "4-connected real alpha>8; preserve exact selected-component RGBA pixels; ignore islands smaller than30px for representative selection",
+  "all_alpha_gt8_components": 79,
+  "representative_candidates_at_least30px": 38,
+  "arc_materials": {
+    "path": "references/arc_materials.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "grid": [
+      2,
+      3
+    ],
+    "cell_size": 512,
+    "background": "transparent",
+    "processing": "isolated component mask, one common uniform1.8x reference enlargement, centered per cell; no rotation, warping or painting",
+    "slots": [
+      {
+        "slot": 0,
+        "row": 0,
+        "column": 0,
+        "material": "cyan",
+        "shape": "short hook",
+        "component_scan_index": 1,
+        "source_bbox": [
+          564,
+          42,
+          641,
+          80
+        ],
+        "source_pixels_alpha_gt8": 1350,
+        "scale": 1.8,
+        "output_bbox": [
+          186,
+          222,
+          325,
+          290
+        ]
+      },
+      {
+        "slot": 1,
+        "row": 0,
+        "column": 1,
+        "material": "gold",
+        "shape": "short hook",
+        "component_scan_index": 25,
+        "source_bbox": [
+          99,
+          623,
+          155,
+          709
+        ],
+        "source_pixels_alpha_gt8": 1910,
+        "scale": 1.8,
+        "output_bbox": [
+          717,
+          178,
+          818,
+          333
+        ]
+      },
+      {
+        "slot": 2,
+        "row": 1,
+        "column": 0,
+        "material": "cyan",
+        "shape": "long blade",
+        "component_scan_index": 0,
+        "source_bbox": [
+          319,
+          17,
+          550,
+          91
+        ],
+        "source_pixels_alpha_gt8": 5931,
+        "scale": 1.8,
+        "output_bbox": [
+          48,
+          701,
+          464,
+          834
+        ]
+      },
+      {
+        "slot": 3,
+        "row": 1,
+        "column": 1,
+        "material": "gold",
+        "shape": "long blade",
+        "component_scan_index": 3,
+        "source_bbox": [
+          395,
+          66,
+          565,
+          127
+        ],
+        "source_pixels_alpha_gt8": 4025,
+        "scale": 1.8,
+        "output_bbox": [
+          615,
+          713,
+          921,
+          823
+        ]
+      },
+      {
+        "slot": 4,
+        "row": 2,
+        "column": 0,
+        "material": "cyan",
+        "shape": "forked double tail",
+        "component_scan_index": 13,
+        "source_bbox": [
+          39,
+          270,
+          134,
+          392
+        ],
+        "source_pixels_alpha_gt8": 3606,
+        "scale": 1.8,
+        "output_bbox": [
+          170,
+          1170,
+          341,
+          1390
+        ]
+      },
+      {
+        "slot": 5,
+        "row": 2,
+        "column": 1,
+        "material": "gold",
+        "shape": "forked double tail",
+        "component_scan_index": 4,
+        "source_bbox": [
+          703,
+          67,
+          841,
+          162
+        ],
+        "source_pixels_alpha_gt8": 4481,
+        "scale": 1.8,
+        "output_bbox": [
+          644,
+          1194,
+          892,
+          1365
+        ]
+      }
+    ],
+    "sha256": "ac2c13cb9beba5740f2377b6a819b1f9a69b83bbf55205ac5bf50c7e11fe1723"
+  },
+  "geometry": {
+    "path": "references/guide_grow_24.png",
+    "size": [
+      3072,
+      2048
+    ],
+    "grid": [
+      6,
+      4
+    ],
+    "cell_size": 512,
+    "local_origin": [
+      256,
+      256
+    ],
+    "radii": [
+      0,
+      32,
+      42,
+      54,
+      66,
+      78,
+      91,
+      104,
+      116,
+      128,
+      140,
+      151,
+      162,
+      172,
+      181,
+      190,
+      198,
+      204,
+      210,
+      214,
+      217,
+      219,
+      220,
+      220
+    ],
+    "background": "opaque white",
+    "circles": "2px pale gray only; radius0 is one center pixel; pale grid separators; no actual arcs or heads/tails",
+    "sha256": "4016b084b1fb9c82c57fd48c37db63b33c7bc88644224c1f709db6521e1db507"
+  },
+  "master_512_untouched": true,
+  "geometry_study": {
+    "path": "references/guide_grow_study_6.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "grid": [
+      3,
+      2
+    ],
+    "cell_size": 512,
+    "local_origin": [
+      256,
+      256
+    ],
+    "radii": [
+      32,
+      54,
+      78,
+      104,
+      128,
+      151
+    ],
+    "background": "opaque white",
+    "circles": "2px pale gray; pale grid separators; placement guide only, no actual arcs or heads/tails",
+    "sha256": "ebb4d64616f7a3884d9aa89f821b2154b519ed0c2a84c9705c71d47d6b1cbf8c"
+  }
+}

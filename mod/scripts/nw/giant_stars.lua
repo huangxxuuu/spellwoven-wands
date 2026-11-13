@@ -12,7 +12,8 @@ function M.pulse(inst)
             local pulse=task.fn
             task.fn=function(e,...)
                 pulse(e,...)
-                e.Light:SetRadius(e.Light:GetRadius()*math.max(1,e._nw_star_size:value()))
+                local scale=e._nw_star_size:value()
+                e.Light:SetRadius(e.Light:GetRadius()*(scale>0 and scale or 1))
             end
             return
         end
@@ -23,7 +24,7 @@ function M.apply(inst,p)
     local scale=require("nw/projectile_size").factor(p)
     inst._nw_star_size:set(scale)
     require("nw/projectile_size").field(inst,p)
-    if scale<=1 or inst._nw_giant_star then return end
+    if scale==1 or inst._nw_giant_star then return end
     inst._nw_giant_star=scale
     local set=stars() or {};TheWorld._nw_giant_stars=set;set[inst]=true
     inst:ListenForEvent("onremove",function() set[inst]=nil;if not next(set) then TheWorld._nw_giant_stars=nil end end)

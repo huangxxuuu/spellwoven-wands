@@ -47,7 +47,8 @@ local function update(s,now)
     local x,y,z=inst.Transform:GetWorldPosition()
     -- Explicitly replicated size avoids depending on parent Transform scale,
     -- and world-space members never inherit a moving field's rotation/scale.
-    local scale=math.max(1,inst._nw_insect_size:value())
+    local value=inst._nw_insect_size:value()
+    local scale=value>0 and value or 1
     local profile=profiles[s.id]
     local height=s.id=="fireflies" and math.max(profile.height,y+.10) or y+profile.height
     local age=now-s.started
@@ -119,7 +120,6 @@ function M.attach(inst,id)
         fx:AddTag("FX");fx:AddTag("NOCLICK");fx.persists=false
         fx.AnimState:SetBank(BANK);fx.AnimState:SetBuild(BANK)
         fx.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
-        fx.AnimState:SetLightOverride(1)
         -- Wait for the first tick so Launch/replication has placed the anchor.
         fx:Hide()
         s.members[index]={fx=fx,visible=false,radius=profile.radius+(index-1)*.07,

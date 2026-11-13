@@ -11,8 +11,8 @@ from compose_spell_cards import ROOT, OUT, perspective
 
 def main():
  m=json.loads((OUT/'manifest.json').read_text(encoding='utf8'))
- assert len(m['cards'])==186
- assert len({r['id'] for r in m['cards']})==186
+ assert len(m['cards'])==190
+ assert len({r['id'] for r in m['cards']})==190
  checked=0
  for row in m['cards']:
   p=ROOT/row['source'];assert hashlib.sha256(p.read_bytes()).hexdigest()==row['source_sha256']
@@ -30,6 +30,8 @@ def main():
  hexa=perspective(Image.open(OUT/'frames/modifier.png').convert('RGBA')).getchannel('A')
  assert rect.getpixel((60,196))>200 and hexa.getpixel((60,196))<8
  byid={r['id']:r for r in m['cards']}
+ assert byid['shrink_shot']['primary_class']=='modifier' and byid['shrink_shot']['mechanism_badge'] is None
+ assert byid['dark']['primary_class']=='modifier' and byid['dark']['mechanism_badge'] is None
  assert byid['imprint_hit']['primary_class']=='control' and byid['imprint_hit']['mechanism_badge'] is None
  assert byid['repeat_2']['primary_class']=='control' and byid['repeat_2']['mechanism_badge'] is None
  assert byid['sleep_crystal']['mechanism_badge'] is None

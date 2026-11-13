@@ -33,6 +33,47 @@ function signed(value) {
     return value > 0 ? "+" + value : String(value);
 }
 
+function craftingRecipes(card) {
+    const section = element("section", undefined, "crafting-recipes");
+    if (!card.recipes.length) return section;
+    section.append(element("h3", t("制作配方", "Crafting recipes")));
+    if (card.recipes.length > 1) {
+        section.append(element("p", t("以下配方任选一种。", "Choose any one of these recipes."), "recipe-hint"));
+    }
+    const stations = {nw_workbench: t("奥术台", "Arcane Workbench"), nw_engraver: t("武器刻印台", "Weapon Engraving Table")};
+    card.recipes.forEach((recipe, index) => {
+        const row = element("div", undefined, "crafting-recipe");
+        row.dataset.recipe = recipe.name;
+        const title = (card.recipes.length > 1 ? t("配方 ", "Recipe ") + (index + 1) + " · " : "") + stations[recipe.station];
+        row.append(element("p", title, "recipe-station"));
+        const ingredients = element("ul", undefined, "recipe-ingredients");
+        for (const material of recipe.ingredients) {
+            const item = element("li");
+            const link = element("a", undefined, "recipe-material");
+            link.dataset.prefab = material.prefab;
+            link.href = material.href;
+            link.title = material.name + " ×" + material.count + " · " + (material.wiki
+                ? t("查看 Wiki ↗", "View on Wiki ↗") : t("查看材料说明 ↗", "View material guide ↗"));
+            link.setAttribute("aria-label", link.title + t("（新标签页）", " (new tab)"));
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            const slot = element("span", undefined, "ingredient-slot");
+            slot.setAttribute("aria-hidden", "true");
+            const image = element("img");
+            image.src = (english ? "../" : "") + material.icon;
+            image.alt = "";
+            image.width = image.height = 64;
+            slot.append(image, element("span", String(material.count), "ingredient-count"));
+            link.append(slot);
+            item.append(link);
+            ingredients.append(item);
+        }
+        row.append(ingredients);
+        section.append(row);
+    });
+    return section;
+}
+
 function showCard(card) {
     const heading = element("h2", card.name);
     heading.id = "detail-name";
@@ -42,8 +83,20 @@ function showCard(card) {
     for (const [label, value] of card.fields) {
         attributes.append(element("dt", label), element("dd", value));
     }
+    const modeNotes = element("div", undefined, "difficulty-notes");
+    const modes = [["fun", t("爽快", "Fun")], ["balanced", t("平衡", "Balanced")],
+        ["balanced_loot", t("平衡·掉落限定", "Balanced: Loot Only")]];
+    for (const [key, label] of [["mana", t("法力消耗", "Mana cost")],
+        ["delay", t("施放修正", "Cast delay")], ["recharge", t("充能修正", "Recharge")]]) {
+        if (card.modeValues && new Set(modes.map(([mode]) => card.modeValues[mode][key])).size > 1) {
+            modeNotes.append(element("p", label + t("（按世界难度）：", " (by world difficulty): ") +
+                modes.map(([mode, name]) => name + " " + signed(card.modeValues[mode][key])).join(" / ")));
+        }
+    }
     const sources = element("ul");
-    card.sources.forEach(source => sources.append(element("li", source)));
+    // Crafting is rendered from structured ingredients; the remaining entries
+    // describe drops and other acquisition routes.
+    card.sources.slice(card.recipes.length).forEach(source => sources.append(element("li", source)));
     const details = element("div", undefined, "spell-data");
     details.hidden = true;
     details.append(element("p", card.detailedEffect, "effect"));
@@ -58,8 +111,9 @@ function showCard(card) {
     document.querySelector("#detail-content").replaceChildren(title,
         element("small", [card.category, card.subgroup, card.rarity, ...card.tags].filter(Boolean).join("　/　")),
         element("p", card.tags.join(" · "), "card-tags"),
-        element("p", card.effect, "effect"), element("h3", t("法术属性", "Spell stats")), attributes, toggle, details,
-        element("h3", t("获取途径", "Acquisition")), sources, element("small", card.id));
+        element("p", card.effect, "effect"), element("h3", t("法术属性", "Spell stats")), attributes, modeNotes, toggle, details,
+        craftingRecipes(card), element("h3", card.recipes.length ? t("其他获取途径", "Other acquisition") : t("获取途径", "Acquisition")),
+        sources, element("small", card.id));
     dialog.showModal();
 }
 

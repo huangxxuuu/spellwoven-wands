@@ -72,6 +72,17 @@ function M.launch(inst,s)
     end
     if native[key] then
         local fx=SpawnPrefab(native[key]);s.native=fx;fx._nw_controller=inst
+        -- Native staff/boomerang art is not a light source. Only this Mod shot
+        -- follows ambient light; keep actual lights such as lighterfire intact.
+        fx.AnimState:SetLightOverride(0)
+        fx.AnimState:ClearBloomEffectHandle()
+        if key=="staff_lunarplant" then
+            fx.AnimState:ClearSymbolBloom("light_bar")
+            fx.AnimState:ClearSymbolBloom("glow")
+        elseif key=="voidcloth_boomerang" then
+            fx.AnimState:SetSymbolLightOverride("lightning",0)
+        end
+        require("nw/balance_damage").tag(fx,s.p)
         require("nw/projectile_size").native(fx,s.p)
         if key=="staff_tornado" then fx._nw_giant= s.p.size_mult end
         -- The native boomerang's .4..1 scale and upright artwork match its return

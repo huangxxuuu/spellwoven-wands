@@ -1,0 +1,82 @@
+[
+  {
+    "input_path_at_request": "frames/release_000.png",
+    "retained_reference": "references/anchors/release_000.png",
+    "origin_sheet": "originals/release_01.png",
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "sha256": "61fd805238436766f7c7ea40b0d8c482bea3b2f6068aa1bed8d52e83ad5d84e4",
+    "note": "Exact raw crop passed to model before later final-frame selection; no pose fitting or alpha cleanup."
+  },
+  {
+    "input_path_at_request": "frames/release_005.png",
+    "retained_reference": "references/anchors/release_005.png",
+    "origin_sheet": "originals/release_01.png",
+    "crop": [
+      1024,
+      512,
+      1536,
+      1024
+    ],
+    "sha256": "20d97fed0ef46c1c4b0eb601fde8aa686f943f48e341ba74ee798d80e380a8ed",
+    "note": "Exact raw crop passed to model before later final-frame selection; no pose fitting or alpha cleanup."
+  },
+  {
+    "input_path_at_request": "frames/grow_011.png",
+    "retained_reference": "references/anchors/grow_011.png",
+    "origin_sheet": "originals/grow_full_v3.png",
+    "crop": [
+      2560,
+      512,
+      3072,
+      1024
+    ],
+    "sha256": "7d805b83985606af44e05304dac0ea049289176667d22a59518c17810165981c",
+    "note": "Exact raw crop passed to model before later final-frame selection; no pose fitting or alpha cleanup."
+  },
+  {
+    "input_path_at_request": "frames/loop_000.png",
+    "retained_reference": "references/anchors/loop_000.png",
+    "origin_sheet": "originals/loop_full.png",
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "sha256": "6a2cae340e51b02039f201af3d8071f5648bc28a51b01267cb85593958ca7b4f",
+    "note": "Exact raw crop passed to model before later final-frame selection; no pose fitting or alpha cleanup."
+  },
+  {
+    "request": "originals/grow_bridge.png.json",
+    "retained_reference": "references/anchors/bridge_grow_017.png",
+    "origin_sheet": "originals/grow_finish.png",
+    "crop": [
+      512,
+      512,
+      1024,
+      1024
+    ],
+    "alpha_cleanup_at_or_below": 32,
+    "sha256": "4be9d1057ce312b34f915041d33c3e9bf66da1e2ae2eff79705b5cc688ef2577",
+    "note": "Exact cleaned reference used for the bridge request; the resulting bridge sheet was not adopted."
+  },
+  {
+    "request": "originals/grow_bridge.png.json",
+    "retained_reference": "references/anchors/bridge_loop_000.png",
+    "origin_sheet": "originals/loop_full.png",
+    "crop": [
+      0,
+      0,
+      512,
+      512
+    ],
+    "alpha_cleanup_at_or_below": 32,
+    "sha256": "95f361a22c21bd4a498bf5e8848dbef27936e1121c41b27b086c8c46c0b215c3",
+    "note": "Exact cleaned reference used for the bridge request; the resulting bridge sheet was not adopted."
+  }
+]

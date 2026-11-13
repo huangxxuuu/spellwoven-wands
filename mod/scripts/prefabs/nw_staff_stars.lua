@@ -19,6 +19,9 @@ local function start(inst,data,caster)
         caster=require("nw/payload_caster").neutral(x,z)
     end
     inst._nw_star=Copy(data);inst._nw_owner=caster;inst._nw_motion_owner=owner
+    data=inst._nw_star
+    data.p._nw_root=require("nw/balance_damage").root(data.p._nw_root)
+    require("nw/balance_damage").tag(inst,data.p)
     require("nw/entity_limits").restore_field(inst,data.userid or caster)
     require("nw/payload_caster").retain(caster,inst)
     require("nw/giant_stars").apply(inst,data.p)

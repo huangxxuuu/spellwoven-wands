@@ -1,0 +1,18 @@
+{
+  "dry_run": true,
+  "endpoint": "https://api.openai.com/v1/images/edits",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Draw SIX precise hand-painted animation IN-BETWEENS from reference1 to reference2. These are not design variations. Output1536x1024 PNG, EXACT3 columns x2 rows, six512x512 cells, true alpha transparency with absolutely no background or glow. Read top-left to bottom-right. Keep fixed canvas registration, camera and scale from the references. All seven cyan/gold strips, little diamonds and purple hollow marks keep their identities.\n\nReference1 is the PREVIOUS pose immediately BEFORE this new sheet. Reference2 is the NEXT existing pose immediately AFTER this sheet, and also the master for the final colors, thicknesses and locations. Both images are already correctly sized and centered512x512 cels. Do not change their placement, add margin, fit or enlarge them. Draw the six evenly spaced small intermediate developments needed to connect the previous pose into the next pose with NO POP. The last new cel should be almost identical to reference2 in geometry and painted brightness, only one tiny motion step before it. Reference2 has priority as the end target; don't invent a different mature pose.\n\nThe real changes that must be distributed gradually: the broad bright lower gold arc relaxes into the slightly thinner darker gold curve in reference2; lower cyan hooked strip lengthens and shifts into its target silhouette; the upper cyan fork and right cyan curve turn/open slightly; small purple hollow marks and icy diamonds drift to their target positions while preserving shape. Draw fresh contour and highlight strokes for every cel. Adjust arc curvature, thin tails, fork opening and inner highlight width continuously. Do not keep thick bright bars until the last cel and then jump. Total footprint increases only slightly from reference1 into reference2, never overshoots. Same circular top-down ground projection, not perspective.\n\nCel1 is1/7 of the way between the references, cel2 is2/7, cel3 is3/7, cel4 is4/7, cel5 is5/7, cel6 is6/7. These fractions describe artistic pose progression, NOT transparent cross-fades. Draw a SINGLE crisp clean coherent pose per cel. No doubled edges or ghosted overlapping drawings. No blur or dissolve. Real hand-drawn stroke deformation, no rigid whole-image scaling or rotation. No new particle or identity. Maintain the muted cool cyan, antique gold and tapered dark ink line of reference2, not brighter shiny metal. The central hole and all space between individual strips must be completely transparent. No text, labels or grid lines. Every cel remains entirely inside its512 cell, with the same safe margins as reference2.\n",
+    "n": 1,
+    "size": "1536x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "images": [
+    "assets_src\\disassembler_wave_keyframes_20261114\\frames\\grow_017.png",
+    "assets_src\\disassembler_wave_keyframes_20261114\\frames\\loop_000.png"
+  ],
+  "mask": null
+}

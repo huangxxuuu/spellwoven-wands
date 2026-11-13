@@ -1,0 +1,10 @@
+{
+  "runtime_registered": true,
+  "cards": [
+    {
+      "id": "dark",
+      "name": "暗雾",
+      "kind": "modifier"
+    }
+  ]
+}

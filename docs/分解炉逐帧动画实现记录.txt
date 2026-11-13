@@ -1,0 +1,58 @@
+奥术分解炉地面圆圈：双层外围弧片动画
+日期：2026-11-14。开发版改动，未正式发布。
+
+本轮设计与源帧
+以用户批准的F青金双色外围圈为唯一设计基准：单片缩小、形状各异，两层邻近的断续弧片错开缺口，保留大片空心区域，去掉紫色弧片，独立弧片不相互覆盖。
+批准源图：assets_src/disassembler_wave_perimeter_preview_20261114/previews/f_cyan_gold_only-clean.png。
+SHA256：41370a252e3d06611f1a61b2014fa6b8a637a54eb469742aeb5475e3bda2ce39。
+新资源目录：assets_src/disassembler_wave_perimeter_animation_20261114/。
+展开从短划、紧钩开始，各片的头尾、曲率和分叉逐帧舒展并向外移动；消散逐帧画出尾部拉细、裂口扩张、碎段卷曲外移。
+展开24帧位/2秒、循环24帧位/2秒、消散12帧位/0.6秒，共60槽，54种独立非空绘制姿态、2个空端点、4个衔接复用槽。
+出现和循环继续叠加整体旋转；扩散与消散不使用整圈缩放、平移或插值来代替绘制。
+
+选帧与透明处理
+source_selection.json记录完整60槽来源、裁剪、原图/候选/最终哈希和额外Alpha处理；selection_plan_candidate.json为本次已经验收采用的明确选帧计划。
+展开：第0格透明，第1—20格取grow_redraw_24对应绘制格，第21—23格共享loop_24的21—23格，再衔接循环0。
+循环：loop_24全部24格。
+消散：第0格共享loop_000，第1—2格取release_bridge_4补绘过渡，第3—10格取release_12_alpha对应绘制格，第11格透明。
+所有源帧固定512方格、中心(256,256)裁切；没有逐帧适配大小、居中、旋转、形变或程序补画。
+候选常规清除Alpha≤8；仅展开1—20格额外清除Alpha≤32的背景薄膜，清理只改变选中像素的Alpha，其余RGB/Alpha保持不动。
+原图与失败候选均保留。grow_clean_alpha虽请求去膜，但实际改变了颜色/轮廓且未改善背景，未采用其图像或蒙版。
+第一轮grow_24成熟小环逐渐变大的动作稿未采用；grow_study_6仅作短钩舒展的动作参考。
+最终60槽均无Alpha≥64的触边像素；黑/灰/白底检查保留细墨线、尖尾和高光，没有明显宽灰膜。
+
+构建与运行
+统一384像素纹理采样、1201.4215895动画单位固定画布；该尺寸按选定loop0实测Alpha64外沿255.6970864像素换算至600动画单位（约4游戏单位），不采用Prompt中未被模型严格遵守的220像素参考半径。
+编译后对BILD边界和顶点XY统一换算一次；不更改UV、sampler、索引或ANIM运动矩阵。
+30FPS时间轴为60/60/18帧，按累计时间保持各绘制帧，全部element矩阵均为单位矩阵。
+mod/anim/nw_furnace_wave.zip：1533971字节，2张atlas。
+SHA256：44c0b6d14c68ec870cc6989ecba6d7beddb9dfa245d27579d52dc22b17c6f521。
+manifest.json记录源图、图集、几何、时长和最终ZIP哈希。构建失败恢复旧ZIP，不静默减少帧数。
+出现与循环仍以同一active起点按30度/秒旋转，12秒一圈，跨阶段与循环不重置；消散固定进入时的角度，重启从0度开始。
+中途停止时，按实际绘制源帧外沿/消散首帧外沿确定一次性的消散尺寸，表已同步至furnace_visual.lua；半程比例为0.798662。
+消散播放期间不动态缩放。扫描、灯光、阶段时长、网络变量与生命周期规则不变；专服不创建本地旋转任务。
+后加入玩家沿用现有本地阶段快照，各客户端整体旋转相位不保证严格一致，未增加同步字段或消息。
+
+验证与视觉边界
+18项定向检查全部通过，未跳过：源图/ZIP哈希、单位矩阵、透明端点/固定裁剪锚点、2图集限制、完整范围、累计保持时序与主机/专服/晚加入/重启/移除生命周期、连续旋转和实测外沿比例表。
+日志：test_reports/2026-11-14-furnace-perimeter-tests.txt。
+已通过tools/install_mod.py安装本地nw_weave_dev，247文件哈希一致，本次更新2文件；回执test_reports/2026-11-14-furnace-perimeter-install.txt。版本仍为1.0.5，未执行发布。
+最终离线预览使用真实编译ZIP解码、去预乘、旋转及地平面投影；以成熟外半径430屏幕像素、炉体宽320像素展示相对比例，标明非游戏实拍。
+预览：新目录previews/rotation/furnace-wave.gif、wave-only.gif、keyframes.png。
+展开20→循环21仍可见一次局部绘制姿态切换，整体外沿约253.43→253.40像素，不能称完全无缝；未用整图缩放或插值伪造过渡。
+消散loop0→桥1→桥2→原3外沿约255.70→255.12→258.51→257.80像素，避免旧候选先缩约5%再扩散的问题。
+固定消散入口仍不能与任意循环/中途停止相位的每个弧片姿态完全重合。
+尚未进行真实客户端渲染、旋向与远端观察的人工验收；离线预览与Lua夹具测试不等同实机视觉通过。
+
+生图与历史
+使用项目指定的本地OpenAI API imagegen.py，模型gpt-image-2.6-sunburst，quality high；实际Prompt、参考路径、原始PNG及每次PNG.json全部保留。
+本轮8次成功返回合计45256 tokens；展开接缝补绘2次连接失败未返回图像或用量，用量未知，不计入已知合计。第一次失败后检查HTTPS连通，再做一次明确重试；再次失败后停止该请求，未切换内置插件。
+详见usage_summary.json及generation_failures.json。Tokens不等于账单金额；此前静态F方案与旧动画的用量各在原目录单独记录。
+旧大弧片源图、51姿态动画及旧回执保留在assets_src/disassembler_wave_keyframes_20261114/和test_reports/，不是当前使用的资源。
+
+重建命令
+.venv/Scripts/python.exe assets_src/disassembler_wave_perimeter_animation_20261114/finalize_frames.py --final --selection assets_src/disassembler_wave_perimeter_animation_20261114/selection_plan_candidate.json
+.venv/Scripts/python.exe tools/build_furnace_wave.py
+.venv/Scripts/python.exe tools/preview_furnace_wave.py
+.venv/Scripts/python.exe -m unittest discover -s tests -p "test_furnace*.py" -v
+更换选帧须重新测量并同步运行时外沿表，测试会检测失配。

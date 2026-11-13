@@ -51,4 +51,29 @@ local light={pendingtasks={[task]=true},Light={GetRadius=function() return radiu
 G.pulse(light)
 for i=1,10 do task.fn(light);assert(radius==57.5) end
 scale=1;task.fn(light);assert(radius==11.5)
+scale=.4;task.fn(light);assert(math.abs(radius-4.6)<1e-9)
+scale=0;task.fn(light);assert(radius==11.5,"uninitialized replica keeps the native light")
+star._nw_giant_star=.4;distance=5;wet=false;heat=100;c.current=0
+local delta,power=G.heat(c)
+assert(math.abs(delta+75)<1e-9 and math.abs(power+.75)<1e-9,"remove native heat outside the smaller disk")
+distance=2
+delta,power=G.heat(c)
+assert(math.abs(delta+21)<1e-9 and math.abs(power+.21)<1e-9,"replace native inner heat with scaled falloff")
+heat=-100;c.current=70;distance=5
+assert(math.abs(G.heat(c)-127.5)<1e-9,"remove native cooling outside the smaller disk")
+-- Applying the descriptor must register small stars too, including restored
+-- placements; their aura/propagator and physical extent scale exactly once.
+TUNING.SANITY_EFFECT_RANGE=10
+local body,render,removed=.1,1,nil
+local small={components={sanityaura={},propagator={propagaterange=5,damagerange=4}},
+    _nw_star_size={set=function(_,v) assert(v==.4) end},
+    Transform={GetScale=function() return render,render,render end,SetScale=function(_,v) render=v end},
+    GetPhysicsRadius=function() return body end,SetPhysicsRadiusOverride=function(_,v) body=v end,
+    ListenForEvent=function(_,event,fn) assert(event=="onremove");removed=fn end}
+G.apply(small,{size_mult=.4});G.apply(small,{size_mult=.4})
+assert(TheWorld._nw_giant_stars[small] and small._nw_giant_star==.4)
+assert(math.abs(small.components.sanityaura.max_distsq-16)<1e-9)
+assert(math.abs(small.components.sanityaura.fallofffn(nil,nil,4)-25)<1e-9)
+assert(math.abs(small.components.propagator.propagaterange-2)<1e-9 and math.abs(body-.04)<1e-9 and render==.4)
+removed();assert(not TheWorld._nw_giant_stars[small])
 print("giant environment: enlarged heat/aura reach, wetness, insulation input, immunity, pocket storage, cleanup and noncompounding light pulse")

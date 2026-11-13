@@ -1,6 +1,7 @@
 local U = require("nw/util")
 local Generator = require("nw/generator")
 local Compiler = require("nw/compiler")
+local Balance = require("nw/balance")
 local Wand = Class(function(self, inst)
     self.inst = inst
     self.data = nil
@@ -14,14 +15,15 @@ function Wand:ReadyPlan()
     -- an accepted card can no longer be paid. Cast accounts for regenerated mana.
     local mana=r.mana
     local c=self._ready_cache
-    if not c or c.runtime~=r or c.revision~=d.config_revision or mana<c.low or mana>=c.high then
+    local balanced=Balance.is_balanced()
+    if not c or c.runtime~=r or c.revision~=d.config_revision or c.balanced~=balanced or mana<c.low or mana>=c.high then
         local plan,err=Compiler.compile(d)
         if err=="DUPLICATE_CARD" and require("nw/card_identity").repair(d) then
             r=d.runtime
             plan,err=Compiler.compile(d)
         end
-        if plan then plan._source_runtime=r;plan._config_revision=d.config_revision end
-        c={runtime=r,revision=d.config_revision,low=plan and plan.mana_required or math.floor(mana),
+        if plan then plan._source_runtime=r;plan._config_revision=d.config_revision;plan._balanced=balanced end
+        c={runtime=r,revision=d.config_revision,balanced=balanced,low=plan and plan.mana_required or math.floor(mana),
             high=plan and plan.next_afford or math.floor(mana)+1,plan=plan,err=err}
         self._ready_cache=c
     end
@@ -119,7 +121,8 @@ function Wand:CanCast(doer,prepared)
     if self.data.runtime.remaining_cast > .001 or self.data.runtime.remaining_recharge > .001 then return false,"COOLDOWN" end
     local plan,err=prepared,nil
     if plan then
-        if plan._source_runtime~=self.data.runtime or plan._config_revision~=self.data.config_revision then
+        if plan._source_runtime~=self.data.runtime or plan._config_revision~=self.data.config_revision
+            or plan._balanced~=Balance.is_balanced() then
             return false,"STALE_CAST"
         end
         if self.data.runtime.mana<plan.mana_required then return false,"NO_MANA" end
@@ -161,9 +164,15 @@ function Wand:Cast(doer,pos,prepared)
     self.cool_total=plan.cooldown
     self:Sync()
     local sanity=doer.components.sanity
+    local cost=math.max(.1,plan.mana_spent/Generator.sanity_conversion_for(self.data.stats))
     if sanity and sanity.current>0 then
-        local cost=math.max(.1,plan.mana_spent/self.data.stats.sanity_conversion)
-        sanity:DoDelta(-math.min(sanity.current,cost))
+        local paid=math.min(sanity.current,cost)
+        sanity:DoDelta(-paid)
+        cost=cost-paid
+    end
+    local hunger=doer.components.hunger
+    if Balance.is_balanced() and cost>0 and hunger and hunger.current>0 then
+        hunger:DoDelta(-math.min(hunger.current,cost/2))
     end
     return true
 end

@@ -94,7 +94,6 @@ local function fn(breakable,beam)
         -- The physics heading belongs to the ground plane; the painted body
         -- faces the camera, including engraving visuals that bypass flight_visual.
         visual.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
-        visual.AnimState:SetLightOverride(1)
         inst._visual=visual
         inst:ListenForEvent("onremove",function() if visual:IsValid() then visual:Remove() end end)
     end
@@ -131,7 +130,7 @@ local function fn(breakable,beam)
                 self._nw_break=nil
                 local bx,_,bz=self.Transform:GetWorldPosition()
                 Projectiles.contact_fx(self._shot,bx,bz)
-                Effects.blast(owner,bx,bz,{damage=self._shot.damage,radius=Size.factor(self._shot.p),flags=self._shot.p.flags,quiet_burst=true,journal_id=self._shot.p.journal_id or self._shot.p.id})
+                Effects.blast(owner,bx,bz,{damage=self._shot.damage,radius=Size.factor(self._shot.p),flags=self._shot.p.flags,quiet_burst=true,journal_id=self._shot.p.journal_id or self._shot.p.id,_nw_root=self._shot.p._nw_root})
                 require("nw/projectile_triggers").finish(self._shot,bx,bz)
                 self:Remove()
             end
@@ -164,6 +163,7 @@ local function fn(breakable,beam)
             self:ListenForEvent("onremove",function() if glow:IsValid() then glow:Remove() end end)
         end
         self.Transform:SetPosition(x,0,z)
+        require("nw/dark_fog").attach(self,owner,descriptor)
         self.Transform:SetRotation(-math.atan2(dz,dx)/DEGREES)
         refresh(self)
         self:ListenForEvent("onremove",onremove)

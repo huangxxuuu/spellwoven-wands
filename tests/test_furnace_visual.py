@@ -1,8 +1,12 @@
 """Executable Lua lifecycle tests with independently clocked network peers."""
 from pathlib import Path
+import hashlib
+import json
 import unittest
 
 from lupa.lua51 import LuaRuntime
+import numpy as np
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -78,6 +82,8 @@ function advance(t)
         flush()
     end
 end
+local visual=require("nw/furnace_visual")
+function release_extent(progress) return visual.release_visual_extent(progress) end
 function near(a,b) assert(math.abs(a-b)<.0001,tostring(a).." ~= "..tostring(b)) end
 function verify(radius,animation,scale)
     near(furnace.Light.SetRadius_args[1],radius)
@@ -94,6 +100,16 @@ function verify(radius,animation,scale)
 end
 function no_tasks()
     for _,task in ipairs(furnace.tasks) do assert(task.cancelled,"task leaked") end
+end
+function active_tasks(expected)
+    local count=0
+    for _,task in ipairs(furnace.tasks) do if not task.cancelled then count=count+1 end end
+    assert(count==expected,"unexpected active task count "..count.." ~= "..expected)
+end
+function loop_tasks() active_tasks(dedicated and 0 or 1) end
+function angle(expected)
+    local actual=entities[#entities].Transform.SetRotation_args[1]
+    near((actual-expected+180)%360-180,0)
 end
 function off()
     near(furnace.Light.SetRadius_args[1],0);no_tasks()
@@ -115,6 +131,112 @@ def replicate(source, target, current=True):
 
 
 class FurnaceVisualTest(unittest.TestCase):
+    def test_continuous_rotation_across_grow_loop_and_full_turn(self):
+        lua = runtime()
+        lua.execute(r'''
+furnace:SetNWActive(true);flush();angle(0);active_tasks(2)
+advance(1);angle(30)
+advance(2-FRAMES);angle(59)
+advance(2);angle(60);verify(4,"loop",1);active_tasks(1)
+advance(2+FRAMES);angle(61)
+advance(5);angle(150);active_tasks(1)
+advance(12);angle(0);active_tasks(1)
+''')
+
+    def test_release_freezes_rotation_and_restart_resets(self):
+        lua = runtime()
+        lua.execute(r'''
+furnace:SetNWActive(true);advance(5);angle(150)
+furnace:SetNWActive(false,true);flush();angle(150);active_tasks(1)
+advance(5.3);angle(150);active_tasks(1)
+furnace.events.nw_furnacedirty();angle(150);active_tasks(1)
+furnace:SetNWActive(true);flush();angle(0);active_tasks(2)
+advance(6.3);angle(30)
+furnace:SetNWActive(false,false);flush();off()
+''')
+
+    def test_rotation_duplicate_dirty_and_removal_cleanup(self):
+        lua = runtime()
+        lua.execute(r'''
+furnace:SetNWActive(true);advance(1);angle(30);active_tasks(2)
+local total=#furnace.tasks
+for i=1,4 do furnace.events.nw_furnacedirty() end
+assert(#furnace.tasks==total);active_tasks(2)
+advance(3);angle(90);active_tasks(1)
+total=#furnace.tasks
+for i=1,4 do furnace.events.nw_furnacedirty() end
+assert(#furnace.tasks==total);active_tasks(1)
+furnace.events.onremove();off()
+advance(4);off();furnace.events.nw_furnacedirty();off()
+''')
+
+    def test_rotation_dedicated_keeps_only_existing_phase_task(self):
+        lua = runtime(dedicated=True)
+        lua.execute(r'''
+furnace:SetNWActive(true);flush();active_tasks(1)
+advance(1);active_tasks(1);assert(#entities==1)
+advance(5);active_tasks(0);assert(#entities==1)
+furnace:SetNWActive(false,true);flush();active_tasks(1)
+advance(5.6);off();assert(#entities==1)
+''')
+
+    def test_late_join_rotation_continues_on_client_clock(self):
+        server, client = runtime(), runtime(False)
+        server.execute("furnace:SetNWActive(true);advance(1.2)")
+        client.execute("now=100")
+        replicate(server, client)
+        client.execute(r'''
+angle(36);active_tasks(2)
+advance(100.8);angle(60);active_tasks(1)
+advance(103.8);angle(150);active_tasks(1)
+local total=#furnace.tasks
+furnace.events.nw_furnacedirty();angle(150)
+assert(#furnace.tasks==total);active_tasks(1)
+furnace.events.onremove();off()
+''')
+
+    def test_release_extent_lookup_uses_painted_hold_and_fixed_scale(self):
+        lua = runtime()
+        lua.execute(r'''
+near(release_extent(0),0);near(release_extent(1),1)
+near(release_extent(-.1),0);near(release_extent(1.1),1)
+near(release_extent(.049),0);near(release_extent(.05),0.089182)
+near(release_extent(.5),0.798662)
+near(release_extent(.5-1e-6),0.776966)
+near(release_extent(.5+1e-6),0.798662)
+furnace:SetNWActive(true);advance(1)
+furnace:SetNWActive(false,true);flush();verify(2,"release",0.798662)
+local scales=entities[#entities].Transform.SetScale_count
+advance(1.3);verify(2,"release",0.798662)
+furnace.events.nw_furnacedirty();verify(2,"release",0.798662)
+assert(entities[#entities].Transform.SetScale_count==scales,"release must keep one fixed scale")
+furnace:SetNWActive(true);flush();verify(0,"grow",1)
+''')
+
+    def test_release_measurements_match_selected_source_pixels(self):
+        source = ROOT / "assets_src/disassembler_wave_perimeter_animation_20261114"
+        if not (source / "source_selection.json").exists():
+            self.skipTest("perimeter frame selection is awaiting art approval")
+        selection = json.loads((source / "source_selection.json").read_text(encoding="utf8"))
+        records = {row["frame"]: row for row in selection["frames"]}
+
+        def radius(name):
+            path = source / "frames" / name
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), records[name]["sha256"])
+            with Image.open(path) as image:
+                yy, xx = np.nonzero(np.array(image.getchannel("A")) >= 64)
+            result = float(np.hypot(xx - 256, yy - 256).max()) if len(xx) else 0
+            self.assertAlmostEqual(result, records[name]["radius_alpha64"], places=6)
+            return result
+
+        baseline = radius("release_000.png")
+        lua = runtime()
+        extents = lua.eval('require("nw/furnace_visual").release_visual_extents')
+        self.assertEqual(len(extents), 24)
+        for index in range(24):
+            measured = radius(f"grow_{index:03}.png") / baseline
+            self.assertAlmostEqual(extents[index + 1], measured, delta=.00000051)
+
     def lifecycle(self, dedicated):
         lua = runtime(dedicated=dedicated)
         lua.execute(r'''
@@ -124,7 +246,7 @@ advance(1);verify(2,"grow",1)
 local plays=not dedicated and entities[#entities].AnimState.PlayAnimation_count
 furnace:SetNWActive(true);flush();furnace.events.nw_furnacedirty()
 if not dedicated then assert(entities[#entities].AnimState.PlayAnimation_count==plays) end
-advance(2);verify(4,"loop",1);no_tasks()
+advance(2);verify(4,"loop",1);loop_tasks()
 assert(nets["nw_furnace.age"].writes<12,"age must not broadcast every frame")
 advance(5);furnace:SetNWActive(false,true);flush();verify(4,"release",1)
 advance(5.3);verify(4,"release",1);near(furnace.Light.SetIntensity_args[1],.325)
@@ -133,8 +255,10 @@ local count=#entities
 furnace.events.nw_furnacedirty();assert(#entities==count,"release respawned")
 -- Mid-growth cancellation keeps the current footprint throughout release.
 furnace:SetNWActive(true);advance(6.6);verify(2,"grow",1)
-furnace:SetNWActive(false,true);flush();verify(2,"release",.5)
-advance(6.9);verify(2,"release",.5)
+furnace:SetNWActive(false,true);flush();verify(2,"release",release_extent(.5))
+local scales=not dedicated and entities[#entities].Transform.SetScale_count
+advance(6.9);verify(2,"release",release_extent(.5))
+if not dedicated then assert(entities[#entities].Transform.SetScale_count==scales) end
 -- Restart while releasing must restore normal light and unscaled grow art.
 furnace:SetNWActive(true);flush();verify(0,"grow",1)
 near(furnace.Light.SetIntensity_args[1],.65)
@@ -159,14 +283,14 @@ verify(2.4,"grow",1)
 local plays=entities[#entities].AnimState.PlayAnimation_count
 advance(100.2);furnace.events.nw_furnacedirty();verify(2.8,"grow",1)
 assert(entities[#entities].AnimState.PlayAnimation_count==plays)
-advance(100.8);verify(4,"loop",1);no_tasks()
+advance(100.8);verify(4,"loop",1);loop_tasks()
 ''')
         # A complete grow snapshot starts directly in the flowing loop.
         server.execute("advance(3)")
         late = runtime(False)
         late.execute("now=700")
         replicate(server, late)
-        late.execute('verify(4,"loop",1);no_tasks();assert(entities[2].AnimState.PlayAnimation_count==1)')
+        late.execute('verify(4,"loop",1);loop_tasks();assert(entities[2].AnimState.PlayAnimation_count==1)')
 
     def test_connected_correction_and_coalesced_restart(self):
         server, client = runtime(), runtime(False)
@@ -190,7 +314,11 @@ advance(100.8);verify(4,"loop",1);no_tasks()
         client.execute("now=90")
         replicate(server, client)
         client.execute(r'''
-verify(2,"release",.5);near(furnace.Light.SetIntensity_args[1],.325)
+verify(2,"release",release_extent(.5));near(furnace.Light.SetIntensity_args[1],.325)
+angle(0);active_tasks(1)
+local scales=entities[#entities].Transform.SetScale_count
+furnace.events.nw_furnacedirty()
+assert(entities[#entities].Transform.SetScale_count==scales)
 advance(90.3);off()
 local count=#entities
 furnace.events.nw_furnacedirty();assert(#entities==count)
@@ -236,7 +364,7 @@ end
 recycle.start(station,player)
 if outcome=="cancel" then
     advance(1);recycle.stop(station)
-    verify(2,"release",.5);assert(not item.removed and outputs==0)
+    verify(2,"release",release_extent(.5));assert(not item.removed and outputs==0)
     assert(not item.marked and item._nw_claim==nil)
 else
     advance(outcome=="empty" and 2 or 5)

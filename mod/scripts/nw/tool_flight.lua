@@ -73,7 +73,6 @@ local function emit(pool,s,x,y,z,dx,dy,dz,born,now)
         fx:AddTag("FX");fx:AddTag("NOCLICK");fx.persists=false
         fx.AnimState:SetBank(BANK);fx.AnimState:SetBuild(BANK)
         fx.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
-        fx.AnimState:SetLightOverride(1)
         part={fx=fx};s.parts[index]=part;pool.count=pool.count+1
     end
     s.next=index%SHOT_PARTS+1

@@ -1,0 +1,54 @@
+资料站与当前Mod一致性核查
+日期：2026-11-14
+范围：site/dist本地预览与site/public待发布产物；未部署线上，未更改Mod版本或发布历史。
+
+已修复
+1. 重新导出全部188张中英文公开卡牌：名称、简述、详细说明、数值、稀有度、分类、标签、制作站与图标索引均对照当前Lua读取；阴郁回旋镖等旧名称已同步。
+2. 补齐27个配方材料名称映射，依据本地原版scripts.zip中的chinese_s.po按Prefab核对中英名称；修复齿轮英文误译Repair为Gears。
+3. 154条法术卡配方（151种成卡，含同卡材料变体）导出材料Prefab、名称、数量、产量、制作站和难度资格，并核验玩家实际看到的配方文字。
+4. 图鉴明确爽快/平衡可制作、平衡·掉落限定不可制作；保留配方供查阅及材料关联掉落说明。
+5. 每卡导出三种难度的实际法力/施放/充能数值。蓝耗降低详情直接显示爽快-30、平衡及掉落限定-20。
+6. 兜底概率从实际finish_card行为读取：爽快/平衡0.01%，掉落限定0.05%；说明最大生命严格大于200、本次无散卡无携卡法杖及掉率倍率条件。
+7. 网站图集由当前runtime PNG重新导出，修复过期图块；224个法术图块对照Mod XML索引及编译KTEX检查。
+8. 手册与法杖页同步难度、伤害递减、SAN/饥饿、核心提炼、分类开关、新旧杖回充与当前随机杖配方。
+9. 法杖属性表改为当前新生成法杖（含入门杖）的实际范围：槽2–12，法力80–1200，回复12–320/秒，施咒间歇0.20–1.40秒，回充0.10–2.60秒，偏斜0–12°；平衡规则另按基础回充分布乘1.5。旧M.bounds不再误作实际生成范围。
+10. 新增独立check_site_catalog.py，不依赖生成器构造期望；已接入check_localization.py，使既有发布前检查同时校验当前配方、模式数值/资格、来源文字与图集。
+
+验证结果
+- 779条Mod翻译、188张双语图鉴卡与游戏面板一致；154配方、3模式数值/资格/概率及可见来源文字一致。
+- 网站WebP与当前源PNG像素完全一致；224图块对编译KTEX按有损压缩容差检查。
+- 11项回归全部通过，包括只篡改来源文字、材料ID/数量、模式数值/资格、制作站、图标与概率的反例。
+- 103个本地资源/页面引用及中英文入口通过。
+- Chrome实浏览器核对自动/手动语言、持久化、深链、搜索、分类标签、详情、暗雾/缩小配方、难度数值与掉率说明；桌面/手机版面无横向溢出及JS异常。
+- site/dist与site/public的双语catalog、catalog.js、spells.webp哈希一致。
+- 本次未修改Mod玩法代码，未重复运行无关游戏回归；线上内容要在后续正式发布时更新。
+
+证据
+test_reports/2026-11-14-site-sync-summary.json汇总Mod内容指纹、产物哈希与报告路径。
+test_reports/2026-11-14-site-native-names.json记录原版材料名称来源。
+test_reports/2026-11-14-site-public-browser.txt及site_locale_en.png、site_locale_mobile.png记录浏览器验证。
+
+重建/检查
+.venv/Scripts/python.exe site/build_catalog.py
+.venv/Scripts/python.exe site/build_catalog.py --pages
+.venv/Scripts/python.exe tools/check_localization.py
+.venv/Scripts/python.exe tools/check_site_catalog.py --directory site/public
+.venv/Scripts/python.exe tools/check_site_links.py --directory site/public
+.venv/Scripts/python.exe -m unittest discover -s tests -p test_site_catalog.py -v
+node tools/check_site_browser.mjs
+--pages只构建本地待发布文件；外部发布仍由tools/release.py统一执行。
+
+2026-11-14 追加：图片配方与材料链接
+- 154条配方按独立材料格展示：原版库存图/Mod原图、右下角数量、下方名称；多种配方分行，手机端自动换行。
+- 130种卡配方材料全部有图；实际导出全169配方需要的136张图（132原版、4 Mod），保持原画布与透明，lossless WebP共364550字节。
+- 原版图提取自本机合法安装的DST库存图集，Mod图取runtime supplies PNG；没有复制Wiki图片，不依赖外站图片热链。
+- 中文材料指向灰机Wiki，英文主要Fandom、部分新物品wiki.gg。已有公开索引证据的文章/变体父页直链；未核实的候选标题使用Special:Search的Go入口，匹配存在时跳转，否则显示检索结果。未宣称外部链接全部HTTP可达。
+- Mod材料指向当前语言手册中空白卡、核心提炼章节，不构造外部Wiki词条。
+- 按用户后续截图要求，删除配方标题下的难度小字与材料后的Wiki/手册提示小字；双语同步。
+- check_materials已接入资料站与本地化检查，验证prefab图像绑定、哈希、RGBA/尺寸、Wiki映射和本地锚点；14项数据回归通过。
+- Chrome逐一渲染全部154配方与130种图标，中英文数量/名称/链接、无配方卡、多配方手机换行均通过。最终public构建浏览器报告：test_reports/2026-11-14-recipe-tiles-browser.txt。
+- 最终dist/public的catalog、脚本、样式和全部材料图字节一致。汇总及哈希：test_reports/2026-11-14-recipe-tiles-summary.json。
+- 图标重建：.venv/Scripts/python.exe tools/build_recipe_material_icons.py；通常site/build_catalog.py直接使用已保存图标和manifest，不要求本机游戏安装。
+- 本次仍只更新本地与待发布目录，未提升版本、提交或部署线上；已确认7条对外记录保持原样。
+
+2026-11-14 配方格紧凑调整：按用户要求将材料格可见水平间距缩小为4px，取消图标下名称，名称保留于悬浮提示与无障碍标签。中英文同步；散弹四种羽毛替代配方的实际Chrome截图为test_reports/site_recipe_scatter_zh.png。全配方、双语、手机布局浏览器检查通过，见test_reports/2026-11-14-recipe-compact-browser.txt；本地dist/public一致，未部署线上。

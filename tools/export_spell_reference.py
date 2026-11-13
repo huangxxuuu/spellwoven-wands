@@ -9,10 +9,11 @@ vm.globals().package.path=str(root/'mod/scripts/?.lua').replace('\\','/')+';'+vm
 cards=vm.eval('require("nw/cards")');info=vm.eval('require("nw/spell_info")');defs=vm.eval('require("nw/definitions").spells')
 version=re.search(r'^version\s*=\s*"([^"]+)"',(root/'mod/modinfo.lua').read_text(encoding='utf8'),re.MULTILINE).group(1)
 retired=vm.eval('require("nw/engraved_spells").retired')
+public_count=len(vm.eval('require("nw/card_rarity").pool'))
 lines=['# 法术说明与当前参数','',f'适用版本：{version}。此表由游戏使用的 definitions、spell_info 和 cards 模块导出；可通过 `tools/export_spell_reference.py` 更新。',
        '', '耗蓝、施法间隔修正和回充时间是分开的字段，参考 [Noita 法术页面](https://noita.wiki.gg/wiki/Spells)与[法术参数表](https://noita.wiki.gg/wiki/Spell_Information_Table)。这里的数值是本 Mod 已有平衡配置，并非声称逐项照搬 Noita 原值。',
        '', '“冷却修正 +0”表示该卡不额外增加施法间隔，不代表整根法杖没有冷却。实际施法还受杖的基础间隔、回充、同一施法块的其他卡和人物动作时间影响。',
-       '', '设计卡共 186 张。退役的武器刻印仅供旧档使用。旧载体 trigger_hit、trigger_timer 和固有微弱追踪保留兼容。开启开发者选项后可用 nw_spellkit() 领取全部设计卡。',
+       '', f'公开可玩法术卡共 {public_count} 张。退役的武器刻印仅供旧档使用。旧载体 trigger_hit、trigger_timer 和固有微弱追踪保留兼容。开启开发者选项后可用 nw_spellkit() 领取全部设计卡。',
        '', '| 法术（ID） | 法力 | 冷却修正（秒） | 回充修正（秒） | 效果 | 实战 |',
        '| --- | ---: | ---: | ---: | --- | --- |']
 for id in cards.order.values():

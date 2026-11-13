@@ -22,9 +22,12 @@ parser.add_argument("--wands",action="store_true",help="native crafted wand gene
 parser.add_argument("--journal",action="store_true",help="isolated player spell journal integration suite")
 parser.add_argument("--crafting",action="store_true",help="isolated native station recipe and class-filter integration suite")
 parser.add_argument("--dustbox",action="store_true",help="isolated native dust coffer stacking, transfer and save/load suite")
+parser.add_argument("--loot-only",action="store_true",help="isolated loot-only difficulty crafting and reward suite")
+parser.add_argument("--balance",action="store_true",help="isolated fresh balanced-world resource and damage suite")
+parser.add_argument("--dark-fog",action="store_true",help="isolated native creature control, fog trail and lifetime suite")
 args = parser.parse_args()
-if sum((args.dustbox,args.bounds,args.cleanup,args.pvp,args.scenes,args.bag_bonus,args.revision,args.wands,args.journal,args.crafting))>1:
-    parser.error("--bounds, --cleanup, --scenes, --bag-bonus and --pvp are separate suites")
+if sum((args.loot_only,args.balance,args.dark_fog,args.dustbox,args.bounds,args.cleanup,args.pvp,args.scenes,args.bag_bonus,args.revision,args.wands,args.journal,args.crafting))>1:
+    parser.error("Select only one smoke suite; --balance and the other suite flags use separate worlds")
 
 # LAN servers reject ports outside this engine-defined range and silently
 # fall back to 10999, which may belong to the user's running world.
@@ -42,7 +45,7 @@ def available_lan_port():
 
 lan_port=available_lan_port()
 print("Isolated LAN test port:",lan_port,flush=True)
-test_mod = "nw_weave_dustbox_test" if args.dustbox else "nw_weave_crafting_test" if args.crafting else "nw_weave_journal_test" if args.journal else "nw_weave_wands_test" if args.wands else "nw_weave_revision_test" if args.revision else "nw_weave_bag_bonus_test" if args.bag_bonus else "nw_weave_scenes_test" if args.scenes else "nw_weave_cleanup_test" if args.cleanup else "nw_weave_bounds_test" if args.bounds else "nw_weave_dev"
+test_mod = "nw_weave_loot_only_test" if args.loot_only else "nw_weave_balance_test" if args.balance else "nw_weave_dark_fog_test" if args.dark_fog else "nw_weave_dustbox_test" if args.dustbox else "nw_weave_crafting_test" if args.crafting else "nw_weave_journal_test" if args.journal else "nw_weave_wands_test" if args.wands else "nw_weave_revision_test" if args.revision else "nw_weave_bag_bonus_test" if args.bag_bonus else "nw_weave_scenes_test" if args.scenes else "nw_weave_cleanup_test" if args.cleanup else "nw_weave_bounds_test" if args.bounds else "nw_weave_dev"
 target = args.server / "mods" / test_mod
 marker = target / ".nw_workspace"
 if target.exists() and (not marker.exists() or marker.read_text() != str(ROOT)):
@@ -56,21 +59,21 @@ marker.write_text(str(ROOT))
 storage = ROOT / "test_worlds"
 version = (args.server / "version.txt").read_text().strip()
 mod_version=re.search(r'^version = "([^"]+)"',(ROOT/"mod/modinfo.lua").read_text("utf8"),re.M).group(1)
-conf_dir = "nw_smoke_" + version + "_" + mod_version + ("_dustbox" if args.dustbox else "_crafting" if args.crafting else "_journal" if args.journal else "_wands" if args.wands else "_revision" if args.revision else "_bag_bonus" if args.bag_bonus else "_scenes" if args.scenes else "_cleanup" if args.cleanup else "_bounds" if args.bounds else "_pvp" if args.pvp else "")
-if args.fresh:
+conf_dir = "nw_smoke_" + version + "_" + mod_version + ("_loot_only" if args.loot_only else "_balance" if args.balance else "_dark_fog" if args.dark_fog else "_dustbox" if args.dustbox else "_crafting" if args.crafting else "_journal" if args.journal else "_wands" if args.wands else "_revision" if args.revision else "_bag_bonus" if args.bag_bonus else "_scenes" if args.scenes else "_cleanup" if args.cleanup else "_bounds" if args.bounds else "_pvp" if args.pvp else "")
+if args.fresh or args.balance or args.loot_only:
     conf_dir += "_run_" + str(time.time_ns())
 cluster = storage / conf_dir / "Cluster_1"
 master = cluster / "Master"
 master.mkdir(parents=True, exist_ok=True)
 (cluster / "cluster.ini").write_text(f"[GAMEPLAY]\ngame_mode = survival\nmax_players = 2\npvp = {str(args.pvp).lower()}\npause_when_empty = false\n\n[NETWORK]\ncluster_name = NW Isolated Offline Smoke\nlan_only_cluster = true\noffline_cluster = true\n\n[SHARD]\nshard_enabled = false\n", encoding="utf-8")
 (master / "server.ini").write_text(f"[NETWORK]\nserver_port = {lan_port}\n\n[STEAM]\nmaster_server_port = 27997\nauthentication_port = 8797\n", encoding="utf-8")
-smoke_mode = '"dustbox"' if args.dustbox else '"crafting"' if args.crafting else '"journal"' if args.journal else '"wands"' if args.wands else '"revision"' if args.revision else '"bag_bonus"' if args.bag_bonus else '"scenes"' if args.scenes else '"cleanup"' if args.cleanup else '"bounds"' if args.bounds else 'true'
-smoke_options = ', permanent_motion_cleanup = true' if args.cleanup else ', boundary_cleanup = true' if args.bounds else ''
+smoke_mode = '"loot_only"' if args.loot_only else '"balance"' if args.balance else '"dark_fog"' if args.dark_fog else '"dustbox"' if args.dustbox else '"crafting"' if args.crafting else '"journal"' if args.journal else '"wands"' if args.wands else '"revision"' if args.revision else '"bag_bonus"' if args.bag_bonus else '"scenes"' if args.scenes else '"cleanup"' if args.cleanup else '"bounds"' if args.bounds else 'true'
+smoke_options = ', world_difficulty = "balanced_loot"' if args.loot_only else ', world_difficulty = "balanced"' if args.balance else ', permanent_motion_cleanup = true' if args.cleanup else ', boundary_cleanup = true' if args.bounds else ''
 (master / "modoverrides.lua").write_text('return { ["' + test_mod + '"] = { enabled = true, configuration_options = { development_smoke = ' + smoke_mode + smoke_options + ' } } }\n', encoding="utf-8")
-report = ROOT / "test_reports" / ("server_smoke_dustbox.log" if args.dustbox else "server_smoke_crafting.log" if args.crafting else "server_smoke_journal.log" if args.journal else "server_smoke_wands.log" if args.wands else "server_smoke_revision.log" if args.revision else "server_smoke_bag_bonus.log" if args.bag_bonus else "server_smoke_scenes.log" if args.scenes else "server_smoke_cleanup.log" if args.cleanup else "server_smoke_bounds.log" if args.bounds else "server_smoke_pvp.log" if args.pvp else "server_smoke.log")
+report = ROOT / "test_reports" / ("server_smoke_loot_only.log" if args.loot_only else "server_smoke_balance.log" if args.balance else "server_smoke_dark_fog.log" if args.dark_fog else "server_smoke_dustbox.log" if args.dustbox else "server_smoke_crafting.log" if args.crafting else "server_smoke_journal.log" if args.journal else "server_smoke_wands.log" if args.wands else "server_smoke_revision.log" if args.revision else "server_smoke_bag_bonus.log" if args.bag_bonus else "server_smoke_scenes.log" if args.scenes else "server_smoke_cleanup.log" if args.cleanup else "server_smoke_bounds.log" if args.bounds else "server_smoke_pvp.log" if args.pvp else "server_smoke.log")
 report.parent.mkdir(exist_ok=True)
 # The cooperative run covers the full suite; the second world verifies PvP specifically.
-pass_marker="NW_DUSTBOX_PASS:" if args.dustbox else "NW_CRAFTING_FILTER_PASS:" if args.crafting else "NW_JOURNAL_PASS:" if args.journal else "NW_WAND_GENERATION_PASS:" if args.wands else "NW_REVISION_PASS:" if args.revision else "NW_BAG_BONUS_PASS:" if args.bag_bonus else "NW_SCENES_PASS:" if args.scenes else "NW_CLEANUP_PASS:" if args.cleanup else "NW_BOUNDS_PASS:" if args.bounds else "NW_SCOPE_PASS:" if args.pvp else "NW_SMOKE_PASS:"
+pass_marker="NW_LOOT_ONLY_PASS:" if args.loot_only else "NW_BALANCE_PASS:" if args.balance else "NW_DARK_FOG_PASS:" if args.dark_fog else "NW_DUSTBOX_PASS:" if args.dustbox else "NW_CRAFTING_FILTER_PASS:" if args.crafting else "NW_JOURNAL_PASS:" if args.journal else "NW_WAND_GENERATION_PASS:" if args.wands else "NW_REVISION_PASS:" if args.revision else "NW_BAG_BONUS_PASS:" if args.bag_bonus else "NW_SCENES_PASS:" if args.scenes else "NW_CLEANUP_PASS:" if args.cleanup else "NW_BOUNDS_PASS:" if args.bounds else "NW_SCOPE_PASS:" if args.pvp else "NW_SMOKE_PASS:"
 command = [str(args.server / "bin64/dontstarve_dedicated_server_nullrenderer_x64.exe"),
            "-persistent_storage_root", str(storage), "-conf_dir", conf_dir, "-cluster", "Cluster_1",
            "-shard", "Master", "-offline", "-console"]

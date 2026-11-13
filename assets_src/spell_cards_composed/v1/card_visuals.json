@@ -750,5 +750,13 @@
   "kantele_b": {
     "primary_class": "basic",
     "mechanism_badge": null
+  },
+  "shrink_shot": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
+  },
+  "dark": {
+    "primary_class": "modifier",
+    "mechanism_badge": null
   }
 }

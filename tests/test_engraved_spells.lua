@@ -90,7 +90,13 @@ shield.Physics.Teleport=function(_,x,_,z) shield.x,shield.z=x,z end
 shield.Physics.SetMotorVel=function(_,v) shield.v=v end
 shield.Physics.Stop=function() shield.v=0 end
 shield.ListenForEvent=function() end
-local state={owner=owner,p={},remaining=5,time=0}
+local fog_steps=0
+package.loaded["nw/dark_fog"]={trail=function(inst,_,x,z,nx,nz)
+    assert(inst==shield and nx==shield.x and nz==shield.z)
+    assert((nx-x)^2+(nz-z)^2<1,"orbit fog follows small accepted steps")
+    fog_steps=fog_steps+1
+end}
+local state={owner=owner,p={flags={dark=true}},remaining=5,time=0}
 local orbit=require("nw/orbit_shield")
 orbit.add(shield,state)
 shield.Physics.Teleport=function() error("orbit must not teleport every frame") end
@@ -101,4 +107,6 @@ for i=1,90 do
     shield.z=shield.z-math.sin(shield.r)*shield.v*FRAMES
     assert(math.abs(math.sqrt((shield.x-ox)^2+(shield.z-oz)^2)-2)<1e-8)
 end
+assert(fog_steps==90,"special orbit flight also emits the dark trail")
+package.loaded["nw/dark_fog"]=nil
 print("engraved spells: retired sources, stable codes, directional boomerang, utility damage and seven ballistic throws")

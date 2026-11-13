@@ -61,7 +61,7 @@ function M.damage(owner,e,amount,flags,p)
     if not M.allowed(owner,e,flags) then return false end
     local health=e.components.health
     local before=health and health.currenthealth
-    e.components.combat:GetAttacked(owner,amount*require("nw/spell_effects").wet_mult(e,flags))
+    require("nw/balance_damage").attack(p,owner,e,amount*require("nw/spell_effects").wet_mult(e,flags))
     require("nw/journal_damage").loss(owner,p,health,before)
     return true
 end

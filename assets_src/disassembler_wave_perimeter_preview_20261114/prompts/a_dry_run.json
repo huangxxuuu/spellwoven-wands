@@ -1,0 +1,18 @@
+{
+  "dry_run": true,
+  "endpoint": "https://api.openai.com/v1/images/edits",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Use case: stylized-concept / precise-object-edit.\nAsset: a single static ground-range boundary FX source image for Don't Starve Together, NOT an animation sheet. Square 1024 x 1024 RGBA with genuinely transparent background and a completely transparent center.\n\nImage 1 is ONLY a muted icy cyan ink-and-paint material reference. Image 2 is ONLY a muted antique gold ink-and-paint material reference. Their huge thick blade silhouettes are the defect we are correcting: do NOT copy those silhouettes or their scale. Redesign them into much shorter, slimmer, gently curved tapered slivers.\n\nDraw one perfectly TOP-DOWN circular arrangement of EXACTLY 24 separate small hand-painted arc slivers, evenly distributed in a SINGLE narrow row along the circumference. Center (512,512), outer radius 462 pixels. Keep all artwork within radius 432 to 462 pixels. The enormous center inside radius 432 must be completely EMPTY transparent. No marks anywhere inside this hole. Each small arc follows the circle tangentially; all sweep in one consistent direction. Each individual arc is only 65 to 82 pixels long along the circumference, just 10 to 14 pixels thick at its widest, with an elongated tip at each end. There is a clear empty gap between every pair. No overlaps. No long arcs, no large crescents, no inward-curving tails, no crescents spanning a quadrant. This reads immediately as a narrow dashed OUTER BOUNDARY, with the entire interior open.\n\nRepeat the color sequence cyan, cyan, gold around the ring (16 muted icy cyan arcs and 8 muted antique gold arcs). Make subtle natural differences between the short slivers in curvature and pointed tips, without changing their tiny scale or narrow peripheral location. Each is a fine curved ink brush stroke with a small restrained painted center, NOT a leaf, feather, arrowhead, fish, thick boomerang or sword. No detached ornament or flying particle. No purple runes, diamonds, sparkle stars, secondary inner ring or continuous circle.\n\nUse Don't Starve Together's two-dimensional hand-inked world-asset style: clear miniature silhouettes, tapered subtly irregular charcoal outlines, quiet large color regions, one narrow pale highlight, a darker edge plane, very sparse brush texture. Outline about 2 pixels, lighter than a building outline. Avoid heavy black mass, broad bloom, glow halos, soft airbrushed light, photographic texture, grunge noise and vector-perfect uniform strokes. Keep colors from the references subdued; no pure white neon. True alpha transparency, including between every arc and across the whole center. No scenery, furnace, characters, items, floor, text, labels, border or baked shadow. This is a single source for a static size-comparison mockup; the furnace will be composited separately without redrawing it.\n",
+    "n": 1,
+    "size": "1024x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_preview_20261114\\references\\cyan_material.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_preview_20261114\\references\\gold_material.png"
+  ],
+  "mask": null
+}

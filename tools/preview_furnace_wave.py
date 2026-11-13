@@ -6,7 +6,8 @@ import math
 from pathlib import Path
 from zipfile import ZipFile
 
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
 
 from animation_atlas import validate_animation_archive
 from native_animation import NativeAnimation, read_animation, read_build, texture
@@ -15,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BANK = "nw_furnace_wave"
 ARCHIVE = ROOT / f"mod/anim/{BANK}.zip"
 FURNACE = ROOT / "assets_src/stations_redraw_v3_20261110/furnace/source.png"
-OUT = ROOT / "assets_src/disassembler_wave_v2_complete_20261110/previews"
+OUT = ROOT / "assets_src/disassembler_wave_perimeter_animation_20261114/previews/rotation"
 FPS = 30
 CLIP_LENGTHS = {"grow": 60, "loop": 60, "release": 18}
 PLAYBACK = (("grow", 60), ("loop", 90), ("release", 18), ("idle", 15))
@@ -24,9 +25,12 @@ KEY_TICKS = (15, 30, 45, 59, 60, 75, 105, 149, 150, 159, 167, 168)
 
 # Match the review camera in preview_basic_flight.py / preview_field_stages.py.
 PROJECTION = math.sin(math.radians(35))
-SCALE = 0.65
-SCENE_SIZE = (900, 480)
-ORIGIN = (450, 240)
+# Match the approved F static composition: 430px outer radius, 320px furnace
+# width, foot 9px below the ground origin. This is a proportion illustration.
+REFERENCE_RADIUS = 430
+FURNACE_WIDTH = 320
+SCENE_SIZE = (1000, 666)
+ORIGIN = (500, 348)
 GROUND = (77, 86, 74)
 MAT = (33, 39, 36)
 INK = (239, 240, 229)
@@ -54,6 +58,16 @@ class FurnaceWave(NativeAnimation):
         if self.build["name"] != BANK or len(self.clips) != len(expected) or clips != expected:
             raise ValueError(f"{path}: expected {BANK} with {expected}, found {clips}")
 
+    def symbol(self, key, frame=0):
+        # Fully transparent painted endpoints compile to a frame with no
+        # vertices. Preserve that real alpha rather than inventing a fade.
+        if isinstance(key, str):
+            key = next(k for k, name in self.build["names"].items() if name == key)
+        row = next(row for row in self.build["frames"][key] if row[0] <= frame < row[0] + row[1])
+        if row[7] == 0:
+            return Image.new("RGBA", (1, 1)), (0, 0)
+        return super().symbol(key, frame)
+
 
 def stamp(canvas, sprite, offset, scale_x, scale_y):
     width = max(1, round(sprite.width * scale_x))
@@ -64,26 +78,72 @@ def stamp(canvas, sprite, offset, scale_x, scale_y):
     canvas.alpha_composite(sprite, (left, top))
 
 
+def reference_scale(animation, target_radius=REFERENCE_RADIUS):
+    sprite, offset = animation.render_frame("loop", 0)
+    yy, xx = np.nonzero(np.asarray(sprite.getchannel("A")) >= 64)
+    if not len(xx):
+        raise ValueError("loop's reference pose must have alpha>=64 artwork")
+    radius = float(np.hypot(xx + offset[0], yy + offset[1]).max())
+    return target_radius / radius
+
+
+def reference_furnace(path=FURNACE, width=FURNACE_WIDTH):
+    with Image.open(path) as source:
+        furnace = source.convert("RGBA")
+    bounds = furnace.getchannel("A").getbbox()
+    if not bounds:
+        raise ValueError(f"{path}: empty furnace reference")
+    furnace = furnace.crop(bounds)
+    return furnace.resize((width, round(furnace.height * width / furnace.width)), Image.Resampling.LANCZOS)
+
+
+def load_rotation_angle():
+    from lupa.lua51 import LuaRuntime
+    lua = LuaRuntime(unpack_returned_tuples=True)
+    module = lua.execute((ROOT / "mod/scripts/nw/furnace_visual.lua").read_text(encoding="utf8"))
+    return module.rotation_angle
+
+
+def rotate_ground(sprite, offset, angle):
+    """Rotate decoded straight RGBA around animation (0, 0), before projection.
+
+    This is an offline screen-plane convention; client rotation direction still
+    requires in-game review of OnGround rendering.
+    """
+    cosine, sine = math.cos(math.radians(angle)), math.sin(math.radians(angle))
+    corners = [(cosine*x-sine*y, sine*x+cosine*y)
+               for x in (offset[0], offset[0]+sprite.width)
+               for y in (offset[1], offset[1]+sprite.height)]
+    left, top = math.floor(min(x for x, _ in corners)), math.floor(min(y for _, y in corners))
+    right, bottom = math.ceil(max(x for x, _ in corners)), math.ceil(max(y for _, y in corners))
+    transform = (cosine, sine, cosine*left+sine*top-offset[0],
+                 -sine, cosine, -sine*left+cosine*top-offset[1])
+    image = sprite.transform((max(1, right-left), max(1, bottom-top)), Image.Transform.AFFINE,
+                             transform, Image.Resampling.BICUBIC)
+    return image, (left, top)
+
+
 def banner(scene, caption, stage, font, small):
     image = Image.new("RGB", (SCENE_SIZE[0], SCENE_SIZE[1] + HEADER), MAT)
     image.paste(scene, (0, HEADER))
     draw = ImageDraw.Draw(image)
     draw.text((22, 10), caption, font=font, fill=INK)
-    draw.text((22, 46), "离线合成 · 展开 2 秒 / 循环 3 秒 / 碎散 0.6 秒 / 静止 0.5 秒",
+    draw.text((22, 46), "比例示意 · 外半径 430px / 炉宽 320px · 非游戏实拍 · 展开2秒 / 循环3秒 / 碎散0.6秒",
               font=small, fill=MUTED)
-    draw.text((878, 33), LABELS[stage], anchor="rm", font=font, fill=MUTED)
+    draw.text((SCENE_SIZE[0]-22, 33), LABELS[stage], anchor="rm", font=font, fill=MUTED)
     return image.quantize(colors=256)
 
 
 def contact_sheet(entries, font, small, path):
-    width, height = 360, 192
+    width = 360
+    height = round(width * SCENE_SIZE[1] / SCENE_SIZE[0])
     margin, gap, label_height = 18, 12, 28
     rows = (len(entries) + 2) // 3
     sheet = Image.new("RGB", (2 * margin + 3 * width + 2 * gap,
                              HEADER + rows * (height + label_height + gap) + margin), MAT)
     draw = ImageDraw.Draw(sheet)
-    draw.text((margin, 10), "分解炉圈 · 方案 2 · 关键时刻", font=font, fill=INK)
-    draw.text((margin, 46), "离线合成 · 圈为编译后动画帧，炉体用于观察比例", font=small, fill=MUTED)
+    draw.text((margin, 10), "分解炉圈 · 逐帧形变+整体旋转 · 关键时刻", font=font, fill=INK)
+    draw.text((margin, 46), "比例示意 · 外半径430px / 炉宽320px · 编译后动画帧 · 非游戏实拍", font=small, fill=MUTED)
     for index, (tick, stage, scene) in enumerate(entries):
         row, col = divmod(index, 3)
         x = margin + col * (width + gap)
@@ -109,11 +169,13 @@ def main():
     parser.add_argument("--out", type=Path, default=OUT)
     args = parser.parse_args()
     animation = FurnaceWave(args.archive)
+    scale = reference_scale(animation)
+    rotation_angle = load_rotation_angle()
+    active_ticks = sum(length for stage, length in PLAYBACK if stage in ("grow", "loop"))
     font = ImageFont.truetype(FONT_PATH, 24)
     small = ImageFont.truetype(FONT_PATH, 15)
-    with Image.open(FURNACE) as source:
-        furnace = ImageOps.contain(source.convert("RGBA"), (300, 320), Image.Resampling.LANCZOS)
-    furnace_offset = (-furnace.width / 2, -140 - furnace.height / 2)
+    furnace = reference_furnace()
+    furnace_offset = (-furnace.width / 2, 9 - furnace.height)
 
     paired, wave_only, key_frames = [], [], []
     tick = 0
@@ -123,10 +185,12 @@ def main():
             if stage != "idle":
                 # Render in animation space before projecting the ground plane.
                 sprite, offset = animation.render_frame(stage, index)
-                stamp(scene, sprite, offset, SCALE, SCALE * PROJECTION)
-            wave_only.append(banner(scene, "分解炉圈 · 方案 2", stage, font, small))
-            stamp(scene, furnace, furnace_offset, SCALE * 1.1, SCALE * 1.1)
-            paired.append(banner(scene, "分解炉圈 · 方案 2 / 炉体比例参考", stage, font, small))
+                age = min(tick, active_ticks) / FPS
+                sprite, offset = rotate_ground(sprite, offset, rotation_angle(age))
+                stamp(scene, sprite, offset, scale, scale * PROJECTION)
+            wave_only.append(banner(scene, "分解炉圈 · 逐帧形变+整体旋转", stage, font, small))
+            stamp(scene, furnace, furnace_offset, 1, 1)
+            paired.append(banner(scene, "分解炉圈 · 逐帧形变+整体旋转 / 炉体比例参考", stage, font, small))
             if tick in KEY_TICKS:
                 key_frames.append((tick, stage, scene.convert("RGB")))
             tick += 1

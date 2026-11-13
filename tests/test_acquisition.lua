@@ -21,8 +21,8 @@ for _, r in ipairs(rules.recipes) do
         assert(#r.ingredients==2 and r.ingredients[2][1]=="goldnugget" and r.count==4)
     end
 end
-local unique=0;for _ in pairs(writable) do unique=unique+1 end;assert(unique==149)
-assert(counts.nw_wand==4 and counts.nw_dust==3 and counts.nw_spellcard==152 and counts.nw_overlord_core==3)
+local unique=0;for _ in pairs(writable) do unique=unique+1 end;assert(unique==151)
+assert(counts.nw_wand==4 and counts.nw_dust==3 and counts.nw_spellcard==154 and counts.nw_overlord_core==3)
 local blank = rules.by_name.nw_blank
 local dust
 for _, ingredient in ipairs(blank.ingredients) do

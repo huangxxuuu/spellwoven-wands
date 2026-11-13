@@ -1,5 +1,5 @@
--- Extend only the annulus outside each native effect's original radius. The
--- original callback remains responsible for its inner disk and timing.
+-- Giants extend the annulus outside the native disk. Shrunk tornadoes use the
+-- same damage/work logic for their complete smaller disk at native timings.
 local M={}
 function M.bell(inst,attacker,scale)
     if scale<=1 or not attacker:IsValid() then return end
@@ -26,10 +26,10 @@ local works={CHOP=true,DIG=true,HAMMER=true,MINE=true}
 local tags={"_combat","CHOP_workable","DIG_workable","HAMMER_workable","MINE_workable"}
 function M.tornado(inst)
     local scale=inst._nw_giant
-    if not scale or scale<=1 then return end
+    if not scale or scale==1 then return end
     local x,y,z=inst.Transform:GetWorldPosition()
     for _,e in ipairs(TheSim:FindEntities(x,y,z,3*scale,nil,{"INLIMBO","tornado_immune"},tags)) do
-        if e~=inst.WINDSTAFF_CASTER and e:IsValid() and e:GetDistanceSqToPoint(x,y,z)>9 then
+        if e~=inst.WINDSTAFF_CASTER and e:IsValid() and (scale<1 or e:GetDistanceSqToPoint(x,y,z)>9) then
             local c,h,w=e.components.combat,e.components.health,e.components.workable
             if h and not h:IsDead() and c and c:CanBeAttacked()
                 and (TheNet:GetPVPEnabled() or not (inst.WINDSTAFF_CASTER_ISPLAYER and e:HasAnyTag("player","possessedbody"))) then
@@ -47,11 +47,23 @@ function M.tornado(inst)
     end
 end
 function M.install_tornado(sg)
-    local function extend(fn)
-        return function(inst,...) fn(inst,...);if inst:IsValid() then M.tornado(inst) end end
+    local function extend(fn,enter)
+        return function(inst,...)
+            if inst._nw_giant and inst._nw_giant<1 then
+                -- Native idle/walk entries combine motion, animation and a
+                -- fixed-radius attack. Preserve the first two; replace only
+                -- that attack. The selected timeline events are attacks only.
+                if enter then
+                    if enter=="idle" then inst.Physics:Stop()
+                    else inst.components.locomotor:WalkForward() end
+                    inst.AnimState:PushAnimation("tornado_loop",false)
+                end
+            else fn(inst,...) end
+            if inst:IsValid() then M.tornado(inst) end
+        end
     end
     for name,state in pairs(sg.states) do
-        if name=="idle" or name=="walk" then state.onenter=extend(state.onenter) end
+        if name=="idle" or name=="walk" then state.onenter=extend(state.onenter,name) end
         if name=="walk" or name=="run_start" or name=="run" or name=="run_stop" then
             for _,event in ipairs(state.timeline or {}) do event.fn=extend(event.fn) end
         end

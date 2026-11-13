@@ -38,8 +38,9 @@ function M.intercept(e,x,z,nx,nz,target)
         if ring:IsValid() and owner and owner:IsValid() and M.accepts(e,owner) then
             local ox,_,oz=owner.Transform:GetWorldPosition()
             local radius=ring._nw_guard_radius
-            if (not target or target==owner) and Geometry.hit(x,z,nx,nz,ox,oz,radius) then
-                return M.consume(ring,e)
+            local contact=(not target or target==owner) and Geometry.hit(x,z,nx,nz,ox,oz,radius)
+            if contact then
+                return M.consume(ring,e),contact
             end
         end
     end

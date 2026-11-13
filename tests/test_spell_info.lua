@@ -1,7 +1,7 @@
 local D=require("nw/definitions")
 local I=require("nw/spell_info")
 local Cards=require("nw/cards")
-assert(#Cards.order==222 and Cards.codes.spark==1 and Cards.codes.precision==10)
+assert(#Cards.order==224 and Cards.codes.spark==1 and Cards.codes.precision==10)
 local seen={}
 for _,id in ipairs(Cards.order) do
     local d=D.spells[id];assert(d and I.names[id] and I.short[id] and I.effects[id])

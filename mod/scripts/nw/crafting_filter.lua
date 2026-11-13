@@ -14,7 +14,9 @@ function M.class_options(station)
     local cards=require("nw/card_visuals").cards
     for _,row in ipairs(require("nw/acquisition").menu_entries) do
         local identity=row.card and cards[row.card]
-        if row.station==station and identity then present[identity.primary_class]=true end
+        if row.station==station and identity and require("nw/crafting").recipe_enabled(row) then
+            present[identity.primary_class]=true
+        end
     end
     local result={}
     for _,id in ipairs(class_order) do
@@ -24,6 +26,9 @@ function M.class_options(station)
 end
 
 function M.station(menu)
+    -- Follow the joined world's mode at use time, including a late client
+    -- state reply. Loot-only worlds use the native menu without our filters.
+    if require("nw/balance").is_loot_only() then return nil end
     -- Native text entry selects EVERYTHING. Its search cache can retain text
     -- after returning to a station, so use the selected page, not that cache.
     if not menu.crafting_hud:IsCraftingOpen() or menu.current_filter_name~="CRAFTING_STATION" then return nil end
@@ -63,7 +68,8 @@ function M.tags(station,choice)
     local tags=require("nw/card_tags")
     for _,row in ipairs(require("nw/acquisition").menu_entries) do
         local identity=row.card and cards[row.card]
-        if row.station==station and identity and (choice=="all" or identity.primary_class==choice) then
+        if row.station==station and identity and require("nw/crafting").recipe_enabled(row)
+            and (choice=="all" or identity.primary_class==choice) then
             for id in pairs(tags.for_card(row.card)) do present[id]=true end
         end
     end
@@ -276,7 +282,7 @@ function M.attach(menu,G)
 end
 
 function M.install(env,G)
-    if G.TheNet:IsDedicated() or env.GetModConfigData("crafting_class_filter",true)==false then return end
+    if G.TheNet:IsDedicated() or env.GetModConfigData("disable_crafting_filter",true)==true then return end
     env.AddClassPostConstruct("widgets/redux/craftingmenu_widget",function(menu) M.attach(menu,G) end)
     env.AddClassPostConstruct("widgets/redux/craftingmenu_hud",function(hud)
         local menu=hud.craftingmenu

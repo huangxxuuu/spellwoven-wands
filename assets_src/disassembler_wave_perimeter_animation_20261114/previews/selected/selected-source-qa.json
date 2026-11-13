@@ -1,0 +1,14 @@
+{
+  "candidate": "A",
+  "status": "Final source candidate A accepted by art; subsequently compiled and validated separately",
+  "frame_slots": 60,
+  "unique_nonempty_painted_poses": 54,
+  "empty_endpoints": 2,
+  "pixel_checks_passed": 60,
+  "source_geometry": "512RGBA at256,256; no transformation. Only explicit alpha-byte cutoff in grow1..20.",
+  "preview_processing": "QA tiles and raw GIF use512x512 source pixels at original coordinates; contact sheets separately may uniformly downsample for readability; no global rotation in source GIF.",
+  "source_sequence_timeline_ticks": 138,
+  "source_sequence_seconds": 4.6,
+  "archive_sha256_before_compilation": "17020749f4427bdb3aa772547ca8ae4095cb9183bff3c29b6f02bd5ba5156fb9",
+  "compiled_validation": "previews/selected/compiled-validation.json"
+}

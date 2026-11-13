@@ -91,6 +91,12 @@ for index,part in ipairs(bees.members) do
     near(part.x-bee.x,positions[index].x*2.5);near(part.z-bee.z,positions[index].z*2.5)
     near(part.fx.scale,2.5)
 end
+bee.size=.4
+TheWorld.tick(TheWorld)
+for index,part in ipairs(bees.members) do
+    near(part.x-bee.x,positions[index].x*.4);near(part.z-bee.z,positions[index].z*.4)
+    near(part.fx.scale,.4)
+end
 fly.y=0 -- A moving firefly field is on the ground, rather than parented at y=1.
 TheCamera.heading=90
 advance()

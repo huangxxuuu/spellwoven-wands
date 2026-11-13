@@ -1,0 +1,52 @@
+{
+  "bank": "nw_furnace_wave",
+  "geometry_size": 1201.4215895,
+  "texture_size": 384,
+  "source_loop0_radius_alpha64": 255.69708641280997,
+  "compiled_loop0_radius_alpha64": 600.966721208421,
+  "compiled_loop_radius_alpha64_min_max": [
+    592.8406193910805,
+    612.5895852852871
+  ],
+  "compiled_loop_radius_world_units_min_max": [
+    3.9522707959405365,
+    4.08393056856858
+  ],
+  "frame_slots": 60,
+  "unique_nonempty_painted_poses": 54,
+  "empty_endpoints": 2,
+  "atlas_count": 2,
+  "atlases": [
+    {
+      "name": "atlas-0.tex",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 5592560,
+      "sha256": "325feebc3708c7fbf35b3cbb43cb0d471efbfe0b9257c268688314fc1af7e640"
+    },
+    {
+      "name": "atlas-1.tex",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 5592560,
+      "sha256": "5370bf605947cc3c6e6e46a014592ddf44eba37c5da95f3312ddfa44910eba77"
+    }
+  ],
+  "archive_bytes": 1533971,
+  "archive_sha256": "44c0b6d14c68ec870cc6989ecba6d7beddb9dfa245d27579d52dc22b17c6f521",
+  "runtime_half_release_extent": 0.798662,
+  "tests": "18 passed; test_reports/2026-11-14-furnace-perimeter-tests.txt",
+  "remaining_validation": "Live client look and rotation direction, multiplayer join and controller not verified; offline preview and fixture tests only.",
+  "seam_note": "Candidate A accepted for delivery; local painted pose changes remain at mature settling seams; not claimed perfectly seamless",
+  "installation": {
+    "receipt": "test_reports/2026-11-14-furnace-perimeter-install.txt",
+    "version": "1.0.5",
+    "verified_files": 247,
+    "updated_files": 2,
+    "installed_archive_sha256": "44c0b6d14c68ec870cc6989ecba6d7beddb9dfa245d27579d52dc22b17c6f521"
+  }
+}

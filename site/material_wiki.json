@@ -1,0 +1,1586 @@
+{
+  "amulet": {
+    "zh": {
+      "title": "重生护符",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%87%8D%E7%94%9F%E6%8A%A4%E7%AC%A6",
+      "verified": false
+    },
+    "en": {
+      "title": "Life Giving Amulet",
+      "url": "https://dontstarve.fandom.com/wiki/Life_Giving_Amulet",
+      "verified": false
+    }
+  },
+  "armorsnurtleshell": {
+    "zh": {
+      "title": "蜗壳护甲",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%9C%97%E5%A3%B3%E6%8A%A4%E7%94%B2",
+      "verified": false
+    },
+    "en": {
+      "title": "Snurtle Shell Armor",
+      "url": "https://dontstarve.fandom.com/wiki/Snurtle_Shell_Armor",
+      "verified": false
+    }
+  },
+  "axe": {
+    "zh": {
+      "title": "斧头",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%96%A7%E5%A4%B4",
+      "verified": false
+    },
+    "en": {
+      "title": "Axe",
+      "url": "https://dontstarve.fandom.com/wiki/Axe",
+      "verified": false
+    }
+  },
+  "batbat": {
+    "zh": {
+      "title": "蝙蝠棒",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%9D%99%E8%9D%A0%E6%A3%92",
+      "verified": false
+    },
+    "en": {
+      "title": "Bat Bat",
+      "url": "https://dontstarve.fandom.com/wiki/Bat_Bat",
+      "verified": false
+    }
+  },
+  "batwing": {
+    "zh": {
+      "title": "洞穴蝙蝠翅膀",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%B4%9E%E7%A9%B4%E8%9D%99%E8%9D%A0%E7%BF%85%E8%86%80",
+      "verified": false
+    },
+    "en": {
+      "title": "Batilisk Wing",
+      "url": "https://dontstarve.fandom.com/wiki/Batilisk_Wing",
+      "verified": false
+    }
+  },
+  "bearger_fur": {
+    "zh": {
+      "title": "熊皮",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%86%8A%E7%9A%AE",
+      "verified": false
+    },
+    "en": {
+      "title": "Thick Fur",
+      "url": "https://dontstarve.fandom.com/wiki/Thick_Fur",
+      "verified": false
+    }
+  },
+  "beefalowool": {
+    "zh": {
+      "title": "牛毛",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%89%9B%E6%AF%9B",
+      "verified": false
+    },
+    "en": {
+      "title": "Beefalo Wool",
+      "url": "https://dontstarve.fandom.com/wiki/Beefalo_Wool",
+      "verified": false
+    }
+  },
+  "bird_egg": {
+    "zh": {
+      "title": "鸟蛋",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%B8%9F%E8%9B%8B",
+      "verified": false
+    },
+    "en": {
+      "title": "Egg",
+      "url": "https://dontstarve.fandom.com/wiki/Egg",
+      "verified": false
+    }
+  },
+  "bluegem": {
+    "zh": {
+      "title": "蓝宝石",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%93%9D%E5%AE%9D%E7%9F%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Blue Gem",
+      "url": "https://dontstarve.fandom.com/wiki/Blue_Gem",
+      "verified": false
+    }
+  },
+  "boards": {
+    "zh": {
+      "title": "木板",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%9C%A8%E6%9D%BF",
+      "verified": false
+    },
+    "en": {
+      "title": "Boards",
+      "url": "https://dontstarve.fandom.com/wiki/Boards",
+      "verified": false
+    }
+  },
+  "boomerang": {
+    "zh": {
+      "title": "回旋镖",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%9B%9E%E6%97%8B%E9%95%96",
+      "verified": false
+    },
+    "en": {
+      "title": "Boomerang",
+      "url": "https://dontstarve.fandom.com/wiki/Boomerang",
+      "verified": false
+    }
+  },
+  "bullkelp_root": {
+    "zh": {
+      "title": "公牛海带茎",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%85%AC%E7%89%9B%E6%B5%B7%E5%B8%A6%E8%8C%8E",
+      "verified": false
+    },
+    "en": {
+      "title": "Bull Kelp Stalk",
+      "url": "https://dontstarve.fandom.com/wiki/Bull_Kelp_Stalk",
+      "verified": false
+    }
+  },
+  "butterflywings": {
+    "zh": {
+      "title": "蝴蝶翅膀",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%9D%B4%E8%9D%B6%E7%BF%85%E8%86%80",
+      "verified": false
+    },
+    "en": {
+      "title": "Butterfly Wings",
+      "url": "https://dontstarve.fandom.com/wiki/Butterfly_Wings",
+      "verified": false
+    }
+  },
+  "cactus_meat": {
+    "zh": {
+      "title": "仙人掌肉",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E4%BB%99%E4%BA%BA%E6%8E%8C%E8%82%89",
+      "verified": false
+    },
+    "en": {
+      "title": "Cactus Flesh",
+      "url": "https://dontstarve.fandom.com/wiki/Cactus_Flesh",
+      "verified": false
+    }
+  },
+  "charcoal": {
+    "zh": {
+      "title": "木炭",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%9C%A8%E7%82%AD",
+      "verified": false
+    },
+    "en": {
+      "title": "Charcoal",
+      "url": "https://dontstarve.fandom.com/wiki/Charcoal",
+      "verified": false
+    }
+  },
+  "chum": {
+    "zh": {
+      "title": "鱼食",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%B1%BC%E9%A3%9F",
+      "verified": false
+    },
+    "en": {
+      "title": "Fish Food",
+      "url": "https://dontstarve.fandom.com/wiki/Fish_Food",
+      "verified": false
+    }
+  },
+  "cutreeds": {
+    "zh": {
+      "title": "采下的芦苇",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%87%87%E4%B8%8B%E7%9A%84%E8%8A%A6%E8%8B%87",
+      "verified": false
+    },
+    "en": {
+      "title": "Cut Reeds",
+      "url": "https://dontstarve.fandom.com/wiki/Cut_Reeds",
+      "verified": false
+    }
+  },
+  "deerclops_eyeball": {
+    "zh": {
+      "title": "独眼巨鹿眼球",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%8B%AC%E7%9C%BC%E5%B7%A8%E9%B9%BF%E7%9C%BC%E7%90%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Deerclops Eyeball",
+      "url": "https://dontstarve.fandom.com/wiki/Deerclops_Eyeball",
+      "verified": false
+    }
+  },
+  "dragon_scales": {
+    "zh": {
+      "title": "鳞片",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%B3%9E%E7%89%87",
+      "verified": false
+    },
+    "en": {
+      "title": "Scales",
+      "url": "https://dontstarve.fandom.com/wiki/Scales",
+      "verified": false
+    }
+  },
+  "dumbbell": {
+    "zh": {
+      "title": "哑铃",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%93%91%E9%93%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Dumbbells",
+      "url": "https://dontstarve.fandom.com/wiki/Dumbbells",
+      "verified": true
+    }
+  },
+  "dumbbell_bluegem": {
+    "zh": {
+      "title": "冰铃",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%86%B0%E9%93%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Dumbbells",
+      "url": "https://dontstarve.fandom.com/wiki/Dumbbells",
+      "verified": true
+    }
+  },
+  "dumbbell_gem": {
+    "zh": {
+      "title": "宝石哑铃",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%AE%9D%E7%9F%B3%E5%93%91%E9%93%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Dumbbells",
+      "url": "https://dontstarve.fandom.com/wiki/Dumbbells",
+      "verified": true
+    }
+  },
+  "dumbbell_golden": {
+    "zh": {
+      "title": "黄金哑铃",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%BB%84%E9%87%91%E5%93%91%E9%93%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Dumbbells",
+      "url": "https://dontstarve.fandom.com/wiki/Dumbbells",
+      "verified": true
+    }
+  },
+  "dumbbell_heat": {
+    "zh": {
+      "title": "热铃",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%83%AD%E9%93%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Dumbbells",
+      "url": "https://dontstarve.wiki.gg/wiki/Dumbbell",
+      "verified": true
+    }
+  },
+  "dumbbell_marble": {
+    "zh": {
+      "title": "大理石哑铃",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%A4%A7%E7%90%86%E7%9F%B3%E5%93%91%E9%93%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Dumbbells",
+      "url": "https://dontstarve.fandom.com/wiki/Dumbbells",
+      "verified": true
+    }
+  },
+  "dumbbell_redgem": {
+    "zh": {
+      "title": "火铃",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%81%AB%E9%93%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Dumbbells",
+      "url": "https://dontstarve.fandom.com/wiki/Dumbbells",
+      "verified": true
+    }
+  },
+  "farm_hoe": {
+    "zh": {
+      "title": "园艺锄",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%9B%AD%E8%89%BA%E9%94%84",
+      "verified": false
+    },
+    "en": {
+      "title": "Garden Hoe",
+      "url": "https://dontstarve.fandom.com/wiki/Garden_Hoe",
+      "verified": false
+    }
+  },
+  "feather_canary": {
+    "zh": {
+      "title": "黄色羽毛",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%BB%84%E8%89%B2%E7%BE%BD%E6%AF%9B",
+      "verified": false
+    },
+    "en": {
+      "title": "Feather",
+      "url": "https://dontstarve.fandom.com/wiki/Feather",
+      "verified": true
+    }
+  },
+  "feather_crow": {
+    "zh": {
+      "title": "黑色羽毛",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%BB%91%E8%89%B2%E7%BE%BD%E6%AF%9B",
+      "verified": false
+    },
+    "en": {
+      "title": "Feather",
+      "url": "https://dontstarve.fandom.com/wiki/Feather",
+      "verified": true
+    }
+  },
+  "feather_robin": {
+    "zh": {
+      "title": "红色羽毛",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%BA%A2%E8%89%B2%E7%BE%BD%E6%AF%9B",
+      "verified": false
+    },
+    "en": {
+      "title": "Feather",
+      "url": "https://dontstarve.fandom.com/wiki/Feather",
+      "verified": true
+    }
+  },
+  "feather_robin_winter": {
+    "zh": {
+      "title": "蓝色羽毛",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%93%9D%E8%89%B2%E7%BE%BD%E6%AF%9B",
+      "verified": false
+    },
+    "en": {
+      "title": "Feather",
+      "url": "https://dontstarve.fandom.com/wiki/Feather",
+      "verified": true
+    }
+  },
+  "fence_rotator": {
+    "zh": {
+      "title": "栅栏击剑",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%A0%85%E6%A0%8F%E5%87%BB%E5%89%91",
+      "verified": false
+    },
+    "en": {
+      "title": "Fencing Sword",
+      "url": "https://dontstarve.fandom.com/wiki/Fencing_Sword",
+      "verified": false
+    }
+  },
+  "firestaff": {
+    "zh": {
+      "title": "火魔杖",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%81%AB%E9%AD%94%E6%9D%96",
+      "verified": false
+    },
+    "en": {
+      "title": "Fire Staff",
+      "url": "https://dontstarve.fandom.com/wiki/Fire_Staff",
+      "verified": false
+    }
+  },
+  "fishingrod": {
+    "zh": {
+      "title": "淡水钓竿",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%B7%A1%E6%B0%B4%E9%92%93%E7%AB%BF",
+      "verified": false
+    },
+    "en": {
+      "title": "Fishing Rod",
+      "url": "https://dontstarve.fandom.com/wiki/Fishing_Rod",
+      "verified": true
+    }
+  },
+  "fishmeat": {
+    "zh": {
+      "title": "生鱼肉",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%94%9F%E9%B1%BC%E8%82%89",
+      "verified": false
+    },
+    "en": {
+      "title": "Raw Fish",
+      "url": "https://dontstarve.fandom.com/wiki/Raw_Fish",
+      "verified": false
+    }
+  },
+  "flint": {
+    "zh": {
+      "title": "燧石",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%87%A7%E7%9F%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Flint",
+      "url": "https://dontstarve.fandom.com/wiki/Flint",
+      "verified": false
+    }
+  },
+  "fumaroleaxe": {
+    "zh": {
+      "title": "热能工具",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%83%AD%E8%83%BD%E5%B7%A5%E5%85%B7",
+      "verified": true
+    },
+    "en": {
+      "title": "Ardent Axe",
+      "url": "https://dontstarve.wiki.gg/wiki/Ardent_Axe",
+      "verified": true
+    }
+  },
+  "fumarolehammer": {
+    "zh": {
+      "title": "热能工具",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%83%AD%E8%83%BD%E5%B7%A5%E5%85%B7",
+      "verified": true
+    },
+    "en": {
+      "title": "Hotheaded Hammer",
+      "url": "https://dontstarve.fandom.com/wiki/Hotheaded_Hammer",
+      "verified": false
+    }
+  },
+  "fumarolepickaxe": {
+    "zh": {
+      "title": "热能工具",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%83%AD%E8%83%BD%E5%B7%A5%E5%85%B7",
+      "verified": true
+    },
+    "en": {
+      "title": "Pyretic Pickaxe",
+      "url": "https://dontstarve.wiki.gg/wiki/Pyretic_Pickaxe",
+      "verified": true
+    }
+  },
+  "fumaroleshovel": {
+    "zh": {
+      "title": "热能工具",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%83%AD%E8%83%BD%E5%B7%A5%E5%85%B7",
+      "verified": true
+    },
+    "en": {
+      "title": "Searing Shovel",
+      "url": "https://dontstarve.fandom.com/wiki/Searing_Shovel",
+      "verified": false
+    }
+  },
+  "gears": {
+    "zh": {
+      "title": "齿轮",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%BD%BF%E8%BD%AE",
+      "verified": false
+    },
+    "en": {
+      "title": "Gears",
+      "url": "https://dontstarve.fandom.com/wiki/Gears",
+      "verified": false
+    }
+  },
+  "glasscutter": {
+    "zh": {
+      "title": "玻璃刀",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%8E%BB%E7%92%83%E5%88%80",
+      "verified": false
+    },
+    "en": {
+      "title": "Glass Cutter",
+      "url": "https://dontstarve.fandom.com/wiki/Glass_Cutter",
+      "verified": false
+    }
+  },
+  "gnarwail_horn": {
+    "zh": {
+      "title": "一角鲸的角",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E4%B8%80%E8%A7%92%E9%B2%B8%E7%9A%84%E8%A7%92",
+      "verified": false
+    },
+    "en": {
+      "title": "Gnarwail Horn",
+      "url": "https://dontstarve.fandom.com/wiki/Gnarwail_Horn",
+      "verified": false
+    }
+  },
+  "goldenaxe": {
+    "zh": {
+      "title": "黄金斧头",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%BB%84%E9%87%91%E6%96%A7%E5%A4%B4",
+      "verified": false
+    },
+    "en": {
+      "title": "Luxury Axe",
+      "url": "https://dontstarve.fandom.com/wiki/Luxury_Axe",
+      "verified": false
+    }
+  },
+  "goldenpickaxe": {
+    "zh": {
+      "title": "黄金鹤嘴锄",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%BB%84%E9%87%91%E9%B9%A4%E5%98%B4%E9%94%84",
+      "verified": false
+    },
+    "en": {
+      "title": "Opulent Pickaxe",
+      "url": "https://dontstarve.fandom.com/wiki/Opulent_Pickaxe",
+      "verified": false
+    }
+  },
+  "goldenshovel": {
+    "zh": {
+      "title": "黄金铲子",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%BB%84%E9%87%91%E9%93%B2%E5%AD%90",
+      "verified": false
+    },
+    "en": {
+      "title": "Regal Shovel",
+      "url": "https://dontstarve.fandom.com/wiki/Regal_Shovel",
+      "verified": false
+    }
+  },
+  "goldnugget": {
+    "zh": {
+      "title": "金块",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%87%91%E5%9D%97",
+      "verified": false
+    },
+    "en": {
+      "title": "Gold Nugget",
+      "url": "https://dontstarve.fandom.com/wiki/Gold_Nugget",
+      "verified": false
+    }
+  },
+  "goose_feather": {
+    "zh": {
+      "title": "麋鹿鹅羽毛",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%BA%8B%E9%B9%BF%E9%B9%85%E7%BE%BD%E6%AF%9B",
+      "verified": false
+    },
+    "en": {
+      "title": "Down Feather",
+      "url": "https://dontstarve.fandom.com/wiki/Down_Feather",
+      "verified": true
+    }
+  },
+  "greengem": {
+    "zh": {
+      "title": "绿宝石",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%BB%BF%E5%AE%9D%E7%9F%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Green Gem",
+      "url": "https://dontstarve.fandom.com/wiki/Green_Gem",
+      "verified": false
+    }
+  },
+  "gunpowder": {
+    "zh": {
+      "title": "火药",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%81%AB%E8%8D%AF",
+      "verified": false
+    },
+    "en": {
+      "title": "Gunpowder",
+      "url": "https://dontstarve.fandom.com/wiki/Gunpowder",
+      "verified": false
+    }
+  },
+  "hambat": {
+    "zh": {
+      "title": "火腿棒",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%81%AB%E8%85%BF%E6%A3%92",
+      "verified": false
+    },
+    "en": {
+      "title": "Ham Bat",
+      "url": "https://dontstarve.fandom.com/wiki/Ham_Bat",
+      "verified": false
+    }
+  },
+  "hammer": {
+    "zh": {
+      "title": "锤子",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%94%A4%E5%AD%90",
+      "verified": false
+    },
+    "en": {
+      "title": "Hammer",
+      "url": "https://dontstarve.fandom.com/wiki/Hammer",
+      "verified": false
+    }
+  },
+  "handpillow_beefalowool": {
+    "zh": {
+      "title": "皮弗娄牛毛枕头",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%9A%AE%E5%BC%97%E5%A8%84%E7%89%9B%E6%AF%9B%E6%9E%95%E5%A4%B4",
+      "verified": false
+    },
+    "en": {
+      "title": "Year of the Bunnyman",
+      "url": "https://dontstarve.fandom.com/wiki/Year_of_the_Bunnyman",
+      "verified": true
+    }
+  },
+  "handpillow_kelp": {
+    "zh": {
+      "title": "海带枕头",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%B5%B7%E5%B8%A6%E6%9E%95%E5%A4%B4",
+      "verified": false
+    },
+    "en": {
+      "title": "Year of the Bunnyman",
+      "url": "https://dontstarve.fandom.com/wiki/Year_of_the_Bunnyman",
+      "verified": true
+    }
+  },
+  "handpillow_petals": {
+    "zh": {
+      "title": "花朵枕头",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%8A%B1%E6%9C%B5%E6%9E%95%E5%A4%B4",
+      "verified": false
+    },
+    "en": {
+      "title": "Year of the Bunnyman",
+      "url": "https://dontstarve.fandom.com/wiki/Year_of_the_Bunnyman",
+      "verified": true
+    }
+  },
+  "handpillow_steelwool": {
+    "zh": {
+      "title": "钢丝绵枕头",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%92%A2%E4%B8%9D%E7%BB%B5%E6%9E%95%E5%A4%B4",
+      "verified": false
+    },
+    "en": {
+      "title": "Year of the Bunnyman",
+      "url": "https://dontstarve.fandom.com/wiki/Year_of_the_Bunnyman",
+      "verified": true
+    }
+  },
+  "houndstooth": {
+    "zh": {
+      "title": "犬牙",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%8A%AC%E7%89%99",
+      "verified": false
+    },
+    "en": {
+      "title": "Hound's Tooth",
+      "url": "https://dontstarve.fandom.com/wiki/Hound%27s_Tooth",
+      "verified": false
+    }
+  },
+  "ice": {
+    "zh": {
+      "title": "冰",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%86%B0",
+      "verified": false
+    },
+    "en": {
+      "title": "Ice",
+      "url": "https://dontstarve.fandom.com/wiki/Ice",
+      "verified": false
+    }
+  },
+  "icestaff": {
+    "zh": {
+      "title": "冰魔杖",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%86%B0%E9%AD%94%E6%9D%96",
+      "verified": false
+    },
+    "en": {
+      "title": "Ice Staff",
+      "url": "https://dontstarve.fandom.com/wiki/Ice_Staff",
+      "verified": false
+    }
+  },
+  "lightbulb": {
+    "zh": {
+      "title": "荧光果",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%8D%A7%E5%85%89%E6%9E%9C",
+      "verified": false
+    },
+    "en": {
+      "title": "Light Bulb",
+      "url": "https://dontstarve.fandom.com/wiki/Light_Bulb",
+      "verified": false
+    }
+  },
+  "lighter": {
+    "zh": {
+      "title": "薇洛的打火机",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%96%87%E6%B4%9B%E7%9A%84%E6%89%93%E7%81%AB%E6%9C%BA",
+      "verified": false
+    },
+    "en": {
+      "title": "Willow's Lighter",
+      "url": "https://dontstarve.fandom.com/wiki/Willow%27s_Lighter",
+      "verified": false
+    }
+  },
+  "lightninggoathorn": {
+    "zh": {
+      "title": "伏特羊角",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E4%BC%8F%E7%89%B9%E7%BE%8A%E8%A7%92",
+      "verified": false
+    },
+    "en": {
+      "title": "Volt Goat Horn",
+      "url": "https://dontstarve.fandom.com/wiki/Volt_Goat_Horn",
+      "verified": false
+    }
+  },
+  "livinglog": {
+    "zh": {
+      "title": "活木头",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%B4%BB%E6%9C%A8%E5%A4%B4",
+      "verified": false
+    },
+    "en": {
+      "title": "Living Log",
+      "url": "https://dontstarve.fandom.com/wiki/Living_Log",
+      "verified": false
+    }
+  },
+  "lunarplant_husk": {
+    "zh": {
+      "title": "亮茄外壳",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E4%BA%AE%E8%8C%84%E5%A4%96%E5%A3%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Brightshade Husk",
+      "url": "https://dontstarve.fandom.com/wiki/Brightshade_Husk",
+      "verified": false
+    }
+  },
+  "marble": {
+    "zh": {
+      "title": "大理石",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%A4%A7%E7%90%86%E7%9F%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Marble",
+      "url": "https://dontstarve.fandom.com/wiki/Marble",
+      "verified": false
+    }
+  },
+  "messagebottleempty": {
+    "zh": {
+      "title": "空瓶子",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%A9%BA%E7%93%B6%E5%AD%90",
+      "verified": false
+    },
+    "en": {
+      "title": "Empty Bottle",
+      "url": "https://dontstarve.fandom.com/wiki/Empty_Bottle",
+      "verified": false
+    }
+  },
+  "milkywhites": {
+    "zh": {
+      "title": "乳白物",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E4%B9%B3%E7%99%BD%E7%89%A9",
+      "verified": false
+    },
+    "en": {
+      "title": "Milky Whites",
+      "url": "https://dontstarve.fandom.com/wiki/Milky_Whites",
+      "verified": false
+    }
+  },
+  "minifan": {
+    "zh": {
+      "title": "旋转的风扇",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%97%8B%E8%BD%AC%E7%9A%84%E9%A3%8E%E6%89%87",
+      "verified": false
+    },
+    "en": {
+      "title": "Whirly Fan",
+      "url": "https://dontstarve.fandom.com/wiki/Whirly_Fan",
+      "verified": false
+    }
+  },
+  "minotaurhorn": {
+    "zh": {
+      "title": "守护者之角",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%AE%88%E6%8A%A4%E8%80%85%E4%B9%8B%E8%A7%92",
+      "verified": false
+    },
+    "en": {
+      "title": "Guardian's Horn",
+      "url": "https://dontstarve.fandom.com/wiki/Guardian%27s_Horn",
+      "verified": false
+    }
+  },
+  "moonglass": {
+    "zh": {
+      "title": "月亮碎片",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%9C%88%E4%BA%AE%E7%A2%8E%E7%89%87",
+      "verified": false
+    },
+    "en": {
+      "title": "Moon Shard",
+      "url": "https://dontstarve.fandom.com/wiki/Moon_Shard",
+      "verified": true
+    }
+  },
+  "moonglassaxe": {
+    "zh": {
+      "title": "月光玻璃斧",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%9C%88%E5%85%89%E7%8E%BB%E7%92%83%E6%96%A7",
+      "verified": false
+    },
+    "en": {
+      "title": "Moon Glass Axe",
+      "url": "https://dontstarve.fandom.com/wiki/Moon_Glass_Axe",
+      "verified": false
+    }
+  },
+  "moonrocknugget": {
+    "zh": {
+      "title": "月岩",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%9C%88%E5%B2%A9",
+      "verified": false
+    },
+    "en": {
+      "title": "Moon Rock",
+      "url": "https://dontstarve.fandom.com/wiki/Moon_Rock",
+      "verified": false
+    }
+  },
+  "mosquitosack": {
+    "zh": {
+      "title": "蚊子血囊",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%9A%8A%E5%AD%90%E8%A1%80%E5%9B%8A",
+      "verified": false
+    },
+    "en": {
+      "title": "Mosquito Sack",
+      "url": "https://dontstarve.fandom.com/wiki/Mosquito_Sack",
+      "verified": false
+    }
+  },
+  "multitool_axe_pickaxe": {
+    "zh": {
+      "title": "多用斧镐",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%A4%9A%E7%94%A8%E6%96%A7%E9%95%90",
+      "verified": false
+    },
+    "en": {
+      "title": "Pick/Axe",
+      "url": "https://dontstarve.fandom.com/wiki/Pick%2FAxe",
+      "verified": false
+    }
+  },
+  "nightmarefuel": {
+    "zh": {
+      "title": "噩梦燃料",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%99%A9%E6%A2%A6%E7%87%83%E6%96%99",
+      "verified": false
+    },
+    "en": {
+      "title": "Nightmare Fuel",
+      "url": "https://dontstarve.fandom.com/wiki/Nightmare_Fuel",
+      "verified": false
+    }
+  },
+  "nightstick": {
+    "zh": {
+      "title": "晨星锤",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%99%A8%E6%98%9F%E9%94%A4",
+      "verified": false
+    },
+    "en": {
+      "title": "Morning Star",
+      "url": "https://dontstarve.fandom.com/wiki/Morning_Star",
+      "verified": false
+    }
+  },
+  "nightsword": {
+    "zh": {
+      "title": "暗夜剑",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%9A%97%E5%A4%9C%E5%89%91",
+      "verified": false
+    },
+    "en": {
+      "title": "Dark Sword",
+      "url": "https://dontstarve.fandom.com/wiki/Dark_Sword",
+      "verified": false
+    }
+  },
+  "nitre": {
+    "zh": {
+      "title": "硝石",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%A1%9D%E7%9F%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Nitre",
+      "url": "https://dontstarve.fandom.com/wiki/Nitre",
+      "verified": false
+    }
+  },
+  "oceanfishinglure_spinner_red": {
+    "zh": {
+      "title": "日出旋转亮片",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%97%A5%E5%87%BA%E6%97%8B%E8%BD%AC%E4%BA%AE%E7%89%87",
+      "verified": false
+    },
+    "en": {
+      "title": "Sunrise Spinnerbait",
+      "url": "https://dontstarve.fandom.com/wiki/Sunrise_Spinnerbait",
+      "verified": false
+    }
+  },
+  "oceanfishingrod": {
+    "zh": {
+      "title": "海钓竿",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%B5%B7%E9%92%93%E7%AB%BF",
+      "verified": false
+    },
+    "en": {
+      "title": "Sea Fishing Rod",
+      "url": "https://dontstarve.fandom.com/wiki/Sea_Fishing_Rod",
+      "verified": false
+    }
+  },
+  "opalstaff": {
+    "zh": {
+      "title": "唤月者魔杖",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%94%A4%E6%9C%88%E8%80%85%E9%AD%94%E6%9D%96",
+      "verified": false
+    },
+    "en": {
+      "title": "Moon Caller's Staff",
+      "url": "https://dontstarve.fandom.com/wiki/Moon_Caller%27s_Staff",
+      "verified": false
+    }
+  },
+  "orangegem": {
+    "zh": {
+      "title": "橙宝石",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%A9%99%E5%AE%9D%E7%9F%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Orange Gem",
+      "url": "https://dontstarve.fandom.com/wiki/Orange_Gem",
+      "verified": false
+    }
+  },
+  "orangestaff": {
+    "zh": {
+      "title": "懒人魔杖",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%87%92%E4%BA%BA%E9%AD%94%E6%9D%96",
+      "verified": false
+    },
+    "en": {
+      "title": "The Lazy Explorer",
+      "url": "https://dontstarve.fandom.com/wiki/The_Lazy_Explorer",
+      "verified": false
+    }
+  },
+  "papyrus": {
+    "zh": {
+      "title": "莎草纸",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%8E%8E%E8%8D%89%E7%BA%B8",
+      "verified": false
+    },
+    "en": {
+      "title": "Papyrus",
+      "url": "https://dontstarve.fandom.com/wiki/Papyrus",
+      "verified": false
+    }
+  },
+  "pickaxe": {
+    "zh": {
+      "title": "鹤嘴锄",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%B9%A4%E5%98%B4%E9%94%84",
+      "verified": false
+    },
+    "en": {
+      "title": "Pickaxe",
+      "url": "https://dontstarve.fandom.com/wiki/Pickaxe",
+      "verified": false
+    }
+  },
+  "pickaxe_lunarplant": {
+    "zh": {
+      "title": "亮茄粉碎者",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E4%BA%AE%E8%8C%84%E7%B2%89%E7%A2%8E%E8%80%85",
+      "verified": false
+    },
+    "en": {
+      "title": "Brightshade Smasher",
+      "url": "https://dontstarve.fandom.com/wiki/Brightshade_Smasher",
+      "verified": false
+    }
+  },
+  "pocketwatch_parts": {
+    "zh": {
+      "title": "时间碎片",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%97%B6%E9%97%B4%E7%A2%8E%E7%89%87",
+      "verified": false
+    },
+    "en": {
+      "title": "Time Pieces",
+      "url": "https://dontstarve.fandom.com/wiki/Time_Pieces",
+      "verified": false
+    }
+  },
+  "pocketwatch_weapon": {
+    "zh": {
+      "title": "警钟",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%AD%A6%E9%92%9F",
+      "verified": false
+    },
+    "en": {
+      "title": "Alarming Clock",
+      "url": "https://dontstarve.fandom.com/wiki/Alarming_Clock",
+      "verified": false
+    }
+  },
+  "purplegem": {
+    "zh": {
+      "title": "紫宝石",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%B4%AB%E5%AE%9D%E7%9F%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Purple Gem",
+      "url": "https://dontstarve.fandom.com/wiki/Purple_Gem",
+      "verified": false
+    }
+  },
+  "redgem": {
+    "zh": {
+      "title": "红宝石",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%BA%A2%E5%AE%9D%E7%9F%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Red Gem",
+      "url": "https://dontstarve.fandom.com/wiki/Red_Gem",
+      "verified": false
+    }
+  },
+  "reviver": {
+    "zh": {
+      "title": "告密的心",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%91%8A%E5%AF%86%E7%9A%84%E5%BF%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Telltale Heart",
+      "url": "https://dontstarve.fandom.com/wiki/Telltale_Heart",
+      "verified": false
+    }
+  },
+  "rocks": {
+    "zh": {
+      "title": "石头",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%9F%B3%E5%A4%B4",
+      "verified": false
+    },
+    "en": {
+      "title": "Rocks",
+      "url": "https://dontstarve.fandom.com/wiki/Rocks",
+      "verified": false
+    }
+  },
+  "rope": {
+    "zh": {
+      "title": "绳子",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%BB%B3%E5%AD%90",
+      "verified": false
+    },
+    "en": {
+      "title": "Rope",
+      "url": "https://dontstarve.fandom.com/wiki/Rope",
+      "verified": false
+    }
+  },
+  "royal_jelly": {
+    "zh": {
+      "title": "蜂王浆",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%9C%82%E7%8E%8B%E6%B5%86",
+      "verified": false
+    },
+    "en": {
+      "title": "Royal Jelly",
+      "url": "https://dontstarve.fandom.com/wiki/Royal_Jelly",
+      "verified": false
+    }
+  },
+  "ruins_bat": {
+    "zh": {
+      "title": "铥矿棒",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%93%A5%E7%9F%BF%E6%A3%92",
+      "verified": false
+    },
+    "en": {
+      "title": "Thulecite Club",
+      "url": "https://dontstarve.fandom.com/wiki/Thulecite_Club",
+      "verified": false
+    }
+  },
+  "shadow_battleaxe": {
+    "zh": {
+      "title": "暗影槌",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%9A%97%E5%BD%B1%E6%A7%8C",
+      "verified": false
+    },
+    "en": {
+      "title": "Shadow Maul",
+      "url": "https://dontstarve.fandom.com/wiki/Shadow_Maul",
+      "verified": false
+    }
+  },
+  "shadowheart": {
+    "zh": {
+      "title": "暗影心房",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%9A%97%E5%BD%B1%E5%BF%83%E6%88%BF",
+      "verified": false
+    },
+    "en": {
+      "title": "Shadow Atrium",
+      "url": "https://dontstarve.fandom.com/wiki/Shadow_Atrium",
+      "verified": false
+    }
+  },
+  "shadowheart_infused": {
+    "zh": {
+      "title": "附身暗影心房",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%99%84%E8%BA%AB%E6%9A%97%E5%BD%B1%E5%BF%83%E6%88%BF",
+      "verified": false
+    },
+    "en": {
+      "title": "Possessed Shadow Atrium",
+      "url": "https://dontstarve.fandom.com/wiki/Possessed_Shadow_Atrium",
+      "verified": false
+    }
+  },
+  "shieldofterror": {
+    "zh": {
+      "title": "恐怖盾牌",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%81%90%E6%80%96%E7%9B%BE%E7%89%8C",
+      "verified": false
+    },
+    "en": {
+      "title": "Shield of Terror",
+      "url": "https://dontstarve.fandom.com/wiki/Shield_of_Terror",
+      "verified": false
+    }
+  },
+  "shovel": {
+    "zh": {
+      "title": "铲子",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%93%B2%E5%AD%90",
+      "verified": false
+    },
+    "en": {
+      "title": "Shovel",
+      "url": "https://dontstarve.fandom.com/wiki/Shovel",
+      "verified": false
+    }
+  },
+  "shovel_lunarplant": {
+    "zh": {
+      "title": "亮茄锄铲",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E4%BA%AE%E8%8C%84%E9%94%84%E9%93%B2",
+      "verified": false
+    },
+    "en": {
+      "title": "Brightshade Shoevel",
+      "url": "https://dontstarve.fandom.com/wiki/Brightshade_Shoevel",
+      "verified": false
+    }
+  },
+  "silk": {
+    "zh": {
+      "title": "蜘蛛丝",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%9C%98%E8%9B%9B%E4%B8%9D",
+      "verified": false
+    },
+    "en": {
+      "title": "Silk",
+      "url": "https://dontstarve.fandom.com/wiki/Silk",
+      "verified": false
+    }
+  },
+  "slurtle_shellpieces": {
+    "zh": {
+      "title": "外壳碎片",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%A4%96%E5%A3%B3%E7%A2%8E%E7%89%87",
+      "verified": false
+    },
+    "en": {
+      "title": "Broken Shell",
+      "url": "https://dontstarve.fandom.com/wiki/Broken_Shell",
+      "verified": false
+    }
+  },
+  "slurtleslime": {
+    "zh": {
+      "title": "蛞蝓龟黏液",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%9B%9E%E8%9D%93%E9%BE%9F%E9%BB%8F%E6%B6%B2",
+      "verified": false
+    },
+    "en": {
+      "title": "Slurtle Slime",
+      "url": "https://dontstarve.fandom.com/wiki/Slurtle_Slime",
+      "verified": false
+    }
+  },
+  "spear": {
+    "zh": {
+      "title": "长矛",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%95%BF%E7%9F%9B",
+      "verified": false
+    },
+    "en": {
+      "title": "Spear",
+      "url": "https://dontstarve.fandom.com/wiki/Spear",
+      "verified": false
+    }
+  },
+  "spear_wathgrithr": {
+    "zh": {
+      "title": "战斗长矛",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%88%98%E6%96%97%E9%95%BF%E7%9F%9B",
+      "verified": false
+    },
+    "en": {
+      "title": "Battle Spear",
+      "url": "https://dontstarve.fandom.com/wiki/Battle_Spear",
+      "verified": false
+    }
+  },
+  "spear_wathgrithr_lightning": {
+    "zh": {
+      "title": "奔雷矛",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%A5%94%E9%9B%B7%E7%9F%9B",
+      "verified": true
+    },
+    "en": {
+      "title": "Elding Spear",
+      "url": "https://dontstarve.fandom.com/wiki/Elding_Spear",
+      "verified": true
+    }
+  },
+  "spear_wathgrithr_lightning_charged": {
+    "zh": {
+      "title": "奔雷矛",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%A5%94%E9%9B%B7%E7%9F%9B",
+      "verified": true
+    },
+    "en": {
+      "title": "Elding Spear",
+      "url": "https://dontstarve.fandom.com/wiki/Elding_Spear",
+      "verified": true
+    }
+  },
+  "spidergland": {
+    "zh": {
+      "title": "蜘蛛腺",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%9C%98%E8%9B%9B%E8%85%BA",
+      "verified": false
+    },
+    "en": {
+      "title": "Spider Gland",
+      "url": "https://dontstarve.fandom.com/wiki/Spider_Gland",
+      "verified": false
+    }
+  },
+  "spore_small": {
+    "zh": {
+      "title": "孢子",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%AD%A2%E5%AD%90",
+      "verified": false
+    },
+    "en": {
+      "title": "Mushroom Spore",
+      "url": "https://dontstarve.fandom.com/wiki/Mushroom_Spore",
+      "verified": true
+    }
+  },
+  "staff_lunarplant": {
+    "zh": {
+      "title": "亮茄魔杖",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E4%BA%AE%E8%8C%84%E9%AD%94%E6%9D%96",
+      "verified": false
+    },
+    "en": {
+      "title": "Brightshade Staff",
+      "url": "https://dontstarve.fandom.com/wiki/Brightshade_Staff",
+      "verified": false
+    }
+  },
+  "staff_tornado": {
+    "zh": {
+      "title": "天气风向标",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%A4%A9%E6%B0%94%E9%A3%8E%E5%90%91%E6%A0%87",
+      "verified": false
+    },
+    "en": {
+      "title": "Weather Pain",
+      "url": "https://dontstarve.fandom.com/wiki/Weather_Pain",
+      "verified": false
+    }
+  },
+  "stinger": {
+    "zh": {
+      "title": "针刺",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%92%88%E5%88%BA",
+      "verified": false
+    },
+    "en": {
+      "title": "Stinger",
+      "url": "https://dontstarve.fandom.com/wiki/Stinger",
+      "verified": false
+    }
+  },
+  "sword_lunarplant": {
+    "zh": {
+      "title": "亮茄剑",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E4%BA%AE%E8%8C%84%E5%89%91",
+      "verified": false
+    },
+    "en": {
+      "title": "Brightshade Sword",
+      "url": "https://dontstarve.fandom.com/wiki/Brightshade_Sword",
+      "verified": false
+    }
+  },
+  "tentaclespike": {
+    "zh": {
+      "title": "触手尖刺",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%A7%A6%E6%89%8B%E5%B0%96%E5%88%BA",
+      "verified": false
+    },
+    "en": {
+      "title": "Tentacle Spike",
+      "url": "https://dontstarve.fandom.com/wiki/Tentacle_Spike",
+      "verified": false
+    }
+  },
+  "tentaclespots": {
+    "zh": {
+      "title": "触手皮",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%A7%A6%E6%89%8B%E7%9A%AE",
+      "verified": false
+    },
+    "en": {
+      "title": "Tentacle Spots",
+      "url": "https://dontstarve.fandom.com/wiki/Tentacle_Spots",
+      "verified": false
+    }
+  },
+  "thulecite": {
+    "zh": {
+      "title": "铥矿",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%93%A5%E7%9F%BF",
+      "verified": false
+    },
+    "en": {
+      "title": "Thulecite",
+      "url": "https://dontstarve.fandom.com/wiki/Thulecite",
+      "verified": false
+    }
+  },
+  "torch": {
+    "zh": {
+      "title": "火炬",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E7%81%AB%E7%82%AC",
+      "verified": false
+    },
+    "en": {
+      "title": "Torch",
+      "url": "https://dontstarve.fandom.com/wiki/Torch",
+      "verified": false
+    }
+  },
+  "townportaltalisman": {
+    "zh": {
+      "title": "沙之石",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%B2%99%E4%B9%8B%E7%9F%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Desert Stone",
+      "url": "https://dontstarve.fandom.com/wiki/Desert_Stone",
+      "verified": false
+    }
+  },
+  "trident": {
+    "zh": {
+      "title": "刺耳三叉戟",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%88%BA%E8%80%B3%E4%B8%89%E5%8F%89%E6%88%9F",
+      "verified": false
+    },
+    "en": {
+      "title": "Strident Trident",
+      "url": "https://dontstarve.fandom.com/wiki/Strident_Trident",
+      "verified": false
+    }
+  },
+  "trunk_summer": {
+    "zh": {
+      "title": "象鼻",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E8%B1%A1%E9%BC%BB",
+      "verified": false
+    },
+    "en": {
+      "title": "Koalefant Trunk",
+      "url": "https://dontstarve.fandom.com/wiki/Koalefant_Trunk",
+      "verified": false
+    }
+  },
+  "twigs": {
+    "zh": {
+      "title": "树枝",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%A0%91%E6%9E%9D",
+      "verified": false
+    },
+    "en": {
+      "title": "Twigs",
+      "url": "https://dontstarve.fandom.com/wiki/Twigs",
+      "verified": false
+    }
+  },
+  "voidcloth": {
+    "zh": {
+      "title": "暗影碎布",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%9A%97%E5%BD%B1%E7%A2%8E%E5%B8%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Dark Tatters",
+      "url": "https://dontstarve.fandom.com/wiki/Dark_Tatters",
+      "verified": false
+    }
+  },
+  "voidcloth_boomerang": {
+    "zh": {
+      "title": "阴郁回旋镖",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%98%B4%E9%83%81%E5%9B%9E%E6%97%8B%E9%95%96",
+      "verified": false
+    },
+    "en": {
+      "title": "Gloomerang",
+      "url": "https://dontstarve.fandom.com/wiki/Gloomerang",
+      "verified": false
+    }
+  },
+  "voidcloth_scythe": {
+    "zh": {
+      "title": "暗影收割者",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%9A%97%E5%BD%B1%E6%94%B6%E5%89%B2%E8%80%85",
+      "verified": false
+    },
+    "en": {
+      "title": "Shadow Reaper",
+      "url": "https://dontstarve.fandom.com/wiki/Shadow_Reaper",
+      "verified": false
+    }
+  },
+  "walrus_tusk": {
+    "zh": {
+      "title": "海象牙",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%B5%B7%E8%B1%A1%E7%89%99",
+      "verified": false
+    },
+    "en": {
+      "title": "Walrus Tusk",
+      "url": "https://dontstarve.fandom.com/wiki/Walrus_Tusk",
+      "verified": false
+    }
+  },
+  "waterballoon": {
+    "zh": {
+      "title": "水球",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E6%B0%B4%E7%90%83",
+      "verified": false
+    },
+    "en": {
+      "title": "Waterballoon",
+      "url": "https://dontstarve.fandom.com/wiki/Waterballoon",
+      "verified": false
+    }
+  },
+  "whip": {
+    "zh": {
+      "title": "三尾猫鞭",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E4%B8%89%E5%B0%BE%E7%8C%AB%E9%9E%AD",
+      "verified": false
+    },
+    "en": {
+      "title": "Tail o' Three Cats",
+      "url": "https://dontstarve.fandom.com/wiki/Tail_o%27_Three_Cats",
+      "verified": false
+    }
+  },
+  "wormlight": {
+    "zh": {
+      "title": "发光浆果",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%8F%91%E5%85%89%E6%B5%86%E6%9E%9C",
+      "verified": false
+    },
+    "en": {
+      "title": "Glow Berry",
+      "url": "https://dontstarve.fandom.com/wiki/Glow_Berry",
+      "verified": false
+    }
+  },
+  "yellowgem": {
+    "zh": {
+      "title": "黄宝石",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E9%BB%84%E5%AE%9D%E7%9F%B3",
+      "verified": false
+    },
+    "en": {
+      "title": "Yellow Gem",
+      "url": "https://dontstarve.fandom.com/wiki/Yellow_Gem",
+      "verified": false
+    }
+  },
+  "yellowstaff": {
+    "zh": {
+      "title": "唤星者魔杖",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%94%A4%E6%98%9F%E8%80%85%E9%AD%94%E6%9D%96",
+      "verified": false
+    },
+    "en": {
+      "title": "Star Caller's Staff",
+      "url": "https://dontstarve.fandom.com/wiki/Star_Caller%27s_Staff",
+      "verified": false
+    }
+  },
+  "yoth_lance": {
+    "zh": {
+      "title": "冲锋骑枪",
+      "url": "https://dontstarve.huijiwiki.com/wiki/%E5%86%B2%E9%94%8B%E9%AA%91%E6%9E%AA",
+      "verified": false
+    },
+    "en": {
+      "title": "Joust-a-Dash",
+      "url": "https://dontstarve.fandom.com/wiki/Joust-a-Dash",
+      "verified": false
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-11-13T16:57:08.282019+00:00",
+  "action": "edit",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Create PRODUCTION ANIMATION CELS for a Don't Starve Together arcane recycling furnace's ground wave, using the supplied reference only for the cyan/gold curved-strip design and ink painting style. This is NOT a concept variation sheet. Draw SIX consecutive cels of ONE action, arranged in an EXACT 3-column by 2-row grid on a 1536x1024 transparent canvas. Each cell is exactly 512x512; fixed center at local pixel (256,256). Read left to right, then next row. No text, numbers, divider lines, floor, furnace, background color, or checkerboard. True alpha transparency, including the central hole. Entire effect is flat, orthographic TOP DOWN, circular in the ground plane, not an elliptical perspective view. Keep the same world scale and camera in every cell.\n\nReference 1 is the selected original design sheet: retain cool desaturated cyan hook-shaped curved strips, three old-gold curved strips, a few small icy blue diamond shards and two dark purple hollow angular marks. Reference 2 is only the circular ground-plane shape/layout, ignore its gray background. Main identities: four cyan strips around 11, 3, 6, 8 o'clock and three gold strips around 1, 5, 9 o'clock. Loose and airy, big empty center. The whole ring must not be a solid disk. Use tapered dark ink outlines, few clear color planes and sparse painted highlights, no neon haze or 3D rendering.\n\nThese are grow frames 01 through 06 of a 24-frame, 2-second outward-flow animation. It starts as tiny separate short hooked strokes near the center. A clockwise spiral flow carries every individual stroke outward. Across these six cels the OUTERMOST radius, in the fixed 512px cell, is respectively 18, 25, 33, 42, 52, 63 pixels. Do not enlarge these small beginning poses to fill their cells. The transparent empty margins are intentional and essential to animation registration. The full-sized effect later has radius 220 pixels; no frame on this sheet reaches that size.\n\nWithin each individual strip, redraw the gesture each frame: the head unfolds outward first, the trailing tip follows with a slight lag; width grows more slowly than length; the tight hooked curve opens gradually; a small fork slowly grows at the tail; the pale painted highlight stretches and changes shape with the strip. The seven strips retain their color and circular order. From first to last cel their clockwise progression is only about 12 degrees, not a large spin. Diamonds start as tiny slivers and turn gradually. Maintain clear frame-to-frame correspondence and very small consecutive changes. Every cel is a NEW drawing, NOT the same pixels resized, translated or rotated. No random redesigns between cells. No complete fixed ring simply scaled bigger. Keep the delicate ink-drawn silhouette, with no heavy shading, cast shadow or glow.\n",
+    "n": 1,
+    "size": "1536x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_redesign_20261110\\originals\\20261110T125727Z_f4460713\\image-2.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_v2_complete_20261110\\restored_ground_plane.png"
+  ],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_keyframes_20261114\\originals\\grow_01.png"
+  ],
+  "usage": {
+    "input_tokens": 3602,
+    "input_tokens_details": {
+      "image_tokens": 2980,
+      "text_tokens": 622
+    },
+    "output_tokens": 1372,
+    "total_tokens": 4974,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_74696cd21dec4a6798e527574fbaff79",
+  "revised_prompts": [
+    null
+  ]
+}

@@ -96,10 +96,13 @@ local function wet(owner,x,z,scale,p)
     local native=staff.DoWaterExplosionEffect
     local hitplayers={}
     staff.DoWaterExplosionEffect=function(self,e,caster,position)
+        if scale<1 and e:GetDistanceSqToPoint(x,0,z)>(TUNING.TRIDENT.SPELL.RADIUS*scale)^2 then return end
         if e:HasTag("player") then
             if not hitplayers[e] and not e:HasTag("playerghost") and e.components.combat then
                 hitplayers[e]=true;e.components.combat:GetAttacked(caster,TUNING.TRIDENT.SPELL.DAMAGE,self)
             end
+        elseif e.components.health and not e.components.combat then
+            return require("nw/balance_damage").delta(p,e,-TUNING.TRIDENT.SPELL.DAMAGE,nil,self.prefab,nil,caster)
         else return native(self,e,caster,position) end
     end
     -- The native cast handles ocean targets itself. Extend its impact to dry land once.
@@ -108,6 +111,11 @@ local function wet(owner,x,z,scale,p)
             and (e:HasTag("player") or not e.components.health or require("nw/targeting").allowed(owner,e)) then
             staff:DoWaterExplosionEffect(e,owner,pos)
         end
+    end
+    if scale<1 then
+        staff.components.spellcaster:SetSpellFn(function(inst,_,position)
+            require("nw/native_size").trident(inst,owner,position,scale)
+        end)
     end
     staff.components.spellcaster:CastSpell(nil,pos,owner)
     staff.components.inventoryitem.owner=nil;staff:Remove()
@@ -166,7 +174,7 @@ function M.finish(s,x,z)
         local flight=bell.components.complexprojectile
         flight.attacker=s.owner
         require("nw/giant_native").bell(bell,s.owner,require("nw/projectile_size").factor(s.p))
-        flight.onhitfn(bell,s.owner,nil)
+        require("nw/native_size").call(flight.onhitfn,require("nw/projectile_size").factor(s.p),2,x,z,bell,s.owner,nil)
         -- Keep the native landing motion after the temporary gameplay item is
         -- deleted. This prefab has no inventory, physics or combat components.
         local landing=at("nw_tool_land_"..key,x,z)

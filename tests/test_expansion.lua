@@ -14,7 +14,7 @@ local function cast(ids)
     w.runtime=C.initial(w.cards,w.stats,9)
     return assert(C.compile(w))
 end
-assert(#entries==47 and #tiers.pool==186 and #Cards.order==222)
+assert(#entries==47 and #tiers.pool==188 and #Cards.order==224)
 local page={}
 for n=9,#Kit.pages do for _,id in ipairs(Kit.pages[n][2]) do page[id]=true end end
 for i,d in ipairs(entries) do

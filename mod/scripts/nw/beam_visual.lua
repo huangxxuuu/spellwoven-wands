@@ -18,8 +18,7 @@ local function new_piece(phase)
     fx:AddTag("FX");fx:AddTag("NOCLICK");fx.persists=false
     fx.AnimState:SetBank(BANK);fx.AnimState:SetBuild(BANK)
     fx.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-    fx.AnimState:SetLightOverride(1);fx.AnimState:SetFinalOffset(3)
-    fx.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+    fx.AnimState:SetFinalOffset(3)
     -- Keep the original animated core/glow texture; colour is runtime tint.
     fx.AnimState:SetMultColour(.72,.36,1,1)
     fx.AnimState:PlayAnimation(ANIMATION,true)

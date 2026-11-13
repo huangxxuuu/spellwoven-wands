@@ -1,0 +1,3616 @@
+{
+  "schemaVersion": 1,
+  "recipeCount": 169,
+  "materialCount": 136,
+  "source": "Locally installed Don't Starve Together inventory atlases and Mod runtime PNGs",
+  "materials": {
+    "amulet": {
+      "icon": "assets/materials/amulet.webp",
+      "iconSha256": "1bcd063ae310d745f424d81fc642129c2e12544532d34cfaf84102cc1b1ae301",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "amulet.tex",
+      "uv": {
+        "u1": 0.843994140625,
+        "v1": 0.906494140625,
+        "u2": 0.874755859375,
+        "v2": 0.937255859375
+      },
+      "crop": [
+        1728,
+        128,
+        1792,
+        192
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=amulet",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "armorsnurtleshell": {
+      "icon": "assets/materials/armorsnurtleshell.webp",
+      "iconSha256": "1660dd5fc79ab9beaa41b871878d76053503a730ace26c88159e8ec925954dda",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "armorsnurtleshell.tex",
+      "uv": {
+        "u1": 0.125244140625,
+        "v1": 0.843994140625,
+        "u2": 0.156005859375,
+        "v2": 0.874755859375
+      },
+      "crop": [
+        256,
+        256,
+        320,
+        320
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=armorsnurtleshell",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "axe": {
+      "icon": "assets/materials/axe.webp",
+      "iconSha256": "f63faf98116722b264d45c16f841b1fa205b44fa8f416fde0c8d4429a72f09a1",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "axe.tex",
+      "uv": {
+        "u1": 0.312744140625,
+        "v1": 0.781494140625,
+        "u2": 0.343505859375,
+        "v2": 0.812255859375
+      },
+      "crop": [
+        640,
+        384,
+        704,
+        448
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=axe",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "batbat": {
+      "icon": "assets/materials/batbat.webp",
+      "iconSha256": "9b1b59134c5ed99561f7c582f9dd9f113128aaf02f6855bb59002d63659ae883",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "batbat.tex",
+      "uv": {
+        "u1": 0.718994140625,
+        "v1": 0.718994140625,
+        "u2": 0.749755859375,
+        "v2": 0.749755859375
+      },
+      "crop": [
+        1472,
+        512,
+        1536,
+        576
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=batbat",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "batwing": {
+      "icon": "assets/materials/batwing.webp",
+      "iconSha256": "b00501bfec1306eb204ada6ca81245b2ea96e8e9df2123efcef8814bd2a9a180",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "batwing.tex",
+      "uv": {
+        "u1": 0.625244140625,
+        "v1": 0.687744140625,
+        "u2": 0.656005859375,
+        "v2": 0.718505859375
+      },
+      "crop": [
+        1280,
+        576,
+        1344,
+        640
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=batwing",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "bearger_fur": {
+      "icon": "assets/materials/bearger_fur.webp",
+      "iconSha256": "98fd90a1b2c1131bb717bf36c4dc03e016262ad76083e862100cabf7bdb85ded",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "bearger_fur.tex",
+      "uv": {
+        "u1": 0.187744140625,
+        "v1": 0.656494140625,
+        "u2": 0.218505859375,
+        "v2": 0.687255859375
+      },
+      "crop": [
+        384,
+        640,
+        448,
+        704
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=bearger_fur",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "beefalowool": {
+      "icon": "assets/materials/beefalowool.webp",
+      "iconSha256": "1cc64b0e16fbabaf3bdfbf463bcae7b462f92db7b8b6d42bd983c5aca83daa61",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "beefalowool.tex",
+      "uv": {
+        "u1": 0.125244140625,
+        "v1": 0.625244140625,
+        "u2": 0.156005859375,
+        "v2": 0.656005859375
+      },
+      "crop": [
+        256,
+        704,
+        320,
+        768
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=beefalowool",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "bird_egg": {
+      "icon": "assets/materials/bird_egg.webp",
+      "iconSha256": "5da930291027120a552598e7d720a94297013b08e16c0aba1653d722060fd9e0",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "bird_egg.tex",
+      "uv": {
+        "u1": 0.593994140625,
+        "v1": 0.593994140625,
+        "u2": 0.624755859375,
+        "v2": 0.624755859375
+      },
+      "crop": [
+        1216,
+        768,
+        1280,
+        832
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=bird_egg",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "bluegem": {
+      "icon": "assets/materials/bluegem.webp",
+      "iconSha256": "dceba2be7aacaa3b0ed66ac7c2dbd473edfd1a092692d9a212676d4352e6682d",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "bluegem.tex",
+      "uv": {
+        "u1": 0.968994140625,
+        "v1": 0.593994140625,
+        "u2": 0.999755859375,
+        "v2": 0.624755859375
+      },
+      "crop": [
+        1984,
+        768,
+        2048,
+        832
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=bluegem",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "boards": {
+      "icon": "assets/materials/boards.webp",
+      "iconSha256": "2e21767a73eaca14011f16dbc133557a8581a332b939b7c93959d1733228b3a8",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "boards.tex",
+      "uv": {
+        "u1": 0.281494140625,
+        "v1": 0.562744140625,
+        "u2": 0.312255859375,
+        "v2": 0.593505859375
+      },
+      "crop": [
+        576,
+        832,
+        640,
+        896
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=boards",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "boomerang": {
+      "icon": "assets/materials/boomerang.webp",
+      "iconSha256": "31a03f73a9dc731d38662ffd83f384f6d447281c7b8f4ce4034fde3f2e149d08",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "boomerang.tex",
+      "uv": {
+        "u1": 0.281494140625,
+        "v1": 0.500244140625,
+        "u2": 0.312255859375,
+        "v2": 0.531005859375
+      },
+      "crop": [
+        576,
+        960,
+        640,
+        1024
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=boomerang",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "bullkelp_root": {
+      "icon": "assets/materials/bullkelp_root.webp",
+      "iconSha256": "a9db2419a5d592084a63728cb806c640f38225dda8b313ec9ed7509d04a8dd41",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "bullkelp_root.tex",
+      "uv": {
+        "u1": 0.687744140625,
+        "v1": 0.500244140625,
+        "u2": 0.718505859375,
+        "v2": 0.531005859375
+      },
+      "crop": [
+        1408,
+        960,
+        1472,
+        1024
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=bullkelp_root",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "butterflywings": {
+      "icon": "assets/materials/butterflywings.webp",
+      "iconSha256": "66feff78ddc26d8ba89666780952bad9f468730145e50a70dd9ca84611028376",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "butterflywings.tex",
+      "uv": {
+        "u1": 0.875244140625,
+        "v1": 0.468994140625,
+        "u2": 0.906005859375,
+        "v2": 0.499755859375
+      },
+      "crop": [
+        1792,
+        1024,
+        1856,
+        1088
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=butterflywings",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "cactus_meat": {
+      "icon": "assets/materials/cactus_meat.webp",
+      "iconSha256": "fe330ba9b8d32fe0afb4034f17359df2dcf7fd4fbe73d189a8f359bdbfa9ecc6",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "cactus_meat.tex",
+      "uv": {
+        "u1": 0.968994140625,
+        "v1": 0.468994140625,
+        "u2": 0.999755859375,
+        "v2": 0.499755859375
+      },
+      "crop": [
+        1984,
+        1024,
+        2048,
+        1088
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=cactus_meat",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "charcoal": {
+      "icon": "assets/materials/charcoal.webp",
+      "iconSha256": "efbbbf1151fcdea4f6d5b9d7c6b4bccada9248e0d0c6c7d5322c6b9fa210097d",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "charcoal.tex",
+      "uv": {
+        "u1": 0.718994140625,
+        "v1": 0.343994140625,
+        "u2": 0.749755859375,
+        "v2": 0.374755859375
+      },
+      "crop": [
+        1472,
+        1280,
+        1536,
+        1344
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=charcoal",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "chum": {
+      "icon": "assets/materials/chum.webp",
+      "iconSha256": "04c5b859a416e756aae2d7a2d58e4237eae9e89cad9977ab05b3f294cb005da1",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "chum.tex",
+      "uv": {
+        "u1": 0.375244140625,
+        "v1": 0.125244140625,
+        "u2": 0.406005859375,
+        "v2": 0.156005859375
+      },
+      "crop": [
+        768,
+        1728,
+        832,
+        1792
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=chum",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "cutreeds": {
+      "icon": "assets/materials/cutreeds.webp",
+      "iconSha256": "30670f04930498889d8908971dc1265eeb8a6c4a76aa55c2aaed27f0db70b1f1",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "cutreeds.tex",
+      "uv": {
+        "u1": 0.500244140625,
+        "v1": 0.062744140625,
+        "u2": 0.531005859375,
+        "v2": 0.093505859375
+      },
+      "crop": [
+        1024,
+        1856,
+        1088,
+        1920
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=cutreeds",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "deerclops_eyeball": {
+      "icon": "assets/materials/deerclops_eyeball.webp",
+      "iconSha256": "fd81e35d44cc0c87a757e7a155a69dba300955af79e1d947e4c4f5431e0efbc1",
+      "source": "data/databundles/images.zip!images/inventoryimages1.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages1.xml",
+      "tex": "deerclops_eyeball.tex",
+      "uv": {
+        "u1": 0.843994140625,
+        "v1": 0.000244140625,
+        "u2": 0.874755859375,
+        "v2": 0.031005859375
+      },
+      "crop": [
+        1728,
+        1984,
+        1792,
+        2048
+      ],
+      "texture": "images/inventoryimages1.tex",
+      "sourceSha256": "a44c216cf690e89686bfee6c6adcb2e2669ed58b23f1a394ff43cdb8ab4659c3",
+      "atlasSha256": "8f19cf68ace719ece6ed35344ea76a94c13522e03ee203effb2e62fd909ed2f3",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=deerclops_eyeball",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "dragon_scales": {
+      "icon": "assets/materials/dragon_scales.webp",
+      "iconSha256": "10b1e86346bcccbca22654edd449f7f28e6df48d74da083a9761d49b61ec1b71",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "dragon_scales.tex",
+      "uv": {
+        "u1": 0.406494140625,
+        "v1": 0.937744140625,
+        "u2": 0.437255859375,
+        "v2": 0.968505859375
+      },
+      "crop": [
+        832,
+        64,
+        896,
+        128
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=dragon_scales",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "dumbbell": {
+      "icon": "assets/materials/dumbbell.webp",
+      "iconSha256": "f1b869c3c78e76e5fd1f4b5c01642d2d7e00e4e33608c3685b4dd63890f42c38",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "dumbbell.tex",
+      "uv": {
+        "u1": 0.406494140625,
+        "v1": 0.906494140625,
+        "u2": 0.437255859375,
+        "v2": 0.937255859375
+      },
+      "crop": [
+        832,
+        128,
+        896,
+        192
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=dumbbell",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "dumbbell_bluegem": {
+      "icon": "assets/materials/dumbbell_bluegem.webp",
+      "iconSha256": "84c60943db162212f035fbe6b04913afe012d7bc2f38e173935fc0ce0134eb52",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "dumbbell_bluegem.tex",
+      "uv": {
+        "u1": 0.437744140625,
+        "v1": 0.906494140625,
+        "u2": 0.468505859375,
+        "v2": 0.937255859375
+      },
+      "crop": [
+        896,
+        128,
+        960,
+        192
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=dumbbell_bluegem",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "dumbbell_gem": {
+      "icon": "assets/materials/dumbbell_gem.webp",
+      "iconSha256": "ad32ca67b2728e9b78d9d7a48e631e1579b7e4d1a09d22032e29711171d1b286",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "dumbbell_gem.tex",
+      "uv": {
+        "u1": 0.468994140625,
+        "v1": 0.906494140625,
+        "u2": 0.499755859375,
+        "v2": 0.937255859375
+      },
+      "crop": [
+        960,
+        128,
+        1024,
+        192
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=dumbbell_gem",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "dumbbell_golden": {
+      "icon": "assets/materials/dumbbell_golden.webp",
+      "iconSha256": "ab1f42b63a317a4133a2135675014f6fc8776d5ced89412b03ceec9da4c719e1",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "dumbbell_golden.tex",
+      "uv": {
+        "u1": 0.500244140625,
+        "v1": 0.906494140625,
+        "u2": 0.531005859375,
+        "v2": 0.937255859375
+      },
+      "crop": [
+        1024,
+        128,
+        1088,
+        192
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=dumbbell_golden",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "dumbbell_heat": {
+      "icon": "assets/materials/dumbbell_heat.webp",
+      "iconSha256": "4672a82b5353e3831c6f0c64b078f86e5e6b221ee9701453178094ded0e0033c",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "dumbbell_heat3.tex",
+      "uv": {
+        "u1": 0.625244140625,
+        "v1": 0.906494140625,
+        "u2": 0.656005859375,
+        "v2": 0.937255859375
+      },
+      "crop": [
+        1280,
+        128,
+        1344,
+        192
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "mod/scripts/nw/weapon_catalog.lua field 6",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "dumbbell_marble": {
+      "icon": "assets/materials/dumbbell_marble.webp",
+      "iconSha256": "4d4f61b513e478163643d45893999e2c305f3918f02d7b26e4a3cd3806bad861",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "dumbbell_marble.tex",
+      "uv": {
+        "u1": 0.718994140625,
+        "v1": 0.906494140625,
+        "u2": 0.749755859375,
+        "v2": 0.937255859375
+      },
+      "crop": [
+        1472,
+        128,
+        1536,
+        192
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=dumbbell_marble",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "dumbbell_redgem": {
+      "icon": "assets/materials/dumbbell_redgem.webp",
+      "iconSha256": "e0871004a972befd841451dc655877e40d903144bd97f2e80f1955ddcc3a8d8a",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "dumbbell_redgem.tex",
+      "uv": {
+        "u1": 0.750244140625,
+        "v1": 0.906494140625,
+        "u2": 0.781005859375,
+        "v2": 0.937255859375
+      },
+      "crop": [
+        1536,
+        128,
+        1600,
+        192
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=dumbbell_redgem",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "farm_hoe": {
+      "icon": "assets/materials/farm_hoe.webp",
+      "iconSha256": "79e93548162c93925d373e26b85e5ffd8f1438d199ced9d8cafa2863c004297e",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "farm_hoe.tex",
+      "uv": {
+        "u1": 0.093994140625,
+        "v1": 0.843994140625,
+        "u2": 0.124755859375,
+        "v2": 0.874755859375
+      },
+      "crop": [
+        192,
+        256,
+        256,
+        320
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=farm_hoe",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "feather_canary": {
+      "icon": "assets/materials/feather_canary.webp",
+      "iconSha256": "6d8d5b0f139da34104298cc1b358c336b9d7696e729f02fd031de9f24cb61e15",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "feather_canary.tex",
+      "uv": {
+        "u1": 0.468994140625,
+        "v1": 0.843994140625,
+        "u2": 0.499755859375,
+        "v2": 0.874755859375
+      },
+      "crop": [
+        960,
+        256,
+        1024,
+        320
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=feather_canary",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "feather_crow": {
+      "icon": "assets/materials/feather_crow.webp",
+      "iconSha256": "67719305ffc7545de0fcc821086e57fa45f82ead12c774415680bce82c8c0c04",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "feather_crow.tex",
+      "uv": {
+        "u1": 0.500244140625,
+        "v1": 0.843994140625,
+        "u2": 0.531005859375,
+        "v2": 0.874755859375
+      },
+      "crop": [
+        1024,
+        256,
+        1088,
+        320
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=feather_crow",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "feather_robin": {
+      "icon": "assets/materials/feather_robin.webp",
+      "iconSha256": "8731a5039683d3de80a646d43eeb6ea13a24c17857498c381dc85700e1da2792",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "feather_robin.tex",
+      "uv": {
+        "u1": 0.531494140625,
+        "v1": 0.843994140625,
+        "u2": 0.562255859375,
+        "v2": 0.874755859375
+      },
+      "crop": [
+        1088,
+        256,
+        1152,
+        320
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=feather_robin",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "feather_robin_winter": {
+      "icon": "assets/materials/feather_robin_winter.webp",
+      "iconSha256": "28e0140a51671f68d9166464a22fc184ef119b07e24cd50dbd8d9349c430c44a",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "feather_robin_winter.tex",
+      "uv": {
+        "u1": 0.562744140625,
+        "v1": 0.843994140625,
+        "u2": 0.593505859375,
+        "v2": 0.874755859375
+      },
+      "crop": [
+        1152,
+        256,
+        1216,
+        320
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=feather_robin_winter",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "fence_rotator": {
+      "icon": "assets/materials/fence_rotator.webp",
+      "iconSha256": "4528f94dc550224413db762fc8dedb9ddad815158ffbadf18b8ad9ec094df32c",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "fence_rotator.tex",
+      "uv": {
+        "u1": 0.375244140625,
+        "v1": 0.812744140625,
+        "u2": 0.406005859375,
+        "v2": 0.843505859375
+      },
+      "crop": [
+        768,
+        320,
+        832,
+        384
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=fence_rotator",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "firestaff": {
+      "icon": "assets/materials/firestaff.webp",
+      "iconSha256": "556ff3e426c20b3abccce4c5a86df170f0944f0d30d22baf89f3362ec95fd91b",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "firestaff.tex",
+      "uv": {
+        "u1": 0.281494140625,
+        "v1": 0.781494140625,
+        "u2": 0.312255859375,
+        "v2": 0.812255859375
+      },
+      "crop": [
+        576,
+        384,
+        640,
+        448
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=firestaff",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "fishingrod": {
+      "icon": "assets/materials/fishingrod.webp",
+      "iconSha256": "86e2db7f92418c97702bc904e58cd2af2ec571c80399f2a68c5296d1cb65a56e",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "fishingrod.tex",
+      "uv": {
+        "u1": 0.875244140625,
+        "v1": 0.781494140625,
+        "u2": 0.906005859375,
+        "v2": 0.812255859375
+      },
+      "crop": [
+        1792,
+        384,
+        1856,
+        448
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=fishingrod",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "fishmeat": {
+      "icon": "assets/materials/fishmeat.webp",
+      "iconSha256": "9ddfa1abadc11192c451e3a1dbe8acf7944ea3aa66a3d7818a3c5d7151ba0537",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "fishmeat.tex",
+      "uv": {
+        "u1": 0.000244140625,
+        "v1": 0.750244140625,
+        "u2": 0.031005859375,
+        "v2": 0.781005859375
+      },
+      "crop": [
+        0,
+        448,
+        64,
+        512
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=fishmeat",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "flint": {
+      "icon": "assets/materials/flint.webp",
+      "iconSha256": "e4d058a3e6e3c34fc2fcef8ef1725d1022f8b0a406dd565b6441753aef9496f2",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "flint.tex",
+      "uv": {
+        "u1": 0.312744140625,
+        "v1": 0.750244140625,
+        "u2": 0.343505859375,
+        "v2": 0.781005859375
+      },
+      "crop": [
+        640,
+        448,
+        704,
+        512
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=flint",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "fumaroleaxe": {
+      "icon": "assets/materials/fumaroleaxe.webp",
+      "iconSha256": "af41f2bd2cb33b519b09b6c17b5720bf833d052dd42331f4eabe8f3e1b53c05e",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "fumaroleaxe.tex",
+      "uv": {
+        "u1": 0.343994140625,
+        "v1": 0.718994140625,
+        "u2": 0.374755859375,
+        "v2": 0.749755859375
+      },
+      "crop": [
+        704,
+        512,
+        768,
+        576
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=fumaroleaxe",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "fumarolehammer": {
+      "icon": "assets/materials/fumarolehammer.webp",
+      "iconSha256": "fe3bcab8c5f5be4c353ae7112847686a4f1e0d46c369b9111dd08c5d383ad00e",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "fumarolehammer.tex",
+      "uv": {
+        "u1": 0.468994140625,
+        "v1": 0.718994140625,
+        "u2": 0.499755859375,
+        "v2": 0.749755859375
+      },
+      "crop": [
+        960,
+        512,
+        1024,
+        576
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=fumarolehammer",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "fumarolepickaxe": {
+      "icon": "assets/materials/fumarolepickaxe.webp",
+      "iconSha256": "9c9fa97cf9dc088e532fc68c3d1416388ac18dde3833aadfaedb6081698f0b30",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "fumarolepickaxe.tex",
+      "uv": {
+        "u1": 0.593994140625,
+        "v1": 0.718994140625,
+        "u2": 0.624755859375,
+        "v2": 0.749755859375
+      },
+      "crop": [
+        1216,
+        512,
+        1280,
+        576
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=fumarolepickaxe",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "fumaroleshovel": {
+      "icon": "assets/materials/fumaroleshovel.webp",
+      "iconSha256": "fd59db90f5fae90254f84aeb054a9e50ee1a3a2d98b5a35ed7cd91d366d2b4cf",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "fumaroleshovel.tex",
+      "uv": {
+        "u1": 0.718994140625,
+        "v1": 0.718994140625,
+        "u2": 0.749755859375,
+        "v2": 0.749755859375
+      },
+      "crop": [
+        1472,
+        512,
+        1536,
+        576
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=fumaroleshovel",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "gears": {
+      "icon": "assets/materials/gears.webp",
+      "iconSha256": "a15e80c9974c9aa6056d1b860aa3208ccb0634d047a6de42505eb0d29c6a5d99",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "gears.tex",
+      "uv": {
+        "u1": 0.218994140625,
+        "v1": 0.687744140625,
+        "u2": 0.249755859375,
+        "v2": 0.718505859375
+      },
+      "crop": [
+        448,
+        576,
+        512,
+        640
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=gears",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "glasscutter": {
+      "icon": "assets/materials/glasscutter.webp",
+      "iconSha256": "547de7fe2bfcce7f09533ccf1be89c02b3cbe6c2868148cc9bb903a80408a054",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "glasscutter.tex",
+      "uv": {
+        "u1": 0.093994140625,
+        "v1": 0.656494140625,
+        "u2": 0.124755859375,
+        "v2": 0.687255859375
+      },
+      "crop": [
+        192,
+        640,
+        256,
+        704
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=glasscutter",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "gnarwail_horn": {
+      "icon": "assets/materials/gnarwail_horn.webp",
+      "iconSha256": "327e9de2c0fa17d203a7f41ad24756c15ebb675b90522ac7f61ceb52d135715a",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "gnarwail_horn.tex",
+      "uv": {
+        "u1": 0.562744140625,
+        "v1": 0.656494140625,
+        "u2": 0.593505859375,
+        "v2": 0.687255859375
+      },
+      "crop": [
+        1152,
+        640,
+        1216,
+        704
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=gnarwail_horn",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "goldenaxe": {
+      "icon": "assets/materials/goldenaxe.webp",
+      "iconSha256": "b53379a0c3e623df49557f25818af7d0c3cf8778f3b7d942de1d8326259f6896",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "goldenaxe.tex",
+      "uv": {
+        "u1": 0.687744140625,
+        "v1": 0.656494140625,
+        "u2": 0.718505859375,
+        "v2": 0.687255859375
+      },
+      "crop": [
+        1408,
+        640,
+        1472,
+        704
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=goldenaxe",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "goldenpickaxe": {
+      "icon": "assets/materials/goldenpickaxe.webp",
+      "iconSha256": "63cee82c0a60d39adb898549c93c1cf750714ff4473fb5ab33cd12123299190d",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "goldenpickaxe.tex",
+      "uv": {
+        "u1": 0.781494140625,
+        "v1": 0.656494140625,
+        "u2": 0.812255859375,
+        "v2": 0.687255859375
+      },
+      "crop": [
+        1600,
+        640,
+        1664,
+        704
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=goldenpickaxe",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "goldenshovel": {
+      "icon": "assets/materials/goldenshovel.webp",
+      "iconSha256": "103bcaae4bcec61ba98cf8f68d0e5eb8b4dd5865c6548b128ee9ac159be462ff",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "goldenshovel.tex",
+      "uv": {
+        "u1": 0.937744140625,
+        "v1": 0.656494140625,
+        "u2": 0.968505859375,
+        "v2": 0.687255859375
+      },
+      "crop": [
+        1920,
+        640,
+        1984,
+        704
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=goldenshovel",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "goldnugget": {
+      "icon": "assets/materials/goldnugget.webp",
+      "iconSha256": "18808f7fbc91d638fa6f90ca89a858142bdc9355a993c3b29c499ab52d70fdf6",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "goldnugget.tex",
+      "uv": {
+        "u1": 0.125244140625,
+        "v1": 0.625244140625,
+        "u2": 0.156005859375,
+        "v2": 0.656005859375
+      },
+      "crop": [
+        256,
+        704,
+        320,
+        768
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=goldnugget",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "goose_feather": {
+      "icon": "assets/materials/goose_feather.webp",
+      "iconSha256": "e8d06e0c8315b9f02e353d7b7d17ced85af24176386675429fdf9d3f3015def0",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "goose_feather.tex",
+      "uv": {
+        "u1": 0.156494140625,
+        "v1": 0.625244140625,
+        "u2": 0.187255859375,
+        "v2": 0.656005859375
+      },
+      "crop": [
+        320,
+        704,
+        384,
+        768
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=goose_feather",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "greengem": {
+      "icon": "assets/materials/greengem.webp",
+      "iconSha256": "c4c83ec264aee7460cde4a194cb8e2b5fa49625b94e162177979075f008689c8",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "greengem.tex",
+      "uv": {
+        "u1": 0.343994140625,
+        "v1": 0.625244140625,
+        "u2": 0.374755859375,
+        "v2": 0.656005859375
+      },
+      "crop": [
+        704,
+        704,
+        768,
+        768
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=greengem",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "gunpowder": {
+      "icon": "assets/materials/gunpowder.webp",
+      "iconSha256": "3bbfc68485e2293a6525e571c0938ce03d00cf6709517098dc97edb85a192e11",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "gunpowder.tex",
+      "uv": {
+        "u1": 0.718994140625,
+        "v1": 0.625244140625,
+        "u2": 0.749755859375,
+        "v2": 0.656005859375
+      },
+      "crop": [
+        1472,
+        704,
+        1536,
+        768
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=gunpowder",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "hambat": {
+      "icon": "assets/materials/hambat.webp",
+      "iconSha256": "97c2e5d2965d2657233ada0bc50ebbbd58b5412670045c27e3b7216f90446a08",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "hambat.tex",
+      "uv": {
+        "u1": 0.875244140625,
+        "v1": 0.593994140625,
+        "u2": 0.906005859375,
+        "v2": 0.624755859375
+      },
+      "crop": [
+        1792,
+        768,
+        1856,
+        832
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=hambat",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "hammer": {
+      "icon": "assets/materials/hammer.webp",
+      "iconSha256": "58a00c4edd776ca87ae75f2b23a1188b44780fea4060e0b87180b23b0d1ecf83",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "hammer.tex",
+      "uv": {
+        "u1": 0.000244140625,
+        "v1": 0.562744140625,
+        "u2": 0.031005859375,
+        "v2": 0.593505859375
+      },
+      "crop": [
+        0,
+        832,
+        64,
+        896
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=hammer",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "handpillow_beefalowool": {
+      "icon": "assets/materials/handpillow_beefalowool.webp",
+      "iconSha256": "eab5ae83f4a49d69d292fb6670bb79358fe3bb003d2189f925da72dc9ccb1670",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "handpillow_beefalowool.tex",
+      "uv": {
+        "u1": 0.218994140625,
+        "v1": 0.562744140625,
+        "u2": 0.249755859375,
+        "v2": 0.593505859375
+      },
+      "crop": [
+        448,
+        832,
+        512,
+        896
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "Exact prefab.tex inventory atlas element",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "handpillow_kelp": {
+      "icon": "assets/materials/handpillow_kelp.webp",
+      "iconSha256": "289d5815aee6e7737ecba500db2e06fac50632963af8d126a1bc5192cb4ea8ae",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "handpillow_kelp.tex",
+      "uv": {
+        "u1": 0.250244140625,
+        "v1": 0.562744140625,
+        "u2": 0.281005859375,
+        "v2": 0.593505859375
+      },
+      "crop": [
+        512,
+        832,
+        576,
+        896
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "Exact prefab.tex inventory atlas element",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "handpillow_petals": {
+      "icon": "assets/materials/handpillow_petals.webp",
+      "iconSha256": "4330b81f6453cc26e538e04062245df4263e5c2b0edba0e43955975114193977",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "handpillow_petals.tex",
+      "uv": {
+        "u1": 0.281494140625,
+        "v1": 0.562744140625,
+        "u2": 0.312255859375,
+        "v2": 0.593505859375
+      },
+      "crop": [
+        576,
+        832,
+        640,
+        896
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "Exact prefab.tex inventory atlas element",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "handpillow_steelwool": {
+      "icon": "assets/materials/handpillow_steelwool.webp",
+      "iconSha256": "16164efbcd2f0a19b1bb18a9435e6263c60c3a41041972f31685f26e620be3be",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "handpillow_steelwool.tex",
+      "uv": {
+        "u1": 0.312744140625,
+        "v1": 0.562744140625,
+        "u2": 0.343505859375,
+        "v2": 0.593505859375
+      },
+      "crop": [
+        640,
+        832,
+        704,
+        896
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "Exact prefab.tex inventory atlas element",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "houndstooth": {
+      "icon": "assets/materials/houndstooth.webp",
+      "iconSha256": "4a2552467b2d6bcdcbdb1e3444539acd0258f9b623a711262d496488106dcb7f",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "houndstooth.tex",
+      "uv": {
+        "u1": 0.281494140625,
+        "v1": 0.468994140625,
+        "u2": 0.312255859375,
+        "v2": 0.499755859375
+      },
+      "crop": [
+        576,
+        1024,
+        640,
+        1088
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=houndstooth",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "ice": {
+      "icon": "assets/materials/ice.webp",
+      "iconSha256": "99cb1cdec4b8ca8a4289752e2c5b7da4aef24b2d9845c5db6ee040ff023355ab",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "ice.tex",
+      "uv": {
+        "u1": 0.656494140625,
+        "v1": 0.468994140625,
+        "u2": 0.687255859375,
+        "v2": 0.499755859375
+      },
+      "crop": [
+        1344,
+        1024,
+        1408,
+        1088
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=ice",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icestaff": {
+      "icon": "assets/materials/icestaff.webp",
+      "iconSha256": "f87828c9737f9f61e0575476e700d24684c9a12962f737bb34b773041beea54b",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "icestaff.tex",
+      "uv": {
+        "u1": 0.000244140625,
+        "v1": 0.437744140625,
+        "u2": 0.031005859375,
+        "v2": 0.468505859375
+      },
+      "crop": [
+        0,
+        1088,
+        64,
+        1152
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=icestaff",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "lightbulb": {
+      "icon": "assets/materials/lightbulb.webp",
+      "iconSha256": "63060799bce428559a6939e0a991bacf7d36dfc1de3a487369d73e5b3e518cfa",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "lightbulb.tex",
+      "uv": {
+        "u1": 0.562744140625,
+        "v1": 0.343994140625,
+        "u2": 0.593505859375,
+        "v2": 0.374755859375
+      },
+      "crop": [
+        1152,
+        1280,
+        1216,
+        1344
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=lightbulb",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "lighter": {
+      "icon": "assets/materials/lighter.webp",
+      "iconSha256": "e03a041d56941aba4c8690c1b97cfd9ca3ee586b70f7cf962ff7e2a82ad27e2a",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "lighter.tex",
+      "uv": {
+        "u1": 0.625244140625,
+        "v1": 0.343994140625,
+        "u2": 0.656005859375,
+        "v2": 0.374755859375
+      },
+      "crop": [
+        1280,
+        1280,
+        1344,
+        1344
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=lighter",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "lightninggoathorn": {
+      "icon": "assets/materials/lightninggoathorn.webp",
+      "iconSha256": "e86e0d88e3b276322436bcf981c48808f940e410dfc5a5f3e917da5109d221ba",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "lightninggoathorn.tex",
+      "uv": {
+        "u1": 0.875244140625,
+        "v1": 0.343994140625,
+        "u2": 0.906005859375,
+        "v2": 0.374755859375
+      },
+      "crop": [
+        1792,
+        1280,
+        1856,
+        1344
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=lightninggoathorn",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "livinglog": {
+      "icon": "assets/materials/livinglog.webp",
+      "iconSha256": "e8d2ce2ae8d8652ca381415cf037bb80d8caad67e287ada41ecbc0d1b45d265e",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "livinglog.tex",
+      "uv": {
+        "u1": 0.093994140625,
+        "v1": 0.312744140625,
+        "u2": 0.124755859375,
+        "v2": 0.343505859375
+      },
+      "crop": [
+        192,
+        1344,
+        256,
+        1408
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=livinglog",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "lunarplant_husk": {
+      "icon": "assets/materials/lunarplant_husk.webp",
+      "iconSha256": "1aee1e093b2d0cb2db5a2fe1d0d0dbc3010e0945456f911225858291dd5c37c6",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "lunarplant_husk.tex",
+      "uv": {
+        "u1": 0.656494140625,
+        "v1": 0.312744140625,
+        "u2": 0.687255859375,
+        "v2": 0.343505859375
+      },
+      "crop": [
+        1344,
+        1344,
+        1408,
+        1408
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=lunarplant_husk",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "marble": {
+      "icon": "assets/materials/marble.webp",
+      "iconSha256": "c7c5cfca1987668b364c58c758253dff8040a99c2b07585469a400c3e31989d7",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "marble.tex",
+      "uv": {
+        "u1": 0.218994140625,
+        "v1": 0.281494140625,
+        "u2": 0.249755859375,
+        "v2": 0.312255859375
+      },
+      "crop": [
+        448,
+        1408,
+        512,
+        1472
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=marble",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "messagebottleempty": {
+      "icon": "assets/materials/messagebottleempty.webp",
+      "iconSha256": "69b6a7a1f9822c708ab32b6f0d9c33b5fe7eb615767511f5d58a21d7a0770e13",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "messagebottleempty.tex",
+      "uv": {
+        "u1": 0.375244140625,
+        "v1": 0.218994140625,
+        "u2": 0.406005859375,
+        "v2": 0.249755859375
+      },
+      "crop": [
+        768,
+        1536,
+        832,
+        1600
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=messagebottleempty",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "milkywhites": {
+      "icon": "assets/materials/milkywhites.webp",
+      "iconSha256": "20f05f620aa9215b047140c0bd97a8952e4ad58f9ac2db4fcf265d6536766e47",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "milkywhites.tex",
+      "uv": {
+        "u1": 0.468994140625,
+        "v1": 0.218994140625,
+        "u2": 0.499755859375,
+        "v2": 0.249755859375
+      },
+      "crop": [
+        960,
+        1536,
+        1024,
+        1600
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=milkywhites",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "minifan": {
+      "icon": "assets/materials/minifan.webp",
+      "iconSha256": "f67d83a2cb9147340650e765c5b870fec8c0ef0df7058a7c753e8ba2f545f7c1",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "minifan.tex",
+      "uv": {
+        "u1": 0.687744140625,
+        "v1": 0.218994140625,
+        "u2": 0.718505859375,
+        "v2": 0.249755859375
+      },
+      "crop": [
+        1408,
+        1536,
+        1472,
+        1600
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=minifan",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "minotaurhorn": {
+      "icon": "assets/materials/minotaurhorn.webp",
+      "iconSha256": "d94ac8fed1b1d33b7d711f60901e23f5e8e9621538872a911c2a89c256a97580",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "minotaurhorn.tex",
+      "uv": {
+        "u1": 0.187744140625,
+        "v1": 0.187744140625,
+        "u2": 0.218505859375,
+        "v2": 0.218505859375
+      },
+      "crop": [
+        384,
+        1600,
+        448,
+        1664
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=minotaurhorn",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "moonglass": {
+      "icon": "assets/materials/moonglass.webp",
+      "iconSha256": "3a435f98b725ab08f54b0bf08071ec129042cc84fbe12f6577437aa8397f7fc2",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "moonglass.tex",
+      "uv": {
+        "u1": 0.875244140625,
+        "v1": 0.187744140625,
+        "u2": 0.906005859375,
+        "v2": 0.218505859375
+      },
+      "crop": [
+        1792,
+        1600,
+        1856,
+        1664
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=moonglass",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "moonglassaxe": {
+      "icon": "assets/materials/moonglassaxe.webp",
+      "iconSha256": "2b34c6432b300016a302bee887eb2b932641541607fdbe3bd2d8f772fa55f6b9",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "moonglassaxe.tex",
+      "uv": {
+        "u1": 0.906494140625,
+        "v1": 0.187744140625,
+        "u2": 0.937255859375,
+        "v2": 0.218505859375
+      },
+      "crop": [
+        1856,
+        1600,
+        1920,
+        1664
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=moonglassaxe",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "moonrocknugget": {
+      "icon": "assets/materials/moonrocknugget.webp",
+      "iconSha256": "d76d3e45d3f9296631ed4a645bf27325567a6b5ace702d211f0dcfe511189c6a",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "moonrocknugget.tex",
+      "uv": {
+        "u1": 0.093994140625,
+        "v1": 0.156494140625,
+        "u2": 0.124755859375,
+        "v2": 0.187255859375
+      },
+      "crop": [
+        192,
+        1664,
+        256,
+        1728
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=moonrocknugget",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "mosquitosack": {
+      "icon": "assets/materials/mosquitosack.webp",
+      "iconSha256": "312569f82d4d3f4707cd0912680050551b3bab0c4e54715881c3b0ad052b9898",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "mosquitosack.tex",
+      "uv": {
+        "u1": 0.031494140625,
+        "v1": 0.125244140625,
+        "u2": 0.062255859375,
+        "v2": 0.156005859375
+      },
+      "crop": [
+        64,
+        1728,
+        128,
+        1792
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=mosquitosack",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "multitool_axe_pickaxe": {
+      "icon": "assets/materials/multitool_axe_pickaxe.webp",
+      "iconSha256": "c637e336be99fdfbbe181349209226625e7985fc430bb2e5639bad225f0fcd57",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "multitool_axe_pickaxe.tex",
+      "uv": {
+        "u1": 0.125244140625,
+        "v1": 0.125244140625,
+        "u2": 0.156005859375,
+        "v2": 0.156005859375
+      },
+      "crop": [
+        256,
+        1728,
+        320,
+        1792
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=multitool_axe_pickaxe",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "nightmarefuel": {
+      "icon": "assets/materials/nightmarefuel.webp",
+      "iconSha256": "f1dba68692407dbd8aa8607a5b98056a5354e58427d5efc9e55464f03bf2bccf",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "nightmarefuel.tex",
+      "uv": {
+        "u1": 0.968994140625,
+        "v1": 0.125244140625,
+        "u2": 0.999755859375,
+        "v2": 0.156005859375
+      },
+      "crop": [
+        1984,
+        1728,
+        2048,
+        1792
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=nightmarefuel",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "nightstick": {
+      "icon": "assets/materials/nightstick.webp",
+      "iconSha256": "78410aac5090f10f9cf7d69bc43a684575aa7c1c52f3cabae2e48e164c214ebd",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "nightstick.tex",
+      "uv": {
+        "u1": 0.156494140625,
+        "v1": 0.093994140625,
+        "u2": 0.187255859375,
+        "v2": 0.124755859375
+      },
+      "crop": [
+        320,
+        1792,
+        384,
+        1856
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=nightstick",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "nightsword": {
+      "icon": "assets/materials/nightsword.webp",
+      "iconSha256": "0059e1a92e14a4a3a1938b41d6afd25e8502e11cedccaeecc3a748533ffee94b",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "nightsword.tex",
+      "uv": {
+        "u1": 0.218994140625,
+        "v1": 0.093994140625,
+        "u2": 0.249755859375,
+        "v2": 0.124755859375
+      },
+      "crop": [
+        448,
+        1792,
+        512,
+        1856
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=nightsword",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "nitre": {
+      "icon": "assets/materials/nitre.webp",
+      "iconSha256": "f9501902bcb6e486173bed678e861621c34cdb3c0345f27c2543645993ae2e94",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "nitre.tex",
+      "uv": {
+        "u1": 0.406494140625,
+        "v1": 0.093994140625,
+        "u2": 0.437255859375,
+        "v2": 0.124755859375
+      },
+      "crop": [
+        832,
+        1792,
+        896,
+        1856
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=nitre",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "nw_beast_core": {
+      "icon": "assets/materials/nw_beast_core.webp",
+      "iconSha256": "0173cc832d553080bbc3409130c98fc183902d267a443b32733caa7a219a67eb",
+      "source": "assets_src/art_v1/runtime/nw_supplies/nw_beast_core.png",
+      "sourceSha256": "f2c1d5f995301534b2e9976cf044eb103a4501d8ade66d8cedd0188471d7e219",
+      "reference": "nw/acquisition.materials; nw_supplies runtime PNG",
+      "size": [
+        144,
+        144
+      ]
+    },
+    "nw_blank": {
+      "icon": "assets/materials/nw_blank.webp",
+      "iconSha256": "e5141ef7e2aa3fce6d615e5c8fc313c068fbf107535d7ff0b30b17c9158af09b",
+      "source": "assets_src/art_v1/runtime/nw_supplies/nw_blank.png",
+      "sourceSha256": "422a1cb0a31cb0e39a41eb0da368a1dfe9b753d7f8a7b49094382c4fcd48deae",
+      "reference": "nw/acquisition.materials; nw_supplies runtime PNG",
+      "size": [
+        144,
+        144
+      ]
+    },
+    "nw_dust": {
+      "icon": "assets/materials/nw_dust.webp",
+      "iconSha256": "c1b4470b704774d8a52e0680c58ced6199b89d7ec0ef38be9667d13a4716a1b5",
+      "source": "assets_src/art_v1/runtime/nw_supplies/nw_dust.png",
+      "sourceSha256": "420dadee396ab3c25e741c0b1223dd180f103c810a3253d7da7c00527d8b8be9",
+      "reference": "nw/acquisition.materials; nw_supplies runtime PNG",
+      "size": [
+        144,
+        144
+      ]
+    },
+    "nw_overlord_core": {
+      "icon": "assets/materials/nw_overlord_core.webp",
+      "iconSha256": "dcfb8112bf30235d1316c120adc2d1d019b68f891b61cf240dbc57643024aa30",
+      "source": "assets_src/art_v1/runtime/nw_supplies/nw_overlord_core.png",
+      "sourceSha256": "221c9f8a40f0513b3a416c8d590fe74218ac4a81a039b76554fd30297e66e1c5",
+      "reference": "nw/acquisition.materials; nw_supplies runtime PNG",
+      "size": [
+        144,
+        144
+      ]
+    },
+    "oceanfishinglure_spinner_red": {
+      "icon": "assets/materials/oceanfishinglure_spinner_red.webp",
+      "iconSha256": "e631cce1e7a61f8d4a8c51692b596f089538828614cb390c8908c070516026f3",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "oceanfishinglure_spinner_red.tex",
+      "uv": {
+        "u1": 0.187744140625,
+        "v1": 0.062744140625,
+        "u2": 0.218505859375,
+        "v2": 0.093505859375
+      },
+      "crop": [
+        384,
+        1856,
+        448,
+        1920
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=oceanfishinglure_spinner_red",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "oceanfishingrod": {
+      "icon": "assets/materials/oceanfishingrod.webp",
+      "iconSha256": "1eab9c4d981c1cd85113ae6f82bbf486a7ca3e17f31170a7fe7b89d3b58291b7",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "oceanfishingrod.tex",
+      "uv": {
+        "u1": 0.312744140625,
+        "v1": 0.062744140625,
+        "u2": 0.343505859375,
+        "v2": 0.093505859375
+      },
+      "crop": [
+        640,
+        1856,
+        704,
+        1920
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=oceanfishingrod",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "opalstaff": {
+      "icon": "assets/materials/opalstaff.webp",
+      "iconSha256": "b177ac370d18e193b20ee2ca90eedd10c910263775a0c0d1fb39ddbb21acf7a9",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "opalstaff.tex",
+      "uv": {
+        "u1": 0.375244140625,
+        "v1": 0.031494140625,
+        "u2": 0.406005859375,
+        "v2": 0.062255859375
+      },
+      "crop": [
+        768,
+        1920,
+        832,
+        1984
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=opalstaff",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "orangegem": {
+      "icon": "assets/materials/orangegem.webp",
+      "iconSha256": "e2fab608307acf506cc53aff046627fe8848c4f1f4e2add363ec3e0c59c32458",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "orangegem.tex",
+      "uv": {
+        "u1": 0.437744140625,
+        "v1": 0.031494140625,
+        "u2": 0.468505859375,
+        "v2": 0.062255859375
+      },
+      "crop": [
+        896,
+        1920,
+        960,
+        1984
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=orangegem",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "orangestaff": {
+      "icon": "assets/materials/orangestaff.webp",
+      "iconSha256": "1403a37e6a5f691d0796637bd522b15a7c77d676e18f55d6dfe3c4e361a6b912",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "orangestaff.tex",
+      "uv": {
+        "u1": 0.500244140625,
+        "v1": 0.031494140625,
+        "u2": 0.531005859375,
+        "v2": 0.062255859375
+      },
+      "crop": [
+        1024,
+        1920,
+        1088,
+        1984
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=orangestaff",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "papyrus": {
+      "icon": "assets/materials/papyrus.webp",
+      "iconSha256": "5fdf15dde1a7ad51d6a9bd5c412c6dc7dbe16535b60a74fc5f2d62008638fc06",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "papyrus.tex",
+      "uv": {
+        "u1": 0.031494140625,
+        "v1": 0.000244140625,
+        "u2": 0.062255859375,
+        "v2": 0.031005859375
+      },
+      "crop": [
+        64,
+        1984,
+        128,
+        2048
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=papyrus",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "pickaxe": {
+      "icon": "assets/materials/pickaxe.webp",
+      "iconSha256": "b757d89c5ef665e6cb2029b34c0451bff88fb2208db744d2fa0b1d5b85805a2a",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "pickaxe.tex",
+      "uv": {
+        "u1": 0.843994140625,
+        "v1": 0.000244140625,
+        "u2": 0.874755859375,
+        "v2": 0.031005859375
+      },
+      "crop": [
+        1728,
+        1984,
+        1792,
+        2048
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=pickaxe",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "pickaxe_lunarplant": {
+      "icon": "assets/materials/pickaxe_lunarplant.webp",
+      "iconSha256": "0b96b749500584efa0aa6d54fa5e38d3159c8c30f8ae751a651174721030293c",
+      "source": "data/databundles/images.zip!images/inventoryimages2.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages2.xml",
+      "tex": "pickaxe_lunarplant.tex",
+      "uv": {
+        "u1": 0.937744140625,
+        "v1": 0.000244140625,
+        "u2": 0.968505859375,
+        "v2": 0.031005859375
+      },
+      "crop": [
+        1920,
+        1984,
+        1984,
+        2048
+      ],
+      "texture": "images/inventoryimages2.tex",
+      "sourceSha256": "9515599dbdb49376d5e35bda4861b703873205d2a8ed74c20762a05941bda1ac",
+      "atlasSha256": "8a62292a2fc206088ce0b1e23d5b4383c17ff5ab52b6436809faf8240f4fa2bc",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=pickaxe_lunarplant",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "pocketwatch_parts": {
+      "icon": "assets/materials/pocketwatch_parts.webp",
+      "iconSha256": "5475d69fb7abcf9edc6912bf9b77d03cb4de60002f71af74dec3d109e811d109",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "pocketwatch_parts.tex",
+      "uv": {
+        "u1": 0.031494140625,
+        "v1": 0.937744140625,
+        "u2": 0.062255859375,
+        "v2": 0.968505859375
+      },
+      "crop": [
+        64,
+        64,
+        128,
+        128
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=pocketwatch_parts",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "pocketwatch_weapon": {
+      "icon": "assets/materials/pocketwatch_weapon.webp",
+      "iconSha256": "910197f2aa164be1d467f387ccae72496072ba81eb565d0fc246a1f4aa51ef4a",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "pocketwatch_weapon.tex",
+      "uv": {
+        "u1": 0.187744140625,
+        "v1": 0.937744140625,
+        "u2": 0.218505859375,
+        "v2": 0.968505859375
+      },
+      "crop": [
+        384,
+        64,
+        448,
+        128
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=pocketwatch_weapon",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "purplegem": {
+      "icon": "assets/materials/purplegem.webp",
+      "iconSha256": "3d2e347b4435c779f3f3c35d0503b0b64bb9ee33fa314374d9e488af5cec3e14",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "purplegem.tex",
+      "uv": {
+        "u1": 0.593994140625,
+        "v1": 0.875244140625,
+        "u2": 0.624755859375,
+        "v2": 0.906005859375
+      },
+      "crop": [
+        1216,
+        192,
+        1280,
+        256
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=purplegem",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "redgem": {
+      "icon": "assets/materials/redgem.webp",
+      "iconSha256": "14df8fd549ab6f35a829467128a2b0ebfbcd1565ebbbf0ca8a843f7272d38c1e",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "redgem.tex",
+      "uv": {
+        "u1": 0.218994140625,
+        "v1": 0.750244140625,
+        "u2": 0.249755859375,
+        "v2": 0.781005859375
+      },
+      "crop": [
+        448,
+        448,
+        512,
+        512
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=redgem",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "reviver": {
+      "icon": "assets/materials/reviver.webp",
+      "iconSha256": "a1f250160074020c09cabc837da93a6bdfac58914e086b8cb9b068772d8be1e1",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "reviver.tex",
+      "uv": {
+        "u1": 0.656494140625,
+        "v1": 0.687744140625,
+        "u2": 0.687255859375,
+        "v2": 0.718505859375
+      },
+      "crop": [
+        1344,
+        576,
+        1408,
+        640
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=reviver",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "rocks": {
+      "icon": "assets/materials/rocks.webp",
+      "iconSha256": "327e33aaad54edff2c4c159b0f2bc7483a55ef99e2cefe7b56d750065f59f561",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "rocks.tex",
+      "uv": {
+        "u1": 0.062744140625,
+        "v1": 0.656494140625,
+        "u2": 0.093505859375,
+        "v2": 0.687255859375
+      },
+      "crop": [
+        128,
+        640,
+        192,
+        704
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=rocks",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "rope": {
+      "icon": "assets/materials/rope.webp",
+      "iconSha256": "963e48749b951f8c9df268a575dfafbb4bc5f73836bb987c3850b8ee8650291c",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "rope.tex",
+      "uv": {
+        "u1": 0.218994140625,
+        "v1": 0.656494140625,
+        "u2": 0.249755859375,
+        "v2": 0.687255859375
+      },
+      "crop": [
+        448,
+        640,
+        512,
+        704
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=rope",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "royal_jelly": {
+      "icon": "assets/materials/royal_jelly.webp",
+      "iconSha256": "58dcfbb6d515dae140ea0af54bf44588118ea99e37481595b200b50d0fd0e33d",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "royal_jelly.tex",
+      "uv": {
+        "u1": 0.531494140625,
+        "v1": 0.656494140625,
+        "u2": 0.562255859375,
+        "v2": 0.687255859375
+      },
+      "crop": [
+        1088,
+        640,
+        1152,
+        704
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=royal_jelly",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "ruins_bat": {
+      "icon": "assets/materials/ruins_bat.webp",
+      "iconSha256": "023c33d73a38355d940f7722307050cf86a24744697a0c189ca0f4b808b0c8f9",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "ruins_bat.tex",
+      "uv": {
+        "u1": 0.937744140625,
+        "v1": 0.656494140625,
+        "u2": 0.968505859375,
+        "v2": 0.687255859375
+      },
+      "crop": [
+        1920,
+        640,
+        1984,
+        704
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=ruins_bat",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "shadow_battleaxe": {
+      "icon": "assets/materials/shadow_battleaxe.webp",
+      "iconSha256": "79f452c6a20cf1fa06f63e4b8503ac23d2db74793a875d08742c5513d9a68933",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "shadow_battleaxe_l1.tex",
+      "uv": {
+        "u1": 0.843994140625,
+        "v1": 0.593994140625,
+        "u2": 0.874755859375,
+        "v2": 0.624755859375
+      },
+      "crop": [
+        1728,
+        768,
+        1792,
+        832
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "mod/scripts/nw/weapon_catalog.lua field 6",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "shadowheart": {
+      "icon": "assets/materials/shadowheart.webp",
+      "iconSha256": "cd656decf4189b4b4a8225e1f52e9e3f5fba3458b9e7d41ee77bd89b16230b4e",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "shadowheart.tex",
+      "uv": {
+        "u1": 0.687744140625,
+        "v1": 0.593994140625,
+        "u2": 0.718505859375,
+        "v2": 0.624755859375
+      },
+      "crop": [
+        1408,
+        768,
+        1472,
+        832
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=shadowheart",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "shadowheart_infused": {
+      "icon": "assets/materials/shadowheart_infused.webp",
+      "iconSha256": "b15bdd444ae908a505daa01846dfaf4ff4ed3c1cdf2395f3b715f9d001e623e9",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "shadowheart_infused.tex",
+      "uv": {
+        "u1": 0.718994140625,
+        "v1": 0.593994140625,
+        "u2": 0.749755859375,
+        "v2": 0.624755859375
+      },
+      "crop": [
+        1472,
+        768,
+        1536,
+        832
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=shadowheart_infused",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "shieldofterror": {
+      "icon": "assets/materials/shieldofterror.webp",
+      "iconSha256": "75d06d750cf40ea18ae8bf1404ecfbea6bbfa0acfe1a231b5fb85e4070541aa8",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "shieldofterror.tex",
+      "uv": {
+        "u1": 0.125244140625,
+        "v1": 0.562744140625,
+        "u2": 0.156005859375,
+        "v2": 0.593505859375
+      },
+      "crop": [
+        256,
+        832,
+        320,
+        896
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=shieldofterror",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "shovel": {
+      "icon": "assets/materials/shovel.webp",
+      "iconSha256": "d540528d1241ae11f94f69afd0aa2d397b7ce1839032d3462b56fe88a1743f12",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "shovel.tex",
+      "uv": {
+        "u1": 0.156494140625,
+        "v1": 0.562744140625,
+        "u2": 0.187255859375,
+        "v2": 0.593505859375
+      },
+      "crop": [
+        320,
+        832,
+        384,
+        896
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=shovel",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "shovel_lunarplant": {
+      "icon": "assets/materials/shovel_lunarplant.webp",
+      "iconSha256": "bc4ff46a99a0be66a149f1fd2c733996136e23d2f53270d983f99d4326268456",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "shovel_lunarplant.tex",
+      "uv": {
+        "u1": 0.281494140625,
+        "v1": 0.562744140625,
+        "u2": 0.312255859375,
+        "v2": 0.593505859375
+      },
+      "crop": [
+        576,
+        832,
+        640,
+        896
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=shovel_lunarplant",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "silk": {
+      "icon": "assets/materials/silk.webp",
+      "iconSha256": "8ec49c8fdb88c00484220c68e33e6ce9e98bfec4ba9f47ad4eb54e5cdce54e4a",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "silk.tex",
+      "uv": {
+        "u1": 0.656494140625,
+        "v1": 0.562744140625,
+        "u2": 0.687255859375,
+        "v2": 0.593505859375
+      },
+      "crop": [
+        1344,
+        832,
+        1408,
+        896
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=silk",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "slurtle_shellpieces": {
+      "icon": "assets/materials/slurtle_shellpieces.webp",
+      "iconSha256": "c9c88a88e90559b12eb0a5c4b401110e211012283a89ad364391520bebf5ce87",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "slurtle_shellpieces.tex",
+      "uv": {
+        "u1": 0.062744140625,
+        "v1": 0.437744140625,
+        "u2": 0.093505859375,
+        "v2": 0.468505859375
+      },
+      "crop": [
+        128,
+        1088,
+        192,
+        1152
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=slurtle_shellpieces",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "slurtleslime": {
+      "icon": "assets/materials/slurtleslime.webp",
+      "iconSha256": "1c619f89a6542ac3d3fb410ba8c0516674b77780f6bdbd1033d2e16fb03c53f2",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "slurtleslime.tex",
+      "uv": {
+        "u1": 0.031494140625,
+        "v1": 0.437744140625,
+        "u2": 0.062255859375,
+        "v2": 0.468505859375
+      },
+      "crop": [
+        64,
+        1088,
+        128,
+        1152
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=slurtleslime",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "spear": {
+      "icon": "assets/materials/spear.webp",
+      "iconSha256": "067473eee121d1cc60d51092d6ead93e7d8d04b377d654882b1d803f4a1b561d",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "spear.tex",
+      "uv": {
+        "u1": 0.343994140625,
+        "v1": 0.437744140625,
+        "u2": 0.374755859375,
+        "v2": 0.468505859375
+      },
+      "crop": [
+        704,
+        1088,
+        768,
+        1152
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=spear",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "spear_wathgrithr": {
+      "icon": "assets/materials/spear_wathgrithr.webp",
+      "iconSha256": "9e6f4d26ec075499cb833f1ae3916a1c1ecc4851344e2272a5c38139ae8aef7b",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "spear_wathgrithr.tex",
+      "uv": {
+        "u1": 0.750244140625,
+        "v1": 0.437744140625,
+        "u2": 0.781005859375,
+        "v2": 0.468505859375
+      },
+      "crop": [
+        1536,
+        1088,
+        1600,
+        1152
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=spear_wathgrithr",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "spear_wathgrithr_lightning": {
+      "icon": "assets/materials/spear_wathgrithr_lightning.webp",
+      "iconSha256": "ca7d80ed6fa8694b1993a7c1772c74df17cadf6b17f81a8731055668ff58bd44",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "spear_wathgrithr_lightning.tex",
+      "uv": {
+        "u1": 0.781494140625,
+        "v1": 0.437744140625,
+        "u2": 0.812255859375,
+        "v2": 0.468505859375
+      },
+      "crop": [
+        1600,
+        1088,
+        1664,
+        1152
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=spear_wathgrithr_lightning",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "spear_wathgrithr_lightning_charged": {
+      "icon": "assets/materials/spear_wathgrithr_lightning_charged.webp",
+      "iconSha256": "10a4c2cfa7251a9f1a4d1c729c2fd3d4e57acf1dfa138938bff24fe1482ff18f",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "spear_wathgrithr_lightning_charged.tex",
+      "uv": {
+        "u1": 0.812744140625,
+        "v1": 0.437744140625,
+        "u2": 0.843505859375,
+        "v2": 0.468505859375
+      },
+      "crop": [
+        1664,
+        1088,
+        1728,
+        1152
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=spear_wathgrithr_lightning_charged",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "spidergland": {
+      "icon": "assets/materials/spidergland.webp",
+      "iconSha256": "78acaf3b0f9deedf6c8e4f35ff647ae91a6e82103080478f34083e8c76f8936a",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "spidergland.tex",
+      "uv": {
+        "u1": 0.593994140625,
+        "v1": 0.406494140625,
+        "u2": 0.624755859375,
+        "v2": 0.437255859375
+      },
+      "crop": [
+        1216,
+        1152,
+        1280,
+        1216
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=spidergland",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "spore_small": {
+      "icon": "assets/materials/spore_small.webp",
+      "iconSha256": "26ab29bca7204161179b5187b4d09be4bd55a8986e89bac1bc69e96eeaef4919",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "spore_small.tex",
+      "uv": {
+        "u1": 0.093994140625,
+        "v1": 0.375244140625,
+        "u2": 0.124755859375,
+        "v2": 0.406005859375
+      },
+      "crop": [
+        192,
+        1216,
+        256,
+        1280
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=spore_small",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "staff_lunarplant": {
+      "icon": "assets/materials/staff_lunarplant.webp",
+      "iconSha256": "d8a050561111d0a4c129eb0b1d55ae5f662323f80bc818bd91282f3c18d4ac1d",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "staff_lunarplant.tex",
+      "uv": {
+        "u1": 0.156494140625,
+        "v1": 0.375244140625,
+        "u2": 0.187255859375,
+        "v2": 0.406005859375
+      },
+      "crop": [
+        320,
+        1216,
+        384,
+        1280
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=staff_lunarplant",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "staff_tornado": {
+      "icon": "assets/materials/staff_tornado.webp",
+      "iconSha256": "109e01c77e9f23dd323230838d9c3cc8e34b0fe073d915b396e162e65b3f75dc",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "staff_tornado.tex",
+      "uv": {
+        "u1": 0.187744140625,
+        "v1": 0.375244140625,
+        "u2": 0.218505859375,
+        "v2": 0.406005859375
+      },
+      "crop": [
+        384,
+        1216,
+        448,
+        1280
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=staff_tornado",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "stinger": {
+      "icon": "assets/materials/stinger.webp",
+      "iconSha256": "b98b62c6ce198f28da633b2f8e2065072d1942e67c9b285ceed8322afc7ba9f1",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "stinger.tex",
+      "uv": {
+        "u1": 0.625244140625,
+        "v1": 0.375244140625,
+        "u2": 0.656005859375,
+        "v2": 0.406005859375
+      },
+      "crop": [
+        1280,
+        1216,
+        1344,
+        1280
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=stinger",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "sword_lunarplant": {
+      "icon": "assets/materials/sword_lunarplant.webp",
+      "iconSha256": "290234652c8b616a83a3972ff0c68edebb3b9461dc9b6e2c62e57180d7aa7b89",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "sword_lunarplant.tex",
+      "uv": {
+        "u1": 0.187744140625,
+        "v1": 0.312744140625,
+        "u2": 0.218505859375,
+        "v2": 0.343505859375
+      },
+      "crop": [
+        384,
+        1344,
+        448,
+        1408
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=sword_lunarplant",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "tentaclespike": {
+      "icon": "assets/materials/tentaclespike.webp",
+      "iconSha256": "b6ad2bfbcb098d68abe0545ab282316d9a621d39b4e8d1e90f6eb378d80f0fd2",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "tentaclespike.tex",
+      "uv": {
+        "u1": 0.343994140625,
+        "v1": 0.281494140625,
+        "u2": 0.374755859375,
+        "v2": 0.312255859375
+      },
+      "crop": [
+        704,
+        1408,
+        768,
+        1472
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=tentaclespike",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "tentaclespots": {
+      "icon": "assets/materials/tentaclespots.webp",
+      "iconSha256": "68fd21e2358a3b2d19f73570f23eec55fe7ae920f1e51b8e7c803436e9354737",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "tentaclespots.tex",
+      "uv": {
+        "u1": 0.375244140625,
+        "v1": 0.281494140625,
+        "u2": 0.406005859375,
+        "v2": 0.312255859375
+      },
+      "crop": [
+        768,
+        1408,
+        832,
+        1472
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=tentaclespots",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "thulecite": {
+      "icon": "assets/materials/thulecite.webp",
+      "iconSha256": "b41f4d17e58897ae2f0b2fccaba5f85134670805396574198eea9dc003069cd8",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "thulecite.tex",
+      "uv": {
+        "u1": 0.750244140625,
+        "v1": 0.281494140625,
+        "u2": 0.781005859375,
+        "v2": 0.312255859375
+      },
+      "crop": [
+        1536,
+        1408,
+        1600,
+        1472
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=thulecite",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "torch": {
+      "icon": "assets/materials/torch.webp",
+      "iconSha256": "b8510af0f4f241f30cb5334b253f7c954147f369a781c2e46f901b47a5402d7a",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "torch.tex",
+      "uv": {
+        "u1": 0.656494140625,
+        "v1": 0.250244140625,
+        "u2": 0.687255859375,
+        "v2": 0.281005859375
+      },
+      "crop": [
+        1344,
+        1472,
+        1408,
+        1536
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=torch",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "townportaltalisman": {
+      "icon": "assets/materials/townportaltalisman.webp",
+      "iconSha256": "72d376d11eb8c1e4d65317426894fa8c6c69f1a9d7a50577eb61fd4375a5b486",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "townportaltalisman.tex",
+      "uv": {
+        "u1": 0.375244140625,
+        "v1": 0.218994140625,
+        "u2": 0.406005859375,
+        "v2": 0.249755859375
+      },
+      "crop": [
+        768,
+        1536,
+        832,
+        1600
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=townportaltalisman",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "trident": {
+      "icon": "assets/materials/trident.webp",
+      "iconSha256": "edf495b8c6a9f5a29b54bd880eaa7aff3144daf20726cbc6c5770eef1298cd8b",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "trident.tex",
+      "uv": {
+        "u1": 0.468994140625,
+        "v1": 0.187744140625,
+        "u2": 0.499755859375,
+        "v2": 0.218505859375
+      },
+      "crop": [
+        960,
+        1600,
+        1024,
+        1664
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=trident",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "trunk_summer": {
+      "icon": "assets/materials/trunk_summer.webp",
+      "iconSha256": "ae40c60249402e45520da5d492ca7ae4a33ad7dcdcc64a95876b851743320d79",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "trunk_summer.tex",
+      "uv": {
+        "u1": 0.187744140625,
+        "v1": 0.125244140625,
+        "u2": 0.218505859375,
+        "v2": 0.156005859375
+      },
+      "crop": [
+        384,
+        1728,
+        448,
+        1792
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=trunk_summer",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "twigs": {
+      "icon": "assets/materials/twigs.webp",
+      "iconSha256": "6868424e929ea38ae9e5ad68052505a2b125b58407a726fe829be33d5a857051",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "twigs.tex",
+      "uv": {
+        "u1": 0.593994140625,
+        "v1": 0.093994140625,
+        "u2": 0.624755859375,
+        "v2": 0.124755859375
+      },
+      "crop": [
+        1216,
+        1792,
+        1280,
+        1856
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=twigs",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "voidcloth": {
+      "icon": "assets/materials/voidcloth.webp",
+      "iconSha256": "ee8cb3597e3672091f2161bea8bc92ec8dcfe28bcec50e92d11c69dd6b1d87e6",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "voidcloth.tex",
+      "uv": {
+        "u1": 0.312744140625,
+        "v1": 0.062744140625,
+        "u2": 0.343505859375,
+        "v2": 0.093505859375
+      },
+      "crop": [
+        640,
+        1856,
+        704,
+        1920
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=voidcloth",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "voidcloth_boomerang": {
+      "icon": "assets/materials/voidcloth_boomerang.webp",
+      "iconSha256": "455e1a660f81377ea24dfebe432afa0ef6888f2c506ce418334b1e6e05b48097",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "voidcloth_boomerang.tex",
+      "uv": {
+        "u1": 0.437744140625,
+        "v1": 0.062744140625,
+        "u2": 0.468505859375,
+        "v2": 0.093505859375
+      },
+      "crop": [
+        896,
+        1856,
+        960,
+        1920
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=voidcloth_boomerang",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "voidcloth_scythe": {
+      "icon": "assets/materials/voidcloth_scythe.webp",
+      "iconSha256": "978cd7407f2ea607f8b647834cca33d9c54d389ba80650a1d852a5d58762a830",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "voidcloth_scythe.tex",
+      "uv": {
+        "u1": 0.500244140625,
+        "v1": 0.062744140625,
+        "u2": 0.531005859375,
+        "v2": 0.093505859375
+      },
+      "crop": [
+        1024,
+        1856,
+        1088,
+        1920
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=voidcloth_scythe",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "walrus_tusk": {
+      "icon": "assets/materials/walrus_tusk.webp",
+      "iconSha256": "886e66add6038b677b06126ece1c80f2e74c4454afaee6e0367c25485595fa9f",
+      "source": "data/databundles/images.zip!images/inventoryimages3.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages3.xml",
+      "tex": "walrus_tusk.tex",
+      "uv": {
+        "u1": 0.281494140625,
+        "v1": 0.000244140625,
+        "u2": 0.312255859375,
+        "v2": 0.031005859375
+      },
+      "crop": [
+        576,
+        1984,
+        640,
+        2048
+      ],
+      "texture": "images/inventoryimages3.tex",
+      "sourceSha256": "ae50631f515a2db9fea4fb545205d4611282a311a00b07d24ef9887d153309b3",
+      "atlasSha256": "79e43fed5de6cbfe60e02bc4f59bff31e371615d0b2fe4333e351eb0e4933917",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=walrus_tusk",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "waterballoon": {
+      "icon": "assets/materials/waterballoon.webp",
+      "iconSha256": "03ca453e2cb262de3d578cd0940804f4fb89db1a07fe36fcb623f71d454f907f",
+      "source": "data/databundles/images.zip!images/inventoryimages4.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages4.xml",
+      "tex": "waterballoon.tex",
+      "uv": {
+        "u1": 0.125244140625,
+        "v1": 0.93798828125,
+        "u2": 0.156005859375,
+        "v2": 0.99951171875
+      },
+      "crop": [
+        256,
+        0,
+        320,
+        64
+      ],
+      "texture": "images/inventoryimages4.tex",
+      "sourceSha256": "04a956564fb919f701685cdb3de0577a2a51249d2b9acaf1496aaa18898f1866",
+      "atlasSha256": "13790e8e9e23f0713978e7741925c2b118e2f9aca9e2beeaab939584c3af3dfb",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=waterballoon",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "whip": {
+      "icon": "assets/materials/whip.webp",
+      "iconSha256": "bcfbe16d5d30f277c748882a6d29f6db3bd9679dd2ab89998f6adc0d140d530b",
+      "source": "data/databundles/images.zip!images/inventoryimages4.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages4.xml",
+      "tex": "whip.tex",
+      "uv": {
+        "u1": 0.406494140625,
+        "v1": 0.87548828125,
+        "u2": 0.437255859375,
+        "v2": 0.93701171875
+      },
+      "crop": [
+        832,
+        64,
+        896,
+        128
+      ],
+      "texture": "images/inventoryimages4.tex",
+      "sourceSha256": "04a956564fb919f701685cdb3de0577a2a51249d2b9acaf1496aaa18898f1866",
+      "atlasSha256": "13790e8e9e23f0713978e7741925c2b118e2f9aca9e2beeaab939584c3af3dfb",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=whip",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "wormlight": {
+      "icon": "assets/materials/wormlight.webp",
+      "iconSha256": "88e8ca1795ceaed870cdf44e2a38935208e7fcae3a341d4c968b7e120eb491e0",
+      "source": "data/databundles/images.zip!images/inventoryimages4.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages4.xml",
+      "tex": "wormlight.tex",
+      "uv": {
+        "u1": 0.375244140625,
+        "v1": 0.56298828125,
+        "u2": 0.406005859375,
+        "v2": 0.62451171875
+      },
+      "crop": [
+        768,
+        384,
+        832,
+        448
+      ],
+      "texture": "images/inventoryimages4.tex",
+      "sourceSha256": "04a956564fb919f701685cdb3de0577a2a51249d2b9acaf1496aaa18898f1866",
+      "atlasSha256": "13790e8e9e23f0713978e7741925c2b118e2f9aca9e2beeaab939584c3af3dfb",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=wormlight",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "yellowgem": {
+      "icon": "assets/materials/yellowgem.webp",
+      "iconSha256": "c18cae50061db047195a6b312d899a4422d3d9a9a7d3311041845d1269da3dd0",
+      "source": "data/databundles/images.zip!images/inventoryimages4.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages4.xml",
+      "tex": "yellowgem.tex",
+      "uv": {
+        "u1": 0.906494140625,
+        "v1": 0.43798828125,
+        "u2": 0.937255859375,
+        "v2": 0.49951171875
+      },
+      "crop": [
+        1856,
+        512,
+        1920,
+        576
+      ],
+      "texture": "images/inventoryimages4.tex",
+      "sourceSha256": "04a956564fb919f701685cdb3de0577a2a51249d2b9acaf1496aaa18898f1866",
+      "atlasSha256": "13790e8e9e23f0713978e7741925c2b118e2f9aca9e2beeaab939584c3af3dfb",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=yellowgem",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "yellowstaff": {
+      "icon": "assets/materials/yellowstaff.webp",
+      "iconSha256": "1766e4696046b36dba7ad22eb39422f5611700e6e5bb00f9c5a15f166431695a",
+      "source": "data/databundles/images.zip!images/inventoryimages4.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages4.xml",
+      "tex": "yellowstaff.tex",
+      "uv": {
+        "u1": 0.968994140625,
+        "v1": 0.43798828125,
+        "u2": 0.999755859375,
+        "v2": 0.49951171875
+      },
+      "crop": [
+        1984,
+        512,
+        2048,
+        576
+      ],
+      "texture": "images/inventoryimages4.tex",
+      "sourceSha256": "04a956564fb919f701685cdb3de0577a2a51249d2b9acaf1496aaa18898f1866",
+      "atlasSha256": "13790e8e9e23f0713978e7741925c2b118e2f9aca9e2beeaab939584c3af3dfb",
+      "reference": "data/databundles/scripts.zip!scripts/screens/redux/scrapbookdata.lua prefab=yellowstaff",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "yoth_lance": {
+      "icon": "assets/materials/yoth_lance.webp",
+      "iconSha256": "72b1baff7d07434879bfa046adac8fdb5c7a16ce0205d59ecbdbcf7bddda5c0e",
+      "source": "data/databundles/images.zip!images/inventoryimages4.tex",
+      "atlas": "data/databundles/images.zip!images/inventoryimages4.xml",
+      "tex": "yoth_lance.tex",
+      "uv": {
+        "u1": 0.906494140625,
+        "v1": 0.37548828125,
+        "u2": 0.937255859375,
+        "v2": 0.43701171875
+      },
+      "crop": [
+        1856,
+        576,
+        1920,
+        640
+      ],
+      "texture": "images/inventoryimages4.tex",
+      "sourceSha256": "04a956564fb919f701685cdb3de0577a2a51249d2b9acaf1496aaa18898f1866",
+      "atlasSha256": "13790e8e9e23f0713978e7741925c2b118e2f9aca9e2beeaab939584c3af3dfb",
+      "reference": "Exact prefab.tex inventory atlas element",
+      "size": [
+        64,
+        64
+      ]
+    }
+  }
+}

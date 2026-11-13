@@ -1,0 +1,16 @@
+{
+  "native_source": "E:\\SteamLibrary\\steamapps\\common\\Don't Starve Together\\data\\fx\\miasma.tex",
+  "sha256": "f402b6f321ebc6a38dad1c815ab0a93f0a42d2b2ca5e7205c0d0d5777d1480c9",
+  "atlas_size": [
+    1024,
+    512
+  ],
+  "uv_frame": [
+    0.5,
+    1
+  ],
+  "operations": [
+    "decode original KTEX",
+    "split into two UV frames without repainting"
+  ]
+}

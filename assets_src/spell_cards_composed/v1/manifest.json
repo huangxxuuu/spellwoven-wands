@@ -9399,15 +9399,115 @@
       "album": "album/kantele_b.png",
       "inventory": "inventory_64/kantele_b.png",
       "ground": "ground/kantele_b.png"
+    },
+    {
+      "id": "shrink_shot",
+      "name": "弹体缩小",
+      "primary_class": "modifier",
+      "mechanism_badge": null,
+      "source": "assets_src/spell_card_subjects/v10_shrink_shot/shrink_shot.png",
+      "source_sha256": "b59e1d8596778b753ff6a06bb93e200e95ae2f7967615a03932c62dc27efff90",
+      "origin": "selected_extension",
+      "layout": {
+        "source_bbox": [
+          83,
+          95,
+          941,
+          959
+        ],
+        "position": [
+          218,
+          216
+        ],
+        "fitted_size": [
+          589,
+          593
+        ],
+        "uniform_scale": 0.6862989637586805,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "inventory_layout": {
+        "source_bbox": [
+          83,
+          95,
+          941,
+          959
+        ],
+        "position": [
+          202,
+          200
+        ],
+        "fitted_size": [
+          620,
+          624
+        ],
+        "uniform_scale": 0.7227715386284722,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "album": "album/shrink_shot.png",
+      "inventory": "inventory_64/shrink_shot.png",
+      "ground": "ground/shrink_shot.png"
+    },
+    {
+      "id": "dark",
+      "name": "暗雾",
+      "primary_class": "modifier",
+      "mechanism_badge": null,
+      "source": "assets_src/spell_card_subjects/v11_dark_fog_20261113/dark.png",
+      "source_sha256": "b17eee7f042685220de132772b28982771828f070e71ed947a3e6f8963540483",
+      "origin": "selected_extension",
+      "layout": {
+        "source_bbox": [
+          67,
+          187,
+          959,
+          837
+        ],
+        "position": [
+          149,
+          247
+        ],
+        "fitted_size": [
+          727,
+          530
+        ],
+        "uniform_scale": 0.814931005640415,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "inventory_layout": {
+        "source_bbox": [
+          67,
+          187,
+          959,
+          837
+        ],
+        "position": [
+          105,
+          216
+        ],
+        "fitted_size": [
+          814,
+          593
+        ],
+        "uniform_scale": 0.9121145205647423,
+        "reserve_badge": false,
+        "inside_safe_mask": true
+      },
+      "album": "album/dark.png",
+      "inventory": "inventory_64/dark.png",
+      "ground": "ground/dark.png"
     }
   ],
   "counts": {
     "basic": 127,
     "control": 12,
-    "modifier": 49
+    "modifier": 51
   },
   "badges": {
-    "none": 174,
+    "none": 176,
     "hit": 6,
     "timer": 7,
     "break": 1

@@ -1,0 +1,2925 @@
+{
+  "bank": "nw_furnace_wave",
+  "generation": "Painted cel sequences with transparent endpoints and shared seam poses; cumulative hold-only playback",
+  "orientation": "OnGround",
+  "source_size": [
+    512,
+    512
+  ],
+  "source_origin": [
+    256,
+    256
+  ],
+  "pixels_per_world_unit": 150,
+  "gameplay_radius": 4,
+  "geometry_size": 1201.4215895,
+  "texture_size": 384,
+  "geometry_units_per_source_pixel": 2.3465265419921875,
+  "compiled_build_geometry_scale": 3.1287020559895833,
+  "texture_sampling": "uniform full-canvas Lanczos then transparent crop; no per-frame fit",
+  "alpha_cleanup": "only source alpha <= 8 cleared in derived textures; original PNGs preserved",
+  "element_matrix": [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "frame_slots": 60,
+  "unique_nonempty_painted_poses": 54,
+  "sources": [
+    {
+      "key": "grow_000",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_000.png",
+      "sha256": "b262bd68d44f93637b9949caf7ff7ce0b6b6ed839c3a2468681952b215ec4d95",
+      "clip": "grow",
+      "source_index": 0,
+      "build_frame": 0,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": null,
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": null,
+      "texture_crop": [
+        192,
+        192,
+        193,
+        193
+      ],
+      "texture_size": [
+        1,
+        1
+      ],
+      "geometry_center": [
+        1.5643510279947916,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        3.1287020559895833,
+        3.1287020559895833
+      ]
+    },
+    {
+      "key": "grow_001",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_001.png",
+      "sha256": "57df165bb22724d51da7d008297baf340a712f2a0e4cb538af27830c5308805a",
+      "clip": "grow",
+      "source_index": 1,
+      "build_frame": 1,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        235,
+        238,
+        278,
+        280
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        235,
+        238,
+        278,
+        280
+      ],
+      "texture_crop": [
+        174,
+        176,
+        211,
+        212
+      ],
+      "texture_size": [
+        37,
+        36
+      ],
+      "geometry_center": [
+        1.5643510279947916,
+        6.257404111979167
+      ],
+      "geometry_size": [
+        115.76197607161458,
+        112.633274015625
+      ]
+    },
+    {
+      "key": "grow_002",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_002.png",
+      "sha256": "5afd36d5faad2f40ce4f198f0c63851e756ed90e4a4bd5793d739541500fd9d9",
+      "clip": "grow",
+      "source_index": 2,
+      "build_frame": 2,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        202,
+        204,
+        306,
+        306
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        202,
+        204,
+        306,
+        306
+      ],
+      "texture_crop": [
+        149,
+        151,
+        232,
+        232
+      ],
+      "texture_size": [
+        83,
+        81
+      ],
+      "geometry_center": [
+        -4.693053083984375,
+        -1.5643510279947916
+      ],
+      "geometry_size": [
+        259.6822706471354,
+        253.42486653515624
+      ]
+    },
+    {
+      "key": "grow_003",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_003.png",
+      "sha256": "27a3c8e38dd783475c38025681867e118d102c92b246676b52afb52dcb8ced10",
+      "clip": "grow",
+      "source_index": 3,
+      "build_frame": 3,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        177,
+        179,
+        330,
+        332
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        177,
+        179,
+        330,
+        332
+      ],
+      "texture_crop": [
+        130,
+        132,
+        250,
+        251
+      ],
+      "texture_size": [
+        120,
+        119
+      ],
+      "geometry_center": [
+        -6.257404111979167,
+        -1.5643510279947916
+      ],
+      "geometry_size": [
+        375.44424671875,
+        372.31554466276043
+      ]
+    },
+    {
+      "key": "grow_004",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_004.png",
+      "sha256": "0596f4e4eb1f91b6b8e1c92dac39fb5a16c383711f143e00d881de5e06ac3ca9",
+      "clip": "grow",
+      "source_index": 4,
+      "build_frame": 4,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        157,
+        162,
+        346,
+        350
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        157,
+        162,
+        346,
+        350
+      ],
+      "texture_crop": [
+        115,
+        119,
+        262,
+        265
+      ],
+      "texture_size": [
+        147,
+        146
+      ],
+      "geometry_center": [
+        -10.95045719596354,
+        0.0
+      ],
+      "geometry_size": [
+        459.9192022304687,
+        456.7905001744792
+      ]
+    },
+    {
+      "key": "grow_005",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_005.png",
+      "sha256": "7ae6c8c7fd0c248b795f6fe508bd89716cb6c27e37dc9fbe45a44e69254e3024",
+      "clip": "grow",
+      "source_index": 5,
+      "build_frame": 5,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        138,
+        148,
+        367,
+        365
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        138,
+        148,
+        367,
+        365
+      ],
+      "texture_crop": [
+        101,
+        109,
+        278,
+        276
+      ],
+      "texture_size": [
+        177,
+        167
+      ],
+      "geometry_center": [
+        -7.821755139973958,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        553.7802639101562,
+        522.4932433502604
+      ]
+    },
+    {
+      "key": "grow_006",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_006.png",
+      "sha256": "306d782ce4d93f5131c2e1ca3d839e17e05bcf1d7443b97d00429b4f5175bb83",
+      "clip": "grow",
+      "source_index": 6,
+      "build_frame": 6,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        125,
+        141,
+        377,
+        375
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        125,
+        141,
+        377,
+        375
+      ],
+      "texture_crop": [
+        91,
+        103,
+        285,
+        284
+      ],
+      "texture_size": [
+        194,
+        181
+      ],
+      "geometry_center": [
+        -12.514808223958333,
+        4.693053083984375
+      ],
+      "geometry_size": [
+        606.9681988619792,
+        566.2950721341145
+      ]
+    },
+    {
+      "key": "grow_007",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_007.png",
+      "sha256": "6b48e54733163704dc9fc6a300a558624389e4b061b5c4df6961069eafd18107",
+      "clip": "grow",
+      "source_index": 7,
+      "build_frame": 7,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        122,
+        128,
+        395,
+        383
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        122,
+        128,
+        395,
+        383
+      ],
+      "texture_crop": [
+        89,
+        94,
+        299,
+        290
+      ],
+      "texture_size": [
+        210,
+        196
+      ],
+      "geometry_center": [
+        6.257404111979167,
+        0.0
+      ],
+      "geometry_size": [
+        657.0274317578125,
+        613.2256029739583
+      ]
+    },
+    {
+      "key": "grow_008",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_008.png",
+      "sha256": "2fe3c0dd514bdff83a1f79890f0f218956e8ed5df0fc1f21f0f58b0d4993f2ed",
+      "clip": "grow",
+      "source_index": 8,
+      "build_frame": 8,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        104,
+        113,
+        404,
+        396
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        104,
+        113,
+        404,
+        396
+      ],
+      "texture_crop": [
+        76,
+        82,
+        305,
+        299
+      ],
+      "texture_size": [
+        229,
+        217
+      ],
+      "geometry_center": [
+        -4.693053083984375,
+        -4.693053083984375
+      ],
+      "geometry_size": [
+        716.4727708216145,
+        678.9283461497396
+      ]
+    },
+    {
+      "key": "grow_009",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_009.png",
+      "sha256": "7d6c2a9a29b45c9ebae36efb9327b378788000407515594d91a4200a7db95c18",
+      "clip": "grow",
+      "source_index": 9,
+      "build_frame": 9,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        98,
+        95,
+        412,
+        406
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        98,
+        95,
+        412,
+        406
+      ],
+      "texture_crop": [
+        71,
+        69,
+        311,
+        307
+      ],
+      "texture_size": [
+        240,
+        238
+      ],
+      "geometry_center": [
+        -3.1287020559895833,
+        -12.514808223958333
+      ],
+      "geometry_size": [
+        750.8884934375,
+        744.6310893255209
+      ]
+    },
+    {
+      "key": "grow_010",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_010.png",
+      "sha256": "3464f09339577726dbc1e3df378937742e40c8fd5e093b514c9503b0f1def953",
+      "clip": "grow",
+      "source_index": 10,
+      "build_frame": 10,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        76,
+        84,
+        419,
+        417
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        76,
+        84,
+        419,
+        417
+      ],
+      "texture_crop": [
+        55,
+        61,
+        317,
+        315
+      ],
+      "texture_size": [
+        262,
+        254
+      ],
+      "geometry_center": [
+        -18.7722123359375,
+        -12.514808223958333
+      ],
+      "geometry_size": [
+        819.7199386692708,
+        794.6903222213541
+      ]
+    },
+    {
+      "key": "grow_011",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_011.png",
+      "sha256": "026f34835e8ddcfed8895c08dfa3f0bafb729ba715ef1ab3e78e9d11ed052722",
+      "clip": "grow",
+      "source_index": 11,
+      "build_frame": 11,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        61,
+        71,
+        434,
+        430
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        61,
+        71,
+        434,
+        430
+      ],
+      "texture_crop": [
+        43,
+        51,
+        328,
+        325
+      ],
+      "texture_size": [
+        285,
+        274
+      ],
+      "geometry_center": [
+        -20.336563363932292,
+        -12.514808223958333
+      ],
+      "geometry_size": [
+        891.6800859570312,
+        857.2643633411458
+      ]
+    },
+    {
+      "key": "grow_012",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_012.png",
+      "sha256": "7236c2c1eabc62de6416ad735aaa05cb532800fca735228086b0b02f00ddc618",
+      "clip": "grow",
+      "source_index": 12,
+      "build_frame": 12,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        54,
+        68,
+        452,
+        438
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        54,
+        68,
+        452,
+        438
+      ],
+      "texture_crop": [
+        38,
+        49,
+        341,
+        331
+      ],
+      "texture_size": [
+        303,
+        282
+      ],
+      "geometry_center": [
+        -7.821755139973958,
+        -6.257404111979167
+      ],
+      "geometry_size": [
+        947.9967229648437,
+        882.2939797890625
+      ]
+    },
+    {
+      "key": "grow_013",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_013.png",
+      "sha256": "15ef31bd3383af57a22fb40a7f88b595a49ddf4aa91efc7aa8dbc82d8fbf610f",
+      "clip": "grow",
+      "source_index": 13,
+      "build_frame": 13,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        42,
+        60,
+        458,
+        447
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        42,
+        60,
+        458,
+        447
+      ],
+      "texture_crop": [
+        29,
+        43,
+        346,
+        338
+      ],
+      "texture_size": [
+        317,
+        295
+      ],
+      "geometry_center": [
+        -14.079159251953126,
+        -4.693053083984375
+      ],
+      "geometry_size": [
+        991.798551748698,
+        922.9671065169271
+      ]
+    },
+    {
+      "key": "grow_014",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_014.png",
+      "sha256": "4a9f1fb91cb1c4a986fd6bbfbe22f59eac6ed07601939dd64913a7e6a1ce94d1",
+      "clip": "grow",
+      "source_index": 14,
+      "build_frame": 14,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        34,
+        49,
+        467,
+        455
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        34,
+        49,
+        467,
+        455
+      ],
+      "texture_crop": [
+        23,
+        35,
+        353,
+        344
+      ],
+      "texture_size": [
+        330,
+        309
+      ],
+      "geometry_center": [
+        -12.514808223958333,
+        -7.821755139973958
+      ],
+      "geometry_size": [
+        1032.4716784765624,
+        966.7689353007812
+      ]
+    },
+    {
+      "key": "grow_015",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_015.png",
+      "sha256": "ee80b163127769245f3b167924c22256a050df1c928079cd333885ba93e04230",
+      "clip": "grow",
+      "source_index": 15,
+      "build_frame": 15,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        42,
+        476,
+        461
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        42,
+        476,
+        461
+      ],
+      "texture_crop": [
+        21,
+        29,
+        359,
+        348
+      ],
+      "texture_size": [
+        338,
+        319
+      ],
+      "geometry_center": [
+        -6.257404111979167,
+        -10.95045719596354
+      ],
+      "geometry_size": [
+        1057.5012949244792,
+        998.055955860677
+      ]
+    },
+    {
+      "key": "grow_016",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_016.png",
+      "sha256": "f6bc84fb3edce88c86281f43fbed141564c84d9cf6e5ab008957a7ed5849a6f8",
+      "clip": "grow",
+      "source_index": 16,
+      "build_frame": 16,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        23,
+        30,
+        484,
+        465
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        23,
+        30,
+        484,
+        465
+      ],
+      "texture_crop": [
+        15,
+        20,
+        365,
+        351
+      ],
+      "texture_size": [
+        350,
+        331
+      ],
+      "geometry_center": [
+        -6.257404111979167,
+        -20.336563363932292
+      ],
+      "geometry_size": [
+        1095.045719596354,
+        1035.600380532552
+      ]
+    },
+    {
+      "key": "grow_017",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_017.png",
+      "sha256": "b474df9527e4092fb00864453ff820b9665e3a30522ecb61e72dbe404c09ec1c",
+      "clip": "grow",
+      "source_index": 17,
+      "build_frame": 17,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        20,
+        19,
+        489,
+        469
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        20,
+        19,
+        489,
+        469
+      ],
+      "texture_crop": [
+        13,
+        12,
+        369,
+        354
+      ],
+      "texture_size": [
+        356,
+        342
+      ],
+      "geometry_center": [
+        -3.1287020559895833,
+        -28.15831850390625
+      ],
+      "geometry_size": [
+        1113.8179319322917,
+        1070.0161031484374
+      ]
+    },
+    {
+      "key": "grow_018",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_018.png",
+      "sha256": "236d9de6df0859382445c66cf30338317fcc23659430143db9d0b5345037b514",
+      "clip": "grow",
+      "source_index": 18,
+      "build_frame": 18,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        14,
+        10,
+        497,
+        478
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        14,
+        10,
+        497,
+        478
+      ],
+      "texture_crop": [
+        8,
+        5,
+        375,
+        361
+      ],
+      "texture_size": [
+        367,
+        356
+      ],
+      "geometry_center": [
+        -1.5643510279947916,
+        -28.15831850390625
+      ],
+      "geometry_size": [
+        1148.2336545481771,
+        1113.8179319322917
+      ]
+    },
+    {
+      "key": "grow_019",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_019.png",
+      "sha256": "70547dbf7d9bd4a4809061187e1c912feb41e28423a4c230b97296cd22bc3e31",
+      "clip": "grow",
+      "source_index": 19,
+      "build_frame": 19,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        14,
+        9,
+        498,
+        479
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        14,
+        9,
+        498,
+        479
+      ],
+      "texture_crop": [
+        8,
+        4,
+        376,
+        362
+      ],
+      "texture_size": [
+        368,
+        358
+      ],
+      "geometry_center": [
+        0.0,
+        -28.15831850390625
+      ],
+      "geometry_size": [
+        1151.3623566041667,
+        1120.075336044271
+      ]
+    },
+    {
+      "key": "grow_020",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_020.png",
+      "sha256": "db1eef1dfae54768b76a882283da62f554cb97864f06d92aff14dbe1793c1c7e",
+      "clip": "grow",
+      "source_index": 20,
+      "build_frame": 20,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        13,
+        8,
+        499,
+        484
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        13,
+        8,
+        499,
+        484
+      ],
+      "texture_crop": [
+        8,
+        4,
+        377,
+        365
+      ],
+      "texture_size": [
+        369,
+        361
+      ],
+      "geometry_center": [
+        1.5643510279947916,
+        -23.465265419921874
+      ],
+      "geometry_size": [
+        1154.4910586601563,
+        1129.4614422122395
+      ]
+    },
+    {
+      "key": "grow_021",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_021.png",
+      "sha256": "52e778bd4a67f4d6a5a2f54efb55487f00af59607d5500af407fa01ffa663178",
+      "clip": "grow",
+      "source_index": 21,
+      "build_frame": 21,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "texture_crop": [
+        21,
+        18,
+        377,
+        367
+      ],
+      "texture_size": [
+        356,
+        349
+      ],
+      "geometry_center": [
+        21.90091439192708,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1113.8179319322917,
+        1091.9170175403647
+      ]
+    },
+    {
+      "key": "grow_022",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_022.png",
+      "sha256": "795a5600c20176e684dd3c2532169dad9e10a09a0855732dfd54cd003d835b71",
+      "clip": "grow",
+      "source_index": 22,
+      "build_frame": 22,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "texture_crop": [
+        21,
+        17,
+        378,
+        367
+      ],
+      "texture_size": [
+        357,
+        350
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        0.0
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1095.045719596354
+      ]
+    },
+    {
+      "key": "grow_023",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\grow_023.png",
+      "sha256": "527ef60deeaca42e8a83a11ca32968902e941a48b267cd1e8495e4d6db540faf",
+      "clip": "grow",
+      "source_index": 23,
+      "build_frame": 23,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "texture_crop": [
+        21,
+        18,
+        378,
+        367
+      ],
+      "texture_size": [
+        357,
+        349
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1091.9170175403647
+      ]
+    },
+    {
+      "key": "loop_000",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_000.png",
+      "sha256": "d8aa4f62111e520b0f2b5e8848999edc3e8ef651f7fc833f71636baad21531e9",
+      "clip": "loop",
+      "source_index": 0,
+      "build_frame": 24,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        28,
+        24,
+        500,
+        491
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        28,
+        24,
+        500,
+        491
+      ],
+      "texture_crop": [
+        19,
+        17,
+        377,
+        369
+      ],
+      "texture_size": [
+        358,
+        352
+      ],
+      "geometry_center": [
+        18.7722123359375,
+        3.1287020559895833
+      ],
+      "geometry_size": [
+        1120.075336044271,
+        1101.3031237083333
+      ]
+    },
+    {
+      "key": "loop_001",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_001.png",
+      "sha256": "f4784c58db658a040150f69a7deb121efadea75fc650ebf00ab7bbb487ea072a",
+      "clip": "loop",
+      "source_index": 1,
+      "build_frame": 25,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        29,
+        25,
+        500,
+        489
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        29,
+        25,
+        500,
+        489
+      ],
+      "texture_crop": [
+        20,
+        17,
+        377,
+        369
+      ],
+      "texture_size": [
+        357,
+        352
+      ],
+      "geometry_center": [
+        20.336563363932292,
+        3.1287020559895833
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1101.3031237083333
+      ]
+    },
+    {
+      "key": "loop_002",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_002.png",
+      "sha256": "65f7605f8fab6a0e4665ea33eeed04f0d6a8d5c1ecf426f284cfd62b0ade26cb",
+      "clip": "loop",
+      "source_index": 2,
+      "build_frame": 26,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        30,
+        25,
+        500,
+        490
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        30,
+        25,
+        500,
+        490
+      ],
+      "texture_crop": [
+        20,
+        17,
+        377,
+        369
+      ],
+      "texture_size": [
+        357,
+        352
+      ],
+      "geometry_center": [
+        20.336563363932292,
+        3.1287020559895833
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1101.3031237083333
+      ]
+    },
+    {
+      "key": "loop_003",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_003.png",
+      "sha256": "fe9b9b36902ca7cb177fe1ffa288b41908c70973c17403eec61d1e3d2acf328d",
+      "clip": "loop",
+      "source_index": 3,
+      "build_frame": 27,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        25,
+        501,
+        489
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        25,
+        501,
+        489
+      ],
+      "texture_crop": [
+        21,
+        17,
+        378,
+        368
+      ],
+      "texture_size": [
+        357,
+        351
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1098.1744216523437
+      ]
+    },
+    {
+      "key": "loop_004",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_004.png",
+      "sha256": "4da21a73eeb77c1244f099c7179d25a7c5fc449e99150aeb3ede4422adb30975",
+      "clip": "loop",
+      "source_index": 4,
+      "build_frame": 28,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        25,
+        501,
+        486
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        25,
+        501,
+        486
+      ],
+      "texture_crop": [
+        21,
+        16,
+        378,
+        367
+      ],
+      "texture_size": [
+        357,
+        351
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        -1.5643510279947916
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1098.1744216523437
+      ]
+    },
+    {
+      "key": "loop_005",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_005.png",
+      "sha256": "1f3ae3ce7fca526eae3512b437cd143b3716e324bdcbf1f94b3caa88d14856c6",
+      "clip": "loop",
+      "source_index": 5,
+      "build_frame": 29,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        21,
+        502,
+        486
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        21,
+        502,
+        486
+      ],
+      "texture_crop": [
+        21,
+        15,
+        379,
+        367
+      ],
+      "texture_size": [
+        358,
+        352
+      ],
+      "geometry_center": [
+        25.029616447916666,
+        -3.1287020559895833
+      ],
+      "geometry_size": [
+        1120.075336044271,
+        1101.3031237083333
+      ]
+    },
+    {
+      "key": "loop_006",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_006.png",
+      "sha256": "9e27155cf485cff27b7c1a2942ec3f07905a905add3fb34d771c5534b1a513fb",
+      "clip": "loop",
+      "source_index": 6,
+      "build_frame": 30,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        29,
+        23,
+        500,
+        488
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        29,
+        23,
+        500,
+        488
+      ],
+      "texture_crop": [
+        20,
+        16,
+        377,
+        368
+      ],
+      "texture_size": [
+        357,
+        352
+      ],
+      "geometry_center": [
+        20.336563363932292,
+        0.0
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1101.3031237083333
+      ]
+    },
+    {
+      "key": "loop_007",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_007.png",
+      "sha256": "25b404bb66c034706f8ad4096e8742f0d17bd4479c403583c315307525736748",
+      "clip": "loop",
+      "source_index": 7,
+      "build_frame": 31,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        30,
+        23,
+        500,
+        490
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        30,
+        23,
+        500,
+        490
+      ],
+      "texture_crop": [
+        20,
+        16,
+        377,
+        368
+      ],
+      "texture_size": [
+        357,
+        352
+      ],
+      "geometry_center": [
+        20.336563363932292,
+        0.0
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1101.3031237083333
+      ]
+    },
+    {
+      "key": "loop_008",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_008.png",
+      "sha256": "7c387d9681425d194869c0931c7aecfa5a08063aa0aea773915f075971767171",
+      "clip": "loop",
+      "source_index": 8,
+      "build_frame": 32,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        30,
+        24,
+        501,
+        488
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        30,
+        24,
+        501,
+        488
+      ],
+      "texture_crop": [
+        21,
+        16,
+        377,
+        368
+      ],
+      "texture_size": [
+        356,
+        352
+      ],
+      "geometry_center": [
+        21.90091439192708,
+        0.0
+      ],
+      "geometry_size": [
+        1113.8179319322917,
+        1101.3031237083333
+      ]
+    },
+    {
+      "key": "loop_009",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_009.png",
+      "sha256": "422848b5e73a8414a8f14533a84cb1d55914ab1960afa968cac0bf2c52762214",
+      "clip": "loop",
+      "source_index": 9,
+      "build_frame": 33,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        23,
+        501,
+        489
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        23,
+        501,
+        489
+      ],
+      "texture_crop": [
+        21,
+        15,
+        378,
+        368
+      ],
+      "texture_size": [
+        357,
+        353
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        -1.5643510279947916
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1104.4318257643229
+      ]
+    },
+    {
+      "key": "loop_010",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_010.png",
+      "sha256": "ddb5e78932d9e5df6b42f3ea6a34f4e575e6143c7142b616685930787832a6b9",
+      "clip": "loop",
+      "source_index": 10,
+      "build_frame": 34,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        20,
+        501,
+        489
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        20,
+        501,
+        489
+      ],
+      "texture_crop": [
+        21,
+        14,
+        378,
+        368
+      ],
+      "texture_size": [
+        357,
+        354
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        -3.1287020559895833
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1107.5605278203125
+      ]
+    },
+    {
+      "key": "loop_011",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_011.png",
+      "sha256": "fc2f0ad927aaed06dc7a0708cc9b2b18f071925bf45f5507c40fb43846bd9c8f",
+      "clip": "loop",
+      "source_index": 11,
+      "build_frame": 35,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        19,
+        502,
+        489
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        19,
+        502,
+        489
+      ],
+      "texture_crop": [
+        21,
+        14,
+        379,
+        368
+      ],
+      "texture_size": [
+        358,
+        354
+      ],
+      "geometry_center": [
+        25.029616447916666,
+        -3.1287020559895833
+      ],
+      "geometry_size": [
+        1120.075336044271,
+        1107.5605278203125
+      ]
+    },
+    {
+      "key": "loop_012",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_012.png",
+      "sha256": "e143942039504e27307cf9693b2b77b00e946ebd0f37a417c79d93161e930b93",
+      "clip": "loop",
+      "source_index": 12,
+      "build_frame": 36,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        0,
+        0,
+        500,
+        488
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        0,
+        0,
+        500,
+        488
+      ],
+      "texture_crop": [
+        0,
+        0,
+        377,
+        368
+      ],
+      "texture_size": [
+        377,
+        368
+      ],
+      "geometry_center": [
+        -10.95045719596354,
+        -25.029616447916666
+      ],
+      "geometry_size": [
+        1179.520675108073,
+        1151.3623566041667
+      ]
+    },
+    {
+      "key": "loop_013",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_013.png",
+      "sha256": "6f1c67435ae16afd1a26d0e226056c20be997ec3be43f57b213f943bfef6089d",
+      "clip": "loop",
+      "source_index": 13,
+      "build_frame": 37,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        30,
+        25,
+        500,
+        489
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        30,
+        25,
+        500,
+        489
+      ],
+      "texture_crop": [
+        21,
+        17,
+        377,
+        368
+      ],
+      "texture_size": [
+        356,
+        351
+      ],
+      "geometry_center": [
+        21.90091439192708,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1113.8179319322917,
+        1098.1744216523437
+      ]
+    },
+    {
+      "key": "loop_014",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_014.png",
+      "sha256": "9b83efc52f5e7d3a7a75ea3f8ff3123f231b8cffc9a29a5ec6a61b1be13d75fd",
+      "clip": "loop",
+      "source_index": 14,
+      "build_frame": 38,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        25,
+        501,
+        487
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        25,
+        501,
+        487
+      ],
+      "texture_crop": [
+        21,
+        17,
+        377,
+        368
+      ],
+      "texture_size": [
+        356,
+        351
+      ],
+      "geometry_center": [
+        21.90091439192708,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1113.8179319322917,
+        1098.1744216523437
+      ]
+    },
+    {
+      "key": "loop_015",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_015.png",
+      "sha256": "81f5b3731276437a6df9d5eaa3b1109f611869605af4ef637e3f7887b6e36b59",
+      "clip": "loop",
+      "source_index": 15,
+      "build_frame": 39,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        25,
+        501,
+        489
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        25,
+        501,
+        489
+      ],
+      "texture_crop": [
+        21,
+        17,
+        378,
+        368
+      ],
+      "texture_size": [
+        357,
+        351
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1098.1744216523437
+      ]
+    },
+    {
+      "key": "loop_016",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_016.png",
+      "sha256": "521ed8a5120e78a13c5a2a738a7155568f3e0db2e043707f63a5aee99f5eb6cf",
+      "clip": "loop",
+      "source_index": 16,
+      "build_frame": 40,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        25,
+        502,
+        489
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        25,
+        502,
+        489
+      ],
+      "texture_crop": [
+        21,
+        17,
+        378,
+        368
+      ],
+      "texture_size": [
+        357,
+        351
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1098.1744216523437
+      ]
+    },
+    {
+      "key": "loop_017",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_017.png",
+      "sha256": "652ffc197d7c47aa7304c2f94cc149a402f804199a5d39d996c960441165c048",
+      "clip": "loop",
+      "source_index": 17,
+      "build_frame": 41,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        25,
+        502,
+        487
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        25,
+        502,
+        487
+      ],
+      "texture_crop": [
+        21,
+        17,
+        378,
+        368
+      ],
+      "texture_size": [
+        357,
+        351
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1098.1744216523437
+      ]
+    },
+    {
+      "key": "loop_018",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_018.png",
+      "sha256": "edf0e1f2bb1cbcbfca41b967d9dd57a7d25420c79bd6d1836d4a554cb3f4c3bd",
+      "clip": "loop",
+      "source_index": 18,
+      "build_frame": 42,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        0,
+        0,
+        500,
+        488
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        0,
+        0,
+        500,
+        488
+      ],
+      "texture_crop": [
+        0,
+        0,
+        377,
+        367
+      ],
+      "texture_size": [
+        377,
+        367
+      ],
+      "geometry_center": [
+        -10.95045719596354,
+        -26.59396747591146
+      ],
+      "geometry_size": [
+        1179.520675108073,
+        1148.2336545481771
+      ]
+    },
+    {
+      "key": "loop_019",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_019.png",
+      "sha256": "1056d90372d0147d04a3969dfcda92bdf30adb52516bdccc585c789d2dfba144",
+      "clip": "loop",
+      "source_index": 19,
+      "build_frame": 43,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        30,
+        26,
+        500,
+        487
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        30,
+        26,
+        500,
+        487
+      ],
+      "texture_crop": [
+        20,
+        18,
+        377,
+        367
+      ],
+      "texture_size": [
+        357,
+        349
+      ],
+      "geometry_center": [
+        20.336563363932292,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1091.9170175403647
+      ]
+    },
+    {
+      "key": "loop_020",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_020.png",
+      "sha256": "c1d30ba73567c8dcfc906418cae81aa431bff79133b148d1401ecd8ad7ca7939",
+      "clip": "loop",
+      "source_index": 20,
+      "build_frame": 44,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        30,
+        26,
+        500,
+        486
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        30,
+        26,
+        500,
+        486
+      ],
+      "texture_crop": [
+        21,
+        18,
+        377,
+        367
+      ],
+      "texture_size": [
+        356,
+        349
+      ],
+      "geometry_center": [
+        21.90091439192708,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1113.8179319322917,
+        1091.9170175403647
+      ]
+    },
+    {
+      "key": "loop_021",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_021.png",
+      "sha256": "52e778bd4a67f4d6a5a2f54efb55487f00af59607d5500af407fa01ffa663178",
+      "clip": "loop",
+      "source_index": 21,
+      "build_frame": 45,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "texture_crop": [
+        21,
+        18,
+        377,
+        367
+      ],
+      "texture_size": [
+        356,
+        349
+      ],
+      "geometry_center": [
+        21.90091439192708,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1113.8179319322917,
+        1091.9170175403647
+      ]
+    },
+    {
+      "key": "loop_022",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_022.png",
+      "sha256": "795a5600c20176e684dd3c2532169dad9e10a09a0855732dfd54cd003d835b71",
+      "clip": "loop",
+      "source_index": 22,
+      "build_frame": 46,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "texture_crop": [
+        21,
+        17,
+        378,
+        367
+      ],
+      "texture_size": [
+        357,
+        350
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        0.0
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1095.045719596354
+      ]
+    },
+    {
+      "key": "loop_023",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\loop_023.png",
+      "sha256": "527ef60deeaca42e8a83a11ca32968902e941a48b267cd1e8495e4d6db540faf",
+      "clip": "loop",
+      "source_index": 23,
+      "build_frame": 47,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        31,
+        26,
+        501,
+        486
+      ],
+      "texture_crop": [
+        21,
+        18,
+        378,
+        367
+      ],
+      "texture_size": [
+        357,
+        349
+      ],
+      "geometry_center": [
+        23.465265419921874,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1116.9466339882813,
+        1091.9170175403647
+      ]
+    },
+    {
+      "key": "release_000",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_000.png",
+      "sha256": "d8aa4f62111e520b0f2b5e8848999edc3e8ef651f7fc833f71636baad21531e9",
+      "clip": "release",
+      "source_index": 0,
+      "build_frame": 48,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        28,
+        24,
+        500,
+        491
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        28,
+        24,
+        500,
+        491
+      ],
+      "texture_crop": [
+        19,
+        17,
+        377,
+        369
+      ],
+      "texture_size": [
+        358,
+        352
+      ],
+      "geometry_center": [
+        18.7722123359375,
+        3.1287020559895833
+      ],
+      "geometry_size": [
+        1120.075336044271,
+        1101.3031237083333
+      ]
+    },
+    {
+      "key": "release_001",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_001.png",
+      "sha256": "1bce49716fd9befc7a9ca3cb0911da4dafad94697522418fe901550938263598",
+      "clip": "release",
+      "source_index": 1,
+      "build_frame": 49,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        25,
+        22,
+        500,
+        493
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        25,
+        22,
+        500,
+        493
+      ],
+      "texture_crop": [
+        17,
+        14,
+        377,
+        371
+      ],
+      "texture_size": [
+        360,
+        357
+      ],
+      "geometry_center": [
+        15.643510279947916,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1126.3327401562499,
+        1116.9466339882813
+      ]
+    },
+    {
+      "key": "release_002",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_002.png",
+      "sha256": "bdded3001bf0af7d2a4f3801145a109e42d675638737b418618276d15103133a",
+      "clip": "release",
+      "source_index": 2,
+      "build_frame": 50,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        23,
+        17,
+        506,
+        496
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        23,
+        17,
+        506,
+        496
+      ],
+      "texture_crop": [
+        16,
+        11,
+        381,
+        374
+      ],
+      "texture_size": [
+        365,
+        363
+      ],
+      "geometry_center": [
+        20.336563363932292,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        1141.976250436198,
+        1135.7188463242187
+      ]
+    },
+    {
+      "key": "release_003",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_003.png",
+      "sha256": "5e7786a4fdf95e280c07f52afad9573245b5333b403a1e60d93cc07a89a97f37",
+      "clip": "release",
+      "source_index": 3,
+      "build_frame": 51,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        19,
+        20,
+        496,
+        485
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        19,
+        20,
+        496,
+        485
+      ],
+      "texture_crop": [
+        12,
+        14,
+        374,
+        366
+      ],
+      "texture_size": [
+        362,
+        352
+      ],
+      "geometry_center": [
+        3.1287020559895833,
+        -6.257404111979167
+      ],
+      "geometry_size": [
+        1132.590144268229,
+        1101.3031237083333
+      ]
+    },
+    {
+      "key": "release_004",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_004.png",
+      "sha256": "a138b237f659e0894defdc1f9f82da0c3bfcaef7103b4bcbd1bf2a14ff424ba7",
+      "clip": "release",
+      "source_index": 4,
+      "build_frame": 52,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        13,
+        17,
+        500,
+        487
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        13,
+        17,
+        500,
+        487
+      ],
+      "texture_crop": [
+        8,
+        11,
+        377,
+        367
+      ],
+      "texture_size": [
+        369,
+        356
+      ],
+      "geometry_center": [
+        1.5643510279947916,
+        -9.38610616796875
+      ],
+      "geometry_size": [
+        1154.4910586601563,
+        1113.8179319322917
+      ]
+    },
+    {
+      "key": "release_005",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_005.png",
+      "sha256": "76b47202945953a52e47f02eb6bd754de7a35872f43db78db7c621715d5ffd8e",
+      "clip": "release",
+      "source_index": 5,
+      "build_frame": 53,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        8,
+        11,
+        500,
+        493
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        8,
+        11,
+        500,
+        493
+      ],
+      "texture_crop": [
+        4,
+        6,
+        377,
+        371
+      ],
+      "texture_size": [
+        373,
+        365
+      ],
+      "geometry_center": [
+        -4.693053083984375,
+        -10.95045719596354
+      ],
+      "geometry_size": [
+        1167.0058668841145,
+        1141.976250436198
+      ]
+    },
+    {
+      "key": "release_006",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_006.png",
+      "sha256": "16de946dabd430d4a67cda3e354184bf47f0fe4eface40b1bab5a15447341c4d",
+      "clip": "release",
+      "source_index": 6,
+      "build_frame": 54,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        8,
+        9,
+        501,
+        494
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        8,
+        9,
+        501,
+        494
+      ],
+      "texture_crop": [
+        4,
+        4,
+        378,
+        372
+      ],
+      "texture_size": [
+        374,
+        368
+      ],
+      "geometry_center": [
+        -3.1287020559895833,
+        -12.514808223958333
+      ],
+      "geometry_size": [
+        1170.1345689401041,
+        1151.3623566041667
+      ]
+    },
+    {
+      "key": "release_007",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_007.png",
+      "sha256": "0c949ed8e748e6d68d3e875514546459b49da9b1a2a3d9c6c0a410c1dfac8636",
+      "clip": "release",
+      "source_index": 7,
+      "build_frame": 55,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        9,
+        3,
+        504,
+        501
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        9,
+        3,
+        504,
+        501
+      ],
+      "texture_crop": [
+        4,
+        0,
+        380,
+        377
+      ],
+      "texture_size": [
+        376,
+        377
+      ],
+      "geometry_center": [
+        0.0,
+        -10.95045719596354
+      ],
+      "geometry_size": [
+        1176.3919730520834,
+        1179.520675108073
+      ]
+    },
+    {
+      "key": "release_008",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_008.png",
+      "sha256": "1c9d6b6b9f8f5c9bd2be2cbf1faad2792637aa417477f25b40cb4676fc2d3d6e",
+      "clip": "release",
+      "source_index": 8,
+      "build_frame": 56,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        13,
+        2,
+        505,
+        501
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        13,
+        2,
+        505,
+        501
+      ],
+      "texture_crop": [
+        8,
+        0,
+        381,
+        378
+      ],
+      "texture_size": [
+        373,
+        378
+      ],
+      "geometry_center": [
+        7.821755139973958,
+        -9.38610616796875
+      ],
+      "geometry_size": [
+        1167.0058668841145,
+        1182.6493771640626
+      ]
+    },
+    {
+      "key": "release_009",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_009.png",
+      "sha256": "cc96dc3f0c5bc597d313cc0815f131662ec2d179d745e7d05c432bccbac0974a",
+      "clip": "release",
+      "source_index": 9,
+      "build_frame": 57,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        14,
+        2,
+        508,
+        503
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        14,
+        2,
+        508,
+        503
+      ],
+      "texture_crop": [
+        8,
+        0,
+        383,
+        380
+      ],
+      "texture_size": [
+        375,
+        380
+      ],
+      "geometry_center": [
+        10.95045719596354,
+        -6.257404111979167
+      ],
+      "geometry_size": [
+        1173.2632709960938,
+        1188.9067812760416
+      ]
+    },
+    {
+      "key": "release_010",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_010.png",
+      "sha256": "3c5cd5e8aeb167ed3f8919b63cf553efd093a8929fbca6519c22242dba2701e2",
+      "clip": "release",
+      "source_index": 10,
+      "build_frame": 58,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        37,
+        12,
+        465,
+        476
+      ],
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": [
+        37,
+        12,
+        465,
+        476
+      ],
+      "texture_crop": [
+        26,
+        7,
+        351,
+        359
+      ],
+      "texture_size": [
+        325,
+        352
+      ],
+      "geometry_center": [
+        -10.95045719596354,
+        -28.15831850390625
+      ],
+      "geometry_size": [
+        1016.8281681966146,
+        1101.3031237083333
+      ]
+    },
+    {
+      "key": "release_011",
+      "path": "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\frames\\release_011.png",
+      "sha256": "b262bd68d44f93637b9949caf7ff7ce0b6b6ed839c3a2468681952b215ec4d95",
+      "clip": "release",
+      "source_index": 11,
+      "build_frame": 59,
+      "size": [
+        512,
+        512
+      ],
+      "alpha_bounds": null,
+      "alpha_cleanup_pixels": 0,
+      "clean_alpha_bounds": null,
+      "texture_crop": [
+        192,
+        192,
+        193,
+        193
+      ],
+      "texture_size": [
+        1,
+        1
+      ],
+      "geometry_center": [
+        1.5643510279947916,
+        1.5643510279947916
+      ],
+      "geometry_size": [
+        3.1287020559895833,
+        3.1287020559895833
+      ]
+    }
+  ],
+  "clips": {
+    "grow": {
+      "source_frames": 24,
+      "frames": 60,
+      "fps": 30,
+      "seconds": 2.0,
+      "loop": false,
+      "timeline_to_source": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        6,
+        7,
+        7,
+        8,
+        8,
+        8,
+        9,
+        9,
+        10,
+        10,
+        10,
+        11,
+        11,
+        12,
+        12,
+        12,
+        13,
+        13,
+        14,
+        14,
+        14,
+        15,
+        15,
+        16,
+        16,
+        16,
+        17,
+        17,
+        18,
+        18,
+        18,
+        19,
+        19,
+        20,
+        20,
+        20,
+        21,
+        21,
+        22,
+        22,
+        22,
+        23,
+        23
+      ],
+      "timeline_to_build": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        6,
+        7,
+        7,
+        8,
+        8,
+        8,
+        9,
+        9,
+        10,
+        10,
+        10,
+        11,
+        11,
+        12,
+        12,
+        12,
+        13,
+        13,
+        14,
+        14,
+        14,
+        15,
+        15,
+        16,
+        16,
+        16,
+        17,
+        17,
+        18,
+        18,
+        18,
+        19,
+        19,
+        20,
+        20,
+        20,
+        21,
+        21,
+        22,
+        22,
+        22,
+        23,
+        23
+      ]
+    },
+    "loop": {
+      "source_frames": 24,
+      "frames": 60,
+      "fps": 30,
+      "seconds": 2.0,
+      "loop": true,
+      "timeline_to_source": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        6,
+        7,
+        7,
+        8,
+        8,
+        8,
+        9,
+        9,
+        10,
+        10,
+        10,
+        11,
+        11,
+        12,
+        12,
+        12,
+        13,
+        13,
+        14,
+        14,
+        14,
+        15,
+        15,
+        16,
+        16,
+        16,
+        17,
+        17,
+        18,
+        18,
+        18,
+        19,
+        19,
+        20,
+        20,
+        20,
+        21,
+        21,
+        22,
+        22,
+        22,
+        23,
+        23
+      ],
+      "timeline_to_build": [
+        24,
+        24,
+        24,
+        25,
+        25,
+        26,
+        26,
+        26,
+        27,
+        27,
+        28,
+        28,
+        28,
+        29,
+        29,
+        30,
+        30,
+        30,
+        31,
+        31,
+        32,
+        32,
+        32,
+        33,
+        33,
+        34,
+        34,
+        34,
+        35,
+        35,
+        36,
+        36,
+        36,
+        37,
+        37,
+        38,
+        38,
+        38,
+        39,
+        39,
+        40,
+        40,
+        40,
+        41,
+        41,
+        42,
+        42,
+        42,
+        43,
+        43,
+        44,
+        44,
+        44,
+        45,
+        45,
+        46,
+        46,
+        46,
+        47,
+        47
+      ]
+    },
+    "release": {
+      "source_frames": 12,
+      "frames": 18,
+      "fps": 30,
+      "seconds": 0.6,
+      "loop": false,
+      "timeline_to_source": [
+        0,
+        0,
+        1,
+        2,
+        2,
+        3,
+        4,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8,
+        8,
+        9,
+        10,
+        10,
+        11
+      ],
+      "timeline_to_build": [
+        48,
+        48,
+        49,
+        50,
+        50,
+        51,
+        52,
+        52,
+        53,
+        54,
+        54,
+        55,
+        56,
+        56,
+        57,
+        58,
+        58,
+        59
+      ]
+    }
+  },
+  "archive_validation": {
+    "archive": "D:\\Projects\\AI\\dst_mod\\mod\\anim\\nw_furnace_wave.zip",
+    "build": "nw_furnace_wave",
+    "atlas_count": 2,
+    "vertex_count": 7644,
+    "animation_only": false
+  },
+  "archive_bytes": 1533971,
+  "archive_sha256": "44c0b6d14c68ec870cc6989ecba6d7beddb9dfa245d27579d52dc22b17c6f521",
+  "atlas_outputs": [
+    {
+      "name": "atlas-0.tex",
+      "bytes": 5592560,
+      "sha256": "325feebc3708c7fbf35b3cbb43cb0d471efbfe0b9257c268688314fc1af7e640"
+    },
+    {
+      "name": "atlas-1.tex",
+      "bytes": 5592560,
+      "sha256": "5370bf605947cc3c6e6e46a014592ddf44eba37c5da95f3312ddfa44910eba77"
+    }
+  ]
+}

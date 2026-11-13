@@ -190,7 +190,8 @@ function M.roll(name,rule,pool,cardmult,wandmult,rng)
     local group=rule.group
     if group then
         local g=groups[group]
-        reward.core,reward.dust=g.core,g.dust
+        reward.core=not require("nw/balance").is_balanced() and g.core or nil
+        reward.dust=g.dust
         if group=="D" or rng()<math.min(1,g.chance*wandmult) then reward.tier=g.tier end
     elseif rule.dustchance and rng()<rule.dustchance then
         reward.dust=rule.dust
@@ -206,7 +207,8 @@ end
 
 function M.finish_card(hp,card,has_wand_cards,mult,rng)
     if card then return card end
-    if not has_wand_cards and hp>200 and mult>0 and rng()<.0001*mult then
+    local chance=require("nw/balance").is_loot_only() and .0005 or .0001
+    if not has_wand_cards and hp>200 and mult>0 and rng()<chance*mult then
         return fallback[rng(#fallback)]
     end
 end

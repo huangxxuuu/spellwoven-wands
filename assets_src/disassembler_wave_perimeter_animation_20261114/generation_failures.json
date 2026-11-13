@@ -1,0 +1,24 @@
+[
+  {
+    "output_intended": "originals/grow_bridge_4.png",
+    "prompt": "prompts/grow_bridge_4.txt",
+    "model": "gpt-image-2.6-sunburst",
+    "error": "APIConnectionError: connection to OpenAI failed; CLI exit 1",
+    "checked_at_utc": "2026-11-13 18:54:07 UTC",
+    "output_or_metadata_returned": false,
+    "usage": null,
+    "billing_status": "unknown; excluded from reported successful-token total",
+    "diagnosis": "No original or metadata file was written. Direct HTTPS HEAD of official /v1/models returned expected unauthenticated HTTP 401 promptly, confirming restored connectivity, not quota exhaustion.",
+    "follow_up": "One deliberate retry after connectivity diagnosis, separately named grow_bridge_retry_4.png; no automatic SDK retries or tool-route switch."
+  },
+  {
+    "output_intended": "originals/grow_bridge_retry_4.png",
+    "prompt": "prompts/grow_bridge_4.txt",
+    "model": "gpt-image-2.6-sunburst",
+    "error": "APIConnectionError: deliberate retry also failed; CLI exit 1",
+    "output_or_metadata_returned": false,
+    "usage": null,
+    "billing_status": "unknown; excluded from reported successful-token total",
+    "follow_up": "Stop submitting this bridge request. Review the already painted full grow sequence and shared mature loop poses for the final seam; no synthesized transform frames."
+  }
+]

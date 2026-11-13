@@ -1,0 +1,118 @@
+{
+  "status": "passed_local_resource_integration",
+  "public_state": "dark is a public playable modifier with existing recipe; stable ID/code unchanged",
+  "edited_configuration_and_copy_paths": [
+    "tools/compose_spell_cards.py",
+    "tools/check_composed_spell_cards.py",
+    "assets_src/spell_card_subjects/selected_overrides.json",
+    "assets_src/spell_card_subjects/v11_dark_fog_20261113/cards.json",
+    "assets_src/spell_card_subjects/v11_dark_fog_20261113/dark.png",
+    "assets_src/spell_card_subjects/v11_dark_fog_20261113/previous/dark.png",
+    "assets_src/art_v1/originals/dark.png",
+    "mod/scripts/nw/spell_info.lua",
+    "mod/scripts/nw/locales/en.lua"
+  ],
+  "source_copy_sha256": {
+    "assets_src/spell_card_subjects/v11_dark_fog_20261113/dark-source-01.png": "b17eee7f042685220de132772b28982771828f070e71ed947a3e6f8963540483",
+    "assets_src/spell_card_subjects/v11_dark_fog_20261113/dark.png": "b17eee7f042685220de132772b28982771828f070e71ed947a3e6f8963540483",
+    "assets_src/art_v1/originals/dark.png": "b17eee7f042685220de132772b28982771828f070e71ed947a3e6f8963540483"
+  },
+  "source_copies_identical": true,
+  "image_processing": "lossless copy; no threshold removal or alpha modification",
+  "preservation": {
+    "baseline": "test_reports/dark_card_art_before.json",
+    "unchanged_existing_composed_pngs": 1006,
+    "unchanged_other_original_pngs": 222,
+    "changed_existing_pngs": [
+      "assets_src/art_v1/originals/dark.png"
+    ],
+    "new_composed_pngs": [
+      "assets_src/spell_cards_composed/v1/album/dark.png",
+      "assets_src/spell_cards_composed/v1/ground/dark.png",
+      "assets_src/spell_cards_composed/v1/inventory_128/dark.png",
+      "assets_src/spell_cards_composed/v1/inventory_32/dark.png",
+      "assets_src/spell_cards_composed/v1/inventory_64/dark.png"
+    ]
+  },
+  "generated_output_paths": [
+    "assets_src/spell_cards_composed/v1/manifest.json",
+    "assets_src/spell_cards_composed/v1/card_visuals.json",
+    "assets_src/spell_cards_composed/v1/index.html",
+    "assets_src/spell_cards_composed/v1/validation.json",
+    "assets_src/art_v1/runtime/icon_dark.png",
+    "assets_src/art_v1/runtime/nw_icons.png",
+    "assets_src/art_v1/runtime/nw_card_faces_*/",
+    "assets_src/art_v1/runtime/nw_card_piles/",
+    "assets_src/spell_cards_composed/v4_split_piles/",
+    "mod/images/inventoryimages/nw_icons.tex",
+    "mod/images/inventoryimages/nw_icons.xml",
+    "mod/anim/nw_card_faces_0.zip",
+    "mod/anim/nw_card_faces_1.zip",
+    "mod/anim/nw_card_faces_2.zip",
+    "mod/anim/nw_card_faces_3.zip",
+    "mod/anim/nw_card_faces_4.zip",
+    "mod/anim/nw_card_piles.zip",
+    "mod/scripts/nw/card_visuals.lua",
+    "test_reports/card_resources.json",
+    "test_reports/card_resources_validation.json"
+  ],
+  "generated_scope_note": "Existing build regenerates shared atlases, face pages, paper resources and runtime icon PNGs; output list names regenerated paths, not a claim that every listed file differs byte-for-byte.",
+  "checks": {
+    "python_json_lua_syntax": "passed",
+    "tests/test_spell_info.lua": "passed existing 103-entry suite",
+    "compose_spell_cards --cards dark": {
+      "exit_code": 0,
+      "cards": 190,
+      "classes": {
+        "basic": 127,
+        "control": 12,
+        "modifier": 51
+      }
+    },
+    "build_card_resources": {
+      "exit_code": 0,
+      "inventory_cards": 224,
+      "face_pages": 5
+    },
+    "check_composed_spell_cards": {
+      "exit_code": 0,
+      "single_card_exports_checked": 950,
+      "pile_exports_checked": 36
+    },
+    "check_card_resources": {
+      "exit_code": 0,
+      "public_icons_matched": 190,
+      "inventory_elements": 225,
+      "ground_clips": 224,
+      "shared_layouts": 201
+    },
+    "check_localization": {
+      "exit_code": 1,
+      "existing_before_and_after": true,
+      "error": "AssertionError: ('zh', 'edge_voidcloth_boomerang', 'name', 'website differs from mod')",
+      "note": "Translation coverage/format/gameplay checks pass before unrelated existing site catalog name mismatch. site/dist was not modified."
+    }
+  },
+  "not_performed": [
+    "game/client visual check",
+    "multiplayer/controller check",
+    "game install synchronization",
+    "version bump",
+    "commit",
+    "publish",
+    "site/dist export"
+  ],
+  "interpreter": ".venv/Scripts/python.exe",
+  "final_visual_check": {
+    "review_matches_final_album_byte_for_byte": true,
+    "compiled_inventory_texture": "mod/images/inventoryimages/nw_icons.tex",
+    "compiled_element": "nw_spell_dark.tex",
+    "decoded_icon": "review/compiled_dark_icon_128.png",
+    "decoded_size": [
+      128,
+      128
+    ],
+    "viewed": true,
+    "result": "black miasma subject, hexagonal frame and alpha boundary remain readable after texture compilation"
+  }
+}

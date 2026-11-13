@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 from lupa.lua51 import LuaRuntime, lua_type
 from build_localized_names import names
+from check_site_catalog import check_atlas, check_cards, check_materials
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -43,8 +44,9 @@ if __name__ == '__main__':
     for language in ('zh', 'en'):
         rows = runtime(language).eval('require("nw/acquisition").menu_entries')
         assert all(not row.section_icon for row in rows.values()), 'Retired crafting headings still registered'
-    a = json.loads((ROOT / 'site/dist/catalog.json').read_text(encoding='utf8'))['cards']
-    b = json.loads((ROOT / 'site/dist/catalog.en.json').read_text(encoding='utf8'))['cards']
+    zh_catalog = json.loads((ROOT / 'site/dist/catalog.json').read_text(encoding='utf8'))
+    en_catalog = json.loads((ROOT / 'site/dist/catalog.en.json').read_text(encoding='utf8'))
+    a, b = zh_catalog['cards'], en_catalog['cards']
     assert [c['id'] for c in a] == [c['id'] for c in b]
     for left, right in zip(a, b):
         for key in ('mana', 'delay', 'recharge', 'iconIndex', 'groupOrder'):
@@ -78,4 +80,9 @@ if __name__ == '__main__':
                         "tagIds": [own[i].id for i in range(1, len(own) + 1)]}
             for key, value in expected.items():
                 assert card[key] == value, (language, card_id, key, "website differs from mod")
-    print(f'PASS: {len(dictionary)} translations, format arguments, real recipe entries, gameplay/ID parity, {len(a)} bilingual catalog cards')
+    tiles = check_atlas(ROOT / 'site/dist')
+    for language, catalog in (("zh", zh_catalog), ("en", en_catalog)):
+        _, recipe_count = check_cards(catalog, language, tiles)
+        check_materials(catalog, language, ROOT / 'site/dist')
+    print(f'PASS: {len(dictionary)} translations, format arguments, gameplay/ID parity, {len(a)} bilingual catalog cards, '
+          f'{recipe_count} current recipes, 3 difficulty modes and {len(tiles)} atlas tiles')

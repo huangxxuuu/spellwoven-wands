@@ -1,0 +1,85 @@
+{
+  "note": "Art-approved settling combination; retains local hand-drawn pose transitions, not described as perfectly seamless",
+  "pairs": [
+    {
+      "first": "grow_020.png",
+      "second": "grow_021.png",
+      "radius64_first": 253.4284909002932,
+      "radius64_second": 253.39692184397188,
+      "mean_absolute_premultiplied_rgba": 16.597816467285156,
+      "mean_absolute_alpha": 29.893150329589844,
+      "changed_alpha64_pixels": 35341,
+      "identical_pixels": false
+    },
+    {
+      "first": "grow_021.png",
+      "second": "grow_022.png",
+      "radius64_first": 253.39692184397188,
+      "radius64_second": 252.55692427648862,
+      "mean_absolute_premultiplied_rgba": 1.3810606002807617,
+      "mean_absolute_alpha": 1.6618118286132812,
+      "changed_alpha64_pixels": 1704,
+      "identical_pixels": false
+    },
+    {
+      "first": "grow_022.png",
+      "second": "grow_023.png",
+      "radius64_first": 252.55692427648862,
+      "radius64_second": 252.7231687044146,
+      "mean_absolute_premultiplied_rgba": 1.496172547340393,
+      "mean_absolute_alpha": 1.9042587280273438,
+      "changed_alpha64_pixels": 1980,
+      "identical_pixels": false
+    },
+    {
+      "first": "grow_023.png",
+      "second": "loop_000.png",
+      "radius64_first": 252.7231687044146,
+      "radius64_second": 255.69708641280997,
+      "mean_absolute_premultiplied_rgba": 4.391576766967773,
+      "mean_absolute_alpha": 6.2131805419921875,
+      "changed_alpha64_pixels": 6884,
+      "identical_pixels": false
+    },
+    {
+      "first": "loop_023.png",
+      "second": "loop_000.png",
+      "radius64_first": 252.7231687044146,
+      "radius64_second": 255.69708641280997,
+      "mean_absolute_premultiplied_rgba": 4.391576766967773,
+      "mean_absolute_alpha": 6.2131805419921875,
+      "changed_alpha64_pixels": 6884,
+      "identical_pixels": false
+    },
+    {
+      "first": "loop_000.png",
+      "second": "release_000.png",
+      "radius64_first": 255.69708641280997,
+      "radius64_second": 255.69708641280997,
+      "mean_absolute_premultiplied_rgba": 0.0,
+      "mean_absolute_alpha": 0.0,
+      "changed_alpha64_pixels": 0,
+      "identical_pixels": true
+    },
+    {
+      "first": "release_000.png",
+      "second": "release_001.png",
+      "radius64_first": 255.69708641280997,
+      "radius64_second": 255.1234995056316,
+      "mean_absolute_premultiplied_rgba": 7.309483528137207,
+      "mean_absolute_alpha": 11.332752227783203,
+      "changed_alpha64_pixels": 12865,
+      "identical_pixels": false
+    },
+    {
+      "first": "release_002.png",
+      "second": "release_003.png",
+      "radius64_first": 258.5072532831526,
+      "radius64_second": 257.8003103178893,
+      "mean_absolute_premultiplied_rgba": 12.584348678588867,
+      "mean_absolute_alpha": 21.62195587158203,
+      "changed_alpha64_pixels": 25511,
+      "identical_pixels": false
+    }
+  ]
+}

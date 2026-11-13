@@ -2,13 +2,21 @@ local D=require("nw/definitions")
 local R=require("nw/wand_generation")
 local RNG=require("nw/rng")
 local Visual=require("nw/visual")
+local Balance=require("nw/balance")
 local M={sanity_conversion=20}
 local distributions={}
+
+-- Store the unscaled conversion in every wand. World settings apply at use
+-- time, including old saves, without multiplying saved values on each load.
+function M.sanity_conversion_for(stats)
+    local base=stats and stats.sanity_conversion or M.sanity_conversion
+    return base*(Balance.is_balanced() and .5 or 1)
+end
 
 -- Discrete truncated Gaussian: normalize only legal values, so no clamped
 -- overflow accumulates at either endpoint. Cached CDFs make sampling bounded.
 local function sample(rng,tier,kind,key)
-    local cachekey=tier..":"..kind..":"..key
+    local cachekey=tier..":"..kind..":"..key..":"..tostring(Balance.is_balanced())
     local dist=distributions[cachekey]
     if not dist then
         local lo,hi,centre,sigma,step=R.distribution(tier,kind,key)
@@ -52,7 +60,7 @@ function M.generate(seed,tier,archetype,cosmetic_roll)
 end
 function M.starter(cosmetic_roll)
     local stats = { capacity = 2, sanity_conversion = M.sanity_conversion, mana_max = 120, mana_regen = 18, cast_delay = .65,
-        recharge = 1.4, draw_count = 1, spread = 6, shuffle = false }
+        recharge = Balance.is_balanced() and 2.1 or 1.4, draw_count = 1, spread = 6, shuffle = false }
     return { schema_version = 1, generator_version = 1, seed = 1, tier = 1,
         archetype = "sprout", stats = stats, appearance = Visual.appearance(stats,cosmetic_roll or 0) }
 end

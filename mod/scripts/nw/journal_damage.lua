@@ -10,6 +10,7 @@ function M.loss(owner,p,health,before)
 end
 function M.tag(inst,owner,p)
     inst._nw_journal_source={owner=owner,id=p.journal_id or p.id}
+    require("nw/balance_damage").tag(inst,p)
 end
 function M.install(env)
     env.AddComponentPostInit("combat",function(combat)

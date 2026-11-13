@@ -1,0 +1,18 @@
+{
+  "input": "previews/e_separated_bands-clean.png",
+  "regions_inclusive": [
+    [
+      880,
+      283,
+      944,
+      341
+    ],
+    [
+      78,
+      698,
+      122,
+      757
+    ]
+  ],
+  "purpose": "Delete only the two purple arcs; restore original pixels outside edit mask after API output."
+}

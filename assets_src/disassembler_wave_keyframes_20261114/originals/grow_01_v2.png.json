@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-11-13T17:00:13.585958+00:00",
+  "action": "edit",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Draw SIX consecutive ANIMATION KEYFRAMES of SEPARATE PAINTED MAGIC STRIPS UNCOILING AND FLOWING OUTWARD. They are the beginning of an expanding ground effect for Don't Starve Together. The two references are ONLY the ink-outline treatment and cyan/gold palette of an individual mature strip. DO NOT copy their mature silhouettes into these beginning cels. They show what the short strokes will eventually turn into.\n\nOutput 1536x1024 PNG with true transparent alpha, exact 3x2 grid of unlabelled 512x512 animation cels, read left to right then top to bottom. Same fixed local center (256,256), same ground-plane scale, orthographic top-down, no perspective. No drawn grid, no words, no floor, no glow cloud, no furnace, no drop shadows. The blank transparent margins are essential. Each effect occupies only the central part of its cell; DO NOT fit it to the available panel space.\n\nAction: seven tiny strokes wake near the center, independently curl clockwise, stretch their heads outward, and begin to open like elastic ribbons. FOUR muted cyan strokes and THREE old gold strokes, interleaved in angular order, with an empty central hole. At this early stage OMIT all diamond gems and purple runes: these are just short living brushstrokes, not miniature finished circles. Dark tapered ink outlines, clear hand-painted color shapes, sparse cyan or warm gold interior highlight strokes. Flat hand-drawn Klei-like art, not vector-perfect curves, not fire, not flower petals, not a solid ring or disk.\n\nCEL 1 (top left): seven extremely short COMMA-SHAPED dashes just waking up, narrow and stubby, each a tiny rounded hook with one short pointed end. Entire cluster diameter 40 pixels around (256,256). They have NO long trailing tails and NO forks yet.\nCEL 2 (top middle): same seven dashes, their outer heads bend clockwise while tails lag behind, becoming small C-SHAPED curls. Cluster diameter 55 pixels. Highlight is a tiny dot becoming a short bent stroke.\nCEL 3 (top right): same seven curls opening, heads move outward; outer tip bends away from the tighter trailing hook. Each silhouette now bends like an uneven S, with a thin tail and thicker head, not a scaled copy of cel 2. Cluster diameter 72 pixels.\nCEL 4 (bottom left): head pulls further outward, tail uncoils and trails inward, making each strip a shallow hook, longer than wide. The thin trailing tip grows a tiny uneven notch. Cluster diameter 91 pixels. Each strip rotates locally clockwise in addition to drifting outward.\nCEL 5 (bottom middle): long head turns farther along the spiral; thin tail is pulled out into a curved taper; the notch opens to two unequal tips. Highlight elongates from a dot into a curved dash. Cluster diameter 112 pixels.\nCEL 6 (bottom right): seven elongated young hooked ribbons, still far shorter and thinner than the reference strips; wide head leads, trailing prongs are just forming. Cluster diameter 134 pixels. There is visible space between strips, and a dark-free empty center.\n\nThese six cels must show TRUE SHAPE DEVELOPMENT: stubby comma -> tight C -> asymmetric S -> opening hook -> tapered ribbon -> first fork. Keep identity and angular order so adjacent cels can animate. The positions turn clockwise only gradually, about 2 degrees between cels. The shapes are not six unrelated alternatives. Do not repeat one painted shape at different sizes. Do not make six fully formed magic circles. Each frame is a new drawing, with changing curvature and length-to-width ratio, new tail silhouette and newly painted internal highlight.\n",
+    "n": 1,
+    "size": "1536x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_v2_complete_20261110\\parts\\arc_00.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_v2_complete_20261110\\parts\\arc_01.png"
+  ],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_keyframes_20261114\\originals\\grow_01_v2.png"
+  ],
+  "usage": {
+    "input_tokens": 2025,
+    "input_tokens_details": {
+      "image_tokens": 1240,
+      "text_tokens": 785
+    },
+    "output_tokens": 1372,
+    "total_tokens": 3397,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_93d78ca5c7fe4367a0310ff17394bd3f",
+  "revised_prompts": [
+    null
+  ]
+}

@@ -87,6 +87,35 @@ Limits.range=60;candidates={};p=shot(80,0,10)
 P.step(p,1,{});assert(p.removed and p._shot.x==60)
 Limits.range=0
 -- Re-score forward intercepts every search, including when the old one is alive.
+-- Dark trails receive only collision/lifetime-clipped path segments.
+local trail_segments={};local fog_end
+package.loaded["nw/dark_fog"]={trail=function(_,_,x,z,nx,nz)
+    trail_segments[#trail_segments+1]={x=x,z=z,nx=nx,nz=nz}
+end,leave=function(_,x,z) fog_end={x=x,z=z} end}
+local fogwall=target(90,2,0,true)
+candidates={fogwall};p=shot(8,0)
+p._shot.p={flags={dark={}}}
+P.step(p,.1,{})
+assert(p.removed and #trail_segments==1)
+assert(fog_end and fog_end.x==trail_segments[1].nx,"final fog sample reaches actual contact")
+assert(trail_segments[1].x==0 and trail_segments[1].nx>0 and trail_segments[1].nx<2,
+    "wall clips emitted fog at contact, not untrimmed endpoint")
+trail_segments={};candidates={};p=shot(8,0,.05)
+p._shot.p={flags={dark={}}}
+P.step(p,.1,{})
+assert(p.removed and #trail_segments==1 and trail_segments[1].nx==4,
+    "expired flight leaves no fog beyond remaining lifetime")
+package.loaded["nw/dark_fog"]=nil
+-- Interception removes the carrier, but the path before the ring still existed.
+local Guard=require("nw/guard_ring");local old_intercept=Guard.intercept
+Guard.intercept=function(inst) inst:Remove();return true,.25 end
+local intercepted_end
+package.loaded["nw/dark_fog"]={trail=function(inst,_,x,z,nx,nz)
+    assert(inst.removed and x==0 and z==0 and nz==0);intercepted_end=nx
+end}
+p=shot(8,0);p._shot.p={flags={dark={}}};P.step(p,.1,{})
+assert(p.removed and intercepted_end==2,"guard only allows fog before its actual contact")
+Guard.intercept=old_intercept;package.loaded["nw/dark_fog"]=nil
 local seeker={owner=owner,x=0,z=0,heading=0,speed=15,hit={}}
 local back=target(10,-.6,0);local front=target(11,4,0)
 local side=target(12,1,3)

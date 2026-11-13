@@ -19,7 +19,7 @@ function M.orbit_radius(p,speed)
     -- Apply the minimum before giant scaling: a slow, large projectile still
     -- needs room to turn. Faster projectiles get a wider base circle.
     local base=math.max(2.5,3.2*math.sqrt(math.max(0,speed or 0)/25))
-    return math.min(8,base*math.sqrt(math.max(1,p and p.size_mult or 1)))
+    return math.min(8,base*math.sqrt(require("nw/projectile_size").factor(p)))
 end
 function M.turn(angle,desired,limit)
     local delta=(desired-angle+math.pi)%(2*math.pi)-math.pi

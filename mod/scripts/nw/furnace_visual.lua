@@ -1,7 +1,27 @@
 -- Local ground animation; only phase changes and occasional age corrections
 -- cross the network. Gameplay owns the scan and stops independently of FX.
-local M={grow_time=60/30,loop_time=60/30,release_time=18/30}
+local M={grow_time=60/30,loop_time=60/30,release_time=18/30,rotation_speed=30}
 local SYNC_TIME=.25
+
+function M.rotation_angle(age)
+    return (math.max(0,age)*M.rotation_speed)%360
+end
+
+-- Selected grow frames' maximum alpha>=64 radius / release_000's radius.
+-- Keep these measurements synchronized with the painted source selection.
+M.release_visual_extents={
+    0.000000,0.089182,0.216339,0.310958,0.391029,0.475795,0.517006,0.553151,
+    0.600100,0.651569,0.724727,0.776966,0.798662,0.845112,0.874892,0.895693,
+    0.922453,0.939596,0.972811,0.986549,0.991128,0.991004,0.987719,0.988369,
+}
+function M.release_visual_extent(progress)
+    if progress<=0 then return 0 end
+    if progress>=1 then return 1 end
+    -- Match native 30 FPS first, then the authored 24-source/60-tick holds.
+    local tick=math.floor(progress*60+1e-6)
+    local source=math.floor(tick*24/60)
+    return M.release_visual_extents[math.min(24,source+1)]
+end
 
 function M.netvars(inst)
     inst._active=net_bool(inst.GUID,"nw_furnace.active","nw_furnacedirty")
@@ -12,16 +32,20 @@ function M.netvars(inst)
 end
 
 function M.attach(inst)
-    local ring,task,mode,sequence,started,seen_age,clip,last_sync
+    local ring,task,rotation_task,mode,sequence,started,seen_age,clip,last_sync
+    local rotation=0
     local removed=false
     local master=TheWorld.ismastersim
     local function cancel()
         if task then task:Cancel();task=nil end
     end
+    local function cancel_rotation()
+        if rotation_task then rotation_task:Cancel();rotation_task=nil end
+    end
     local function clear()
-        cancel()
+        cancel();cancel_rotation()
         if ring then ring:Remove();ring=nil end
-        clip=nil
+        clip=nil;rotation=0
         inst.Light:SetRadius(0)
         inst.Light:SetIntensity(.65)
     end
@@ -34,15 +58,22 @@ function M.attach(inst)
         ring.AnimState:SetBank("nw_furnace_wave");ring.AnimState:SetBuild("nw_furnace_wave")
         ring.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
         ring.AnimState:SetLayer(LAYER_BACKGROUND);ring.AnimState:SetSortOrder(1)
+        ring.Transform:SetRotation(rotation)
+    end
+    local function spin()
+        rotation=M.rotation_angle(GetTime()-started)
+        ring.Transform:SetRotation(rotation)
     end
     local function play(name,age,extent)
         if not ring then return end
         if clip~=name then
             clip=name
             ring.AnimState:PlayAnimation(name,name=="loop")
-            -- Grow is authored at full scale. Only an interrupted release
-            -- needs a fixed scale, captured once from the scan's progress.
-            ring.Transform:SetScale(extent,extent,extent)
+            -- Painted grow frames have a nonlinear outer edge. Register the
+            -- release drawing to that edge once when changing clips; scan
+            -- progress still independently owns the light and gameplay range.
+            local scale=name=="release" and M.release_visual_extent(extent) or extent
+            ring.Transform:SetScale(scale,scale,scale)
         end
         ring.AnimState:SetTime(age)
     end
@@ -91,7 +122,14 @@ function M.attach(inst)
         local nextseq=inst._nw_furnace_seq:value()
         local age=inst._nw_furnace_age:value()
         if nextmode~=mode or nextseq~=sequence then
-            cancel();clip=nil
+            -- Keep the last visible direction when dissolving. The local
+            -- angle never depends on the looping painted clip's frame index.
+            if mode=="active" and nextmode=="release" then
+                rotation=M.rotation_angle(GetTime()-started)
+            elseif nextmode=="active" then
+                rotation=M.rotation_angle(age)
+            end
+            cancel();cancel_rotation();clip=nil
             mode,sequence=nextmode,nextseq
             started=GetTime()-age
             last_sync=GetTime()
@@ -105,9 +143,17 @@ function M.attach(inst)
         local duration=mode=="release" and M.release_time or M.grow_time
         -- A repeated dirty event after release completion must not respawn it.
         if mode=="release" and GetTime()-started>=duration-1e-6 then clear();return end
-        make_ring();tick(false)
+        make_ring()
+        if ring and mode=="release" then ring.Transform:SetRotation(rotation) end
+        tick(false)
         if not task and mode~="off" and GetTime()-started<duration-1e-6 then
             task=inst:DoPeriodicTask(FRAMES,tick)
+        end
+        -- Only a peer rendering this ring needs a rotation update. Dedicated
+        -- servers keep the existing phase/snapshot task budget unchanged.
+        if ring and mode=="active" then
+            spin()
+            if not rotation_task then rotation_task=inst:DoPeriodicTask(FRAMES,spin) end
         end
     end
     inst:ListenForEvent("nw_furnacedirty",state)

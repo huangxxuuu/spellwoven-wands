@@ -1,0 +1,91 @@
+{
+  "purpose": "unfitted fixed-coordinate maturity seam diagnostic; no selection applied",
+  "frames": {
+    "grow_redraw_020.png": {
+      "radius_alpha64": 253.4284909002932,
+      "sha256": "d60fe0330ccdf778c5dced5624b4de9434708acbb115d12f15a8723df5c0501a"
+    },
+    "grow_redraw_021.png": {
+      "radius_alpha64": 256.20499604808646,
+      "sha256": "98d4627f15409798e44a911ba69fbcb12d2b0a0fc1a0da210a0fe19aec9022a3"
+    },
+    "grow_redraw_022.png": {
+      "radius_alpha64": 256.6028059082753,
+      "sha256": "776cc1902c2a84c24fe195584abb5c6cdec11bc828ee102759676ba45f828889"
+    },
+    "grow_redraw_023.png": {
+      "radius_alpha64": 258.3060200614767,
+      "sha256": "f85ad50a614158d06df554c1e8ef5405a272c5e65a42d4f26b2a75dc9bcdc1ca"
+    },
+    "loop_000.png": {
+      "radius_alpha64": 255.69708641280997,
+      "sha256": "d8aa4f62111e520b0f2b5e8848999edc3e8ef651f7fc833f71636baad21531e9"
+    },
+    "loop_001.png": {
+      "radius_alpha64": 255.6188568944005,
+      "sha256": "f4784c58db658a040150f69a7deb121efadea75fc650ebf00ab7bbb487ea072a"
+    }
+  },
+  "pairs": [
+    {
+      "first": "grow_redraw_020.png",
+      "second": "loop_000.png",
+      "radius_ratio": 1.0089516198611201,
+      "radius_delta": 2.268595512516754,
+      "mean_absolute_premultiplied_rgba": 16.817108154296875,
+      "mean_absolute_alpha": 30.137821197509766,
+      "changed_alpha64_pixels": 35391,
+      "identical_pixels": false
+    },
+    {
+      "first": "grow_redraw_021.png",
+      "second": "loop_000.png",
+      "radius_ratio": 0.9980175654530127,
+      "radius_delta": -0.5079096352764907,
+      "mean_absolute_premultiplied_rgba": 16.349803924560547,
+      "mean_absolute_alpha": 29.518413543701172,
+      "changed_alpha64_pixels": 34695,
+      "identical_pixels": false
+    },
+    {
+      "first": "grow_redraw_022.png",
+      "second": "loop_000.png",
+      "radius_ratio": 0.9964703445378962,
+      "radius_delta": -0.9057194954653198,
+      "mean_absolute_premultiplied_rgba": 16.667034149169922,
+      "mean_absolute_alpha": 30.260723114013672,
+      "changed_alpha64_pixels": 35725,
+      "identical_pixels": false
+    },
+    {
+      "first": "grow_redraw_023.png",
+      "second": "loop_000.png",
+      "radius_ratio": 0.9898998341268012,
+      "radius_delta": -2.608933648666749,
+      "mean_absolute_premultiplied_rgba": 16.38096046447754,
+      "mean_absolute_alpha": 29.567378997802734,
+      "changed_alpha64_pixels": 34847,
+      "identical_pixels": false
+    },
+    {
+      "first": "grow_redraw_023.png",
+      "second": "loop_001.png",
+      "radius_ratio": 0.9895969781639751,
+      "radius_delta": -2.6871631670762213,
+      "mean_absolute_premultiplied_rgba": 16.36688995361328,
+      "mean_absolute_alpha": 29.54296112060547,
+      "changed_alpha64_pixels": 34827,
+      "identical_pixels": false
+    },
+    {
+      "first": "loop_000.png",
+      "second": "loop_001.png",
+      "radius_ratio": 0.9996940539311302,
+      "radius_delta": -0.07822951840947212,
+      "mean_absolute_premultiplied_rgba": 2.238460063934326,
+      "mean_absolute_alpha": 2.894451141357422,
+      "changed_alpha64_pixels": 3064,
+      "identical_pixels": false
+    }
+  ]
+}

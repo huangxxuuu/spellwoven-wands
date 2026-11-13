@@ -1,0 +1,146 @@
+{
+  "scope": "perimeter animation sources only; approved static F exploration is recorded separately",
+  "successful_requests": 8,
+  "reported_tokens": 45256,
+  "unknown_usage_failures": 2,
+  "failures_record": "generation_failures.json",
+  "records": [
+    {
+      "metadata": "originals/grow_24.png.json",
+      "model": "gpt-image-2.6-sunburst",
+      "usage": {
+        "input_tokens": 2958,
+        "input_tokens_details": {
+          "image_tokens": 2048,
+          "text_tokens": 910
+        },
+        "output_tokens": 3184,
+        "total_tokens": 6142,
+        "output_tokens_details": {
+          "image_tokens": 3184,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/grow_clean_alpha.png.json",
+      "model": "gpt-image-2.6-sunburst",
+      "usage": {
+        "input_tokens": 1881,
+        "input_tokens_details": {
+          "image_tokens": 1536,
+          "text_tokens": 345
+        },
+        "output_tokens": 3184,
+        "total_tokens": 5065,
+        "output_tokens_details": {
+          "image_tokens": 3184,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/grow_redraw_24.png.json",
+      "model": "gpt-image-2.6-sunburst",
+      "usage": {
+        "input_tokens": 5201,
+        "input_tokens_details": {
+          "image_tokens": 4096,
+          "text_tokens": 1105
+        },
+        "output_tokens": 3184,
+        "total_tokens": 8385,
+        "output_tokens_details": {
+          "image_tokens": 3184,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/grow_study_6.png.json",
+      "model": "gpt-image-2.6-sunburst",
+      "usage": {
+        "input_tokens": 3875,
+        "input_tokens_details": {
+          "image_tokens": 3072,
+          "text_tokens": 803
+        },
+        "output_tokens": 1372,
+        "total_tokens": 5247,
+        "output_tokens_details": {
+          "image_tokens": 1372,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/loop_24.png.json",
+      "model": "gpt-image-2.6-sunburst",
+      "usage": {
+        "input_tokens": 2745,
+        "input_tokens_details": {
+          "image_tokens": 2048,
+          "text_tokens": 697
+        },
+        "output_tokens": 3184,
+        "total_tokens": 5929,
+        "output_tokens_details": {
+          "image_tokens": 3184,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/release_12.png.json",
+      "model": "gpt-image-2.6-sunburst",
+      "usage": {
+        "input_tokens": 2826,
+        "input_tokens_details": {
+          "image_tokens": 2048,
+          "text_tokens": 778
+        },
+        "output_tokens": 2223,
+        "total_tokens": 5049,
+        "output_tokens_details": {
+          "image_tokens": 2223,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/release_12_alpha.png.json",
+      "model": "gpt-image-2.6-sunburst",
+      "usage": {
+        "input_tokens": 1787,
+        "input_tokens_details": {
+          "image_tokens": 1452,
+          "text_tokens": 335
+        },
+        "output_tokens": 2223,
+        "total_tokens": 4010,
+        "output_tokens_details": {
+          "image_tokens": 2223,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/release_bridge_4.png.json",
+      "model": "gpt-image-2.6-sunburst",
+      "usage": {
+        "input_tokens": 3673,
+        "input_tokens_details": {
+          "image_tokens": 3072,
+          "text_tokens": 601
+        },
+        "output_tokens": 1756,
+        "total_tokens": 5429,
+        "output_tokens_details": {
+          "image_tokens": 1756,
+          "text_tokens": 0
+        }
+      }
+    }
+  ],
+  "note": "Reported tokens are not a bill or a claim of account balance; failed requests may have been charged."
+}

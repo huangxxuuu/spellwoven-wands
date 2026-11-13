@@ -1,0 +1,39 @@
+{
+  "created_at": "2026-11-13T17:14:27.774216+00:00",
+  "action": "edit",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Create one complete12-frame hand-drawn animation of this magic effect breaking apart and dissolving. EXACT4columns x3rows, 2048x1536 PNG, each cel512x512, chronological left-to-right then down. True transparent background, empty center and transparent gaps. No labels, grid lines, guide circles, furnace, floor, smoke or glow. The camera is orthographic top-down with the SAME fixed center and world scale throughout. Each complete effect stays safely inside its512 cell.\n\nReference1 is the precise START POSE. First cel must match its cyan/gold hooks, bright diamonds and hollow marks, at the EXACT same positions and size inside512x512, without its transparent background RGB haze. Reference2 and3 are only MOTION STUDIES of the desired sequential shape deformation and dissolution. Make a single continuous12-cel animation from start to empty; do not copy their batch boundaries or unequal sizes. The fourth-row nonexistent: EXACT3rows, four cels each.\n\nThe seven original strips must individually curl, stretch, turn CLOCKWISE and move a little OUTWARD while they crack. Motion must be tiny and continuous between each pair of cels. The painted head advances first, trailing narrow end curls behind, body bends and narrows, inner highlight follows the changing curve. Notches grow into cracks, cracks separate strips into two then three curved unequal fragments, those fragments bend and turn further before tapering into tiny dashes. The whole picture NEVER scales, rotates or shrinks. Keep every particle moving outward or tangentially, never returning inward. The outermost radius begins about240px and stays about240–248px as pieces dissolve, within the cell boundaries. Lots of blank space inside.\n\nCel1: intact starting pose matching reference1.\nCel2: slightly stretched curved heads, more tightly curled trailing tips, only hairline notches starting in three strips. Reshape painted highlight strokes.\nCel3: weak middles become narrow, notches open into small transparent gaps in several cyan/gold strips. New split tips are bent and asymmetric.\nCel4: original strips open larger gaps. Heads stretch thin and sweep forward, tails curl into hooks; different strips break at slightly different points.\nCel5: most strips are now two or three unequal curved pieces, original identities remain traceable. Not opaque shapes merely sliced into rigid pieces: redraw their bending silhouettes.\nCel6: about55% original painted area remains, as thin sweeping curved fragments. Purple marks start opening at a corner, diamonds begin splitting into sharp slivers. No new inner pieces.\nCel7: about40% original area; individual fragments turn and elongate as their thin ends dissolve. Large empty gaps continue opening.\nCel8: about25%; only narrow curved splinters and curling tails. No intact broad blade, diamond or full rune remains.\nCel9: about12%; scattered small curled cyan/gold strokes and few icy slivers near the outside.\nCel10: about5%; a handful of very thin colored curved dashes, each following an earlier piece's path.\nCel11: about1%; last tiny tapering remnants at the OUTER circumference, no central cluster.\nCel12: COMPLETELY EMPTY TRANSPARENT cell.\n\nEach cel is a new detailed hand-drawn keyframe, showing contour evolution, changing curve, tail forks, widths, cracks and interior bright strokes. NO affine copied sprites, NO same image simply faded, NO whole-ring shrink. Shape changes are continuous, not12 unrelated designs. Preserve Don't Starve Together's dark tapered ink, muted cool cyan/antique gold planes and sparse highlights. Remove ALL low-opacity clouds/background and halo so only the inked painted shapes have alpha. The first drawing is never enlarged to fill the cell. Do not crop any stroke at the cell boundary.\n",
+    "n": 1,
+    "size": "2048x1536",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_keyframes_20261114\\frames\\loop_000.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_keyframes_20261114\\originals\\release_01.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_keyframes_20261114\\originals\\release_finish.png"
+  ],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_keyframes_20261114\\originals\\release_complete_v2.png"
+  ],
+  "usage": {
+    "input_tokens": 4901,
+    "input_tokens_details": {
+      "image_tokens": 4096,
+      "text_tokens": 805
+    },
+    "output_tokens": 2223,
+    "total_tokens": 7124,
+    "output_tokens_details": {
+      "image_tokens": 2223,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_0e926745a1fd4395aae8712be3e54e0e",
+  "revised_prompts": [
+    null
+  ]
+}

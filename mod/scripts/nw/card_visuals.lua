@@ -222,5 +222,7 @@ local M={page_size=48,cards={
     ["pitch_semitone_down"]={shape="H",primary_class="modifier"},
     ["kantele_f"]={shape="R",primary_class="basic"},
     ["kantele_b"]={shape="R",primary_class="basic"},
+    ["dark"]={shape="H",primary_class="modifier"},
+    ["shrink_shot"]={shape="H",primary_class="modifier"},
 }}
 return M

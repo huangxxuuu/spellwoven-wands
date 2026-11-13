@@ -1,0 +1,352 @@
+{
+  "purpose": "Static design review only; user selection required before animation generation",
+  "tool": "local OpenAI Images API / gpt-image-2.6-sunburst / high",
+  "outer_radius_px": 430,
+  "furnace_width_px": 320,
+  "ground_projection": 0.573576436351046,
+  "scale_note": "Approximate furnace-to-range proportion from supplied screenshots, not an engine capture",
+  "furnace_sha256": "70da60700eb1dddca893c17c075867e599f6a04552d76b6d9e5c40be3445787b",
+  "derivation": "Remove alpha <= 8 background residue, uniform size registration, ground-plane projection, composite unchanged furnace. No shapes repainted by code.",
+  "options": {
+    "d_two_interacting_bands": {
+      "source_sha256": "a0ddcf41737334a678fd88b500bdfcb71a255f23e4340bd65eb87e1e6a845e8c",
+      "solid_components": 35,
+      "components": [
+        {
+          "pixels": 5080,
+          "bbox": [
+            322,
+            19,
+            545,
+            89
+          ]
+        },
+        {
+          "pixels": 1052,
+          "bbox": [
+            565,
+            45,
+            636,
+            80
+          ]
+        },
+        {
+          "pixels": 2126,
+          "bbox": [
+            265,
+            54,
+            336,
+            128
+          ]
+        },
+        {
+          "pixels": 3432,
+          "bbox": [
+            393,
+            67,
+            559,
+            126
+          ]
+        },
+        {
+          "pixels": 7563,
+          "bbox": [
+            705,
+            69,
+            916,
+            273
+          ]
+        },
+        {
+          "pixels": 617,
+          "bbox": [
+            350,
+            87,
+            396,
+            125
+          ]
+        },
+        {
+          "pixels": 3509,
+          "bbox": [
+            576,
+            103,
+            717,
+            166
+          ]
+        },
+        {
+          "pixels": 836,
+          "bbox": [
+            208,
+            112,
+            259,
+            156
+          ]
+        },
+        {
+          "pixels": 4417,
+          "bbox": [
+            136,
+            142,
+            276,
+            269
+          ]
+        },
+        {
+          "pixels": 315,
+          "bbox": [
+            123,
+            240,
+            155,
+            268
+          ]
+        },
+        {
+          "pixels": 1130,
+          "bbox": [
+            916,
+            254,
+            972,
+            330
+          ]
+        },
+        {
+          "pixels": 3174,
+          "bbox": [
+            47,
+            266,
+            136,
+            385
+          ]
+        },
+        {
+          "pixels": 627,
+          "bbox": [
+            882,
+            291,
+            927,
+            328
+          ]
+        },
+        {
+          "pixels": 1712,
+          "bbox": [
+            847,
+            304,
+            898,
+            417
+          ]
+        },
+        {
+          "pixels": 2146,
+          "bbox": [
+            84,
+            315,
+            143,
+            426
+          ]
+        },
+        {
+          "pixels": 6622,
+          "bbox": [
+            902,
+            343,
+            1013,
+            590
+          ]
+        },
+        {
+          "pixels": 3222,
+          "bbox": [
+            5,
+            398,
+            82,
+            555
+          ]
+        },
+        {
+          "pixels": 1061,
+          "bbox": [
+            867,
+            409,
+            907,
+            484
+          ]
+        },
+        {
+          "pixels": 371,
+          "bbox": [
+            49,
+            502,
+            75,
+            534
+          ]
+        },
+        {
+          "pixels": 3155,
+          "bbox": [
+            39,
+            541,
+            108,
+            693
+          ]
+        },
+        {
+          "pixels": 451,
+          "bbox": [
+            904,
+            542,
+            926,
+            595
+          ]
+        },
+        {
+          "pixels": 485,
+          "bbox": [
+            971,
+            574,
+            994,
+            624
+          ]
+        },
+        {
+          "pixels": 2371,
+          "bbox": [
+            853,
+            580,
+            930,
+            710
+          ]
+        },
+        {
+          "pixels": 1568,
+          "bbox": [
+            97,
+            627,
+            151,
+            711
+          ]
+        },
+        {
+          "pixels": 488,
+          "bbox": [
+            163,
+            697,
+            199,
+            733
+          ]
+        },
+        {
+          "pixels": 2101,
+          "bbox": [
+            759,
+            699,
+            857,
+            792
+          ]
+        },
+        {
+          "pixels": 494,
+          "bbox": [
+            85,
+            701,
+            112,
+            747
+          ]
+        },
+        {
+          "pixels": 2177,
+          "bbox": [
+            129,
+            728,
+            190,
+            832
+          ]
+        },
+        {
+          "pixels": 604,
+          "bbox": [
+            896,
+            742,
+            929,
+            798
+          ]
+        },
+        {
+          "pixels": 560,
+          "bbox": [
+            817,
+            771,
+            871,
+            810
+          ]
+        },
+        {
+          "pixels": 4711,
+          "bbox": [
+            190,
+            792,
+            417,
+            910
+          ]
+        },
+        {
+          "pixels": 5823,
+          "bbox": [
+            668,
+            817,
+            845,
+            950
+          ]
+        },
+        {
+          "pixels": 6563,
+          "bbox": [
+            370,
+            884,
+            607,
+            976
+          ]
+        },
+        {
+          "pixels": 454,
+          "bbox": [
+            604,
+            907,
+            645,
+            936
+          ]
+        },
+        {
+          "pixels": 574,
+          "bbox": [
+            311,
+            923,
+            372,
+            942
+          ]
+        }
+      ],
+      "source_inner_radius": 360.2811402224657,
+      "source_outer_radius": 524.6851436814272,
+      "inner_to_outer_radius": 0.6866615999350982,
+      "solid_pixels_inside_80_percent_radius": 18030,
+      "solid_pixels_inside_90_percent_radius": 56434,
+      "uniform_scale": 0.8195391182279841,
+      "usage": {
+        "input_tokens": 1840,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 816
+        },
+        "output_tokens": 1756,
+        "total_tokens": 3596,
+        "output_tokens_details": {
+          "image_tokens": 1756,
+          "text_tokens": 0
+        }
+      }
+    }
+  }
+}

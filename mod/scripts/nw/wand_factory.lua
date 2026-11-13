@@ -56,7 +56,7 @@ function M.stat_text(data)
     local innate = data.always_cast and require("nw/cards").names[data.always_cast]
     return string.format(T("%s    同发 %d    散射 %g°\n施放 %g 秒    充能 %g 秒\n法力 %g    回复 %g/秒    理智转化率 %g"),
         s.shuffle and T("乱序") or T("非乱序"),s.draw_count,s.spread,s.cast_delay,s.recharge,s.mana_max,
-        s.mana_regen,s.sanity_conversion)..(innate and (T("\n固有  ")..innate) or "")
+        s.mana_regen,G.sanity_conversion_for(s))..(innate and (T("\n固有  ")..innate) or "")
 end
 function M.describe(data)
     return string.format(T("%s · %d 格\n%s"), M.name(data), data.stats.capacity, M.stat_text(data))

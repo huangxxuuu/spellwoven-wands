@@ -1,0 +1,138 @@
+最新行为补充（2026-11-13，优先于下方历史记录）：
+已适配增加蜂后beequeen及钢羊spat；钢羊按Boss处理。移除一次覆盖仅一次驱雾和8秒总门禁，原招式冷却保留。自然攻击与迟入雾的延迟命中也可驱雾。安全阶段停止追踪路径、丢弃远处目标；无招可用时慌乱满2秒启动持续2.5秒的独立身体清雾，初次出雾只结束控制，不结束已启动的清雾窗口。三种眼仅原生变身后主动chomp，未变身仍受Boss慌乱/身体清雾影响。
+
+暗雾 Boss 适配与边界
+日期：2026-11-13
+状态：实现、原版回归及隔离实服验收完成；未发布。当前覆盖 22 个 prefab、15 个状态机家族，最终验证结果见文末本轮记录。
+
+一、共同规则
+
+入口：mod/scripts/nw/dark_fog_boss.lua；主线区域模块调用 update/leave。
+仅服务端、仅受支持 prefab、仅完整 guard 通过的原版状态机启用。没有把黑雾添加为 combat.target，没有额外调用伤害函数。
+进入黑雾后，等待普通 idle 或已核验的正常移动状态（龙蝇/熊獾 walk 系列、麋鹿鹅 hop），无既有动作/其他停脑原因、无睡眠冰冻死亡/阶段切换等冲突。保留原招专用计时器；龙蝇/熊獾防御拍地及麋鹿鹅吼叫不受普通挥击冷却阻塞。成功启动后用独立 reason 暂停原脑，由原状态机完成整招；自然结束或被原机制打断时只释放自己的停脑原因。
+一次连续覆盖最多成功发动一次驱雾招式，离雾不取消已经提交的攻击/延迟命中；再次入雾还有 8 秒调度冷却。候选都在冷却时不消耗该次机会，进入覆盖驱动的慌乱等待、每0.1秒检查可用招式；无独立2～3秒截止。满1秒仍无招可用则用真实身体半径扫过实际移动段，离雾（包括自身清雾）立即恢复原脑；死亡、休眠等也立即清理。
+驱雾仅限本模块标记的这次施招。熊獾原脑在有效暗雾内先选择 pound、麋鹿鹅先选择 disarm 时，也可在8秒调度冷却允许时标记该轮，避免原脑抢先出招却不清雾；接管不额外停止或重启原脑。未覆盖时的普通招式、其他生物、玩家攻击不因共享组件 hook 自动驱雾。
+伤害招式通知位置是实际圆/环命中区，按雾团实际半径求相交；不是动画最大范围、搜索 padding 或命中实体事件。麋鹿鹅为用户明确选择的例外：原版吼叫缴械时附加半径5.5的仅清雾区域，不新增伤害。保持原版目标、阵营、伤害、破坏、冻结、燃烧及其他附带规则。
+没有额外强插通用吼叫：当前保留所选动作原有预备、声音和收尾。部分原版 taunt 携带回家/战斗转换行为，不能当纯装饰插入。
+
+二、已实现自动驱雾
+
+1. deerclops：普通 attack。
+   SGdeerclops.lua:856、890 发起原版冰刺；41–69 DoIceSpikeAOE 才是实际伤害；72–88、97–173 包含分散生成与延迟命中。
+   每根冰刺自己的中心、半径 1 通知。原版目标物理半径对应雾团半径参与相交。不能用 onhitother 代替：空地同样应驱雾。
+   guard 验证 SpawnIceFx→DoSpawnIceSpike→DoIceSpikeAOE 闭包、原脚本来源、半径与生成时长。变化时打印 disabled 并返回不支持，禁止静默假成功。
+   将 token 绑定原版批次数据和已调度回调，离雾/SG退出不丢失冰刺上下文。临时替换的共享 upvalue 即使原版调度报错也恢复。
+   prefab deerclops.lua:205–221 的冻伤和降温保留；未把该普通形态的测试外推到变异形态。
+
+2. bearger：pound，保留原生 bi 站姿过渡。
+   SGbearger.lua:1152–1190；第 20 帧调用 GroundPound，之后原版延迟环实际生效才驱雾。
+   三伤害环外半径 2.5/4.5/6.5，内半径 0/1.5/3.5。GroundPound 原计时器保留。
+
+3. dragonfly：pound_pre→pound→pound_post。
+   2026-11-12 修正：允许从正常追击的 walk_start/walk/walk_stop 起招，不再只等待 idle；驱雾砸地遵守自身 groundpound_cd 与8秒驱雾冷却，不受普通挥击冷却阻塞。召唤熔岩虫/回巢的 flyover、reset、sleeping 仍拒绝，不打断已提交攻击或变身。
+   SGdragonfly.lua:595–658；pound 第 2/9/20 帧分别提交一轮 GroundPound。
+   每轮两个伤害环，共六次区域命中；每轮保留独立原生 ents_hit，避免把三次伤害错误合并。燃烧及破坏环保留，只有伤害环通知驱雾。
+   不触发 lavae 召唤，不取消已提交脉冲；groundpound_cd 保留。
+
+4. toadstool、toadstool_dark：共享 pound_pre→pound→pound_pst。
+   SGtoadstool.lua:865–951；预备第 36 帧、pound 第 7 帧原生 GroundPound。prefabs/toadstool.lua:924–931 的原环参数保持。
+   pound_speed/pound_cd、原声音、原 miniquake 和 BounceStuff 均保留。miniquake 是该原招已有附带效果，未扩大驱雾区至地震半径。
+
+5. minotaur：stomp。
+   SGminotaur.lua:384–415；第 58 帧 GroundPound + BounceStuff。原 stomptimer（30–40 秒）保留。
+   不调用冲撞或召唤链；原 animqueueover 收尾后恢复原脑。
+
+6. alterguardian_phase1：tantrum_pre→tantrum→tantrum_pst。
+   SGalterguardian_phase1.lua:156–175 为原中心圆 DoAOEAttack；539–626 为状态链。
+   保留原版随机 3–5 次捶击及结束捶击；每次第 8 帧实际 DoAOEAttack 通知当前原中心、原半径。
+   这是原版完整一招的多次命中，没有自行增加攻击次数。无目标可以执行；不触发滚动/转阶段。
+
+7. alterguardian_phase3：atk_stab。
+   SGalterguardian_phase3.lua:289、418 起；第 29/45 帧走原生 DoAttack。prefabs/alterguardian_phase3.lua:428 设置半径 3 的原面积伤害。
+   components/combat.lua:1147–1153 的空目标分支仍调用 DoAreaAttack；1312 起使用传入 target 的实际中心。
+   只在本次标记施招、圆形面积伤害且无额外 validfn/onlyontarget 时通知；不凭 Boss 搜索半径推算。guard 要求原 areahitrange=3、areahitcheck=nil。
+
+8. eyeofterror、twinofterror1、twinofterror2：共享 chomp。
+   SGeyeofterror.lua:138–159 原中心圆 DoAOEAttack；849–944 为 chomp，第 25 帧伤害。
+   原下落、升起、sinkhole/船洞、收尾 taunt 仍执行。空目标可执行，pending 离场/变身/召唤/焦点转换时不抢招。
+   sources.lua 的 twins 是奖励分组名；实际自动驱雾注册的是 twinofterror1、twinofterror2。
+
+共享环依据：components/groundpounder.lua:170 起 DestroyRing；181/184 外/内半径，221–233 伤害；307 起 GroundPound，331–357 调度延迟环。
+GroundPound 调用本身、groundpoundFn 和破坏专用环均不能冒充实际伤害时点。
+
+9. moose：原版 disarm 状态播放 honk，保留缴械。
+   用户明确选择“用原版吼叫驱散附近暗雾，保留缴械效果”。SGmoose.lua:347–377，第15帧 DisarmTarget 原调用完成后，以 Boss 当前中心清除半径5.5内相交暗雾；此半径是新增的雾作用范围，沿用原攻击范围数值，不声称原版吼叫有圆形伤害。
+   保留原版强握/不可偷取判定、装备掉落和抛物速度、CanDisarm变化及自然收尾；不新增范围伤害。无目标仍可吼叫清雾，起飞、降落、产卵、睡眠、已提交攻击等状态不被主动打断。
+
+10. klaus、warg、mutatedwarg、leif、leif_sparse、spiderqueen：原版普通 attack。
+   必须保留原合法且在攻击距离内的 combat.target；原 DoAttack 发出实际接触通知后，仅按目标位置及物理半径驱雾。没有目标或目标不可攻击不冒充技能冷却，不生成雾目标，不把单体攻击变成范围攻击。原生法术鹿、召唤、狂暴与其他特殊攻击不被替换。
+
+11. mutateddeerclops：共享 SGdeerclops，但以独立 prefab 规格接入原 attack 冰刺；保留变异字段与原生附带效果，按每根冰刺实际伤害区域驱雾。
+
+12. mutatedbearger：独立规格优先原 pound，冷却时尝试原 attack 及其原生 combo 后续。保留 bi 站姿过渡、变异恢复与连击；普通挥击和连击分别使用原偏移1/0.5的前方半圆，不能统一扩大成整圆。
+
+13. daywalker2：已敌对、未埋藏/战败且实际持有挥击装备时，进入 attack_swing→attack_swing_pst。保留原装备耐用次数与原生收尾/连招，不凭空添加装备。原 DoArcAttack(偏移1、半径4.5、arc=240)使用圆内加前向平面截断判断，实际形状是圆切片而非按夹角计算的扇形；清雾采用相同形状。
+
+14. alterguardian_phase4_lunarrift：只选择当前阶段已解锁招式。满血初阶段用原 dash_pre→dash_loop→dash_pst，在实际 DoDashAOE 位置按半径3.6驱雾；解锁 slam 后使用原砸击，两侧偏移中心各按原半径5通知。砸击生成的原生延迟裂隙经 StartTrackingBoss 继承本轮标记，只在实际 OnUpdate 运行时按世界轴对齐4×4方形驱雾。未标记或读档恢复的普通裂隙不继承旧施招。
+
+共享状态机按 prefab 分别验证与路由，不将变异专属状态作为普通形态的必需状态。上述新增条目的验证状态见文末记录。
+
+三、已考虑但本轮保留原 AI、尚未自动驱雾
+
+这些条目没有进入支持表，supports 返回 false；不套小型恐惧或普通生物 3 单位感知过滤。这里的“未适配”不是原版没有任何可用攻击，而是尚未完成所需专用验证。
+
+moose 已于2026-11-13按用户确认方案接入，见上方第9项。
+beequeen：SGbeequeen.lua:480、prefabs/beequeen.lua:439 普攻单目标；不能为攻击伪造圆 AOE，召蜂另有生命周期。
+antlion、antlion_angry：SGantlion_angry.lua:328 summonspikes、362 有 targetpos 才 SpawnSpikes；沙刺还有约 28 帧延迟。需坐标指令及沙刺来源 token，不能制造假目标，更不能强行激怒平静蚁狮。
+crabking：SGcrabking.lua:439/484 起 cast_pre/cast_loop/StartCastSpell，冻结、海浪及分体效果复杂；不能唤醒 inert 蟹王，需阶段与衍生实体适配。
+malbatross：SGmalbatross.lua:616 wavesplash，641–643 第 29 帧 DoAttack+SpawnMalbatrossAttackWaves；prefab:486 有面积伤害，但后续波浪需保留同次施招上下文。仅接首轮 splash 不能宣称完整支持。
+alterguardian_phase2：SGalterguardian_phase2.lua:295 起 spin_pre→spin_loop→spin_pst；318–352 onupdate 内联多次 AOE，带旋转移动。需逐次实际位置与连段/阶段控制，不复用静止圆 hook。
+daywalker：SGdaywalker.lua:1430 attack_slam，1542 第 26 帧真实圆 AOE；还有短冲物理、疲劳、潜行/咆哮冷却。需约束到正常站立战斗阶段，禁止从束缚/战败阶段唤醒；当前未加入。
+vault_pillar_guard：SGvault_pillar_guard.lua:213–229 分别是前移扇形、圆形砸击、圆形旋转；753 attack3 含跳跃。需处理 trial/盟友过滤、休眠与阶段条件；未从 dormant 强行起招。
+rocky_boss：SGrocky.lua:983 snip_attack，1054–1063 两圆加两三角 HitBox，第 15 帧命中。需实际 HitBox 相交，不能把搜索半径作为伤害圆。
+bat_boss：SGbat.lua:871/922 是单体攻击，228 TryHat 还可装备附身；保持其原逻辑，不制造面积攻击。
+worm_boss：控制器与 head/tail 分体，真正 groundpound 在 worm_boss_util.lua:133 的出土 dirt 实体。需控制器→分体→dirt 的来源链，不能给控制器强行套 SG 动作。
+sharkboi：SGsharkboi.lua:834/856 attack1 是偏移扇形且有 attack2/3 连段；水形另有 SG。需陆水阶段与真实扇形适配。
+lordfruitfly：果蝇王当前保留原 AI，未新增驱雾调度。
+其他大型（例如 beefalo）及第三方 Boss：没有因 largecreature/epic 标签就获得未验证招式。分类可统一，精确招式仍需共享家族或专用 profile。
+
+四、暗影家族优先走暗影规则
+
+stalker、stalker_forest、stalker_atrium；shadow_bishop、shadow_rook、shadow_knight；shrouden；rocky_boss_shadow、bat_boss_shadow；worm_boss_shadow 及分体；shadowthrall_centipede_controller 及分体。
+这些条目由主线 dark_fog_profiles 的暗影优先分类处理：免受雾负面效果并获得规定移速增益。不是“尚未驱雾所以普通控场”，本 Boss 模块不强制其发动驱雾招式。
+
+五、清单与证据来源
+
+本次范围覆盖 mod/scripts/nw/sources.lua:22–43 的全部正式 Boss、57 的 otherboss，并补充月亮守护者第一/二阶段、实际 twins prefab 及蚁狮战斗形态。
+所有上文未写前缀的 SG 路径均为 scripts/stategraphs/；prefab 路径为 scripts/prefabs/。
+原版依据唯一来自 E:/SteamLibrary/steamapps/common/Don't Starve Together/data/databundles/scripts.zip，未读取可能陈旧的 data/scripts。行号是本次包内源码行号，版本变化后应重新 guard 和回归。
+
+六、验证结果与局限
+
+tests/test_dark_fog_boss.lua：独立安装、起招安全条件、冷却、原脑原因隔离、站姿链、离雾/中断、延迟环、普通攻击不驱雾、客户端拒绝与缺失闭包拒绝。
+tools/check_dark_fog_boss_native.py：lupa Lua 5.1，实际加载包内八套 SG、groundpounder、combat，执行真实时间线/冰刺闭包/原生延迟环及原 DoAreaAttack；以相同随机种子比较未修改原版与挂钩版。
+132 组 = 11 prefab × 有/无目标 × 施招/普通攻击/离雾/命中前中断/提交后中断/自然完成。原伤害派发与冻伤、降温、燃烧、破坏统计一致；自然动画结束事件触发原 onexit 后停脑原因恰好释放一次。
+另有 5 项 guard：debug 不可用、巨鹿冰刺半径改变、圆攻击闭包缺失、状态缺失、巨鹿原调度抛错后共享 upvalue 恢复且后续普通攻击不继承 token。
+报告：test_reports/dark_fog_boss_native.json，包含包内源码 SHA256 和各案例结果。
+测试中的实体、物理、动画时钟和引擎服务是替身；自然结束测试实际执行原出站事件/退出回调，但目标 idle/taunt 简化。上述结果不代替实服动画/物理、联机复制、长时运行及其他 Mod 兼容验证。主线实服 smoke 结果须另看其报告，不在此伪称所有 Boss 已逐一实机验收。
+
+2026-11-13 反馈修复：熊獾追击未进入idle会漏触发，且原脑自行拍地抢先设置GroundPound冷却。现放行正常walk状态，在有效覆盖中识别本轮自然pound。麋鹿鹅补齐原生吼叫缴械后的清雾。龙蝇以“暗雾+穿透+散弹”的自然追击实服路径确认能够触发并清雾；之后保留原版20秒groundpound_cd，不会每团新雾都重放砸地。
+
+2026-11-13 最新验证：全套Lua规则通过；152组原版/挂钩行为对照与6项guard通过，含麋鹿鹅真实DropItem/投掷参数对照，以及熊獾/麋鹿鹅在覆盖中的原生起招接管。独立服使用完整“暗雾+穿透+散弹”执行器，对自然追击的dragonfly、bearger、moose逐个确认covered/reacted/dispelled均为true，麋鹿鹅持矛玩家实际缴械通过。不同于此前强制idle/walk的测试，本轮不强制待测Boss状态、不重置攻击计时器。
+
+2026-11-13 冷却候选补充：
+- 熊獾：pound/GroundPound → 普通 attack，普通挥击冷却必须结束；只按原前方偏移1、180度扇形的实际命中时点驱雾，不清整圆。
+- 龙蝇：pound_pre/groundpound_cd → attack；远古犀牛：stomp/stomptimer → attack。单体普攻需要原合法且可攻击目标，只在真实命中位置及目标物理半径内清雾，零伤害/无敌不等于没有接触。
+- 蟾蜍/悲惨蟾蜍：pound_pre/pound_cd → mushroombomb，保留普通攻击冷却和mushroombomb_cd。沿原投弹方法、延迟逐帧发射、落地、Grow和Explode传递本轮标记，真正爆炸时按原3.5半径驱雾；不会在抬手投弹时提前清雾。sporebomb是玩家debuff，不伪装成范围爆炸。
+- 所有候选阻塞时按最新用户要求：只在安全普通状态开始慌乱，不抢已提交攻击。持续处在暗雾中才等待；满1秒后身体扫雾，不追溯第一秒、不把异常瞬移连成整条路径。自己的清雾导致离雾也立即退出。招式就绪后先接管施招再释放等待停脑原因，保留原敌人和其他停脑原因。
+
+2026-11-13 新增九类首领最终验收：
+- 193个Lua文件语法、102项Lua测试套件通过；原176组对照及14项guard、新61组对照、裂隙原版完整来源链与5项等待失效检查通过。
+- 隔离实服逐个确认新增10个prefab的真实攻击清雾与自然收招；天体后裔分别验证满血dash_pre和实际掉血解锁后的slam，共11项新增攻击场景。原有Boss、冷却慌乱、延迟身体清雾及两种蟾蜍完整投弹链也通过，最终日志输出NW_DARK_FOG_PASS。
+- 树精源文件SGLeif.lua与实际注册名leif的大小写差异已修复，原版测试按graph.name派发。装甲熊第4击及后续回环保留标记；目标、装备或战斗资格失效时释放等待停脑。
+- 无客户端隔离服的蘑菇弹需在SpawnPrefab返回时、首次物理tick前禁止休眠；事后SetCanSleep(false)无法唤醒已休眠物理。仅测试临时包装生成函数并在结束/错误时恢复，玩法核心未改休眠规则。最终4枚普通/4枚悲惨投射物及炸弹均记录asleep=false，实际爆炸清雾通过。
+- 已由tools/install_mod.py同步nw_weave_dev：更新5个文件、校验246个文件通过，版本仍1.0.5；重启游戏与世界后加载。
+证据：test_reports/dark_fog_expansion_rules.log、dark_fog_boss_native.json、dark_fog_boss_extra_native.json、server_smoke_dark_fog.log。客户端观感、多人网络与其他Mod兼容不由本轮无客户端实服替代。
+
+2026-11-13 追击与缴械范围补丁：
+全部已适配Boss统一在普通待机/行走/已核验奔跑状态退出追踪路径，再尝试驱雾。当前不可用（包括目标太远、无目标和冷却）转入雾内慌乱等待；正在攻击或收招先完整完成。远古守护者冲撞链不是普通奔跑，完整保留。等待移动与离雾停步也不得截断原攻击尾段。麋鹿鹅暗雾吼叫在实际缴械帧检查原combat攻击范围，超距只驱散附近暗雾，不让远处玩家掉武器；近距离缴械与普通吼叫保持原规则。

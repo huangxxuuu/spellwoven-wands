@@ -25,8 +25,10 @@ end
 -- Geometry is checked against the executor, including environmental effects and
 -- scope modifiers. Search radii on sentries/swarms and shield orbits are excluded.
 group("area",[[searing_halo twin_arc explosion end_beam spore_ball vital_ring crystal_mine sleep_crystal
-    moon_fall bog_whip detonate rain_cloud deer_decoy shock_ring vortex gunpowder giant_shot
+    moon_fall bog_whip detonate rain_cloud deer_decoy shock_ring vortex gunpowder giant_shot shrink_shot
     edge_lighter edge_trident edge_voidcloth_scythe edge_staff_tornado edge_chum]])
+group("area","dark")
+group("control","dark")
 group("melee","bog_whip melee_mark")
 -- Recovery includes health and sanity gain, not avoidance of an equipment drain.
 -- The temporary native shadow axe starts at level 1, whose life steal is zero.

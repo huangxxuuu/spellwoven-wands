@@ -1,0 +1,10 @@
+{
+  "runtime_registered": true,
+  "cards": [
+    {
+      "id": "shrink_shot",
+      "name": "弹体缩小",
+      "kind": "modifier"
+    }
+  ]
+}

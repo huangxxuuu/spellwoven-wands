@@ -3,6 +3,7 @@ local RNG=require("nw/rng")
 local Effects=require("nw/spell_effects")
 local Limits=require("nw/spell_limits")
 local Templates=require("nw/cast_templates")
+local Damage=require("nw/balance_damage")
 local M={}
 local function no_release() end
 function M.set_projectile_limit(value) Budget.configure("projectiles",value) end
@@ -13,12 +14,14 @@ function M.owner_used(owner) return Budget.owner_used(owner) end
 -- scatter on every release, for both legacy and compact payloads.
 M.store_payload=Templates.snapshot
 
-function M.execute(plan,owner,x,z,dx,dz,height,aim)
+function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
     if plan.projectile_count==0 then return true end
     local blocks=plan.blocks
     local sizes,invalid=Templates.sizes(blocks)
     if not sizes then return false,invalid end
     local resolve=Templates.resolver()
+    local root=Damage.root(inherited_root)
+    local rooted={}
     local cast_context={arcs={},side_left=math.huge}
     local draw_rng=RNG.new(plan.next_state.rng_state)
     local rng=draw_rng:fork()
@@ -36,6 +39,11 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim)
             local limited=secondary or (block.copy_damage~=nil and copy>1)
             for _,original in ipairs(block.projectiles) do
                 local p=resolve(original,fraction,limited)
+                if root then
+                    local variant=rooted[p]
+                    if not variant then variant=Damage.parameters(p,root);rooted[p]=variant end
+                    p=variant
+                end
                 if p.suppress_support then
                     -- Preserve the unlimited cast's random stream for later shots.
                     for k=1,p.count or 1 do rng:next() end
@@ -76,6 +84,7 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim)
                         end
                     end
                     if e then
+                        Damage.tag(e,p)
                         Budget.bind(e,release);bound=e.ListenForEvent~=nil
                     end
                     local angle=((p.formation or 0)+(p.angles and p.angles[k] or 0)

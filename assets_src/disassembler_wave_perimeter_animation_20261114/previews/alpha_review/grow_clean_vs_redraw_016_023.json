@@ -1,0 +1,76 @@
+[
+  {
+    "source_index": 16,
+    "old": {
+      "frame": "grow_redraw_016.png",
+      "weak9_63": 8269,
+      "alpha64_count": 21373,
+      "strong200_count": 14036,
+      "strong200_bbox": [
+        25,
+        36,
+        482,
+        463
+      ],
+      "strong200_centroid": [
+        254.62881162724423,
+        231.65773724707893
+      ]
+    },
+    "clean": {
+      "frame": "grow_clean_alpha_016.png",
+      "weak9_63": 10980,
+      "alpha64_count": 26288,
+      "strong200_count": 19185,
+      "strong200_bbox": [
+        26,
+        32,
+        486,
+        466
+      ],
+      "strong200_centroid": [
+        252.77471983320302,
+        226.1329163408913
+      ]
+    },
+    "unchanged_coordinate_strong200_iou": 0.5731129841841084,
+    "diagnostic": "Original coordinates only. Centroid/bbox and core overlap diagnose API preservation; no image shift or fit applied."
+  },
+  {
+    "source_index": 23,
+    "old": {
+      "frame": "grow_redraw_023.png",
+      "weak9_63": 11518,
+      "alpha64_count": 30023,
+      "strong200_count": 21008,
+      "strong200_bbox": [
+        12,
+        10,
+        501,
+        487
+      ],
+      "strong200_centroid": [
+        255.10548362528561,
+        215.68907083015995
+      ]
+    },
+    "clean": {
+      "frame": "grow_clean_alpha_023.png",
+      "weak9_63": 15832,
+      "alpha64_count": 32558,
+      "strong200_count": 23333,
+      "strong200_bbox": [
+        16,
+        10,
+        501,
+        486
+      ],
+      "strong200_centroid": [
+        253.7155530793297,
+        211.3190331290447
+      ]
+    },
+    "unchanged_coordinate_strong200_iou": 0.5982194348327566,
+    "diagnostic": "Original coordinates only. Centroid/bbox and core overlap diagnose API preservation; no image shift or fit applied."
+  }
+]

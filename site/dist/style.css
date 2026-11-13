@@ -98,3 +98,14 @@ footer{margin-top:38px;border-top:1px solid var(--rule)}.foot{min-height:64px;fo
 .tag-option:hover span{border-color:var(--accent)}
 .tag-option input:checked+span{background:var(--accent);color:#fff9e9;border-color:var(--accent)}
 .tag-option input:focus-visible+span{outline:2px solid var(--accent);outline-offset:3px}
+
+.crafting-recipes:empty{display:none}
+.recipe-hint{font-size:12px;line-height:1.6;margin:5px 0;color:var(--muted)}
+.crafting-recipe{margin:12px 0 16px}
+.recipe-station{font-size:13px;font-weight:600;margin:0 0 7px;color:var(--accent)}
+#detail-content .recipe-ingredients{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px 4px;list-style:none;padding:0;margin:0}
+.recipe-material{display:block;width:68px;text-decoration:none;line-height:1.4}
+.ingredient-slot{position:relative;display:block;width:68px;height:68px;border:3px solid #443327;background:radial-gradient(ellipse at center,#eee0bc,#c7ad83);box-shadow:inset 0 0 0 2px #8a6d4b,0 1px 2px #30251b33}
+.ingredient-slot img{display:block;width:100%;height:100%;object-fit:contain}
+.ingredient-count{position:absolute;right:3px;bottom:0;color:#fffaf0;font:700 25px/1.1 Georgia,serif;text-shadow:-1px -1px 1px #30251b,1px -1px 1px #30251b,-1px 1px 1px #30251b,1px 1px 1px #30251b,0 2px 2px #30251b;font-variant-numeric:tabular-nums}
+.recipe-material:hover .ingredient-slot,.recipe-material:focus-visible .ingredient-slot{border-color:#99650c;box-shadow:inset 0 0 0 2px #b99457,0 0 0 1px #99650c}

@@ -36,7 +36,7 @@ function M.wand(encoded,slots,look,title)
         fields={{T("齐发数"),s.draw_count},{T("偏斜"),s.spread.."°"},
             {T("施咒间歇"),s.cast_delay..T(" 秒")},{T("回充时长"),s.recharge..T(" 秒")},
             {T("魔力储量"),s.mana_max},{T("魔力回涌"),s.mana_regen..T(" / 秒")},
-            {T("心神转化"),s.sanity_conversion},{T("符文槽"),s.capacity}},
+            {T("心神转化"),require("nw/generator").sanity_conversion_for(s)},{T("符文槽"),s.capacity}},
         innate=s.innate,slots=slots,count=used.." / "..#cards}
 end
 function M.card_details(id,brief)
@@ -93,7 +93,7 @@ function M.card_details(id,brief)
     if d.pitch_shift then add(T("音高偏移"),string.format(T("%+d 半音"),d.pitch_shift)) end
     if d.max_targets then add(T("最多目标"),d.max_targets) end
     if Def.trajectory[id] then add(T("弹道延寿"),"+8%") end
-    local effect=Info.effects[id]
+    local effect=Info.effect(id)
     if Def.trajectory[id] then effect=effect..T(" 不同弹道的额外延寿合计最多 +24%。") end
     return {title=Info.names[id],subtitle=subtitle,tags=names,atlas="images/inventoryimages/nw_icons.xml",
         icon=Info.icon(id),fields=fields,effect=effect}

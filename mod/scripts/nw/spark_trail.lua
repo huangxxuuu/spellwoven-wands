@@ -17,7 +17,6 @@ local function new_segment()
     fx.AnimState:SetBank("nw_spark_flight")
     fx.AnimState:SetBuild("nw_spark_flight")
     fx.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-    fx.AnimState:SetLightOverride(1)
     return {fx=fx}
 end
 

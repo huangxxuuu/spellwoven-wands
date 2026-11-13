@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-11-13T18:30:30.537455+00:00",
+  "action": "edit",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Use case: precise-object-edit / animation cel drawing. Draw ONE complete 24-frame APPEARANCE / EXPANSION sprite sheet, 3072 x 2048 RGBA: exactly 6 columns by 4 rows of 512 x 512 cells in row-major time order. No gutters, text, frame numbers, borders or grid lines. True transparent background. The center of every cell is fixed at (256,256); same orthographic top-down camera and drawing scale. Never auto-fit individual cels. Entire artwork stays inside each cell, with at least 14 pixels edge clearance.\n\nReference image 1 is the EXACT mature endpoint registered at 512x512 with outer radius about 220 pixels. Image 2 is the full-resolution approved design for checking all forty individual cyan/gold arc identities. The last cel must match image 1's positions, sizes, colors, separated silhouettes, adjacent broken lanes and staggered gaps. Keep its large open center. No purple, crystals, diamonds, runes or extra decorations.\n\nCRITICAL: this is REAL DRAWN EXPANSION OF INDIVIDUAL STRIPS, not a small copy of the finished ring progressively enlarged. Each arc starts as a tiny curved head / tightly curled short hook; its head travels outward on its own gently curling trajectory, the shoulder unfolds, and the tail grows behind with new drawn curvature. Split tails form progressively; a short curled comma becomes a long swept blade, or a tightly folded hook opens into the approved crescent. Length, thickness, curvature, fork opening and highlight position change independently. Tangential heads lead, trailing tails lag. Neighboring arcs begin and settle with slightly different timing. Maintain their color, clockwise order and inner/outer lane; do not turn one arc into an unrelated symbol or teleport it. The runtime adds whole-ring rotation separately, so keep the sheet's main compass orientation stable; only local outward flow and small curling trajectories are painted here. Never use whole-image scaling or fading as the motion.\n\nUse these outer extents for the successive 24 cels (pixels from each fixed center):\n0 blank; 1=32; 2=42; 3=54; 4=66; 5=78;\n6=91; 7=104; 8=116; 9=128; 10=140; 11=151;\n12=162; 13=172; 14=181; 15=190; 16=198; 17=204;\n18=210; 19=214; 20=217; 21=219; 22=220; 23=220.\nThese specify the outward travel envelope, NOT an instruction to resize a whole ring.\n\nRow 1: cel 0 is completely transparent. Tiny separate cyan/gold curved head strokes emerge close to the center, still leaving a hole; by cel 4 the forty strip identities have appeared as very small separate heads/commas. Tips have very short tails, no mature spear silhouettes yet. Keep each tiny piece narrow enough not to collide.\nRow 2: the individual heads flow outward, tails unfurl behind, hook curvature opens and some forks begin to separate. Long arcs, short hooks and small companions develop at different rates. Double peripheral lanes emerge as the footprint spreads.\nRow 3: heads approach their approved lane sectors, tails lengthen and re-bend, shoulders become the mature notched / forked shapes. Preserve two nearby broken lanes and their offset gaps. Do not move neighbors through each other.\nRow 4: each strip decelerates and settles toward its own exact approved final pose. The last four drawings visibly ease into the mature outline rather than growing beyond it. Last frame precisely matches reference image 1. Do not overshoot the approved diameter.\n\nAll independent arcs retain transparent gaps in EVERY cel, including the initial tight cluster: no touching, crossing, overlap, occlusion or merging. Their small size and phased unfolding prevent collisions. Only cyan and antique gold with charcoal ink and tiny pale highlights. Redraw the stroke silhouette and internal highlight for every changing pose. Don't Starve Together hand-painted world FX, sharp tapered irregular ink, calm color planes, no broad glow, haze, background, dirt, floor, furnace, character, text or glitter. No fading a completed static ring into view.\n",
+    "n": 1,
+    "size": "3072x2048",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\references\\master_512.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\references\\approved_f_1024.png"
+  ],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_perimeter_animation_20261114\\originals\\grow_24.png"
+  ],
+  "usage": {
+    "input_tokens": 2958,
+    "input_tokens_details": {
+      "image_tokens": 2048,
+      "text_tokens": 910
+    },
+    "output_tokens": 3184,
+    "total_tokens": 6142,
+    "output_tokens_details": {
+      "image_tokens": 3184,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_221346a44af142a08a62a81123ae955c",
+  "revised_prompts": [
+    null
+  ]
+}

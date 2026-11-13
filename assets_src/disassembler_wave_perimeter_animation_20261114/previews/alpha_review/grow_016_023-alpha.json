@@ -1,0 +1,429 @@
+{
+  "purpose": "Diagnostic only; no candidate deletion or selection",
+  "frames": [
+    {
+      "frame": "grow_redraw_016.png",
+      "sha256": "c4cfc5e5be0b6bb91a5815f75d9137d60d978447c83e97466e422b67a0d02ae0",
+      "bands": {
+        "1..8": {
+          "pixels": 0,
+          "bbox": null,
+          "rgb_median": null,
+          "rgb_mean": null
+        },
+        "9..16": {
+          "pixels": 3752,
+          "bbox": [
+            20,
+            29,
+            484,
+            465
+          ],
+          "rgb_median": [
+            59.0,
+            58.0,
+            41.0
+          ],
+          "rgb_mean": [
+            62.85900852878465,
+            60.72228144989339,
+            43.58555437100213
+          ]
+        },
+        "17..32": {
+          "pixels": 2349,
+          "bbox": [
+            23,
+            29,
+            484,
+            465
+          ],
+          "rgb_median": [
+            56.0,
+            56.0,
+            41.0
+          ],
+          "rgb_mean": [
+            59.98978288633461,
+            58.29416773094934,
+            42.04597701149425
+          ]
+        },
+        "33..63": {
+          "pixels": 2168,
+          "bbox": [
+            23,
+            30,
+            484,
+            465
+          ],
+          "rgb_median": [
+            51.0,
+            52.0,
+            37.0
+          ],
+          "rgb_mean": [
+            54.01383763837639,
+            52.89206642066421,
+            37.87638376383764
+          ]
+        },
+        "64..127": {
+          "pixels": 3104,
+          "bbox": [
+            23,
+            30,
+            483,
+            464
+          ],
+          "rgb_median": [
+            40.0,
+            40.0,
+            27.0
+          ],
+          "rgb_mean": [
+            41.77061855670103,
+            41.433634020618555,
+            28.731636597938145
+          ]
+        },
+        "128..254": {
+          "pixels": 18269,
+          "bbox": [
+            24,
+            33,
+            483,
+            464
+          ],
+          "rgb_median": [
+            63.0,
+            65.0,
+            43.0
+          ],
+          "rgb_mean": [
+            92.08161366248837,
+            89.66993267283377,
+            66.7913952597296
+          ]
+        },
+        "255..255": {
+          "pixels": 0,
+          "bbox": null,
+          "rgb_median": null,
+          "rgb_mean": null
+        }
+      },
+      "regions": {
+        "top_cyan_underside": {
+          "bbox": [
+            110,
+            25,
+            270,
+            85
+          ],
+          "diagnostic_only": "all alpha9..63 pixels in broad hand-inspected region; includes legitimate antialias/ink edges, not a semantic membrane mask",
+          "pixels": 695,
+          "alpha_min_max": [
+            9,
+            63
+          ],
+          "alpha_p10_p50_p90": [
+            10.0,
+            18.0,
+            51.0
+          ],
+          "rgb_median": [
+            61.0,
+            69.0,
+            56.0
+          ]
+        },
+        "left_gold_cyan_gap": {
+          "bbox": [
+            12,
+            130,
+            105,
+            285
+          ],
+          "diagnostic_only": "all alpha9..63 pixels in broad hand-inspected region; includes legitimate antialias/ink edges, not a semantic membrane mask",
+          "pixels": 1513,
+          "alpha_min_max": [
+            9,
+            63
+          ],
+          "alpha_p10_p50_p90": [
+            9.0,
+            16.0,
+            48.0
+          ],
+          "rgb_median": [
+            62.0,
+            59.0,
+            40.0
+          ]
+        },
+        "right_middle": {
+          "bbox": [
+            405,
+            170,
+            510,
+            350
+          ],
+          "diagnostic_only": "all alpha9..63 pixels in broad hand-inspected region; includes legitimate antialias/ink edges, not a semantic membrane mask",
+          "pixels": 1539,
+          "alpha_min_max": [
+            9,
+            63
+          ],
+          "alpha_p10_p50_p90": [
+            10.0,
+            18.0,
+            49.0
+          ],
+          "rgb_median": [
+            58.0,
+            55.0,
+            39.0
+          ]
+        },
+        "bottom": {
+          "bbox": [
+            110,
+            380,
+            360,
+            500
+          ],
+          "diagnostic_only": "all alpha9..63 pixels in broad hand-inspected region; includes legitimate antialias/ink edges, not a semantic membrane mask",
+          "pixels": 1592,
+          "alpha_min_max": [
+            9,
+            63
+          ],
+          "alpha_p10_p50_p90": [
+            10.0,
+            18.0,
+            50.0
+          ],
+          "rgb_median": [
+            53.0,
+            54.0,
+            39.0
+          ]
+        }
+      },
+      "interpretation": "Weak surrounding paint is dark olive/gray-green (R approximately G, blue lower); alpha9..63 overlaps legitimate edge samples. Global alpha threshold deletion would also remove artwork edges; no cleanup is authorized or applied."
+    },
+    {
+      "frame": "grow_redraw_023.png",
+      "sha256": "f85ad50a614158d06df554c1e8ef5405a272c5e65a42d4f26b2a75dc9bcdc1ca",
+      "bands": {
+        "1..8": {
+          "pixels": 0,
+          "bbox": null,
+          "rgb_median": null,
+          "rgb_mean": null
+        },
+        "9..16": {
+          "pixels": 5234,
+          "bbox": [
+            10,
+            3,
+            503,
+            488
+          ],
+          "rgb_median": [
+            63.0,
+            65.0,
+            48.0
+          ],
+          "rgb_mean": [
+            67.13374092472297,
+            66.91306839893008,
+            50.318112342376764
+          ]
+        },
+        "17..32": {
+          "pixels": 3493,
+          "bbox": [
+            10,
+            3,
+            503,
+            488
+          ],
+          "rgb_median": [
+            60.0,
+            62.0,
+            47.0
+          ],
+          "rgb_mean": [
+            63.87403378184941,
+            64.50014314342971,
+            49.31835098768966
+          ]
+        },
+        "33..63": {
+          "pixels": 2791,
+          "bbox": [
+            11,
+            4,
+            502,
+            488
+          ],
+          "rgb_median": [
+            56.0,
+            59.0,
+            44.0
+          ],
+          "rgb_mean": [
+            59.68362594052311,
+            60.017914725904696,
+            44.93801504836976
+          ]
+        },
+        "64..127": {
+          "pixels": 3837,
+          "bbox": [
+            11,
+            5,
+            502,
+            487
+          ],
+          "rgb_median": [
+            44.0,
+            45.0,
+            32.0
+          ],
+          "rgb_mean": [
+            45.73677352097993,
+            46.43732082356007,
+            33.644774563461034
+          ]
+        },
+        "128..254": {
+          "pixels": 26186,
+          "bbox": [
+            11,
+            7,
+            502,
+            487
+          ],
+          "rgb_median": [
+            65.0,
+            69.0,
+            47.0
+          ],
+          "rgb_mean": [
+            93.83895974948446,
+            93.55777896585963,
+            71.69262201176201
+          ]
+        },
+        "255..255": {
+          "pixels": 0,
+          "bbox": null,
+          "rgb_median": null,
+          "rgb_mean": null
+        }
+      },
+      "regions": {
+        "top_cyan_underside": {
+          "bbox": [
+            110,
+            25,
+            270,
+            85
+          ],
+          "diagnostic_only": "all alpha9..63 pixels in broad hand-inspected region; includes legitimate antialias/ink edges, not a semantic membrane mask",
+          "pixels": 1306,
+          "alpha_min_max": [
+            9,
+            63
+          ],
+          "alpha_p10_p50_p90": [
+            10.0,
+            15.0,
+            45.0
+          ],
+          "rgb_median": [
+            69.0,
+            68.0,
+            50.0
+          ]
+        },
+        "left_gold_cyan_gap": {
+          "bbox": [
+            12,
+            130,
+            105,
+            285
+          ],
+          "diagnostic_only": "all alpha9..63 pixels in broad hand-inspected region; includes legitimate antialias/ink edges, not a semantic membrane mask",
+          "pixels": 1750,
+          "alpha_min_max": [
+            9,
+            63
+          ],
+          "alpha_p10_p50_p90": [
+            9.0,
+            17.0,
+            47.0
+          ],
+          "rgb_median": [
+            68.0,
+            67.0,
+            48.0
+          ]
+        },
+        "right_middle": {
+          "bbox": [
+            405,
+            170,
+            510,
+            350
+          ],
+          "diagnostic_only": "all alpha9..63 pixels in broad hand-inspected region; includes legitimate antialias/ink edges, not a semantic membrane mask",
+          "pixels": 1747,
+          "alpha_min_max": [
+            9,
+            63
+          ],
+          "alpha_p10_p50_p90": [
+            10.0,
+            20.0,
+            49.0
+          ],
+          "rgb_median": [
+            61.0,
+            62.0,
+            48.0
+          ]
+        },
+        "bottom": {
+          "bbox": [
+            110,
+            380,
+            360,
+            500
+          ],
+          "diagnostic_only": "all alpha9..63 pixels in broad hand-inspected region; includes legitimate antialias/ink edges, not a semantic membrane mask",
+          "pixels": 2021,
+          "alpha_min_max": [
+            9,
+            63
+          ],
+          "alpha_p10_p50_p90": [
+            9.0,
+            17.0,
+            48.0
+          ],
+          "rgb_median": [
+            54.0,
+            57.0,
+            44.0
+          ]
+        }
+      },
+      "interpretation": "Weak surrounding paint is dark olive/gray-green (R approximately G, blue lower); alpha9..63 overlaps legitimate edge samples. Global alpha threshold deletion would also remove artwork edges; no cleanup is authorized or applied."
+    }
+  ]
+}

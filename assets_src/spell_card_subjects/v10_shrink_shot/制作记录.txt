@@ -1,0 +1,26 @@
+弹体缩小卡面制作记录
+日期：2026-11-12
+
+类别：游戏内物品栏贴图，独立法术主图；使用现有六边形修饰卡框合成。
+已读取：共同画风规范、DST生图基础提示词、物品栏贴图规范、本地生图工具调用与模型选择、法术卡分类与视觉设计规范。
+参考：../v8_giant_shot/giant_shot.png，保留青蓝菱形弹体、赭金三箭头与墨线身份。
+改动：中央弹体明显缩小，顶部、左下、右下三支箭头全部指向中央，形成巨化的反向配对。
+
+生成工具：D:/Projects/AI/open_xiaoai/local-imagegen/imagegen.py edit
+模型：gpt-image-2.6-sunburst
+参数：1024x1024、high、transparent、PNG，单张。
+实际提示词：shrink_shot.prompt.txt
+原始返回：shrink_shot.png
+请求参数、参考路径、用量及请求ID：shrink_shot.png.json
+用量：文本输入827、图像输入1521、图像输出1756，合计4104 tokens。
+未对API原图重绘或覆盖；合成资源由既有脚本进行等比适配。
+
+验收：源图完整，一枚弹体和三支内向箭头，透明留白，无文字或额外角标。
+Alpha范围0–254；查看器在黑底上显示的彩色雾状区域不等于可见光晕。
+实际合成到白色与灰色背景检查，边缘清洁，无可见外发光，见source_background_review.png。
+comparison.png包含巨化/缩小并排精细卡面和128、64、32像素预览；缩小时中央弹体与内向箭头仍可辨。
+
+接入：selected_overrides.json、cards.json、tools/compose_spell_cards.py。
+兼容源图副本：assets_src/art_v1/originals/shrink_shot.png 与同名prompt.txt。
+合成输出：assets_src/spell_cards_composed/v1/下album、inventory_128、inventory_64、inventory_32、ground/shrink_shot.png。
+最终运行物品栏128x128，地面与牌堆共用既有卡纸资源。

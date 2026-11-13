@@ -127,7 +127,7 @@ local function swarm(inst,owner,p,x,z)
             if length<.001 then dx,dz=1,0 else dx,dz=dx/length,dz/length end
             local shot=require("nw/field_effects").shot(p,p.id,16,.42)
             require("nw/executor").execute({next_state={rng_state=1},root_block=1,projectile_count=1,
-                blocks={{projectiles={shot}}}},owner,sx,sz,dx,dz,.85)
+                blocks={{projectiles={shot}}}},owner,sx,sz,dx,dz,.85,nil,p._nw_root)
         end
     end) end
     stop(inst,Field.time(p,.45+(count-1)*.55))

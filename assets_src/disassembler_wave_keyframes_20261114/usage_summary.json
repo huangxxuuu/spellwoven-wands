@@ -1,0 +1,162 @@
+{
+  "successful_requests": [
+    {
+      "metadata": "originals/grow_01.png.json",
+      "usage": {
+        "input_tokens": 3602,
+        "input_tokens_details": {
+          "image_tokens": 2980,
+          "text_tokens": 622
+        },
+        "output_tokens": 1372,
+        "total_tokens": 4974,
+        "output_tokens_details": {
+          "image_tokens": 1372,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/grow_01_v2.png.json",
+      "usage": {
+        "input_tokens": 2025,
+        "input_tokens_details": {
+          "image_tokens": 1240,
+          "text_tokens": 785
+        },
+        "output_tokens": 1372,
+        "total_tokens": 3397,
+        "output_tokens_details": {
+          "image_tokens": 1372,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/grow_bridge.png.json",
+      "usage": {
+        "input_tokens": 2598,
+        "input_tokens_details": {
+          "image_tokens": 2048,
+          "text_tokens": 550
+        },
+        "output_tokens": 1372,
+        "total_tokens": 3970,
+        "output_tokens_details": {
+          "image_tokens": 1372,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/grow_finish.png.json",
+      "usage": {
+        "input_tokens": 2581,
+        "input_tokens_details": {
+          "image_tokens": 2048,
+          "text_tokens": 533
+        },
+        "output_tokens": 2223,
+        "total_tokens": 4804,
+        "output_tokens_details": {
+          "image_tokens": 2223,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/grow_full_v3.png.json",
+      "usage": {
+        "input_tokens": 5020,
+        "input_tokens_details": {
+          "image_tokens": 4096,
+          "text_tokens": 924
+        },
+        "output_tokens": 3184,
+        "total_tokens": 8204,
+        "output_tokens_details": {
+          "image_tokens": 3184,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/loop_full.png.json",
+      "usage": {
+        "input_tokens": 4893,
+        "input_tokens_details": {
+          "image_tokens": 4096,
+          "text_tokens": 797
+        },
+        "output_tokens": 3184,
+        "total_tokens": 8077,
+        "output_tokens_details": {
+          "image_tokens": 3184,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/release_01.png.json",
+      "usage": {
+        "input_tokens": 2189,
+        "input_tokens_details": {
+          "image_tokens": 1444,
+          "text_tokens": 745
+        },
+        "output_tokens": 1372,
+        "total_tokens": 3561,
+        "output_tokens_details": {
+          "image_tokens": 1372,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/release_complete_v2.png.json",
+      "usage": {
+        "input_tokens": 4901,
+        "input_tokens_details": {
+          "image_tokens": 4096,
+          "text_tokens": 805
+        },
+        "output_tokens": 2223,
+        "total_tokens": 7124,
+        "output_tokens_details": {
+          "image_tokens": 2223,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "metadata": "originals/release_finish.png.json",
+      "usage": {
+        "input_tokens": 3090,
+        "input_tokens_details": {
+          "image_tokens": 2560,
+          "text_tokens": 530
+        },
+        "output_tokens": 1372,
+        "total_tokens": 4462,
+        "output_tokens_details": {
+          "image_tokens": 1372,
+          "text_tokens": 0
+        }
+      }
+    }
+  ],
+  "reported_usage_sum": {
+    "input_tokens": 30899,
+    "output_tokens": 17674,
+    "total_tokens": 48573
+  },
+  "failed_requests": [
+    {
+      "prompt": "prompts/release_full.txt",
+      "result": "API connection failure reported by local tool, no output file received",
+      "usage": "unknown; not included in sum",
+      "followup": "Different 4x3 complete sequence at2048x1536; no automatic identical retry or plugin fallback."
+    }
+  ],
+  "billing_note": "Reported token usage is not a bill or cost estimate. Failed request usage is unknown."
+}

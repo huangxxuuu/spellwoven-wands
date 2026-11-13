@@ -7,6 +7,10 @@ import re
 from pathlib import Path
 
 PHRASES = {
+    "（爽快/平衡；掉落限定不可制作）": " (Fun/Balanced; unavailable in Loot Only)",
+    "极稀有随机掉落 · 最大生命超过 200 的合资格生物，此次既无散卡也无携卡法杖时，从全卡池（道具招牌除外）等概率抽一张。默认掉率倍率下，爽快/平衡为 ": "Very rare random drop · Eligible creatures with over 200 maximum health can draw uniformly from all cards except Mini Sign when they drop neither a loose card nor a loaded wand. At the default drop-rate multiplier, the chance is ",
+    "，平衡·掉落限定为 ": " in Fun/Balanced and ",
+    "；实际概率再乘法术卡掉率倍率。": " in Balanced: Loot Only; the card drop-rate multiplier scales this chance.",
     "首次 Boss 额外奖励 · 胜利时在 12 单位内且尚未领取的玩家，每人额外掉一张：5% 碰撞触发修饰，95% 等概率抽六种基础弹的碰撞变体。不占普通掉卡名额。": "First-boss bonus · Each player within 12 units at victory who has not received this reward adds one extra card drop: 5% Collision Trigger Modifier, otherwise an equal choice among the six basic collision variants. Separate from the normal card limit.",
     "入门法杖的第一格自带一张。": "Included in the first slot of a Starter Wand.",
     "定向掉落（标准倍率） · ": "Signature drops (normal multiplier) · ",

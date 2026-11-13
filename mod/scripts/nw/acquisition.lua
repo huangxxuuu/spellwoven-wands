@@ -38,29 +38,29 @@ for _, v in ipairs({
 end
 recipe("nw_starter", "nw_wand", T("入门法杖"), {{"twigs",4},{"goldnugget",2},{"nw_dust",4}}, 1, nil, nil, 0)
 recipe("nw_roll_1", "nw_wand", T("普通随机法杖"), {{"twigs",6},{"goldnugget",4},{"nw_dust",12}}, 1, nil, nil, 1)
-recipe("nw_roll_2", "nw_wand", T("精良随机法杖"), {{"boards",2},{"purplegem",1},{"nw_dust",24},{"nw_beast_core",1}}, 1, nil, nil, 2)
-recipe("nw_roll_3", "nw_wand", T("稀有随机法杖"), {{"livinglog",2},{"purplegem",2},{"nw_dust",40},{"nw_overlord_core",1}}, 1, nil, nil, 3)
+recipe("nw_roll_2", "nw_wand", T("精良随机法杖"), {{"boards",2},{"purplegem",3},{"nw_dust",24},{"nw_beast_core",1}}, 1, nil, nil, 2)
+recipe("nw_roll_3", "nw_wand", T("稀有随机法杖"), {{"livinglog",2},{"greengem",3},{"nw_dust",40},{"nw_overlord_core",1}}, 1, nil, nil, 3)
 -- Inscription ingredients; weapon drop associations are selected separately below.
 local ink = {
     pitch_octave_up={{"cutreeds",2},{"twigs",1}},
     pitch_octave_down={{"cutreeds",2},{"charcoal",1}},
     pitch_semitone_up={{"cutreeds",1},{"twigs",1}},
     pitch_semitone_down={{"cutreeds",1},{"charcoal",1}},
-    gunpowder={{"gunpowder",1},{"charcoal",2}},
+    gunpowder={{"gunpowder",2},{"charcoal",2}},
     ocarina_g={{"cutreeds",2},{"seashell",1}},
-    gust={{"feather_robin",2},{"twigs",1}},
+    gust={{"goose_feather",2},{"twigs",1}},
     spore_ball={{"spore_small",1},{"livinglog",1}},
     flint_lance={{"flint",3},{"spear",1}},
-    crystal_mine={{"purplegem",1},{"gunpowder",1}},
-    sleep_crystal={{"bluegem",1},{"moonrocknugget",2}},
+    crystal_mine={{"purplegem",1},{"gunpowder",1},{"gears",2}},
+    sleep_crystal={{"bluegem",1},{"moonrocknugget",2},{"gunpowder",1}},
     slime={{"slurtleslime",2},{"silk",1}},
     grow_orb={{"yellowgem",1},{"lightbulb",2}},
-    heal_bolt={{"mosquitosack",2},{"butterflywings",2}},
-    bog_whip={{"tentaclespike",2},{"nightmarefuel",1}},
+    heal_bolt={{"mosquitosack",2},{"butterflywings",2},{"amulet",1}},
+    bog_whip={{"tentaclespike",2},{"tentaclespots",2}},
     detonate={{"flint",2},{"gunpowder",1}},
     delay_seal={{"purplegem",1},{"papyrus",1}},
-    rain_cloud={{"mosquitosack",2},{"ice",2}},
-    guard_ring={{"slurtle_shellpieces",3},{"bluegem",1}},
+    rain_cloud={{"nitre",4},{"ice",2}},
+    guard_ring={{"armorsnurtleshell",1},{"bluegem",1}},
     wild_charge={{"nitre",2},{"charcoal",1}},
     long_life={{"livinglog",1},{"cutreeds",2}},
     short_life={{"nitre",2},{"charcoal",2}},
@@ -69,36 +69,103 @@ local ink = {
     light_shot={{"feather_robin_winter",2},{"goldnugget",1}},
     accelerate={{"gears",1},{"goldnugget",1}},
     chill_touch={{"bluegem",1},{"ice",3}},
-    wet_weak={{"mosquitosack",1},{"tentaclespots",1}},
-    melee_mark={{"houndstooth",2},{"nightmarefuel",2}},
+    wet_weak={{"waterballoon",3},{"tentaclespots",1}},
+    melee_mark={{"houndstooth",2},{"tentaclespike",1}},
     two_way={{"boomerang",1},{"twigs",2}},
-    land_hook={{"rope",2},{"houndstooth",1}},
-    payload_egg={{"bird_egg",1},{"purplegem",1}},
-    harmless={{"butterflywings",2},{"papyrus",1}},
-    cast_four={{"nw_beast_core",1},{"gears",2}},
-    hex_cast={{"nw_overlord_core",1},{"purplegem",1}},
-    spore_sentry={{"spore_small",1},{"stinger",2}}, vital_ring={{"greengem",1},{"butterflywings",2}},
-    heavy_shot={{"marble",2},{"goldnugget",1}}, giant_shot={{"purplegem",1},{"marble",3}}, trident_cast={{"goose_feather",2},{"houndstooth",3}},
+    land_hook={{"rope",2},{"fishingrod",1}},
+    payload_egg={{"bird_egg",2},{"purplegem",1}},
+    harmless={{"butterflywings",2},{"papyrus",1},{"townportaltalisman",3}},
+    cast_four={{"nw_overlord_core",1},{"gears",2}},
+    hex_cast={{"nw_beast_core",1},{"purplegem",6}},
+    spore_sentry={{"spore_small",2},{"stinger",8}}, vital_ring={{"greengem",1},{"spidergland",8}},
+    heavy_shot={{"marble",2},{"goldnugget",1}}, giant_shot={{"purplegem",1},{"marble",3}}, shrink_shot={{"purplegem",1},{"moonrocknugget",3}}, trident_cast={{"goose_feather",8},{"houndstooth",9}},
     spark={{"nitre",1},{"flint",1}}, arrow={{"houndstooth",1},{"twigs",2}},
     heavy={{"marble",2},{"rocks",2}}, fire={{"redgem",1},{"charcoal",2}}, frost={{"bluegem",1},{"ice",3}},
     thrust={{"spear",2},{"nightmarefuel",1}}, slash={{"glasscutter",2},{"bluegem",1}}, whirl={{"axe",2},{"livinglog",1}},
     sine={{"tentaclespots",1},{"cutreeds",2}}, spiral={{"slurtle_shellpieces",1},{"slurtleslime",2}},
-    precision={{"feather_crow",1},{"flint",1}}, homing={{"batwing",2},{"purplegem",1}},
+    precision={{"messagebottleempty",1},{"flint",2}}, homing={{"batwing",4},{"purplegem",1},{"trunk_summer",1}},
     homing_rotate={{"feather_crow",2},{"goldnugget",2}},
     bounce={{"slurtleslime",2},{"rocks",2}}, orbit={{"moonrocknugget",2},{"butterflywings",2}},
-    speed_up={{"walrus_tusk",1}}, speed_down={{"silk",3}}, damage_up={{"houndstooth",2},{"nightmarefuel",1}},
-    pierce={{"tentaclespike",1},{"flint",2}}, explosion={{"gunpowder",1},{"redgem",1}},
-    chain={{"purplegem",1},{"lightninggoathorn",1}}, knockback={{"marble",1},{"beefalowool",3}},
-    leech={{"greengem",1},{"mosquitosack",2}}, light={{"yellowgem",1},{"lightbulb",2}},
-    mana_reduce={{"purplegem",1},{"nightmarefuel",2}}, recharge_down={{"gears",1},{"orangegem",1}},
-    double={{"silk",4},{"nightmarefuel",1}}, triple={{"gears",1},{"nightmarefuel",2},{"nw_beast_core",1}},
+    speed_up={{"walrus_tusk",1}}, speed_down={{"silk",8}}, damage_up={{"cactus_meat",8},{"houndstooth",8}},
+    pierce={{"tentaclespike",2},{"flint",2},{"minotaurhorn",1}}, explosion={{"gunpowder",4},{"redgem",2}},
+    chain={{"purplegem",2},{"lightninggoathorn",4}}, knockback={{"marble",1},{"beefalowool",3}},
+    leech={{"greengem",1},{"reviver",1}}, light={{"yellowgem",1},{"wormlight",2}},
+    dark={{"purplegem",1},{"nightmarefuel",2}},
+    mana_reduce={{"greengem",1},{"shadowheart",1}}, recharge_down={{"gears",1},{"orangegem",1}},
+    double={{"gears",2},{"nightmarefuel",2}}, triple={{"gears",3},{"nightmarefuel",3},{"nw_beast_core",1}},
     repeat_2={{"nw_beast_core",1},{"purplegem",2},{"gears",2}},
 }
 local arsenal=require("nw/arsenal")
+-- Shared by every world difficulty; unlisted engravings retain their default ink.
+local engraving_ink = {
+    batbat={{"rope",3}},
+    bullkelp_root={{"waterballoon",2}},
+    chum={{"oceanfishinglure_spinner_red",2}},
+    dumbbell={{"rope",3}},
+    dumbbell_bluegem={{"rope",3}},
+    dumbbell_gem={{"rope",3}},
+    dumbbell_golden={{"rope",3}},
+    dumbbell_heat={{"rope",3}},
+    dumbbell_marble={{"rope",3}},
+    dumbbell_redgem={{"rope",3}},
+    farm_hoe={{"rope",3}},
+    fence_rotator={{"rope",3}},
+    fishingrod={{"rope",3}},
+    fumaroleaxe={{"marble",2}},
+    fumarolehammer={{"marble",2}},
+    fumarolepickaxe={{"marble",2}},
+    fumaroleshovel={{"marble",2}},
+    goldenaxe={{"marble",2}},
+    goldenpickaxe={{"marble",2}},
+    goldenshovel={{"marble",2}},
+    hambat={{"fishmeat",2}},
+    hammer={{"rope",3}},
+    handpillow_beefalowool={{"stinger",3}},
+    handpillow_kelp={{"stinger",3}},
+    handpillow_petals={{"stinger",3}},
+    handpillow_steelwool={{"stinger",3}},
+    minifan={{"papyrus",2}},
+    moonglassaxe={{"moonglass",2}},
+    multitool_axe_pickaxe={{"thulecite",2}},
+    nightstick={{"nitre",4}},
+    nightsword={{"shadowheart",1}},
+    oceanfishingrod={{"rope",3}},
+    orangestaff={{"orangegem",2}},
+    pickaxe={{"rope",3}},
+    pickaxe_lunarplant={{"lunarplant_husk",3}},
+    pocketwatch_weapon={{"pocketwatch_parts",4}},
+    ruins_bat={{"thulecite",2}},
+    shadow_battleaxe={{"shadowheart_infused",1}},
+    shieldofterror={{"milkywhites",2}},
+    shovel={{"rope",3}},
+    shovel_lunarplant={{"lunarplant_husk",3}},
+    spear_wathgrithr={{"goldnugget",3}},
+    spear_wathgrithr_lightning={{"lightninggoathorn",1}},
+    spear_wathgrithr_lightning_charged={{"lightninggoathorn",2}},
+    sword_lunarplant={{"lunarplant_husk",3}},
+    tentaclespike={{"tentaclespots",1}},
+    torch={{"rope",3}},
+    trident={{"gnarwail_horn",1}},
+    voidcloth_scythe={{"voidcloth",3}},
+    whip={{"tentaclespots",1}},
+    yoth_lance={{"rope",3}},
+    voidcloth_boomerang={{"voidcloth",3}},
+    firestaff={{"nightmarefuel",3}},
+    icestaff={{"nightmarefuel",3}},
+    staff_lunarplant={{"lunarplant_husk",3}},
+    staff_tornado={{"goose_feather",3}},
+    yellowstaff={{"yellowgem",1}},
+    opalstaff={{"moonrocknugget",10}},
+}
 local selectors={}
 for _,c in ipairs(arsenal.cards) do
     if c.source_weapon then
-        if c.source_weapon~="propsign" and not require("nw/engraved_spells").retired[c.id] then ink[c.id]={{c.source_weapon,2},{"nightmarefuel",1}} end
+        if c.source_weapon~="propsign" and not require("nw/engraved_spells").retired[c.id] then
+            ink[c.id]={{c.source_weapon,2}}
+            for _,v in ipairs(engraving_ink[c.source_weapon] or {{"nightmarefuel",1}}) do
+                ink[c.id][#ink[c.id]+1]={v[1],v[2]}
+            end
+        end
     elseif c.select_target then
         selectors[c.id]=true
         ink[c.id]={{"papyrus",1},{"nightmarefuel",1}}
@@ -134,7 +201,7 @@ for _, id in ipairs(Cards.order) do
     if ink[id] then inscribe(id,ink[id]) end
     if id=="scatter" then
         for i, feather in ipairs({"feather_crow","feather_robin","feather_robin_winter","feather_canary"}) do
-            inscribe(id,{{feather,2}},i==1 and "" or "_"..feather)
+            inscribe(id,{{feather,6},{"beefalowool",3}},i==1 and "" or "_"..feather)
         end
     end
 end

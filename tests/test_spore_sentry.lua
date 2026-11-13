@@ -49,7 +49,10 @@ local function entity()
     end
     e.entity=setmetatable({},{__index=function() return noop end})
     e.Transform={GetWorldPosition=function() return e.x,0,e.z end,
-        SetPosition=function(_,x,y,z) e.x,e.z=x,z end}
+        SetPosition=function(_,x,y,z) e.x,e.z=x,z end,
+        GetScale=function() local s=e.scale or 1;return s,s,s end,SetScale=function(_,s) e.scale=s end}
+    function e:GetPhysicsRadius() return self.body or .1 end
+    function e:SetPhysicsRadiusOverride(r) self.body=r end
     e.AnimState=setmetatable({
         PlayAnimation=function(_,name) e.anim=name;e.clips[#e.clips+1]={name=name,at=now} end,
         PushAnimation=function(_,name) e.queued=name end,
@@ -90,10 +93,10 @@ end
 local sentry=dofile("mod/scripts/prefabs/nw_garden.lua")
 assert(sentry.name=="nw_spore_sentry")
 local cleaned=0
-local function launch(lifetime)
+local function launch(lifetime,size)
     now=0;tasks={};shots={};available=true;reverse_ties=false;cleaned=0
     local inst=sentry.fn()
-    inst:Launch(owner,{id="spore_sentry",radius=5,damage=12,flags={},
+    inst:Launch(owner,{id="spore_sentry",radius=5*(size or 1),size_mult=size,damage=12,flags={},
         field_lifetime_mult=(lifetime or 5.7)/5.7},0,0,1,0,function() cleaned=cleaned+1 end)
     assert(inst.anim=="spore_grow" and inst.queued=="spore_idle")
     return inst
@@ -140,4 +143,11 @@ advance(1.4);assert(not idle.valid and #shots==0 and cleaned==1)
 local removed=launch()
 advance(2.4);removed:Remove();advance(6)
 assert(#shots==3 and #events(removed,"spore_wilt")==0 and cleaned==1)
+-- A target still in the original disk must not trigger a shrunk sentry; moving
+-- it into the smaller disk resumes the unchanged attack and recoil timing.
+target.x=3
+local small=launch(nil,.4)
+advance(1);assert(#shots==0 and #events(small,"spore_fire")==0)
+target.x=1
+advance(1.5);assert(#shots==1 and small.scale==.4)
 print("spore sentry: unchanged growth and firing, complete final recoil, cutoff ordering, single wilt and raw cleanup")

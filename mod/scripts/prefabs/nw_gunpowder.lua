@@ -17,6 +17,9 @@ local function owner(inst)
 end
 local function start(inst,data,caster)
     inst._nw_powder=Copy(data)
+    data=inst._nw_powder
+    data.p._nw_root=require("nw/balance_damage").root(data.p._nw_root)
+    require("nw/balance_damage").tag(inst,data.p)
     inst._nw_owner=caster
     if not caster and data.neutral then
         local x,_,z=inst.Transform:GetWorldPosition()

@@ -1,6 +1,7 @@
 -- Player-facing summaries. Numerical reference text remains in spell_info.effects.
 local M={}
 local text={
+dark={"沿途留下短暂黑雾，使生物恐惧或目盲；暗影生物加速，玩家不受影响。","Leaves brief fog that frightens or blinds creatures, speeds up shadow creatures, and does not affect players."},
 pitch_octave_up={"将同组乐器音升高一个八度；升降先抵消，最终最多升降一个八度。","Raises this group's notes by an octave; shifts cancel before clamping to one octave up or down."},
 pitch_octave_down={"将同组乐器音降低一个八度；升降先抵消，最终最多升降一个八度。","Lowers this group's notes by an octave; shifts cancel before clamping to one octave up or down."},
 pitch_semitone_up={"将同组乐器音升高一个半音；升降先抵消，最终最多升降一个八度。","Raises this group's notes by a semitone; shifts cancel before clamping to one octave up or down."},
@@ -49,6 +50,7 @@ spore_sentry={"种下一株短暂存在、自动攻击附近目标的荚刺哨�
 vital_ring={"生成一片短暂恢复生命的区域。","Creates a temporary healing area."},
 heavy_shot={"增强投射物伤害，但降低速度并增加散射。","Makes projectiles stronger, slower and less accurate."},
 giant_shot={"放大法术的外观和实际作用范围，不直接增加伤害。","Enlarges spells and their effective areas without directly increasing damage."},
+shrink_shot={"缩小法术的外观和实际作用范围，不降低伤害。","Shrinks spells and their effective areas without reducing damage."},
 trident_cast={"将后续法术向前方呈扇形分开施放。","Casts the following spells in a forward fan."},
 short_life={"缩短投射物与有限场地法术的存在时间，也缩短火药引线。","Shortens projectile and finite field lifetimes, including star duration and gunpowder fuses."},
 gust={"发射推开目标的气流，也能推动载荷卵而不击破它。","Fires a gust that pushes targets and moves payload eggs without breaking them."},
@@ -108,7 +110,7 @@ chum={"抛出鱼食，在海面撒下诱鱼的饵屑。","Throws chum that attra
 farm_hoe={"抛出锄头翻土，无法翻土时继续弹跳。","Throws a hoe that tills soil and bounces if it cannot."},
 trident={"投出鲸角，在终点引发水柱并浸湿周围。","Throws a horn that erupts in a waterspout and wets its surroundings."},
 orangestaff={"发射橙色魔弹，将施法者传送至弹体的落点。","Fires an orange bolt that teleports the caster to its destination."},
-voidcloth_boomerang={"投出逐渐变大的暗影回旋镖，命中后折返。","Throws a growing shadow boomerang that returns after impact."},
+voidcloth_boomerang={"投出逐渐变大的阴郁回旋镖，命中后折返。","Throws a growing gloomerang that returns after impact."},
 firestaff={"发射能够点燃目标的火魔杖弹。","Fires a fire-staff projectile that ignites targets."},
 icestaff={"发射能够灭火和冻结目标的冰魔杖弹。","Fires an ice-staff projectile that extinguishes and chills targets."},
 staff_lunarplant={"发射在目标间反弹的亮茄魔杖弹。","Fires a brightshade projectile that bounces between targets."},

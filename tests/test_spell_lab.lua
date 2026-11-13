@@ -21,7 +21,7 @@ for _,page in ipairs(Kit.pages) do
         assert(compile(seq).projectile_count>0)
     end
 end
-assert(n==186 and #Cards.order==222 and Cards.codes.weak_homing==25)
+assert(n==188 and #Cards.order==224 and Cards.codes.weak_homing==25)
 assert(Cards.codes.frost_timer==45 and Cards.codes.mana_reduce==46 and Cards.codes.repeat_3==49)
 for _,seq in ipairs({{"repeat_2","double","spark","arrow"},{"double","spark","repeat_2","arrow"}}) do
     local p=compile(seq)

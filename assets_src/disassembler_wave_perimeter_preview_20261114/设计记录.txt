@@ -1,0 +1,73 @@
+奥术分解炉外围弧片：静态方案预览
+日期：2026-11-14
+
+用户要求先看一到两张与分解炉在一起的效果图，决定后再生成动画。
+本目录仅包含静态设计，不替换运行资源、不生成动画、不修改分解范围。
+
+方案 A：24 枚短弧，单片更清楚。可见图案局限于外半径 93.01% 至 100%。
+方案 B：37 枚更小短弧，边界更细密。可见图案局限于外半径 94.57% 至 100%。
+注：B 的提示词目标为 36 枚，实际返回并测得 37 枚，保留原始结果如实展示。
+两版最内侧 90% 半径均没有 alpha >= 64 的图案像素。
+
+预览共用分解炉现有源图、相同中心锚点和外半径，炉体不重绘。
+范围外半径 430 像素，炉宽 320 像素，参考用户截图的相对比例。
+地面投影系数 sin(35°)，使用中性底色；属于离线比例示意，不是游戏实拍。
+
+生成：项目指定本地 OpenAI API 工具，gpt-image-2.6-sunburst，high，1024x1024，透明背景。
+实际提示词保存在 prompts/；原始返回 PNG 和每次用量 JSON 保存在 originals/。
+两次成功请求共 7,184 tokens；不据此推断费用或账户余额。
+派生预览只清除 alpha <= 8 的背景残渣，统一半径、做地面投影并合成原有炉体。
+没有用程序重画弧片。原始 PNG 保持不变，完整派生参数与 SHA256 见 preview_record.json。
+
+待用户选定 A、B 或提出调整后，再继续真实关键帧动画。
+
+第二轮：方案 C，错落弧片
+用户否定 A/B 的整齐重复感，要求恢复旧版弧片之间的形状差异，并在外围错落分布。
+C 混用窄长弯刃、短钩、双尾分叉、折角弧和短碎弧，加入大小、间隔与内外位置变化。
+继续沿用同一炉体、中心锚点及外半径，中心不填充，不加入符文或菱晶。
+实际源图含 30 个 alpha >= 64、面积 >= 30 像素的独立连通块。
+可见像素内外半径比为 0.7956；图案位于最外侧约 20.4% 的环带。
+生成结果的部分弧片长度超过提示词目标 115 像素，未声称满足每片最长炉宽三分之一。
+原始图像保留不改；只清理 alpha <= 8 残渣并按前轮同样方法合成静态效果图。
+复现命令：.venv/Scripts/python.exe assets_src/disassembler_wave_perimeter_preview_20261114/compose_previews.py --variant c
+源图：originals/c_varied_staggered.png，实际提示词：prompts/c_varied_staggered.txt。
+效果图：previews/preview-c.png，白灰底：previews/alpha-white-gray-c.png。
+测量、源图 SHA256 与用量：preview_record-c.json。
+本轮一次本地 API 成功调用，共 3,548 tokens；三张候选累计 10,732 tokens。
+C 仍待用户确认；没有生成动画、改动运行资源或安装。
+
+第三轮：方案 D，双层交错
+用户要求相近的两层、层间有交互、每层留缺口且两层缺口错开。
+D 使用 C 源图进行一次本地 API 改图，产生弧尾搭接与部分内外排列。
+用量 3,596 tokens；A 至 D 累计 14,328 tokens。
+文件：originals/d_two_interacting_bands.png、prompts/d_two_interacting_bands.txt、previews/preview-d.png。
+验收意见：有局部双层和搭接，但左右部分仍偏宽弧带，双层缺口辨识度有限。
+用户随后指定以 D 原图再小幅调整：禁止任何弧形互相重叠或覆盖。
+后续 E 应保留 D 的形状与错落关系，以透明间隙分开所有独立弧片；不得继续强化搭接。
+
+第四轮：方案 E，弧片分离
+按用户指定，以 D 原图作局部调整，分开独立弧片之间的相交、覆盖和接触。
+左上、右中、底部与右下原搭接处均已留出空隙；保持 D 总体布局、配色及外围留白。
+源图和白灰底静态视觉复核未见独立弧片仍相交或遮挡，无明显脏边、裁切。
+可见独立连通块为 42，D 原图为 35；不将连通块数当作预先约定的弧片数量。
+未以程序重新绘制弧片；派生预览仍只作低 Alpha 清理、统一半径及地面投影合成。
+本轮本地 OpenAI API gpt-image-2.6-sunburst/high，一次成功，3,353 tokens。
+A 至 E 全部候选累计 17,681 tokens，完整调用记录随原始 PNG 保存。
+原图：originals/e_separated_bands.png；提示词：prompts/e_separated_bands.txt。
+效果图：previews/preview-e.png；清理后透明图：previews/e_separated_bands-clean.png。
+白灰底：previews/alpha-white-gray-e.png；参数及用量：preview_record-e.json。
+复现命令：.venv/Scripts/python.exe assets_src/disassembler_wave_perimeter_preview_20261114/compose_previews.py --variant e
+仅静态方案待用户确认；没有生成动画、编译、修改 Mod 运行资源或安装。
+
+第五轮：方案 F，删除两个紫色弧片
+用户要求去掉两个紫色弧片，只保留青色、金色两种主要颜色。
+本轮使用本地 API 蒙版编辑 E 的清理后透明图；原始返回保存在 originals/f_cyan_gold_only.png。
+API 原始返回额外改动了蒙版周边小弧片，因此交付派生图只采用两个紫色连通物体位置的删除结果，其余像素完整恢复 E。
+恢复依据：references/f_exact_component_preservation_mask.png；两个物体为 8 邻域 Alpha>8 连通块，种子坐标 (909,312) 与 (100,725)。
+两个物体像素合计 1,419，实际仅这 1,419 个像素改为透明；所有其余像素与 E 完全相同。
+验证记录：f_exact_edit_verification.json；弧片独立连通块从 42 减至 40。
+实际交付透明源图为 previews/f_cyan_gold_only-clean.png，不使用未修正的 API 原始返回。
+效果图：previews/preview-f.png；白灰底：previews/alpha-white-gray-f.png。
+提示词：prompts/f_remove_purple.txt；初始编辑蒙版：references/f_remove_purple_mask.png。
+本轮一次本地 gpt-image-2.6-sunburst/high 成功调用，3,031 tokens；A 至 F 累计 20,712 tokens。
+所有调用记录、原始图、派生图及哈希均保留。没有生成动画或修改运行资源。

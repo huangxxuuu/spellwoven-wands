@@ -1,0 +1,51 @@
+暗雾法术卡重绘记录
+日期：2026-11-13
+
+需求与类别
+用户要求重绘暗雾卡面，主体参考暗影瘴气，主体颜色为黑色，并遵守当前美术规范。
+本次归类：游戏内物品栏贴图／法术卡主图。沿用既有六边形法术修饰卡框、纸底与双线结构；不新增角标。
+
+本次已读取的规范
+AGENTS.md
+docs/26_饥荒原版画风与生图基础规范.md
+docs/DST生图基础提示词.txt
+docs/art/03_游戏内物品栏贴图规范.md
+docs/art/04_本地生图工具调用与模型选择.md
+docs/20_法术卡分类与视觉设计规范.md
+
+参考与分工
+references/native_miasma_atlas.png：从本机原版 data/fx/miasma.tex 解码的完整贴图。
+references/native_miasma_0.png、native_miasma_1.png：按实际 .5×1 UV 帧拆出的原版图片。
+references/native_miasma_white_gray.png：原版贴图在白／灰背景上的检查板，作为烟团身份和形状参考。
+references/sources.json：原版资源绝对路径、SHA-256 与导出操作记录。
+test_reports/native_style_reference/inventory/inventory_contact.png：仅参考原版物品栏线条、大色块与细节密度。
+生成时不照搬原版烟粒贴图的棕色、细碎噪点和调试背景。使用黑色与少量中性炭灰色表现烟团叠层。
+
+工具、Prompt 和原图
+入口：D:/Projects/AI/open_xiaoai/local-imagegen/imagegen.py
+模式：edit，模型 gpt-image-2.6-sunburst，1024×1024，high，transparent，PNG。
+调用前完成 --dry-run；本次仅一次实际 API 调用，无插件切换。
+dark.prompt.txt：实际完整 Prompt；内容与 API JSON 中 request.prompt 一致。
+dark-source-01.png：API 原始返回源图，保持原始 RGBA，不做阈值抠图、改色或补绘。
+dark-source-01.png.json：工具保存的完整参数、参考路径、request_id 与 usage。
+输入 2314 tokens（文本778、图片1536），输出1756 tokens，总计4070 tokens。未将 token 用量推定为实际账单金额。
+dark.png：供资源流水线消费的原图无损副本。
+previous/：替换前旧主图备份。
+
+视觉验收
+烟团主体黑色，使用少量炭灰色大块区分重叠与卷曲，保留简洁、略不规则的墨线剪影。
+没有眼睛、怪物、魔法阵、符文、文字、彩色发光中心或新装饰框。
+白／灰底合成检查边缘干净，未见可见白边、黑色背景方块或外部光晕。透明像素的 RGB 不作为可见瑕疵判断。
+原始 Alpha 范围0–254；主体近不透明像素中约93.38%的RGB各通道不超过64，主体近不透明像素RGB中位数为25/25/25。
+主图与现有六边形边框组合后，收藏册和物品栏适配均通过边框内缘安全区域检查。
+检查128px目标资源，以及64px和32px辅助预览；烟雾整体剪影仍可辨认。最细游离烟丝在32px会减弱，主体不依赖其识别。
+review/review_sheet.png：白灰背景、现有卡框及实际128／64／32像素预览。
+review/dark_card_1024.png：透明卡面预览；review/dark_card_preview.png：512px展示版。
+review/metrics.json：Alpha、主色与实际等比适配参数。
+build_review.py：仅生成本目录内检查图，不更改原始生图或正式资源。
+
+接入与验证边界
+补入当前公开卡的组合清单，更新选中主图映射及本地库存／地面卡资源；后续重建继续使用本次源图。
+保留法术ID、类别和机制行为。删除旧说明中“卡面暂用暴击符文图案”及对应英文尾句。
+资源构建与定向检查结果另见 integration-report.json。
+本次未运行游戏内实机验收，未同步游戏安装目录，未发布版本或资料站。

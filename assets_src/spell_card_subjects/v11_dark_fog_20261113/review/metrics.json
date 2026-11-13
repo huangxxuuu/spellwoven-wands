@@ -1,0 +1,67 @@
+{
+  "source": "assets_src/spell_card_subjects/v11_dark_fog_20261113/dark-source-01.png",
+  "size": [
+    1024,
+    1024
+  ],
+  "alpha_range": [
+    0,
+    254
+  ],
+  "visible_bbox": [
+    67,
+    187,
+    959,
+    837
+  ],
+  "fully_transparent_fraction": 0.638035774230957,
+  "opaque_rgb_median": [
+    25.0,
+    25.0,
+    25.0
+  ],
+  "opaque_rgb_p90": [
+    59.0,
+    58.0,
+    58.0
+  ],
+  "opaque_pixels_near_black_fraction": 0.9338342883311552,
+  "album_fit": {
+    "source_bbox": [
+      67,
+      187,
+      959,
+      837
+    ],
+    "position": [
+      149,
+      247
+    ],
+    "fitted_size": [
+      727,
+      530
+    ],
+    "uniform_scale": 0.814931005640415,
+    "reserve_badge": false,
+    "inside_safe_mask": true
+  },
+  "inventory_fit": {
+    "source_bbox": [
+      67,
+      187,
+      959,
+      837
+    ],
+    "position": [
+      105,
+      216
+    ],
+    "fitted_size": [
+      814,
+      593
+    ],
+    "uniform_scale": 0.9121145205647423,
+    "reserve_badge": false,
+    "inside_safe_mask": true
+  }
+}

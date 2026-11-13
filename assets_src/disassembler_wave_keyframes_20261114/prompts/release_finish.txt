@@ -1,0 +1,12 @@
+Continue this hand-drawn dissolution animation with SIX new consecutive cels. Output1536x1024 true transparent PNG, EXACT3 columns x2 rows, each512x512, same fixed center, camera and scale. No labels, guides, grid lines, floor, background, haze, shadows or furnace.
+
+Reference1 is the LAST EXISTING CEL: long cyan and gold arcs have already broken into slender curved fragments, small icy diamonds and hollow purple marks remain. Reference2 is the earlier6-cel motion study for identity/direction only. This new sheet starts JUST AFTER reference1; do not start over with solid broad arcs. Keep every fragment's identity and clockwise outward path, with large transparent center. All shapes remain inside the512 square with safe margins; their outer range stays roughly fixed as they dissolve.
+
+Cel1: slender cyan/gold splinters bend and twist farther clockwise/outward, tails curl into short commas. About70% of the remaining painted area of reference1. Diamonds split into thin pointed chips; purple hollow marks open at one corner and curl.
+Cel2: about45% of reference1 area. Each curved splinter gets narrower at a different rate, develops new gaps, and changes curvature. Ends fork, bend and stretch; bright inner streaks separate into short dashes. The outer ring does not shrink.
+Cel3: about25% area, separated narrow curls and tiny pointed chips, no large unbroken diamond or glyph. Positions advance only slightly along their paths, no teleporting to unrelated places.
+Cel4: about10% area, only a few scattered thin curved dashes and small colored slivers near the outer circumference. Their contours are newly drawn and curling, not fixed fragments merely faded.
+Cel5: very sparse final tiny tapered cyan/gold strokes, about3% area, still at the outside. Absolutely no central cluster or intact arcs.
+Cel6: fully empty, completely transparent cel. Nothing remains.
+
+Show real individually redrawn dissolving topology: bends change, cracks open, forked tips stretch, little fragments separate and curl as they vanish. Do NOT uniformly shrink, rotate or fade a completed ring. Do not generate a new type of effect. Preserve the muted cyan, antique gold and icy highlights, tapered dark ink contour and sparse flat hand-painted color planes of Don't Starve Together. Do not add glow, smoke, fire, flower petals or unrelated runes. Each successive drawing continues the previous one naturally, becoming sparser without shrinking the footprint.

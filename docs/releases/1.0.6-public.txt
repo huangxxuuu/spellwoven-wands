@@ -1,0 +1,19 @@
+织法之杖 1.0.6
+
+1. 新增世界难度：爽快（保留原有规则）、平衡、平衡·掉落限定。
+2. 平衡规则：同次施法对同一目标连续命中时伤害递减，提高心神消耗（理智不足时以饥饿补足），调整减蓝效果与新法杖基础回充，核心改由战利品提炼。
+3. 掉落限定模式：关闭法术卡制作，兜底散卡概率提高至原来的5倍，默认倍率下为0.05%。
+4. 新增暗雾修饰卡：弹体沿途留下暗雾，可使受影响生物目盲、恐慌。
+5. 新增弹体缩小修饰卡：同步缩小外观与实际作用范围。
+6. 调整大多数法术卡配方：大多数使用噩梦燃料的配方改用关联性更高的材料。
+7. 视觉和界面调整：取消弹体等效果的强制自发光，更新部分命名、设置说明及兼容性选项。
+
+Spellwoven Wands 1.0.6
+
+1. Adds world difficulty options: Fun (the existing rules), Balanced, and Balanced: Loot Only.
+2. Balanced rules: repeated hits from one cast against the same target deal progressively less damage; sanity costs increase, with hunger covering any shortfall. Adjusts mana reduction and new wands' base recharge. Cores are now obtained by refining loot.
+3. Loot Only mode: disables spell card crafting and increases the fallback loose-card chance to five times its previous value, or 0.05% at the default drop-rate multiplier.
+4. Adds the Dark Fog modifier card: projectiles leave dark fog along their path, which can blind and panic affected creatures.
+5. Adds the Shrink Shot modifier card: reduces both visuals and the actual area of effect.
+6. Adjusts most spell card recipes: most recipes that used Nightmare Fuel now use more thematically appropriate materials.
+7. Visual and interface adjustments: removes forced fullbright from projectiles and other effects, and updates some names, setting descriptions, and compatibility options.

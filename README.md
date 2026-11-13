@@ -1,10 +1,10 @@
 # 织法之杖 · Spellwoven Wands
 
-**正式版 1.0.5 · 2026-11-10**
+**正式版 1.0.6 · 2026-11-14**
 
-[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.5)
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.6)
 
-1.0.5 微调三座建筑贴图，新增可在个人设置中关闭的法术实体上限角色语音提示；法术测试拳击袋提供连击、10 秒和 30 秒伤害测试模式。[更新说明](docs/releases/1.0.5-public.txt) · [完整改动记录](docs/releases/1.0.5-commit.txt)
+1.0.6 新增世界难度选项、暗雾与弹体缩小修饰卡，并调整大多数法术卡配方及部分视觉和界面内容。[更新说明](docs/releases/1.0.6-public.txt)
 
 1.0.4 适当优化施法性能，为性能设置提供默认限制；玩家可根据设备性能调整相关设置。[更新说明](docs/releases/1.0.4-public.txt) · [完整改动记录](docs/releases/1.0.4-commit.txt)
 

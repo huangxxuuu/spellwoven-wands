@@ -59,6 +59,10 @@ end
 function M.start(inst,data,owner,loading)
     inst._nw_stored=Copy(data)
     data=inst._nw_stored
+    -- Old placements have no recoverable cast grouping. Give each such saved
+    -- entity one identity; subsequent descendants and saves retain it.
+    data.p._nw_root=require("nw/balance_damage").root(data.p._nw_root)
+    require("nw/balance_damage").tag(inst,data.p)
     require("nw/entity_limits").restore_field(inst,data.userid or data.owner_key,"permanent_fields",data.order)
     data.order=inst._nw_permanent_order or data.order
     require("nw/projectile_size").field(inst,data.p)
@@ -87,7 +91,7 @@ function M.start(inst,data,owner,loading)
         else caster=M.owner(inst) end
         if not caster then return false end
         if not data.payload then return true end
-        return require("nw/executor").execute(Copy(data.payload),caster,x,z,dx,dz,data.height)
+        return require("nw/executor").execute(Copy(data.payload),caster,x,z,dx,dz,data.height,nil,data.p._nw_root)
     end
     local x,_,z=inst.Transform:GetWorldPosition()
     if require("nw/field_motion").start(inst,owner,data.p,data.dx,data.dz,data.age,data.motion)==false then return end

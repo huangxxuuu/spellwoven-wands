@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-11-13T17:02:10.480887+00:00",
+  "action": "edit",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Draw SIX genuinely redrawn consecutive animation cels of this painted ground spell effect UNRAVELLING AND BREAKING APART. The reference is its circular top-down pose. Preserve the established four cool cyan curved strips, three old gold curved strips, several little icy diamond chips, dark outlines and angular tapered brushwork. Ignore the gray background: output true alpha transparency. This is a 2D hand-drawn Don't Starve Together ground effect, not 3D, not a neon glow, not a solid disk.\n\nCanvas 1536x1024, EXACT 3 columns x 2 rows of 512x512 cels, no lines, labels or text. Every cel has the SAME fixed center at local (256,256), orthographic top down, fixed world scale. Frame 1's outermost radius is 219px. Every cel has at least 15px transparent margin, no clipping. Empty transparent central hole, no furnace, no scene, no shadow, no gray/white/black background. Do not stretch the circle into an ellipse; game projects it later.\n\nThese are consecutive cels 1–6 of a 12-cel release animation. The whole ring never shrinks or grows uniformly. Individual strips FLOW CLOCKWISE AND OUTWARD, while their shapes evolve. Motion is small and continuous, with identity and color order preserved.\n\nCEL 1: the intact mature ring, four cyan and three gold swooping elongated hooked strips in the reference layout. Redraw it cleanly, without gray background. This is the shared anchor pose before release, no cracks yet.\nCEL 2: all heads advance a little clockwise and outward, the tails lag and curl tighter; each strip stretches unevenly and develops a thin notch through its weakest middle. One gold arc begins splitting near the tail, a cyan arc develops a fork. Redraw both outer contour and internal bright streaks.\nCEL 3: the notches open into transparent gaps in several cyan and gold arcs. Heads are visibly longer and narrower; tails bend into tighter hooks. Each original arc becomes two unequal CURVED brushstroke fragments, with one still connected by a very thin wisp. The pieces don't merely translate: their curvature changes and pointed ends turn.\nCEL 4: thin connections snap into visible transparent gaps, heads sweep ahead and tails roll inward like uncoiling shavings. Each of the seven original strips is now two or three unequal narrow curved strokes. Their bright interior markings divide and bend with them. Whole circular footprint stays nearly the same, about radius 225px.\nCEL 5: detached strokes keep moving along the clockwise outward spiral. Heads stretch into thin curved splinters; tails become short curled commas. Larger transparent spaces appear where thick bodies used to be. Dark ink contour becomes thinner on the dissipating ends; highlights break into smaller dashes.\nCEL 6: about half the original painted area remains as slender curved splinters, curling little tails, and small diamond fragments; no intact broad arcs remain. Original cyan/gold identities are still traceable by position and color. No new central pieces are born. Outermost radius about232px.\n\nEach of six cels is a new drawing with evolving topology, curvature, widths and painted highlights. NO copy-paste rotation/resize, NO uniform ring fade, NO shrinking whole ring, NO six unrelated concept options. Show the progressive opening of cracks and curling of individual fragments, not a fixed picture with random missing pieces. Keep changes between neighbors small enough for animation. Do not introduce fire, smoke, flowers, extra runes or glowing haze.\n",
+    "n": 1,
+    "size": "1536x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_v2_complete_20261110\\restored_ground_plane.png"
+  ],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\disassembler_wave_keyframes_20261114\\originals\\release_01.png"
+  ],
+  "usage": {
+    "input_tokens": 2189,
+    "input_tokens_details": {
+      "image_tokens": 1444,
+      "text_tokens": 745
+    },
+    "output_tokens": 1372,
+    "total_tokens": 3561,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_86516f8270e14baf9bdda2397c0da489",
+  "revised_prompts": [
+    null
+  ]
+}

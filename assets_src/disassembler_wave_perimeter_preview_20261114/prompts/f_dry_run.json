@@ -1,0 +1,17 @@
+{
+  "dry_run": true,
+  "endpoint": "https://api.openai.com/v1/images/edits",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Use case: precise-object-edit, masked object removal. Edit the supplied transparent PNG with the supplied mask. Output 1024x1024 transparent RGBA.\n\nREMOVE exactly the TWO small purple / mauve arc fragments: one near the upper-right side of the ring around 2 o'clock, and one near the lower-left side around 8 o'clock. Those two objects lie in the transparent editable regions of the mask. Erase both completely to genuine transparent pixels, including their black outlines and highlights. Leave the resulting spaces EMPTY. Do not recolor them cyan or gold, do not replace them with another arc, and do not fill the gaps.\n\nEverything else must remain exactly unchanged: every cyan and gold arc, their contours, ink lines, highlights, positions, sizes, separation, nearby two-layer arrangement, staggered gaps, outer footprint and transparent center. Keep only the two existing major arc colors, cyan and gold. No purple objects remain. No overlaps, no added particles, no background, no glow, no shadows, no text, no furnace and no changes outside the two masked objects. This is only a small deletion, not a redraw or rearrangement.\n",
+    "n": 1,
+    "size": "1024x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "images": [
+    "assets_src\\disassembler_wave_perimeter_preview_20261114\\previews\\e_separated_bands-clean.png"
+  ],
+  "mask": "assets_src\\disassembler_wave_perimeter_preview_20261114\\references\\f_remove_purple_mask.png"
+}

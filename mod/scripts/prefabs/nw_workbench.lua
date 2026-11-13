@@ -22,8 +22,11 @@ local function make_station(name,bank,pose)
         inst:AddComponent("prototyper")
         inst:AddComponent("craftingstation")
         inst.components.craftingstation.nosave = true
-        for _, row in ipairs(require("nw/acquisition").menu_entries) do
-            if row.station==name then inst.components.craftingstation:LearnItem(row.name,row.name) end
+        local crafting=require("nw/crafting")
+        for _,row in ipairs(require("nw/acquisition").menu_entries) do
+            if row.station==name and crafting.recipe_enabled(row) then
+                inst.components.craftingstation:LearnItem(row.name,row.name)
+            end
         end
         inst:AddComponent("lootdropper")
         inst:AddComponent("workable")

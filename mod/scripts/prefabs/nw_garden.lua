@@ -59,7 +59,7 @@ local function sentry(inst,owner,p,x,z)
                     if length<.001 then dx,dz=1,0 else dx,dz=dx/length,dz/length end
                     local thorn=require("nw/field_effects").shot(p,"spore_sentry",14,.36)
                     local fired=require("nw/executor").execute({root_block=1,projectile_count=1,
-                        next_state={rng_state=1},blocks={{projectiles={thorn}}}},owner,x,z,dx,dz,.62)
+                        next_state={rng_state=1},blocks={{projectiles={thorn}}}},owner,x,z,dx,dz,.62,nil,p._nw_root)
                     if fired then
                         shots=shots+1
                         local combat=e.components.combat

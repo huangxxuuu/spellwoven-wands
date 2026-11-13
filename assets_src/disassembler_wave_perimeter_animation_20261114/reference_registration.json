@@ -1,0 +1,17 @@
+{
+  "approved_source": "assets_src\\disassembler_wave_perimeter_preview_20261114\\previews\\f_cyan_gold_only-clean.png",
+  "approved_sha256": "41370a252e3d06611f1a61b2014fa6b8a637a54eb469742aeb5475e3bda2ce39",
+  "approved_components": 40,
+  "original_alpha64_radius": 526.9710618240815,
+  "target_mature_radius": 220,
+  "uniform_resize_pixels": 427,
+  "source_size": 512,
+  "registration": "One constant reference registration only; do not rescale any animation frame individually",
+  "palette": "cyan and gold only",
+  "constraints": [
+    "Independent painted cels for flow and deformation",
+    "No overlapping or touching separate arc fragments",
+    "Two nearby incomplete peripheral lanes with staggered gaps",
+    "Preserve global rotation during grow and loop; no animated whole-image scaling"
+  ]
+}

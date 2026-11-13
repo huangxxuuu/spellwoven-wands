@@ -44,10 +44,13 @@ for page in sorted({(c-1)//visual.page_size for c in cards.codes.values()}):
     clips={x['name']:x for x in obj.clips}
     for ident,code in cards.codes.items():
         if (code-1)//visual.page_size!=page:continue
+        if visual.cards[ident].art_id:
+            assert visual.cards[visual.cards[ident].art_id].shape == visual.cards[ident].shape
+            continue  # Explicit temporary native-symbol alias, not a missing clip.
         elements=clips['card_'+str(code)]['frames'][0]['elements']
         assert len(elements)==1 and obj.build['names'][elements[0][0]]=='face_'+ident
         clips_checked+=1
-    assert len(clips)==sum(1 for c in cards.codes.values() if (c-1)//visual.page_size==page)
+    assert len(clips)==sum(1 for ident,c in cards.codes.items() if (c-1)//visual.page_size==page and not visual.cards[ident].art_id)
 # Confirm every client selector points at a compiled clip, including retired IDs.
 ground=vm.eval('require("nw/ground_card")')
 for ident,code in cards.codes.items():

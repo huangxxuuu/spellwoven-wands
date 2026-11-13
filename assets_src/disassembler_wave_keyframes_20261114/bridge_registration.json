@@ -1,0 +1,10 @@
+{
+  "scale": 0.98,
+  "translation": [
+    0,
+    8
+  ],
+  "score": 0.1715282769726478,
+  "scope": "identical constant canvas calibration for all six newly drawn bridge cels; not time-varying animation motion",
+  "comparison": "average premultiplied RGB difference on visible union to preceding pose and following loop pose"
+}
