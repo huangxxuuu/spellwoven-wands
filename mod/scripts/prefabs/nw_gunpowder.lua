@@ -1,3 +1,4 @@
+local C=require("nw/constants/native").physics
 local Copy=require("nw/util").copy
 local Motion=require("nw/field_motion")
 local function owner(inst)
@@ -30,7 +31,7 @@ local function start(inst,data,caster)
     local p=data.p
     local explosive=inst.components.explosive
     explosive.explosivedamage=p.flags.harmless and 0 or math.max(0,
-        (inst._nw_base_damage+(p.native_damage_add or 0))*(p.native_damage_mult or 1)*(p.effect_scale or 1))
+        (inst._nw_base_damage*(p.base_damage_multiplier or 1)+(p.native_damage_add or 0))*(p.native_damage_mult or 1)*(p.effect_scale or 1))
     explosive.explosiverange=inst._nw_base_radius*require("nw/projectile_size").factor(p)
     require("nw/projectile_size").field(inst,p)
     local burnable=inst.components.burnable
@@ -47,7 +48,7 @@ local function fn()
     local inst=Prefabs.gunpowder.fn()
     inst:AddTag("NOCLICK")
     inst:RemoveTag("molebait")
-    MakeProjectilePhysics(inst,1,.1)
+    MakeProjectilePhysics(inst,C.mass,C.radius)
     inst._nw_ground_mask=true
     if not TheWorld.ismastersim then return inst end
     inst._nw_base_damage=inst.components.explosive.explosivedamage
@@ -57,8 +58,6 @@ local function fn()
         self.SoundEmitter:KillSound("hiss")
         self:Remove()
     end)
-    -- Retain native explosion damage, demolition, ignition and friendly fire;
-    -- only its display scale follows Giant Shot.
     local explode=inst.components.explosive.onexplodefn
     inst.components.explosive:SetOnExplodeFn(function(self)
         owner(self)
@@ -90,8 +89,6 @@ local function fn()
         if data and data.nw_powder then
             self:DoTaskInTime(0,function() start(self,data.nw_powder) end)
         else
-            -- Old spell bombs did not save their fuse or modifiers. They must
-            -- not load as permanent, unlit inventory gunpowder.
             self:DoTaskInTime(0,function() self:Remove() end)
         end
     end

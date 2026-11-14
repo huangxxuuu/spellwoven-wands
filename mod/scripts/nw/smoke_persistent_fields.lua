@@ -41,8 +41,6 @@ function M.start(x,z)
             end
             owner=SpawnPrefab("wilson");owner.userid=userid
             owner.Transform:SetPosition(x,0,z)
-            -- player_common sends ms_playerjoined on its next tick. Reuse that
-            -- real event; a manual duplicate corrupts native player statistics.
             TheWorld:DoTaskInTime(.1,function()
             local egg
             for _,e in ipairs(restored) do

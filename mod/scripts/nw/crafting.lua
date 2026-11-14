@@ -1,3 +1,4 @@
+local C=require("nw/constants/acquisition").crafting
 local T=require("nw/locale").t
 local Rules = require("nw/acquisition")
 local Visual = require("nw/visual")
@@ -17,8 +18,8 @@ function M.install(env)
     STRINGS.NAMES.NW_SPELL_PUNCHINGBAG=T("法术测试拳击袋")
     STRINGS.RECIPE_DESC.NW_SPELL_PUNCHINGBAG=T("统计连续法术伤害，间隔达到 1 秒后重新计数。")
     STRINGS.CHARACTERS.GENERIC.DESCRIBE.NW_SPELL_PUNCHINGBAG=T("头顶的火花标记着这一轮法术实验。")
-    env.AddRecipe2("nw_spell_punchingbag",{Ingredient("cutgrass",3),Ingredient("boards",1)},
-        TECH.SCIENCE_ONE,{placer="nw_spell_punchingbag_placer",min_spacing=2,
+    env.AddRecipe2("nw_spell_punchingbag",{Ingredient("cutgrass",C.punchingbag.cutgrass),Ingredient("boards",C.punchingbag.boards)},
+        TECH.SCIENCE_ONE,{placer="nw_spell_punchingbag_placer",min_spacing=C.punchingbag.min_spacing,
             atlas=GetInventoryItemAtlas("punchingbag.tex"),image="punchingbag.tex"},{"COMBAT","MAGIC"})
     for name, spec in pairs(Rules.materials) do
         env.RegisterInventoryItemAtlas(Rules.atlas, name..".tex")
@@ -33,17 +34,17 @@ function M.install(env)
     env.RegisterInventoryItemAtlas(Rules.station_atlas,"nw_disassembler.tex")
     env.AddPrototyperDef("nw_engraver",{icon_atlas=Rules.station_atlas,icon_image="nw_engraver_station.tex",
         is_crafting_station=true,action_str="USE",filter_text=T("武器刻印台")})
-    env.AddRecipe2("nw_engraver",{Ingredient("boards",2),Ingredient("cutstone",2),Ingredient("purplegem",1)},
+    env.AddRecipe2("nw_engraver",{Ingredient("boards",C.engraver.boards),Ingredient("cutstone",C.engraver.cutstone),Ingredient("purplegem",C.engraver.purplegem)},
         TECH.SCIENCE_TWO,{placer="nw_engraver_placer",atlas=Rules.station_atlas,image="nw_engraver.tex"},{"PROTOTYPERS","MAGIC"})
-    env.AddRecipe2("nw_workbench", {Ingredient("boards",2), Ingredient("cutstone",2),
-        Ingredient("goldnugget",4), Ingredient("purplegem",2)}, TECH.SCIENCE_TWO,
+    env.AddRecipe2("nw_workbench", {Ingredient("boards",C.workbench.boards), Ingredient("cutstone",C.workbench.cutstone),
+        Ingredient("goldnugget",C.workbench.goldnugget), Ingredient("purplegem",C.workbench.purplegem)}, TECH.SCIENCE_TWO,
         {placer="nw_workbench_placer", atlas=Rules.station_atlas,image="nw_workbench.tex"}, {"PROTOTYPERS","MAGIC"})
-    env.AddRecipe2("nw_disassembler",{Ingredient("cutstone",2),Ingredient("purplegem",1),
-        Ingredient("nw_dust",4,Rules.atlas)},TECH.SCIENCE_TWO,{placer="nw_disassembler_placer",
+    env.AddRecipe2("nw_disassembler",{Ingredient("cutstone",C.disassembler.cutstone),Ingredient("purplegem",C.disassembler.purplegem),
+        Ingredient("nw_dust",C.disassembler.nw_dust,Rules.atlas)},TECH.SCIENCE_TWO,{placer="nw_disassembler_placer",
         image="nw_disassembler.tex",atlas=Rules.station_atlas},{"PROTOTYPERS","MAGIC"})
     STRINGS.RECIPE_DESC.NW_EMBERLAMP=T("无限收纳奥术粉尘，点燃后将魔力缓缓化为青紫幽光。")
-    env.AddRecipe2("nw_emberlamp",{Ingredient("cutstone",2),Ingredient("goldnugget",2),
-        Ingredient("purplegem",1),Ingredient("nw_dust",4,Rules.atlas)},TECH.SCIENCE_TWO,
+    env.AddRecipe2("nw_emberlamp",{Ingredient("cutstone",C.emberlamp.cutstone),Ingredient("goldnugget",C.emberlamp.goldnugget),
+        Ingredient("purplegem",C.emberlamp.purplegem),Ingredient("nw_dust",C.emberlamp.nw_dust,Rules.atlas)},TECH.SCIENCE_TWO,
         {placer="nw_emberlamp_placer",min_spacing=require("nw/arcane_storage").LAMP_MIN_SPACING,
             atlas=require("nw/arcane_storage").atlas,
             image="nw_emberlamp.tex"},{"LIGHT","STRUCTURES","MAGIC"})

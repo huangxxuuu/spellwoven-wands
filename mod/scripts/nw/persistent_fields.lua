@@ -1,5 +1,3 @@
--- World-saved spell placements. Runtime owner entities and callbacks never
--- enter save data; ownership follows the player's userid across reconnects.
 local Copy=require("nw/util").copy
 local M={}
 function M.userid(e)
@@ -8,7 +6,6 @@ end
 function M.caster(e)
     if not require("nw/spell_effects").live(e) or e:HasTag("playerghost")
         or e.IsInLimbo and e:IsInLimbo() then return end
-    -- Valid Lua entities can linger briefly while changing shards/disconnecting.
     if M.userid(e) then
         for _,player in ipairs(AllPlayers) do if player==e then return e end end
         return
@@ -59,8 +56,6 @@ end
 function M.start(inst,data,owner,loading)
     inst._nw_stored=Copy(data)
     data=inst._nw_stored
-    -- Old placements have no recoverable cast grouping. Give each such saved
-    -- entity one identity; subsequent descendants and saves retain it.
     data.p._nw_root=require("nw/balance_damage").root(data.p._nw_root)
     require("nw/balance_damage").tag(inst,data.p)
     require("nw/entity_limits").restore_field(inst,data.userid or data.owner_key,"permanent_fields",data.order)

@@ -37,7 +37,6 @@ function M.run()
             assert(not e:IsAsleep() and state.probe:IsAsleep() and not state.probe.sleepstatepending,"NW_CLEANUP: native sleep classification")
             assert(e:GetPosition().x>x+5,"NW_CLEANUP: spell keeps moving")
             assert(Cleanup.elapsed(e)>1,"NW_CLEANUP: below-threshold timer")
-            -- Accelerated fixture: equivalent to a saved 16-minute absence.
             state.absent=Cleanup.timeout;state.updated_at=GetTime()
         end
         TheWorld:DoTaskInTime(1.2,function()

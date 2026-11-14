@@ -1,0 +1,248 @@
+{
+  "source": "star-source-01.png",
+  "coordinate_space": "source image global pixels; box xyxy right/bottom exclusive",
+  "pivot_method": "Centroid of deepest eroded white core (RGB channels >=220, alpha>=128); excludes asymmetric white spike lengths.",
+  "runtime_instruction": "Translate each pivot to a common anchor; use one common scale; preserve drawn breathing. Do not rotate the lower connector.",
+  "frames": [
+    {
+      "box": [
+        29,
+        74,
+        243,
+        295
+      ],
+      "pivot": [
+        142.0,
+        203.0
+      ],
+      "frame": 1,
+      "cell_box": [
+        0,
+        0,
+        256,
+        341
+      ],
+      "white_core_erosion_radius": 11
+    },
+    {
+      "box": [
+        293,
+        85,
+        486,
+        308
+      ],
+      "pivot": [
+        391.5,
+        197.0
+      ],
+      "frame": 2,
+      "cell_box": [
+        256,
+        0,
+        512,
+        341
+      ],
+      "white_core_erosion_radius": 11
+    },
+    {
+      "box": [
+        529,
+        101,
+        739,
+        302
+      ],
+      "pivot": [
+        643.0,
+        197.5
+      ],
+      "frame": 3,
+      "cell_box": [
+        512,
+        0,
+        768,
+        341
+      ],
+      "white_core_erosion_radius": 11
+    },
+    {
+      "box": [
+        783,
+        98,
+        1012,
+        294
+      ],
+      "pivot": [
+        886.5,
+        197.5
+      ],
+      "frame": 4,
+      "cell_box": [
+        768,
+        0,
+        1024,
+        341
+      ],
+      "white_core_erosion_radius": 11
+    },
+    {
+      "box": [
+        30,
+        410,
+        234,
+        599
+      ],
+      "pivot": [
+        143.3,
+        512.3
+      ],
+      "frame": 5,
+      "cell_box": [
+        0,
+        341,
+        256,
+        683
+      ],
+      "white_core_erosion_radius": 10
+    },
+    {
+      "box": [
+        286,
+        415,
+        498,
+        629
+      ],
+      "pivot": [
+        388.0,
+        509.0
+      ],
+      "frame": 6,
+      "cell_box": [
+        256,
+        341,
+        512,
+        683
+      ],
+      "white_core_erosion_radius": 11
+    },
+    {
+      "box": [
+        539,
+        416,
+        746,
+        639
+      ],
+      "pivot": [
+        636.0,
+        502.0
+      ],
+      "frame": 7,
+      "cell_box": [
+        512,
+        341,
+        768,
+        683
+      ],
+      "white_core_erosion_radius": 11
+    },
+    {
+      "box": [
+        782,
+        414,
+        994,
+        624
+      ],
+      "pivot": [
+        893.2,
+        514.6
+      ],
+      "frame": 8,
+      "cell_box": [
+        768,
+        341,
+        1024,
+        683
+      ],
+      "white_core_erosion_radius": 11
+    },
+    {
+      "box": [
+        37,
+        731,
+        242,
+        946
+      ],
+      "pivot": [
+        148.0,
+        830.0
+      ],
+      "frame": 9,
+      "cell_box": [
+        0,
+        683,
+        256,
+        1024
+      ],
+      "white_core_erosion_radius": 11
+    },
+    {
+      "box": [
+        269,
+        732,
+        494,
+        933
+      ],
+      "pivot": [
+        400.5,
+        831.5
+      ],
+      "frame": 10,
+      "cell_box": [
+        256,
+        683,
+        512,
+        1024
+      ],
+      "white_core_erosion_radius": 11
+    },
+    {
+      "box": [
+        536,
+        733,
+        745,
+        937
+      ],
+      "pivot": [
+        642.5,
+        826.0
+      ],
+      "frame": 11,
+      "cell_box": [
+        512,
+        683,
+        768,
+        1024
+      ],
+      "white_core_erosion_radius": 11
+    },
+    {
+      "box": [
+        783,
+        719,
+        991,
+        937
+      ],
+      "pivot": [
+        893.0,
+        824.0
+      ],
+      "frame": 12,
+      "cell_box": [
+        768,
+        683,
+        1024,
+        1024
+      ],
+      "white_core_erosion_radius": 11
+    }
+  ]
+}

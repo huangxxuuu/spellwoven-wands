@@ -15,6 +15,7 @@ local function entity()
     function e:IsValid() return self.valid end
     function e:IsInLimbo() return false end
     function e:HasTag(tag) return self.tags[tag]==true end
+    function e:GetDistanceSqToPoint(x,y,z) return (self.x-x)^2+(self.z-z)^2 end
     function e:AddTag(tag) self.tags[tag]=true end
     function e:ListenForEvent(name,fn,source)
         local source=source or self
@@ -90,13 +91,13 @@ require("nw/executor").execute=function(plan,caster,x,z,dx,dz,height)
     shots[#shots+1]=now
     return true
 end
-local sentry=dofile("mod/scripts/prefabs/nw_garden.lua")
+local sentry,ring,note=dofile("mod/scripts/prefabs/nw_garden.lua")
 assert(sentry.name=="nw_spore_sentry")
 local cleaned=0
-local function launch(lifetime,size)
+local function launch(lifetime,size,flags)
     now=0;tasks={};shots={};available=true;reverse_ties=false;cleaned=0
     local inst=sentry.fn()
-    inst:Launch(owner,{id="spore_sentry",radius=5*(size or 1),size_mult=size,damage=12,flags={},
+    inst:Launch(owner,{id="spore_sentry",radius=5*(size or 1),size_mult=size,damage=12,flags=flags or {},
         field_lifetime_mult=(lifetime or 5.7)/5.7},0,0,1,0,function() cleaned=cleaned+1 end)
     assert(inst.anim=="spore_grow" and inst.queued=="spore_idle")
     return inst
@@ -150,4 +151,61 @@ local small=launch(nil,.4)
 advance(1);assert(#shots==0 and #events(small,"spore_fire")==0)
 target.x=1
 advance(1.5);assert(#shots==1 and small.scale==.4)
+-- The sentry shares selection with ordinary contact/sensing, including natural
+-- objects which have neither combat nor health. Recheck the selector at fire.
+local health,combat=target.components.health,target.components.combat
+target.components.health=nil;target.components.combat=nil;target.tags.tree=true
+local natural=launch(nil,nil,{targets={nature=true}})
+advance(.8);assert(#shots==1,"selected tree must be a sentry aim point")
+local hostile_only=launch(nil,nil,{targets={hostile=true}})
+advance(.9);assert(#shots==0,"nonselected natural object must not attract the sentry")
+local changed=launch(nil,nil,{targets={nature=true}})
+advance(.6);target.tags.tree=nil
+advance(.8);assert(#shots==0,"a target changing category during windup must be rechecked")
+target.components.health=health;target.components.combat=combat;target.tags.hostile=true
+local combined=launch(nil,nil,{targets={nature=true,hostile=true}})
+advance(.8);assert(#shots==1,"selector unions retain creature targeting")
+-- Support spells use the same selectors, intersected with their own healing
+-- and sanity capabilities. Choosing enemies does not make a heal hurt them.
+local stages=require("nw/field_stages")
+for _,key in ipairs({"setup","attach","start","pulse","finish"}) do stages[key]=noop end
+package.loaded["nw/field_motion"]={start=function() return true end}
+require("nw/expanded_fields").sound=noop
+owner.tags.player=true
+local other,pet,enemy=entity(),entity(),entity()
+other.tags.player=true;enemy.tags.hostile=true
+pet.components.follower={leader=owner}
+for _,e in ipairs({owner,other,pet,enemy}) do
+    if not e.components.combat then e:AddComponent("combat") end
+    local h={currenthealth=50,IsDead=function() return false end,GetMaxWithPenalty=function() return 100 end}
+    function h:DoDelta(amount) self.currenthealth=self.currenthealth+amount end
+    e.components.health=h
+    if e:HasTag("player") then e.components.sanity={DoDelta=function(_,n) e.restored=(e.restored or 0)+n end} end
+end
+Effects.scan=function() return {owner,other,pet,enemy} end
+local function support(prefab,scope)
+    now=0;tasks={}
+    for _,e in ipairs({owner,other,pet,enemy}) do
+        e.components.health.currenthealth=50;e.restored=0;e._nw_chord_next=nil
+    end
+    local e=prefab.fn()
+    e:Launch(owner,{id=prefab==ring and "vital_ring" or "chord_d",radius=3,flags={targets=scope}},0,0,1,0,noop)
+    advance(1)
+end
+support(ring,nil)
+assert(owner.components.health.currenthealth==52 and other.components.health.currenthealth==52 and pet.components.health.currenthealth==52 and enemy.components.health.currenthealth==50)
+support(ring,{self=true})
+assert(owner.components.health.currenthealth==52 and other.components.health.currenthealth==50 and pet.components.health.currenthealth==50)
+support(ring,{friendly=true})
+assert(pet.components.health.currenthealth==52 and owner.components.health.currenthealth==50 and other.components.health.currenthealth==50)
+support(ring,{hostile=true});assert(enemy.components.health.currenthealth==52 and owner.components.health.currenthealth==50)
+support(note,nil);assert(owner.restored==1 and other.restored==1)
+support(note,{self=true});assert(owner.restored==1 and other.restored==0)
+support(note,{players_other=true});assert(owner.restored==0 and other.restored==1)
+support(note,{nature=true});assert(owner.restored==0 and other.restored==0)
+enemy.components.combat=nil
+support(ring,{hostile=true});assert(enemy.components.health.currenthealth==52,"explicit healing only needs health")
+enemy.components.sanity={DoDelta=function(_,n) enemy.restored=(enemy.restored or 0)+n end}
+support(note,nil);assert(enemy.restored==0,"default sanity recovery remains player-only")
+support(note,{hostile=true});assert(enemy.restored==1 and owner.restored==0,"explicit sanity recovery admits a non-player with sanity")
 print("spore sentry: unchanged growth and firing, complete final recoil, cutoff ordering, single wilt and raw cleanup")

@@ -1,5 +1,6 @@
-local M={radius=12,modifier_chance=.05}
-local variants={"spark_hit","arrow_hit","heavy_hit","scatter_hit","fire_hit","frost_hit"}
+local C=require("nw/constants/acquisition").first_boss
+local M={radius=C.radius,modifier_chance=C.modifier_chance}
+local variants=require("nw/util").copy(C.variants)
 M.variants=variants
 function M.choose(random)
     return random()<M.modifier_chance and "imprint_hit" or variants[random(#variants)]
@@ -9,14 +10,13 @@ function M.pay(inst,origin,drop,rule)
     local count=0
     for _,player in ipairs(AllPlayers or {}) do
         local receipt=player.components.nw_firstboss
-        -- Proximity is the user's definition of participation, including ghosts.
         if receipt and not receipt.claimed and player:IsValid() and not player:IsInLimbo()
             and player:GetDistanceSqToInst(origin)<=M.radius*M.radius then
             local card=drop("nw_spellcard")
             if card then
                 card:SetSpell(M.choose(math.random))
                 card.source="first_boss:"..inst.prefab
-                receipt.claimed=true -- Commit only after a real card has been produced.
+                receipt.claimed=true
                 count=count+1
             end
         end
@@ -27,7 +27,6 @@ function M.install(env)
     env.AddPlayerPostInit(function(player)
         if not TheWorld.ismastersim then return end
         player:AddComponent("nw_firstboss")
-        -- The celestial portal copies only an explicit subset of components.
         local save,load=player.SaveForReroll,player.LoadForReroll
         player.SaveForReroll=function(self,...)
             local data=save and save(self,...) or {}

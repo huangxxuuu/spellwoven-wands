@@ -1,12 +1,11 @@
 local T=require("nw/locale").t
+local NativeFallback=require("nw/constants/description").native_fallbacks
 local Cards=require("nw/cards")
 local Info=require("nw/spell_info")
 local Def=require("nw/definitions")
 local Visual=require("nw/visual")
 local M={}
 
--- Sent on configuration changes only. Use the rolled values, including legacy
--- rolls, rather than reconstructing them from the seed or parsing display text.
 local keys={"draw_count","spread","cast_delay","recharge","mana_max","mana_regen","sanity_conversion","capacity"}
 function M.encode(data)
     local values={data.stats.shuffle and 1 or 0}
@@ -53,7 +52,7 @@ function M.card_details(id,brief)
     elseif d.kind=="projectile" and d.heal then add(T("命中治疗"),d.heal)
     elseif d.damage then add(T("单弹伤害"),d.count and d.count>1 and d.damage.." × "..d.count or d.damage)
     elseif d.explosion_damage then add(T("范围伤害"),d.explosion_damage..T(" / 目标"))
-    elseif id=="gunpowder" then add(T("范围伤害"),(TUNING and TUNING.GUNPOWDER_DAMAGE or 200)..T(" / 目标"))
+    elseif id=="gunpowder" then add(T("范围伤害"),((TUNING and TUNING.GUNPOWDER_DAMAGE or NativeFallback.gunpowder_damage)*(d.base_damage_multiplier or 1))..T(" / 目标"))
     elseif d.damage_add then add(T("伤害加成"),string.format("%+g",d.damage_add))
     elseif d.speed_mult then add(T("速度倍率"),"×"..d.speed_mult)
     elseif d.spread_add then add(T("散射修正"),string.format("%+g°",d.spread_add))

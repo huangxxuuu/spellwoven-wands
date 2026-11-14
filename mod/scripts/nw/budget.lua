@@ -1,5 +1,3 @@
--- Generic allocation ledger. Live spell admission uses one short reservation
--- per actual entity; payload templates never enter the ledger.
 local M = {}
 function M.new(per_player, per_shard)
     assert(per_player > 0 and per_shard >= per_player)
@@ -20,7 +18,7 @@ function M.new(per_player, per_shard)
         if not t or type(count) ~= "number" or count < 0 or count ~= math.floor(count)
             or count > t.pending then return false end
         t.pending, t.active = t.pending - count, t.active + count
-        return true -- conversion does not allocate twice
+        return true
     end
     function b:release(id, count, pending)
         local t = self.tokens[id]
@@ -36,7 +34,7 @@ function M.new(per_player, per_shard)
     end
     function b:cancel(id)
         local t = self.tokens[id]
-        if not t then return end -- idempotent cleanup
+        if not t then return end
         local n = t.pending + t.active
         self.used = self.used - n
         self.owners[t.owner] = self.owners[t.owner] - n

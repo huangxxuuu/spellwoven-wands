@@ -3,8 +3,6 @@ local M={}
 function M.hit(s,target,x,z)
     require("nw/explosions").hit(s.owner,s.p,x,z)
     if s.p and s.p.event=="hit" and s.fire then
-        -- Payload effects can destroy their carrier synchronously. Treat an
-        -- in-progress release as fired, then restore history if it was rejected.
         local previous=s.hit_payload_fired
         s.hit_payload_fired=true
         local fired=s.fire(x,z,s.dx,s.dz,target)
@@ -22,8 +20,6 @@ function M.timer(s,x,z,timers)
     end
     g.timer_queued=true
 end
--- Call only for gameplay termination, before the entity releases its live slot.
--- Raw Remove (shutdown, invalid owner, failed spawn) stays silent.
 function M.finish(s,x,z)
     if s.payload_finished then return end
     s.payload_finished=true

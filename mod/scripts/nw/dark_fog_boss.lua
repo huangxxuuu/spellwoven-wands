@@ -1,4 +1,4 @@
--- Server-only, opt-in native attacks. Never turn fog into a combat target.
+local C=require("nw/constants/dark_fog").boss
 local M = {}
 local REASON = "nw_fog_boss"
 local Wait = require("nw/dark_fog_boss_wait")
@@ -8,7 +8,7 @@ local specs = {
     bearger = { graph = "bearger", first = "pound", ring = true, timer = "GroundPound", native_entry = true,
         fallback = { first = "attack", sector = true }, states = { pound = true, bi = true, attack = true },
         links = { pound = { bi = true }, attack = { bi = true }, bi = { pound = true, attack = true } } },
-    moose = { graph = "moose", first = "disarm", disarm = true, fog_radius = 5.5, native_entry = true, fog_cooldown = 8,
+    moose = { graph = "moose", first = "disarm", disarm = true, fog_radius = C.moose_radius, native_entry = true, fog_cooldown = C.moose_cooldown,
         states = { disarm = true }, links = {} },
     dragonfly = { graph = "dragonfly", first = "pound_pre", ring = true, timer = "groundpound_cd",
         fallback = { first = "attack", single = true }, states = { pound_pre = true, pound = true, pound_post = true, attack = true },
@@ -24,7 +24,7 @@ local specs = {
         links = { tantrum_pre = { tantrum = true }, tantrum = { tantrum = true, tantrum_pst = true } } },
     alterguardian_phase3 = { graph = "alterguardian_phase3", first = "atk_stab", area = true,
         states = { atk_stab = true }, links = {} },
-    eyeofterror = { graph = "eyeofterror", first = "chomp", circle = true, fog_cooldown = 8,
+    eyeofterror = { graph = "eyeofterror", first = "chomp", circle = true, fog_cooldown = C.eye_cooldown,
         available = function(inst) return inst.sg.mem and inst.sg.mem.transformed == true end,
         states = { chomp = true }, links = {} },
 }
@@ -32,7 +32,6 @@ specs.toadstool_dark = specs.toadstool
 specs.twinofterror1 = specs.eyeofterror
 specs.twinofterror2 = specs.eyeofterror
 Extra.add_specs(specs)
--- Pure planned-weapon range overrides are shared with pursuit filtering.
 Wait.target_range = function(inst,target)
     local spec=specs[inst.prefab]
     if spec and spec.target_in_range then return spec.target_in_range(inst,target) end
@@ -52,8 +51,6 @@ local function ready(token)
     if token.pending_coverage then
         local owner=token.owner
         if not (owner and owner:IsValid() and Fog.contains(token.world,owner)) then return false end
-        -- Once the real delayed hit begins clearing fog, the rest of this
-        -- committed batch continues even if that first hit clears coverage.
         token.pending_coverage=nil
     end
     return true
@@ -99,7 +96,7 @@ local function begin(inst, spec, now, brain_owned, move)
 end
 
 local function state_move(spec, name)
-    if name == "bi" then return nil end -- stance transition is not itself an attack
+    if name == "bi" then return nil end
     if spec.fallback and (name == spec.fallback.first or name:find("attack_combo", 1, true)
         or spec.fallback.dash and (name=="dash_loop" or name=="dash_pst")) then return spec.fallback end
     return spec.states[name] and spec or nil
@@ -109,8 +106,6 @@ local function active_token(inst, state)
     local token = inst._nw_fog_boss_cast
     local sg, spec = inst.sg, specs[inst.prefab]
     if not (sg and spec and (state == nil or sg.currentstate.name == state)) then return nil end
-    -- An ordinary attack may already be committed when fog reaches the boss.
-    -- Mark that same attack at its real dispatch; never restart its state.
     if not token and M.supports(inst) and TheWorld and TheWorld.ismastersim
         and require("nw/dark_fog").contains(TheWorld, inst) then
         local move = state_move(spec, sg.currentstate.name)
@@ -122,8 +117,6 @@ local function active_token(inst, state)
     return token and token.spec == spec and sg.statemem._nw_fog_boss_token == token and token or nil
 end
 
--- A verified native dispatch owns delayed hits even if its SG has finished
--- before the boss enters fog. Dormant provenance does not control the brain.
 local function dispatch_token(inst, state)
     local token=active_token(inst,state)
     if token then return token end
@@ -152,8 +145,6 @@ local function install_groundpounder(self)
     self.GroundPound = function(component, pt, ents_hit, ...)
         local token = dispatch_token(component.inst)
         if token and token.move.ring and not component.usePointMode then
-            -- Preserve the native per-pulse hit set. Weak side map carries context
-            -- through rings even after the SG exits or the boss leaves the fog.
             ents_hit = ents_hit or {}
             batches[ents_hit] = token
         end
@@ -171,8 +162,6 @@ local function install_groundpounder(self)
 end
 
 local function install_combat(self)
-    -- Re-target timers and retaliation can run while a brain is stopped.
-    -- Keep their native hostility choice, but reject new remote pursuit.
     if type(self.SetTarget) == "function" and not self._nw_fog_boss_target_hooked then
         self._nw_fog_boss_target_hooked = true
         local settarget = self.SetTarget
@@ -187,8 +176,6 @@ local function install_combat(self)
     if self.inst and type(self.DoAttack) == "function" and not self._nw_fog_boss_single_hooked then
         self._nw_fog_boss_single_hooked = true
         local attack = self.DoAttack
-        -- Native DoAttack sends this only after CanHitTarget succeeds. Unlike
-        -- a damage callback, it also covers invulnerable/zero-damage contacts.
         self.inst:ListenForEvent("onattackother", function(_, data)
             local pending = self._nw_fog_boss_contact
             if pending and data and data.target == pending.target then
@@ -214,8 +201,6 @@ local function install_combat(self)
     local original = self.DoAreaAttack
     self.DoAreaAttack = function(component, target, radius, weapon, validfn, stimuli, excludetags, onlyontarget, ...)
         local token = active_token(component.inst)
-        -- Only the verified full-circle native stab. An arbitrary predicate or
-        -- single-target attack is not evidence of a circular area impact.
         token = token and token.spec.area and not onlyontarget and validfn == nil and token or nil
         local x, y, z
         if token and target and target.Transform then x, y, z = target.Transform:GetWorldPosition() end
@@ -227,7 +212,7 @@ end
 
 local function upvalue(fn, wanted)
     if type(fn) ~= "function" then return nil end
-    for i = 1, 100 do
+    for i = 1, C.signature.max_upvalues do
         local name, value = debug.getupvalue(fn, i)
         if name == nil then break end
         if name == wanted then return value, i end
@@ -245,8 +230,6 @@ local function install_ice(graph)
     if not (debug and debug.getupvalue and debug.setupvalue and debug.getinfo) then
         return false, "debug upvalue API unavailable"
     end
-    -- Validate the native closure chain BEFORE mutating it. Do not guess an
-    -- animation frame or fall back to onhitother (empty areas must work too).
     local event, spawn, spawn_index
     for _, e in ipairs(graph.states.attack.timeline or {}) do
         local value, index = upvalue(e.fn, "SpawnIceFx")
@@ -260,7 +243,7 @@ local function install_ice(graph)
     local aoe, aoe_index = upvalue(spike, "DoIceSpikeAOE")
     local radius = upvalue(aoe, "ICESPIKE_RADIUS")
     local spawn_time = upvalue(spawn, "ICESPAWNTIME")
-    if not native_deer_fn(spike) or not native_deer_fn(aoe) or radius ~= 1 or spawn_time ~= .25 then
+    if not native_deer_fn(spike) or not native_deer_fn(aoe) or radius ~= C.signature.ice_radius or spawn_time ~= C.signature.ice_spawn_time then
         return false, "ice closure/radius/timing signature changed"
     end
     debug.setupvalue(spike, aoe_index, function(inst, target, x, z, data)
@@ -272,9 +255,6 @@ local function install_ice(graph)
     debug.setupvalue(event.fn, spawn_index, function(inst, target)
         local token = dispatch_token(inst, "attack")
         if not token then return spawn(inst, target) end
-        -- SpawnIceFx owns the local hit-set and schedules DoSpawnIceSpike.
-        -- Bind this cast into those scheduled callbacks, not the current SG at
-        -- impact time. Restore the shared upvalue even if native code raises.
         local previous = upvalue(spawn, "DoSpawnIceSpike")
         debug.setupvalue(spawn, spike_index, function(owner, original_target, rot, info, data, ...)
             ice_batches[data] = token
@@ -343,17 +323,12 @@ local function install_disarm(graph, spec)
     debug.setupvalue(site, index, function(inst, target, ...)
         local token = active_token(inst, "disarm")
         local x, _, z = inst.Transform:GetWorldPosition()
-        -- Native honks are normally entered by ChaseAndAttack only in melee
-        -- range; DisarmTarget itself never checks distance. Fog can request a
-        -- honk anywhere, so restore that range gate at the actual impact.
         local combat=inst.components.combat
         if token and target and (not target:IsValid() or not combat.CalcAttackRangeSq
             or target:GetDistanceSqToPoint(x,0,z)>combat:CalcAttackRangeSq(target)) then
             target=nil
         end
         local result = original(inst, target, ...)
-        -- This is a fog-only honk radius, NOT invented native area damage.
-        -- Preserve the native single-target inventory/drop/throw behavior.
         if token and token.spec == spec then notify(token, x, z, spec.fog_radius) end
         return result
     end)
@@ -374,7 +349,7 @@ local function install_sector(graph)
             original = fn;sites[#sites+1] = {fn=event.fn,index=index}
         end
     end
-    if #sites ~= 2 then return false, "native DoArcAttack timelines changed" end
+    if #sites ~= C.signature.sector_timeline_count then return false, "native DoArcAttack timelines changed" end
     local wrapper = function(inst, dist, radius, ...)
         local token = active_token(inst, "attack")
         local x, _, z = inst.Transform:GetWorldPosition()
@@ -383,7 +358,7 @@ local function install_sector(graph)
         x,z=x+dist*math.cos(radians),z-dist*math.sin(radians)
         local result = original(inst,dist,radius,...)
         if token and token.move.sector then
-            require("nw/dark_fog").disperse_sector(token.world,x,z,radius,rotation,180)
+            require("nw/dark_fog").disperse_sector(token.world,x,z,radius,rotation,C.sector_arc)
         end
         return result
     end
@@ -409,8 +384,6 @@ local function install_toad_bombs(inst)
     inst.DoMushroomBomb=function(owner,...)
         local token=dispatch_token(owner,"mushroombomb")
         if not (token and token.move.bomb) then return original(owner,...) end
-        -- The original schedules one projectile per frame. Every scheduled
-        -- callback captures THIS cast, including callbacks after SG interruption.
         local launch
         launch=function(boss,targets,...)
             local old_scope=launching_token
@@ -467,7 +440,6 @@ local function install_bomb(inst)
         end)
         bomb_hooks[grow]=true
     end
-    -- Ephemeral provenance deliberately does not enter the native save record.
     inst._nw_fog_boss_bomb_token=landing_token
 end
 
@@ -489,7 +461,6 @@ local function original_target(inst, entering, move)
     return Wait.target_in_range(inst,target)
 end
 
--- Selection gates new actions only; native attack tagging never uses it.
 function M.select(inst, entering)
     local spec = specs[inst.prefab]
     if not spec then return nil, false end
@@ -557,8 +528,6 @@ local function install_graph(name, graph)
                 local native_move=state_move(spec,name_here)
                 if not token and native_move and TheWorld and TheWorld.ismastersim and M.supports(inst)
                     and require("nw/dark_fog").contains(TheWorld,inst) then
-                    -- This is observation, not a second scheduling decision.
-                    -- Do not stop waiting/restart the brain from native onenter.
                     token=begin(inst,spec,GetTime(),nil,native_move)
                 end
                 if token and token.spec==spec then inst.sg.statemem._nw_fog_boss_token=token end
@@ -607,7 +576,7 @@ function M.supports(inst)
         if not (gp and gp._nw_fog_boss_hooked and not gp.usePointMode) then return false end
     elseif spec.area then
         local combat = inst.components and inst.components.combat
-        if not (combat and combat._nw_fog_boss_area_hooked and combat.areahitrange == 3
+        if not (combat and combat._nw_fog_boss_area_hooked and combat.areahitrange == C.signature.area_radius
             and combat.areahitcheck == nil) then return false end
     end
     return true
@@ -616,12 +585,9 @@ end
 local function safe(inst, waiting)
     if not (inst:IsValid() and inst.components.health and not inst.components.health:IsDead())
         or inst:IsInLimbo() or inst:IsAsleep() then return false end
-    -- Only cancel an uncommitted chase attack, never another queued action.
     if inst.bufferedaction and not (ACTIONS and inst.bufferedaction.action==ACTIONS.ATTACK) then return false end
     for reason in pairs(inst._brainstopped or {}) do if not waiting or reason~=Wait.reason then return false end end
     if not waiting and inst.brain and inst.brain.paused then return false end
-    -- State names matter: several attacks remove busy/attack before their
-    -- animation ends, and minotaur run_stop is tagged idle before its impact.
     local dragon = inst.prefab == "dragonfly"
     if inst.buried or inst.defeated or (inst.prefab=="daywalker2" and not inst.hostile) then return false end
     if not Wait.can_move(inst) then return false end
@@ -646,8 +612,6 @@ function M.leave(inst)
         inst._nw_fog_boss_covered = nil
         Wait.leave(inst)
     end
-    -- Already-started native SGs/pulses finish naturally. No delayed startup
-    -- exists; the next update only starts if coverage is still present.
 end
 
 local function start_move(inst,now,move)
@@ -674,8 +638,6 @@ function M.update(inst, now, covered)
     if not safe(inst) then return false end
     local move=M.select(inst)
     if move and start_move(inst,now,move) then return true end
-    -- Out-of-range or missing targets also leave no usable attack. Stop
-    -- pursuing and keep retrying while covered, just like cooldown waiting.
     Wait.start(inst,now,retry)
     return false
 end

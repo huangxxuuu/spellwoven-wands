@@ -103,7 +103,7 @@ local Panel=Class(Widget,function(self,api)
     self.idtext:SetColour(.68,.84,1,1)
     self.values={}
     local rows={
-        {"speed","速度",-398,5,.1,60},
+        {"speed","速度",-398,5,.1,95},
         {"angle","方向",-432,45,0,360},
         {"size","大小",-466,.25,1,5},
     }

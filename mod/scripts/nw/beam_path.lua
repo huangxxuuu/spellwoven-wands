@@ -1,6 +1,7 @@
--- Shared lifetime and wire format for the native purple beam. Snapshots carry
--- age rather than client/server clock assumptions, including for late joins.
-local M={hold=1.2,fade=.3,lifetime=1.5,interval=.5,snapshot_interval=.1}
+local C=require("nw/constants/projectile_runtime").beam
+local M={hold=C.hold,fade=C.fade,lifetime=C.hold+C.fade,interval=C.interval,snapshot_interval=C.snapshot_interval}
+M.front_max_age=M.snapshot_interval*C.front_snapshot_count+1/C.front_frame_rate
+M.front_max_distance=require("nw/spell_limits").max_speed*M.front_max_age
 
 function M.width(age)
     return math.max(0,math.min(1,(M.lifetime-math.max(0,age))/M.fade))

@@ -1,0 +1,37 @@
+子弹按客户端亮度调节自发光
+日期：2026-11-14
+
+本次要求取代此前“先关闭自发光供测试”的临时方案。
+
+表现规则
+1. 每个弹头、拖尾、电弧和光束片段按自身世界坐标采样，使用观察者客户端的光照与夜视状态，不使用施法者或房主视角。
+2. nw/projectile_glow.lua 的 threshold=0.05。达到阈值时保持固定自发光1；0到阈值之间按亮度/阈值同步调低。
+3. 首次采到全黑后，从当时强度在0.2秒内线性降至精确0。按30Hz更新，进入全黑的识别最多有一帧采样延迟。全黑处新出生的视觉直接为0，不先闪亮；重返有光处立即恢复对应亮度，再次进入全黑重新计时。
+4. 使用本地 ThePlayer.components.playervision:HasNightVision()，覆盖鼹鼠帽与原版强制夜视接口，不枚举具体装备。夜视视为正常亮度。其他情况下取位置光照与本地 GetVisualAmbientValue() 的较大值，跟随视觉环境光渐变。
+5. 不新增真实Light，不修改伤害、命中、服务器目标选择或玩家的黑暗保护。关闭无法按同一比例调节的Bloom，避免渐灭后残留泛光。普通视觉不因黑暗调用Hide/Show，光束几何裁切仍单独控制显隐。
+
+客户端与联机边界
+普通弹头和各段特效均为本地视觉对象，可直接改变其SetLightOverride。普通弹头共用一个世界级30Hz调度器；已有拖尾、电弧、光束调度器继续调用update，不再加逐实体时钟。实体移除、世界移除和最后一项退出时清理注册及任务。
+四种Mod原版包装（火弹、冰弹、虚空回旋镖、龙卷风）是网络实体，SetLightOverride不能随房主夜视动态改变。所有peer包括专服在构造时设置同一固定材质基线；渲染客户端只用OverrideMultColour局部调暗，全黑后本地alpha=0。先清上次override再取原色，避免重复乘入上一帧结果。正常亮度清除本地遮罩，交还原生颜色。
+包装在客户端复制位置完成后、或主机完成定位后才开始采样，支持没有母弹引用的晚加入观察者。原生Hide/Show、factory、组件、Physics和移除钩子保持。普通原版武器与原版亮茄既有豁免保持。
+
+原版核查依据
+读取本机 data/databundles/scripts.zip，未使用过期解压目录。
+components/playervision.lua:143：HasNightVision包含装备和强制夜视。
+simutil.lua:502：playervision在客户端仅本地玩家准确。
+components/ambientlighting.lua:115、179、289：真实环境光与视觉环境光分离，并公开GetVisualAmbientValue。
+prefabs/moonrockseed.lua:25、272：SetLightOverride存在服务器驱动的复制用例。
+prefabs/battreefx.lua:49：OverrideMultColour用于仅隐藏本地房主视角。
+
+验证边界
+201个Mod Lua文件通过Lua 5.1语法检查，116组Lua回归全部通过；工具飞行Python定向回归2项通过。
+命令：.venv/Scripts/python.exe -X utf8 tools/run_tests.py；.venv/Scripts/python.exe -X utf8 -m unittest tests.test_tool_flight。
+Lua回执：test_reports/projectile_client_glow_2026-11-14_lua.txt。
+离线回归检查数值曲线、两观察者状态隔离、夜视切换、出生全黑、复制准备、原生显隐、光束几何/残留和共享调度清理；不会把Lua模拟结果视为游戏截图或真实双客户端联机验证。
+引擎的OverrideMultColour与原生颜色精确合成、两个亮度接口的低光尺度、任意第三方自定义颜色映射后的屏幕亮度不由Lua源码完整公开；本次实现支持原版公开夜视及视觉环境光接口，实际低光外观仍待实机检查。
+建议实机同时用两个玩家观察：房主普通/远端鼹鼠帽及反向组合；在火把边缘向黑暗射击；飞行中戴摘鼹鼠帽；黑暗中直接施法；新进入复制范围的原版包装弹体；洞穴与满月环境。
+
+交付状态
+用户随后要求“更新到游戏中”。检查未发现游戏客户端或本地服务器运行后，使用tools/install_mod.py安装至E:/SteamLibrary/steamapps/common/Don't Starve Together/mods/nw_weave_dev。
+安装成功：版本1.0.6，校验256个文件，更新1个文件，移除0个退役文件。
+回执：test_reports/projectile_client_glow_install_2026-11-14.txt。重新启动游戏与世界加载；未提升版本、未正式发布，实机双客户端外观仍待验证。

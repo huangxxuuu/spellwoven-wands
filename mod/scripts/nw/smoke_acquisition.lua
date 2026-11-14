@@ -1,7 +1,5 @@
--- Runs only in the development_smoke fixture, with a real server-side builder.
 local M = {}
 function M.run(x,z,starting_wand)
-    -- Failed smoke runs can save their bench and shadow the next test lab.
     for _,e in ipairs(TheSim:FindEntities(x,0,z,8,{"prototyper"})) do
         if e.prefab=="nw_workbench" or e.prefab=="nw_engraver" or e.prefab=="researchlab2" then e:Remove() end
     end
@@ -44,7 +42,6 @@ function M.run(x,z,starting_wand)
     local function capture(_,data) built=data.item end
     player:ListenForEvent("buildstructure",capture)
     player:ListenForEvent("builditem",capture)
-    -- Run the vanilla HUD recipe visibility and filter code without a renderer.
     builder:EvaluateTechTrees()
     assert(not builder.current_prototyper and not builder.freebuildmode,"NW_MENU: expected no station or free build")
     local design=AllRecipes.nw_engraver

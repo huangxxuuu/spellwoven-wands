@@ -41,11 +41,13 @@ SpawnPrefab=function(name)
 end
 -- Each blast sees its own stable engine scan, including entries removed by a
 -- deeper explosion before that outer scan resumes. Use the real blast code.
-Effects.scan=function()
+TheSim={FindEntities=function(_,x,y,z,r)
     local snapshot={}
-    for _,e in ipairs(all) do if e.valid then snapshot[#snapshot+1]=e end end
+    for _,e in ipairs(all) do
+        if e.valid and e:GetDistanceSqToPoint(x,y,z)<=r*r then snapshot[#snapshot+1]=e end
+    end
     return snapshot
-end
+end}
 local owner,other=entity(),entity()
 local function crystal(caster,id,x,z)
     local e=entity(x,z,true);all[#all+1]=e
@@ -64,18 +66,29 @@ local command=entity()
 Fields.actions.detonate(command,owner,{radius=7,aim_range=7},3,0)
 assert(not separate.valid,"chain removal must not skip a still-eligible independent mine")
 for _,e in ipairs(chain) do assert(not e.valid and e._nw_spent,"every domino detonates once") end
-assert(outside_radius.valid and outside_aim.valid and foreign.valid,"command range/ownership remain unchanged")
-assert(#bursts==9 and #ends==9,"one gameplay blast and ending per crystal")
-assert(#Stored.crystals(owner)==2 and #Stored.crystals(other)==1,"real onremove callbacks prune ownership lists")
+assert(outside_radius.valid and not outside_aim.valid and not foreign.valid,"only command-center radius limits detonation")
+assert(#bursts==11 and #ends==11,"one gameplay blast and ending per crystal")
+assert(#Stored.crystals(owner)==1 and #Stored.crystals(other)==0,"real onremove callbacks prune ownership lists")
 assert(command.expiry and command.expiry.delay==.22,"successful command still schedules cleanup")
 -- Repeated commands and stale callbacks cannot re-explode spent crystals.
 Fields.actions.detonate(entity(),owner,{radius=7,aim_range=7},3,0)
 for _,e in ipairs(chain) do e._nw_break(owner) end
-assert(#bursts==9 and #ends==9)
+assert(#bursts==11 and #ends==11)
 -- An entire owned list may disappear before the next outer loop iteration.
 local empty_owner=entity()
 for i=1,4 do crystal(empty_owner,"sleep_crystal",30,.2*i) end
 empty_owner.x=30
 Fields.actions.detonate(entity(),empty_owner,{radius=2,aim_range=2},30,0)
-assert(#Stored.crystals(empty_owner)==0 and #bursts==13 and #ends==13)
-print("crystal detonation: synchronous domino removal, stable candidates, range/ownership and exactly-once effects")
+assert(#Stored.crystals(empty_owner)==0 and #bursts==15 and #ends==15)
+-- Neither valid-but-disconnected player entities nor invalid placers block
+-- another player's command; owner metadata survives until normal removal.
+local offline=entity();offline.userid="KU_offline"
+local mine=crystal(offline,"crystal_mine",45,0)
+local dormant=crystal(offline,"sleep_crystal",48,0)
+owner.components.combat={}
+Fields.actions.detonate(entity(),owner,{radius=2,aim_range=2,flags={targets={self=true}}},45,0)
+assert(not mine.valid and dormant.valid and mine._nw_stored.userid==offline.userid)
+offline.valid=false
+Fields.actions.detonate(entity(),owner,{radius=2,aim_range=2},48,0)
+assert(not dormant.valid and #bursts==17 and #ends==17)
+print("crystal detonation: domino removal, all-owner radius query, offline placer, stable attribution metadata and exactly-once effects")

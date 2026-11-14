@@ -1,17 +1,11 @@
--- Local members for the two short-lived insect fields. The field still owns
--- following, target selection, attacks and expiration; these sprites only fly.
+local C=require("nw/constants/visuals/insect_swarm_visual")
 local Flight=require("nw/elemental_flight")
 local M={}
-local FRAME=1/30
-local BANK="nw_elemental_flight"
-local profiles={
-    bee_swarm={count=3,radius=.64,depth=.95,height=.9,bob=.10,speed=1.4},
-    fireflies={count=2,radius=.36,depth=.78,height=.9,bob=.09,speed=1.0},
-}
+local FRAME=C.frame
+local BANK=C.bank
+local profiles=C.profiles
 
 local function visible(inst)
-    -- Match native attached particle effects: entity visibility is independent
-    -- of AnimState colour, and an escort must also respect its owner's Hide.
     repeat
         if not inst.entity:IsVisible() then return false end
         inst=inst.entity:GetParent()
@@ -45,12 +39,10 @@ end
 local function update(s,now)
     local inst=s.inst
     local x,y,z=inst.Transform:GetWorldPosition()
-    -- Explicitly replicated size avoids depending on parent Transform scale,
-    -- and world-space members never inherit a moving field's rotation/scale.
     local value=inst._nw_insect_size:value()
     local scale=value>0 and value or 1
     local profile=profiles[s.id]
-    local height=s.id=="fireflies" and math.max(profile.height,y+.10) or y+profile.height
+    local height=s.id=="fireflies" and math.max(profile.height,y+C.firefly_minimum_height) or y+profile.height
     local age=now-s.started
     local shown=visible(inst)
     for _,part in ipairs(s.members) do
@@ -113,19 +105,18 @@ function M.attach(inst,id)
     end
     local profile=profiles[id]
     local s={inst=inst,id=id,pool=pool,started=GetTime(),period=Flight.head_period(id),members={}}
-    local seed=(inst.GUID or 0)%37*.17
+    local seed=(inst.GUID or 0)%C.seed_modulus*C.seed_step
     for index=1,profile.count do
         local fx=CreateEntity()
         fx.entity:AddTransform();fx.entity:AddAnimState();fx.entity:SetCanSleep(false)
         fx:AddTag("FX");fx:AddTag("NOCLICK");fx.persists=false
         fx.AnimState:SetBank(BANK);fx.AnimState:SetBuild(BANK)
         fx.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
-        -- Wait for the first tick so Launch/replication has placed the anchor.
         fx:Hide()
-        s.members[index]={fx=fx,visible=false,radius=profile.radius+(index-1)*.07,
+        s.members[index]={fx=fx,visible=false,radius=profile.radius+(index-1)*C.radius_step,
             orbit_phase=seed+(index-1)*2*math.pi/profile.count,
-            omega=(profile.speed+index*.23)*(index%2==0 and -1 or 1),bob_rate=2.3+index*.31,
-            phase=(((inst.GUID or 0)%6+(index-1)*2)%6)*FRAME,playback=.9+index*.05}
+            omega=(profile.speed+index*C.speed_step)*(index%2==0 and -1 or 1),bob_rate=C.bob_rate+index*C.bob_rate_step,
+            phase=(((inst.GUID or 0)%6+(index-1)*2)%6)*FRAME,playback=C.playback+index*C.playback_step}
     end
     s.onremove=function() remove(s) end
     inst._nw_insect_swarm=s

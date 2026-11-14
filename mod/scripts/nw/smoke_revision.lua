@@ -12,7 +12,6 @@ function M.run()
     for _,e in pairs(Ents) do if e:HasTag("multiplayer_portal") then x,_,z=e.Transform:GetWorldPosition();break end end
     local a,b=spawn("wilson",x,z),spawn("wilson",x+1,z)
     a.entity:SetCanSleep(false);b.entity:SetCanSleep(false)
-    -- Exercise the native new-character callback, not just a mocked event.
     a.userid="NW_STARTER_REVISION_TEST"
     a:OnNewSpawn({})
     local starter=a.components.inventory:FindItem(function(item) return item.prefab=="nw_wand" end)
@@ -24,7 +23,6 @@ function M.run()
         w.runtime=C.initial(w.cards,w.stats,7)
         return assert(C.compile(w))
     end
-    -- An unrelated character and native explosion can break dormant crystals.
     for _,event in ipairs({"weapon","explosion"}) do
         local crystal=spawn("nw_sleep_crystal",x+10,z+10)
         crystal:Launch(a,Copy(D.sleep_crystal),x+10,z+10,1,0,function() end,1.4)
@@ -57,7 +55,6 @@ function M.run()
     e=egg();e.components.combat:GetAttacked(nil,1)
     local neutral=last_caster()
     assert(not e:IsValid() and neutral and neutral._nw_neutral,"NW_REVISION: neutral fallback")
-    -- Friendly fire is native gunpowder behaviour, regardless of targeting modifiers.
     a.components.health:SetCurrentHealth(100);b.components.health:SetCurrentHealth(100)
     local beforea,beforeb=a.components.health.currenthealth,b.components.health.currenthealth
     require("nw/explosions").hit(a,{flags={targets={hostile=true},explosive_hit=D.explosion}},x,z)
@@ -92,7 +89,6 @@ function M.run()
         restored.components.burnable:Extinguish()
         assert(not restored:IsValid(),"NW_REVISION: restored powder extinguish")
     end)
-    -- Ocean placements must disappear without releasing their payload.
     local ox,oz
     for i=0,500,4 do if TheWorld.Map:IsOceanAtPoint(x+i,0,z) and not TheWorld.Map:GetPlatformAtPoint(x+i,z) then ox,oz=x+i,z;break end end
     assert(ox,"NW_REVISION: ocean fixture")
@@ -127,7 +123,6 @@ function M.run()
         if TheWorld.Map:IsPassableAtPoint(x+dx,0,z+dz) then positions[#positions+1]={x+dx,z+dz} end
     end end
     local pt=assert(positions[1])
-    -- Count actual native powder payloads from all three independent timers.
     assert(E.execute(plan("short_life","short_life","scatter_timer","gunpowder"),a,pt[1],pt[2],1,0,1.4))
     TheWorld:DoTaskInTime(.8,function()
         local count=0

@@ -53,7 +53,6 @@ function M.run(player,wand)
     converted:Remove()
     local clonecard=SpawnSaveRecord(savedcard)
     assert(clonecard.spell_id=="heavy" and clonecard._spell:value()==require("nw/cards").codes.heavy)
-    -- Use the real inventory cursor, including full-inventory replacement.
     player._nw_nextedit=0
     inv:GiveActiveItem(clonecard)
     local ok=handler(player,4,Protocol.id(clonecard),cmp.data.config_revision,networkid,2,true)

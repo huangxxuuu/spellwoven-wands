@@ -1,3 +1,4 @@
+local C=require("nw/constants/wands")
 local T=require("nw/locale").t
 local G = require("nw/generator")
 local Def = require("nw/definitions")
@@ -22,8 +23,7 @@ function M.build(tier, source, theme, seed, loadout_seed, cosmetic_roll)
         for _, kind in ipairs(Def.archetypes) do table.insert(pool,kind) end
         if theme then
             for _, kind in ipairs(theme.kinds) do
-                table.insert(pool,kind)
-                table.insert(pool,kind)
+                for _=1,C.theme_weight_copies do table.insert(pool,kind) end
             end
         end
         local kind = pool[rng:int(#pool)]
@@ -65,8 +65,6 @@ function M.name(data)
     return data.starter and T("入门法杖") or (Rules.tiers[data.tier].." · "..Rules.kinds[data.archetype]..T("法杖"))
 end
 
--- Old slot/prototype IDs were only unique within a single wand. Translate the
--- draw piles in place, keeping the next draw, cooldown and mana on migration.
 function M.upgrade(data)
     if data.wand_uid then return end
     data.wand_uid, data.source = M.uid(), "legacy"

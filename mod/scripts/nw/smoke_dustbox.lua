@@ -1,4 +1,3 @@
--- Run against the installed game's actual inventory, actions and save/load.
 local M={}
 function M.run()
     local storage=require("nw/arcane_storage")
@@ -41,8 +40,6 @@ function M.run()
         local action=BufferedAction(player,not carried and inst or nil,
             ACTIONS.RUMMAGE,carried and inst or nil)
         if carried then
-            -- Native pocket containers auto-close unless the character enters
-            -- the actual keep_pocket_rummage state. Its action runs on frame 7.
             local wasopen=inst.components.container:IsOpenedBy(player) and true or false
             player:PushBufferedAction(action)
             for _=1,90 do
@@ -58,8 +55,6 @@ function M.run()
         local total=0
         while inst.components.container:GetItemInSlot(1) do
             local before=count(inst)
-            -- keepoverstacked=true withdraws one ordinary stack and leaves the
-            -- excess in the container. Repeat until the actual slot is empty.
             local item=remember(assert(inst.components.container:RemoveItemBySlot(1,true)))
             total=total+item.components.stackable:StackSize()
             item:Remove()
@@ -96,7 +91,6 @@ function M.run()
         near(inst.Light:GetIntensity(),storage.LIGHT.intensity,"light intensity")
         near(inst.Light:GetFalloff(),storage.LIGHT.falloff,"light falloff")
         local r,g,b=inst.Light:GetColour()
-        -- The engine stores Light colour channels with 8-bit precision.
         near(r,storage.LIGHT.colour[1],"light red",1/255+.00001)
         near(g,storage.LIGHT.colour[2],"light green",1/255+.00001)
         near(b,storage.LIGHT.colour[3],"light blue",1/255+.00001)
@@ -159,7 +153,6 @@ function M.run()
         animation(box,"closed_full")
         if box.OnEntityWake then box:OnEntityWake();animation(box,"closed_full") end
 
-        -- Exercise inventory RUMMAGE with its actual invobject argument.
         assert(inv:GiveItem(box),"box must fit inventory");wait()
         assert(hasaction(box,"INVENTORY",player,ACTIONS.RUMMAGE,true),"inventory RUMMAGE missing")
         rummage(player,box,true);wait()
@@ -268,8 +261,6 @@ function M.run()
         wait();animation(restoredlamp,"off_empty")
         assert(not restoredlamp.components.machine:IsOn() and not restoredlamp.Light:IsEnabled(),"taking fuel must extinguish")
 
-        -- Exhausting an infinite stack must not invoke normal withdrawal's
-        -- DropOverstackedExcess and spawn already-consumed dust on the ground.
         local exhausted=spawn("nw_emberlamp",8,-8)
         put(exhausted,81);wait()
         local before=grounddust(8,-8)

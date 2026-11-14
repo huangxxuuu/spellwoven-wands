@@ -1,5 +1,3 @@
--- Isolated offline native-engine suite; never runs in normal worlds.
--- Checks real entity/combat/network APIs, not rendered client appearance.
 local M = {}
 
 function M.run()
@@ -57,14 +55,12 @@ function M.run()
         end
     end
     local function idle_fixture(e)
-        -- Suppress unrelated wandering, retaining a distinct brain stop reason.
         e:StopBrain("nw_dark_smoke")
         if e.components.sleeper then e.components.sleeper:WakeUp() end
         e.sg:GoToState("idle")
         e.components.locomotor:Stop()
     end
     local function lane()
-        -- Find an unobstructed land segment; never erase world objects for tests.
         for i = 0, 31 do
             local angle = i * 2 * math.pi / 32
             local dx, dz = math.cos(angle), math.sin(angle)
@@ -108,20 +104,16 @@ function M.run()
             assert(not player._nw_dark_control and not grue._nw_dark_fog, "player excluded from fog control")
         end
 
-        -- Real server net_bool changes before deletion; overlapping sources
-        -- retain one continuous small-creature fear interval.
         local rabbit = spawn("rabbit", x + 1, z)
         idle_fixture(rabbit)
-        wait(2 * FRAMES) -- let native spawn/sleep state and spatial indexing settle
+        wait(2 * FRAMES)
         local first = cloud(player, x + 1, z)
-        -- Nullrenderer cannot validate textures. Compare the native emitter so
-        -- its resource warning is not mistaken for a successful visual check.
         print("NW_DARK_FOG_VISUAL: native miasma baseline")
         local baseline=assert(SpawnPrefab("miasma_cloud_fx"))
         assert(baseline.VFXEffect,"native miasma emitter available")
         baseline:Remove()
         print("NW_DARK_FOG_VISUAL: spell miasma emitter")
-        require("nw/dark_fog_visual").attach(first) -- native VFXEffect, even on nullrenderer
+        require("nw/dark_fog_visual").attach(first)
         assert(first._nw_dark_visuals and #first._nw_dark_children == 1
             and first._nw_dark_children[1].VFXEffect, "native miasma visual resources instantiate")
         assert(not first._nw_dark_dissipating:value(), "active net state")
@@ -152,7 +144,6 @@ function M.run()
         print("NW_DARK_FOG_STAGE: rabbit passed")
 
         local sx, sz, dx, dz = lane()
-        -- Real combat methods, no forced attack event or changed attack range/CD.
         local hound = spawn("hound", sx, sz)
         idle_fixture(hound)
         local target = spawn("wilson", sx + dx * 2.5, sz + dz * 2.5)
@@ -170,7 +161,7 @@ function M.run()
         assert(combat.target == target and hound._nw_dark_control.phase == "near_combat", "legal near target reacquired")
         local direction = hound._nw_dark_control.last_direction
         position(target, sx + dx * 7, sz + dz * 7)
-        wait(2 * FRAMES) -- physics teleport becomes visible to native IsNear on the next tick
+        wait(2 * FRAMES)
         Fog.refresh(TheWorld)
         assert(combat.target == nil and hound._nw_dark_control.phase == "blind_continue", "far target lost, blind continuation entered; phase="
             ..tostring(hound._nw_dark_control and hound._nw_dark_control.phase).." target="..tostring(combat.target)
@@ -207,7 +198,6 @@ function M.run()
         shadow:Remove()
         print("NW_DARK_FOG_STAGE: shadow passed")
 
-        -- Native projectile updates must leave multiple static samples.
         local Compiler = require("nw/compiler")
         local wand = require("nw/generator").starter()
         wand.stats.mana_max = 600
@@ -243,7 +233,6 @@ function M.run()
         clear_fog()
         print("NW_DARK_FOG_STAGE: projectile passed")
 
-        -- Real locomotor travel queues are separate from inst.bufferedaction.
         local queue_boss=spawn("bearger",sx,sz)
         local food=spawn("carrot",sx+dx*3,sz+dz*3)
         wait(.3);queue_boss.sg:GoToState("idle")
@@ -257,8 +246,6 @@ function M.run()
             and not queue_boss._nw_fog_boss_wait,"fog must not cancel native non-combat travel")
         clear_fog();loco:SetBufferedAction(nil)
         assert(failed==1,"native travel failure callback fixture")
-        -- Once the action is a chase attack, cancel it exactly once while
-        -- acquiring the cast's own brain reason before native SG entry.
         local chase=BufferedAction(queue_boss,player,ACTIONS.ATTACK)
         chase:AddFailAction(function() failed=failed+1 end)
         loco:SetBufferedAction(chase)
@@ -268,8 +255,6 @@ function M.run()
         queue_boss:Remove();food:Remove();clear_fog();wait(.2)
         print("NW_DARK_FOG_STAGE: native travel queue preservation and attack cancellation passed")
 
-        -- Reproduce the reported deck against natural AI, without forcing an
-        -- idle/walk state or resetting attack timers before the fog lands.
         local live_wand=require("nw/generator").starter()
         live_wand.stats.mana_max=10000
         live_wand.cards={{spell_id="dark",card_uid="live-dark"},
@@ -327,8 +312,6 @@ function M.run()
             print("NW_DARK_FOG_LIVE_RESULT:",prefab,"covered",covered,"reacted",reacted,"dispelled",dispelled)
             assert(covered and reacted and dispelled,"natural "..prefab.." reacts to dark/pierce/scatter and disperses fog")
             if weapon then
-                -- Range-specific native honk behavior has separate checks;
-                -- a fog-only honk need not drop this distant player's weapon.
                 if weapon:IsValid() then weapon:Remove() end
             end
             live_boss:Remove();clear_fog()
@@ -336,8 +319,6 @@ function M.run()
             wait(.8)
         end
 
-        -- Native inventory drop: fog honks retain close-range disarm but
-        -- must not steal a remote combat target's weapon.
         TheWorld:PushEvent("ms_setseason","spring");wait(2*FRAMES)
         for _,distance in ipairs({30,1}) do
             clear_fog()
@@ -361,8 +342,6 @@ function M.run()
 
         player.components.health:SetInvincible(false)
 
-        -- Real pursuit state + ordinary swing cooldown previously starved fog
-        -- reactions. Keep native pound timing and its dedicated cooldown.
         local dragon = spawn("dragonfly", sx + dx * 5, sz + dz * 5)
         wait(2 * FRAMES)
         assert(dragon:IsValid(), "native dragonfly survives initialization")
@@ -384,9 +363,6 @@ function M.run()
         dragon:Remove(); clear_fog()
         print("NW_DARK_FOG_STAGE: dragonfly pursuit/cooldown/pound passed")
 
-        -- Real giant SG, no fake target. Deadline excludes natural expiry.
-        -- Native deerclops removes itself on the initial sleep notification
-        -- outside winter, even if SetCanSleep(false) was just requested.
         TheWorld:PushEvent("ms_setseason", "winter")
         wait(2 * FRAMES)
         assert(TheWorld.state.season == "winter", "native giant season")
@@ -407,7 +383,6 @@ function M.run()
         boss:Remove(); clear_fog()
         print("NW_DARK_FOG_STAGE: boss passed")
 
-        -- Lifetimes are sampled once, then naturally fade and remove.
         local lifetimes, low, high, expires = {}, math.huge, 0, 0
         for i = 1, 6 do
             local angle = i * 2 * math.pi / 6
@@ -472,8 +447,6 @@ function M.run()
         clear_fog();player_unchanged()
         print("NW_DARK_FOG_STAGE: compiled sizes, net radius, native chain hit/empty paths passed")
 
-        -- Big move and normal attack are both genuinely cooling down. The
-        -- body sweep starts after two seconds and outlives its initial fog exit.
         local function waiting_bear()
             local e=spawn("bearger",sx,sz)
             wait(2*FRAMES)
@@ -487,8 +460,6 @@ function M.run()
             e.sg:GoToState("idle")
             local region=remember(Fog.leave(player,sx,sz,{size_mult=10}))
             Fog.refresh(TheWorld)
-            -- Native idle may first stand up through bi; let that committed
-            -- stance change finish before expecting the cooldown reaction.
             local deadline=GetTime()+2
             while not e._nw_fog_boss_wait and GetTime()<deadline do wait(.05) end
             assert(e._nw_fog_boss_wait,"both cooldowns start native boss panic; state="..e.sg.currentstate.name)
@@ -525,8 +496,6 @@ function M.run()
         wait(.2);player_unchanged()
         print("NW_DARK_FOG_STAGE: cooldown panic, delayed body sweep, immediate leave cleanup and ready melee fallback passed")
 
-        -- Do not use mouth-only chomp before the native transformation has
-        -- made those symbols visible. Native load restores the transformed phase.
         for _,prefab in ipairs({"eyeofterror","twinofterror1","twinofterror2"}) do
             for _,transformed in ipairs({false,true}) do
                 local eye=spawn(prefab,sx,sz);wait(2*FRAMES)
@@ -553,9 +522,6 @@ function M.run()
         position(player,x,z);player.components.health:SetInvincible(false)
         print("NW_DARK_FOG_STAGE: all three eye prefabs preserve native transformation gate passed")
 
-        -- Expanded boss fixtures use real native prefabs and complete attacks.
-        -- State preparation is test-only; the adapter must never create equipment
-        -- or unlock a defeated/buried phase in a normal world.
         local Boss=require("nw/dark_fog_boss")
         for _,row in ipairs({
             {"klaus","attack"}, {"alterguardian_phase4_lunarrift","slam"},
@@ -571,8 +537,6 @@ function M.run()
             player.components.health:SetInvincible(true)
             if row[1]=="daywalker2" then e:SetEquip("swing","object") end
             if row[1]=="alterguardian_phase4_lunarrift" and row[2]=="slam" then
-                -- SetPercent sets the value before its zero-delta event, so it
-                -- does not cross healthtrigger thresholds. Use real damage.
                 e.components.health:DoDelta(-e.components.health.maxhealth*.1,false,"nw_dark_smoke",true,nil,true)
             end
             e.components.combat:SetTarget(player)
@@ -616,9 +580,6 @@ function M.run()
         position(player,x,z);player.components.health:SetInvincible(false)
         wait(.2);player_unchanged()
 
-        -- Prevent native projectiles from entering sleep BEFORE their first
-        -- physics tick. SetCanSleep(false) after they already slept does not
-        -- wake their physics on a server without connected players.
         local original_spawn=SpawnPrefab
         _G.SpawnPrefab=function(name,...)
             local e=original_spawn(name,...)
@@ -660,22 +621,15 @@ function M.run()
             assert(e._nw_fog_boss_cast,row[1].." starts available fallback")
             deadline=GetTime()+8
             while not cleared and GetTime()<deadline do
-                -- The actual mushroom flight/growth can outlive one cloud;
-                -- replenish naturally expired samples, never extend a lifetime.
                 remember(Fog.leave(player,sx,sz,{size_mult=10}))
                 if row[3]=="mushroombomb" then
                     for _,bomb in pairs(Ents) do
                         if bomb.prefab and string.find(bomb.prefab,"mushroombomb",1,true) and not seen_bombs[bomb] then
                             seen_bombs[bomb]=true
                             print("NW_DARK_FOG_BOMB:",bomb.prefab,bomb.GUID,"token",bomb._nw_fog_boss_bomb_token~=nil,"asleep",bomb:IsAsleep())
-                            -- This isolated server has no connected client to
-                            -- wake newly spawned native projectiles or bombs.
                             bomb.entity:SetCanSleep(false)
                             remember(bomb)
                         end
-                        -- The independent body sweep can clear the old giant
-                        -- fixture around the boss before a bomb lands. Seed
-                        -- small live regions at the actual landed bombs too.
                         if bomb.prefab and string.find(bomb.prefab,"mushroombomb",1,true)
                             and not bomb.components.complexprojectile then
                             local bx,_,bz=bomb.Transform:GetWorldPosition()

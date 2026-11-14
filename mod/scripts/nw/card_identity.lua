@@ -1,5 +1,3 @@
--- Repair old duplicate instance IDs without losing cards, stats or resources.
--- An ambiguous draw pile must restart; it cannot distinguish two equal IDs.
 local M={}
 function M.valid(id) return type(id)=="string" and id~="" end
 function M.observe(id)
@@ -18,7 +16,6 @@ end
 function M.repair(data)
     local seen,changed={},false
     M.observe(data.wand_uid)
-    -- Observe all existing IDs before requesting a replacement.
     for _,card in ipairs(data.cards) do if card then M.observe(card.card_uid) end end
     for _,card in ipairs(data.cards) do
         if card then

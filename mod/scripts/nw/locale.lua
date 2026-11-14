@@ -1,4 +1,3 @@
--- Resolve once before loading data/UI modules. No gameplay or save keys are translated.
 local M={language="zh"}
 local english=require("nw/locales/en")
 for zh,en in pairs(require("nw/locales/names")) do english[zh]=en end
@@ -29,7 +28,6 @@ end
 function M.install(env,G)
     local code=G.require("languages/loc").GetLocaleCode()
     M.configure(env.GetModConfigData("language",true),code)
-    -- Send only a validated display preference. It never changes server rules.
     env.AddModRPCHandler("nw_weave","language",function(player,language)
         if language=="zh" or language=="en" then player._nw_language=language end
     end)

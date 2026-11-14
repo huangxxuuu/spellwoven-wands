@@ -1,9 +1,6 @@
--- Exercise the actual native controller, BufferedAction and SGwilson attack.
 local M={}
 function M.run(x,z,done)
     local player=SpawnPrefab("wilson")
-    -- An unowned spawned character has no input components until OnSetOwner;
-    -- install the real components explicitly for this isolated fixture.
     player.userid=player.userid or ""
     player:AddComponent("playeractionpicker")
     player:AddComponent("playercontroller")
@@ -55,7 +52,6 @@ function M.run(x,z,done)
     assert(pc.lastheldaction==nil and pc.actionholdtime==nil,"NW_NATIVE: action allowed hold repeat")
     TheWorld:DoTaskInTime(FRAMES,function()
         pc:OnRemoteDirectWalking(1,0);pc:DoDirectWalking(FRAMES)
-        -- Stategraph locomote events are processed on the next engine update.
         TheWorld:DoTaskInTime(2*FRAMES,function()
             assert(player.sg.currentstate.name~="attack","NW_NATIVE: movement did not cancel wind-up")
         end)
@@ -67,7 +63,6 @@ function M.run(x,z,done)
             assert(player.sg.currentstate.name=="attack","NW_NATIVE: stationary click rejected")
             TheWorld:DoTaskInTime(9*FRAMES,function()
                 assert(count==1 and launched>=6*FRAMES and launched<=8*FRAMES+.001,"NW_NATIVE: launch timing mismatch")
-                -- Cut off the recovery animation, not an uncommitted wind-up.
                 pc:OnRemoteDirectWalking(1,0);pc:DoDirectWalking(FRAMES)
                 TheWorld:DoTaskInTime(2*FRAMES,function()
                     assert(player.sg.currentstate.name~="attack" and count==1,"NW_NATIVE: recovery movement lost or repeated shot")

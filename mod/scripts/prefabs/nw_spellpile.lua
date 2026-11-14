@@ -1,3 +1,4 @@
+local C=require("nw/constants/prefabs").spellpile
 local T=require("nw/locale").t
 local Cards=require("nw/cards")
 local stride=require("nw/cardpile").stride
@@ -31,7 +32,6 @@ local function update(inst)
     end
 end
 local function schedule(inst)
-    -- Coalesce native remove/give events (including loading a save and swaps).
     if not inst._update then inst._update=inst:DoTaskInTime(0,update) end
 end
 
@@ -43,7 +43,7 @@ local function fn()
     inst._layers=net_byte(inst.GUID,"nw_pile.layers","nw_piledirty")
     inst._separated=net_bool(inst.GUID,"nw_pile.separated","nw_piledirty")
     inst.displaynamefn=function(self)
-        return string.format(T("法术牌堆（%d/%d）"),math.floor(self._surface:value()/stride),25)
+        return string.format(T("法术牌堆（%d/%d）"),math.floor(self._surface:value()/stride),require("nw/cardpile").capacity)
     end
     show(inst)
     require("nw/recycle_mark").attach(inst,function(glow,item)
@@ -59,8 +59,7 @@ local function fn()
     inst:AddComponent("named")
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("nw_spellpile")
-    -- Choose once, on the server. Count changes, refreshes and reloads keep it.
-    inst._separated:set(math.random()<.5)
+    inst._separated:set(math.random()<C.separation_chance)
     inst.OnSave=function(self,data) data.separated=self._separated:value() end
     inst.OnLoad=function(self,data)
         if data and data.separated~=nil then self._separated:set(data.separated==true) end

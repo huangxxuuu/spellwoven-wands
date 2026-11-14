@@ -1,3 +1,4 @@
+local C=require("nw/constants/protocol").edit
 local T=require("nw/locale").t
 local U=require("nw/util")
 local CastAction=require("nw/cast_action")
@@ -14,15 +15,14 @@ end
 local function integer(n)
     return U.finite(n) and n>=0 and n==math.floor(n)
 end
--- GUID is process-local. Only network IDs may cross the RPC boundary as numbers.
 function M.request(player,slot,cardid,revision,wandid,cursor)
     if not integer(cardid) or not integer(wandid) or wandid==0 or not integer(revision) then return false,"INVALID_REQUEST" end
     local wand=CastAction.hand(player)
     if not wand then return false,"NOT_OWNER" end
     if M.id(wand)~=wandid then return false,"WAND_CHANGED" end
     if (player._nw_nextedit or 0)>GetTime() then return false,"BUSY" end
-    player._nw_nextedit=GetTime()+.15
-    CastAction.stop(player);player._nw_edit_until=GetTime()+.75
+    player._nw_nextedit=GetTime()+C.request_interval
+    CastAction.stop(player);player._nw_edit_until=GetTime()+C.focus_duration
     local source
     if cardid~=0 then
         local inv=player.components.inventory
@@ -48,7 +48,7 @@ function M.request(player,slot,cardid,revision,wandid,cursor)
     return ok,ok and "OK" or err
 end
 function M.focus(player,editing)
-    CastAction.stop(player);player._nw_edit_until=editing==false and 0 or GetTime()+.75
+    CastAction.stop(player);player._nw_edit_until=editing==false and 0 or GetTime()+C.focus_duration
     local wand=CastAction.hand(player)
     return M.id(wand),wand~=nil and Editing.near(player)
 end

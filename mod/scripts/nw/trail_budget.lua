@@ -1,9 +1,7 @@
--- One client-local live count across all tail renderers and players.
--- Admission happens before creation or renewal; existing tails expire naturally.
-local M={limit=0,options={0,100,500,900,1300,1700,2100,2500,2900,3300},key="nw_weave_trail_limit_v1"}
+local C=require("nw/constants/performance").trail
+local M={limit=0,options=require("nw/util").copy(C.options),key="nw_weave_trail_limit_v1"}
 local allowed={};for _,limit in ipairs(M.options) do allowed[limit]=true end
-local legacy={[200]=500,[400]=500,[600]=900,[700]=900,[800]=900,
-    [1000]=1300,[1600]=1700,[1900]=2100,[2000]=2100}
+local legacy=C.legacy
 local function normalize(limit) return allowed[limit] and limit or legacy[limit] end
 local loaded,loading,revision=false,false,0
 local waiters={}
@@ -17,13 +15,11 @@ local function owner_userid(source)
     return owner and type(owner.userid)=="string" and owner.userid or ""
 end
 
--- Both thresholds compare the TOTAL live count, not separate owner counts.
--- Read current identity on each attempt, including late player/net activation.
 function M.can_emit(source)
     if M.limit==0 then return true end
     local userid=ThePlayer and ThePlayer.userid
     local mine=type(userid)=="string" and userid~="" and owner_userid(source)==userid
-    local threshold=mine and M.limit or math.floor(M.limit*.75)
+    local threshold=mine and M.limit or math.floor(M.limit*C.other_fraction)
     local pool=TheWorld and TheWorld._nw_trail_budget
     return (pool and pool.count or 0)<threshold
 end
@@ -44,9 +40,7 @@ function M.remove(part)
 end
 
 function M.configure(limit)
-    -- Migrate removed saved choices upward rather than silently disabling the cap.
     M.limit=normalize(limit) or 0
-    -- Lowering the cap blocks future emissions; never prune existing tails.
 end
 function M.install(env,G)
     if not G.TheNet:IsDedicated() then
@@ -54,8 +48,6 @@ function M.install(env,G)
         M.load()
     end
 end
--- An explicit personal choice overrides the mod's initial client default.
--- Late disk reads must never overwrite a choice made while loading.
 function M.load(callback)
     if loaded then if callback then callback() end;return end
     if callback then waiters[#waiters+1]=callback end
@@ -89,8 +81,6 @@ function M.clear()
     if pool then pool.onremove() end
 end
 
--- Renderers must call can_emit BEFORE allocating or mutating a slot.
--- Creation and registration are synchronous; no other emitter runs between them.
 function M.track(part,born,dispose)
     local record=part._trail_record
     if record then record.born=born;return end

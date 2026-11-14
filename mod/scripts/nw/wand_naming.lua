@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui_misc").naming
 local T=require("nw/locale").t
 local M={}
 function M.describe(inst)
@@ -16,7 +17,7 @@ function M.begin(act)
     local w=wand.components.writeable
     if not w or w:IsBeingWritten() then return false,"INUSE" end
     if wand.components.inventoryitem:IsHeld() and not owns(doer,wand) then return false end
-    if not owns(doer,wand) and not (doer:IsNear(wand,3) and CanEntitySeeTarget(doer,wand)) then return false end
+    if not owns(doer,wand) and not (doer:IsNear(wand,C.distance) and CanEntitySeeTarget(doer,wand)) then return false end
     wand._nw_name_pencil=pencil
     local named=wand.components.named
     local name=named.name or wand:GetBasicDisplayName()
@@ -40,7 +41,7 @@ function M.setup(inst)
         local name=type(text)=="string" and text:gsub("[\r\n\t]"," "):match("^%s*(.-)%s*$") or nil
         if name and name~="" and name~=self.components.named.name and name~=self._nw_name_original and owns(doer,pencil)
             and doer.components.health and not doer.components.health:IsDead() and not doer:HasTag("playerghost")
-            and (owns(doer,self) or not self.components.inventoryitem:IsHeld() and doer:IsNear(self,3) and CanEntitySeeTarget(doer,self)) then
+            and (owns(doer,self) or not self.components.inventoryitem:IsHeld() and doer:IsNear(self,C.distance) and CanEntitySeeTarget(doer,self)) then
             self.components.named:SetName(name,doer.userid)
             self:AddTag("nw_customname")
             require("nw/spelljournal").renamed(self,doer)
@@ -52,7 +53,6 @@ function M.setup(inst)
     w:SetOnWritingEndedFn(function(self) self._nw_name_pencil=nil;self._nw_name_original=nil end)
     local update=w.OnUpdate
     w.OnUpdate=function(self,dt)
-        -- Inventory items can be INLIMBO; their holder is the writing location.
         if self.writer and owns(self.writer,inst)
             and not (self.writer.components.rider and self.writer.components.rider:IsRiding()) then return end
         return update(self,dt)
@@ -63,11 +63,11 @@ function M.install(env)
     local layouts=require("writeables")
     layouts.AddLayout("nw_wand",{
         prompt=T("为法杖命名（最多 32 字）"),animbank="ui_board_5x3",animbuild="ui_board_5x3",
-        menuoffset=Vector3(6,-70,0),maxcharacters=32,
+        menuoffset=Vector3(unpack(C.menu_offset)),maxcharacters=C.max_characters,
         defaulttext=function(inst) return inst:GetBasicDisplayName() end,
         cancelbtn={text=T("取消"),control=CONTROL_CANCEL},acceptbtn={text=T("改名"),control=CONTROL_ACCEPT},
     })
-    local action=Action({priority=10,rmb=true,distance=3})
+    local action=Action({priority=C.action_priority,rmb=true,distance=C.distance})
     action.id="NW_RENAME";action.str=T("改名");action.fn=M.begin
     env.AddAction(action)
     env.AddComponentAction("USEITEM","drawingtool",function(inst,doer,target,actions,right)

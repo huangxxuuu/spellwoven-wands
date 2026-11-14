@@ -1,3 +1,5 @@
+local C=require("nw/constants/acquisition")
+local Copy=require("nw/util").copy
 local T=require("nw/locale").t
 local Cards = require("nw/cards")
 local M = {}
@@ -5,10 +7,10 @@ M.atlas = "images/inventoryimages/nw_supplies.xml"
 M.station_atlas = "images/inventoryimages/nw_stations.xml"
 M.card_atlas = "images/inventoryimages/nw_icons.xml"
 M.materials = {
-    nw_dust = { T("奥术粉尘"), T("宝石中沉睡的魔力，研磨后凝成晶粉；吸纳游离魔力的生灵陨落时，也会留下这样的余烬。可用于制杖与浸染空白卡。"), 40 },
-    nw_blank = { T("空白法术卡"), T("用粉尘浸过的莎草纸，可以在奥术台刻写法术。"), 20 },
-    nw_beast_core = { T("巨兽核心"), T("季节巨兽留下的核心，用于精良法杖和三重施法卡。"), 10 },
-    nw_overlord_core = { T("霸主核心"), T("强大首领的核心，可以在奥术台制作稀有法杖。"), 10 },
+    nw_dust = { T("奥术粉尘"), T("宝石中沉睡的魔力，研磨后凝成晶粉；吸纳游离魔力的生灵陨落时，也会留下这样的余烬。可用于制杖与浸染空白卡。"), C.material_stacks.nw_dust },
+    nw_blank = { T("空白法术卡"), T("用粉尘浸过的莎草纸，可以在奥术台刻写法术。"), C.material_stacks.nw_blank },
+    nw_beast_core = { T("巨兽核心"), T("季节巨兽留下的核心，用于精良法杖和三重施法卡。"), C.material_stacks.nw_beast_core },
+    nw_overlord_core = { T("霸主核心"), T("强大首领的核心，可以在奥术台制作稀有法杖。"), C.material_stacks.nw_overlord_core },
 }
 M.tiers = {T("普通"), T("精良"), T("稀有"), T("史诗")}
 M.kinds = {sprout=T("萌芽"), rapid=T("速射"), reservoir=T("蓄能"), renewal=T("复苏"), weaver=T("编织"), chaos=T("混沌")}
@@ -16,164 +18,46 @@ M.recipes = {}
 M.by_name = {}
 local function recipe(name, product, title, ingredients, count, icon, card, tier)
     local row = {name=name, product=product, title=title, ingredients=ingredients,
-        count=count or 1, icon=icon or product, card=card, tier=tier}
+        count=count or C.recipes.default_count, icon=icon or product, card=card, tier=tier}
     table.insert(M.recipes, row)
     M.by_name[name] = row
     row.station = "nw_workbench"
     return row
 end
 for _, gem in ipairs({"redgem","bluegem","purplegem"}) do
-    recipe("nw_dust_"..gem, "nw_dust", M.materials.nw_dust[1], {{gem,1},{"goldnugget",1}}, 4)
+    recipe("nw_dust_"..gem, "nw_dust", M.materials.nw_dust[1], {{gem,C.recipes.dust.gem_count},Copy(C.recipes.dust.ingredients[1])}, C.recipes.dust.count)
 end
-recipe("nw_blank", "nw_blank", T("空白法术卡"), {{"papyrus",1},{"charcoal",2},{"nw_dust",2}}, 2)
-recipe("nw_dustbox", "nw_dustbox", T("粉尘收纳盒"), {{"boards",1},{"goldnugget",2},{"silk",2},{"nw_dust",4}}).description =
+recipe("nw_blank", "nw_blank", T("空白法术卡"), Copy(C.recipes.blank.ingredients), C.recipes.blank.count)
+recipe("nw_dustbox", "nw_dustbox", T("粉尘收纳盒"), Copy(C.recipes.dustbox.ingredients)).description =
     T("随身携带的一格收纳盒，只收纳奥术粉尘，盒内可无限堆叠。")
-for _, v in ipairs({
-    {"deerclops_eyeball",1,"nw_beast_core"}, {"bearger_fur",1,"nw_beast_core"},
-    {"goose_feather",5,"nw_beast_core"}, {"dragon_scales",1,"nw_overlord_core"},
-    {"royal_jelly",6,"nw_overlord_core"}, {"minotaurhorn",1,"nw_overlord_core"},
-}) do
+for _, v in ipairs(C.recipes.core_extraction) do
     local core = v[3]
     recipe("nw_extract_"..v[1], core, M.materials[core][1], {{v[1],v[2]}})
 end
-recipe("nw_starter", "nw_wand", T("入门法杖"), {{"twigs",4},{"goldnugget",2},{"nw_dust",4}}, 1, nil, nil, 0)
-recipe("nw_roll_1", "nw_wand", T("普通随机法杖"), {{"twigs",6},{"goldnugget",4},{"nw_dust",12}}, 1, nil, nil, 1)
-recipe("nw_roll_2", "nw_wand", T("精良随机法杖"), {{"boards",2},{"purplegem",3},{"nw_dust",24},{"nw_beast_core",1}}, 1, nil, nil, 2)
-recipe("nw_roll_3", "nw_wand", T("稀有随机法杖"), {{"livinglog",2},{"greengem",3},{"nw_dust",40},{"nw_overlord_core",1}}, 1, nil, nil, 3)
--- Inscription ingredients; weapon drop associations are selected separately below.
-local ink = {
-    pitch_octave_up={{"cutreeds",2},{"twigs",1}},
-    pitch_octave_down={{"cutreeds",2},{"charcoal",1}},
-    pitch_semitone_up={{"cutreeds",1},{"twigs",1}},
-    pitch_semitone_down={{"cutreeds",1},{"charcoal",1}},
-    gunpowder={{"gunpowder",2},{"charcoal",2}},
-    ocarina_g={{"cutreeds",2},{"seashell",1}},
-    gust={{"goose_feather",2},{"twigs",1}},
-    spore_ball={{"spore_small",1},{"livinglog",1}},
-    flint_lance={{"flint",3},{"spear",1}},
-    crystal_mine={{"purplegem",1},{"gunpowder",1},{"gears",2}},
-    sleep_crystal={{"bluegem",1},{"moonrocknugget",2},{"gunpowder",1}},
-    slime={{"slurtleslime",2},{"silk",1}},
-    grow_orb={{"yellowgem",1},{"lightbulb",2}},
-    heal_bolt={{"mosquitosack",2},{"butterflywings",2},{"amulet",1}},
-    bog_whip={{"tentaclespike",2},{"tentaclespots",2}},
-    detonate={{"flint",2},{"gunpowder",1}},
-    delay_seal={{"purplegem",1},{"papyrus",1}},
-    rain_cloud={{"nitre",4},{"ice",2}},
-    guard_ring={{"armorsnurtleshell",1},{"bluegem",1}},
-    wild_charge={{"nitre",2},{"charcoal",1}},
-    long_life={{"livinglog",1},{"cutreeds",2}},
-    short_life={{"nitre",2},{"charcoal",2}},
-    reverse_path={{"boomerang",1},{"goldnugget",1}},
-    return_path={{"boomerang",1},{"nightmarefuel",1}},
-    light_shot={{"feather_robin_winter",2},{"goldnugget",1}},
-    accelerate={{"gears",1},{"goldnugget",1}},
-    chill_touch={{"bluegem",1},{"ice",3}},
-    wet_weak={{"waterballoon",3},{"tentaclespots",1}},
-    melee_mark={{"houndstooth",2},{"tentaclespike",1}},
-    two_way={{"boomerang",1},{"twigs",2}},
-    land_hook={{"rope",2},{"fishingrod",1}},
-    payload_egg={{"bird_egg",2},{"purplegem",1}},
-    harmless={{"butterflywings",2},{"papyrus",1},{"townportaltalisman",3}},
-    cast_four={{"nw_overlord_core",1},{"gears",2}},
-    hex_cast={{"nw_beast_core",1},{"purplegem",6}},
-    spore_sentry={{"spore_small",2},{"stinger",8}}, vital_ring={{"greengem",1},{"spidergland",8}},
-    heavy_shot={{"marble",2},{"goldnugget",1}}, giant_shot={{"purplegem",1},{"marble",3}}, shrink_shot={{"purplegem",1},{"moonrocknugget",3}}, trident_cast={{"goose_feather",8},{"houndstooth",9}},
-    spark={{"nitre",1},{"flint",1}}, arrow={{"houndstooth",1},{"twigs",2}},
-    heavy={{"marble",2},{"rocks",2}}, fire={{"redgem",1},{"charcoal",2}}, frost={{"bluegem",1},{"ice",3}},
-    thrust={{"spear",2},{"nightmarefuel",1}}, slash={{"glasscutter",2},{"bluegem",1}}, whirl={{"axe",2},{"livinglog",1}},
-    sine={{"tentaclespots",1},{"cutreeds",2}}, spiral={{"slurtle_shellpieces",1},{"slurtleslime",2}},
-    precision={{"messagebottleempty",1},{"flint",2}}, homing={{"batwing",4},{"purplegem",1},{"trunk_summer",1}},
-    homing_rotate={{"feather_crow",2},{"goldnugget",2}},
-    bounce={{"slurtleslime",2},{"rocks",2}}, orbit={{"moonrocknugget",2},{"butterflywings",2}},
-    speed_up={{"walrus_tusk",1}}, speed_down={{"silk",8}}, damage_up={{"cactus_meat",8},{"houndstooth",8}},
-    pierce={{"tentaclespike",2},{"flint",2},{"minotaurhorn",1}}, explosion={{"gunpowder",4},{"redgem",2}},
-    chain={{"purplegem",2},{"lightninggoathorn",4}}, knockback={{"marble",1},{"beefalowool",3}},
-    leech={{"greengem",1},{"reviver",1}}, light={{"yellowgem",1},{"wormlight",2}},
-    dark={{"purplegem",1},{"nightmarefuel",2}},
-    mana_reduce={{"greengem",1},{"shadowheart",1}}, recharge_down={{"gears",1},{"orangegem",1}},
-    double={{"gears",2},{"nightmarefuel",2}}, triple={{"gears",3},{"nightmarefuel",3},{"nw_beast_core",1}},
-    repeat_2={{"nw_beast_core",1},{"purplegem",2},{"gears",2}},
-}
+recipe("nw_starter", "nw_wand", T("入门法杖"), Copy(C.recipes.starter.ingredients), C.recipes.starter.count, nil, nil, C.recipes.starter.tier)
+recipe("nw_roll_1", "nw_wand", T("普通随机法杖"), Copy(C.recipes.roll_1.ingredients), C.recipes.roll_1.count, nil, nil, C.recipes.roll_1.tier)
+recipe("nw_roll_2", "nw_wand", T("精良随机法杖"), Copy(C.recipes.roll_2.ingredients), C.recipes.roll_2.count, nil, nil, C.recipes.roll_2.tier)
+recipe("nw_roll_3", "nw_wand", T("稀有随机法杖"), Copy(C.recipes.roll_3.ingredients), C.recipes.roll_3.count, nil, nil, C.recipes.roll_3.tier)
+local ink = Copy(C.ink)
 local arsenal=require("nw/arsenal")
--- Shared by every world difficulty; unlisted engravings retain their default ink.
-local engraving_ink = {
-    batbat={{"rope",3}},
-    bullkelp_root={{"waterballoon",2}},
-    chum={{"oceanfishinglure_spinner_red",2}},
-    dumbbell={{"rope",3}},
-    dumbbell_bluegem={{"rope",3}},
-    dumbbell_gem={{"rope",3}},
-    dumbbell_golden={{"rope",3}},
-    dumbbell_heat={{"rope",3}},
-    dumbbell_marble={{"rope",3}},
-    dumbbell_redgem={{"rope",3}},
-    farm_hoe={{"rope",3}},
-    fence_rotator={{"rope",3}},
-    fishingrod={{"rope",3}},
-    fumaroleaxe={{"marble",2}},
-    fumarolehammer={{"marble",2}},
-    fumarolepickaxe={{"marble",2}},
-    fumaroleshovel={{"marble",2}},
-    goldenaxe={{"marble",2}},
-    goldenpickaxe={{"marble",2}},
-    goldenshovel={{"marble",2}},
-    hambat={{"fishmeat",2}},
-    hammer={{"rope",3}},
-    handpillow_beefalowool={{"stinger",3}},
-    handpillow_kelp={{"stinger",3}},
-    handpillow_petals={{"stinger",3}},
-    handpillow_steelwool={{"stinger",3}},
-    minifan={{"papyrus",2}},
-    moonglassaxe={{"moonglass",2}},
-    multitool_axe_pickaxe={{"thulecite",2}},
-    nightstick={{"nitre",4}},
-    nightsword={{"shadowheart",1}},
-    oceanfishingrod={{"rope",3}},
-    orangestaff={{"orangegem",2}},
-    pickaxe={{"rope",3}},
-    pickaxe_lunarplant={{"lunarplant_husk",3}},
-    pocketwatch_weapon={{"pocketwatch_parts",4}},
-    ruins_bat={{"thulecite",2}},
-    shadow_battleaxe={{"shadowheart_infused",1}},
-    shieldofterror={{"milkywhites",2}},
-    shovel={{"rope",3}},
-    shovel_lunarplant={{"lunarplant_husk",3}},
-    spear_wathgrithr={{"goldnugget",3}},
-    spear_wathgrithr_lightning={{"lightninggoathorn",1}},
-    spear_wathgrithr_lightning_charged={{"lightninggoathorn",2}},
-    sword_lunarplant={{"lunarplant_husk",3}},
-    tentaclespike={{"tentaclespots",1}},
-    torch={{"rope",3}},
-    trident={{"gnarwail_horn",1}},
-    voidcloth_scythe={{"voidcloth",3}},
-    whip={{"tentaclespots",1}},
-    yoth_lance={{"rope",3}},
-    voidcloth_boomerang={{"voidcloth",3}},
-    firestaff={{"nightmarefuel",3}},
-    icestaff={{"nightmarefuel",3}},
-    staff_lunarplant={{"lunarplant_husk",3}},
-    staff_tornado={{"goose_feather",3}},
-    yellowstaff={{"yellowgem",1}},
-    opalstaff={{"moonrocknugget",10}},
-}
+local engraving_ink = C.engraving_ink
 local selectors={}
 for _,c in ipairs(arsenal.cards) do
     if c.source_weapon then
         if c.source_weapon~="propsign" and not require("nw/engraved_spells").retired[c.id] then
-            ink[c.id]={{c.source_weapon,2}}
-            for _,v in ipairs(engraving_ink[c.source_weapon] or {{"nightmarefuel",1}}) do
+            ink[c.id]={{c.source_weapon,C.recipes.engraving_weapon_count}}
+            for _,v in ipairs(engraving_ink[c.source_weapon] or C.recipes.engraving_fallback) do
                 ink[c.id][#ink[c.id]+1]={v[1],v[2]}
             end
         end
     elseif c.select_target then
         selectors[c.id]=true
-        ink[c.id]={{"papyrus",1},{"nightmarefuel",1}}
+        ink[c.id]=Copy(C.recipes.selector)
     end
 end
 for id,note in pairs(arsenal.notes) do
     if not arsenal.legacy_notes[id] then
-        ink[id]=note.instrument=="kantele" and {{"slurtle_shellpieces",2},{"cutreeds",3}} or {{"cutreeds",3},{"goldnugget",1}}
+        ink[id]=Copy(note.instrument=="kantele" and C.recipes.kantele or C.recipes.ocarina)
     end
 end
 M.by_material={}
@@ -186,7 +70,7 @@ local function associate(material,id)
     ids[#ids+1]=id
 end
 local function inscribe(id, ingredients, suffix)
-    local inputs={{"nw_blank",1}}
+    local inputs=Copy(C.recipes.inscription_base)
     local weapon=weapons[id] and weapons[id].source_weapon or original_weapons[id]
     for _,v in ipairs(ingredients) do
         inputs[#inputs+1]=v
@@ -194,56 +78,19 @@ local function inscribe(id, ingredients, suffix)
     end
     if signature_material[id] then associate(signature_material[id],id) end
     local row=recipe("nw_inscribe_"..id..(suffix or ""), "nw_spellcard", Cards.names[id],
-        inputs,1,"nw_spell_"..id,id)
+        inputs,C.recipes.inscription_count,"nw_spell_"..id,id)
     if weapon then row.station="nw_engraver" end
 end
 for _, id in ipairs(Cards.order) do
     if ink[id] then inscribe(id,ink[id]) end
     if id=="scatter" then
         for i, feather in ipairs({"feather_crow","feather_robin","feather_robin_winter","feather_canary"}) do
-            inscribe(id,{{feather,6},{"beefalowool",3}},i==1 and "" or "_"..feather)
+            inscribe(id,{{feather,C.recipes.scatter_feather_count},Copy(C.recipes.scatter_wool)},i==1 and "" or "_"..feather)
         end
     end
 end
--- AddRecipe2 and craftingstation:LearnItem consume this same ordered list.
--- Keep display categories separate from the saved/networked card codes.
 local definitions=require("nw/definitions")
--- Display order for the engraving station only.
-local engraving_groups={
-    { -- 原创招式
-        "thrust", "slash", "whirl",
-    },
-    { -- 工具1
-        "pickaxe", "shovel", "hammer", "farm_hoe", "pitchfork", "goldenaxe", "goldenpickaxe",
-        "goldenshovel", "golden_farm_hoe", "goldenpitchfork", "fumaroleaxe", "fumarolepickaxe",
-        "fumaroleshovel", "fumarolehammer", "fumarole_farm_hoe", "moonglassaxe",
-        "multitool_axe_pickaxe", "voidcloth_scythe", "shadow_battleaxe", "pickaxe_lunarplant",
-        "shovel_lunarplant",
-    },
-    { -- 工具2
-        "torch", "bugnet", "thulecitebugnet", "compass", "minifan", "cane", "orangestaff",
-        "yellowstaff", "opalstaff", "witchbroom", "fence_rotator", "wateringcan", "premiumwateringcan", "fishingrod",
-        "oceanfishingrod", "saddlehorn", "brush", "chum", "oar", "oar_driftwood", "lighter",
-        "lucy", "merm_tool", "merm_tool_upgraded",
-    },
-    { -- 武器
-        "spear_wathgrithr", "spear_wathgrithr_lightning", "spear_wathgrithr_lightning_charged",
-        "wathgrithr_shield", "dumbbell", "dumbbell_golden", "dumbbell_marble", "dumbbell_gem",
-        "dumbbell_heat", "dumbbell_redgem", "dumbbell_bluegem", "wortox_nabbag",
-        "pocketwatch_weapon", "hambat", "batbat", "nightstick", "whip", "tentaclespike",
-        "nightsword", "trident", "ruins_bat", "sword_lunarplant", "houndstooth_blowpipe",
-        "gestalt_cage", "voidcloth_boomerang", "firestaff", "icestaff", "staff_lunarplant", "staff_tornado",
-    },
-    { -- 神龛
-        "handpillow_petals", "handpillow_kelp", "handpillow_beefalowool", "handpillow_steelwool",
-        "yoth_knightstick",
-    },
-    { -- 其他
-        "bullkelp_root", "carnivalgame_golfclub", "yoth_lance", "cutless", "oar_monkey",
-        "vault_compass", "rabbitkingspear", "shieldofterror", "malbatross_beak", "king_cane",
-        "queen_torch",
-    },
-}
+local engraving_groups=C.engraving_groups
 local engraving_order={}
 local engraving_group={}
 local rank=0
@@ -251,10 +98,10 @@ for i,group in ipairs(engraving_groups) do
     for _,key in ipairs(group) do
         rank=rank+1
         engraving_order[key]=rank
-        engraving_group[key]=10+i
+        engraving_group[key]=C.engraving_group_offset+i
     end
 end
-local bench={supplies=0,projectile=1,field=2,path=3,effect=4,wand=5,multicast=6,target=7,note=8,other=9}
+local bench=C.bench
 local bench_override={
     chain=bench.projectile, explosion=bench.effect, guard_ring=bench.other,
     reverse_path=bench.path, return_path=bench.path, homing_rotate=bench.path,
@@ -284,8 +131,7 @@ for index,row in ipairs(M.recipes) do
         row.group=bench_group(row.card)
     end
 end
--- Place the detonator immediately after the second crystal, preserving all other ties.
-M.by_name.nw_inscribe_detonate.order=M.by_name.nw_inscribe_sleep_crystal.order+.5
+M.by_name.nw_inscribe_detonate.order=M.by_name.nw_inscribe_sleep_crystal.order+C.detonate_order_offset
 table.sort(M.recipes,function(a,b)
     if a.group~=b.group then return a.group<b.group end
     if a.group==bench.note then
@@ -297,24 +143,20 @@ table.sort(M.recipes,function(a,b)
     end
     return a.order<b.order
 end)
--- Historical field-guide sections; these no longer create crafting recipes.
 local headings={
     [bench.projectile]={"projectile",T("远程投射物")}, [bench.field]={"field",T("静态投射物")},
     [bench.path]={"path",T("弹道修正")}, [bench.effect]={"effect",T("法术效果修正")},
     [bench.wand]={"wand",T("法杖修正")}, [bench.multicast]={"multicast",T("多重释放")},
     [bench.target]={"target",T("目标选择")}, [bench.note]={"note",T("音符法术")}, [bench.other]={"other",T("其他")},
-    [12]={"tools1",T("工具一")}, [13]={"tools2",T("工具二")}, [14]={"weapons",T("武器")},
-    [15]={"shrine",T("神龛")}, [16]={"other",T("其他")},
+    [C.engraving_sections.tools1]={"tools1",T("工具一")}, [C.engraving_sections.tools2]={"tools2",T("工具二")}, [C.engraving_sections.weapons]={"weapons",T("武器")},
+    [C.engraving_sections.shrine]={"shrine",T("神龛")}, [C.engraving_sections.other]={"other",T("其他")},
 }
--- The field guide also lists cards without recipes, under the same headings.
 function M.card_section(card)
     local recipe=M.by_name["nw_inscribe_"..card]
     if weapons[card] and definitions.spells[card].kind=="field" then return bench.field,headings[bench.field][2] end
     if weapons[card] and definitions.spells[card].kind=="projectile" then return bench.projectile,headings[bench.projectile][2] end
-    local group=recipe and recipe.group or (definitions.spells[card].kind=="melee" and 16 or bench_group(card))
-    return group,group==11 and T("原创招式") or headings[group][2]
+    local group=recipe and recipe.group or (definitions.spells[card].kind=="melee" and C.engraving_sections.other or bench_group(card))
+    return group,group==C.engraving_sections.original and T("原创招式") or headings[group][2]
 end
--- Retain the shared catalog name for station learning and existing exporters.
--- All entries are real recipes, even when the local class filter is disabled.
 M.menu_entries=M.recipes
 return M

@@ -1,26 +1,28 @@
+local C=require("nw/constants/native_effects").shield
+local Trigger=require("nw/constants/modifiers").trigger
 local M={}
+local Limits=require("nw/spell_limits")
 local function position(owner,inst,index,count,initial)
     local x,_,z=owner.Transform:GetWorldPosition()
     local dt=FRAMES
-    local angle=(GetTime()+(initial and 0 or dt))*3 + (index-1)*2*math.pi/count
-    local tx,tz=x+2*math.cos(angle),z+2*math.sin(angle)
+    local angle=(GetTime()+(initial and 0 or dt))*C.angular_speed + (index-1)*2*math.pi/count
+    local tx,tz=x+C.radius*math.cos(angle),z+C.radius*math.sin(angle)
     if initial then inst.Physics:Teleport(tx,0,tz);return end
     local sx,_,sz=inst.Transform:GetWorldPosition()
     local dx,dz=tx-sx,tz-sz
-    if dx*dx+dz*dz>64*64 then
-        -- Follow a teleported owner without crossing the whole map.
+    if dx*dx+dz*dz>C.teleport_distance^2 then
         inst.Physics:TeleportRespectingInterpolation(tx,0,tz)
         inst.Physics:Stop()
     else
         inst.Transform:SetRotation(-math.atan2(dz,dx)/DEGREES)
-        inst.Physics:SetMotorVel(math.sqrt(dx*dx+dz*dz)/dt,0,0)
+        Limits.set_motor_velocity(inst,math.sqrt(dx*dx+dz*dz)/dt,0,0)
     end
 end
 function M.add(inst,s)
     local owner=s.owner
     local list=owner._nw_shields or {}
     owner._nw_shields=list
-    list[#list+1]=inst;s.armor=50
+    list[#list+1]=inst;s.armor=C.armor
     inst.Physics:Stop()
     position(owner,inst,#list,#list,true)
     local x,_,z=inst.Transform:GetWorldPosition()
@@ -42,10 +44,9 @@ function M.update(inst,s,now,timers)
     end
     s.x,s.z=x,z
     local triggers=require("nw/projectile_triggers")
-    if s.p.event=="timer" and not s.timer_done and s.age+.000001>=(s.p.time or .5) then triggers.timer(s,x,z,timers) end
-    if s.remaining<=.000001 then triggers.finish(s,x,z);inst:Remove() end
+    if s.p.event=="timer" and not s.timer_done and s.age+C.time_epsilon>=(s.p.time or Trigger.time) then triggers.timer(s,x,z,timers) end
+    if s.remaining<=C.time_epsilon then triggers.finish(s,x,z);inst:Remove() end
 end
--- Inventory:ApplyDamage is the game's pre-armour entry point (after dodge).
 function M.install_inventory(inv)
     local original=inv.ApplyDamage
     inv.ApplyDamage=function(self,damage,attacker,weapon,special,...)

@@ -211,6 +211,19 @@ advance({{fast,10,0}},.5)
 assert(TheWorld._nw_elemental_flights.count==0,"a late frame does not emit a catch-up trail")
 retire()
 
+-- Every sampled visual family accepts the shared legal speed, including a
+-- first network sample before a physical velocity has arrived on the client.
+for _,id in ipairs({"fire","frost","arrow","heavy","scatter","gust","spore_ball",
+    "flint_lance","slime","grow_orb","heal_bolt","star_vortex","glass_disc",
+    "tri_electric","end_beam","soundwave","bee_swarm","fireflies"}) do
+    local s=shot(id,94)
+    s.Physics.GetVelocity=function() return 0,0,0 end
+    local motion=require("nw/spell_limits").max_speed*FRAME
+    for _=1,12 do advance({{s,motion,0}}) end
+    assert(next(s._nw_elemental_flight.parts),id.." lost its trail at the shared speed ceiling")
+    retire()
+end
+
 -- Unlimited default retains all tails beyond the former 128-segment cap.
 local crowd={}
 for i=1,40 do crowd[i]=shot(i%2==0 and "fire" or "frost",i+20,i%2==0 and 100 or 1) end
@@ -329,7 +342,7 @@ assert(tail_plays==before and not cut._nw_elemental_flight.path)
 cut._visual.visible=true
 advance({{cut,.5,0}});connected(cut,0,true)
 before=tail_plays
-advance({{cut,50,0}},.2) -- deliberately above the natural 60-unit speed ceiling
+advance({{cut,50,0}},.2) -- deliberately above the shared gameplay speed ceiling
 assert(tail_plays-before==1,"oversized samples mark the new front without a catch-up streak")
 advance({{cut,.5,0}})
 local newest=ordered_parts(cut)

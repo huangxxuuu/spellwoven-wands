@@ -1,3 +1,4 @@
+local C=require("nw/constants/prefabs").wand
 local Visual=require("nw/visual")
 local assets = {
     Asset("ATLAS","images/inventoryimages/nw_icons.xml"),
@@ -36,10 +37,8 @@ local function fn()
     MakeInventoryPhysics(inst)
     inst:AddTag("nw_wand")
     inst:AddTag("_writeable")
-    inst:AddTag("allow_action_on_impassable") -- Native right-click picker also offers POINT actions over water.
-    -- Native attack animation, without adding a melee weapon or custom state.
+    inst:AddTag("allow_action_on_impassable")
     inst:AddTag("nopunch");inst:AddTag("rangedweapon")
-    -- Both peers declare the same schema before the client return.
     inst._nw_broken = net_bool(inst.GUID,"nw_wand.broken","nw_lookdirty")
     inst._nw_ready = net_bool(inst.GUID, "nw_wand.ready", "nw_wanddirty")
     inst._nw_cancast = net_bool(inst.GUID, "nw_wand.cancast", "nw_wanddirty")
@@ -55,14 +54,14 @@ local function fn()
     inst._nw_cooltotal=net_ushortint(inst.GUID,"nw_wand.cooltotal","nw_wanddirty")
     require("nw/wand_icon").install(inst)
     require("nw/visual").apply(inst, 0, "ground")
-    MakeInventoryFloatable(inst, "med", .1)
+    MakeInventoryFloatable(inst, "med", C.float_offset)
     local function refresh() require("nw/visual").apply_dropped(inst, inst._nw_look:value()) end
     require("nw/recycle_mark").attach(inst,function(glow,item)
         Visual.apply_dropped(glow,item._nw_look:value(),item.components.floater and item.components.floater:IsFloating())
     end)
     inst.entity:SetPristine()
     inst.displaynamefn=function(self)
-        if self.name_author_netid or self:HasTag("nw_customname") then return end -- Keep native filtering for player-written names.
+        if self.name_author_netid or self:HasTag("nw_customname") then return end
         return require("nw/locale").translate(self.name)
     end
     if not TheWorld.ismastersim then
@@ -88,7 +87,6 @@ local function fn()
     inst.components.inventoryitem.atlasname=Visual.atlas(0)
     inst.components.inventoryitem:ChangeImageName(require("nw/visual").icon(0))
     inst:AddComponent("equippable")
-    -- Extra equipment-slot mods must classify the wand as a hand item.
     inst.components.equippable.equipslot=EQUIPSLOTS.HANDS
     inst.components.equippable:SetOnEquip(equip)
     inst.components.equippable:SetOnUnequip(unequip)
@@ -106,8 +104,7 @@ local function fn()
     inst:DoTaskInTime(0, function()
         if inst.components.nw_wand.data == nil then inst.components.nw_wand:InitializeNew(0,"starter") end
     end)
-    -- Inventory cooldown meters must keep advancing after unequipping, too.
-    inst:DoPeriodicTask(.1,function()
+    inst:DoPeriodicTask(C.update_period,function()
         local wand=inst.components.nw_wand
         local data=wand.data
         if data then

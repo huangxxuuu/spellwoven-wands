@@ -1,9 +1,8 @@
--- Vanilla miasma texture, UV frames, colour/scale envelopes and drift, fitted
--- to the spell's radius. This local emitter never enters miasma's fire path.
-local M={duration=.4}
-local LIFETIME=5
-local COLOUR="nw_dark_miasma_colour"
-local SCALE="nw_dark_miasma_scale"
+local C=require("nw/constants/visuals/dark_fog_visual")
+local M={duration=C.duration}
+local LIFETIME=C.lifetime
+local COLOUR=C.colour
+local SCALE=C.scale
 local initialized=false
 local scales={}
 local function scale_envelope(scale)
@@ -11,7 +10,7 @@ local function scale_envelope(scale)
     local name=scales[key]
     if not name then
         name=SCALE.."_"..key
-        EnvelopeManager:AddVector2Envelope(name,{{0,{.8*scale,.8*scale}},{1,{.64*scale,.64*scale}}})
+        EnvelopeManager:AddVector2Envelope(name,{{0,{C.initial_scale*scale,C.initial_scale*scale}},{1,{C.final_scale*scale,C.final_scale*scale}}})
         scales[key]=name
     end
     return name
@@ -19,7 +18,7 @@ end
 local function envelopes()
     if initialized then return end
     EnvelopeManager:AddColourEnvelope(COLOUR,{
-        {0,{1,1,1,0}},{.1,{1,1,1,1}},{.9,{1,1,1,1}},{1,{1,1,1,0}},
+        unpack(C.colour_envelope),
     })
     initialized=true
 end
@@ -35,7 +34,6 @@ function M.dissipate(inst)
     local previous=started
     local function update()
         local time=math.min(GetTime(),started+M.duration)
-        -- Normal simulation already advances particle age once per frame.
         local advance=math.max(0,time-previous)*(LIFETIME/M.duration-1)
         previous=time
         for _,fx in ipairs(inst._nw_dark_children) do
@@ -48,8 +46,6 @@ function M.dissipate(inst)
     end
     inst._nw_dark_fade_task=inst:DoPeriodicTask(FRAMES,update)
 end
--- VFX emitters need the native SpawnPrefab completion hook to create their
--- render nodes. A bare CreateEntity used after world startup skips that hook.
 function M.create_emitter()
     envelopes()
     local fx=CreateEntity()
@@ -59,17 +55,17 @@ function M.create_emitter()
     local effect=fx.entity:AddVFXEffect()
     effect:InitEmitters(1)
     effect:SetRenderResources(0,"fx/miasma.tex","shaders/vfx_particle.ksh")
-    effect:SetMaxNumParticles(0,50)
+    effect:SetMaxNumParticles(0,C.max_particles)
     effect:SetRotationStatus(0,true)
     effect:SetMaxLifetime(0,LIFETIME)
     effect:SetColourEnvelope(0,COLOUR)
     effect:SetScaleEnvelope(0,scale_envelope(1))
-    effect:SetUVFrameSize(0,.5,1)
+    effect:SetUVFrameSize(0,C.uv_width,1)
     effect:SetBlendMode(0,BLENDMODE.AlphaBlended)
     effect:SetSortOrder(0,0)
     effect:SetSortOffset(0,0)
     effect:SetRadius(0,require("nw/dark_fog").radius)
-    effect:SetDragCoefficient(0,.1)
+    effect:SetDragCoefficient(0,C.drag)
     return fx
 end
 local function particles(inst)
@@ -89,21 +85,19 @@ local function particles(inst)
     local effect=fx.VFXEffect
     effect:SetScaleEnvelope(0,scale_envelope(scale))
     effect:SetRadius(0,radius)
-    local circle=CreateCircleEmitter(math.max(0,radius-.8*scale*1.3))
+    local circle=CreateCircleEmitter(math.max(0,radius-C.initial_scale*scale*C.emitter_margin))
     local function emit()
         local x,z=circle()
-        effect:AddRotatingParticleUV(0,LIFETIME,x,.5*scale*(1+math.random()),z,
-            .01*scale*UnitRand(),.005*scale*UnitRand(),.01*scale*UnitRand(),
-            math.random()*360,UnitRand()*.1,math.random(0,1)*.5,0)
+        effect:AddRotatingParticleUV(0,LIFETIME,x,C.particle_height*scale*(1+math.random()),z,
+            C.horizontal_speed*scale*UnitRand(),C.vertical_speed*scale*UnitRand(),C.horizontal_speed*scale*UnitRand(),
+            math.random()*360,UnitRand()*C.rotation_speed,math.random(0,1)*C.uv_width,0)
     end
-    -- Prewarm the short-lived spell cloud instead of waiting for a five-second
-    -- native particle cycle; density is reduced to match its smaller footprint.
-    for i=1,10 do emit() end
-    effect:FastForward(0,.55)
+    for i=1,C.initial_particles do emit() end
+    effect:FastForward(0,C.initial_advance)
     local pending=0
     EmitterManager:AddEmitter(fx,nil,function()
         if not inst:IsValid() or inst._nw_dark_visual_fading then return end
-        pending=pending+2*TheSim:GetTickTime()
+        pending=pending+C.emission_rate*TheSim:GetTickTime()
         while pending>=1 do emit();pending=pending-1 end
     end)
 end
@@ -120,7 +114,6 @@ function M.attach(inst)
         for _,fx in ipairs(inst._nw_dark_children) do if fx:IsValid() then fx:Remove() end end
     end)
     inst:ListenForEvent("nw_dark_fog_size_dirty",function() particles(inst) end)
-    -- Late replicas must not flash a fresh cloud after coverage has ended.
     if inst._nw_dark_dissipating:value() then M.dissipate(inst);return end
 
     particles(inst)

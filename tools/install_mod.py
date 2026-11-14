@@ -8,7 +8,7 @@ import re
 import shutil
 import subprocess
 import tempfile
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from animation_atlas import validate_animation_archive
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -66,23 +66,56 @@ def retired_assets(target, source):
     return result
 
 
-def install(game):
+def install_files(source, target, selected):
+    """Resolve the whole copy plan before making any destination changes."""
+    if selected is None:
+        files = sorted(p for p in source.rglob('*') if p.is_file())
+    else:
+        files = []
+        for name in selected:
+            name = str(name)
+            relative = Path(name.replace('\\', '/'))
+            windows = PureWindowsPath(name)
+            if relative.is_absolute() or windows.drive or windows.root or '..' in relative.parts:
+                raise SystemExit(f'Refusing invalid mod-relative file: {name}')
+            path = source / relative
+            if path not in files:
+                files.append(path)
+    for path in files:
+        destination = target / path.relative_to(source)
+        if not path.resolve().is_relative_to(source.resolve()) or not path.is_file():
+            raise SystemExit(f'Refusing missing, non-file or redirected source: {path}')
+        if not destination.resolve().is_relative_to(target):
+            raise SystemExit(f'Refusing redirected destination: {destination}')
+        if destination.exists() and not destination.is_file():
+            raise SystemExit(f'Refusing non-file destination: {destination}')
+        if any(parent.exists() and not parent.is_dir() for parent in destination.parents):
+            raise SystemExit(f'Refusing non-directory destination parent: {destination}')
+    return files
+
+
+def install(game, files=None):
     game = Path(game)
     target = game.resolve() / 'mods' / 'nw_weave_dev'
     marker = target / '.nw_workspace'
     if not game.is_dir():
         raise SystemExit(f'Game directory not found: {game}')
+    if not target.resolve().is_relative_to(target) or marker.is_symlink():
+        raise SystemExit(f'Refusing redirected installation or ownership marker: {target}')
     if target.exists() and (not marker.is_file() or marker.read_text() != str(ROOT)):
         raise SystemExit(f'Refusing to overwrite an installation not owned by this workspace: {target}')
     source = ROOT / 'mod'
-    # Validate the complete source before touching the owned installation.
-    for archive in sorted((source / 'anim').glob('*.zip')):
+    selected = files is not None
+    files = install_files(source, target, files)
+    # Validate all selected archives before touching the owned installation.
+    archives = [path for path in files if path.suffix.lower() == '.zip'
+                and path.relative_to(source).parts[0] == 'anim']
+    for archive in archives:
         validate_animation_archive(archive)
-    files = sorted(p for p in source.rglob('*') if p.is_file())
     fingerprints = {path: digest(path) for path in files}
     changed = [path for path in files if not (target / path.relative_to(source)).is_file()
                or fingerprints[path] != digest(target / path.relative_to(source))]
-    obsolete = retired_assets(target, source)
+    obsolete = [] if selected else retired_assets(target, source)
     if changed or obsolete:
         active = running_game_processes()
         if active:
@@ -101,15 +134,21 @@ def install(game):
         installed = target / path.relative_to(source)
         if fingerprints[path] != digest(installed):
             raise SystemExit(f'Installed file verification failed: {installed}')
-    version = re.search(r'^version\s*=\s*"([^"]+)"', (target / 'modinfo.lua').read_text(encoding='utf8'), re.M)[1]
-    print(f'PASS: installed {version}; verified {len(files)} files; updated {len(changed)} files; removed {len(obsolete)} retired files; {target}')
+    if selected:
+        print(f'PASS: selected {len(files)} files; verified {len(files)} files; updated {len(changed)} files; removed 0 retired files; {target}')
+    else:
+        version = re.search(r'^version\s*=\s*"([^"]+)"', (target / 'modinfo.lua').read_text(encoding='utf8'), re.M)[1]
+        print(f'PASS: installed {version}; verified {len(files)} files; updated {len(changed)} files; removed {len(obsolete)} retired files; {target}')
     print('Restart the game and world to load updated Lua, assets and mod configuration options.')
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--game', type=Path, default=Path("E:/SteamLibrary/steamapps/common/Don't Starve Together"))
-    install(parser.parse_args().game)
+    parser.add_argument('--file', action='append', dest='files', metavar='MOD_RELATIVE_PATH',
+                        help='install only this file; repeat to select more files; disables retired-file removal')
+    args = parser.parse_args()
+    install(args.game, args.files)
 
 
 if __name__ == '__main__':

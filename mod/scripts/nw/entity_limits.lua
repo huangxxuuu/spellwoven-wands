@@ -1,5 +1,4 @@
--- Count only actual live entities. Future payloads never reserve capacity.
--- Persistent placements use stable user IDs so reconnecting cannot reset a cap.
+local C=require("nw/constants/performance")
 local Ledger=require("nw/budget")
 local M={projectiles=0,fields=0,permanent_fields=0}
 local ledgers={projectiles=Ledger.new(math.huge,math.huge),fields=Ledger.new(math.huge,math.huge),
@@ -8,7 +7,7 @@ local records,queues={},{}
 function M.category(p)
     if p.kind~="field" and p.kind~="note" then return "projectiles" end
     if p.id=="crystal_mine" or p.id=="sleep_crystal" or p.id=="payload_egg" then return "permanent_fields" end
-    return "fields" -- native stars save to disk but still have an extinguish timer
+    return "fields"
 end
 local function unlink(record)
     local queue=record.queue
@@ -18,10 +17,9 @@ local function unlink(record)
     record.queue,record.prev,record.next=nil,nil,nil
     if not queue.head then queues[record.owner]=nil end
 end
-local allowed={[0]=true,[25]=true,[50]=true,[100]=true,[200]=true,[300]=true,[400]=true,
-    [500]=true,[600]=true,[700]=true,[800]=true}
+local allowed={};for _,value in ipairs(C.live_options) do allowed[value]=true end
 function M.configure(kind,value)
-    if value==true then value=200 elseif value==false then value=0 end -- old boolean saves
+    if value==true then value=C.legacy_live_limit elseif value==false then value=0 end
     value=allowed[value] and value or 0
     M[kind]=value;ledgers[kind].per_player=value>0 and value or math.huge
 end
@@ -40,8 +38,8 @@ function M.acquire(owner,kind,loading)
             local oldest=queue and queue.head
             if not oldest then return end
             oldest.inst._nw_budget_evicted=true
-            oldest.inst:Remove() -- silent removal: never break/detonate/release the payload
-            oldest.release() -- idempotent, also supports native removal callbacks
+            oldest.inst:Remove()
+            oldest.release()
             require("nw/limit_feedback").limited(owner)
         end
     end
@@ -69,8 +67,6 @@ function M.bind(inst,release,order)
         if not order then world._nw_placement_order=world._nw_placement_order+1;order=world._nw_placement_order end
         record.inst,record.order=inst,order;inst._nw_permanent_order=order
         local queue=queues[record.owner] or {};queues[record.owner]=queue
-        -- New runtime creations append in O(1). Only out-of-order save loading
-        -- walks backward to restore the original creation order.
         local previous=queue.tail
         while previous and previous.order>order do previous=previous.prev end
         local following
@@ -83,7 +79,6 @@ function M.bind(inst,release,order)
 end
 function M.restore_field(inst,owner,kind,order)
     if inst._nw_live_budget then return end
-    -- Loading never deletes saved objects, even when their count exceeds a cap.
     M.bind(inst,M.acquire(owner,kind or "fields",true),order)
 end
 function M.stats(kind) return ledgers[kind or "projectiles"].used end

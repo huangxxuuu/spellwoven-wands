@@ -1,4 +1,3 @@
--- Called only by the opt-in isolated revision smoke world.
 local M={}
 function M.run(owner,x,z)
     local made={}
@@ -71,8 +70,6 @@ function M.run(owner,x,z)
     assert(lab:IsValid() and lab.components.workable.workleft==labwork and lab.components.burnable:IsBurning(),"NW_WEAPONS: structure protected but ignited")
     assert(wall.components.health.currenthealth==wallhealth and boat.components.health.currenthealth==boathealth and events==0 and docks==0,"NW_WEAPONS: wall/boat/dock protection")
     lab:Remove();wall:Remove();boat:Remove()
-    -- Straight lance motion must remain at its native motor speed, without
-    -- repeated physical bounces or forced horizontal position writes.
     local lance=shot("edge_yoth_lance",0,12)
     local lx,_,lz=lance.Transform:GetWorldPosition()
     local corrections=0
@@ -84,8 +81,6 @@ function M.run(owner,x,z)
     end
     local shield=shot("edge_shieldofterror")
     local sx,_,sz=shield.Transform:GetWorldPosition()
-    -- Native physics object methods are not writable; movement is checked after
-    -- several real server ticks, alongside unit coverage forbidding Teleport.
     TheWorld:DoTaskInTime(.4,function()
         flight.ground=ground
         assert(lance:IsValid(),"NW_WEAPONS: lance disappeared on empty ground")

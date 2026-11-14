@@ -1,0 +1,11 @@
+织法之杖 1.0.7
+
+1. 设置项增加“伤害倍率”，可调整法术卡的基础伤害数值。
+2. 目标选择系列法术卡的优化与修复。
+3. 增加速度上限到 95，“加速”法术卡的效果将更加明显。
+
+Spellwoven Wands 1.0.7
+
+1. Adds a damage multiplier setting to adjust spell cards' base damage.
+2. Improvements and fixes to the target selection spell cards.
+3. Raises the speed cap to 95, making the effects of Speed Up spell cards more noticeable.

@@ -291,7 +291,7 @@ local function start(id,speed,angle,size)
     if not G.TheWorld or not G.ThePlayer then print("[NW preview] Enter a world first.");return end
     id=id or "spark"
     if not choices[id] then print("[NW preview] Unsupported spell: "..G.tostring(id));return end
-    state.id=id;state.speed=G.math.max(.1,G.math.min(60,G.tonumber(speed) or 20))
+    state.id=id;state.speed=G.math.max(.1,G.math.min(95,G.tonumber(speed) or 20))
     state.angle=G.tonumber(angle) or 0
     state.size=G.math.max(1,G.math.min(5,G.tonumber(size) or 1))
     if state.poll then state.poll:Cancel() end

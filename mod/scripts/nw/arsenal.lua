@@ -1,3 +1,11 @@
+local Work=require("nw/constants/melee").work
+local Garden=require("nw/constants/prefabs").garden
+local P=require("nw/spell_parameter_text")
+local C=require("nw/constants/melee").engraving
+local Audio=require("nw/constants/audio")
+local Instruments,Timing=Audio.instruments,Audio.timing
+local Selector=require("nw/constants/modifiers").selector
+local Bounds=require("nw/constants/limits")
 local T=require("nw/locale").t
 local Samples=require("nw/instrument_samples")
 local M={cards={},notes={},weapons={},extra_notes={},legacy_notes={ocarina_gsharp=true,ocarina_a2=true}}
@@ -7,13 +15,12 @@ local function add(card)
 end
 local worknames={NET=T("捕捉"),CHOP=T("砍树"),DIG=T("铲掘"),MINE=T("采矿"),HAMMER=T("锤击"),SCYTHE=T("收割"),TILL=T("耕地"),TERRAFORM=T("起草皮")}
 M.worknames=worknames
-local planar={pickaxe_lunarplant=10,shovel_lunarplant=10,sword_lunarplant=30,voidcloth_scythe=18,
-    shadow_battleaxe=10,spear_wathgrithr_lightning_charged=20}
-local pillows={handpillow_petals=1,handpillow_kelp=1.4,handpillow_beefalowool=1.8,handpillow_steelwool=2.2}
+local planar=C.planar
+local pillows=C.pillows
 
 local function weapon_tier(source,damage)
-    if planar[source] or source=="nightstick" or source:find("^spear_wathgrithr_lightning") or source=="multitool_axe_pickaxe" or damage>=80 then return 3 end
-    if damage>=34 or source=="lucy" or source=="merm_tool" or source=="merm_tool_upgraded" then return 2 end
+    if planar[source] or source=="nightstick" or source:find("^spear_wathgrithr_lightning") or source=="multitool_axe_pickaxe" or damage>=C.rare_damage then return 3 end
+    if damage>=C.uncommon_damage or source=="lucy" or source=="merm_tool" or source=="merm_tool_upgraded" then return 2 end
     return 1
 end
 
@@ -22,14 +29,14 @@ for _,row in ipairs(require("nw/weapon_catalog")) do
     local thrust=pose=="thrust"
     local info={}
     for _,action in ipairs(actions) do info[#info+1]=worknames[action] end
-    local radius=thrust and 2.4 or 2
-    local card=add({id="edge_"..source,name=name,kind="melee",mana=math.max(4,math.ceil(damage*.32)),
-        delay=thrust and .04 or .10,tier=weapon_tier(source,damage),damage=damage*.8,native_base_damage=damage,source_weapon=source,pose=pose,
-        reach=thrust and 2.4 or 2,width=thrust and 1 or nil,arc=not thrust and 110 or nil,
-        duration=.30,windup=.13,work=actions,work_radius=radius,
+    local radius=thrust and C.thrust_reach or C.slash_reach
+    local card=add({id="edge_"..source,name=name,kind="melee",mana=math.max(C.min_mana,math.ceil(damage*C.mana_factor)),
+        delay=thrust and C.thrust_delay or C.slash_delay,tier=weapon_tier(source,damage),damage=damage*C.damage_factor,native_base_damage=damage,source_weapon=source,pose=pose,
+        reach=thrust and C.thrust_reach or C.slash_reach,width=thrust and C.thrust_width or nil,arc=not thrust and C.slash_arc or nil,
+        duration=C.duration,windup=C.windup,work=actions,work_radius=radius,
         effect=T("从释放点")..(thrust and T("向前突刺") or T("挥出扇形攻击"))..T("。")
-            ..(#info>0 and (table.concat(info,T("、"))..T("半径 ")..radius..T("，效率为原工具的 75%。")) or "")})
-    card.planar=planar[source] and .8*planar[source]
+            ..(#info>0 and (table.concat(info,T("、"))..T("半径 ")..radius..P.format("，效率为原工具的 {efficiency}%。",{efficiency=Work.credit*100})) or "")})
+    card.planar=planar[source] and C.damage_factor*planar[source]
     card.electric=source=="nightstick" and "always" or source:find("^spear_wathgrithr_lightning") and "wet" or nil
     card.pillow=pillows[source]
     if card.planar then card.effect=card.effect..T(" 位面伤害 ")..card.planar..T("。") end
@@ -45,62 +52,57 @@ local selections={
     {"hostile",T("敌对生物")},{"neutral",T("中立生物")},{"friendly",T("友好生物")},{"building",T("建筑")},
     {"nature",T("自然物")},{"players_other",T("其他玩家")},{"self",T("自身")}}
 for _,v in ipairs(selections) do
-    add({id="target_"..v[1],name=T("选取")..v[2],kind="modifier",mana=2,delay=0,tier=1,select_target=v[1],
-        effect=T("同一施法组可命中")..v[2]..T("。多张选择卡取并集，明确选择其他玩家后可命中他们。")})
+    add({id="target_"..v[1],name=T("选取")..v[2],kind="modifier",mana=Selector.mana,delay=Selector.delay,tier=Selector.tier,select_target=v[1],
+        effect=T("同一施法组的命中及辅助效果选取")..v[2]..T("。各效果仍需满足自身适用条件，明确豁免的效果除外。多张选择卡取并集，明确选择其他玩家后可命中他们。")})
 end
--- Absolute semitones above C3; kantele uses the supplied lyre samples.
 for _,inst in ipairs({"ocarina","kantele"}) do
-    local notes=inst=="ocarina" and {{"A",21},{"B",23},{"C",12},{"D",14},{"E",16},{"F",17},{"G#",20},{"A2",21}}
-        or {{"A",21},{"D",14},{"D#",12},{"E",16},{"G",19}}
+    local notes=Instruments[inst].notes
     for _,pair in ipairs(notes) do
         local name,pitch=unpack(pair)
         local prefix=inst=="ocarina" and T("陶笛") or T("弦琴")
         local id=({ocarinaA="note_a",ocarinaC="note_c",kanteleD="chord_d"})[inst..name]
         local new=not id
         id=id or (inst.."_"..name:lower():gsub("#","sharp"))
-        -- Keep legacy IDs; the former D# card is now the selected C4 base note.
         local label=({ocarina_a2="A",kantele_dsharp="C"})[id] or name
         M.notes[id]={instrument=inst,pitch=pitch,label=label}
         if new then
             local harp=inst=="kantele"
-            add({id=id,name=prefix.." "..label,kind=harp and "note" or "projectile",tier=harp and 2 or 1,mana=harp and 10 or 6,
-                delay=.03,damage=not harp and 0 or nil,speed=not harp and 14 or nil,lifetime=not harp and .45 or nil,
-                halfangle=not harp and 1 or nil,radius=harp and 3 or nil,
-                effect=harp and T("奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。")
-                    or T("奏响此音，短程声波命中后留下 2 秒标记，可用陶笛 C 引发回声。")})
+            add({id=id,name=prefix.." "..label,kind=harp and "note" or "projectile",tier=Instruments[inst].tier,mana=Instruments[inst].mana,
+                delay=Instruments.delay,damage=not harp and 0 or nil,speed=not harp and Instruments.ocarina.speed or nil,lifetime=not harp and Instruments.ocarina.lifetime or nil,
+                halfangle=not harp and Instruments.ocarina.halfangle or nil,radius=harp and Instruments.kantele.radius or nil,
+                effect=harp and P.format("奏响此音，周围玩家回复 {sanity} 理智；所有弦琴音共享每人 {interval} 秒间隔。",{sanity=Garden.chord.sanity,interval=Garden.chord.cooldown})
+                    or P.format("奏响此音，短程声波命中后留下 {duration} 秒标记，可用陶笛 C 引发回声。",{duration=Timing.mark_duration})})
         end
     end
 end
 local engraving=require("nw/engraved_spells")
 for _,row in ipairs(engraving.extra) do
-    local c=add({id="edge_"..row[1],name=row[2],source_weapon=row[3] or row[1],mana=18,delay=.12,tier=3})
+    local c=add({id="edge_"..row[1],name=row[2],source_weapon=row[3] or row[1],mana=C.extra.mana,delay=C.extra.delay,tier=C.extra.tier})
     engraving.configure(c,row[1])
     M.weapons[c.id]=c
 end
-M.notes.ocarina_g={instrument="ocarina",pitch=19,label="G"}
--- Definitions append these after existing cards so saved/network codes stay stable.
-for _,row in ipairs({{"kantele_f","F",17},{"kantele_b","B",23}}) do
+M.notes.ocarina_g={instrument="ocarina",pitch=Instruments.ocarina_g_pitch,label="G"}
+for _,row in ipairs(Instruments.extra_notes) do
     local id,label,pitch=unpack(row)
     M.notes[id]={instrument="kantele",pitch=pitch,label=label}
-    M.extra_notes[#M.extra_notes+1]={id=id,name=T("弦琴").." "..label,kind="note",tier=2,mana=10,delay=.03,radius=3,
-        effect=T("奏响此音，周围玩家回复 1 理智；所有弦琴音共享每人 3 秒间隔。")}
+    M.extra_notes[#M.extra_notes+1]={id=id,name=T("弦琴").." "..label,kind="note",tier=Instruments.kantele.tier,mana=Instruments.kantele.mana,delay=Instruments.delay,radius=Instruments.kantele.radius,
+        effect=P.format("奏响此音，周围玩家回复 {sanity} 理智；所有弦琴音共享每人 {interval} 秒间隔。",{sanity=Garden.chord.sanity,interval=Garden.chord.cooldown})}
 end
 function M.resolve_tone(id,shift,beats)
     local note=M.notes[id]
     if note then
-        local pitch=note.pitch+math.max(-12,math.min(12,shift or 0))
+        local pitch=note.pitch+math.max(-Bounds.max_pitch,math.min(Bounds.max_pitch,shift or 0))
         local bank=Samples[note.instrument]
-        local beat=beats==.5 and "half" or beats==2 and "two" or "one"
+        local beat=beats==Timing.half_beat and "half" or beats==Timing.double_beat and "two" or "one"
         local sample=bank.variants[beat][pitch]
         return {instrument=note.instrument,pitch=pitch,base_pitch=note.pitch,
-            octave=3+math.floor(pitch/12),semitone=pitch%12,supported=sample~=nil,
-            event=sample and sample.event,duration=sample and sample.duration,beats=beats==.5 and .5 or beats==2 and 2 or 1,
+            octave=Instruments.base_octave+math.floor(pitch/Instruments.semitones_per_octave),semitone=pitch%Instruments.semitones_per_octave,supported=sample~=nil,
+            event=sample and sample.event,duration=sample and sample.duration,beats=beats==Timing.half_beat and Timing.half_beat or beats==Timing.double_beat and Timing.double_beat or Timing.normal_beat,
             range=bank.range,min_pitch=bank.min,max_pitch=bank.max}
     end
 end
 function M.tone(id,shift,beats)
     local tone=M.resolve_tone(id,shift,beats)
-    -- Select an exact recorded note. Never substitute a boundary note or alter playback speed.
     if not tone then return nil,"unknown_note" end
     if not tone.supported then return nil,"unsupported_pitch" end
     return tone.event,{},tone.duration

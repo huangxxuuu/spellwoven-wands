@@ -1,5 +1,4 @@
--- One replicated bit per recyclable item. The silhouette is local and exists
--- only while marked; it uses the actual wand parts or the pile's top card.
+local C=require("nw/constants/visuals/recycle_mark")
 local M={}
 function M.attach(item,draw)
     item._nw_mark=net_bool(item.GUID,"nw_recycle.mark","nw_markdirty")
@@ -15,10 +14,10 @@ function M.attach(item,draw)
         glow:AddTag("FX");glow:AddTag("NOCLICK");glow.persists=false
         glow.entity:SetParent(item.entity)
         draw(glow,item)
-        glow.Transform:SetScale(1.09,1.09,1.09)
-        glow.AnimState:SetFinalOffset(-1)
-        glow.AnimState:SetLightOverride(1)
-        glow.AnimState:SetAddColour(.45,1,1,0)
+        glow.Transform:SetScale(C.scale,C.scale,C.scale)
+        glow.AnimState:SetFinalOffset(C.offset)
+        glow.AnimState:SetLightOverride(C.light)
+        glow.AnimState:SetAddColour(unpack(C.colour))
         glow.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
         item._nw_outline=glow
     end

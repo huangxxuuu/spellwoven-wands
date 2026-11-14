@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui").nw_wandstatus
 local T=require("nw/locale").t
 local Widget=require("widgets/widget")
 local Image=require("widgets/image")
@@ -12,24 +13,24 @@ end
 local function tip(widget,text)
     if widget._nw_tip==text then return end
     widget._nw_tip=text
-    widget:SetHoverText(text,{font_size=17,bg_atlas="images/global.xml",bg_texture="square.tex"})
-    widget.hovertext_bg:SetTint(.055,.05,.045,1)
+    widget:SetHoverText(text,{font_size=C.tooltip_font_size,bg_atlas="images/global.xml",bg_texture="square.tex"})
+    widget.hovertext_bg:SetTint(unpack(C.tooltip_colour))
 end
 local Status=Class(Widget,function(self)
     Widget._ctor(self,"nw_wandstatus")
     self.edit=self:AddChild(Image(ATLAS,"readonly.tex"))
-    self.edit:SetSize(26,26);self.edit:SetPosition(-66,Layout.status_y)
-    self.mana=rectangle(self,Layout.mana_width,18,.035,.025,.02)
+    self.edit:SetSize(unpack(C.edit_size));self.edit:SetPosition(-C.side_offset,Layout.status_y)
+    self.mana=rectangle(self,Layout.mana_width,unpack(C.mana_back))
     self.mana:SetClickable(true);self.mana:SetPosition(0,Layout.status_y)
-    rectangle(self.mana,Layout.mana_width-4,14,.56,.40,.20)
-    rectangle(self.mana,Layout.mana_width-7,11,.035,.06,.12)
-    self.fill=rectangle(self.mana,1,9,.10,.48,.85)
-    self.highlight=rectangle(self.fill,1,2,.30,.70,.95)
-    self.highlight:SetPosition(0,3)
+    rectangle(self.mana,Layout.mana_width-C.border_inset,unpack(C.mana_border))
+    rectangle(self.mana,Layout.mana_width-C.inner_inset,unpack(C.mana_inner))
+    self.fill=rectangle(self.mana,unpack(C.fill_style))
+    self.highlight=rectangle(self.fill,unpack(C.highlight_style))
+    self.highlight:SetPosition(unpack(C.highlight_position))
     self.cast=self:AddChild(Image(ATLAS,"ring_60.tex"))
-    self.cast:SetSize(28,28);self.cast:SetPosition(66,Layout.status_y)
+    self.cast:SetSize(unpack(C.cast_size));self.cast:SetPosition(C.side_offset,Layout.status_y)
     self.spark=self.cast:AddChild(Image(ATLAS,"cast.tex"))
-    self.spark:SetSize(18,18);self.spark:SetClickable(false)
+    self.spark:SetSize(unpack(C.spark_size));self.spark:SetClickable(false)
 end)
 function Status:Refresh(wand,near,hint)
     local mana,maximum=wand._nw_mana:value(),wand._nw_maxmana:value()
@@ -42,7 +43,7 @@ function Status:Refresh(wand,near,hint)
     self.wand=wand;self.target_mana=fraction;self.state=state
     if self.near~=near then
         self.near=near;self.edit:SetTexture(ATLAS,near and "edit.tex" or "readonly.tex")
-        self.edit:SetSize(26,26)
+        self.edit:SetSize(unpack(C.edit_size))
     end
     tip(self.edit,(hint or (near and T("可编辑：点击或拖动法术卡") or T("只读：靠近奥术台可编辑")))..T("\n按住右键拖动窗口"))
     tip(self.mana,string.format(T("法力 %d / %d\n按住右键拖动窗口"),mana,maximum))
@@ -52,38 +53,38 @@ end
 function Status:OnUpdate(dt)
     if not self.wand then return end
     local target=self.target_mana
-    self.shown_mana=self.shown_mana+(target-self.shown_mana)*math.min(1,dt*16)
-    if math.abs(self.shown_mana-target)<.001 then self.shown_mana=target end
-    local width=(Layout.mana_width-9)*self.shown_mana
+    self.shown_mana=self.shown_mana+(target-self.shown_mana)*math.min(1,dt*C.mana_smoothing)
+    if math.abs(self.shown_mana-target)<C.mana_snap_threshold then self.shown_mana=target end
+    local width=(Layout.mana_width-C.fill_inset)*self.shown_mana
     if self.fill_width~=width then
         self.fill_width=width
-        if width<.1 then self.fill:Hide() else
-            self.fill:Show();self.fill:SetSize(width,9)
-            self.fill:SetPosition(-(Layout.mana_width-9)/2+width/2,0)
-            self.highlight:SetSize(width,2)
+        if width<C.minimum_fill_width then self.fill:Hide() else
+            self.fill:Show();self.fill:SetSize(width,C.fill_height)
+            self.fill:SetPosition(-(Layout.mana_width-C.fill_inset)/2+width/2,0)
+            self.highlight:SetSize(width,C.highlight_height)
         end
     end
     local remaining=math.max(0,self.cooling-(GetTime()-self.cool_at)*100)
     local _,progress=Layout.state(0,1,remaining,self.total,false)
     local step=self.state=="cooling" and math.min(59,math.floor(progress*60)) or 60
     if self.step~=step then
-        self.step=step;self.cast:SetTexture(ATLAS,string.format("ring_%02d.tex",step));self.cast:SetSize(28,28)
+        self.step=step;self.cast:SetTexture(ATLAS,string.format("ring_%02d.tex",step));self.cast:SetSize(unpack(C.cast_size))
     end
     if self.draw_state~=self.state then
         self.draw_state=self.state
-        local tint=self.state=="blocked" and .4 or 1
+        local tint=self.state=="blocked" and C.blocked_tint or 1
         self.cast:SetTint(tint,tint,tint,1)
-        local glow=self.state=="ready" and 1 or .45
+        local glow=self.state=="ready" and 1 or C.inactive_glow
         self.spark:SetTint(glow,glow,glow,1)
     end
     for _,widget in ipairs({self.edit,self.mana,self.cast}) do
         if widget.focus and widget.hovertext_root and widget.hovertext_root.shown then
             local root=widget.hovertext_root
             local w,h=widget.hovertext:GetRegionSize()
-            w,h=w*1.1+24,h*1.1+16;widget.hovertext_bg:SetSize(w,h)
+            w,h=w*C.tooltip_scale+C.tooltip_padding_x,h*C.tooltip_scale+C.tooltip_padding_y;widget.hovertext_bg:SetSize(w,h)
             local scale=root:GetScale();local p=widget:GetWorldPosition()
             local sw,sh=TheSim:GetScreenSize()
-            local x,y=Hint.position(p.x,p.y,w*scale.x,h*scale.y,sw,sh,16*widget:GetScale().y,scale.y)
+            local x,y=Hint.position(p.x,p.y,w*scale.x,h*scale.y,sw,sh,C.tooltip_gap*widget:GetScale().y,scale.y)
             root:SetPosition(x,y,0)
         end
     end

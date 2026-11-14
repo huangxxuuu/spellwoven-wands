@@ -1,0 +1,21 @@
+{
+  "camera_pitch_degrees": 35,
+  "camera_heading_degrees": -90,
+  "pixels_per_world_unit": 120,
+  "projection": "nw/electric_visual.project mathematical projection",
+  "material": "compiled animation mip0, Pillow affine resampling",
+  "layer_order": "captured actual FinalOffset, then entity id",
+  "trace_frames": 201,
+  "scenarios": {
+    "straight": 61,
+    "corner": 61,
+    "terminal": 79
+  },
+  "engine_verified": false,
+  "limitations": [
+    "no GPU depth",
+    "no mip/LOD selection",
+    "no lighting",
+    "cannot establish short-span mip blur fix"
+  ]
+}

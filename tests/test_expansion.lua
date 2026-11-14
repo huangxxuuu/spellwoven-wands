@@ -42,7 +42,7 @@ local seal=cast({"delay_seal","wild_double","arrow","slime"})
 local stored=seal.blocks[seal.blocks[1].projectiles[1].payload].projectiles
 assert(#stored==2 and stored[1].spread==9 and stored[2].spread==11)
 local light=cast({"light_shot","damage_up","flint_lance"}).blocks[1].projectiles[1]
-assert(light.damage==22.5 and light.speed==30 and light.spread==0 and light.flags.pierce.hits==2)
+assert(light.damage==22.5 and math.abs(light.speed-32.4)<1e-6 and light.spread==0 and light.flags.pierce.hits==2)
 local stars=cast({"damage_up","star_vortex"}).blocks[1].projectiles[1]
 assert(stars.count==4 and stars.damage==8.5 and stars.lifetime==1)
 local echo=cast({"repeat_4","payload_egg","end_beam"})

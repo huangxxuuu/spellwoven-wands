@@ -1,5 +1,6 @@
 """Exercise the real client tool lifecycle with a minimal Lua engine adapter."""
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from lupa.lua51 import LuaRuntime
@@ -16,12 +17,16 @@ class PreviewTests(unittest.TestCase):
             self.assertIn(ROOT / 'assets_src/projectiles/elemental_v1' / name, watched)
         self.assertIn(ROOT / 'tools/build_elemental_flight.py', watched)
         self.assertIn(ROOT / 'mod/scripts/nw/elemental_flight.lua', watched)
-        for name in ('trail_budget.lua', 'beam_path.lua', 'beam_visual.lua', 'tool_flight.lua',
+        for name in ('spell_limits.lua', 'projectile_glow.lua', 'beam_front.lua', 'projectile_size.lua',
+                     'trail_budget.lua', 'beam_path.lua', 'beam_visual.lua', 'tool_flight.lua',
                      'field_stages.lua', 'field_member_visual.lua', 'electric_visual.lua'):
             self.assertIn(ROOT / 'mod/scripts/nw' / name, watched)
         for name in ('build_tool_flight.py', 'build_field_stages.py', 'build_electric_arc.py'):
             self.assertIn(ROOT / 'tools' / name, watched)
         self.assertIn(ROOT / 'tools/preview_mod/modmain.lua', watched)
+        self.assertIn(ROOT / 'mod/scripts/nw/util.lua', watched)
+        for path in (ROOT / 'mod/scripts/nw/constants').rglob('*.lua'):
+            self.assertIn(path, watched)
 
     def test_refuse_unowned_install(self):
         import tempfile
@@ -33,8 +38,20 @@ class PreviewTests(unittest.TestCase):
                 live_preview.publish(game, 'r1', 'unused')
 
     def test_client_lifecycle(self):
-        stage = live_preview.STAGE
-        self.assertTrue((stage / 'live/current.txt').exists(), 'Build preview resources first')
+        # Exercise freshly bundled Lua without invoking any artwork builders or
+        # depending on a prior stage/main-mod installation. Asset bytes are not
+        # consumed by the minimal engine adapter below.
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        stage = Path(temporary.name)
+        revision = stage / 'live/r1'
+        (revision / 'anim').mkdir(parents=True)
+        banks = {key: 'nw_preview_' + key + '_r1' for key in
+                 ('spark', 'world', 'elemental', 'tools', 'fields', 'electric')}
+        (stage / 'live/current.txt').write_text('r1 ' + ' '.join(banks.values()) + '\n', encoding='utf8')
+        (revision / 'visual.lua').write_text(live_preview.visual_source(banks), encoding='utf8')
+        for bank in banks.values():
+            (revision / 'anim' / (bank + '.zip')).touch()
         vm = LuaRuntime(unpack_returned_tuples=True)
         vm.globals().MODROOT = stage.as_posix() + '/'
         vm.execute('''
@@ -76,7 +93,7 @@ function CreateEntity()
  e.Transform.SetFourFaced=noop
  e.Transform.SetScale=function(_,x,y,z) e.scale=x;assert(x==y and y==z) end
  for _,k in ipairs({'SetBank','SetBuild','SetOrientation','SetLightOverride','PlayAnimation','OverrideSymbol','SetTime','SetDeltaTimeMultiplier',
-  'SetFinalOffset','SetBloomEffectHandle','SetMultColour','PushAnimation'}) do e.AnimState[k]=noop end
+  'SetFinalOffset','SetSortWorldOffset','SetBloomEffectHandle','SetMultColour','PushAnimation'}) do e.AnimState[k]=noop end
  e.AnimState.SetBank=function(_,bank) e.bank=bank end
  e.AnimState.PlayAnimation=function(_,name,loop) e.anim=name;e.loop=loop end
  e.AnimState.SetScale=function(_,x,y) e.scale_x=x;e.scale_y=y end
@@ -105,6 +122,7 @@ function CreateEntity()
  entities[#entities+1]=e;return e
 end
 ThePlayer=CreateEntity()
+ThePlayer.HasTag=function() return false end
 Asset=function(kind,path)
  if not path:match('^anim/') then local f=assert(io.open(path,'rb'));f:close() end
  return {type=kind,file=path}
@@ -149,6 +167,14 @@ for i=1,25 do advance() end -- includes a full launch cycle and live tail creati
 assert(#entities>4,'spark trail did not create entities')
 nw_preview_refresh()
 assert(unloads==1,'refresh must unload prior resource registration')
+-- Launch through the public entry point; inspect movement before cycle reset.
+nw_preview('spark',1000)
+local fast
+for _,e in ipairs(entities) do if e.valid and e._visual then fast=e end end
+assert(fast,'maximum speed launch failed')
+local fastx=fast.x
+advance()
+assert(math.abs(fast.x-fastx-95*FRAMES)<.000001,'preview entry point must clamp speed to 95')
 nw_preview('arrow',10,90,2)
 for i=1,10 do advance() end
 -- Both elemental paths use their own bank/loop and produce detached tails.
@@ -186,13 +212,14 @@ local lastid,last=0
 for id,part in pairs(beam._nw_beam_visual.parts) do
  if id>lastid then lastid,last=id,part end
 end
-assert(last and last.fx.bank=='wagdrone_laserwire_fx' and last.fx.anim=='beam_straight')
+local lastfx=last and last.fx._nw_beam_slices[1]
+assert(lastfx and lastfx.bank=='nw_end_beam' and lastfx.anim:match('^beam_'))
 assert(math.abs(last.radius-.3)<.00001,'beam width ignored preview size')
-local length,width,x,z=last.fx.scale_x,last.fx.scale_y,last.fx.x,last.fx.z
+local length,width,x,z=last.length,lastfx.scale_y,last.x2,last.z2
 for i=1,38 do advance() end
-assert(beam.valid and last.fx.valid,'beam restarted before its final span faded')
-assert(last.fx.scale_x==length and last.fx.x==x and last.fx.z==z,'stored span moved or shortened')
-assert(last.fx.scale_y>0 and last.fx.scale_y<width,'final span did not narrow during fade')
+assert(beam.valid and lastfx.valid,'beam restarted before its final span faded')
+assert(last.length==length and last.x2==x and last.z2==z,'stored span moved or shortened')
+assert(lastfx.scale_y>0 and lastfx.scale_y<width,'final span did not narrow during fade')
 for i=1,10 do advance() end
 assert(not beam.valid,'beam did not restart after all spans expired')
 local restarted=false
@@ -273,6 +300,9 @@ for _,e in ipairs(entities) do assert(e==ThePlayer or not e.valid,'retry leaked 
 
     def test_panel_controls(self):
         vm = LuaRuntime(unpack_returned_tuples=True)
+        vm.globals().package.path = (ROOT / 'mod/scripts/?.lua').as_posix() + ';' + vm.globals().package.path
+        vm.globals().max_speed = vm.execute(
+            (ROOT / 'mod/scripts/nw/spell_limits.lua').read_text(encoding='utf8')).max_speed
         vm.execute('''
 function Class(base,ctor)
  local c={_ctor=ctor};c.__index=c
@@ -315,7 +345,7 @@ click('开始 / 重播');assert(calls[1][1]=='arrow' and calls[1][2]==20)
 panel.spellbuttons[1].click();assert(calls[2][1]=='spark','live selection did not apply')
 click('+');assert(calls[3][2]==25,'speed change did not apply')
 for i=1,20 do click('+') end
-assert(panel.speed==60,'speed exceeds supported limit')
+assert(panel.speed==max_speed and calls[#calls][2]==max_speed,'speed differs from shared limit')
 click('刷新素材');assert(refreshed)
 panel.toggle.click();assert(not panel.body.shown and running,'collapse paused preview')
 panel.toggle.click();assert(panel.body.shown)

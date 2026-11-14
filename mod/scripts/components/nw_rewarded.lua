@@ -1,6 +1,3 @@
--- Added after resolving a boss body (including an unpaid bat clone).
--- Persist the receipt across a save taken
--- between the victory event and cleanup of a corpse or arena.
 local function on_health_change(inst)
     if inst.components.nw_rewarded.reset_on_revive and not inst.components.health:IsDead() then
         inst:RemoveComponent("nw_rewarded")

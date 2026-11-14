@@ -1,4 +1,4 @@
--- Explicit variants sharing native graphs; never infer support from a boss tag.
+local C=require("nw/constants/fog_boss")
 local M = {}
 function M.add_specs(specs)
     local function single(graph)
@@ -8,12 +8,9 @@ function M.add_specs(specs)
     specs.klaus=single("klaus")
     specs.warg=single("warg")
     specs.mutatedwarg=single("warg")
-    -- SGLeif.lua is capitalized, but ModManager dispatches by graph.name.
     specs.leif=single("leif")
     specs.leif_sparse=single("leif")
     specs.spiderqueen=single("spiderqueen")
-    -- SGbeequeen's native 14-frame sting is single-target, not an AOE.
-    -- Missing/out-of-range targets use the common panic/body-clearing path.
     specs.beequeen=single("beequeen")
     specs.spat=single("spat")
     local function spat_weapon(inst)
@@ -28,9 +25,6 @@ function M.add_specs(specs)
         local weapon=spat_weapon(inst)
         local combat=inst.components.combat
         if not (weapon and combat and target and target:IsValid()) then return false end
-        -- Combat:GetAttackRange/CalcAttackRangeSq, using the weapon the native
-        -- melee state will actually wield. Never equip during selection and
-        -- never borrow the phlegm launcher's much larger current range.
         local extra=weapon.components.weapon.attackrange
         local range=extra~=nil and math.max(0,combat.attackrange+extra) or combat.attackrange
         range=range+target:GetPhysicsRadius(0)
@@ -41,8 +35,6 @@ function M.add_specs(specs)
         local c=inst.components
         if not (weapon and c.inventory and c.combat) or c.combat:InCooldown() then return false end
         if not weapon.components.equippable:IsEquipped() then
-            -- Native spatbrain equips this owned weapon before melee. Its
-            -- ResetCooldown shortcut is deliberately not used by fog.
             c.inventory:Equip(weapon)
         end
         return weapon.components.equippable:IsEquipped()
@@ -65,7 +57,6 @@ function M.add_specs(specs)
         links={dash_pre={dash_loop=true},dash_loop={dash_loop=true,dash_pst=true}}}
 end
 
--- Every hook executes the original once, preserving its results and side effects.
 function M.install_graph(name, graph, ctx)
     if name~="daywalker2" and name~="alterguardian_phase4_lunarrift" and name~="bearger" then return true end
     if not(debug and debug.getupvalue and debug.setupvalue and debug.getinfo) then return false,"debug API unavailable" end
@@ -93,8 +84,6 @@ function M.install_graph(name, graph, ctx)
         return true
     end
     if name=="bearger" then
-        -- The combo closure has the same native 180-degree half-disc as attack,
-        -- but uses its own half-unit offset and follows all three native swings.
         return patch({"attack_combo1","attack_combo2","attack_combo1a"},"DoComboArcAttack",function(original)
             return function(inst,...)
                 local token=active(inst)
@@ -102,11 +91,11 @@ function M.install_graph(name, graph, ctx)
                 local result=original(inst,...)
                 if token and token.move.sector then
                     local a=rot*math.pi/180
-                    require("nw/dark_fog").disperse_sector(token.world,x+.5*math.cos(a),z-.5*math.sin(a),TUNING.BEARGER_MELEE_RANGE,rot,180)
+                    require("nw/dark_fog").disperse_sector(token.world,x+C.bearger.offset*math.cos(a),z-C.bearger.offset*math.sin(a),TUNING.BEARGER_MELEE_RANGE,rot,C.bearger.arc)
                 end
                 return result
             end
-        end,6)
+        end,C.bearger.patch_sites)
     elseif name=="daywalker2" then
         return patch({"attack_swing"},"DoArcAttack",function(original)
             return function(inst,dist,radius,arc,...)
@@ -125,20 +114,20 @@ function M.install_graph(name, graph, ctx)
         return function(inst,x,z,...)
             local token=active(inst,"slam")
             local result=original(inst,x,z,...)
-            if token then notify(token,x,z,5) end
+            if token then notify(token,x,z,C.daywalker_radius) end
             return result
         end
-    end,4)
+    end,C.daywalker_patch_sites)
     if not ok then return ok,reason end
     return patch({"dash_loop","dash_pst"},"DoDashAOE",function(original)
         return function(inst,...)
             local token=active(inst)
             local x,_,z=inst.Transform:GetWorldPosition()
             local result=original(inst,...)
-            if token and token.move.dash then notify(token,x,z,3.6) end
+            if token and token.move.dash then notify(token,x,z,C.dash_radius) end
             return result
         end
-    end,2)
+    end,C.dash_patch_sites)
 end
 
 function M.install_fissure(inst,ctx)
@@ -146,8 +135,6 @@ function M.install_fissure(inst,ctx)
     local uv=ctx.upvalue
     local anim=uv(inst.OnLoad,"OnAnimOver")
     local update,index=uv(anim,"OnUpdate")
-    -- Shared OnUpdate upvalue is used both by immediate activation and the
-    -- native periodic task. Mark once, before any fissure can finish its preanim.
     M.fissure_hooks=M.fissure_hooks or setmetatable({}, {__mode="k"})
     if not M.fissure_hooks[anim] and not ctx.native_source(update,"prefabs/alterguardian_lunar_fissures.lua") then return end
     if not M.fissure_hooks[anim] then
@@ -158,7 +145,7 @@ function M.install_fissure(inst,ctx)
             if awake and token and token.world==TheWorld and TheWorld.ismastersim
                 and (not ctx.ready or ctx.ready(token)) then
                 local x,_,z=fissure.Transform:GetWorldPosition()
-                require("nw/dark_fog").disperse_box(token.world,x,z,2,2)
+                require("nw/dark_fog").disperse_box(token.world,x,z,C.body_box,C.body_box)
             end
             return result
         end)

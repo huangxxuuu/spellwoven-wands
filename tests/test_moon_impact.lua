@@ -33,8 +33,9 @@ SpawnPrefab=function(name)
     assert(name=="nw_moon_impact_fx","moon must not create generic audible blast clusters")
     return factories[name]()
 end
-package.loaded["nw/targeting"]={object_tags={},breakable=function() return false end,
-    allowed=function() return true end,selected_object=function() return false end}
+package.loaded["nw/targeting"]={object_tags={},selectable_prop=function() return false end,
+    selected=function() return true end,accepts=function() return true end,
+    selected_object=function() return false end}
 local hits,modifiers={},0
 package.loaded["nw/expanded_hits"]={impact=function(s,e,x,z)
     hits[#hits+1]={target=e,damage=s.p.damage,x=x,z=z}

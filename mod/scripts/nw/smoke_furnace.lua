@@ -1,4 +1,3 @@
--- Exercise the original player channel state and real world/container entities.
 local M={}
 function M.run(x,z)
     local origin=x

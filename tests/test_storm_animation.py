@@ -1,7 +1,7 @@
 """Check the rolling cloud's visual contract against production source/art."""
 from pathlib import Path
 import sys
-import re
+from lupa.lua51 import LuaRuntime
 import unittest
 import zipfile
 
@@ -69,8 +69,9 @@ class StormAnimationTests(unittest.TestCase):
                              "changing the discharge route must not reset the cloud pose")
 
     def test_all_live_clips_roll_and_cover_the_attack_origin(self):
-        stages = (ROOT / "mod/scripts/nw/field_stages.lua").read_text(encoding="utf-8")
-        runtime_origin = int(re.search(r"M.storm_strike_pixels=(\d+)", stages).group(1))
+        lua = LuaRuntime(unpack_returned_tuples=True)
+        lua.globals().package.path = (ROOT / "mod/scripts/?.lua").as_posix() + ";" + lua.globals().package.path
+        runtime_origin = lua.eval('require("nw/field_stages").storm_strike_pixels')
         self.assertEqual(runtime_origin, STRIKE_PIXELS, "cloud art and attack endpoint heights drifted")
         for name in live_names():
             clip = self.clips[name]

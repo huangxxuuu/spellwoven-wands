@@ -1,11 +1,8 @@
--- Optional shard-wide collection of unattended, permanent moving spells.
--- A count threshold starts a collection pass; it is not an entity cap.
+local C=require("nw/constants/performance").permanent_motion
 local Limits=require("nw/spell_limits")
-local M={timeout=16*60,max_elapsed=20*60,threshold=20}
+local M={timeout=C.timeout_minutes*C.seconds_per_minute,max_elapsed=C.max_elapsed_minutes*C.seconds_per_minute,threshold=C.threshold}
 
 local function advance(state,now)
-    -- Keep the counter itself bounded, including when collection is below
-    -- its count threshold. The simulation clock is only used for deltas.
     if state.absent<M.max_elapsed then
         state.absent=math.min(M.max_elapsed,state.absent+math.max(0,now-state.updated_at))
     end
@@ -20,8 +17,6 @@ end
 
 local function observe(inst,state,now)
     local probe=state.probe
-    -- New entities report awake until the engine delivers their initial state.
-    -- Preserve saved absence while that initial result is pending.
     if probe:IsValid() and not probe.sleepstatepending then
         activity(state,not probe:IsAsleep(),now)
     else
@@ -52,8 +47,6 @@ local function tick(world)
                 and state.absent>=M.timeout then expired[#expired+1]=inst end
         end
     end
-    -- Evaluate the threshold once for this pass. Never remove recent entities
-    -- to reach twenty, and never invoke break/impact/payload callbacks.
     for _,inst in ipairs(expired) do if inst:IsValid() then inst:Remove() end end
 end
 
@@ -71,9 +64,6 @@ function M.watch(inst)
     if absent~=absent then absent=0 end
     local now=GetTime()
     local state={absent=math.max(0,math.min(M.max_elapsed,absent)),updated_at=now}
-    -- The spell itself cannot sleep: it must continue flying outside active
-    -- regions. An unparented, non-networked transform asks the engine what a
-    -- normal sleepable entity at the same position would do. No fixed radius.
     local probe=CreateEntity()
     probe.entity:AddTransform()
     probe.entity:SetCanSleep(true)
@@ -93,7 +83,7 @@ function M.watch(inst)
         if pool.count==0 and pool.task then pool.task:Cancel();pool.task=nil end
     end
     inst:ListenForEvent("onremove",state.release)
-    if not pool.task then pool.task=TheWorld:DoPeriodicTask(1,tick) end
+    if not pool.task then pool.task=TheWorld:DoPeriodicTask(C.interval,tick) end
 end
 
 function M.elapsed(inst)
@@ -101,8 +91,6 @@ function M.elapsed(inst)
     if not Limits.permanent_motion_cleanup or not state then return end
     local now=GetTime()
     observe(inst,state,now)
-    -- Store duration, never an absolute clock. Time with the server closed
-    -- does not count; loading does not erase the time already accumulated.
     return state.absent
 end
 return M

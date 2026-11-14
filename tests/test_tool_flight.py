@@ -110,6 +110,20 @@ assert(TheWorld._nw_tool_flights,'tail must survive a normal head impact')
 for i=1,30 do step() end
 assert(not TheWorld._nw_tool_flights and next(TheWorld.events.onremove)==nil,'expired trail retained pool or world callback')
 assert(Flight.trail_timing(2.5)>Flight.trail_timing(1) and math.abs(Flight.trail_spacing(2.5)-.35)<.00001)
+-- Newly replicated tools may not yet report velocity; legal 95-speed motion
+-- still produces a connected orange trail with the normal spatial spacing.
+local fast=shot();Flight.attach(fast,'orange_bolt')
+local distance=require('nw/spell_limits').max_speed*FRAMES
+for i=1,6 do
+ step(fast,i*distance,0,0)
+ assert(fast._nw_tool_flight.path,'legal maximum-speed motion broke the tool trail')
+ local newest={}
+ for _,part in pairs(fast._nw_tool_flight.parts) do newest[#newest+1]=part.fx.x end
+ table.sort(newest)
+ assert(#newest>2)
+ for j=2,#newest do assert(math.abs(newest[j]-newest[j-1]-.14)<.00001) end
+end
+Flight.detach(fast,true)
 local giant=shot(2.5);Flight.attach(giant,'orange_bolt');step(giant,1,0,0)
 local pool=TheWorld._nw_tool_flights
 assert(pool.count>0)
@@ -159,6 +173,7 @@ end
         self.assertLess(max(lengths) - min(lengths), 3)
         self.assertTrue(all(length > .28 * 150 for length in lengths))
         vm = LuaRuntime()
+        vm.globals().package.path = (ROOT / 'mod/scripts/?.lua').as_posix() + ';' + vm.globals().package.path
         vm.execute('''
 Asset=function(kind,path) return path end
 Prefab=function(name,fn,assets) return {name=name,fn=fn,assets=assets} end

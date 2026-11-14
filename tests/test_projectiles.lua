@@ -10,7 +10,7 @@ local queries=0;local candidates={};local passable=true
 local ocean=false
 TheWorld={Map={IsPassableAtPoint=function(_,x,y,z,water) return passable and (not ocean or water and x>=0) end}}
 TheSim={FindEntities=function(_,x,y,z,r,must,exclude,include)
-    assert(include[1]=="_combat" and include[2]=="wall")
+    assert(include and include[1]=="_combat" and include[2]=="wall" or must and must[1]=="pickable")
     queries=queries+1;return candidates
 end}
 local owner={IsValid=function() return true end,components={combat={CanTarget=function() return true end}}}
@@ -31,6 +31,7 @@ local function shot(nx,nz,remaining,travelled)
     p.Transform.SetRotation=function() end
     p.Physics={SetMotorVel=function() end}
     function p:Remove() self.removed=true end
+    function p:IsValid() return not self.removed end
     return p
 end
 -- Fast sweep hits the first target even when both endpoints are outside it.
@@ -51,6 +52,20 @@ assert(p.removed and near.hits==20 and far.hits==0)
 local wall=target(3,1,0,true);candidates={near,wall};P.step(shot(6,0),.1,{})
 assert(near.hits==20 and fades==0);wall.alive=false;near.valid=false
 p=shot(6,0);P.step(p,.1,{});assert(not p.removed)
+-- Explicit selection controls collision/payload events, not just damage.
+local barrier=target(301,1,0,true)
+local victim=target(302,3,0)
+local events={};candidates={barrier,victim};p=shot(6,0)
+p._shot.p={flags={targets={neutral=true}},event="hit"}
+p._shot.fire=function(_,_,_,_,e) events[#events+1]=e;return true end
+P.step(p,.1,{})
+assert(p.removed and victim.hits==20 and barrier.hits==0 and #events==1 and events[1]==victim)
+local first=target(303,1,0);local laterwall=target(304,3,0,true)
+events={};candidates={first,laterwall};p=shot(6,0)
+p._shot.p={flags={},event="hit"};p._shot.hit={};p._shot.hits_left=math.huge
+p._shot.fire=function(_,_,_,_,e) events[#events+1]=e;p:Remove();return true end
+P.step(p,.1,{})
+assert(#events==1 and events[1]==first,"a removed carrier cannot trigger later cached contacts")
 -- A shared spatial cache reduces queries without caching eligibility or hits.
 near.valid=true;candidates={near};local cache={};queries=0
 P.step(shot(3,0),.1,cache);near.alive=false;P.step(shot(3,0),.1,cache)
@@ -72,6 +87,33 @@ near.alive=true;near.x=8;candidates={near}
 p=shot(10,0,.05);P.step(p,.1,{});assert(p.removed and near.hits==40)
 Limits.range=30
 p=shot(10,0,1,25);P.step(p,.1,{});assert(p.removed and near.hits==40)
+-- All projectile kinds use the accepted displacement for guard sweeps,
+-- including dark trail placement when the ring consumes a clipped segment.
+local Guard=require("nw/guard_ring")
+local intercept=Guard.intercept
+local guard_queries=0
+Guard.intercept=function(_,x,z,nx,nz)
+    guard_queries=guard_queries+1
+    assert(x==0 and z==0 and nx==5 and nz==0,"guard scan must share lifetime/range clipping")
+    return false
+end
+candidates={}
+P.step(shot(10,0,.05),.1,{})
+P.step(shot(10,0,1,25),.1,{})
+assert(guard_queries==2)
+local Fog=require("nw/dark_fog")
+local trail=Fog.trail
+local dark_endpoint
+Fog.trail=function(_,_,_,_,nx,nz) dark_endpoint={nx,nz} end
+Guard.intercept=function(inst,x,z,nx,nz)
+    assert(nx==5 and nz==0)
+    inst:Remove();return true,.4
+end
+p=shot(10,0,.05);p._shot.p={flags={dark=true}}
+P.step(p,.1,{})
+assert(p.removed and dark_endpoint[1]==2 and dark_endpoint[2]==0,
+    "intercepted dark trail stops at the contact on the clipped sweep")
+Guard.intercept=intercept;Fog.trail=trail
 -- Travel beyond the old 20-unit cap, but never hit beyond the new 30-unit cap.
 candidates={};p=shot(25,0);P.step(p,.1,{});assert(not p.removed and p._shot.travelled==25)
 near.x=25;candidates={near};p=shot(28,0);P.step(p,.1,{});assert(p.removed and near.hits==60)
@@ -186,9 +228,10 @@ end
 owner.GetDistanceSqToPoint=function() return 0 end
 local pa,pb,pc=plant(101,1,.9),plant(102,3,-.9),plant(103,2,1.5)
 candidates={pa,pb,pc};p=shot(4,0,2)
-p._shot.p={id="edge_voidcloth_scythe",engraving="voidcloth_scythe",flags={},no_impact_damage=true,hit_radius=.8}
+p._shot.p={id="edge_voidcloth_scythe",engraving="voidcloth_scythe",flags={targets={hostile=true}},no_impact_damage=true,hit_radius=.8}
 p._shot.hits_left=math.huge;p._shot.hit={}
 F.reset(p._shot,1,0);p._shot.speed=10
+assert(F.seek(p._shot,{radius=8,turn_rate=240}),"exempt tool tracks its own valid targets despite a hostile selector")
 P.step(p,.4,{})
 assert(pa.picked==1 and pb.picked==1 and pc.picked==0 and not p.removed)
 p._shot.x=0;p._shot.z=0;P.step(p,.8,{})
@@ -198,7 +241,7 @@ P.step(p,1.2,{})
 assert(pc.picked==1 and pa.picked==1 and pb.picked==1,"giant scythe must harvest the enlarged strip once")
 P.candidates({},0,0,1,0,function(cx,_,cz,r)
     assert(math.sqrt(cx*cx+cz*cz)+3.8<=r+1e-8);return {}
-end,{nature=true},.8)
+end,{targets={nature=true}},.8)
 local tick,scheduled,cancelled=nil,0,0
 GetTime=function() return .1 end;FRAMES=1/30
 TheWorld.DoPeriodicTask=function(_,_,fn) scheduled=scheduled+1;tick=fn;return {Cancel=function() cancelled=cancelled+1 end} end

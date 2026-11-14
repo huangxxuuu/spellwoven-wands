@@ -1,3 +1,4 @@
+local C=require("nw/constants/journal")
 local M={}
 function M.observe(player,item,seen)
     local journal=player and player.components and player.components.nw_spelljournal
@@ -47,11 +48,11 @@ function M.report(id,player)
     else
         local s=journal:GetSummary()
         result=string.format("Spell journal: collected=%d/%d, used=%d, casts=%d, damage=%.2f, hits=%d, max_hit=%.2f\nBest damage: 1s=%.2f, 5s=%.2f, 10s=%.2f",
-            s.collected,s.total,s.used,s.casts,s.damage,s.hits,s.max_hit,s.best_damage[1] or 0,s.best_damage[5] or 0,s.best_damage[10] or 0)
+            s.collected,s.total,s.used,s.casts,s.damage,s.hits,s.max_hit,s.best_damage[C.windows[1]] or 0,s.best_damage[C.windows[2]] or 0,s.best_damage[C.windows[3]] or 0)
         for _,key in ipairs({"collected","used","casts","damage","hits"}) do
             result=result.."\n"..key.." updated: "..when(s.times[key])
         end
-        for _,seconds in ipairs({0,1,5,10}) do
+        for _,seconds in ipairs(C.record_windows) do
             local best=journal:GetDamageRecord(seconds~=0 and seconds or nil)
             result=result.."\n"..(seconds==0 and "Max hit" or seconds.."s best")..": "..when(best.at)
                 .."; held wand: "..(best.wand and (best.wand.name or best.wand.wand_uid) or (best.at and "none" or "unknown"))
@@ -63,7 +64,6 @@ end
 function M.renamed(wand,doer)
     local data=wand.components.nw_wand and wand.components.nw_wand.data
     if not data then return end
-    -- Refresh the actor's encounter, and update snapshots held by online peers.
     local journal=doer and doer.components.nw_spelljournal
     if journal then
         journal:ObserveWand(wand)

@@ -1,10 +1,11 @@
-local function scale(inst) inst.AnimState:SetScale(1.48,1.48) end
-local function engraver_scale(inst) inst.AnimState:SetScale(1.1,1.1) end
+local C=require("nw/constants/prefabs").stations
+local function scale(inst) inst.AnimState:SetScale(C.workbench_scale,C.workbench_scale) end
+local function engraver_scale(inst) inst.AnimState:SetScale(C.engraver_scale,C.engraver_scale) end
 local function make_station(name,bank,pose)
     local function fn()
         local inst=CreateEntity()
         inst.entity:AddTransform();inst.entity:AddAnimState();inst.entity:AddNetwork()
-        MakeObstaclePhysics(inst,.735)
+        MakeObstaclePhysics(inst,C.collision_radius)
         inst.AnimState:SetBank(bank);inst.AnimState:SetBuild(bank);inst.AnimState:PlayAnimation(pose)
         if name=="nw_workbench" then
             scale(inst)
@@ -31,7 +32,7 @@ local function make_station(name,bank,pose)
         inst:AddComponent("lootdropper")
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
-        inst.components.workable:SetWorkLeft(4)
+        inst.components.workable:SetWorkLeft(C.hammer_work)
         inst.components.workable:SetOnFinishCallback(function(bench)
             bench.components.lootdropper:DropLoot()
             bench:Remove()

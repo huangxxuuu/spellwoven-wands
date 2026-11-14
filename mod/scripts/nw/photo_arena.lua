@@ -1,7 +1,6 @@
 local M = {}
 local report = require("nw/dev_output").report
 
--- Explicit developer command only. Never runs on load or world generation.
 function M.build(radius)
     radius = radius == nil and 8 or radius
     if type(radius) ~= "number" or radius ~= math.floor(radius) or radius < 2 or radius > 32 then

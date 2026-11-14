@@ -1,17 +1,17 @@
+local C=require("nw/constants/casting")
 local Budget=require("nw/entity_limits")
 local RNG=require("nw/rng")
 local Effects=require("nw/spell_effects")
 local Limits=require("nw/spell_limits")
 local Templates=require("nw/cast_templates")
 local Damage=require("nw/balance_damage")
+local Policy=require("nw/target_policy")
 local M={}
 local function no_release() end
 function M.set_projectile_limit(value) Budget.configure("projectiles",value) end
 function M.stats() return Budget.stats() end
 function M.owner_used(owner) return Budget.owner_used(owner) end
 
--- Old saved plans may still contain angles; execution deliberately rerolls
--- scatter on every release, for both legacy and compact payloads.
 M.store_payload=Templates.snapshot
 
 function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
@@ -45,15 +45,12 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
                     p=variant
                 end
                 if p.suppress_support then
-                    -- Preserve the unlimited cast's random stream for later shots.
                     for k=1,p.count or 1 do rng:next() end
                 end
                 for k=1,p.suppress_support and 0 or p.count or 1 do
                     local category=Budget.category(p)
-                    -- Instant actions have no live attack entity. Their damage
-                    -- and hit/burst visuals are outside the projectile/tail caps.
                     local release=p.kind=="instant" and no_release or Budget.acquire(owner,category)
-                    if not release then break end -- all further copies of this kind would also be skipped
+                    if not release then break end
                     emitted=emitted+1
                     local group={remaining=1,child=p.payload,healed=p.flags.heal_ally and {}}
                     local bound=false
@@ -67,7 +64,6 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
                             if not Effects.live(owner) then group.child=nil;return end
                             if group.child then group.child=nil
                             elseif p.event~="hit" or group.remaining<=0 then return end
-                            -- Consume this trigger even if its emissions are skipped at capacity.
                             return launch(p.payload,cx,cz,ux,uz,h,target,fraction,limited,depth+1)
                         end
                     end
@@ -92,19 +88,17 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
                     objects[#objects+1]={entity=e,p=p,angle=angle,group=group,k=k,secondary=limited,release=release}
                 end
             end
-            -- No emission in a whole template pass: avoid iterating millions of rejected copies.
             if emitted==0 then break end
         end
         for _,v in ipairs(objects) do
-            -- A newer permanent placement in this same batch may have evicted
-            -- this entity before its Launch callback. Never touch removed natives.
             if v.entity and v.entity._nw_budget_evicted then v.group.cleanup()
             else
                 local group,p=v.group,v.p
+                local target_flags=Policy.flags(p)
                 local co,si=math.cos(v.angle),math.sin(v.angle)
                 local ux,uz=ax*co-az*si,ax*si+az*co
                 local px,pz=px,pz
-                if p.kind~="projectile" and p.kind~="trigger" and require("nw/targeting").only_self(p.flags) then
+                if p.kind~="projectile" and p.kind~="trigger" and require("nw/targeting").only_self(target_flags) then
                     local ox,_,oz=owner.Transform:GetWorldPosition();px,pz=ox,oz
                 end
                 if p.suppress_support then
@@ -112,23 +106,23 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
                 elseif p.kind=="instant" then
                     if p.id=="explosion" then
                         Effects.blast(owner,px,pz,p)
+                        group.cleanup()
                     else
-                        Effects.chain(owner,hit_target,px,pz,p,ux,uz,index==1 and not plan.payload_root)
+                        Effects.chain(owner,hit_target,px,pz,p,ux,uz,index==1 and not plan.payload_root,group.fire,group.cleanup)
                     end
-                    group.cleanup()
                 elseif p.kind=="melee" then
                     require("nw/melee").launch(v.entity,owner,p,px,pz,ux,uz,group.cleanup)
                 else
                     local fx,fz=px,pz
                     if (p.base or p.id)=="scatter" then
-                        local offset=(v.k-2)*.35*require("nw/projectile_size").factor(p)
+                        local offset=(v.k-2)*C.scatter_offset*require("nw/projectile_size").factor(p)
                         fx,fz=fx-az*offset,fz+ax*offset
                     end
-                    if p.aim_range and aim and index==1 and not require("nw/targeting").only_self(p.flags) then
+                    if p.aim_range and aim and index==1 and not require("nw/targeting").only_self(target_flags) then
                         if p.id=="detonate" then
                             local ox,_,oz=owner.Transform:GetWorldPosition()
                             local tx,tz=aim.x-ox,aim.z-oz
-                            local scale=math.min(1,p.aim_range/math.max(.001,math.sqrt(tx*tx+tz*tz)))
+                            local scale=math.min(1,p.aim_range/math.max(C.aim.direction_epsilon,math.sqrt(tx*tx+tz*tz)))
                             fx,fz=ox+tx*scale,oz+tz*scale
                         else
                             local r=math.min(p.aim_range,math.sqrt((aim.x-px)^2+(aim.z-pz)^2))

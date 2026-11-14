@@ -1,4 +1,3 @@
--- Use the native right-click picker over empty water on a real coastline.
 local M={}
 local function coast(x,z)
     local map=TheWorld.Map
@@ -76,8 +75,6 @@ function M.run(x,z)
                 if e.prefab=="chum_aoe" then lure=e;break end
             end
             assert(not bait:IsValid() and lure,"NW_CHUM: water landing must create native lure")
-            -- Match native expiry: do not spawn replacement bait while its
-            -- onremove handler is iterating and removing the existing pieces.
             lure.persists=false;lure:Remove()
             print("NW_CHUM_OCEAN_PASS: aimed ballistic landing and native chum effect")
             player:Remove();boat:Remove()

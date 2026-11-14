@@ -55,7 +55,6 @@ function M.run()
     player.components.combat:DoAttack(target,weapon,nil,nil,nil,10)
     player.components.combat.ignorehitrange=false
     assert(journal.damage>before and journal:GetCard("edge_spear_wathgrithr").damage>0,"NW_JOURNAL: native DoAttack adapter")
-    -- A real native explosion calls combat with the bomb as attacker.
     local blasttarget=spawn("nw_target_dummy",0,4)
     local bomb=spawn("nw_gunpowder",0,4)
     bomb:Launch(player,{id="gunpowder",flags={},spread=0},x,z+4,1,0,function() end)
@@ -83,7 +82,6 @@ function M.run()
             "NW_JOURNAL: timestamp and held wand")
         local other=spawn("nw_wand");other.components.nw_wand:InitializePrototype()
         other.components.named:SetName("达成时的新法杖");inv:Equip(other)
-        -- Delayed damage is still from the first cast, but equipment is now B.
         local score=journal:GetDamageRecord(10).damage+journal.max_hit+1
         local durable=spawn("nw_target_dummy",0,7);durable.components.health:SetMaxHealth(score*10)
         require("nw/spell_effects").direct(player,durable,{id="spark",damage=score,flags={}},1,0)
@@ -96,7 +94,6 @@ function M.run()
         assert(journal:GetDamageRecord().wand.name=="达成时的新法杖","NW_JOURNAL: historical name changed")
         inv:Unequip(EQUIPSLOTS.HANDS)
         local snapshot=journal:OnSave()
-        -- Start a fresh rolling window, as on reconnect, then beat every record bare-handed.
         journal:OnLoad(snapshot)
         score=journal:GetDamageRecord(10).damage+journal.max_hit+1
         durable.components.health:SetMaxHealth(score*10)

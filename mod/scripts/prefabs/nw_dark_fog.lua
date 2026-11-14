@@ -1,4 +1,3 @@
--- One networked region; local mist fades when the server withdraws coverage.
 local assets={Asset("IMAGE","fx/miasma.tex"),Asset("SHADER","shaders/vfx_particle.ksh")}
 local function fn()
     local inst=CreateEntity()
@@ -7,7 +6,6 @@ local function fn()
     inst._nw_dark_radius=net_float(inst.GUID,"nw_dark_fog.radius","nw_dark_fog_size_dirty")
     inst:AddTag("FX");inst:AddTag("NOCLICK")
     inst.entity:SetPristine();inst.persists=false
-    -- Let spawn position and initial replica state arrive before prewarming.
     if not TheNet:IsDedicated() then
         inst:DoTaskInTime(0,function() require("nw/dark_fog_visual").attach(inst) end)
     end

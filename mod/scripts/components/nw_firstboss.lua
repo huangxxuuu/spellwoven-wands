@@ -1,4 +1,3 @@
--- Travels with the player's save between shards. No kill-credit requirement.
 local FirstBoss=Class(function(self,inst)
     self.inst=inst
     self.claimed=false

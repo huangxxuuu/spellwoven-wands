@@ -1,3 +1,4 @@
+local C=require("nw/constants/prefabs").wand_visual
 local Visual = require("nw/visual")
 local assets = {Asset("ANIM", "anim/nw_parts.zip")}
 local function refresh(inst)
@@ -14,7 +15,7 @@ local function attach(inst)
     child.persists = false
     child.entity:SetParent(parent.entity)
     child.Follower:FollowSymbol(parent.GUID, "swap_object", 0, 0, 0, true)
-    child.AnimState:SetFinalOffset(1)
+    child.AnimState:SetFinalOffset(C.final_offset)
     inst._local_visual = child
     refresh(inst)
     return true
@@ -30,7 +31,7 @@ local function fn()
     inst.persists = false
     if not TheNet:IsDedicated() then
         inst:ListenForEvent("nw_visualdirty", refresh)
-        inst._attach_task = inst:DoPeriodicTask(.1, function()
+        inst._attach_task = inst:DoPeriodicTask(C.attach_period, function()
             if attach(inst) then inst._attach_task:Cancel(); inst._attach_task = nil end
         end, 0)
         inst:ListenForEvent("onremove", function()

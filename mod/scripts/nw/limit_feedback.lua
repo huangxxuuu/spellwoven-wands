@@ -1,5 +1,4 @@
--- Server-owned character speech; only the affected player's preference applies.
-local M={enabled=true,key="nw_weave_limit_speech_v1",interval=30}
+local M={enabled=true,key="nw_weave_limit_speech_v1",interval=require("nw/constants/performance").feedback.interval}
 local Locale=require("nw/locale")
 local lines={
     {"这世界限制了我的发挥。","This world is holding my magic back."},
@@ -64,7 +63,6 @@ function M.set(value)
 end
 function M.install(env,G)
     env.AddModRPCHandler("nw_weave","limit_speech",function(player,value)
-        -- RPC authenticates the sender: no client can change another player's setting.
         if player and type(value)=="boolean" then player._nw_limit_speech_enabled=value end
     end)
     if G.TheNet:IsDedicated() then return end

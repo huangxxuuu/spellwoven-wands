@@ -1,23 +1,29 @@
--- Giants extend the annulus outside the native disk. Shrunk tornadoes use the
--- same damage/work logic for their complete smaller disk at native timings.
+local C=require("nw/constants/native_effects")
 local M={}
+local Native=require("nw/native_targeting")
 function M.bell(inst,attacker,scale)
-    if scale<=1 or not attacker:IsValid() then return end
+    local selected=Native.context(inst)
+    if not selected and scale<=1 or not attacker or not attacker:IsValid() then return end
     local x,_,z=inst.Transform:GetWorldPosition()
     local weapon,combat=inst.components.weapon,attacker.components.combat
     local damage=weapon.damage
     local skills=attacker.components.skilltreeupdater
     if skills and skills:IsActivated("wolfgang_dumbbell_throwing_2") then weapon.damage=damage*TUNING.SKILLS.WOLFGANG_DUMBELL_TOSS_2
     elseif skills and skills:IsActivated("wolfgang_dumbbell_throwing_1") then weapon.damage=damage*TUNING.SKILLS.WOLFGANG_DUMBELL_TOSS_1 end
-    for _,e in ipairs(TheSim:FindEntities(x,0,z,2*scale,{"_combat","_health"},{"FX","NOCLICK","DECOR","INLIMBO"})) do
-        if e:GetDistanceSqToPoint(x,0,z)>4 then
-            local hit=not e.components.minigame_participator and not e:HasTag("playerghost")
-                and (not e.isplayer or TheNet:GetPVPEnabled()) and not combat:IsAlly(e)
+    local must=not selected and {"_combat","_health"} or nil
+    for _,e in ipairs(TheSim:FindEntities(x,0,z,C.bell.radius*scale,must,{"FX","NOCLICK","DECOR","INLIMBO"})) do
+        if selected or e:GetDistanceSqToPoint(x,0,z)>C.bell.radius^2 then
+            local allowed=not e.components.minigame_participator and not e:HasTag("playerghost")
+                and (selected and Native.permits(inst,e) or not selected
+                    and combat and (not e.isplayer or TheNet:GetPVPEnabled()) and not combat:IsAlly(e))
+            local hit=allowed and combat and e.components.combat and e.components.health
+                and not e.components.health:IsDead()
             if hit then
                 local old=combat.ignorehitrange;combat.ignorehitrange=true
                 combat:DoAttack(e,inst,inst);combat.ignorehitrange=old
             end
-            if (hit or e==attacker) and inst.isiceattack and e:IsValid() and e.components.freezable then e.components.freezable:AddColdness(2) end
+            local cold=selected and allowed or not selected and (hit or e==attacker)
+            if cold and inst.isiceattack and e:IsValid() and e.components.freezable then e.components.freezable:AddColdness(C.bell.coldness) end
         end
     end
     weapon.damage=damage
@@ -25,14 +31,16 @@ end
 local works={CHOP=true,DIG=true,HAMMER=true,MINE=true}
 local tags={"_combat","CHOP_workable","DIG_workable","HAMMER_workable","MINE_workable"}
 function M.tornado(inst)
-    local scale=inst._nw_giant
-    if not scale or scale==1 then return end
+    local selected=Native.context(inst)
+    local scale=inst._nw_giant or 1
+    if not selected and scale==1 then return end
     local x,y,z=inst.Transform:GetWorldPosition()
-    for _,e in ipairs(TheSim:FindEntities(x,y,z,3*scale,nil,{"INLIMBO","tornado_immune"},tags)) do
-        if e~=inst.WINDSTAFF_CASTER and e:IsValid() and (scale<1 or e:GetDistanceSqToPoint(x,y,z)>9) then
+    for _,e in ipairs(TheSim:FindEntities(x,y,z,C.tornado.radius*scale,nil,{"INLIMBO","tornado_immune"},tags)) do
+        if (selected and Native.permits(inst,e) or not selected and e~=inst.WINDSTAFF_CASTER)
+            and e:IsValid() and (selected or scale<1 or e:GetDistanceSqToPoint(x,y,z)>C.tornado.radius^2) then
             local c,h,w=e.components.combat,e.components.health,e.components.workable
             if h and not h:IsDead() and c and c:CanBeAttacked()
-                and (TheNet:GetPVPEnabled() or not (inst.WINDSTAFF_CASTER_ISPLAYER and e:HasAnyTag("player","possessedbody"))) then
+                and (selected or TheNet:GetPVPEnabled() or not (inst.WINDSTAFF_CASTER_ISPLAYER and e:HasAnyTag("player","possessedbody"))) then
                 local damage=TUNING.TORNADO_DAMAGE*(inst.WINDSTAFF_CASTER_ISPLAYER and e:HasTag("player") and TUNING.PVP_DAMAGE_MOD or 1)
                 c:GetAttacked(inst,damage,nil,"wind")
                 local caster=inst.WINDSTAFF_CASTER
@@ -41,7 +49,7 @@ function M.tornado(inst)
                     e.components.combat:SuggestTarget(caster)
                 end
             elseif w and w:CanBeWorked() and w:GetWorkAction() and works[w:GetWorkAction().id] then
-                SpawnPrefab("collapse_small").Transform:SetPosition(e.Transform:GetWorldPosition());w:WorkedBy(inst,2)
+                SpawnPrefab("collapse_small").Transform:SetPosition(e.Transform:GetWorldPosition());w:WorkedBy(inst,C.tornado.work)
             end
         end
     end
@@ -49,10 +57,7 @@ end
 function M.install_tornado(sg)
     local function extend(fn,enter)
         return function(inst,...)
-            if inst._nw_giant and inst._nw_giant<1 then
-                -- Native idle/walk entries combine motion, animation and a
-                -- fixed-radius attack. Preserve the first two; replace only
-                -- that attack. The selected timeline events are attacks only.
+            if Native.context(inst) or inst._nw_giant and inst._nw_giant<1 then
                 if enter then
                     if enter=="idle" then inst.Physics:Stop()
                     else inst.components.locomotor:WalkForward() end

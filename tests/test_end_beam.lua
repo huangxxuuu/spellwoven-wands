@@ -8,6 +8,7 @@ DEGREES=math.pi/180
 TheWorld={Map={IsPassableAtPoint=function() return true end}}
 TheSim={FindEntities=function() return candidates end}
 local Effects=require("nw/spell_effects")
+local real_blast=Effects.blast
 local Explosions=require("nw/explosions")
 local Bounds=require("nw/world_bounds")
 local Flight=require("nw/flight")
@@ -23,7 +24,7 @@ Effects.live=function(e) return e and e.valid end
 Effects.direct=function(_,e,p) e.damage=e.damage+p.damage;e.direct=e.direct+1 end
 Effects.blast=function() blasts=blasts+1 end
 Effects.fx=function()
-    return {SetImpact=noop,Transform={SetPosition=noop}}
+    return {SetImpact=noop,SetRadius=noop,Transform={SetPosition=noop}}
 end
 Explosions.hit=function(_,p,x,z)
     if p._test_shot then p._test_shot.explosions=p._test_shot.explosions+1 end
@@ -43,7 +44,7 @@ local function target(x,z,wall,radius)
 end
 local function shot(lifetime,flags,scale)
     now=0;owner.valid=true
-    local e={valid=true,x=0,z=0,removed=0,payloads=0,explosions=0,stopped=0,publishes={},head_stops=0}
+    local e={valid=true,x=0,z=0,removed=0,payloads=0,explosions=0,stopped=0,publishes={},head_stops=0,components={}}
     local p={id="end_beam",name="beam",damage=12,end_damage=16,speed=26,lifetime=lifetime,
         size_mult=scale or 1,flags=flags or {pierce_all={}},event="hit"}
     p._test_shot=e
@@ -156,6 +157,98 @@ e=shot(4);candidates={target(1)}
 local clip=Bounds.clip;Bounds.clip=function() return .5 end
 step(e,.1,4);Bounds.clip=clip
 assert(not e.valid and e.head_stops==0 and e.payloads==0 and blasts==blast_count)
+-- Ally healing and a direction controller ending are gameplay endpoints even
+-- though ordinary projectiles suppress their natural-only terminal effects.
+local original_ally=Effects.ally
+local friend=target(1)
+friend.components.health.DoDelta=function(_,amount) friend.healed=amount end
+Effects.ally=function(_,entity) return entity==friend end
+e=shot(4,{heal_ally={heal=5}});candidates={friend}
+blast_count=blasts;step(e,.1,2)
+Effects.ally=original_ally
+assert(friend.healed==5 and e._shot.beam.ended and blasts==blast_count+1,
+    "ally contact must burst immediately when it stops the beam front")
+candidates={};step(e,.2);step(e,1.7)
+assert(not e.valid and blasts==blast_count+1,"ally endpoint must not burst again during residue cleanup")
+
+e=shot(4);candidates={}
+local steer=Flight.steer
+Flight.steer=function() return false end
+blast_count=blasts;step(e,.1,2)
+Flight.steer=steer
+assert(e._shot.beam.ended and blasts==blast_count+1,
+    "direction completion must burst in the frame the beam front stops")
+step(e,.2);step(e,1.7)
+assert(not e.valid and blasts==blast_count+1)
+
+-- Exercise the real explosion dispatcher with no victims: the burst anchor
+-- must spawn at arrival, without waiting for the remaining path to fade.
+e=shot(.1);e._shot.p.event=nil;candidates={}
+local fx,visuals=Effects.fx,{}
+Effects.fx=function(name,x,z)
+    visuals[#visuals+1]={name=name,x=x,z=z}
+    return {SetRadius=noop}
+end
+Effects.blast=real_blast
+step(e,.1,2)
+assert(e.valid and e._shot.beam.ended and #visuals==1
+    and visuals[1].name=="nw_soft_blast_fx" and visuals[1].x==2 and visuals[1].z==0,
+    "an empty endpoint still explodes immediately")
+step(e,.2);step(e,1.7)
+assert(not e.valid and #visuals==1,"residue removal must not replay the endpoint visual")
+Effects.fx=fx
+Effects.blast=function() blasts=blasts+1 end
+
+-- Guard interception and explicit raw removal remain silent like owner loss
+-- and world clipping; neither is a gameplay endpoint.
+local Guard=require("nw/guard_ring")
+local Stages=require("nw/field_stages")
+local guard_visual=Stages.guard;Stages.guard=noop
+local Limits=require("nw/spell_limits")
+local old_range=Limits.range
+local guard_x=7
+local defender={components={},IsValid=function() return true end,
+    Transform={GetWorldPosition=function() return guard_x,0,0 end}}
+local function ring()
+    local r={valid=true,_nw_guard_owner=defender,_nw_guard_radius=.25,_nw_guard_left=2}
+    function r:IsValid() return self.valid end
+    function r:Remove() self.valid=false end
+    TheWorld._nw_guards={[r]=true}
+    return r
+end
+-- Actual ring geometry must ignore a ring beyond either accepted endpoint,
+-- even when native physics crosses it during this single simulation frame.
+for _,range_end in ipairs({false,true}) do
+    Limits.range=range_end and 5 or 0
+    guard_x=7;local r=ring()
+    e=shot(range_end and 4 or .05);candidates={};blast_count=blasts
+    step(e,.1,10)
+    assert(e.valid and e._shot.beam.ended and e._shot.x==5 and blasts==blast_count+1
+        and r._nw_guard_left==2,"a guard beyond the clipped endpoint must not swallow its explosion")
+    step(e,1.7)
+    assert(not e.valid and blasts==blast_count+1)
+    guard_x=3;r=ring()
+    e=shot(range_end and 4 or .05);local before_guard=target(1);candidates={before_guard}
+    blast_count=blasts;step(e,.1,10)
+    assert(not e.valid and e._nw_intercepted and r._nw_guard_left==1
+        and e.head_stops==0 and blasts==blast_count and before_guard.damage==0,
+        "a guard before the endpoint still intercepts silently before collision processing")
+end
+-- World clipping also limits the guard sweep, while retaining silent beam
+-- boundary cleanup instead of turning the boundary into a gameplay endpoint.
+Limits.range=0;guard_x=7;local r=ring()
+e=shot(4);candidates={};blast_count=blasts
+Bounds.clip=function() return .5 end
+step(e,.1,10);Bounds.clip=clip
+assert(not e.valid and not e._nw_intercepted and r._nw_guard_left==2 and blasts==blast_count)
+TheWorld._nw_guards=nil;Stages.guard=guard_visual;Limits.range=old_range
+e=shot(4);candidates={};blast_count=blasts
+local intercept=Guard.intercept
+Guard.intercept=function(inst) inst:Remove();return true,.5 end
+step(e,.1,2);Guard.intercept=intercept
+assert(not e.valid and e.head_stops==0 and not e._shot.payload_finished and blasts==blast_count)
+e=shot(4);step(e,.1,2);e:Remove()
+assert(e.head_stops==0 and not e._shot.payload_finished and blasts==blast_count)
 -- Drive the real steering and beam loop together: sine, moving-owner orbit,
 -- and their giant combination must record the actual curve with bounded age.
 for _,case in ipairs({
@@ -184,3 +277,54 @@ for _,case in ipairs({
     e:Remove()
 end
 print("end beam: periodic payloads, shared cooldown, lingering cleanup, giant/sine/moving-owner orbit, fading width and terminal rules")
+
+-- Compiled acceleration must reach the actual endpoint without an old 60
+-- motor ceiling shortening it. The lingering path retains its own hit clock.
+local Compiler=require("nw/compiler")
+local saved_direct,saved_blast=Effects.direct,Effects.blast
+for count,expected_speed in ipairs({26,41,62.5,93.75,95}) do
+    local w=require("nw/generator").starter()
+    w.stats.mana_max=10000;w.stats.draw_count=1;w.cards={}
+    for n=1,count-1 do w.cards[#w.cards+1]={spell_id="speed_up",card_uid="up"..n} end
+    w.cards[#w.cards+1]={spell_id="end_beam",card_uid="beam"}
+    w.runtime=Compiler.initial(w.cards,w.stats,1)
+    local descriptor=assert(Compiler.compile(w)).blocks[1].projectiles[1]
+    near(descriptor.speed,expected_speed);near(descriptor.lifetime,.75)
+    owner.Transform.GetWorldPosition=function() return 0,0,0 end
+    local beam=shot(descriptor.lifetime,descriptor.flags,descriptor.size_mult)
+    beam._shot.p=descriptor;beam._shot.damage=descriptor.damage
+    beam._shot.speed=descriptor.speed;beam._shot.remaining=descriptor.lifetime
+    Flight.reset(beam._shot,1,0);beam.speed=descriptor.speed;beam.rotation=0
+    local victim=target(1);candidates={victim}
+    local contacts,bursts={},{}
+    Effects.direct=function(_,entity,p)
+        entity.damage=entity.damage+p.damage
+        contacts[#contacts+1]={time=now,damage=p.damage}
+    end
+    Effects.blast=function(_,x,z,p) bursts[#bursts+1]={x=x,z=z,damage=p.damage,radius=p.radius} end
+    local frame=0
+    while not (beam._shot.beam and beam._shot.beam.ended) do
+        frame=frame+1;assert(frame<30 and beam.valid)
+        local angle=-beam.rotation*DEGREES
+        step(beam,frame/30,beam.x+math.cos(angle)*beam.speed/30,beam.z+math.sin(angle)*beam.speed/30)
+    end
+    local endpoint=expected_speed*.75
+    near(beam._shot.x,endpoint);near(beam._shot.z,0)
+    assert(#bursts==1 and beam.head_stops==1)
+    near(bursts[1].x,endpoint);near(bursts[1].damage,16);near(bursts[1].radius,1.5)
+    local segments=beam._shot.beam.segments
+    local final_born=segments[#segments].born
+    while frame/30<final_born+1.5-1e-6 do
+        frame=frame+1;step(beam,frame/30)
+        if frame/30<final_born+1.5-1e-6 then assert(beam.valid,"final residue expired early") end
+    end
+    assert(not beam.valid and beam.removed==1 and #bursts==1)
+    assert(#contacts>=2,"the target must exercise lingering repeat damage")
+    for index,contact in ipairs(contacts) do
+        near(contact.damage,12)
+        if index>1 then near(contact.time-contacts[index-1].time,.5) end
+    end
+    near(victim.damage,#contacts*12)
+end
+Effects.direct,Effects.blast=saved_direct,saved_blast
+print("end beam compiled speed: 0-4 acceleration cards, 19.5/30.75/46.875/70.3125/71.25 endpoints, unchanged burst/residue/hit cadence")

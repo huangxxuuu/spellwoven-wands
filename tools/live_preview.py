@@ -40,8 +40,11 @@ def inputs():
         'build_spell_world.py', 'build_spark_flight.py', 'build_elemental_flight.py',
         'build_tool_flight.py', 'build_field_stages.py', 'spore_stage_art.py', 'build_electric_arc.py', 'native_animation.py', 'build_art_assets.py', 'animation_atlas.py')]
     files += [ROOT / 'mod/scripts/nw' / name for name in (
+        'spell_limits.lua', 'projectile_glow.lua', 'beam_front.lua', 'projectile_size.lua',
         'trail_budget.lua', 'flight_visual.lua', 'spark_trail.lua', 'elemental_flight.lua', 'beam_path.lua', 'beam_visual.lua',
         'tool_flight.lua', 'field_stages.lua', 'field_member_visual.lua', 'electric_visual.lua')]
+    files.append(ROOT / 'mod/scripts/nw/util.lua')
+    files += list((ROOT / 'mod/scripts/nw/constants').rglob('*.lua'))
     files += list((ROOT / 'tools/preview_mod').rglob('*.lua'))
     return sorted(files)
 
@@ -51,6 +54,41 @@ def signature():
     for p in inputs():
         h.update(str(p).encode()); h.update(p.read_bytes())
     return h.hexdigest()
+
+
+def visual_source(banks):
+    module_names = {
+        'limits': 'spell_limits', 'glow': 'projectile_glow', 'beam_front': 'beam_front',
+        'budget': 'trail_budget', 'flight': 'flight_visual', 'trail': 'spark_trail', 'elemental': 'elemental_flight',
+        'beam_path': 'beam_path', 'beam_visual': 'beam_visual', 'tools': 'tool_flight',
+        'fields': 'field_stages', 'members': 'field_member_visual',
+        'size': 'projectile_size', 'electric': 'electric_visual',
+    }
+    source = 'local factories,loaded={},{}\n'
+    modules = {f'nw/{name}': ROOT / 'mod/scripts/nw' / (name + '.lua')
+               for name in module_names.values()}
+    modules['nw/util'] = ROOT / 'mod/scripts/nw/util.lua'
+    for path in sorted((ROOT / 'mod/scripts/nw/constants').rglob('*.lua')):
+        modules[path.relative_to(ROOT / 'mod/scripts').with_suffix('').as_posix()] = path
+    for name, path in modules.items():
+        text = path.read_text(encoding='utf8')
+        for original_bank, key in (
+            ('nw_spell_world', 'world'), ('nw_spark_flight', 'spark'),
+            ('nw_elemental_flight', 'elemental'), ('nw_tool_flight', 'tools'),
+            ('nw_field_stages', 'fields'),
+            ('nw_electric_arc', 'electric'),
+        ):
+            text = text.replace(json.dumps(original_bank), json.dumps(banks[key]))
+        source += f'factories["{name}"]=function(require)\n{text}\nend\n'
+    source += ('local function load(name)\n'
+               ' if not factories[name] then return require(name) end\n'
+               ' if not loaded[name] then loaded[name]=factories[name](load) end\n'
+               ' return loaded[name]\nend\n')
+    source += 'return {' + ','.join(f'{key}=load("nw/{name}")' for key, name in module_names.items()) + '}\n'
+    # Syntax check the generated, actual runtime modules before publication.
+    from lupa.lua51 import LuaRuntime
+    LuaRuntime().eval('function(s) assert(loadstring(s)) end')(source)
+    return source
 
 
 def build(tools):
@@ -130,31 +168,7 @@ def build(tools):
     banks['electric'] = f'nw_preview_electric_{revision}'
     build_electric_arc.build(banks['electric'], destination / 'anim' / (banks['electric']+'.zip'), manifest=False)
     validate_animation_archive(destination / 'anim' / (banks['electric']+'.zip'))
-    module_names = {
-        'budget': 'trail_budget', 'flight': 'flight_visual', 'trail': 'spark_trail', 'elemental': 'elemental_flight',
-        'beam_path': 'beam_path', 'beam_visual': 'beam_visual', 'tools': 'tool_flight',
-        'fields': 'field_stages', 'members': 'field_member_visual',
-        'size': 'projectile_size', 'electric': 'electric_visual',
-    }
-    source = 'local factories,loaded={},{}\n'
-    for name in module_names.values():
-        text = (ROOT / 'mod/scripts/nw' / (name + '.lua')).read_text(encoding='utf8')
-        for original_bank, key in (
-            ('nw_spell_world', 'world'), ('nw_spark_flight', 'spark'),
-            ('nw_elemental_flight', 'elemental'), ('nw_tool_flight', 'tools'),
-            ('nw_field_stages', 'fields'),
-            ('nw_electric_arc', 'electric'),
-        ):
-            text = text.replace(json.dumps(original_bank), json.dumps(banks[key]))
-        source += f'factories["nw/{name}"]=function(require)\n{text}\nend\n'
-    source += ('local function load(name)\n'
-               ' if not factories[name] then return require(name) end\n'
-               ' if not loaded[name] then loaded[name]=factories[name](load) end\n'
-               ' return loaded[name]\nend\n')
-    source += 'return {' + ','.join(f'{key}=load("nw/{name}")' for key, name in module_names.items()) + '}\n'
-    # Syntax check the generated, actual runtime modules before publication.
-    from lupa.lua51 import LuaRuntime
-    LuaRuntime().eval('function(s) assert(loadstring(s)) end')(source)
+    source = visual_source(banks)
     (destination / 'visual.lua').write_text(source, encoding='utf8')
     shutil.copytree(ROOT / 'tools/preview_mod', STAGE, dirs_exist_ok=True)
     for file in (ROOT / 'tools/preview_mod').rglob('*.lua'):

@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui").nw_craftingfilters
 local Widget=require("widgets/widget")
 local Image=require("widgets/image")
 local Spinner=require("widgets/spinner")
@@ -5,15 +6,13 @@ local ImageButton=require("widgets/imagebutton")
 local TextButton=require("widgets/textbutton")
 local T=require("nw/locale").t
 
-local WIDTH=420
-local TAG_ROWS=2
-local ROW_GAP=32
-local GOLD={.95,.80,.48,1}
-local MUTED={.72,.68,.57,1}
-local FOCUS={1,.94,.73,1}
+local WIDTH=C.width
+local TAG_ROWS=C.tag_rows
+local ROW_GAP=C.row_gap
+local GOLD=C.gold
+local MUTED=C.muted
+local FOCUS=C.focus
 
--- Native redux arrows and typography keep this strip at home in the drawer.
--- All selection state belongs to the menu; this widget only displays it.
 local Filters=Class(Widget,function(self,options,onclass,ontag)
     Widget._ctor(self,"nw_craftingfilters")
     self.ontag=ontag
@@ -21,14 +20,14 @@ local Filters=Class(Widget,function(self,options,onclass,ontag)
     self.tag_by_id={}
 
     self.title_backing=self:AddChild(Image("images/ui.xml","option_highlight.tex"))
-    self.title_backing:SetPosition(0,32)
-    self.title_backing:ScaleToSize(254,34)
-    self.title_backing:SetTint(.78,.61,.30,.16)
+    self.title_backing:SetPosition(unpack(C.title_position))
+    self.title_backing:ScaleToSize(unpack(C.title_size))
+    self.title_backing:SetTint(unpack(C.title_colour))
     self.title_backing:SetClickable(false)
 
-    self.spinner=self:AddChild(Spinner(options,350,32,
-        {font=HEADERFONT or UIFONT,size=28},false,"images/ui.xml",nil,true,270,34))
-    self.spinner:SetPosition(0,32)
+    self.spinner=self:AddChild(Spinner(options,C.spinner_size[1],C.spinner_size[2],
+        {font=HEADERFONT or UIFONT,size=C.spinner_font_size},false,"images/ui.xml",nil,true,unpack(C.spinner_text_size)))
+    self.spinner:SetPosition(unpack(C.spinner_position))
     self.spinner:SetTextColour(GOLD)
     self.spinner:SetWrapEnabled(true)
     self.spinner:SetOnChangedFn(onclass)
@@ -39,28 +38,27 @@ local Filters=Class(Widget,function(self,options,onclass,ontag)
     self.focus_forward=self.spinner
 
     self.rule=self:AddChild(Image("images/ui.xml","line_horizontal_white.tex"))
-    self.rule:SetPosition(0,11)
-    self.rule:ScaleToSize(204,1)
-    self.rule:SetTint(.65,.52,.30,.48)
+    self.rule:SetPosition(unpack(C.rule_position))
+    self.rule:ScaleToSize(unpack(C.rule_size))
+    self.rule:SetTint(unpack(C.rule_colour))
     self.rule:SetClickable(false)
 
     self.tags=self:AddChild(Widget("tags"))
-    self.tags:SetPosition(0,-8)
+    self.tags:SetPosition(unpack(C.tags_position))
     local function arrow(direction,x)
         local button=self:AddChild(ImageButton("images/ui.xml","arrow2_"..direction..".tex"))
-        -- Native focus scaling overwrites ForceImageSize's texture-relative scale.
         button.scale_on_focus=false
         button.move_on_click=false
-        button:ForceImageSize(20,24)
+        button:ForceImageSize(unpack(C.arrow_size))
         button:SetImageNormalColour(unpack(MUTED))
         button:SetImageFocusColour(unpack(FOCUS))
-        button:SetPosition(x,-24)
+        button:SetPosition(x,C.arrow_y)
         button:SetOnClick(function() self:SetPage(self.page+(direction=="left" and -1 or 1)) end)
         button:Hide()
         return button
     end
-    self.prevpage=arrow("left",-200)
-    self.nextpage=arrow("right",200)
+    self.prevpage=arrow("left",-C.arrow_x)
+    self.nextpage=arrow("right",C.arrow_x)
 end)
 
 function Filters:SetChoices(options)
@@ -77,7 +75,7 @@ local function paint(button)
     button:SetTextColour(button.nw_selected and GOLD or MUTED)
     button:SetTextFocusColour(FOCUS)
     button.text:SetColour(button.focus and FOCUS or button.nw_selected and GOLD or MUTED)
-    button.backing:SetTint(.88,.68,.30,button.focus and .25 or button.nw_selected and .13 or 0)
+    button.backing:SetTint(C.tag_colour[1],C.tag_colour[2],C.tag_colour[3],button.focus and C.focus_alpha or button.nw_selected and C.selected_alpha or 0)
     if button.nw_selected then button.underline:Show() else button.underline:Hide() end
     button:SetHelpTextMessage(T(button.nw_selected and "取消标签" or "选中标签"))
 end
@@ -85,14 +83,14 @@ end
 function Filters:MakeTag(id,description)
     local button=self.tags:AddChild(TextButton("nw_tag_"..id))
     button:SetFont(UIFONT)
-    button:SetTextSize(20)
+    button:SetTextSize(unpack(C.tag_text_size))
     button.scale_on_focus=false
     button.move_on_click=false
     button.backing=button:AddChild(Image("images/ui.xml","option_highlight.tex"))
     button.backing:MoveToBack()
     button.backing:SetClickable(false)
     button.underline=button:AddChild(Image("images/ui.xml","line_horizontal_white.tex"))
-    button.underline:SetPosition(0,-12)
+    button.underline:SetPosition(unpack(C.underline_position))
     button.underline:SetTint(unpack(GOLD))
     button.underline:SetClickable(false)
     local gain,lose=button.OnGainFocus,button.OnLoseFocus
@@ -129,10 +127,10 @@ function Filters:SetTags(list,selected)
         button:Show()
         button:SetText(tag.text)
         local textwidth=button.text:GetRegionSize()
-        button.nw_width=textwidth+18
-        button.image:SetSize(button.nw_width,30)
-        button.backing:ScaleToSize(button.nw_width+2,30)
-        button.underline:ScaleToSize(math.max(12,textwidth),2)
+        button.nw_width=textwidth+C.tag_padding
+        button.image:SetSize(button.nw_width,C.tag_height)
+        button.backing:ScaleToSize(button.nw_width+C.backing_padding,C.tag_height)
+        button.underline:ScaleToSize(math.max(C.underline_min_width,textwidth),C.underline_height)
         button.nw_selected=selected[tag.id]==true
         paint(button)
         buttons[#buttons+1]=button
@@ -148,9 +146,8 @@ function Filters:SetTags(list,selected)
     local key=table.concat(ids,",")
     if key~=self.listkey then self.page=1;self.listkey=key end
     self.allbuttons=buttons
-    -- Use both full-width rows before reserving room for pagination arrows.
     local rows=pack_rows(buttons,WIDTH)
-    self.row_limit=#rows>TAG_ROWS and WIDTH-64 or WIDTH
+    self.row_limit=#rows>TAG_ROWS and WIDTH-C.page_arrow_reserve or WIDTH
     if self.row_limit<WIDTH then rows=pack_rows(buttons,self.row_limit) end
     self.pages={}
     for i,row in ipairs(rows) do

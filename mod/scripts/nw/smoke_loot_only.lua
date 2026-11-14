@@ -1,4 +1,3 @@
--- Real dedicated-server fixture; no network user or client UI is required.
 local M={}
 function M.run()
     local Balance=require("nw/balance")
@@ -71,7 +70,6 @@ function M.run()
     local denied,crafted=0,0
     Balance.configure("balanced_loot")
     assert(Balance.is_balanced() and require("nw/definitions").spells.mana_reduce.mana==-20)
-    -- Restore records captured in balanced mode: nosave stations rebuild from current world rules.
     for prefab,record in pairs(saved) do
         stations[prefab]:Remove()
         stations[prefab]=assert(SpawnSaveRecord(record))
@@ -83,8 +81,6 @@ function M.run()
         supply(row)
         built=nil
         if row.card or row.product=="nw_spellcard" then
-            -- Simulate a stale/foreign station catalogue to reach canbuild even
-            -- when the ordinary recipe list correctly hides this recipe.
             inst.components.craftingstation:LearnItem(row.name,row.name)
             builder:EvaluateTechTrees()
             assert(builder:KnowsRecipe(AllRecipes[row.name]))
@@ -109,8 +105,6 @@ function M.run()
     assert(require("nw/wand_factory").build(0,"starter",nil,42).cards[1].spell_id=="spark","spawn gift lost spark")
     for _,mode in ipairs({"balanced","fun","balanced_loot"}) do
         Balance.configure(mode)
-        -- Difficulty is read when stations are created/restored. Runtime world
-        -- changes and cross-shard synchronization are deliberately not assumed.
         for prefab,inst in pairs(stations) do
             local record=inst:GetSaveRecord()
             inst:Remove()

@@ -33,13 +33,13 @@ jobs:
       - name: Test Lua rules and restricted modinfo loader
         run: python tools/run_tests.py
       - name: Test release safety and retry behavior
-        run: python -m unittest discover -s tests -p 'test_release*.py'
+        run: python tools/run_python_tests.py -p 'test_release*.py'
       - name: Build Chinese and English field guide
         run: python site/build_catalog.py --pages
       - name: Check translations and site links
         run: |
-          python tools/check_localization.py
-          python tools/check_site_links.py --directory site/public
+          python tools/quiet_check.py tools/check_localization.py
+          python tools/quiet_check.py tools/check_site_links.py --directory site/public
       - name: Upload field guide
         if: github.event_name == 'workflow_dispatch' && inputs.deploy_public && !github.event.repository.private
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4

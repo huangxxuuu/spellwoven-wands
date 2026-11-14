@@ -1,0 +1,19 @@
+{
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_v2_20261114\\source-01.png"
+  ],
+  "metadata": "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_v2_20261114\\source-01.png.json",
+  "usage": {
+    "input_tokens": 2322,
+    "input_tokens_details": {
+      "image_tokens": 1521,
+      "text_tokens": 801
+    },
+    "output_tokens": 1756,
+    "total_tokens": 4078,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    }
+  }
+}

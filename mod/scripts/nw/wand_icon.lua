@@ -1,4 +1,3 @@
--- Native ItemTile/RecipeTile also service drag cursors, containers and crafting previews.
 local Visual=require("nw/visual")
 local M={}
 function M.layers(code,broken)
@@ -19,7 +18,6 @@ function M.install(inst)
         end
         return cached
     end
-    -- Look/broken netvars can arrive after inventoryitem's image hash.
     inst:ListenForEvent("nw_lookdirty",function() inst:PushEvent("imagechange") end)
 end
 function M.recipe(tier)

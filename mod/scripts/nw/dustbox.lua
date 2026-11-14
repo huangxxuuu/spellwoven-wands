@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui").dustbox
 local M={}
 function M.install(env)
     local T=require("nw/locale").t
@@ -16,7 +17,7 @@ function M.install(env)
     containers.params.nw_dustbox={
         widget={slotpos={Vector3(0,0,0)},animbank="ui_chest_1x1",animbuild="ui_chest_1x1",
             animbank_upgraded="ui_chest_1x1",animbuild_upgraded="ui_chest_1x1",
-            pos=Vector3(0,160,0),side_align_tip=100},
+            pos=Vector3(0,C.y,0),side_align_tip=C.tip},
         type="chest",acceptsstacks=true,
         itemtestfn=function(_,item) return item.prefab=="nw_dust" end,
     }
@@ -24,7 +25,7 @@ function M.install(env)
     containers.params.nw_emberlamp={
         widget={slotpos={Vector3(0,0,0)},animbank="ui_chest_1x1",animbuild="ui_chest_1x1",
             animbank_upgraded="ui_chest_1x1",animbuild_upgraded="ui_chest_1x1",
-            pos=Vector3(0,160,0),side_align_tip=100},
+            pos=Vector3(0,C.y,0),side_align_tip=C.tip},
         type="chest",acceptsstacks=true,
         itemtestfn=containers.params.nw_dustbox.itemtestfn,
         priorityfn=containers.params.nw_dustbox.itemtestfn,

@@ -1,0 +1,39 @@
+{
+  "created_at": "2026-11-14T13:29:20.576640+00:00",
+  "action": "edit",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Use case: stylized-concept, reference-guided game VFX animation sprite sheet.\nCreate a new TWELVE-FRAME animation sprite sheet for the independent rotating STAR upper layer of an end-beam spell head, in Don't Starve Together hand-drawn world VFX style.\nReference image 1: approved spell card identity, purple palette, jagged star with a white-lilac center and violet/lavender broad color planes. Do not copy its card frame or its long beam.\nReference image 2: approved existing beam-and-head source. Match its broad flat purple layering and restrained dark ink edges. Use the star shape family, but REMOVE every beam inlet, laser connector, trailing ribbon and isolated fragment. The new deliverable is pure stars only.\nReference image 3: existing spark head animation strip. Refer ONLY to its lively individually drawn frame-to-frame energy rhythm. Do not use its pink/white palette, circular orbit marks, spiral, comet tail or six-frame layout.\n\nOutput is one 1024 x 1024 PNG with TRUE transparent alpha background. Exactly twelve isolated pure star sprites arranged in FOUR columns and THREE rows, read left to right then top to bottom. No visible grid, labels, numbers, frames, text or background. Each cell is 256 pixels wide and approximately 341 pixels high. Center positions: row 1 (128,171),(384,171),(640,171),(896,171); row 2 (128,512),(384,512),(640,512),(896,512); row 3 (128,853),(384,853),(640,853),(896,853). Center each star's WHITE CORE exactly at these positions. Keep all star tips within a radius of 90 pixels from its core; generous completely transparent gaps between sprites and margins around canvas. All twelve sprites are the same identity, same apparent area and comparable scale, not an impact growing from small to huge.\n\nAnimation: twelve separately drawn coherent frames of a slightly asymmetric FIVE-point violet energy star doing one smooth CLOCKWISE full revolution about its fixed white core, with restrained 3 percent breathing in its tips and inner highlights. Track its one distinguishable extra-long spike through the sequence: frame 1 longest spike UP (0 degrees); frame 2 30 degrees clockwise; frame 3 60; frame 4 RIGHT (90); frame 5 120; frame 6 150; frame 7 DOWN (180); frame 8 210; frame 9 240; frame 10 LEFT (270); frame 11 300; frame 12 330, ready to loop to frame 1. Keep its five main unequal points recognizable throughout. White core and lavender inner sharp highlights rotate coherently with the outer purple spikes. Every frame is a standalone star; NONE has a connector or tail. This upper layer will later rotate over a separate FIXED horizontal connector which is not part of this sheet.\n\nStyle/medium: Don't Starve / Don't Starve Together original 2D hand-painted animation asset. Clear silhouette, purposeful asymmetry, lively tapered corners, weight-varying hand ink on the outer turning edges and sparse inner lines. Four to six large shapes per layer, large clean flat planes, solid white-lilac core, light lavender highlight planes, vivid violet main planes, dark purple shadow planes, restrained near-black-purple outline. The white core is a crisp shape, not photographic bloom. Hand-drawn slight frame variation is welcome but center and identity stay stable. No geometric perfect regular star; no dense texture. Only the isolated flat sprites on real transparency. The transparent RGB color must not create a visible halo.\nAvoid: any attached laser segment, connector inlet, tail, comet plume, spear shaft, rightward trail; red/orange/yellow; spiral; ring; orbiting particles; loose fragments; tiny spark noise; scene; floor; ground shadow; baked environmental light; smoky glow or blurred halo; realistic lightning filaments; 3D; realistic render; photorealism; paper texture; checkerboard texture; white background; black background; lettering; digits; border; watermark. Exactly 12 independently painted pure-star frames, no extra component.\n",
+    "n": 1,
+    "size": "1024x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_cards_composed\\v1\\album\\end_beam.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_v2_20261114\\source-01.png",
+    "D:\\Projects\\AI\\dst_mod\\docs\\previews\\spark-six\\head-6x64.png"
+  ],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_head_v3_20261114\\star-source-01.png"
+  ],
+  "usage": {
+    "input_tokens": 3129,
+    "input_tokens_details": {
+      "image_tokens": 2240,
+      "text_tokens": 889
+    },
+    "output_tokens": 1756,
+    "total_tokens": 4885,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_f2d2d262a08d45acac15db5081fd81b8",
+  "revised_prompts": [
+    null
+  ]
+}

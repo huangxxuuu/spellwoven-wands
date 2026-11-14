@@ -1,7 +1,5 @@
--- Server-only reaction while covered and no native defense is currently usable.
-local M = { reason = "nw_fog_boss_wait", interval = .1, body_delay = 2, body_duration = 2.5 }
--- Only ordinary locomotion can be interrupted. In particular minotaur's
--- run chain is an attack, even run_stop's apparent idle tag before impact.
+local C=require("nw/constants/fog_boss").wait
+local M = { reason = "nw_fog_boss_wait", interval = C.interval, body_delay = C.body_delay, body_duration = C.body_duration }
 local runners={bearger=true,mutatedbearger=true,warg=true,mutatedwarg=true,daywalker2=true,spat=true}
 local function other_action(inst)
     local loco=inst.components.locomotor
@@ -48,11 +46,9 @@ function M.stop(inst, removing)
     for event,fn in pairs(state.events) do inst:RemoveEventCallback(event,fn) end
     local live=not removing and inst:IsValid() and not inst.components.health:IsDead()
     if live then
-        -- An already committed SG owns its own movement.
         if state.moving and M.can_move(inst) then inst.components.locomotor:Stop() end
         inst:RestartBrain(M.reason)
     else
-        -- Entity removal/death must not reinsert a brain into BrainManager.
         local reasons=inst._brainstopped
         if reasons then reasons[M.reason]=nil;if next(reasons)==nil then inst._brainstopped=nil end end
     end
@@ -80,9 +76,7 @@ local function start_body(inst, now, x, z)
         local nx,nz=position(inst)
         local ax,az=state.x,state.z
         state.x,state.z=nx,nz
-        if (nx-ax)^2+(nz-az)^2>16*16 then ax,az=nx,nz end
-        -- This finite sweep survives leaving the cloud which started it.
-        -- It reads only actual motion and never commands the boss's SG.
+        if (nx-ax)^2+(nz-az)^2>C.teleport_distance^2 then ax,az=nx,nz end
         require("nw/dark_fog").disperse_path(state.world,ax,az,nx,nz,math.max(0,inst:GetPhysicsRadius(0)))
     end
     state.task=inst:DoPeriodicTask(M.interval,tick)
@@ -94,21 +88,19 @@ end
 local function walk(inst,state,now)
     if now<(state.next_turn or 0) then return end
     local loco=inst.components.locomotor
-    local duration=.25+math.random()*.25
+    local duration=C.turn_min+math.random()*C.turn_range
     state.next_turn=now+duration
     local aquatic=loco.IsAquatic and loco:IsAquatic()
     local finder=aquatic and FindSwimmableOffset or FindWalkableOffset
     if not finder then return end
     local point=inst:GetPosition()
     local angle=math.random()*2*math.pi
-    local distance=math.max(.5,(loco.GetWalkSpeed and loco:GetWalkSpeed() or 4)*duration+.25)
+    local distance=math.max(C.min_distance,(loco.GetWalkSpeed and loco:GetWalkSpeed() or C.walk_speed)*duration+C.distance_padding)
     local water=loco.CanPathfindOnWater and loco:CanPathfindOnWater() or false
     local offset,heading=finder(point,angle,distance,1,true,false,nil,water)
     if offset then loco:WalkInDirection((heading or angle)*180/math.pi);state.moving=true
     elseif state.moving then loco:Stop();state.moving=false end
 end
--- StopBrain does not clear the locomotor's destination/path. Do this only
--- after a safe idle/movement gate and after taking ownership of the brain.
 function M.stop_chase(inst)
     if inst.bufferedaction and inst.ClearBufferedAction then inst:ClearBufferedAction() end
     local loco=inst.components.locomotor
@@ -155,8 +147,6 @@ function M.start(inst, now, poll)
             state.suspended=true
             return
         end
-        -- A native/external attack may start while we own the brain. Observe
-        -- it without resuming pursuit or touching its movement/locked target.
         if inst._nw_fog_boss_cast or not M.can_move(inst) then
             state.suspended=true
             state.x,state.z=position(inst)

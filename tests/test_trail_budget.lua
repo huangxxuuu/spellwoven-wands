@@ -150,7 +150,7 @@ end
 for i=1,27 do shot("spark") end
 for i=1,10 do shot("fire");shot("arrow");shot("orange_bolt") end
 for i=1,20 do advance() end
-assert(TheWorld._nw_spark_trails.count==243)
+assert(TheWorld._nw_spark_trails.count==405)
 assert(TheWorld._nw_elemental_flights.arrow_count>256)
 assert(TheWorld._nw_tool_flights.count>384)
 assert(TheWorld._nw_trail_budget.count>1000,"unlimited must remove every old renderer-wide cap")

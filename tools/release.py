@@ -200,8 +200,11 @@ def prepare(root, config, version, audience, visibility, notes, commit_notes, no
                           ('tools/check_localization.py', []), ('site/build_catalog.py', ['--pages']),
                           ('tools/check_site_links.py', ['--directory', 'site/public']),
                           ('tools/build_package.py', [])]:
-        run([sys.executable, script, *extra], checkout)
-    run([sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_release*.py'], checkout)
+        if script.startswith('tools/check_'):
+            run([sys.executable, 'tools/quiet_check.py', script, *extra], checkout)
+        else:
+            run([sys.executable, script, *extra], checkout)
+    run([sys.executable, 'tools/run_python_tests.py', '-p', 'test_release*.py'], checkout)
     directory.mkdir(parents=True)
     shutil.copytree(checkout / 'mod', directory / 'content')
     package = directory / f'spellwoven-wands-{version}.zip'

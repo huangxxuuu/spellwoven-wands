@@ -1,5 +1,5 @@
 织法之杖：代码版本发布流程
-更新日期：2026-11-10
+更新日期：2026-11-14
 
 一、每次发布必须遵循的顺序
 
@@ -30,26 +30,27 @@
 publish 必须使用已经准备且提交过的同一版本；不允许跳过前两步临时打包发布。
 它依次执行：Git main 与版本标签原子推送 → GitHub 草稿及附件 → Steam Mod 内容更新 → 公开资料站部署 → GitHub 正式 Release。
 完成后核对 Steam 回执、GitHub Release 非草稿状态、资料站中英文版本和更新记录。
+随后将本轮已发布的内部清单归档，以新冻结包重新核对并更新 docs/当前状态.md 与 docs/未发布改动.txt；保留发布后新增的工作区差异，不直接清空未发布清单。版本、成功状态和差异可用 tools/context.py --release-diff 只读核对。
 若用户要求安装，使用 tools/install_mod.py；安装器禁止游戏运行时覆盖本地文件。
 
 二、脚本入口与命令
 
 入口为项目根目录 release.ps1；跨平台等价入口为 python tools/release.py。
 默认只显示计划，不改文件、不提交、不上传。默认 Steam 后端为 native，使用本机已登录的 Steam 客户端。
-以下以尚未发布的 1.0.5 为示例；实际版本按当次确认替换。
+以下 X.Y.Z 是版本占位符，运行前替换为本次已确认的版本；新发布不得照抄历史已发布版本号，恢复时使用对应冻结版本。
 
 只看计划：
-  .\release.ps1 --version 1.0.5 --audience public
+  .\release.ps1 --version X.Y.Z --audience public
 
 仅在用户确认对外内容后准备：
-  .\release.ps1 --mode prepare --version 1.0.5 --audience public --notes-file docs/releases/1.0.5-public.txt --commit-file docs/releases/1.0.5-commit.txt --notes-approved
+  .\release.ps1 --mode prepare --version X.Y.Z --audience public --notes-file docs/releases/X.Y.Z-public.txt --commit-file docs/releases/X.Y.Z-commit.txt --notes-approved
 
 检查差异并提交（只写本地发布仓库）：
   git -C dist/github-public diff --stat
-  .\release.ps1 --mode commit --resume 1.0.5 --audience public
+  .\release.ps1 --mode commit --resume X.Y.Z --audience public
 
 发布已提交的冻结版本：
-  .\release.ps1 --mode publish --resume 1.0.5 --audience public
+  .\release.ps1 --mode publish --resume X.Y.Z --audience public
 
 --notes-approved 是助手对“本次说明已经用户人工确认”的明确记录，不是允许助手代替用户确认。
 脚本会冻结对外说明的 SHA256 和完整 commit 正文。恢复时不能另传说明文件覆盖它们。
@@ -73,7 +74,7 @@ SteamCMD 的 VDF 同样不包含 previewfile、title、description 或 visibilit
   发布主封面：.venv\Scripts\python.exe tools/steam_workshop_preview.py
 
 这些工具不由 release.ps1 自动调用。旧的 --mode workshop 入口已移除，改用上述独立工具。
-美术修改先遵循 AGENTS.md 中的美术规范。封面工具沿用旧 Klei 上传器的兼容路径，并核对公开图片与文件字节一致。
+美术修改先读取 docs/art/00_美术任务流程.md 并遵循其中的规范。封面工具沿用旧 Klei 上传器的兼容路径，并核对公开图片与文件字节一致。
 不要为了代码发布失败而顺手更新封面、描述或改变可见性。
 
 五、环境与认证
@@ -100,11 +101,11 @@ SteamCMD 登录密码/验证码只在其交互终端输入，不写入参数或�
 脚本检查快照、发布源码和当前commit是否一致，拒绝混合版本、额外文件、标签冲突及强制推送。
 
 查看进度：
-  .\release.ps1 --resume 1.0.5
+  .\release.ps1 --resume X.Y.Z
 恢复发布：
-  .\release.ps1 --mode publish --resume 1.0.5 --audience public
+  .\release.ps1 --mode publish --resume X.Y.Z --audience public
 恢复本地提交：
-  .\release.ps1 --mode commit --resume 1.0.5 --audience public
+  .\release.ps1 --mode commit --resume X.Y.Z --audience public
 
 --resume 沿用原始确认和冻结文件，不读取后来改动的源码；已完成的阶段不会重复执行。
 若 Pages 失败，GitHub Release 保持草稿，Steam 已完成的更新保留；修复或重试时仍使用同一版本。

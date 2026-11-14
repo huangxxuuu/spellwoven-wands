@@ -1,6 +1,4 @@
--- Store fractional tool strokes per object (or terrain location on the world).
--- Native Workable rounds a final sub-unit to a full stroke, so send whole
--- strokes only; four ordinary 0.75 strokes perform exactly three native hits.
+local C=require("nw/constants/melee").work
 local Credit=Class(function(self,inst)
     self.inst=inst;self.amounts={}
     if inst~=TheWorld then
@@ -10,8 +8,8 @@ local Credit=Class(function(self,inst)
 end)
 function Credit:Take(key,n)
     local total=(self.amounts[key] or 0)+n
-    local units=math.floor(total+.000001)
-    self.amounts[key]=total-units>.000001 and total-units or nil
+    local units=math.floor(total+C.credit_epsilon)
+    self.amounts[key]=total-units>C.credit_epsilon and total-units or nil
     return units
 end
 function Credit:OnSave()

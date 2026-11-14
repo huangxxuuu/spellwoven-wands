@@ -1,3 +1,5 @@
+local C=require("nw/constants/prefabs").expansion_fx
+local Physics=require("nw/constants/native").physics
 local fields=require("nw/expanded_fields")
 local Effects=require("nw/spell_effects")
 local Stored=require("nw/persistent_fields")
@@ -11,32 +13,31 @@ local function make(card)
         local inst=CreateEntity()
         inst.entity:AddTransform();inst.entity:AddAnimState();inst.entity:AddNetwork()
         if insects then inst._nw_insect_size=net_float(inst.GUID,"nw_insect_swarm.size","nw_insect_swarmdirty") end
-        if id~="guard_ring" then MakeProjectilePhysics(inst,1,.1);inst._nw_ground_mask=true end
+        if id~="guard_ring" then MakeProjectilePhysics(inst,Physics.mass,Physics.radius);inst._nw_ground_mask=true end
         inst.entity:SetCanSleep(persistent)
+        if persistent then inst:AddTag("nw_spell_placement") end
         if card.breakable then inst:AddTag("nw_breakable")
         elseif id=="deer_decoy" then inst:AddTag("nw_decoy");inst:AddTag("NOCLICK")
         else if not persistent then inst:AddTag("FX") end;inst:AddTag("NOCLICK") end
         inst.AnimState:SetBank("nw_objects");inst.AnimState:SetBuild("nw_objects")
         if id=="bog_whip" then
             inst.AnimState:SetBank("tentacle_arm");inst.AnimState:SetBuild("tentacle_arm_build")
-            inst.AnimState:SetScale(.95,.95)
+            inst.AnimState:SetScale(C.whip_scale,C.whip_scale)
             inst.AnimState:PlayAnimation("atk_pre")
             inst.AnimState:PushAnimation("atk_loop",false)
             inst.AnimState:PushAnimation("atk_pst",false)
-            inst.AnimState:SetDeltaTimeMultiplier(2.5)
+            inst.AnimState:SetDeltaTimeMultiplier(C.whip_playback)
         elseif Stages.has(id) then Stages.setup(inst,id)
         else inst.AnimState:PlayAnimation("field_"..id,true) end
-        -- Hide only the old painted group; local members remain independently
-        -- visible while the field keeps its network identity and gameplay.
         if insects then inst.AnimState:SetMultColour(1,1,1,0) end
 
         if id=="rain_cloud" then
-            inst.entity:AddDynamicShadow();inst.DynamicShadow:SetSize(3.5,1.6)
+            inst.entity:AddDynamicShadow();inst.DynamicShadow:SetSize(unpack(C.rain_shadow))
             if not TheNet:IsDedicated() then
                 local wet=CreateEntity();wet.entity:AddTransform();wet.entity:AddAnimState()
                 wet:AddTag("FX");wet:AddTag("NOCLICK");wet.persists=false;wet.entity:SetParent(inst.entity)
                 wet.AnimState:SetBank("nw_spell_world");wet.AnimState:SetBuild("nw_spell_world")
-                wet.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround);wet.AnimState:SetFinalOffset(-1)
+                wet.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround);wet.AnimState:SetFinalOffset(C.wet_patch_offset)
                 wet.AnimState:PlayAnimation("wet_patch",true)
                 inst:ListenForEvent("onremove",function() if wet:IsValid() then wet:Remove() end end)
             end
@@ -82,8 +83,7 @@ local function cue(id)
         e.entity:AddNetwork();e:AddTag("FX");e:AddTag("NOCLICK");e.entity:SetPristine()
         if TheWorld.ismastersim then
             e.persists=false
-            -- Normal note cleanup is scheduled from its WAV duration by expanded_fields.sound.
-            e:DoTaskInTime(id=="nw_note_sound" and 30 or 2,e.Remove)
+            e:DoTaskInTime(id=="nw_note_sound" and C.note_sound_lifetime or C.note_mark_lifetime,e.Remove)
         end
         return e
     end,assets)
@@ -94,7 +94,7 @@ local function boundary()
     e.AnimState:SetBank("nw_objects");e.AnimState:SetBuild("nw_objects")
     e.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
     e.AnimState:PlayAnimation("field_boundary",true)
-    e.AnimState:SetMultColour(.85,.85,.8,.7)
+    e.AnimState:SetMultColour(unpack(C.boundary_colour))
     e:AddTag("FX");e:AddTag("NOCLICK");e.entity:SetPristine();e.persists=false
     return e
 end

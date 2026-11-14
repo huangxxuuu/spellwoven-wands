@@ -1,5 +1,4 @@
--- Reuse the native factory, including its animation, heater, cooker, sanity
--- aura, haunt response and saved extinguish timer. Only motion is added.
+local C=require("nw/constants/native").physics
 local Copy=require("nw/util").copy
 local function owner(inst)
     if inst._killed then return end
@@ -30,7 +29,7 @@ end
 local function make(id,native)
     local function fn()
         local inst=Prefabs[native].fn()
-        MakeProjectilePhysics(inst,1,.1);inst._nw_ground_mask=true
+        MakeProjectilePhysics(inst,C.mass,C.radius);inst._nw_ground_mask=true
         inst._nw_star_size=net_float(inst.GUID,"nw_star.size")
         require("nw/giant_stars").pulse(inst)
         if not TheWorld.ismastersim then return inst end
@@ -55,8 +54,6 @@ local function make(id,native)
             local left=timer and timer:GetTimeLeft("extinguish")
             if left then timer:SetTimeLeft("extinguish",left*(p.field_lifetime_mult or 1)) end
             start(self,{p=p,dx=dx,dz=dz,userid=require("nw/persistent_fields").userid(caster),neutral=caster and caster._nw_neutral or nil},caster)
-            -- A placed native star has its own lifetime; it is not a flying
-            -- projectile reservation and must not block a wand for days.
             cleanup()
         end
         inst:ListenForEvent("onstarkilled",function() inst.Physics:Stop() end)

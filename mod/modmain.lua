@@ -1,10 +1,11 @@
 local T=GLOBAL.require("nw/locale").t
 GLOBAL.require("nw/locale").install(env,GLOBAL)
+GLOBAL.require("nw/base_damage").install(env,GLOBAL)
 GLOBAL.require("nw/balance").install(env,GLOBAL)
 GLOBAL.require("nw/trail_budget").install(env,GLOBAL)
 GLOBAL.require("nw/limit_feedback").install(env,GLOBAL)
 GLOBAL.require("nw/dummy_trials").install(env)
-PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_dustbox", "nw_emberlamp", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_gunpowder", "nw_dark_fog" }
+PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_dustbox", "nw_emberlamp", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_native_projectiles", "nw_gunpowder", "nw_dark_fog" }
 Assets={Asset("ATLAS","images/nw_guide.xml"),Asset("IMAGE","images/nw_guide.tex"),Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
     Asset("SOUNDPACKAGE","sound/nw_instruments.fev"),Asset("SOUND","sound/nw_instruments.fsb"),
     Asset("ATLAS","images/nw_hud.xml"),Asset("IMAGE","images/nw_hud.tex"),
@@ -203,7 +204,6 @@ elseif GetModConfigData("development_smoke") then
                 local hx,hy,_,head=wand.AnimState:GetSymbolPosition("head",0,0,0)
                 local tx,ty,_,tail=wand.AnimState:GetSymbolPosition("tail",0,0,0)
                 local gx,gy,_,grass=wand.AnimState:GetSymbolPosition("contact_grass",0,0,0)
-                -- These are world coordinates; camera-right is not world +X.
                 GLOBAL.assert(head and tail and grass and GLOBAL.math.abs(hx-tx)>.1 and hy>ty and ty>gy,
                     "NW_GROUND: missing contact or incorrect lean for "..length)
                 Visual.apply_dropped(wand,code,true)
@@ -229,7 +229,6 @@ elseif GetModConfigData("development_smoke") then
                 copy:Remove();card:Remove()
             end
             GLOBAL.print("NW_ART_PASS: all card IDs, icons, descriptions and save/restore")
-            -- Query the actual engine's player animation, including on a headless host.
             local probe=GLOBAL.CreateEntity()
             probe.entity:AddTransform();probe.entity:AddAnimState()
             probe.AnimState:SetBank("wilson");probe.AnimState:SetBuild("wilson")
@@ -242,8 +241,6 @@ elseif GetModConfigData("development_smoke") then
                     GLOBAL.print("NW_MUZZLE_PASS:",anim,capacity,x,y,z,source)
                 end
             end
-            -- Exercise the same follower path as an equipped wand. Measure the
-            -- head-to-tail anchor span from the engine, after loading anim.bin.
             local child=GLOBAL.CreateEntity()
             child.entity:AddTransform();child.entity:AddAnimState();child.entity:AddFollower()
             child.entity:SetParent(probe.entity)

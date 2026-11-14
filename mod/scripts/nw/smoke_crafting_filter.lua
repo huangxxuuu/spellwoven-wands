@@ -1,5 +1,3 @@
--- Isolated server fixture: real recipe registration, station learning and the
--- native menu's filter/search functions. UI geometry is covered separately.
 local M={}
 function M.run()
     local Rules=require("nw/acquisition")

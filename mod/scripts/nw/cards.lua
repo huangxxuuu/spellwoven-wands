@@ -3,7 +3,7 @@ local M={order={"spark","arrow","heavy","scatter","double","triple","speed_up","
     "trigger_hit","trigger_timer","weak_homing"}}
 local Info=require("nw/spell_info")
 M.names=Info.names;M.short=Info.short;M.playable=Info.playable
-local retired_code=193 -- target_players_all in 0.19.0
+local retired_code=193
 M.codes={}
 M.bycode={[retired_code]="target_players_other"}
 function M.migrate_id(id)

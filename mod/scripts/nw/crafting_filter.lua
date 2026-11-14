@@ -1,14 +1,10 @@
--- Client-only main-class and single-tag filtering. Native search and crafting
--- remain untouched. Disabling the local option installs no menu hooks at all.
 local M={}
 local stations={nw_workbench=true,nw_engraver=true}
 local classes={all=true,basic=true,modifier=true,control=true}
-local ROW_HEIGHT=116 -- class heading plus two tag rows
+local ROW_HEIGHT=116
 local class_order={"all","basic","modifier","control"}
 local class_names={all="全部配方",basic="基础法术",modifier="法术修饰",control="施法控制"}
 
--- Use the station catalogue, not tag-filtered results or current ingredients:
--- an empty tag intersection must never remove the selected category.
 function M.class_options(station)
     local present={all=true}
     local cards=require("nw/card_visuals").cards
@@ -26,11 +22,7 @@ function M.class_options(station)
 end
 
 function M.station(menu)
-    -- Follow the joined world's mode at use time, including a late client
-    -- state reply. Loot-only worlds use the native menu without our filters.
     if require("nw/balance").is_loot_only() then return nil end
-    -- Native text entry selects EVERYTHING. Its search cache can retain text
-    -- after returning to a station, so use the selected page, not that cache.
     if not menu.crafting_hud:IsCraftingOpen() or menu.current_filter_name~="CRAFTING_STATION" then return nil end
     local builder=menu.owner and menu.owner.replica and menu.owner.replica.builder
     local station=builder and builder:GetCurrentPrototyper()
@@ -60,8 +52,6 @@ function M.filter(recipes,station,choice,selected)
     return result
 end
 
--- Options come from the station's complete recipe catalogue, not a filtered
--- result. Choosing a tag never hides other tags or traps an empty selection.
 function M.tags(station,choice)
     local present={}
     local cards=require("nw/card_visuals").cards
@@ -81,8 +71,6 @@ local function shift(widget,dy)
     widget:SetPosition(p.x,p.y+dy,p.z)
 end
 
--- Extend the stock frame symmetrically; keep all three recipe rows and the
--- detail panel. Only undo our own deltas, preserving unrelated relative moves.
 local function layout(menu)
     local move={{menu.filter_panel,1},{menu.itemlist_split,1},{menu.recipe_grid,-1},
         {menu.no_recipes_msg,-1},{menu.itemlist_split2,-1},{menu.details_root,-1},{menu.nav_hint,-1}}
@@ -152,7 +140,7 @@ function M.attach(menu,G)
         or not menu.UpdateRecipeGrid or not menu.ApplyFilters or not menu.Refresh
         or not menu.DoFocusHookups then return end
     local geometry=layout(menu)
-    if not geometry then return end -- A replaced menu retains its own UI unmodified.
+    if not geometry then return end
     for _,widget in ipairs({menu.recipe_grid,menu.filter_panel.filter_grid}) do
         if not widget.SetFocusChangeDir or not widget.focus_flow or not widget.focus_flow_args then return end
     end
@@ -251,7 +239,6 @@ function M.attach(menu,G)
         local filtered=M.filter(source,state.station,choice,state:selection())
         state.source,state.filtered=source,filtered
         self.filtered_recipes=filtered
-        -- Native mouse refresh does not clear a detail whose recipe disappeared.
         local selected=self.details_root.data
         if selected and state.station and (choice~="all" or next(state:selection())) then
             local present=false
@@ -287,7 +274,6 @@ function M.install(env,G)
     env.AddClassPostConstruct("widgets/redux/craftingmenu_hud",function(hud)
         local menu=hud.craftingmenu
         if not menu or not menu.nw_class_filter then return end
-        -- Native Open marks is_open only AFTER opening the recipe page.
         for _,method in ipairs({"Open","Close"}) do
             local original=hud[method]
             hud[method]=function(self,...)

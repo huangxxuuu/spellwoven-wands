@@ -1,0 +1,40 @@
+终点聚爆束正面弹头、三层顺序与模糊接缝诊断
+日期：2026-11-14
+
+本次要求与实现
+用户要求星形弹头像其他远程投射物一样正对观察者，视觉顺序为束身在下、连接居中、星星在上，并分析截图红圈模糊块。
+nw/beam_visual.lua只将head改为BillBoard，取消星头随路径方向的Transform旋转。原12张独立绘制帧继续播放；光束和连接仍是OnGround并沿实际路径旋转。FinalOffset明确分为光束3、连接4、星5。
+保持现有显示大小、连接位置与截面、服务器路径及伤害、终点星保留到最后残留光束结束的生命周期。此次没有重画或更换源贴图。
+测试覆盖转弯、反向、晚加入终点残留时星仍保持BillBoard，连接方向跟随路径，以及三个实体的真实绘制层级。
+
+截图模糊块：已确认的事实
+1. 当前全部64种连接clip/frame的源图和实际编译mip0逐列均有连续白芯，最薄4像素，没有源图破损或裁切丢失。连接首列和束身尾列RGBA匹配。
+2. 旧运行代码的“裁短”实际是缩短显示四边形并压缩整张纹理，没有裁掉对应UV。连接临界处可能只留下0.003世界单位的可见束身，却仍显示168像素宽的整幅束身切片。
+3. 用真实Lua renderer探针复现：半径0.12、tip长度0.300或0.301时，终端可见段只有0.003、宽度0.48，纹理纵横采样密度比约420倍。tip长度0.310、0.320时，比值仍分别为126和63。数据在test_reports/beam_seam_runtime_20261114.json。
+4. 两动画包KTEX均有11级mipmap。解码连接mip0..3显示：较低分辨率级会把细白芯平均成浅紫色。最高分辨率源图正常并不能保证极度缩小后的显示仍清晰。
+5. 旧Pillow预览只读取mip0，并用平面正交投影；motion fixture还曾写死FinalOffset，未记录orientation。这解释了为什么旧预览不足以发现实机的贴地角度、层级和缩小采样问题。
+
+判断与尚未证实的部分
+“接缝短段极端横向压缩 → 引擎选择较低分辨率采样 → 细白芯与紫边混合”是与现象吻合且有具体数据支持的主要候选原因；尚未取得用户该帧的引擎LOD或禁用mipmap对照，不能宣称已证明截图唯一根因。
+连接与束身旧同层是明确的层级问题，但其几何通常首尾相接，不能仅凭同层就断言发生深度冲突。全裁片段同时Hide，亦无证据表明零缩放会污染其他实体。
+本轮已修正朝向和三层顺序，未凭推测重画材质或改整条光束UV。模糊块是否仍出现需实机观察；若继续出现，优先针对接缝短段做采样对照。
+
+诊断证据
+test_reports/beam_seam_art_20261114/diagnosis.md及metrics.json：64帧源图/编译图分析。
+test_reports/beam_seam_art_20261114/mip-metrics.json及mip0-3-connector.png：实际KTEX各级采样图。
+test_reports/beam_seam_runtime_20261114.json：临界tip长度的实际Lua缩放数据。
+
+验证与预览
+tests/test_beam_visual.lua定向回归通过；tests.test_end_beam_head及tests.test_native_animation_alpha共7项Python检查通过。
+tests/fixtures/end_beam_motion.lua现捕获真实orientation、FinalOffset和头高度。tools/preview_end_beam_motion.py新增镜头俯角/方向投影；draw_material支持一般仿射，旧调用保持兼容。
+新预览docs/previews/end-beam-facing-v8/：直线61帧、转角61帧、终点及残留79帧，共201帧，通过原有连接坐标、相位、截面及生命周期断言。已检查转角和终止联系图，星保持正面、连接沿路径、最终清理。
+新预览是镜头数学投影加编译mip0，不模拟真实GPU深度、LOD或光照，不能据此宣称模糊块已修复。
+
+交付边界
+本次为运行显示修正和诊断，没有新生图、API用量或正式发布。修改后的正面朝向、三层遮挡和模糊块情况仍需游戏引擎实机验收。
+检查时游戏客户端与两项本地服务器仍在运行，尚未安装本次beam_visual修改到游戏目录。
+
+随后安装完成（最新状态）
+用户要求“更新到游戏中”后，确认游戏客户端及本地服务器均已退出，运行tools/install_mod.py成功安装。
+版本1.0.6，校验256个文件，更新1个文件，移除0个退役文件；目标E:/SteamLibrary/steamapps/common/Don't Starve Together/mods/nw_weave_dev。
+回执：test_reports/beam_facing_v8_install_2026-11-14.txt。重新启动游戏和世界加载；模糊接缝的具体原因仍待实机对照，未宣称已修复。

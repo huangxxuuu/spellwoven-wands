@@ -1,4 +1,3 @@
--- Run only in the isolated fresh balanced-world server suite.
 local M={}
 function M.run()
     local Balance=require("nw/balance")
@@ -42,8 +41,6 @@ function M.run()
     end
     local function cast()
         local ok,why=cmp:Cast(player,Vector3(x+4,0,z));assert(ok,"NW_BALANCE: cast "..tostring(why))
-        -- These checks concern launch fees; remove outgoing shots before they
-        -- reach unrelated fresh-world entities or the later damage fixture.
         local shots={}
         for _,e in pairs(Ents) do
             if e.prefab=="nw_projectile" and e._shot and e._shot.owner==player then shots[#shots+1]=e end
@@ -58,7 +55,6 @@ function M.run()
     prepare(0,.1);cast();near(hunger.current,0,"hunger clamps to zero")
     prepare(0,0);cast()
     near(health.currenthealth,before_health,"no immediate health fee")
-    -- A save from the old generation keeps its raw recharge and conversion.
     cmp.data.generator_version=2;cmp.data.stats.recharge=1.4
     local copy=SpawnSaveRecord(wand:GetSaveRecord());made[#made+1]=copy
     local restored=copy.components.nw_wand
@@ -67,8 +63,6 @@ function M.run()
     near(Generator.sanity_conversion_for(restored.data.stats),10,"old wand current-world fee")
     local saved=restored:OnSave();restored:OnLoad(saved)
     near(restored.data.stats.sanity_conversion,20,"conversion does not compound on load")
-    -- Cards may cancel even the new starter's full recharge; no cast multiplier
-    -- or positive minimum may reintroduce a wait at compilation time.
     local data=Generator.starter()
     data.stats.capacity=8;data.stats.draw_count=1
     data.cards={}
@@ -82,7 +76,6 @@ function M.run()
         local lo,hi=require("nw/wand_generation").distribution(tier,"sprout","recharge")
         assert(generated.stats.recharge>=lo and generated.stats.recharge<=hi,"NW_BALANCE: generated recharge range")
     end
-    -- Exercise real combat/health with the same cast identity and another root.
     local target=spawn("nw_target_dummy")
     target.Transform:SetPosition(x+8,0,z)
     target.components.health:SetMaxHealth(10000)

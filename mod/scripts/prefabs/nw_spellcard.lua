@@ -1,3 +1,4 @@
+local C=require("nw/constants/prefabs").spellcard
 local Cards=require("nw/cards")
 local Ground=require("nw/ground_card")
 local assets=Ground.assets()
@@ -25,7 +26,7 @@ local function fn()
         return inst
     end
     inst:AddComponent("stackable")
-    inst.components.stackable.maxsize=40
+    inst.components.stackable.maxsize=C.stack_size
     inst.components.stackable:SetOnDeStack(function(one,stack)
         one:SetSpell(stack.spell_id)
         one.source=stack.source
@@ -62,8 +63,6 @@ local function fn()
         local id=Cards.migrate_id(data and data.spell_id)
         self:SetSpell(Cards.codes[id] and id or "spark")
     end
-    -- Allocate at creation, never for the first time after the world counter
-    -- has already been serialized during a save.
     inst:GetCardUID()
     inst:SetSpell("spark")
     return inst

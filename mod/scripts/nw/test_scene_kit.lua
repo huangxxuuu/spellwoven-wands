@@ -107,7 +107,6 @@ function M.cleanup(count,player)
         points[#points+1]=p
     end
     local d=require("nw/util").copy(require("nw/definitions").spells.payload_egg)
-    -- No targets nearby means zero motion but live guidance and sleep probes.
     d.speed=0;d.flags={targets={hostile=true},homing=require("nw/util").copy(require("nw/definitions").spells.homing)}
     local result={}
     for _,p in ipairs(points) do

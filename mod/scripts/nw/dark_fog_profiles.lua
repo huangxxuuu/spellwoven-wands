@@ -1,4 +1,3 @@
--- Classification is deliberately independent of health amounts and visual size.
 local M = {}
 local registered = {}
 local shadow_prefabs = {
@@ -10,8 +9,6 @@ local shadow_prefabs = {
 }
 local large_prefabs = { bat_boss = true }
 
--- Optional near_target(inst, radius) must implement the species' ORIGINAL
--- hostility rules. Never register an unrestricted CanTarget-only search.
 function M.register(prefab, profile)
     assert(type(prefab) == "string" and type(profile) == "table")
     assert(profile.kind == "small" or profile.kind == "normal"
@@ -34,14 +31,12 @@ function M.classify(inst)
         return nil
     end
     local profile = registered[inst.prefab]
-    -- shadow_aligned alone includes mundane allies/equipment, not just shadows.
     if shadow_prefabs[inst.prefab] or inst:HasTag("shadowcreature")
         or inst:HasTag("shadow") or inst:HasTag("shadowthrall")
         or inst:HasTag("shadowboss") or (profile and profile.kind == "shadow") then
         return "shadow"
     elseif large_prefabs[inst.prefab] or inst:HasTag("epic") or inst:HasTag("largecreature")
         or (profile and profile.kind == "large") then
-        -- Stationary native bosses (e.g. crabking) belong to the boss adapter.
         return "large"
     end
     if inst:HasTag("structure") or not c.locomotor or not (inst.brain or inst.brainfn) then

@@ -1,4 +1,3 @@
--- Run only in the isolated smoke world, with the native picker and container.
 local M={}
 function M.run(x,z,done)
     local player=SpawnPrefab("wilson")

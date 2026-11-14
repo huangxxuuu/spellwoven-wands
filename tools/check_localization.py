@@ -1,5 +1,6 @@
 """Check English coverage, format arguments, generated names and gameplay parity."""
 import json
+from collections import Counter
 import re
 from pathlib import Path
 from lupa.lua51 import LuaRuntime, lua_type
@@ -23,9 +24,11 @@ if __name__ == '__main__':
     zh, en = runtime('zh'), runtime('en')
     dictionary = dict(en.eval('require("nw/locales/en")').items())
     placeholder = re.compile(r'%(?:[-+#0]*\d*(?:\.\d+)?)?[cdiouxXeEfgGqs]')
+    named_placeholder = re.compile(r'\{([A-Za-z_][A-Za-z_0-9]*)\}')
     for source, target in dictionary.items():
         assert not re.search(r'[\u4e00-\u9fff]', target), source
         assert placeholder.findall(source) == placeholder.findall(target), f'Format mismatch: {source}'
+        assert Counter(named_placeholder.findall(source)) == Counter(named_placeholder.findall(target)), f'Named format mismatch: {source}'
     literals = re.compile(r'T\(("(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\')\)')
     for path in (ROOT / 'mod').rglob('*.lua'):
         if 'locales' in path.parts:

@@ -1,14 +1,13 @@
--- Both containers use the stock dust stack size as their visual threshold.
+local C=require("nw/constants/storage")
 local M={
     atlas="images/inventoryimages/nw_arcane_storage.xml",
-    FULL_THRESHOLD=2*require("nw/acquisition").materials.nw_dust[3],
-    DUST_SECONDS=60,
-    DUSTBOX_SCALE=1.5,
-    LAMP_SCALE=1.65,
-    -- Ground footprint is independent of the hanging lamp's visual height.
-    LAMP_COLLISION_RADIUS=.4,
-    LAMP_MIN_SPACING=2,
-    LIGHT={half_radius=3.5,full_radius=5,intensity=.6,falloff=.7,colour={.78,.50,1}},
+    FULL_THRESHOLD=C.full_stack_count*require("nw/acquisition").materials.nw_dust[3],
+    DUST_SECONDS=C.dust_seconds,
+    DUSTBOX_SCALE=C.dustbox_scale,
+    LAMP_SCALE=C.lamp_scale,
+    LAMP_COLLISION_RADIUS=C.lamp_collision_radius,
+    LAMP_MIN_SPACING=C.lamp_min_spacing,
+    LIGHT=require("nw/util").copy(C.light),
 }
 
 function M.Count(container)
@@ -44,8 +43,6 @@ function M.Watch(inst,callback)
         callback(inst,M.StateForCount(count),count)
     end
     queue=function()
-        -- A native merge changes the stored stack without sending itemget.
-        -- Defer until the transfer finishes, so temporary empty slots do not flash.
         if not pending then pending=inst:DoTaskInTime(0,refresh) end
     end
     inst:ListenForEvent("itemget",queue)

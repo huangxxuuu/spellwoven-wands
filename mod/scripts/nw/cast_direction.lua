@@ -1,5 +1,5 @@
--- Persist only on this client. The server holds an ephemeral preference per player.
-local M={key="nw_weave_cast_direction_v1",sync_interval=60,change_delay=1}
+local C=require("nw/constants/casting")
+local M={key="nw_weave_cast_direction_v1",sync_interval=C.direction_sync_interval,change_delay=C.direction_change_delay}
 local mode="target"
 local applied_mode="target"
 local sync_current,schedule_sync
@@ -61,8 +61,6 @@ function M.install(env,G)
     env.AddComponentPostInit("playeractionpicker",function(picker)
         require("nw/cast_action").install_picker(picker)
     end)
-    -- Characters can reset their action callbacks when changing forms. Reattach
-    -- the supported callback when a wand is equipped or a preference arrives.
     env.AddPlayerPostInit(function(player)
         player:ListenForEvent("equip",function() ensure_picker(player) end)
     end)
@@ -83,20 +81,17 @@ function M.install(env,G)
     end
     sync_current=function()
         local player=current
-        -- An entry/load callback or heartbeat must not bypass the last change's delay.
         if pending or not loaded or not player or player~=G.ThePlayer or not player:IsValid() then return end
         local pc=player.components and player.components.playercontroller
         if not pc then return end
         ensure_picker(player)
         local mouse_input=pc:UsingMouse()==true
         if G.TheWorld and G.TheWorld.ismastersim then
-            -- A listen host shares the server process; apply the same validation.
             M.receive(player,mode,mouse_input)
         else
             G.SendModRPCToServer(G.MOD_RPC.nw_weave.cast_direction,mode,mouse_input)
         end
         applied_mode=mode
-        -- Keep the fallback one minute after the last send, including an edit.
         heartbeat(player)
     end
     schedule_sync=function()

@@ -58,12 +58,10 @@ local function recharge()
         return 0
     end
     local count = 0
-    -- Ents includes equipped, inventory, container and sleeping entities.
     for _, inst in pairs(Ents or {}) do
         local cmp = inst.components and inst.components.nw_wand
         if cmp and inst:IsValid() and cmp.data and cmp.data.runtime then
             cmp:UpdateTime()
-            -- Star/moon spell cooldown floors are stored in remaining_cast.
             cmp.data.runtime.remaining_cast = 0
             cmp.data.runtime.remaining_recharge = 0
             cmp.cool_total = 0
@@ -109,7 +107,6 @@ commands = {
 }
 
 function M.install(globals, world)
-    -- DST's strict global table rejects new names assigned inside a callback.
     for _, cmd in ipairs(commands) do rawset(globals, cmd.name, cmd.run) end
     world:ListenForEvent("onremove", function()
         for _, cmd in ipairs(commands) do

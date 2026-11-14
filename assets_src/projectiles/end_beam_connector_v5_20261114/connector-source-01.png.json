@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-11-14T14:04:54.846394+00:00",
+  "action": "edit",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Use case: precise-object-edit. Output one short transparent game-world beam connection sprite only.\nInput 1 is the user's approved visual baseline: a full-bodied thick purple horizontal beam meeting a separate bright purple star. Preserve that fullness. The user's ONLY shape correction is to make the connection slightly slimmer near the star. Input 2 is the existing connector close-up: preserve its near-white broad center, lilac bands, deep purple exterior, dark-violet hand-inked edges and angular internal brushwork.\nGenerate ONLY the short beam connection piece, not the star, not the long laser, not the screenshot, not any text. The star is a separately existing upper layer that will be resized elsewhere.\nRequired silhouette: a short almost rectangular strip with a very gentle trapezoidal reduction in thickness from LEFT rear to RIGHT front. Left end thickness is 100%; right end thickness is 82% of the left thickness, acceptable 80–85%. Both ends are OPEN VERTICAL CUTS showing the full cross-section of all painted bands. Right edge remains broad, flat and blunt, absolutely no pointed termination. Keep a straight horizontal central axis. Upper and lower outer edges each move inward by only 9% of the LEFT total thickness over the short strip. Example proportional geometry: left height 400, right height 328, width 600. Short and full-bodied, approximately 1.5 times wider than its left height. The white core is a continuous BROAD BRIGHT stripe all the way across, still broad at the right cut. Purple outer bands and lilac inner bands retain almost all their thickness. No dark end caps at either open edge.\nStyle: match the provided existing 2D Don't Starve Together painted VFX. Clear silhouette and large color shapes, white core / pale lilac / violet / deep purple layers. Contour has restrained hand-painted weight, internal strokes are sparse and thinner. Preserve full clean color areas, with a few angular horizontal painted streaks. Very modest hand-painted irregularity, no uniform noise, no dense hatching, no photographic or 3D shading.\nFraming: ONE complete isolated short connector centered on a truly transparent alpha canvas with generous transparent safety margin on all sides. No clipping at image edges. Background pixels must be transparent; no dark backdrop, no checkerboard, no atmosphere or broad glow.\nStrict exclusions: no star, no starburst, no explosion, no particles, no symbols, no labels, no text, no scenery. No cone, no spear, no arrow, no flame, no comet, no triangular beam, no needle, no tip, no single-point convergence, no thin right-side line. The right-side opening MUST stay about four fifths as thick as the left opening. This is a tiny change to a thick strip, not a dramatic new shape.\n",
+    "n": 1,
+    "size": "1024x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_connector_v5_20261114\\user-reference.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_head_v3_20261114\\connector-source.png"
+  ],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_connector_v5_20261114\\connector-source-01.png"
+  ],
+  "usage": {
+    "input_tokens": 1444,
+    "input_tokens_details": {
+      "image_tokens": 847,
+      "text_tokens": 597
+    },
+    "output_tokens": 1756,
+    "total_tokens": 3200,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_8a95563438ac403fa995b8827634dd19",
+  "revised_prompts": [
+    null
+  ]
+}

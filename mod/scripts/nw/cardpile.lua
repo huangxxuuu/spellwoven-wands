@@ -1,14 +1,13 @@
+local C=require("nw/constants/ui").cardpile
 local T=require("nw/locale").t
-local SIDE=5
-local M={capacity=SIDE*SIDE,stride=256}
+local SIDE=C.side
+local M={capacity=SIDE*SIDE,stride=C.stride}
 
--- A pile contains the real card entities. Their UIDs, source and spell are
--- saved by the native container, including when two spells have the same name.
 function M.perform(act)
     local player,card,target=act.doer,act.invobject,act.target
     if not player or not player:IsValid() or not card or not card:IsValid()
         or not target or not target:IsValid() or target==card or target:HasTag("INLIMBO")
-        or not player:IsNear(target,3) or not card:HasTag("nw_spellcard") then return false end
+        or not player:IsNear(target,C.interaction_range) or not card:HasTag("nw_spellcard") then return false end
     local inv=player.components.inventory
     if not inv or inv:GetActiveItem()~=card or card.components.inventoryitem.owner~=player
         or not player.components.health or player.components.health:IsDead() then return false end
@@ -44,27 +43,25 @@ function M.install(env)
     local slots={}
     for row=0,SIDE-1 do
         for col=0,SIDE-1 do
-            slots[#slots+1]=Vector3((col-2)*80,(2-row)*80,0)
+            slots[#slots+1]=Vector3((col-C.centre)*C.slot_step,(C.centre-row)*C.slot_step,0)
         end
     end
-    local widget={slotpos=slots,pos=Vector3(0,200,0),side_align_tip=240,
+    local widget={slotpos=slots,pos=Vector3(0,C.y,0),side_align_tip=C.tip,
         bgatlas="images/nw_frame.xml",bgimage="frame_2_2.tex",
         bganim_visualfn=function(anim)
             local bg=anim.parent.bgimage
             if not bg.nw_frame then
-                bg:SetSize(388,388)
+                bg:SetSize(C.background_size,C.background_size)
                 bg.nw_frame=bg:AddChild(require("widgets/nw_wandframe")())
-                bg.nw_frame:SetSize(420,420)
+                bg.nw_frame:SetSize(C.frame_size,C.frame_size)
             end
         end}
     containers.params.nw_spellpile={type="chest",widget=widget,acceptsstacks=false,
         itemtestfn=function(_,item) return item:HasTag("nw_spellcard") end}
     containers.MAXITEMSLOTS=math.max(containers.MAXITEMSLOTS,M.capacity)
-    local action=Action({priority=6,rmb=true,distance=2,silent_fail=true})
+    local action=Action({priority=C.action_priority,rmb=true,distance=C.action_distance,silent_fail=true})
     action.id,action.str,action.fn="NW_PILE",T("叠放法术卡"),M.perform
     env.AddAction(action)
-    -- DST replaces collectors registered for the same mod/type/component.
-    -- Cards have stackable; inventoryitem's USEITEM slot belongs to wand repair.
     env.AddComponentAction("USEITEM","stackable",M.collect)
     for _,sg in ipairs({"wilson","wilson_client"}) do
         env.AddStategraphActionHandler(sg,ActionHandler(action,"doshortaction"))

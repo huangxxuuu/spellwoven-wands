@@ -18,7 +18,7 @@ for i=1,#locales+1 do
         file:close()
     end
     local rows=env.configuration_options
-    assert(#rows==22 and rows[1].name=="language" and rows[2].name=="world_difficulty")
+    assert(#rows==23 and rows[1].name=="language" and rows[2].name=="base_damage_multiplier" and rows[3].name=="world_difficulty")
     for _,row in ipairs(rows) do
         if no_hover[row.name] then assert(row.hover==nil,"removed setting hover: "..row.name) end
         for _,option in ipairs(row.options) do
@@ -29,6 +29,11 @@ for i=1,#locales+1 do
             end
         end
     end
+    local damage=table.remove(rows,2)
+    assert(damage.label==(chinese and "基础伤害倍率" or "Base damage multiplier") and damage.default==1)
+    local damage_multipliers={0.5,0.75,1,1.25,1.5}
+    assert(#damage.options==#damage_multipliers)
+    for n,value in ipairs(damage_multipliers) do assert(damage.options[n].data==value) end
     local difficulty=table.remove(rows,2)
     assert(difficulty.default=="fun" and #difficulty.options==3 and difficulty.options[1].data=="fun" and difficulty.options[2].data=="balanced")
     local loot=difficulty.options[3]

@@ -1,31 +1,35 @@
+local C=require("nw/constants/native_effects")
+local Projectile=require("nw/constants/projectiles")
 local M={}
 local omit={"INLIMBO","FX","playerghost"}
-function M.absorb(owner,x,z,nx,nz,r)
+function M.absorb(owner,x,z,nx,nz,r,p)
     local dx,dz=nx-x,nz-z
     local length=math.sqrt(dx*dx+dz*dz)
     for _,e in ipairs(TheSim:FindEntities((x+nx)/2,0,(z+nz)/2,r+length/2,nil,omit,{"fire","smolder"})) do
         local ex,_,ez=e.Transform:GetWorldPosition()
         local t=length>0 and math.clamp(((ex-x)*dx+(ez-z)*dz)/(length*length),0,1) or 0
-        if (x+t*dx-ex)^2+(z+t*dz-ez)^2<=r*r and e.components.burnable then
+        if (x+t*dx-ex)^2+(z+t*dz-ez)^2<=r*r and e.components.burnable
+            and require("nw/native_targeting").accepts(owner,e,p) then
             e.components.burnable:Extinguish()
-            local fx=SpawnPrefab("fire_fail_fx");fx.Transform:SetPosition(ex,.4,ez)
+            local fx=SpawnPrefab("fire_fail_fx");fx.Transform:SetPosition(ex,C.fire.absorb_height,ez)
         end
     end
 end
-function M.burst(inst,owner,x,z,r,direct)
+function M.burst(inst,owner,x,z,r,direct,p)
+    p=p or inst._shot and inst._shot.p
     local fx=SpawnPrefab("nw_lighter_burst_fx")
     fx.Transform:SetPosition(x,0,z);fx:SetRadius(r)
     for _,e in ipairs(TheSim:FindEntities(x,0,z,r,{"player"},omit)) do
-        if e~=direct and e.components.combat and e.components.health and not e.components.health:IsDead() then
-            local p=inst._shot and inst._shot.p
+        if e~=direct and e.components.combat and e.components.health and not e.components.health:IsDead()
+            and require("nw/native_targeting").accepts(owner,e,p) then
             local health=e.components.health
             local before=health.currenthealth
-            e.components.combat:GetAttacked(owner,p and p.damage or 17,inst,"fire")
+            e.components.combat:GetAttacked(owner,p and p.damage or Projectile.engraved.lighter.damage,inst,"fire")
             require("nw/journal_damage").loss(owner,p,health,before)
         end
     end
     for _,e in ipairs(TheSim:FindEntities(x,0,z,r,nil,omit,{"cookable","canlight","burnable"})) do
-        if e:IsValid() then
+        if e:IsValid() and require("nw/native_targeting").accepts(owner,e,p) then
             local cook=e.components.cookable
             if cook and cook.product then
                 local pos=e:GetPosition()

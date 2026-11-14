@@ -1,6 +1,5 @@
 local M={}
 function M.run()
-    -- A failed prior run may have saved paused fixtures in this isolated world.
     local previous=TheWorld._nw_boundary_entities
     if previous then
         local old={};for e in pairs(previous.items) do old[#old+1]=e end
@@ -35,7 +34,6 @@ function M.run()
     owner.components.combat.CanTarget=function() return false end
     local function shot(id)
         local p=Copy(require("nw/definitions").spells[id])
-        -- These deliberately overlapping probes test bounds, not prop contact.
         p.flags={targets={hostile=true}};p.spread=0
         return p
     end
@@ -47,7 +45,6 @@ function M.run()
         assert(e:IsValid(),"NW_BOUNDS: field launch "..id)
         moving[#moving+1]=e
     end
-    -- A restored permanent field must also register for boundary cleanup.
     local record=moving[2]:GetSaveRecord()
     record.x=edge+8;record.z=z
     local restored=SpawnSaveRecord(record)
@@ -58,14 +55,9 @@ function M.run()
         {projectiles={p}},{projectiles={shot("spark")}},
     }}
     assert(Executor.execute(plan,owner,edge-1,z,1,0,1.4))
-    -- An otherwise ordinary shot must survive flight past 30 units, even when
-    -- nobody is near it. Fly along the last valid tile column in this fixture
-    -- with boundary cleanup explicitly disabled for this one policy check.
     local far=SpawnPrefab("nw_projectile")
     local fp=shot("spark");fp.speed=30;fp.lifetime=5
     far:Launch(owner,fp,edge-70,z,1,0,function() end,1.4)
-    -- Avoid relying on local terrain at edge-70: simulate a long valid segment
-    -- through the real collision loop, then remove this probe immediately.
     local enabled=Limits.boundary_cleanup;Limits.boundary_cleanup=false
     far.Physics:Teleport(edge-35,0,z)
     require("nw/projectiles").step(far,GetTime()+1.2,{})

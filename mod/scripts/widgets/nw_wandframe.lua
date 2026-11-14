@@ -1,8 +1,7 @@
+local C=require("nw/constants/ui").nw_wandframe
 local Widget=require("widgets/widget")
 local Image=require("widgets/image")
 
--- Each image owns its final rectangle. No inherited dialog tints, crowns or
--- scale overrides: all four wooden corners stay 16 HUD pixels at every capacity.
 local Frame=Class(Widget,function(self)
     Widget._ctor(self,"nw_wandframe")
     self.pieces={}
@@ -11,16 +10,14 @@ local Frame=Class(Widget,function(self)
             local center=row==2 and col==2
             local piece=self:AddChild(Image(center and "images/global.xml" or "images/nw_frame.xml",
                 center and "square.tex" or string.format("frame_%d_%d.tex",row,col)))
-            -- The decorative center texture has translucent patches near its
-            -- bottom. An opaque solid fill prevents the world/HUD showing through.
-            if center then piece:SetTint(.055,.05,.045,1) end
+            if center then piece:SetTint(unpack(C.fill_colour)) end
             piece:SetClickable(false)
             self.pieces[#self.pieces+1]=piece
         end
     end
 end)
 function Frame:SetSize(width,height)
-    local edge=16
+    local edge=C.edge
     local widths={edge,width-edge*2,edge}
     local heights={edge,height-edge*2,edge}
     local xs={-width/2+edge/2,0,width/2-edge/2}

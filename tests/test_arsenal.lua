@@ -45,7 +45,7 @@ assert(not T.allowed(me,pet,{targets={neutral=true}}))
 local wall,plant=entity("wall"),entity("plant")
 assert(T.allowed(me,wall,{targets={building=true}}) and not T.allowed(me,plant,{targets={building=true}}))
 plant.components.health=nil;plant.components.combat=nil
-assert(T.matches(me,plant,{nature=true}) and not T.allowed(me,plant,{targets={nature=true}}))
+assert(T.matches(me,plant,{nature=true}) and T.allowed(me,plant,{targets={nature=true}}))
 assert(T.allowed(me,me,{targets={self=true,players_other=true}}) and T.allowed(me,you,{targets={self=true,players_other=true}}))
 assert(Cards.codes.note_c==103 and Cards.codes.spark==1 and #Cards.order<=255)
 assert(not Cards.codes.target_players_all and Cards.codes.target_players_other==194 and Cards.codes.target_self==195)

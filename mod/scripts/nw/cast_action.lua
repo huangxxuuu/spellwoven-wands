@@ -1,5 +1,4 @@
--- Mod-owned action selection and execution. Native controller functions and
--- their RightClick request callbacks remain unchanged.
+local C=require("nw/constants/casting").aim
 local U=require("nw/util")
 local Direction=require("nw/cast_direction")
 local M={}
@@ -18,7 +17,7 @@ local function inrange(player,pos)
     if not pos or not U.finite(pos.x) or not U.finite(pos.z) then return false end
     local x,_,z=player.Transform:GetWorldPosition()
     local dsq=(pos.x-x)^2+(pos.z-z)^2
-    return dsq>=.0025 and dsq<=900
+    return dsq>=C.min_distance_squared and dsq<=C.max_distance_squared
 end
 function M.available(wand,player,pos)
     if not player or M.hand(player)~=wand or player._nw_editing or player:HasTag("playerghost")
@@ -35,8 +34,6 @@ function M.point(wand,player,pos,actions,right)
     if right and M.available(wand,player,pos) and TheWorld.Map:IsPassableAtPoint(pos.x,0,pos.z,true) then actions[#actions+1]=ACTIONS.NW_CAST end
 end
 function M.equipped(wand,player,target,actions,right)
-    -- Entity-only collection has no cursor point. Mouse mode is supplied by
-    -- the action picker's supported callback below, which receives both values.
     if Direction.uses_mouse(player) then return end
     if target and target.Transform then
         M.point(wand,player,target:GetPosition(),actions,right)
@@ -55,16 +52,12 @@ function M.install_picker(picker)
         local inv=player.replica and player.replica.inventory
         if not wand or not inv or inv:GetActiveItem() or picker.containers[target]
             or target:HasTag("walkableplatform") then return nil,true end
-        -- Keep the native priorities ahead of the equipped-item branch.
         local special=picker:GetSteeringActions(player,position,true)
             or picker:GetCannonAimActions(player,position,true)
             or picker:GetGolfAimActions(position,true)
         if special then return special,false end
         local actions={}
         M.point(wand,player,position,actions,true)
-        -- SortActionList keeps the native ghost/mount/action filters. Sorting a
-        -- point creates a point BufferedAction, without losing the cursor point
-        -- in the native entity-only GetEquippedItemActions branch.
         return picker:SortActionList(actions,position,wand),false
     end
     picker.rightclickoverride=picker._nw_direction_callback
@@ -74,7 +67,6 @@ function M.aim_point(act)
     return act.target and act.target:IsValid() and act.target:GetPosition() or act:GetActionPoint()
 end
 function M.prepare(act)
-    -- Turn an entity click into a point shot, avoiding native melee targeting.
     if not act._nw_direction_set then
         if not Direction.uses_mouse(act.doer) and act.target and act.target:IsValid() then
             act:SetActionPoint(act.target:GetPosition())
@@ -97,7 +89,6 @@ function M.valid(act)
         or (act.doer._nw_edit_until or 0)>GetTime() then return false end
     if not act._nw_checked then M.prepare(act) end
     if not inrange(act.doer,act:GetActionPoint()) then return false end
-    -- A rejected click never becomes queued work when mana/cooldown recovers.
     return act._nw_plan~=nil and act.invobject.components.nw_wand:CanCast(act.doer,act._nw_plan) or false
 end
 function M.server_state(player,act)

@@ -1,13 +1,12 @@
--- Everyone may read shard settings; only developer-mode admins may change them.
--- Personal trail preferences are handled locally, outside the server RPC.
+local C=require("nw/constants/performance")
 local M={enabled=false,values={},allowed=false,synced=false,client_values={},serial=0,listeners={}}
 local Limits=require("nw/spell_limits")
 local Trail=require("nw/trail_budget")
 local function L(zh,en) return require("nw/locale").language=="en" and en or zh end
 M.text=L
 local bool={false,true}
-local depth={0};for i=1,30 do depth[#depth+1]=i end
-local live_options={0,25,50,100,200,300,400,500,600,700,800}
+local depth={0};for i=1,C.max_depth do depth[#depth+1]=i end
+local live_options=require("nw/util").copy(C.live_options)
 M.trail_spec={key="client_trail_limit",zh="客户端尾焰总上限",en="Client trail segment limit",options=Trail.options,
         tip={"默认1700。仅本机；他人达到总额的75%时跳过，自己达到总额时跳过。已有尾段自然消散。", "Default: 1700. This client only. Others stop at 75% of the shared total; you stop at 100%. Existing tails fade naturally."}}
 M.specs={
@@ -17,7 +16,7 @@ M.specs={
         tip={"默认200。哨株、雷云、残光、星体等限时驻留法术共享额度。满额跳过新增，已有实体自然结束。", "Default: 200. Sentries, clouds, lingering lights, stars and other timed placements share a budget. Skip new spawns at capacity; existing entities expire normally."}},
     {key="limit_permanent_fields",zh="玩家不限时驻留实体上限",en="Permanent spell entities per player",options=live_options,
         tip={"默认100。晶体和载荷卵共用独立额度。满额后静默移除该玩家最早创建的实体，再生成新的；不引爆、不释放载荷。读档保留创建顺序。", "Default: 100. Crystals and payload eggs share a separate budget. At capacity, silently remove this player's oldest placement before spawning a new one, without detonation or payload release. Saves retain creation order."}},
-    {key="limit_range",zh="子弹累计射程限制",en="Projectile travel limit",options={0,60,120,240,480,960},
+    {key="limit_range",zh="子弹累计射程限制",en="Projectile travel limit",options=require("nw/util").copy(C.range_options),
         tip={"下一次弹体更新起生效；累计路程超限的弹体按原规则结束。旧30单位设置迁移为60。", "Effective on the next projectile update; projectiles over the travel limit end normally. Legacy 30 migrates to 60."}},
     {key="limit_depth",zh="载荷嵌套层数限制",en="Payload nesting limit",options=depth,
         tip={"根法术不计层数，实际触发时超过层数则跳过该载荷；不禁止整次施法，不重新编排已释放弹体。", "The root does not count. Over-depth payloads are skipped when triggered, without rejecting the cast or recompiling released projectiles."}},
@@ -36,7 +35,7 @@ function M.option_text(value)
     if type(value)=="boolean" then return value and L("开启","On") or L("关闭","Off") end
     return value==0 and L("不限","Unlimited") or tostring(value)
 end
-local function integer(n) return type(n)=="number" and n==math.floor(n) and n>=0 and n<=2147483647 end
+local function integer(n) return type(n)=="number" and n==math.floor(n) and n>=0 and n<=C.request.max_integer end
 function M.authorized(player)
     if not M.enabled or not player or not player:IsValid() or not player.userid then return false end
     local client=TheNet:GetClientTableForUser(player.userid)
@@ -94,7 +93,7 @@ function M.commit(key,value,from_sync)
     return true
 end
 function M.decode(encoded)
-    if type(encoded)~="string" or #encoded>128 then return end
+    if type(encoded)~="string" or #encoded>C.request.max_snapshot_length then return end
     local values,count={},0
     for token in encoded:gmatch("[^,]+") do
         count=count+1
@@ -105,14 +104,14 @@ function M.decode(encoded)
     if count==#M.specs then return values end
 end
 function M.handle(player,id,key,index)
-    if not player or not player.userid or not integer(id) or type(key)~="string" or #key>40 or not integer(index) then return end
+    if not player or not player.userid or not integer(id) or type(key)~="string" or #key>C.request.max_key_length or not integer(index) then return end
     if not player:IsValid() then return end
     if key=="" then M.send(player,id,key,index,"STATE");return true end
     if not M.authorized(player) then M.send(player,id,key,index,"DENIED");return false end
     local spec=M.bykey[key]
     if not spec or spec.options[index]==nil then M.send(player,id,key,index,"INVALID");return false end
     if (player._nw_performance_next or 0)>GetTime() then M.send(player,id,key,index,"BUSY");return false end
-    player._nw_performance_next=GetTime()+.1
+    player._nw_performance_next=GetTime()+C.request.interval
     if M.cluster and M.cluster.route(player,id,key,index) then return true end
     M.commit(key,spec.options[index])
     M.send(player,id,key,index,"OK")
@@ -144,13 +143,13 @@ end
 function M.change(key,index)
     local spec=M.bykey[key]
     if not M.synced or not M.allowed or M.pending or not spec or not integer(index) or spec.options[index]==nil then return false end
-    M.serial=M.serial%2147483647+1
+    M.serial=M.serial%C.request.max_integer+1
     M.pending={id=M.serial,key=key,index=index,time=GetTime()};M.status="PENDING"
     SendModRPCToServer(MOD_RPC.nw_weave.performance,M.serial,key,index)
     notify();return true
 end
 function M.poll()
-    if M.pending and GetTime()-M.pending.time>5 then M.pending=nil;M.status="TIMEOUT";notify() end
+    if M.pending and GetTime()-M.pending.time>C.request.timeout then M.pending=nil;M.status="TIMEOUT";notify() end
     M.query()
 end
 function M.value(spec) return M.client_values[spec.key] end
@@ -161,12 +160,11 @@ function M.subscribe(callback)
 end
 function M.install(env,G)
     M.enabled=env.GetModConfigData("developer_options")==true
-    -- Startup-only world option, deliberately excluded from runtime RPC schemas.
     M.values.sync_performance=env.GetModConfigData("sync_performance")~=false
     for _,s in ipairs(M.specs) do
         local value=env.GetModConfigData(s.key)
-        if s.key=="limit_projectiles" and type(value)=="boolean" then value=value and 200 or 0 end
-        if s.key=="limit_range" and value==30 then value=60 end
+        if s.key=="limit_projectiles" and type(value)=="boolean" then value=value and C.legacy_live_limit or 0 end
+        if s.key=="limit_range" and value==C.legacy_range then value=C.migrated_range end
         M.values[s.key]=s.options[M.index(s,value)]
     end
     env.AddModRPCHandler("nw_weave","performance",M.handle)

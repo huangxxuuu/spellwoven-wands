@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-11-14T13:47:06.886441+00:00",
+  "action": "edit",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Use case: precise-object-edit.\nAsset type: one independent lower-layer 2D game-world energy-beam connector for Don't Starve Together. This is a transparent sprite component, not a scene or inventory icon.\nInputs: Image 1 is the current full beam source sheet: use ONLY its upper horizontal beam's painted white/lilac/purple layers and restrained dark-violet contour as color and brushwork reference. Do not reproduce any stars or other rows. Image 2 is the old straight, constant-width connector: replace its silhouette with the taper described below; use it only as the close-up palette and layer-spacing reference.\nPrimary request: Draw ONE horizontal purple beam transition, broad at its LEFT rear and narrowing continuously toward its RIGHT front, where its slim white/lilac axial tip will meet the center of a separately existing star. DO NOT DRAW THE STAR. The object must read as a broad laser beam being gathered into a thin point, not an arrowhead, flame, comet, funnel object, weapon, explosion, or starburst.\nGeometry: exact left-to-right central axis, no rotation. Overall visible length approximately 2.8 times maximum height. The leftmost 20 percent of the object keeps the full broad beam height, with near-parallel top/bottom edges and an open/flat vertical left connection edge. That left cut shows the existing layered beam cross section, no dark end cap and no rounded closure. Over the remaining 80 percent, the upper boundary slopes gently down and the lower boundary slopes gently up, smoothly converging to a single narrow right endpoint exactly on the center axis. The right endpoint is a small slim white/lilac continuation of the core, no added spike rays or flourish. Its height is less than one tenth of the left-end height. Keep the broad left-side layering compatible with the current full beam so it can overlap seamlessly.\nColor and layering: preserve reference identity with a near-white axial core, pale lilac middle bands, saturated violet outer body, deep purple shadow strips, and a restrained near-black violet hand-painted upper/lower contour. ALL color layers narrow together toward the right axis. Core stays centered. Distinct large painted color masses, sparse angular internal streaks following the flow, a few purposeful hand-inked irregularities, clean readable silhouette. Don't Starve Together original 2D hand-painted visual language, hierarchy of contour and internal strokes. Avoid mechanically perfect vector edges, evenly distributed jagged spikes, tiny texture noise, dense hatching, plastic 3D shading, photorealism, and excessive bloom.\nComposition: isolated single connector, horizontally centered, full shape visible with transparent safety margins on every side; use most of the canvas width. No other objects. True transparent alpha background, including exterior space. Do not paint a black background, gray background, checkerboard, colored backdrop, broad atmospheric glow, floor, shadow, frame, labels, text, runes, debris, or particles. No stars at all: the existing 12-frame star is a separate upper layer and must not be generated or modified in this image.\n",
+    "n": 1,
+    "size": "1536x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_v2_20261114\\source-01.png",
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_head_v3_20261114\\connector-source.png"
+  ],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_connector_v4_20261114\\connector-source-01.png"
+  ],
+  "usage": {
+    "input_tokens": 1819,
+    "input_tokens_details": {
+      "image_tokens": 1167,
+      "text_tokens": 652
+    },
+    "output_tokens": 1372,
+    "total_tokens": 3191,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_80514ee904d04a2298f3fe8189c450bd",
+  "revised_prompts": [
+    null
+  ]
+}

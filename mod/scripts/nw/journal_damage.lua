@@ -1,5 +1,3 @@
--- Explicit resolved-health accounting for mod spells; native continuations use
--- a small combat adapter keyed by a tag on their temporary weapon/attacker.
 local M={}
 function M.record(owner,p,loss)
     local journal=owner and owner.components and owner.components.nw_spelljournal
@@ -11,11 +9,12 @@ end
 function M.tag(inst,owner,p)
     inst._nw_journal_source={owner=owner,id=p.journal_id or p.id}
     require("nw/balance_damage").tag(inst,p)
+    require("nw/base_damage_native").tag(inst,p)
+    require("nw/native_targeting").tag(inst,owner,p)
 end
 function M.install(env)
     env.AddComponentPostInit("combat",function(combat)
         if not TheWorld.ismastersim then return end
-        -- Current DST DoAttack calls Internal directly; wrap only one layer.
         local key=combat.GetAttacked_Internal and "GetAttacked_Internal" or "GetAttacked"
         local attacked=combat[key]
         combat[key]=function(self,attacker,damage,weapon,...)
@@ -27,6 +26,8 @@ function M.install(env)
             M.loss(source.owner,source,health,before)
             return result
         end
+        require("nw/base_damage_native").wrap_combat(combat)
+        require("nw/native_targeting").wrap_combat(combat)
     end)
 end
 return M

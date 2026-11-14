@@ -1,4 +1,3 @@
--- Additional regression checks in the isolated offline world only.
 local M={}
 function M.run(owner,x,z)
     require("nw/smoke_card_identity").run(x+24,z+24)
@@ -14,7 +13,6 @@ function M.run(owner,x,z)
     local function spawn(id)
         local e=assert(SpawnPrefab(id),id);e.Transform:SetPosition(x,0,z);made[#made+1]=e;return e
     end
-    -- User screenshot: holes in a 12-slot deck, 24 copies of three elements.
     for _,orbit in ipairs({true,false}) do
         local testwand=spawn("nw_wand");local c=testwand.components.nw_wand
         c:InitializePrototype()

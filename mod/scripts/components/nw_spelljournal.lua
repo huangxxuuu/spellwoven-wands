@@ -1,11 +1,10 @@
--- Server-only, per-character save data. No entity references in this ledger.
+local C=require("nw/constants/journal")
 local Cards=require("nw/cards")
 local U=require("nw/util")
-local METRICS={capacity=1,mana_max=1,mana_regen=1,draw_count=1,
-    cast_delay=-1,recharge=-1,spread=-1,sanity_conversion=1}
-local WINDOWS={1,5,10}
-local RATE=10 -- 100 ms buckets; at most 100 live buckets, regardless of hit rate.
-local LIMIT=1e15
+local METRICS=U.copy(C.metrics)
+local WINDOWS=U.copy(C.windows)
+local RATE=C.bucket_rate
+local LIMIT=C.max_value
 local function number(n) return U.finite(n) and math.max(0,math.min(LIMIT,n)) or 0 end
 local function add(a,b) return math.min(LIMIT,a+b) end
 local function spell(id)
@@ -13,8 +12,6 @@ local function spell(id)
     return Cards.codes[id] and id or nil
 end
 local function text(s,max) return type(s)=="string" and #s<=max and s or nil end
--- Wall time survives reconnects/shards; world_day retains in-game context.
--- Missing timestamps in v1 saves stay unknown rather than becoming load time.
 local function timestamp()
     local at={unix=os.time()}
     local state=TheWorld and TheWorld.state
@@ -29,7 +26,7 @@ local function readtime(at)
     local clean={}
     if U.finite(at.unix) and at.unix>=0 and at.unix<=LIMIT then clean.unix=math.floor(at.unix) end
     if U.finite(at.world_day) and at.world_day>=0 and at.world_day<=LIMIT then clean.world_day=at.world_day end
-    clean.shard=text(at.shard,80)
+    clean.shard=text(at.shard,C.snapshot.shard_length)
     return (clean.unix or clean.world_day) and clean or nil
 end
 local function increment(row,key,n,at,times)
@@ -42,7 +39,7 @@ local function increment(row,key,n,at,times)
 end
 local function snapshot(data,name,custom)
     if type(data)~="table" or type(data.stats)~="table" then return end
-    local uid=text(data.wand_uid,160)
+    local uid=text(data.wand_uid,C.snapshot.wand_uid_length)
     if not uid or uid=="" then return end
     local s={}
     for key in pairs(METRICS) do
@@ -50,19 +47,18 @@ local function snapshot(data,name,custom)
         s[key]=data.stats[key]
     end
     s.shuffle=data.stats.shuffle==true
-    local result={wand_uid=uid,stats=s,name=text(name,256),custom_name=custom==true,
-        tier=number(data.tier),seed=number(data.seed),source=text(data.source,160),
-        archetype=text(data.archetype,64),always_cast=spell(data.always_cast),cards={},broken=data.broken==true,
+    local result={wand_uid=uid,stats=s,name=text(name,C.snapshot.name_length),custom_name=custom==true,
+        tier=number(data.tier),seed=number(data.seed),source=text(data.source,C.snapshot.source_length),
+        archetype=text(data.archetype,C.snapshot.archetype_length),always_cast=spell(data.always_cast),cards={},broken=data.broken==true,
         generator_version=number(data.generator_version)}
-    -- Only primitive appearance fields; never retain arbitrary save/runtime tables.
     result.appearance={}
     for _,key in ipairs({"appearance_schema","roll","shaft_style","head_id","body_id","tail_id","length_class"}) do
         local v=type(data.appearance)=="table" and data.appearance[key]
-        if U.finite(v) or text(v,80) then
+        if U.finite(v) or text(v,C.snapshot.appearance_length) then
             result.appearance[key]=v
         end
     end
-    for i=1,math.min(64,math.max(0,math.floor(s.capacity))) do
+    for i=1,math.min(C.snapshot.max_cards,math.max(0,math.floor(s.capacity))) do
         local card=data.cards and data.cards[i]
         result.cards[i]=spell(type(card)=="table" and card.spell_id or card) or false
     end
@@ -120,7 +116,6 @@ function Journal:RecordCast(data,plan)
             used(row)
         end
     end
-    -- An innate modifier is used but is not a collected physical card.
     local row=self:Card(data.always_cast)
     used(row)
 end
@@ -139,8 +134,6 @@ function Journal:RecordDamage(id,amount,now)
     if not definition or definition.kind=="modifier" or definition.kind=="multicast" then return end
     amount=math.min(LIMIT,amount)
     local at=timestamp()
-    -- Read equipment at achievement time, never from the projectile's origin.
-    -- Capture only when at least one record improves; shared tables are immutable.
     local captured,held=false,nil
     local function achievement()
         if not captured then held=self:HeldWandSnapshot();captured=true end
@@ -150,16 +143,15 @@ function Journal:RecordDamage(id,amount,now)
     if increment(row,"damage",amount,at)==0 then row.damage_first_at=at end
     increment(self,"damage",amount,at,self.times);increment(self,"hits",1,at,self.times)
     if amount>self.max_hit then self.max_hit=amount;self.max_hit_record=achievement() end
-    local tick=math.floor((now or GetTime())*RATE+1e-6)
-    if not self._tick or tick<self._tick or tick-self._tick>=10*RATE then
+    local tick=math.floor((now or GetTime())*RATE+C.tick_epsilon)
+    if not self._tick or tick<self._tick or tick-self._tick>=C.max_window*RATE then
         self._buckets={};self._sums={}
     else
-        -- Each expired bucket is visited once; same-frame hits take constant work.
         for t=self._tick+1,tick do
             for _,seconds in ipairs(WINDOWS) do
                 self._sums[seconds]=math.max(0,(self._sums[seconds] or 0)-(self._buckets[t-seconds*RATE] or 0))
             end
-            self._buckets[t-10*RATE]=nil
+            self._buckets[t-C.max_window*RATE]=nil
         end
     end
     self._tick=tick
@@ -182,10 +174,10 @@ function Journal:RankWand(row)
         table.sort(candidates,function(a,b)
             local av,bv=self.wands[a].stats[metric],self.wands[b].stats[metric]
             if av~=bv then return av*direction>bv*direction end
-            return a<b -- stable ties across reloads and repeated pickups
+            return a<b
         end)
         local leaders={}
-        for i=1,math.min(3,#candidates) do leaders[i]=candidates[i];keep[candidates[i]]=true end
+        for i=1,math.min(C.leaders_per_metric,#candidates) do leaders[i]=candidates[i];keep[candidates[i]]=true end
         self.leaders[metric]=leaders
     end
     for uid in pairs(self.wands) do if not keep[uid] then self.wands[uid]=nil end end
@@ -218,7 +210,7 @@ function Journal:ObserveWand(inst)
 end
 function Journal:RenameWand(uid,name)
     local row=self.wands[uid]
-    if row and text(name,256) then
+    if row and text(name,C.snapshot.name_length) then
         row.name=name;row.custom_name=true;row.renamed_at=timestamp();row.updated_at=row.renamed_at
     end
 end
@@ -287,7 +279,6 @@ function Journal:OnLoad(data)
             if clean then self:RankWand(clean) end
         end
     end
-    -- Runtime time stamps cannot cross reconnects/shards. Keep only the records.
     self._tick=nil;self._buckets={};self._sums={}
     self._observed=setmetatable({},{__mode="k"})
 end

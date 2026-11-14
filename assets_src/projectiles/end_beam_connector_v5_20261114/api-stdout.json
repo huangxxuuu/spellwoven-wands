@@ -1,0 +1,19 @@
+{
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_connector_v5_20261114\\connector-source-01.png"
+  ],
+  "metadata": "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_connector_v5_20261114\\connector-source-01.png.json",
+  "usage": {
+    "input_tokens": 1444,
+    "input_tokens_details": {
+      "image_tokens": 847,
+      "text_tokens": 597
+    },
+    "output_tokens": 1756,
+    "total_tokens": 3200,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    }
+  }
+}

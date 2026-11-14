@@ -1,14 +1,15 @@
+local C=require("nw/constants/visuals/visual")
 local M = {}
-M.lengths = {"short","medium","long"}
-M.heads={"crystal_1","crystal_2","crystal_3","plain_1","plain_2","plain_3"}
-M.tails={"drop","diamond","round"}
-M.colors={"red","blue","green"}
-M.fast_regen=25
-M.scale={short=1.88,medium=1.72,long=1.60}
-M.held_multiplier=1.2
+M.lengths = C.lengths
+M.heads=C.heads
+M.tails=C.tails
+M.colors=C.colors
+M.fast_regen=C.fast_regen
+M.scale=C.scale
+M.held_multiplier=C.held_multiplier
 local head_count=#M.heads*#M.colors
 local tail_count=#M.tails*#M.colors
-M.styles=9
+M.styles=C.styles
 M.per_style=head_count*#M.lengths*tail_count
 M.count=M.styles*M.per_style
 M.cosmetic_rolls=18*M.styles
@@ -63,7 +64,6 @@ function M.recipe_code(tier)
         (grade-1)*4,({1,2,9})[grade])
 end
 
--- Roll encodes independent head colour (3), tail colour (3) and slow-tail shape (2).
 function M.appearance(stats,cosmetic)
     local roll,style=cosmetic%18,math.floor(cosmetic/18)+1
     local head,length,tail,body=M.parts(code_for(stats,roll,style))
@@ -79,7 +79,6 @@ function M.upgrade(data)
     local valid_roll=type(roll)=="number" and roll==math.floor(roll) and roll>=0 and roll<18
     local valid_style=type(style)=="number" and style==math.floor(style) and style>=1 and style<=M.styles
     if not valid_roll or not valid_style then
-        -- Stable even if an old wand is loaded twice before the next world save.
         local hash=1
         local uid=tostring(data.wand_uid or data.origin_seed or data.seed or 1)
         for i=1,#uid do hash=(hash*31+uid:byte(i))%2147483647 end

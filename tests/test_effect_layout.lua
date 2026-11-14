@@ -16,7 +16,7 @@ net_string=function() return {v="",value=function(self) return self.v end} end
 CreateEntity=function()
     local e={events={},entity={},valid=true,Transform={},AnimState={}}
     entities[#entities+1]=e
-    for _,name in ipairs({"AddNetwork","AddTransform","AddAnimState","SetPristine","SetParent","SetCanSleep"}) do e.entity[name]=function() end end
+    for _,name in ipairs({"AddSoundEmitter","AddNetwork","AddTransform","AddAnimState","SetPristine","SetParent","SetCanSleep"}) do e.entity[name]=function() end end
     for _,name in ipairs({"SetBank","SetBuild","SetOrientation","SetLightOverride","SetFinalOffset","SetBloomEffectHandle","PlayAnimation","SetMultColour"}) do e.AnimState[name]=function() end end
     e.AnimState.SetAddColour=function() end
     e.AnimState.SetTime=function() end

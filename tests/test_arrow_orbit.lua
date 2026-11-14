@@ -6,11 +6,15 @@ local function near(actual,expected,tolerance)
     assert(math.abs(actual-expected)<(tolerance or 1e-7),tostring(actual).." ~= "..tostring(expected))
 end
 local function magnitude(s) return math.sqrt(s.vx*s.vx+s.vz*s.vz) end
+local function no_position_write() error("orbit must move only through the native motor") end
 local function make(size,speed,id,extra)
     local owner={x=0,z=0,Transform={}}
     owner.Transform.GetWorldPosition=function() return owner.x,0,owner.z end
     local e={x=1,z=0,motor=0,rotation=0,Transform={},Physics={}}
     e.Transform.SetRotation=function(_,a) e.rotation=a end
+    e.Transform.SetPosition=no_position_write
+    e.Physics.Teleport=no_position_write
+    e.Physics.TeleportRespectingInterpolation=no_position_write
     e.Physics.SetMotorVel=function(_,v) e.motor=v end
     local flags={orbit={radius=2}}
     for key,value in pairs(extra or {}) do flags[key]=value end
@@ -20,11 +24,17 @@ local function make(size,speed,id,extra)
     Flight.reset(s,1,0)
     return {e=e,s=s,owner=owner}
 end
-local function step(sim,dt,owner_speed)
+local function step(sim,dt,owner_speed,owner_zspeed)
     local e,s,owner=sim.e,sim.s,sim.owner
     owner.x=owner.x+(owner_speed or 0)*dt
+    owner.z=owner.z+(owner_zspeed or 0)*dt
+    local before_x,before_z=s.orbit_vx,s.orbit_vz
     s.age=s.age+dt
     assert(Flight.steer(e,s,dt),"ordinary owner movement must retain an orbiting projectile")
+    if before_x and not s.escaped then
+        local change=math.sqrt((s.orbit_vx-before_x)^2+(s.orbit_vz-before_z)^2)
+        assert(change<=180*dt+1e-8,"orbit tracking acceleration must stay within 180 units/s^2: "..change)
+    end
     local motor=s.p.ballistic and e.components.complexprojectile.velocity.x or e.motor
     e.x=e.x+math.cos(-e.rotation*DEGREES)*motor*dt
     e.z=e.z+math.sin(-e.rotation*DEGREES)*motor*dt
@@ -60,26 +70,64 @@ for _,case in ipairs(cases) do
     near(magnitude(sim.s),case[2])
 end
 
--- Entry is eased; a single 30 Hz update cannot yank the radius to its target.
+-- Entry retains launch inertia; one native step cannot snap onto the ring.
 local entry=make(5)
 local r=step(entry,1/30)
-assert(r>1 and r<=1+8/30+1e-9)
+assert(r>1 and r<Flight.orbit_radius(entry.s.p,25))
+assert(entry.e.motor<=25+180/30+1e-9)
 assert(entry.s.orbit_angle<=210*DEGREES/30+1e-9)
 
--- The discrete motor follows the same ring/phase at 30 Hz and 60 Hz.
-local coarse,fine=make(2.5),make(2.5)
-run(coarse,4,1/30);run(fine,4,1/60)
-near(coarse.e.x,fine.e.x,1e-5);near(coarse.e.z,fine.e.z,1e-5)
+-- Native integration remains stable across 15, 30 and 60 Hz updates.
+local coarse,fine,slow=make(2.5),make(2.5),make(2.5)
+run(coarse,4,1/30);run(fine,4,1/60);run(slow,4,1/15)
+for _,sim in ipairs({coarse,slow}) do
+    assert(math.sqrt((sim.e.x-fine.e.x)^2+(sim.e.z-fine.e.z)^2)<.3,
+        "native integration should retain a comparable orbit phase across frame rates")
+end
 near(magnitude(coarse.s),magnitude(fine.s))
 
 -- Following a walking owner adds actual motor velocity, not future propulsion.
 local moving=make(2.5)
 near(run(moving,6,1/30,6),5.0596442562694,1e-5)
 near(magnitude(moving.s),25)
-assert(moving.e.motor<=60)
+assert(moving.e.motor<=require("nw/spell_limits").max_speed)
 local moving_heavy=make(2.5,8.75,"heavy")
 near(run(moving_heavy,6,1/30,6),3.9528470752105,1e-5)
 near(magnitude(moving_heavy.s),8.75)
+
+-- Compare identical launch histories: the first walking frame must transfer
+-- some owner motion, but cannot instantly add the full walking velocity.
+for _,dt in ipairs({1/15,1/30,1/60}) do
+    local still,starts=make(2.5),make(2.5)
+    run(still,3,dt);run(starts,3,dt)
+    step(still,dt);step(starts,dt,6)
+    local sx=math.cos(-still.e.rotation*DEGREES)*still.e.motor
+    local sz=math.sin(-still.e.rotation*DEGREES)*still.e.motor
+    local mx=math.cos(-starts.e.rotation*DEGREES)*starts.e.motor
+    local mz=math.sin(-starts.e.rotation*DEGREES)*starts.e.motor
+    local response=math.sqrt((mx-sx)^2+(mz-sz)^2)
+    assert(response>0 and response<5.4,"walking onset must ease in rather than add all 6 units/s immediately: "..response)
+end
+
+-- Walking starts/stops and sharp turns change a target, never instantly add
+-- the owner's new velocity to the motor. Continue long enough to catch drift.
+for _,dt in ipairs({1/15,1/30,1/60}) do
+    local following=make(2.5)
+    local target=Flight.orbit_radius(following.s.p,25)
+    run(following,3,dt)
+    for _,motion in ipairs({{6,0},{0,6},{0,-6},{0,0},{-6,0},{6,0},{0,0}}) do
+        local old_x,old_z=following.s.orbit_vx,following.s.orbit_vz
+        step(following,dt,motion[1],motion[2])
+        local dx,dz=following.s.orbit_vx-old_x,following.s.orbit_vz-old_z
+        assert(math.sqrt(dx*dx+dz*dz)<=180*dt+1e-8,"turns must ease the base motor velocity")
+        for i=2,math.floor(3/dt+.5) do
+            local radius=step(following,dt,motion[1],motion[2])
+            assert(math.abs(radius-target)<1.5,"walking and turns must retain bounded orbit tracking")
+            if i*dt>2 then near(radius,target,.3) end
+        end
+        near(magnitude(following.s),25)
+    end
+end
 
 -- Native ballistic carriers use the same horizontal ring, preserving height.
 local ballistic=make(2.5,8.75,"edge_lighter")

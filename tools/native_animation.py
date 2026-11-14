@@ -17,7 +17,14 @@ class Reader:
     def string(self): return self.read(self.unpack('I')[0]).decode('utf8')
 
 
-def texture(data):
+def texture(data, *, unpremultiply=False):
+    """Decode KTEX; opt into straight RGBA for premultiplied compiler output.
+
+    Klei's animation compiler normally premultiplies RGB before compression.
+    Pillow's RGBA compositing expects straight RGB, so previews of that output
+    should request unpremultiply=True. Keep the stored RGB by default for
+    existing callers and textures compiled without premultiplication.
+    """
     assert data[:4] == b'KTEX'
     flags, = struct.unpack_from('<I', data, 4)
     levels = (flags >> 13) & 31
@@ -28,6 +35,8 @@ def texture(data):
         image = Image.frombytes('RGBA', (width, height), pixels)
     else:
         image = Image.frombytes('RGBA', (width, height), pixels, 'bcn', {0: 1, 1: 2, 2: 3}[fmt])
+    if unpremultiply:
+        image = Image.frombytes('RGBa', image.size, image.tobytes()).convert('RGBA')
     return image.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
 
 
@@ -68,12 +77,13 @@ def read_animation(data):
 
 
 class NativeAnimation:
-    def __init__(self, name, game=GAME, build_name=None):
+    def __init__(self, name, game=GAME, build_name=None, *, unpremultiply=False):
         with zipfile.ZipFile(game / 'data/anim' / (name + '.zip')) as archive:
             self.clips = read_animation(archive.read('anim.bin'))
         with zipfile.ZipFile(game / 'data/anim' / ((build_name or name) + '.zip')) as archive:
             self.build = read_build(archive.read('build.bin'))
-            self.atlases = [texture(archive.read(path)) for path in self.build['atlases']]
+            self.atlases = [texture(archive.read(path), unpremultiply=unpremultiply)
+                            for path in self.build['atlases']]
         self.cache = {}
 
     def symbol(self, key, frame=0):

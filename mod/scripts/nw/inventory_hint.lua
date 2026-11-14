@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui").inventory_hint
 local T=require("nw/locale").t
 local Data=require("nw/hover_data")
 local Cards=require("nw/cards")
@@ -5,10 +6,10 @@ local M={}
 local shared_panel
 
 function M.position(x,y,w,h,sw,sh,radius,scale)
-    local margin=6*scale
+    local margin=C.margin*scale
     x=math.max(w/2+margin,math.min(sw-margin-w/2,x))
     local above,below=sh-y-margin,y-margin
-    local gap=math.max(radius+margin,104*scale)
+    local gap=math.max(radius+margin,C.gap*scale)
     if above>=h+radius+margin or above>=below then
         return x,math.min(y+gap+h/2,sh-margin-h/2)
     end
@@ -20,8 +21,8 @@ local function place(panel,tile,root,halfsize)
     local pos=tile:GetWorldPosition()
     local scale=root:GetScale()
     local radius=halfsize*tile:GetScale().y
-    local space=math.max(pos.y,sh-pos.y)-radius-12*scale.y
-    local fit=math.min(1,(sw-12*scale.x)/(panel.width*scale.x),space/(panel.height*scale.y))
+    local space=math.max(pos.y,sh-pos.y)-radius-C.fit_padding*scale.y
+    local fit=math.min(1,(sw-C.fit_padding*scale.x)/(panel.width*scale.x),space/(panel.height*scale.y))
     if fit<=0 then root:Hide();return end
     root:Show()
     panel:SetScale(fit)
@@ -30,7 +31,6 @@ local function place(panel,tile,root,halfsize)
 end
 
 function M.setup_root(tile)
-    -- Let DST own the floating root, scale mode, focus hooks and tile teardown.
     tile:SetHoverText(" ",{bg=false})
     tile.hovertext:Hide()
     tile.hovertext_root:SetClickable(false)
@@ -57,11 +57,12 @@ function M.show_card(tile,id,halfsize)
     if held and held:HasTag("nw_spellcard") and not tile.item then root:Hide();return end
     local panel,moved=panel_for(root)
     local actions=M.actions(tile)
-    if moved or panel._nw_spell~=id or panel._nw_actions~=actions then
+    local damage_rate=require("nw/base_damage").multiplier
+    if moved or panel._nw_spell~=id or panel._nw_actions~=actions or panel._nw_damage_rate~=damage_rate then
         local data=id==false and {title=T("空法术槽")} or Data.card(id)
         if actions~="" then data.title=data.title.."\n"..actions end
         panel:Display(data)
-        panel._nw_spell=id;panel._nw_actions=actions
+        panel._nw_spell=id;panel._nw_actions=actions;panel._nw_damage_rate=damage_rate
     end
     place(panel,tile,root,halfsize)
 end
@@ -77,7 +78,7 @@ function M.install(tile,wand)
         if not root then return end
         if not tile.focus or not tile:IsVisible() or not item:IsValid() then root:Hide();return end
         if not wand then
-            M.show_card(tile,Cards.bycode[item._spell:value()],40)
+            M.show_card(tile,Cards.bycode[item._spell:value()],C.halfsize)
             return
         end
         local panel,moved=panel_for(root)
@@ -94,7 +95,7 @@ function M.install(tile,wand)
             panel:Display(data)
             last_stats,last_slots,last_look,last_title=stats,slots,look,title
         end
-        place(panel,tile,root,40)
+        place(panel,tile,root,C.halfsize)
     end
     local function stop()
         if task then task:Cancel();task=nil end
@@ -112,7 +113,7 @@ function M.install(tile,wand)
             self.inst:ListenForEvent("newactiveitem",refresh,cursor_owner)
         end
         refresh()
-        if not task then task=self.inst:DoPeriodicTask(.1,refresh) end
+        if not task then task=self.inst:DoPeriodicTask(C.refresh_interval,refresh) end
     end
     tile.OnLoseFocus=function(self) stop();lose(self) end
     local function dirty() if tile.focus then refresh() end end

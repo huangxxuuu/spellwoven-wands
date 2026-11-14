@@ -1,9 +1,11 @@
+local C=require("nw/constants/prefabs").projectile
+local Elemental=require("nw/constants/native").elemental
+local Halo=require("nw/constants/modifiers").effects.halo
 local Effects=require("nw/spell_effects")
 local Projectiles=require("nw/projectiles")
-local assets = { Asset("ANIM","anim/nw_spell_world.zip"), Asset("ANIM", "anim/nw_objects.zip"), Asset("ANIM", "anim/nw_spark_flight.zip"), Asset("ANIM", "anim/nw_elemental_flight.zip"), Asset("ANIM", "anim/wagdrone_laserwire_fx.zip") }
+local assets = { Asset("ANIM","anim/nw_spell_world.zip"), Asset("ANIM", "anim/nw_objects.zip"), Asset("ANIM", "anim/nw_spark_flight.zip"), Asset("ANIM", "anim/nw_elemental_flight.zip"), Asset("ANIM", "anim/nw_end_beam.zip") }
 assets[#assets+1]=Asset("ANIM","anim/nw_tool_flight.zip")
--- These tools play native banks directly on a local visual; declare them even
--- when the corresponding inventory item has never appeared in this world.
+assets[#assets+1]=Asset("ANIM","anim/nw_end_beam_head.zip")
 for _,bank in ipairs({"chum_pouch","oceanfishing_hook","fan_wheel","dumbbell","dumbbell_golden",
     "dumbbell_marble","dumbbell_gem","dumbbell_heat","dumbbell_redgem","dumbbell_bluegem"}) do
     assets[#assets+1]=Asset("ANIM","anim/"..bank..".zip")
@@ -19,9 +21,7 @@ local function refresh(inst)
     end
     if not inst._visual then return end
     local id=Cards.bycode[inst._spell:value()]
-    if not id then return end -- Wait for the replicated spell before choosing art.
-    -- A remote transform may still have its default rotation on the first dirty
-    -- event. Do not display the hook until its launch direction has arrived.
+    if not id then return end
     if id=="land_hook" and inst._launch_heading:value()==0 then return end
     inst._visual.Transform:SetPosition(0,inst._height:value(),0)
     local function size() Size.visual(inst._visual,math.max(1,inst._size:value())) end
@@ -31,6 +31,7 @@ local function refresh(inst)
     if descriptor and descriptor.engraving then
         require("nw/engraved_flight").visual(inst,descriptor.engraving);size();return
     end
+    require("nw/projectile_glow").attach(inst._visual)
     if id=="spark" then
         local anim=inst._visual.AnimState
         anim:SetOrientation(ANIM_ORIENTATION.BillBoard)
@@ -47,7 +48,7 @@ local function refresh(inst)
         return
     end
     require("nw/flight_visual").attach(inst,id)
-    local scale=1.6
+    local scale=C.visual_scale
     inst._visual.Transform:SetScale(scale,scale,scale)
     size()
 end
@@ -55,26 +56,17 @@ local function fn(breakable,beam)
     local inst=CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddNetwork()
-    -- Same physical movement path as native staff projectiles; hits remain
-    -- server-side swept tests, so remove automatic physics collision response.
     MakeInventoryPhysics(inst)
     RemovePhysicsColliders(inst)
-    -- An inventory item's restitution causes ground micro-bounces, followed
-    -- by ground-height corrections. Flying spells must slide continuously.
-    inst.Physics:SetFriction(0)
-    inst.Physics:SetRestitution(0)
+    inst.Physics:SetFriction(C.friction)
+    inst.Physics:SetRestitution(C.restitution)
     inst._nw_ground_mask=true
-    -- Short-lived physical shots must keep moving even without nearby players
-    -- (dedicated server/offscreen). Lifetime and the projectile budget bound it.
     inst.entity:SetCanSleep(false)
     if breakable then inst:AddTag("nw_breakable") else inst:AddTag("FX");inst:AddTag("NOCLICK") end
     inst._spell=net_byte(inst.GUID,"nw_projectile.spell","nw_projectiledirty")
     inst._height=net_float(inst.GUID,"nw_projectile.height","nw_projectiledirty")
     inst._size=net_float(inst.GUID,"nw_projectile.size","nw_projectiledirty")
-    -- One caster ID per projectile; tails themselves remain local entities.
-    -- A userid also survives the carrier/player leaving replication range.
     inst._nw_trail_userid=net_string(inst.GUID,"nw_projectile.trail_userid","nw_trailownerdirty")
-    -- Radians + 4 reserves zero for 'not received', including shots aimed at 0.
     inst._launch_heading=net_float(inst.GUID,"nw_projectile.launch_heading","nw_projectiledirty")
     if beam then
         inst._beam_path=net_string(inst.GUID,"nw_beam.path","nw_beamdirty")
@@ -82,17 +74,12 @@ local function fn(breakable,beam)
     end
     inst.entity:SetPristine()
     inst.persists=false
-    -- Physics stays on the ground plane, as in native staff projectiles.
-    -- A local child renders at the casting hand's height without gravity,
-    -- extra network entities or per-frame transform writes.
     if not beam and not TheNet:IsDedicated() then
         local visual=CreateEntity()
         visual.entity:AddTransform();visual.entity:AddAnimState()
         visual:AddTag("FX");visual:AddTag("NOCLICK");visual.persists=false
         visual.entity:SetParent(inst.entity)
         visual.AnimState:SetBank("nw_objects");visual.AnimState:SetBuild("nw_objects")
-        -- The physics heading belongs to the ground plane; the painted body
-        -- faces the camera, including engraving visuals that bypass flight_visual.
         visual.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
         inst._visual=visual
         inst:ListenForEvent("onremove",function() if visual:IsValid() then visual:Remove() end end)
@@ -135,7 +122,7 @@ local function fn(breakable,beam)
                 self:Remove()
             end
         end
-        self._launch_heading:set(math.atan2(dz,dx)+4)
+        self._launch_heading:set(math.atan2(dz,dx)+Elemental.launch_heading_offset)
         self._spell:set(Cards.codes[descriptor.base or descriptor.id] or 1)
         height=height or Muzzle.default_height
         self._height:set(height)
@@ -150,9 +137,9 @@ local function fn(breakable,beam)
         if descriptor.flags.halo then
             local ring=SpawnPrefab("nw_field_boundary")
             ring.entity:SetParent(self.entity)
-            local scale=require("nw/fx_layout").blast_scale(.8*Size.factor(descriptor))
+            local scale=require("nw/fx_layout").blast_scale(Halo.radius*Size.factor(descriptor))
             ring.AnimState:SetScale(scale,scale)
-            ring.AnimState:SetMultColour(1,.46,.13,.85)
+            ring.AnimState:SetMultColour(unpack(C.halo_colour))
             if beam then self._beam_head_fx[#self._beam_head_fx+1]=ring end
             self:ListenForEvent("onremove",function() if ring:IsValid() then ring:Remove() end end)
         end

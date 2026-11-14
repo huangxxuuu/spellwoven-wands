@@ -1,0 +1,22 @@
+{
+  "bank": "nw_end_beam",
+  "source": "assets_src\\projectiles\\end_beam_v2_20261114\\source-01.png",
+  "source_sha256": "97c338750a4fb681aa23a331939d48219995df16bc7835d1e620c381c328fea3",
+  "frames": 16,
+  "fps": 30,
+  "slices": 4,
+  "beam_world_length": 2,
+  "beam_world_width": 0.4266666666666667,
+  "head_world_width": 0.6,
+  "head_frames": 48,
+  "head_diameter_ratio": [
+    0.82,
+    1.0
+  ],
+  "head_turn_degrees": [
+    -22,
+    22
+  ],
+  "direction": "+X",
+  "unused_source_component": "bottom terminal starburst (preserved for future art work)"
+}

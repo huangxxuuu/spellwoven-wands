@@ -1,0 +1,20 @@
+{
+  "source": "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_v2_20261114\\source-01.png",
+  "crop_xyxy_exclusive": [
+    700,
+    112,
+    900,
+    276
+  ],
+  "size": [
+    200,
+    164
+  ],
+  "core_center_local_approx": [
+    100,
+    81
+  ],
+  "operation": "Existing painted beam crop only; no new generated or procedural drawing.",
+  "usage": null,
+  "runtime_instruction": "Fixed lower layer; same rendered thickness as beam. Never apply star rotation to this connector."
+}

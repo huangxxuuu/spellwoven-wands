@@ -1,4 +1,3 @@
--- Exercise the native crafting path, replication data and save/load together.
 local M={}
 function M.run()
     local x,z=0,0
@@ -57,8 +56,6 @@ function M.run()
             assert(copy.layeredinvimagefn(copy)[3].image:find("_broken_",1,true))
             copy.components.nw_wand.data.broken=false;copy.components.nw_wand:Sync()
             assert(not copy.layeredinvimagefn(copy)[3].image:find("_broken_",1,true))
-            -- Loading an installed card must call the real container predicate
-            -- with the component as self, then restore the card exactly once.
             local box=copy.components.container
             assert(box and box:OnSave()==nil)
             local installed=0
@@ -81,7 +78,6 @@ function M.run()
         assert(row.tier==0 and count==1 or row.tier>0 and count>1)
         print("NW_WAND_CRAFT_SAMPLE:",name,json.encode(capacities),"distinct stats",count)
     end
-    -- Old weak/odd rolls are still valid saves; loading never invokes generation.
     for version=1,2 do
         local old=SpawnPrefab("nw_wand")
         old.components.nw_wand:InitializeNew(0,"legacy-test")

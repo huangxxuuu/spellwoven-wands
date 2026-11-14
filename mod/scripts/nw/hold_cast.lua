@@ -1,3 +1,4 @@
+local C=require("nw/constants/casting")
 local Cast = require("nw/cast_action")
 local M = {}
 
@@ -28,8 +29,6 @@ function M.install(pc)
 
     local function try_cast()
         local w, p = held, pc.inst
-        -- A pending request can outlive the release of the movement key when
-        -- prediction is off. Wait for the native attack or replicated cooldown.
         if state_tag(p,"attack") or not w._nw_cancast:value() then
             retry_at = nil
             return
@@ -40,9 +39,7 @@ function M.install(pc)
         local act = pc:GetRightMouseAction()
         if not act or act.action ~= ACTIONS.NW_CAST or act.invobject ~= w then return end
         if not Cast.available(w,p,Cast.aim_point(act)) then return end
-        -- The controller rebuilds its mouse actions each update. Submit only the
-        -- current wand action, using the game's own host/prediction/no-prediction path.
-        retry_at = GetTime() + 1 + (pc.ismastersim and 0 or math.max(0,TheNet:GetAveragePing()) * .002)
+        retry_at = GetTime() + C.hold_retry_delay + (pc.ismastersim and 0 or math.max(0,TheNet:GetAveragePing()) * C.ping_retry_factor)
         click(pc,true)
     end
 

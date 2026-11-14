@@ -1,8 +1,7 @@
--- Only explicitly registered spell instances are cleaned up. Sleeping saved
--- placements are checked too; world objects and player structures are untouched.
+local C=require("nw/constants/world_bounds")
 local Limits=require("nw/spell_limits")
 local M={}
-local MARGIN=5
+local MARGIN=C.margin
 local wall_tiles
 local function playable(map,x,z) return map:IsAboveGroundAtPoint(x,0,z,true) end
 
@@ -18,12 +17,9 @@ function M.outside(x,z)
         end
     end
     local tile=map:GetTileAtPoint(x,0,z)
-    -- Same world rule as the native impassable terrain collision set.
     if wall_tiles[tile] or TheWorld.CanFlyingCrossBarriers and not TheWorld:CanFlyingCrossBarriers()
         and map:IsImpassableTileAtPoint(x,0,z) then return true end
-    -- Shortest distance to land/ocean tile squares, not time or path length
-    -- spent outside. Ordinary coastlines remain inside this valid union.
-    local scale=TILE_SCALE or 4
+    local scale=TILE_SCALE or C.tile_scale
     local tx,tz=map:GetTileCoordsAtPoint(x,0,z)
     local reach=math.ceil(MARGIN/scale)+1
     local w,h=map:GetSize()
@@ -41,12 +37,12 @@ function M.clip(x,z,nx,nz)
     if not Limits.boundary_cleanup then return end
     if M.outside(x,z) then return 0 end
     local dx,dz=nx-x,nz-z
-    local steps=math.max(1,math.ceil(math.sqrt(dx*dx+dz*dz)*2))
+    local steps=math.max(1,math.ceil(math.sqrt(dx*dx+dz*dz)*C.clip_steps_per_unit))
     for i=1,steps do
         local hi=i/steps
         if M.outside(x+dx*hi,z+dz*hi) then
             local lo=(i-1)/steps
-            for _=1,10 do
+            for _=1,C.bisection_steps do
                 local mid=(lo+hi)/2
                 if M.outside(x+dx*mid,z+dz*mid) then hi=mid else lo=mid end
             end

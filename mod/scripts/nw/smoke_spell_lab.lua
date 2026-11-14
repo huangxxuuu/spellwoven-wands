@@ -4,7 +4,6 @@ local function close(a,b) return math.abs(a-b)<.03 end
 local M={}
 function M.run(x,z,done)
     TheWorld:PushEvent("ms_setclocksegs",{day=16,dusk=0,night=0})
-    -- Leave prior performance/combat fixtures behind. Pick a clear passable strip.
     local found
     for offset=-20,25 do
         for side=-10,10,2 do
@@ -46,9 +45,6 @@ function M.run(x,z,done)
     assert(GetTableSize(spells)==181)
     bench:Remove()
     local targets={}
-    -- Wildlife can wander into the strip during this multi-minute suite.
-    -- Restrict the synthetic caster to this stage's fixtures, then apply the
-    -- original engine eligibility check to each one.
     local native_can_target=owner.components.combat.CanTarget
     owner.components.combat.CanTarget=function(combat,e)
         for _,fixture in ipairs(targets) do
@@ -254,7 +250,6 @@ function M.run(x,z,done)
     stages[#stages+1]=function()
         local e=target(3,4)
         local p=cast({"giant_shot","edge_trident"}).blocks[1].projectiles[1]
-        -- Exercise the same finish path without waiting for the full outgoing flight.
         require("nw/engraved_impact").finish({p=p,owner=owner},x+3,z)
         assert(close(e.components.health.currenthealth,915),"NW_GIANT: trident radius / damage")
         return 1.8,function() end
@@ -617,7 +612,6 @@ function M.run(x,z,done)
     end
     stages[#stages+1]=function()
         local sample=require("nw/spellkit").rollwand(4,1062,owner)
-        -- Frozen v2 save fixture: new generator versions must not reroll old stats.
         local legacy=sample.components.nw_wand.data
         legacy.generator_version=2;legacy.generation_budget=64;legacy.budget_remaining=0
         legacy.always_cast=nil
@@ -710,7 +704,6 @@ function M.run(x,z,done)
     stages[#stages+1]=function()
         local a=target(12.5,.9)
         cast({"imprint_timer","arrow","whirl"})
-        -- The 1.2s carrier can expire on the next physics tick after the scheduler fires.
         return 1.2+2*FRAMES,function() assert(close(a.components.health.currenthealth,978.24),"NW_LAB: timer whirl") end
     end
     stages[#stages+1]=function()
@@ -725,7 +718,6 @@ function M.run(x,z,done)
         local row={target(2,0),target(5,0),target(8,0)}
         cast({"pierce","arrow_hit","double","explosion","whirl"})
         return 1.5,function()
-            -- The blast from the next hit is within 3 of the previous target.
             for i,e in ipairs(row) do
                 local hp=1000-22-25-21.76-(i<3 and 25 or 0)
                 assert(close(e.components.health.currenthealth,hp),"NW_LAB: per-contact blast or payload "..i)
@@ -754,7 +746,6 @@ function M.run(x,z,done)
         local before=owner.components.health.currenthealth
         cast({"leech","chain"})
         return .65,function()
-            -- Compare with the game's own electric weapon under identical conditions.
             local losses=compare_electric_hops(b,c)
             assert(losses[2]/10>losses[1]/15,"NW_LAB: wet arc")
             assert(close(owner.components.health.currenthealth-before,(losses[1]+losses[2])*.05),"NW_LAB: actual loss leech")
@@ -794,7 +785,7 @@ function M.run(x,z,done)
     end
     stages[#stages+1]=function()
         local a=target(3,0)
-        a:RemoveComponent("burnable") -- isolate our exact six ticks from native environmental fire
+        a:RemoveComponent("burnable")
         cast({"double","fire","fire"})
         return 3.6,function() assert(close(a.components.health.currenthealth,960.4),"NW_LAB: independent fire stacks") end
     end
@@ -936,8 +927,6 @@ function M.run(x,z,done)
             print("NW_GARDEN_PASS: sentry, remote payload, overlapping rings and D note")
         end
     end
-    -- Fire each expansion card through the actual compiler, executor and prefab.
-    -- Separate fields with incompatible target side effects into different rounds.
     local batch={}
     local function expansion_round(ids)
         stages[#stages+1]=function()

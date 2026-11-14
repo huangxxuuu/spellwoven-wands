@@ -1,4 +1,4 @@
--- Texture pixels and UI dimensions are separate: inventory/drag/recipe images stay 64 units.
+local C=require("nw/constants/ui").card_icon
 local M={}
 local ATLAS="images/inventoryimages/nw_icons.xml"
 local atlas_hash
@@ -6,7 +6,6 @@ local function matches(atlas)
     if type(atlas)=="string" then
         return atlas:gsub("\\","/"):match("images/inventoryimages/nw_icons%.xml$")~=nil
     end
-    -- inventoryitem_classified uses net_hash, so GetAtlas() normally returns a number.
     if type(atlas)=="number" then
         if atlas_hash==nil then atlas_hash=hash(resolvefilepath(ATLAS)) end
         return atlas==atlas_hash
@@ -15,7 +14,7 @@ local function matches(atlas)
 end
 local function normalize(image)
     if matches(image.atlas) then
-        image:SetSize(64,64)
+        image:SetSize(C.size,C.size)
     end
 end
 function M.install(image)

@@ -87,7 +87,7 @@ end
 
 -- All paths use exactly the same steering function for a moving native star.
 -- Guidance must see the same attackable egg/crystal props as collisions do,
--- regardless of creature/team selectors. Test real steering, not only selection.
+-- with the same selected category. Test real steering, not only selection.
 for _,id in ipairs({"payload_egg","sleep_crystal"}) do
     local prop=entity(1,1,{nw_breakable=true})
     prop._nw_stored={p={id=id}};prop._nw_break=function() error("seeking cannot activate a prop") end
@@ -96,6 +96,9 @@ for _,id in ipairs({"payload_egg","sleep_crystal"}) do
         for _,card in ipairs({D.homing,D.near_homing,D.weak_homing,D.homing_rotate}) do
             TheWorld._nw_scans=nil;candidates={prop}
             local guided=velocity({[card.flag]=Copy(card),targets=scope or nil},6,FRAMES,1)
+            if scope and not scope.building then
+                assert(guided.vz==0 and not F.seek(guided,card),"a prop must match the attacker's selected category")
+            else
             assert(guided.vz>0,id.." must attract "..card.id)
             assert(F.seek(guided,card)==prop)
             guided.hit[prop]=guided.age+.1
@@ -111,6 +114,7 @@ for _,id in ipairs({"payload_egg","sleep_crystal"}) do
             prop._nw_motion=nil
             guided.p.id="gust"
             assert((F.seek(guided,card)==prop)==(id=="payload_egg"),"gust only interacts with eggs")
+            end
         end
     end
 end
@@ -156,23 +160,82 @@ for _,case in ipairs({{"sleep_crystal",true},{"payload_egg",true},
     inert:Remove();restored:Remove();settled:Remove()
 end
 
--- Persist a partially entered orbit so loading a moving placement continues
--- the same smooth radius and phase instead of restarting its entry.
+-- Orbit steering may only integrate the native motor. Collision and ground
+-- tests below retain their independent position-writing mocks.
+local function forbid_orbit_position_writes(e)
+    local function forbidden() error("orbit restore/steering must not write position") end
+    e.Transform.SetPosition=forbidden
+    e.Physics.Teleport=forbidden
+    e.Physics.TeleportRespectingInterpolation=forbidden
+end
+-- Persist both tracking velocity and a partially entered orbit. Stationary
+-- owners resume exactly; moving owners reacquire their unsaved velocity with
+-- a bounded transient. Legacy saves can rebuild the missing tracking cache.
 local owner_x,owner_z=owner.x,owner.z
+for _,owner_speed in ipairs({0,6}) do
+    owner.x,owner.z=0,0
+    local orbiting=field(descriptor({orbit=Copy(D.orbit)},25),true)
+    forbid_orbit_position_writes(orbiting)
+    for _=1,8 do owner.x=owner.x+owner_speed*FRAMES;frame(orbiting,FRAMES) end
+    local orbit_saved=Motion.save(orbiting)
+    assert(orbit_saved.orbit_radius and orbit_saved.orbit_radius>0)
+    close(orbit_saved.orbit_vx,orbiting._nw_motion.orbit_vx)
+    close(orbit_saved.orbit_vz,orbiting._nw_motion.orbit_vz)
+    local restored={}
+    for _,legacy in ipairs({false,true}) do
+        local saved=Copy(orbit_saved)
+        if legacy then saved.orbit_vx,saved.orbit_vz=nil,nil end
+        local loaded=entity(orbiting.x,orbiting.z)
+        forbid_orbit_position_writes(loaded)
+        loaded._nw_stored={p=orbiting._nw_motion.p};loaded._nw_owner=owner
+        Motion.start(loaded,owner,orbiting._nw_motion.p,1,0,orbiting._nw_motion.age,saved)
+        close(loaded._nw_motion.orbit_radius,orbiting._nw_motion.orbit_radius)
+        close(loaded.motor,orbiting.motor);close(loaded.rotation,orbiting.rotation)
+        table.insert(restored,loaded)
+    end
+    for i=1,90 do
+        owner.x=owner.x+owner_speed*FRAMES;now=now+FRAMES
+        for _,e in ipairs({orbiting,restored[1],restored[2]}) do
+            local s=e._nw_motion
+            local vx,vz=s.orbit_vx,s.orbit_vz
+            e.x=e.x+math.cos(-e.rotation*DEGREES)*e.motor*FRAMES
+            e.z=e.z+math.sin(-e.rotation*DEGREES)*e.motor*FRAMES
+            P.step(e,now,{})
+            assert(s.orbit_vx==s.orbit_vx and s.orbit_vz==s.orbit_vz,"legacy orbit velocity must remain finite")
+            if vx then
+                assert(math.sqrt((s.orbit_vx-vx)^2+(s.orbit_vz-vz)^2)<=180*FRAMES+1e-8,
+                    "restoring an orbit cannot bypass tracking acceleration")
+            end
+        end
+        if owner_speed==0 then
+            close(restored[1].motor,orbiting.motor);close(restored[1].rotation,orbiting.rotation)
+        end
+        if i>60 then
+            for _,loaded in ipairs(restored) do
+                local separation=math.sqrt((loaded.x-orbiting.x)^2+(loaded.z-orbiting.z)^2)
+                assert(separation<.3,"saved and legacy orbits must converge without losing their phase")
+            end
+        end
+    end
+    orbiting:Remove();for _,e in ipairs(restored) do e:Remove() end
+end
+-- Losing the owner stops actual physics. Reacquisition starts tracking from
+-- that rest state, including when the player moved while absent.
 owner.x,owner.z=0,0
-local orbiting=field(descriptor({orbit=Copy(D.orbit)},25),true)
-for _=1,8 do frame(orbiting,FRAMES) end
-local orbit_saved=Motion.save(orbiting)
-assert(orbit_saved.orbit_radius and orbit_saved.orbit_radius>0)
-local orbit_loaded=entity(orbiting.x,orbiting.z)
-orbit_loaded._nw_stored={p=orbiting._nw_motion.p};orbit_loaded._nw_owner=owner
-Motion.start(orbit_loaded,owner,orbiting._nw_motion.p,1,0,orbiting._nw_motion.age,orbit_saved)
-close(orbit_loaded._nw_motion.orbit_radius,orbiting._nw_motion.orbit_radius)
-close(orbit_loaded.motor,orbiting.motor);close(orbit_loaded.rotation,orbiting.rotation)
-F.steer(orbiting,orbiting._nw_motion,FRAMES)
-F.steer(orbit_loaded,orbit_loaded._nw_motion,FRAMES)
-close(orbit_loaded.motor,orbiting.motor);close(orbit_loaded.rotation,orbiting.rotation)
-orbiting:Remove();orbit_loaded:Remove()
+local waiting=field(descriptor({orbit=Copy(D.orbit)},25),true)
+forbid_orbit_position_writes(waiting)
+for _=1,12 do frame(waiting,FRAMES) end
+local waiting_motion=waiting._nw_motion
+assert(waiting.motor>0 and waiting_motion.ox~=nil)
+owner.valid=false
+frame(waiting,FRAMES)
+assert(waiting.motor==0 and waiting_motion.orbit_vx==0 and waiting_motion.orbit_vz==0)
+assert(waiting_motion.ox==nil and waiting_motion.oz==nil,"absent owner history must not trigger teleport cleanup later")
+owner.x=10;owner.valid=true;waiting._nw_owner=owner
+frame(waiting,FRAMES)
+assert(waiting.valid and not waiting_motion.stopped and waiting_motion.owner==owner)
+assert(waiting.motor>0 and waiting.motor<=180*FRAMES+1e-8,"owner reacquisition must accelerate from stopped physics")
+waiting:Remove()
 owner.x,owner.z=owner_x,owner_z
 
 -- Collision preserves the field. Pierce and wall reflection reuse bullet
@@ -188,6 +251,12 @@ enemy.tags.wall=true
 local bounced=field(descriptor({bounce={bounces=2}},6),false);bounced.x=4
 now=now+.1;P.step(bounced,now,{})
 assert(bounced.valid and not bounced._nw_motion.stopped and bounced._nw_motion.dx<0 and bounced._nw_motion.vx<0)
+local fast_bounce=field(descriptor({bounce={bounces=2}},500),false);fast_bounce.x=4
+now=now+.1;P.step(fast_bounce,now,{})
+close(fast_bounce.motor,require("nw/spell_limits").max_speed)
+close(fast_bounce._nw_motion.vx,-fast_bounce.motor)
+assert(fast_bounce._nw_motion.bounces==1,"initial reflection must bound the legacy nominal-speed fallback")
+fast_bounce:Remove()
 local phased=field(descriptor({phase_wall={}},6),false);phased.x=4
 now=now+.1;P.step(phased,now,{});assert(not phased._nw_motion.stopped)
 -- Both floating stars cross walls without consuming pierce/bounce, including
@@ -197,7 +266,7 @@ for _,id in ipairs({"edge_yellowstaff","edge_opalstaff"}) do
     local floating=field(p,false);floating.x=4
     now=now+.1;P.step(floating,now,{})
     assert(not floating._nw_motion.stopped and floating._nw_motion.vx>0 and floating.x==4)
-    assert(floating._nw_motion.bounces==2 and floating._nw_motion.hits_left==3)
+    assert(floating._nw_motion.bounces==2 and floating._nw_motion.hits_left==math.huge)
     local loaded=entity()
     Motion.start(loaded,owner,p,1,0,floating._nw_motion.age,Motion.save(floating))
     loaded.x=4;now=now+.1;P.step(loaded,now,{})
@@ -210,11 +279,11 @@ enemy.tags.wall=nil
 for _,id in ipairs({"edge_yellowstaff","edge_opalstaff"}) do
     local floating=field(descriptor({},6,id),false);floating.x=4
     now=now+.1;P.step(floating,now,{})
-    assert(floating._nw_motion.stopped,"stars still stop on non-wall targets")
+    assert(not floating._nw_motion.stopped and floating._nw_motion.hits_left==math.huge,"stars have intrinsic infinite piercing")
 end
 
 -- Reproduce a self-targeted native star: its birth overlap is ignored, then
--- the first return contact ends movement unless pierce still permits it.
+-- return contacts never exhaust the stars' intrinsic piercing.
 -- Contact cooldown suppresses repeated collisions, not placement steering.
 local owner_x,owner_z=owner.x,owner.z
 for _,piercing in ipairs({false,true}) do
@@ -230,11 +299,7 @@ for _,piercing in ipairs({false,true}) do
         if motion.hit[owner] then break end
     end
     assert(motion.hit[owner],"the star must catch and contact its selected owner")
-    if not piercing then
-        assert(motion.stopped and following.motor==0 and motion.task==nil)
-        owner.x=4;frame(following,FRAMES)
-        assert(motion.stopped and following.motor==0,"spent contact budget must not restart homing")
-    else
+    do
         assert(not motion.stopped and motion.hits_left==math.huge)
         local hit_until=motion.hit[owner]
         -- Sweep past the owner while the .5 s collision cooldown is active.
@@ -266,6 +331,24 @@ for _,piercing in ipairs({false,true}) do
 end
 owner.x,owner.z=owner_x,owner_z
 
+-- A proximity behaviour sweeps its whole path, even with infinite pierce and
+-- both endpoints outside sensing range. It explodes at the first valid entry.
+local sensed=entity(5,0,{tree=true});sensed.components.health=nil;sensed.components.combat=nil
+candidates={sensed}
+local moving_mine=field(descriptor({targets={nature=true},pierce_all={}},100,"crystal_mine"),true)
+local triggers=0
+moving_mine._nw_proximity={radius=1.6,trigger=function(e)
+    assert(e==sensed);triggers=triggers+1;moving_mine:Remove()
+end}
+moving_mine.x=10;now=now+.1;P.step(moving_mine,now,{})
+assert(triggers==1 and not moving_mine.valid)
+close(moving_mine.x,3.4)
+local excluded=field(descriptor({targets={hostile=true},pierce_all={}},100,"crystal_mine"),true)
+excluded._nw_proximity={radius=1.6,trigger=function() error("unselected tree cannot trigger proximity") end}
+excluded.x=10;now=now+.1;P.step(excluded,now,{})
+assert(excluded.valid and not excluded._nw_motion.stopped)
+excluded:Remove();candidates={}
+
 -- Gust pushes an egg without opening it, accumulates actual momentum, can
 -- wake a stopped egg, and passes through crystals without pushing them.
 SpawnPrefab=function(name)
@@ -289,10 +372,106 @@ local egg=prop("payload_egg")
 assert(not gust(egg).valid and egg.valid);close(egg._nw_motion.vx,8)
 gust(egg);close(egg._nw_motion.vx,16)
 Motion.stop(egg);gust(egg);close(egg._nw_motion.vx,8);assert(not egg._nw_motion.stopped)
+-- A gust edits live propulsion and the saved tracking velocity together. A
+-- stale orbit cache must never replace that impulse on the following tick.
+local orbit_egg=prop("payload_egg")
+orbit_egg._nw_stored.p=descriptor({orbit=Copy(D.orbit),sine=Copy(D.sine)},8,"payload_egg")
+Motion.start(orbit_egg,owner,orbit_egg._nw_stored.p,1,0)
+forbid_orbit_position_writes(orbit_egg)
+candidates={};for _=1,10 do frame(orbit_egg,FRAMES) end
+local before=orbit_egg._nw_motion
+local drive_x,drive_z=before.vx,before.vz
+local tracking_x,tracking_z=before.orbit_vx,before.orbit_vz
+local actual_x=math.cos(-orbit_egg.rotation*DEGREES)*orbit_egg.motor
+local actual_z=math.sin(-orbit_egg.rotation*DEGREES)*orbit_egg.motor
+assert(math.sqrt((actual_x-tracking_x)^2+(actual_z-tracking_z)^2)>.1,
+    "the regression must exercise a real sine offset beyond baseline tracking")
+assert(Motion.push_egg(orbit_egg,owner,1,0,8))
+local pushed=orbit_egg._nw_motion
+close(pushed.vx,drive_x+8);close(pushed.vz,drive_z)
+close(pushed.orbit_vx,tracking_x+8);close(pushed.orbit_vz,tracking_z)
+close(math.cos(-orbit_egg.rotation*DEGREES)*orbit_egg.motor,actual_x+8)
+close(math.sin(-orbit_egg.rotation*DEGREES)*orbit_egg.motor,actual_z)
+local propulsion_speed=math.sqrt(pushed.vx^2+pushed.vz^2)
+frame(orbit_egg,FRAMES)
+close(math.sqrt(pushed.vx^2+pushed.vz^2),propulsion_speed*math.exp(-Motion.drag*FRAMES))
+assert(math.sqrt((pushed.orbit_vx-tracking_x-8)^2+(pushed.orbit_vz-tracking_z)^2)<=180*FRAMES+1e-8)
+-- Strong impulses cap the immediate motor and propulsion independently, with
+-- the applied correction fed back to tracking without absorbing curve offsets.
+local cap=require("nw/spell_limits").max_speed
+local actual_x=math.cos(-orbit_egg.rotation*DEGREES)*orbit_egg.motor
+local actual_z=math.sin(-orbit_egg.rotation*DEGREES)*orbit_egg.motor
+local offset_x,offset_z=actual_x-pushed.orbit_vx,actual_z-pushed.orbit_vz
+local motor_length=math.sqrt((actual_x+600)^2+(actual_z+800)^2)
+local expected_x,expected_z=(actual_x+600)*cap/motor_length,(actual_z+800)*cap/motor_length
+local drive_length=math.sqrt((pushed.vx+600)^2+(pushed.vz+800)^2)
+local drive_x,drive_z=(pushed.vx+600)*cap/drive_length,(pushed.vz+800)*cap/drive_length
+assert(Motion.push_egg(orbit_egg,owner,.6,.8,1000))
+pushed=orbit_egg._nw_motion
+close(orbit_egg.motor,cap)
+close(math.cos(-orbit_egg.rotation*DEGREES)*orbit_egg.motor,expected_x)
+close(math.sin(-orbit_egg.rotation*DEGREES)*orbit_egg.motor,expected_z)
+close(pushed.vx,drive_x);close(pushed.vz,drive_z)
+close(pushed.orbit_vx+offset_x,expected_x);close(pushed.orbit_vz+offset_z,expected_z)
+frame(orbit_egg,FRAMES)
+assert(orbit_egg.motor<=cap+1e-8 and math.sqrt(pushed.vx^2+pushed.vz^2)<=cap+1e-8)
+orbit_egg:Remove()
 for _,id in ipairs({"crystal_mine","sleep_crystal"}) do
     local crystal=prop(id);assert(gust(crystal).valid and not crystal._nw_motion)
 end
+candidates={}
+local strong_egg=prop("payload_egg")
+assert(Motion.push_egg(strong_egg,owner,.6,.8,1000))
+close(strong_egg.motor,cap)
+close(strong_egg._nw_motion.vx,cap*.6);close(strong_egg._nw_motion.vz,cap*.8)
+strong_egg:Remove()
+-- Old saves restore before the first simulation tick. Both cached motors and
+-- legacy records lacking that cache must respect the same cap and direction.
+for _,cached in ipairs({false,true}) do
+    local restored=prop("payload_egg")
+    local data={vx=300,vz=400,heading=math.atan2(400,300)}
+    if cached then
+        data.motor_speed=500;data.motor_angle=-data.heading/DEGREES
+        data.orbit_vx=290;data.orbit_vz=380
+        restored._nw_stored.p.flags={orbit=Copy(D.orbit),sine=Copy(D.sine)}
+    end
+    Motion.start(restored,owner,restored._nw_stored.p,.6,.8,0,data)
+    local s=restored._nw_motion
+    close(restored.motor,cap);close(s.vx,cap*.6);close(s.vz,cap*.8)
+    close(math.cos(-restored.rotation*DEGREES)*restored.motor,cap*.6)
+    close(math.sin(-restored.rotation*DEGREES)*restored.motor,cap*.8)
+    if cached then close(s.orbit_vx+10,cap*.6);close(s.orbit_vz+20,cap*.8) end
+    close(data.vx,300);close(data.vz,400) -- never mutate a shared save table
+    frame(restored,FRAMES);assert(restored.motor<=cap+1e-8)
+    restored:Remove()
+end
 -- Map support is retained on-map; leaving it clears only engine collisions.
+-- Size changes art/physics scale, never world-space movement. Exercise the
+-- actual initial, steering, restored and reflected native motor writes.
+for _,scale in ipairs({.4,2.5,10}) do
+    local function scaled()
+        local e=entity()
+        e.Transform.GetScale=function() return scale,scale,scale end
+        return e
+    end
+    candidates={}
+    local e=scaled();local p=descriptor({},cap)
+    Motion.start(e,owner,p,1,0)
+    close(e.motor*scale,cap)
+    e.x=e.x+e.motor*scale*FRAMES;now=now+FRAMES;P.step(e,now,{})
+    close(e.motor*scale,math.sqrt(e._nw_motion.vx^2+e._nw_motion.vz^2))
+    local restored=scaled()
+    Motion.start(restored,owner,p,1,0,e._nw_motion.age,Motion.save(e))
+    close(restored.motor*scale,e.motor*scale)
+    local wall=entity(2,0,{wall=true});candidates={wall}
+    local reflected=scaled()
+    Motion.start(reflected,owner,descriptor({bounce={bounces=1}},500),1,0)
+    reflected.x=4;now=now+.1;P.step(reflected,now,{})
+    close(reflected.motor*scale,cap);close(reflected._nw_motion.vx,-cap)
+    assert(reflected._nw_motion.bounces==0)
+    e:Remove();restored:Remove();reflected:Remove()
+end
+candidates={}
 -- Height correction preserves horizontal motion and interpolation off-map.
 local probe=entity(0,0);probe._nw_ground_mask=true
 local writes,clears=0,0

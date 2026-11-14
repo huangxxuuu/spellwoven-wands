@@ -45,6 +45,13 @@ for _,scale in ipairs({.7,1,1.5}) do
     end
 end
 cell.focus=true;cell:OnGainFocus()
+-- Joined-world settings can arrive while the same card is already hovered.
+require("nw/base_damage").configure(.5)
+row:PlaceHover();assert(panel.model.fields[1][2]==9)
+require("nw/base_damage").configure(1.5)
+row:PlaceHover();assert(panel.model.fields[1][2]==27)
+require("nw/base_damage").configure(1)
+row:PlaceHover();assert(panel.model.fields[1][2]==18)
 local cursor
 ThePlayer={replica={inventory={GetActiveItem=function() return cursor end}}}
 cursor={HasTag=function(_,tag) return tag=="nw_spellcard" end}

@@ -1,0 +1,10 @@
+# Search defaults only: these files remain tracked/exported where applicable.
+# Art/history tasks: first use docs/art/05_资源索引.md or docs/文档索引.md,
+# then run rg --no-ignore against the specific directory that is needed.
+/assets_src/
+/outputs/
+/docs/历史/
+/docs/art/reference/
+/docs/previews/
+/docs/research/
+/docs/releases/

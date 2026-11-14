@@ -240,4 +240,29 @@ assert(require("nw/card_rarity").tiers.dark==2 and require("nw/acquisition").by_
 local w=require("nw/generator").starter();w.cards={{spell_id="dark",card_uid="d"},{spell_id="spark",card_uid="s"}}
 w.runtime=require("nw/compiler").initial(w.cards,w.stats,1)
 assert(require("nw/compiler").compile(w).blocks[1].projectiles[1].flags.dark)
+-- Scope does not split or limit this environmental aftermath.
+local caster=entity(100,100);caster.tags.player=true;caster.userid="scoped"
+caster.components.combat={IsAlly=function() return false end,CanTarget=function() return true end}
+local enemy=entity(100,100);enemy.creature=true;enemy.tags.hostile=true
+enemy.components.health={IsDead=function() return false end};enemy.components.combat={}
+local friend=entity(100,100);friend.creature=true
+friend.components.health={IsDead=function() return false end};friend.components.combat={}
+friend.components.follower={leader=caster}
+local excluded=entity(100,100);excluded.creature=true;excluded.tags.player=true
+excluded.components.health={IsDead=function() return false end};excluded.components.combat={}
+local hostile_flags={targets={hostile=true},dark=true}
+local hostile_fog=Fog.leave(caster,100,100,{flags=hostile_flags})
+local friendly_fog=Fog.leave(caster,100,100,{flags={targets={friendly=true},dark=true}})
+assert(hostile_fog==friendly_fog and TheWorld._nw_dark_fog.count==1)
+assert(Fog.leave(caster,100,100,{flags={targets={hostile=true},dark=true}})==hostile_fog)
+hostile_flags.targets.hostile=nil;hostile_flags.targets.neutral=true
+Fog.refresh(TheWorld)
+assert(enemy.covered and friend.covered and not excluded.covered)
+assert(Fog.contains(TheWorld,enemy) and Fog.contains(TheWorld,friend))
+Fog.dissipate(hostile_fog)
+assert(not enemy.covered and not friend.covered and not TheWorld._nw_dark_fog)
+local only_players=Fog.leave(caster,100,100,{flags={targets={self=true,players_other=true}}})
+Fog.refresh(TheWorld)
+assert(enemy.covered and friend.covered and not excluded.covered)
+Fog.dissipate(only_players)
 print("dark fog regions: scaled coverage/network radius, cross-cell queries, annuli, size-aware merge, tiny/long trails, budgets, cleanup and compatibility passed")

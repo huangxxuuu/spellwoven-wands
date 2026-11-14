@@ -1,8 +1,6 @@
 local Copy=require("nw/util").copy
 local M={}
 
--- Count the first release of each payload without materializing copies.
--- Memoization also allows several carriers to reference the same template.
 function M.sizes(blocks)
     local sizes,visiting={},{}
     local function count(index)
@@ -23,8 +21,6 @@ function M.sizes(blocks)
     return sizes
 end
 
--- Static parameters are immutable. Only damage/support variants need a copy;
--- payload IDs still point into the compact plan, never into a per-carrier tree.
 function M.resolver()
     local templates={}
     return function(original,fraction,limited)
@@ -54,8 +50,6 @@ function M.resolver()
     end
 end
 
--- Saved placements own a serializable snapshot of reachable templates only.
--- Inherited copy restrictions are applied when this payload actually fires.
 function M.snapshot(blocks,root,scale,secondary,seed)
     if not root then return end
     local plan={blocks={},next_state={rng_state=seed or 1},payload_root=true,

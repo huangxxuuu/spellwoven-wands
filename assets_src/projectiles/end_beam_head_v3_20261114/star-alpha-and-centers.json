@@ -1,0 +1,346 @@
+{
+  "source": "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_head_v3_20261114\\star-source-01.png",
+  "size": [
+    1024,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "alpha_zero": 798281,
+  "alpha1": 29669,
+  "alpha2": 6989,
+  "alpha8_bbox": [
+    33,
+    78,
+    1008,
+    942
+  ],
+  "frames": [
+    {
+      "frame": 1,
+      "cell_box_xyxy_exclusive": [
+        0,
+        0,
+        256,
+        341
+      ],
+      "local_alpha8_bbox": [
+        33,
+        78,
+        239,
+        291
+      ],
+      "white_core_centroid_local": [
+        141.07,
+        198.0
+      ],
+      "global_white_core_centroid": [
+        141.07,
+        198.0
+      ],
+      "optical_white_core_pivot_global": [
+        142.0,
+        203.0
+      ]
+    },
+    {
+      "frame": 2,
+      "cell_box_xyxy_exclusive": [
+        256,
+        0,
+        512,
+        341
+      ],
+      "local_alpha8_bbox": [
+        41,
+        89,
+        226,
+        304
+      ],
+      "white_core_centroid_local": [
+        135.54,
+        195.77
+      ],
+      "global_white_core_centroid": [
+        391.53999999999996,
+        195.77
+      ],
+      "optical_white_core_pivot_global": [
+        391.5,
+        197.0
+      ]
+    },
+    {
+      "frame": 3,
+      "cell_box_xyxy_exclusive": [
+        512,
+        0,
+        768,
+        341
+      ],
+      "local_alpha8_bbox": [
+        21,
+        105,
+        223,
+        298
+      ],
+      "white_core_centroid_local": [
+        128.23,
+        196.73
+      ],
+      "global_white_core_centroid": [
+        640.23,
+        196.73
+      ],
+      "optical_white_core_pivot_global": [
+        643.0,
+        197.5
+      ]
+    },
+    {
+      "frame": 4,
+      "cell_box_xyxy_exclusive": [
+        768,
+        0,
+        1024,
+        341
+      ],
+      "local_alpha8_bbox": [
+        19,
+        102,
+        240,
+        290
+      ],
+      "white_core_centroid_local": [
+        121.36,
+        196.7
+      ],
+      "global_white_core_centroid": [
+        889.36,
+        196.7
+      ],
+      "optical_white_core_pivot_global": [
+        886.5,
+        197.5
+      ]
+    },
+    {
+      "frame": 5,
+      "cell_box_xyxy_exclusive": [
+        0,
+        341,
+        256,
+        683
+      ],
+      "local_alpha8_bbox": [
+        34,
+        73,
+        230,
+        254
+      ],
+      "white_core_centroid_local": [
+        143.57,
+        172.04
+      ],
+      "global_white_core_centroid": [
+        143.57,
+        513.04
+      ],
+      "optical_white_core_pivot_global": [
+        143.3,
+        512.3
+      ]
+    },
+    {
+      "frame": 6,
+      "cell_box_xyxy_exclusive": [
+        256,
+        341,
+        512,
+        683
+      ],
+      "local_alpha8_bbox": [
+        34,
+        78,
+        238,
+        284
+      ],
+      "white_core_centroid_local": [
+        133.12,
+        170.16
+      ],
+      "global_white_core_centroid": [
+        389.12,
+        511.15999999999997
+      ],
+      "optical_white_core_pivot_global": [
+        388.0,
+        509.0
+      ]
+    },
+    {
+      "frame": 7,
+      "cell_box_xyxy_exclusive": [
+        512,
+        341,
+        768,
+        683
+      ],
+      "local_alpha8_bbox": [
+        31,
+        79,
+        230,
+        294
+      ],
+      "white_core_centroid_local": [
+        124.04,
+        165.72
+      ],
+      "global_white_core_centroid": [
+        636.04,
+        506.72
+      ],
+      "optical_white_core_pivot_global": [
+        636.0,
+        502.0
+      ]
+    },
+    {
+      "frame": 8,
+      "cell_box_xyxy_exclusive": [
+        768,
+        341,
+        1024,
+        683
+      ],
+      "local_alpha8_bbox": [
+        18,
+        77,
+        222,
+        279
+      ],
+      "white_core_centroid_local": [
+        121.28,
+        174.84
+      ],
+      "global_white_core_centroid": [
+        889.28,
+        515.84
+      ],
+      "optical_white_core_pivot_global": [
+        893.2,
+        514.6
+      ]
+    },
+    {
+      "frame": 9,
+      "cell_box_xyxy_exclusive": [
+        0,
+        683,
+        256,
+        1024
+      ],
+      "local_alpha8_bbox": [
+        41,
+        52,
+        238,
+        259
+      ],
+      "white_core_centroid_local": [
+        143.49,
+        148.25
+      ],
+      "global_white_core_centroid": [
+        143.49,
+        831.25
+      ],
+      "optical_white_core_pivot_global": [
+        148.0,
+        830.0
+      ]
+    },
+    {
+      "frame": 10,
+      "cell_box_xyxy_exclusive": [
+        256,
+        683,
+        512,
+        1024
+      ],
+      "local_alpha8_bbox": [
+        17,
+        53,
+        234,
+        246
+      ],
+      "white_core_centroid_local": [
+        140.36,
+        148.06
+      ],
+      "global_white_core_centroid": [
+        396.36,
+        831.06
+      ],
+      "optical_white_core_pivot_global": [
+        400.5,
+        831.5
+      ]
+    },
+    {
+      "frame": 11,
+      "cell_box_xyxy_exclusive": [
+        512,
+        683,
+        768,
+        1024
+      ],
+      "local_alpha8_bbox": [
+        28,
+        54,
+        229,
+        250
+      ],
+      "white_core_centroid_local": [
+        128.07,
+        144.5
+      ],
+      "global_white_core_centroid": [
+        640.0699999999999,
+        827.5
+      ],
+      "optical_white_core_pivot_global": [
+        642.5,
+        826.0
+      ]
+    },
+    {
+      "frame": 12,
+      "cell_box_xyxy_exclusive": [
+        768,
+        683,
+        1024,
+        1024
+      ],
+      "local_alpha8_bbox": [
+        19,
+        40,
+        219,
+        250
+      ],
+      "white_core_centroid_local": [
+        122.76,
+        142.93
+      ],
+      "global_white_core_centroid": [
+        890.76,
+        825.9300000000001
+      ],
+      "optical_white_core_pivot_global": [
+        893.0,
+        824.0
+      ]
+    }
+  ]
+}

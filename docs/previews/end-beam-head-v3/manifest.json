@@ -1,0 +1,29 @@
+{
+  "bank": "nw_end_beam_head",
+  "frames": 12,
+  "fps": 30,
+  "star_source": "assets_src/projectiles/end_beam_head_v3_20261114/star-source-01.png",
+  "source_sha256": "076dadf467ec9493dda139734da316429e7f58941cba204aaf3598a13ba3b9c9",
+  "registration_sha256": "440adb74e70bf94f280b1e42da968d4999994610854bd2f995625d960d6d865b",
+  "common_star_scale": 0.2948438547245643,
+  "connector_world_width": 0.4266666666666667,
+  "star_display_scale": 1.12,
+  "connector_source": "assets_src/projectiles/end_beam_connector_v5_20261114/connector-source-01.png",
+  "connector_source_sha256": "92bd82f8f1f7ad56e43872d2748345c60b4faf040d554a1e41006c582ebc352c",
+  "connector_matrix": [
+    1,
+    0,
+    0,
+    1,
+    -52.0,
+    -0.180147058823529
+  ],
+  "connector_taper_length": 80,
+  "connector_rear_overlap": 24,
+  "connector_painted_height": 49,
+  "star_poses": "12 independently painted turning poses, white-core registration, no added matrix turn",
+  "layer_order": [
+    "connector below",
+    "star above"
+  ]
+}

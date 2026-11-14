@@ -1,6 +1,7 @@
+local C=require("nw/constants/acquisition").recycle
 local T=require("nw/locale").t
 local M={}
-local radius=4
+local radius=C.radius
 local tags={"nw_spellcard","nw_spellpile","nw_wand"}
 
 function M.amount(item)
@@ -9,8 +10,8 @@ function M.amount(item)
     local wand=item.components.nw_wand
     local data=wand and wand.data
     if data then
-        return (data.starter or data.source=="legacy" or data.source=="debug") and 1
-            or ({4,8,12,20})[data.tier]
+        return (data.starter or data.source=="legacy" or data.source=="debug") and C.special_wand_amount
+            or C.wand_amounts[data.tier]
     end
 end
 
@@ -24,7 +25,7 @@ local function valid(entry,station)
     local item=entry.item
     if not ground(item) or item._nw_claim~=station then return false end
     local x,_,z=item.Transform:GetWorldPosition()
-    return (x-entry.x)^2+(z-entry.z)^2<.01 and item:IsNear(station,radius)
+    return (x-entry.x)^2+(z-entry.z)^2<C.position_epsilon_squared and item:IsNear(station,radius)
 end
 
 local function release(entry,station)
@@ -39,8 +40,6 @@ local function release(entry,station)
     entry.expired=true
 end
 
--- Stage all outputs before consuming one ground object. Pile contents are real
--- entities; remove them explicitly so the vanilla container cannot spill them.
 local function convert(item,station)
     local count=M.amount(item)
     if not count or count<1 then return end
@@ -73,9 +72,9 @@ local function convert(item,station)
     end
     for _,out in ipairs(outputs) do out.Transform:SetPosition(x,y,z) end
     local flash=SpawnPrefab("carnival_sparkle_fx")
-    if flash then flash.Transform:SetPosition(x,y+.15,z) end
+    if flash then flash.Transform:SetPosition(x,y+C.flash_height,z) end
     item:Remove()
-    if not station._nw_pulse or GetTime()-station._nw_pulse>.18 then
+    if not station._nw_pulse or GetTime()-station._nw_pulse>C.pulse_interval then
         station._nw_pulse=GetTime()
         station.AnimState:PlayAnimation("pulse")
         station.AnimState:PushAnimation("active",true)
@@ -119,7 +118,7 @@ function M.start(station,player)
     end
     run.task=station:DoPeriodicTask(FRAMES,function()
         if channel.channeler~=player or not player:IsValid() or not channel:IsChanneling(player)
-            or player.sg.statemem.target~=station or not player:IsNear(station,3)
+            or player.sg.statemem.target~=station or not player:IsNear(station,C.channel_distance)
             or player.components.health:IsDead() then
             channel:StopChanneling(true)
             return
@@ -131,12 +130,12 @@ function M.start(station,player)
                 if not entry.expired then
                     if not valid(entry,station) then
                         release(entry,station)
-                    elseif entry.distance<=radius*math.min(1,elapsed/2) then
+                    elseif entry.distance<=radius*math.min(1,elapsed/C.scan_duration) then
                         if not entry.marked then
                             entry.item:SetNWMarked(true)
                             entry.marked=true
                         end
-                        if elapsed>=2 then
+                        if elapsed>=C.scan_duration then
                             local count=M.amount(entry.item)
                             if count and count>0 then
                                 run.queue[#run.queue+1]=entry
@@ -146,12 +145,12 @@ function M.start(station,player)
                     end
                 end
             end
-            if elapsed>=2 then
+            if elapsed>=C.scan_duration then
                 if #run.queue==0 then finish(T("附近没有可分解的物品。"));return end
                 run.phase=2
                 say(player,T("有 %d 张法术卡、%d 根法杖将被分解。"),cards,wands)
             end
-        elseif run.phase==2 and elapsed>=3 then
+        elseif run.phase==2 and elapsed>=C.start_time then
             run.phase=3
             say(player,T("开始分解。"))
             for i=#run.queue,2,-1 do
@@ -159,7 +158,7 @@ function M.start(station,player)
                 run.queue[i],run.queue[j]=run.queue[j],run.queue[i]
             end
             for i,entry in ipairs(run.queue) do
-                entry.at=3+2*(i-1+.15+.7*math.random())/#run.queue
+                entry.at=C.start_time+C.convert_duration*(i-1+C.slot_offset+C.slot_random*math.random())/#run.queue
             end
         elseif run.phase==3 then
             while run.queue[run.next] and run.queue[run.next].at<=elapsed do
@@ -170,18 +169,18 @@ function M.start(station,player)
                     convert(entry.item,station)
                 end
             end
-            if elapsed>=5 then finish(T("分解完成。")) end
+            if elapsed>=C.finish_time then finish(T("分解完成。")) end
         end
     end)
 end
 
 function M.install(env)
-    local action=Action({priority=12,rmb=true,distance=1.4,silent_fail=true})
+    local action=Action({priority=C.action_priority,rmb=true,distance=C.action_distance,silent_fail=true})
     action.id,action.str="NW_RECYCLE",T("分解附近物品")
     action.fn=function(act)
         local target=act.target
         return target and target:IsValid() and target.prefab=="nw_disassembler"
-            and not target._nw_run and act.doer:IsNear(target,3)
+            and not target._nw_run and act.doer:IsNear(target,C.channel_distance)
             and target.components.channelable:StartChanneling(act.doer)
     end
     env.AddAction(action)

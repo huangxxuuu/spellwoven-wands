@@ -1,4 +1,3 @@
--- Reference measurement against the installed game's unmodified firestaff.
 local M={}
 function M.run(x,z,done)
     local player=SpawnPrefab("wilson")

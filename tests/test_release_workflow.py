@@ -49,6 +49,10 @@ class WorkflowTests(unittest.TestCase):
             self.assertEqual(state['approved_notes_sha256'], release.digest(directory / 'notes.txt'))
             self.assertEqual((directory / 'commit.txt').read_text(), 'Release v1.0.1\n\nFull detail')
             self.assertFalse(state['steps'])
+            self.assertTrue(any(argv[1:4] == ['tools/run_python_tests.py', '-p', 'test_release*.py']
+                                for argv in commands))
+            for script in ('tools/check_art_assets.py', 'tools/check_localization.py', 'tools/check_site_links.py'):
+                self.assertTrue(any(argv[1:3] == ['tools/quiet_check.py', script] for argv in commands))
             for name in ('preview.png', 'description.txt', 'workshop-localizations.json'):
                 self.assertFalse((directory / name).exists())
 

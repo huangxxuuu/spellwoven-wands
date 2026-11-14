@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui_misc").ground_card
 local Cards=require("nw/cards")
 local Visual=require("nw/card_visuals")
 local M={}
@@ -15,8 +16,6 @@ function M.assets()
     return assets
 end
 
--- Base-3 digits preserve the second/third real shapes; higher bits describe
--- hexagons strictly below the first three cards. Container slot order is unchanged.
 function M.surface(box)
     local top,layout,seen,hexes=nil,0,0,0
     for slot=1,box:GetNumSlots() do
@@ -44,7 +43,6 @@ function M.sequence(count,layout)
 end
 
 function M.pose(code,count,layout,separated)
-    -- Resolve the retired spell code exactly as the save/load and inventory paths do.
     local id=Cards.bycode[code] or "spark"
     local shape=Visual.cards[id].shape
     if count<=1 then return "single_"..shape,id end
@@ -52,22 +50,20 @@ function M.pose(code,count,layout,separated)
     if count==2 then return "two_"..prefix,id end
     if count==3 then return "three_"..prefix,id end
     local hexes=math.floor((layout or 0)/9)
-    if count<=8 then return "medium_"..prefix..(hexes>0 and "_hex" or "_plain"),id end
+    if count<=C.medium_max_count then return "medium_"..prefix..(hexes>0 and "_hex" or "_plain"),id end
     local style=hexes==0 and "plain" or hexes==1 and "one_hex" or separated and "hex_separated" or "hex_adjacent"
     return "large_"..prefix.."_"..style,id
 end
 
 function M.show(inst,code,count,layout,separated)
     local pose,id=M.pose(code,count,layout,separated)
-    -- Temporary native-art alias until the new card face is approved/compiled.
     id=Visual.cards[id].art_id or id
     local bank="nw_card_faces_"..math.floor((Cards.codes[id]-1)/Visual.page_size)
     local anim=inst.AnimState
     anim:SetBuild("nw_card_piles")
     anim:SetOrientation(ANIM_ORIENTATION.BillBoard)
-    -- The texture already includes perspective; only its draw layer is grounded.
     anim:SetLayer(LAYER_BACKGROUND)
-    anim:SetSortOrder(3)
+    anim:SetSortOrder(C.sort_order)
     anim:OverrideSymbol("face",bank,"face_"..id)
     anim:SetBankAndPlayAnimation("nw_card_piles",pose)
 end

@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui").nw_slotrow
 local Widget=require("widgets/widget")
 local Image=require("widgets/image")
 local Cards=require("nw/cards")
@@ -28,9 +29,9 @@ function Row:SetCards(encoded)
             if not cell then
                 cell=self:AddChild(Image("images/hud.xml","inv_slot.tex"))
                 self.cells[i]=cell
-                cell:SetSize(self.size-2,self.size-2)
+                cell:SetSize(self.size-C.cell_inset,self.size-C.cell_inset)
                 cell.icon=cell:AddChild(Image("images/inventoryimages/nw_icons.xml",Info.icon("spark")))
-                cell.icon:SetSize(self.size-7,self.size-7);cell.icon:SetClickable(false)
+                cell.icon:SetSize(self.size-C.icon_inset,self.size-C.icon_inset);cell.icon:SetClickable(false)
                 if self.selectslot then
                     Hint.setup_root(cell)
                     local gain,lose=cell.OnGainFocus,cell.OnLoseFocus
@@ -56,7 +57,7 @@ function Row:SetCards(encoded)
                 cell.spell=id
                 if id then
                     cell.icon:SetTexture("images/inventoryimages/nw_icons.xml",Info.icon(id))
-                    cell.icon:SetSize(self.size-7,self.size-7);cell.icon:Show()
+                    cell.icon:SetSize(self.size-C.icon_inset,self.size-C.icon_inset);cell.icon:Show()
                 else cell.icon:Hide() end
             end
         else cell:Hide() end

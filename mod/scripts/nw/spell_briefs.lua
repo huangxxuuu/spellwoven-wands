@@ -1,4 +1,3 @@
--- Player-facing summaries. Numerical reference text remains in spell_info.effects.
 local M={}
 local text={
 dark={"沿途留下短暂黑雾，使生物恐惧或目盲；暗影生物加速，玩家不受影响。","Leaves brief fog that frightens or blinds creatures, speeds up shadow creatures, and does not affect players."},
@@ -38,7 +37,7 @@ thrust={"向前刺出一柄长矛。","Thrusts a spear forward."},
 slash={"挥出一道宽阔的玻璃刀斩击。","Swings a glass cutter in a broad arc."},
 whirl={"旋斧绕柄下端水平扫过一圈，攻击并砍伐周围目标。","Sweeps an axe around its lower grip, striking and chopping nearby targets."},
 orbit={"使投射物环绕施法者飞行。","Makes projectiles orbit the caster."},
-imprint_hit={"为下一枚普通投射物添加碰撞载荷。","Adds an impact-triggered payload to the next ordinary projectile."},
+imprint_hit={"为下一枚普通投射物或连锁闪电添加碰撞载荷。","Adds an impact-triggered payload to the next ordinary projectile or Chain Lightning."},
 imprint_timer={"为下一枚普通投射物添加定时载荷。","Adds a timed payload to the next ordinary projectile."},
 heal_ally={"使投射物接触受伤的友方时为其治疗。","Lets projectiles heal wounded allies on contact."},
 mana_reduce={"降低本次施法的法力消耗。","Reduces the mana cost of the cast."},
@@ -64,7 +63,7 @@ heal_bolt={"发射为命中目标恢复生命的治疗弹。","Fires a bolt that
 star_vortex={"发射分裂成旋转弹群的星旋。","Fires a star vortex made of swirling projectiles."},
 moon_fall={"在指定地点召唤延迟落下的月石。","Calls down a moon rock after a brief delay."},
 bog_whip={"从释放点向前挥出触手鞭击。","Lashes a tentacle forward from the release point."},
-detonate={"引爆指定地点附近属于自己的晶体。","Detonates your crystals near the selected point."},
+detonate={"引爆指定地点附近所有近感晶雷和休眠晶体，不区分释放者。","Detonates all proximity mines and dormant crystals near the selected point, regardless of caster."},
 bee_swarm={"召唤短暂袭击附近目标的蜂群。","Summons a swarm that briefly attacks nearby targets."},
 delay_seal={"留下符印，稍后从符印处释放载荷法术。","Leaves a seal that releases its payload after a delay."},
 rain_cloud={"召唤局部雨云，浸湿附近目标并灭火。","Summons a rain cloud that wets nearby targets and extinguishes fires."},

@@ -34,7 +34,6 @@ function M.run(done,launchx,launchz,x)
     local egg=place({"payload_egg"},390)
     local crystal=place({"sleep_crystal"},420)
     local guided_crystal=place({"homing","sleep_crystal"},450)
-    -- Replace only this egg's stored payload with a real compiled arrow plan.
     egg._nw_stored.payload={blocks=compile({"arrow"}).blocks,projectile_count=1,next_state={rng_state=1},payload_root=true}
     local gust=spawn("nw_projectile")
     local p=compile({"gust"}).blocks[1].projectiles[1]
@@ -54,7 +53,6 @@ function M.run(done,launchx,launchz,x)
         assert(restored and restored._nw_motion and restored._nw_motion.vx<2,"NW_MOTION: saved velocity")
         placer:Remove()
         assert(not Stored.owner(egg),"NW_MOTION: original placer gone")
-        -- Exercise the real attacked/blocked listener, not a replacement callback.
         egg:PushEvent("attacked",{attacker=triggerer})
         assert(not egg:IsValid(),"NW_MOTION: other player can open egg after placer leaves")
         local found=false

@@ -1,4 +1,3 @@
--- Isolated native inventory/save tests; never invoked in a normal world.
 local M={}
 function M.run(x,z)
     local made={}

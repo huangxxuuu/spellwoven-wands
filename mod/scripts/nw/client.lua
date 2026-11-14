@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui_misc").cooldown_meter
 local M={}
 function M.tile(self)
     if self.item and self.item:HasTag("nw_spellcard") then
@@ -9,8 +10,8 @@ function M.tile(self)
     local UIAnim=require("widgets/uianim")
     local meter=self:AddChild(UIAnim())
     meter:GetAnimState():SetBank("recharge_meter");meter:GetAnimState():SetBuild("recharge_meter")
-    meter:GetAnimState():SetMultColour(.1,.2,.6,.7);meter:SetClickable(false)
-    self.inst:DoPeriodicTask(.05,function()
+    meter:GetAnimState():SetMultColour(unpack(C.colour));meter:SetClickable(false)
+    self.inst:DoPeriodicTask(C.interval,function()
         local item=self.item
         if not item or not item:IsValid() then meter:Hide();return end
         local remain=item._nw_cooldown:value()

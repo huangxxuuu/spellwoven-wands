@@ -1,0 +1,138 @@
+{
+  "size": [
+    1024,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "alpha_zero_pixels": 839754,
+  "alpha_le2_pixels": 848377,
+  "bbox_by_alpha_greater_than": {
+    "0": [
+      0,
+      0,
+      929,
+      876
+    ],
+    "2": [
+      96,
+      372,
+      928,
+      647
+    ],
+    "8": [
+      97,
+      374,
+      927,
+      646
+    ],
+    "32": [
+      98,
+      374,
+      926,
+      646
+    ],
+    "128": [
+      98,
+      374,
+      926,
+      645
+    ],
+    "240": [
+      99,
+      375,
+      925,
+      644
+    ]
+  },
+  "columns": [
+    {
+      "fraction": 0.02,
+      "x": 115,
+      "top": 393,
+      "bottom_inclusive": 627,
+      "height": 235,
+      "core_top": 487,
+      "core_bottom": 537
+    },
+    {
+      "fraction": 0.05,
+      "x": 139,
+      "top": 374,
+      "bottom_inclusive": 626,
+      "height": 253,
+      "core_top": 487,
+      "core_bottom": 535
+    },
+    {
+      "fraction": 0.1,
+      "x": 181,
+      "top": 374,
+      "bottom_inclusive": 644,
+      "height": 271,
+      "core_top": 487,
+      "core_bottom": 532
+    },
+    {
+      "fraction": 0.25,
+      "x": 305,
+      "top": 377,
+      "bottom_inclusive": 636,
+      "height": 260,
+      "core_top": 487,
+      "core_bottom": 534
+    },
+    {
+      "fraction": 0.5,
+      "x": 512,
+      "top": 383,
+      "bottom_inclusive": 636,
+      "height": 254,
+      "core_top": 491,
+      "core_bottom": 529
+    },
+    {
+      "fraction": 0.75,
+      "x": 718,
+      "top": 404,
+      "bottom_inclusive": 623,
+      "height": 220,
+      "core_top": 489,
+      "core_bottom": 530
+    },
+    {
+      "fraction": 0.9,
+      "x": 842,
+      "top": 399,
+      "bottom_inclusive": 621,
+      "height": 223,
+      "core_top": 488,
+      "core_bottom": 534
+    },
+    {
+      "fraction": 0.95,
+      "x": 884,
+      "top": 405,
+      "bottom_inclusive": 618,
+      "height": 214,
+      "core_top": 488,
+      "core_bottom": 533
+    },
+    {
+      "fraction": 0.98,
+      "x": 908,
+      "top": 407,
+      "bottom_inclusive": 618,
+      "height": 212,
+      "core_top": 488,
+      "core_bottom": 532
+    }
+  ],
+  "left_near_end_median_height": 253,
+  "right_near_end_median_height": 214,
+  "right_left_ratio": 0.8458498023715415,
+  "ratio_accept_075_090": true,
+  "measurement": "Median alpha>32 column span at 2%,5%,10% vs 90%,95%,98% bbox length; bbox xyxy exclusive."
+}

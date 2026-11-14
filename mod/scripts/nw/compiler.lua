@@ -1,8 +1,12 @@
+local Bounds=require("nw/constants/limits")
+local Modifier=require("nw/constants/modifiers")
+local Projectile=require("nw/constants/projectiles")
+local Audio=require("nw/constants/audio").timing
 local U = require("nw/util")
 local RNG = require("nw/rng")
 local D = require("nw/definitions")
+local Limits = require("nw/spell_limits")
 local M = {}
--- Compiled blocks stay compact and immutable, including repeated payloads.
 function M.initial(cards, stats, seed)
     local deck = {}
     for _, card in ipairs(cards) do if card then deck[#deck+1] = card.card_uid end end
@@ -14,11 +18,7 @@ end
 function M.compile(wand, definitions, limits)
     definitions = definitions or D.spells
     limits = limits or {}
-    -- Keep malformed-plan guards without turning the former 32-node ceiling
-    -- into a hidden depth cap for larger card decks.
-    local max_steps, max_nodes = limits.steps or math.max(128,#wand.cards*2), limits.nodes or math.max(32,#wand.cards*2)
-    -- Runtime performance limits skip individual emissions, never reject a draw.
-    -- Explicit caller-provided limits remain available for diagnostics.
+    local max_steps, max_nodes = limits.steps or math.max(Bounds.compile_min_steps,#wand.cards*Bounds.compile_card_factor), limits.nodes or math.max(Bounds.compile_min_nodes,#wand.cards*Bounds.compile_card_factor)
     local max_depth, max_projectiles = limits.depth or 0, limits.projectiles or 0
     if max_depth==0 then max_depth=math.huge end
     if max_projectiles==0 then max_projectiles=math.huge end
@@ -78,11 +78,11 @@ function M.compile(wand, definitions, limits)
         if d.flag then
             local old = m.flags[d.flag]
             local value = U.copy(d)
-            if d.flag=="giant" then value.mult=(old and old.mult or 0)+2.5 end
-            if d.flag=="shrink" then value.mult=(old and old.mult or 1)*.4 end
-            if d.flag=="wet_weak" then value.mult=(old and old.mult or 1)*1.25 end
-            if d.flag=="chill_touch" then value.cold=(old and old.cold or 0)+.2 end
-            if old and d.amplitude then value.amplitude = math.min(2*d.amplitude, old.amplitude + d.amplitude) end
+            if d.flag=="giant" then value.mult=(old and old.mult or 0)+Modifier.rules.giant_step end
+            if d.flag=="shrink" then value.mult=(old and old.mult or 1)*Modifier.rules.shrink_multiplier end
+            if d.flag=="wet_weak" then value.mult=(old and old.mult or 1)*Modifier.rules.wet_multiplier end
+            if d.flag=="chill_touch" then value.cold=(old and old.cold or 0)+Modifier.rules.chill_increment end
+            if old and d.amplitude then value.amplitude = math.min(Modifier.rules.amplitude_stack_limit*d.amplitude, old.amplitude + d.amplitude) end
             if old and d.turn_rate then value.turn_rate = math.max(old.turn_rate, d.turn_rate) end
             if old and d.acceleration then
                 value.acceleration=(old.acceleration or 0)+d.acceleration
@@ -138,9 +138,9 @@ function M.compile(wand, definitions, limits)
                     local p = U.copy(d)
                     p.journal_id=cards[id].spell_id
                     b.projectiles[#b.projectiles+1] = p
-                    if d.kind=="projectile" or d.kind=="trigger" then
+                    if d.kind=="projectile" or d.kind=="trigger" or d.id=="chain" and b.imprint=="hit" then
                         p.event=p.event or b.imprint
-                        if p.event=="timer" then p.time=p.time or .5 end
+                        if p.event=="timer" then p.time=p.time or Modifier.trigger.time end
                         b.imprint=nil
                     end
                     if p.event then
@@ -165,57 +165,46 @@ function M.compile(wand, definitions, limits)
     for _ = 1, stats.draw_count do draw(root, false) end
     if error_code then return nil, error_code end
     local total, cooldown_floor = 0, 0
-    -- Like Noita's draw_shot: finish drawing the shared cast state before
-    -- applying it to every projectile in that block. Payloads have fresh state.
     for _, b in ipairs(blocks) do
         local m = b.modifiers
         local paths=0
         for _ in pairs(m.paths) do paths=paths+1 end
         for _, p in ipairs(b.projectiles) do
             cooldown_floor=math.max(cooldown_floor,p.cooldown or 0)
-            if p.damage and not p.no_impact_damage then p.damage = math.max(0, math.min(200, (p.damage + m.damage_add/(p.id=="star_vortex" and 4 or 1))*(m.damage_mult or 1))) end
-            if p.jump_damage then p.jump_damage = math.max(0, math.min(200, p.jump_damage + m.damage_add)) end
+            if p.damage and not p.no_impact_damage then p.damage = math.max(0, math.min(Bounds.max_damage, (p.damage + m.damage_add/(p.id=="star_vortex" and Projectile.cards.star_vortex.count or 1))*(m.damage_mult or 1))) end
+            if p.jump_damage then p.jump_damage = math.max(0, math.min(Bounds.max_damage, p.jump_damage + m.damage_add)) end
             local travels = p.kind=="projectile" or p.kind=="trigger"
             if p.engraving=="voidcloth_boomerang" then p.growth_mult=m.damage_mult or 1 end
             if travels then
-                p.speed = math.max(2, math.min(math.max(30,p.speed), p.speed * m.speed_mult + m.speed_add))
-                local lifetime = p.lifetime * (1+.08*math.min(3,paths))
-                -- Establish orbit's base duration before modifiers so reduction
-                -- also works below four seconds. Lifetime has no upper cap.
-                if m.flags.orbit then lifetime=math.max(4,lifetime*4) end
-                p.lifetime = math.max(.1, lifetime * m.lifetime_mult)
+                p.speed = math.max(Bounds.min_speed, math.min(Limits.max_speed, p.speed * m.speed_mult + m.speed_add))
+                local lifetime = p.lifetime * (1+Modifier.rules.path_lifetime_bonus*math.min(Modifier.rules.path_bonus_limit,paths))
+                if m.flags.orbit then lifetime=math.max(Modifier.rules.orbit_min_lifetime,lifetime*Modifier.rules.orbit_lifetime_multiplier) end
+                p.lifetime = math.max(Bounds.min_lifetime, lifetime * m.lifetime_mult)
                 p.flight_lifetime_mult = m.lifetime_mult
             end
             if p.kind=="field" then
                 p.field_lifetime_mult=m.lifetime_mult
                 p.child_modifiers={speed_mult=m.speed_mult,speed_add=m.speed_add,lifetime_mult=m.lifetime_mult}
-                p.speed=math.min(30,(p.speed or 0)*m.speed_mult+m.speed_add)
+                p.speed=math.min(Limits.max_speed,(p.speed or 0)*m.speed_mult+m.speed_add)
                 p.field_drive=p.speed>0
                 if p.id=="gunpowder" then
-                    -- The native factory samples the base fuse and damage.
-                    -- Keep modifiers relative so they are applied exactly once.
                     p.fuse_mult=m.lifetime_mult
                     p.native_damage_add=m.damage_add
                     p.native_damage_mult=m.damage_mult or 1
                 end
             end
-            p.spread = travels and math.max(0, (p.halfangle or 6)*stats.spread/6 + m.spread_add) or 0
+            p.spread = travels and math.max(0, (p.halfangle or Projectile.defaults.halfangle)*stats.spread/Projectile.defaults.halfangle + m.spread_add) or 0
             p.flags = U.copy(m.flags)
             if m.flags.giant or m.flags.shrink then
-                -- Resolve the floor only after combining the whole group, so
-                -- mixed cards are order independent and old giant decks keep
-                -- their additive rule. Trigger payloads have their own flags.
-                p.size_mult=math.max(.1,(m.flags.giant and m.flags.giant.mult or 1)
+                p.size_mult=math.max(Bounds.min_size,(m.flags.giant and m.flags.giant.mult or 1)
                     *(m.flags.shrink and m.flags.shrink.mult or 1))
-                -- Compile physical extents once; saved placements retain these
-                -- resolved values and must not multiply them again on load.
                 for _,key in ipairs({"radius","reach","width","work_radius"}) do
                     if p[key] then p[key]=p[key]*p.size_mult end
                 end
             end
-            p.pitch=m.pitch and math.max(-12,math.min(12,m.pitch))
+            p.pitch=m.pitch and math.max(-Bounds.max_pitch,math.min(Bounds.max_pitch,m.pitch))
             if require("nw/arsenal").notes[p.id] then
-                p.beats=(m.tempo or 0)>0 and .5 or (m.tempo or 0)<0 and 2 or 1
+                p.beats=(m.tempo or 0)>0 and Audio.half_beat or (m.tempo or 0)<0 and Audio.double_beat or Audio.normal_beat
             end
             for key,v in pairs(p.innate or {}) do p.flags[key]=p.flags[key] or U.copy(v) end
             if (travels or p.kind=="field") and p.flags.harmless then p.damage,p.burn_damage,p.freeze,p.planar=0,nil,nil,nil end
@@ -230,8 +219,6 @@ function M.compile(wand, definitions, limits)
     total=sizes[1]
     for _, id in ipairs(hand) do state.discard[#state.discard+1] = id end
     local recharge = wrapped or #state.deck == 0
-    -- Zero adds no wand wait; native attack states still gate real casts.
-    -- Explicit spell cooldowns apply even when modifiers cancel the delay.
     state.remaining_cast = math.max(0, cooldown_floor, stats.cast_delay + root.delay)
     state.remaining_recharge = recharge and math.max(0, stats.recharge + state.reload_delta) or 0
     if recharge then

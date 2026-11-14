@@ -1,14 +1,13 @@
--- Server-owned, short-lived creature-control regions. No player/light hooks.
-local M={radius=2,min_duration=3,max_duration=5,interval=.1,overlap=.3,
-    per_owner=128,world_limit=384,fade_duration=.4}
--- World startup only. Fog is transient and is never restored from a save.
+local C=require("nw/constants/dark_fog").sources
+local M={radius=C.radius,min_duration=C.min_duration,max_duration=C.max_duration,interval=C.interval,overlap=C.overlap,
+    per_owner=C.per_owner,world_limit=C.world_limit,fade_duration=C.fade_duration}
 function M.install(env)
     M.effects_disabled=env.GetModConfigData("disable_dark_fog")==true
     if not M.effects_disabled then
         require("nw/dark_fog_boss").install(env.AddComponentPostInit,env.AddStategraphPostInit,env.AddPrefabPostInit)
     end
 end
-local CELL=4
+local CELL=C.cell
 local Size=require("nw/projectile_size")
 local EXCLUDE={"INLIMBO","FX","DECOR","player","playerghost"}
 local INCLUDE={"_combat","locomotor","smallcreature","largecreature","shadowcreature"}
@@ -17,8 +16,7 @@ local function valid(e) return e and e:IsValid() end
 local function key(x,z) return math.floor(x/CELL)..":"..math.floor(z/CELL) end
 local function radius(p) return M.radius*Size.factor(p) end
 local function mergekey(owner,x,z,r)
-    -- Small clouds must not disappear into the old one-unit merge buckets.
-    local width=math.min(1,r/2)
+    local width=math.min(C.merge_max_width,r/C.merge_radius_divisor)
     return owner..":"..tostring(r)..":"..math.floor(x/width+.5)..":"..math.floor(z/width+.5)
 end
 local function control() return require("nw/dark_fog_control") end
@@ -57,8 +55,6 @@ function M.contains(world,inst)
                 and (rec.x-x)^2+(rec.z-z)^2<=rec.radius^2 then return true end
         end
     end end
-    -- Giant multipliers are unbounded; do not expand their area into grid cells.
-    -- This fallback is bounded by the existing world entity cap instead.
     for source in pairs(pool.large) do
         local rec=pool.sources[source]
         if rec and valid(source) and not source._nw_dark_inactive
@@ -105,13 +101,11 @@ function M.dissipate(source)
     unregister(world,source)
     if source._nw_dark_dissipating then source._nw_dark_dissipating:set(true) end
     if source._nw_dark_visuals then require("nw/dark_fog_visual").dissipate(source) end
-    source:DoTaskInTime(M.fade_duration+.2,source.Remove)
+    source:DoTaskInTime(M.fade_duration+C.remove_tail,source.Remove)
     M.refresh(world)
     return true
 end
--- Only approved boss attack adapters call this; clouds never become targets.
 local function retire(world,pool,hits)
-    -- Batch removal so overlapping sources do not briefly release/reapply AI.
     local was_refreshing=pool.refreshing;pool.refreshing=true
     for _,source in ipairs(hits) do M.dissipate(source) end
     pool.refreshing=was_refreshing
@@ -135,8 +129,6 @@ function M.disperse_circle(world,x,z,outer,inner)
     end
     return retire(world,pool,hits)
 end
--- rotation/arc use DST degrees; +rotation turns toward -Z. The origin has
--- already been offset by the native attack, not by the fog radius.
 function M.disperse_sector(world,x,z,radius,rotation,arc)
     local pool=world and world._nw_dark_fog
     if not pool then return 0 end
@@ -159,8 +151,6 @@ function M.disperse_sector(world,x,z,radius,rotation,arc)
     end
     return retire(world,pool,hits)
 end
--- Native DoArcAttack clips a disk by a forward-plane threshold rather than
--- testing an angle. At 180 degrees this matches a sector; at 240 it does not.
 function M.disperse_arc(world,x,z,radius,rotation,arc)
     local pool=world and world._nw_dark_fog
     if not pool then return 0 end
@@ -187,7 +177,6 @@ function M.disperse_arc(world,x,z,radius,rotation,arc)
     end
     return retire(world,pool,hits)
 end
--- Native lunar fissures use a world-axis rectangle, including its corners.
 function M.disperse_box(world,x,z,halfwidth,halfheight)
     local pool=world and world._nw_dark_fog
     if not pool then return 0 end
@@ -200,8 +189,6 @@ function M.disperse_box(world,x,z,halfwidth,halfheight)
     end
     return retire(world,pool,hits)
 end
--- Sweep the boss's actual body disk over accepted movement. This does not
--- turn the body into an attack or alter any native collision/damage behavior.
 function M.disperse_path(world,ax,az,bx,bz,body_radius)
     local pool=world and world._nw_dark_fog
     if not pool then return 0 end
@@ -260,13 +247,11 @@ function M.register(source,owner,lifetime,p)
                 and (not oldest or rec.order<pool.sources[oldest].order) then oldest=e end
         end
         if oldest then
-            -- Burst eviction must not rescan the world once per new cloud.
             local was_refreshing=pool.refreshing;pool.refreshing=true
             M.dissipate(oldest)
             pool.refreshing=was_refreshing
         end
     end
-    -- Registration shares the world's next scan rather than scanning per puff.
     return source
 end
 function M.leave(owner,x,z,p)
@@ -278,11 +263,10 @@ function M.leave(owner,x,z,p)
     if pool then
         local old=pool.merge[mergekey(ownerkey,x,z,radius(p))]
         local rec=old and pool.sources[old]
-        if rec and rec.expires>time+.5 then return old end
-        -- Bound new network entities during unlimited multishot bursts.
+        if rec and rec.expires>time+C.merge_min_remaining then return old end
         local window=math.floor(time/M.interval)
         if pool.spawn_window~=window then pool.spawn_window=window;pool.spawn_count=0;pool.spawn_owners={} end
-        if pool.spawn_count>=32 or (pool.spawn_owners[ownerkey] or 0)>=16 then return end
+        if pool.spawn_count>=C.world_spawns_per_window or (pool.spawn_owners[ownerkey] or 0)>=C.owner_spawns_per_window then return end
     end
     local release=Budget.acquire(owner,"fields")
     if not release then return end
@@ -305,27 +289,21 @@ function M.attach(inst,owner,p)
     local x,_,z=inst.Transform:GetWorldPosition()
     return M.leave(owner,x,z,p)
 end
--- Feed only accepted collision segments, never the untrimmed physics endpoint.
 function M.trail(inst,s,x,z,nx,nz,continuous)
     if not (s and s.p and s.p.flags and s.p.flags.dark) then return end
     local state=inst._nw_dark_trail
     if not state then state={distance=0};inst._nw_dark_trail=state;M.leave(s.owner,x,z,s.p) end
-    -- Adjacent clouds overlap by 30% of their diameter at every spell size.
     local spacing=2*radius(s.p)*(1-M.overlap)
     if state.spacing and state.spacing~=spacing then state.distance=0 end
     state.spacing=spacing
     local dx,dz=nx-x,nz-z
     local length=math.sqrt(dx*dx+dz*dz)
-    if length<=.00001 then return end
-    -- Discontinuous teleports must not lay fog across the intervening world.
-    if length>16 and not continuous then state.distance=0;M.leave(s.owner,nx,nz,s.p);return end
+    if length<=C.min_trail_length then return end
+    if length>C.teleport_distance and not continuous then state.distance=0;M.leave(s.owner,nx,nz,s.p);return end
     local distance=spacing-state.distance
-    while distance<=length+.000001 do
+    while distance<=length+C.distance_epsilon do
         local t=math.min(1,distance/length)
         local fog=M.leave(s.owner,x+dx*t,z+dz*t,s.p)
-        -- Confirmed lightning segments may be arbitrarily long after scaling.
-        -- Once creation is refused, later samples share the same exhausted
-        -- budget/window; existing clouds need no refresh (merging never renews).
         if continuous and not fog then break end
         distance=distance+spacing
     end

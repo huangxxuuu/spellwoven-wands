@@ -1,5 +1,4 @@
--- Real inventory entities back the editor; native RPCs and modded invslots
--- therefore operate on the same container as the spell compiler.
+local C=require("nw/constants/ui").wand_container
 local M={}
 local Layout=require("nw/hud_layout")
 
@@ -15,9 +14,9 @@ end
 function M.install(env)
     local containers=require("containers")
     local positions={}
-    for i=1,12 do positions[i]=Vector3((i-6.5)*Layout.slot_step,0,0) end
+    for i=1,C.slots do positions[i]=Vector3((i-C.centre)*Layout.slot_step,0,0) end
     containers.params.nw_wand={type="nw_wand",acceptsstacks=false,
-        widget={slotpos=positions,pos=Vector3(0,0,0),slotscale=74/64,
+        widget={slotpos=positions,pos=Vector3(0,0,0),slotscale=C.slot_pixels/C.texture_pixels,
             bgatlas="images/hud.xml",bgimage="inv_slot.tex"},
         itemtestfn=function(container,item,slot)
             if not item:HasTag("nw_spellcard") or not item._spell
@@ -117,13 +116,9 @@ function M.setup(inst)
     inst:AddComponent("container")
     local c=inst.components.container
     c:WidgetSetup("nw_wand")
-    -- Like slingshot ammo, these slots are opened by the equipment UI only.
-    -- Replicates to clients: suppress RUMMAGE and exclude backpack overflow.
     c.canbeopened=false
     c.skipopensnd=true;c.skipclosesnd=true
     c.excludefromcrafting=true
-    -- The existing wand save remains authoritative, including old saves.
-    -- Saving the projection as well would duplicate installed cards on load.
     c.OnSave=function() return nil end
     c.OnLoad=function() end
     local can=c.CanTakeItemInSlot
@@ -135,7 +130,6 @@ function M.setup(inst)
         if slot and self:GetItemInSlot(slot) then
             slot=nil
         end
-        -- Never let the native fallback select one of the unused network slots.
         return give(self,item,slot,...)
     end
     local remove=c.RemoveItem_Internal
@@ -146,8 +140,6 @@ function M.setup(inst)
     c.Open=function(self,doer)
         if doer and M.owner(inst)==doer then return open(self,doer) end
     end
-    -- Check before native methods remove an input from the player's cursor.
-    -- Keep the method surface intact for inventory extensions.
     for _,name in ipairs({"PutOneOfActiveItemInSlot","PutAllOfActiveItemInSlot",
         "TakeActiveItemFromHalfOfSlot","TakeActiveItemFromCountOfSlot","TakeActiveItemFromAllOfSlot",
         "AddOneOfActiveItemToSlot","AddAllOfActiveItemToSlot",
@@ -168,7 +160,7 @@ function M.setup(inst)
             if item then item:Remove() end
         end
     end)
-    inst:DoPeriodicTask(.1,function()
+    inst:DoPeriodicTask(C.refresh_interval,function()
         local owner=M.owner(inst)
         for p in pairs(c.openlist) do if p~=owner then c:Close(p) end end
         if owner and inst.components.nw_wand.data then

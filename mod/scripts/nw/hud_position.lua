@@ -1,4 +1,4 @@
--- Client-only preference, independent of a world, shard, wand or server save.
+local C=require("nw/constants/ui_misc").hud_position
 local M={key="nw_weave_hud_position_v1"}
 local loaded,loading,saved,revision=false,false,nil,0
 local waiters={}
@@ -12,8 +12,8 @@ function M.validate(value)
     return {version=1,x=value.x,y=value.y}
 end
 function M.clamp(x,y,width,bottom,top,sw,sh)
-    local left,right=width/2+6,sw-width/2-6
-    local low,high=-bottom+6,sh-top-6
+    local left,right=width/2+C.margin,sw-width/2-C.margin
+    local low,high=-bottom+C.margin,sh-top-C.margin
     return left<=right and math.max(left,math.min(right,x)) or sw/2,
         low<=high and math.max(low,math.min(high,y)) or (sh-bottom-top)/2
 end

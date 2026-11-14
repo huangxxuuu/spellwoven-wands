@@ -1,3 +1,4 @@
+local C=require("nw/constants/prefabs").emberlamp
 require("prefabutil")
 
 local storage = require("nw/arcane_storage")
@@ -8,10 +9,9 @@ local assets = {
     Asset("IMAGE", "images/inventoryimages/nw_arcane_storage.tex"),
 }
 local prefabs = { "nw_dust", "collapse_small" }
-local BURN_PERIOD = 1
+local BURN_PERIOD = C.burn_period
 
 local function ScaleLamp(inst)
-    -- Match the Alchemy Engine's height; share the same visual with its placer.
     inst.AnimState:SetScale(storage.LAMP_SCALE, storage.LAMP_SCALE)
 end
 
@@ -63,19 +63,13 @@ local function BurnElapsed(inst, dt, settledebt)
     local container = inst.components.container
     local count = storage.Count(container)
     if count == 0 then
-        -- The last item can be withdrawn between ticks. Keep those lit seconds
-        -- too, so repeated brief withdrawal/refill cycles cannot reset the bill.
         inst._nw_burnprogress = inst._nw_burnprogress + dt
         inst._nw_storage_refresh()
         return
     end
 
-    -- A unit remains in the tray until its 60 lit seconds have elapsed.
-    -- Pausing or removing the contents keeps the partial clock, not hidden fuel.
     local elapsed = inst._nw_burnprogress + dt
     local spent = math.min(count, math.floor(elapsed / storage.DUST_SECONDS))
-    -- Ordinary exhaustion discards future unlit time. Debt represents light
-    -- already provided, so even its fractional remainder survives repayment.
     inst._nw_burnprogress = spent == count and not settledebt
         and 0 or elapsed - spent * storage.DUST_SECONDS
     if spent > 0 then
@@ -83,8 +77,6 @@ local function BurnElapsed(inst, dt, settledebt)
         if spent < count then
             item.components.stackable:SetStackSize(count - spent)
         else
-            -- Native whole-stack removal ejects overstacked excess. Reduce it
-            -- first, then consume the last unit through the original container.
             if item.components.stackable then item.components.stackable:SetStackSize(1) end
             container:ConsumeByName("nw_dust", 1)
         end
@@ -106,7 +98,6 @@ end
 
 local function StartBurnTask(inst)
     if inst._nw_burntask == nil then
-        -- Like stock fueled, this task keeps ticking while the entity sleeps.
         inst._nw_burntask = inst:DoPeriodicTask(BURN_PERIOD, SettleClock)
     end
 end
@@ -132,7 +123,6 @@ local function TurnOff(inst)
     StopBurnTask(inst)
     UpdateLight(inst)
     if waslit then
-        -- The tray may just have become empty; extinguish the previous flame.
         local state = inst._nw_lastlitstate or "half"
         inst._nw_transition = "extinguish"
         Play(inst, "extinguish_"..state)
@@ -145,7 +135,6 @@ local function TurnOff(inst)
 end
 
 local function OnLongUpdate(inst, dt)
-    -- LongUpdate supplies skipped game time in addition to ordinary sim time.
     SettleClock(inst)
     BurnElapsed(inst, math.max(0, dt))
     inst._nw_lastburntime = inst._nw_lit and GetTime() or nil
@@ -155,7 +144,6 @@ end
 local function OnWake(inst)
     SettleClock(inst)
     inst._nw_storage_refresh()
-    -- animover may have occurred while the entity was out of the active scene.
     ShowIdle(inst)
 end
 
@@ -163,7 +151,6 @@ local function OnSave(inst, data)
     SettleClock(inst)
     data.nw_burnprogress = inst._nw_burnprogress
     data.nw_lit = inst._nw_lit
-    -- Components save in unspecified order. This is the final, settled state.
     data.machine = { ison = inst._nw_lit }
 end
 
@@ -218,7 +205,6 @@ local function fn()
     inst:AddTag("light")
     inst:AddTag("wildfireprotected")
     inst:AddTag("fueldepleted")
-    -- Ground contact and stone shadows are already painted into the build.
     inst.Light:SetIntensity(storage.LIGHT.intensity)
     inst.Light:SetFalloff(storage.LIGHT.falloff)
     inst.Light:SetColour(unpack(storage.LIGHT.colour))
@@ -238,7 +224,6 @@ local function fn()
     container:EnableInfiniteStackSize(true)
     local savecontainer = container.OnSave
     container.OnSave = function(self, ...)
-        -- Settle before taking the item snapshot, never after serializing it.
         SettleClock(self.inst)
         return savecontainer(self, ...)
     end
@@ -247,15 +232,11 @@ local function fn()
     local machine = inst.components.machine
     machine.turnonfn = TurnOn
     machine.turnofffn = TurnOff
-    machine.cooldowntime = .75
+    machine.cooldowntime = C.machine_cooldown
     machine:SetGroundOnlyMachine(true)
     local machineturnon, machineturnoff = machine.TurnOn, machine.TurnOff
     machine.TurnOn = function(self, ...)
-        -- Stock TurnOn calls its callback before writing ison, and direct
-        -- actions do not check CanInteract. Guard before entering that method.
         if inst._nw_removing or self:IsOn() or storage.Count(container) == 0 then return false end
-        -- A withdrawal can cross a minute boundary before the next tick. Pay
-        -- that already-used time before lighting newly inserted dust.
         BurnElapsed(inst, 0, true)
         if storage.Count(container) == 0 then return false end
         machineturnon(self, ...)
@@ -268,14 +249,13 @@ local function fn()
         return true
     end
     machine.OnLoad = function(self, data)
-        -- Container restoration order is unspecified; prefab OnLoad runs last.
         inst._nw_restore_on = data and data.ison == true
     end
 
     inst:AddComponent("lootdropper")
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
-    inst.components.workable:SetWorkLeft(4)
+    inst.components.workable:SetWorkLeft(C.hammer_work)
     inst.components.workable:SetOnFinishCallback(OnHammered)
     inst:ListenForEvent("animover", function()
         if inst._nw_transition then ShowIdle(inst) end

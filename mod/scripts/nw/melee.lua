@@ -1,9 +1,10 @@
+local C=require("nw/constants/melee").runtime
+local Combat=require("nw/constants/combat")
 local Effects=require("nw/spell_effects")
 local Target=require("nw/targeting")
 local G=require("nw/geometry")
 local Perf=require("nw/perf")
 local M={}
--- Distance to a swept circular sector, including the two radial edges.
 local function sector(x,z,r,reach,a,b)
     local angle=math.atan2(z,x)
     while angle<a do angle=angle+2*math.pi end
@@ -33,7 +34,7 @@ end
 local function strike(inst,owner,e,p,x,z,kx,kz)
     if p.source_weapon=="propsign" then
         if e.sg and e.sg:HasState("knockback") and not e:HasTag("epic") then
-            e:PushEvent("knockback",{knocker=inst,radius=p.reach+1,strengthmult=p.pillow})
+            e:PushEvent("knockback",{knocker=inst,radius=p.reach+C.range_padding,strengthmult=p.pillow})
         end
         return
     end
@@ -68,7 +69,7 @@ local function strike(inst,owner,e,p,x,z,kx,kz)
         end
         local health=e.components.health
         local before=health.currenthealth
-        owner.components.combat:DoAttack(e,inst,nil,element,nil,p.reach+1,Vector3(x,0,z))
+        owner.components.combat:DoAttack(e,inst,nil,element,nil,p.reach+C.range_padding,Vector3(x,0,z))
         Effects.native_hit(owner,e,p,math.max(0,before-math.max(0,health.currenthealth)),kx,kz)
     else
         Effects.direct(owner,e,p,kx,kz)
@@ -88,7 +89,7 @@ local function strike(inst,owner,e,p,x,z,kx,kz)
         end
     end
     if p.pillow and e:IsValid() and e.sg and e.sg:HasState("knockback") and not e:HasTag("epic") then
-        e:PushEvent("knockback",{knocker=inst,radius=1,strengthmult=p.pillow})
+        e:PushEvent("knockback",{knocker=inst,radius=C.knockback_radius,strengthmult=p.pillow})
     end
 end
 function M.launch(inst,owner,p,x,z,dx,dz,onremove)
@@ -100,16 +101,16 @@ function M.launch(inst,owner,p,x,z,dx,dz,onremove)
     if p.source_weapon=="nightstick" or p.source_weapon=="torch" or p.source_weapon=="lighter" or p.source_weapon=="queen_torch" then
         local glow=SpawnPrefab("nw_flyinglight")
         glow.entity:SetParent(inst.entity)
-        glow.Transform:SetPosition(0,1.1,0)
-        if p.source_weapon=="nightstick" or p.source_weapon=="queen_torch" then glow.Light:SetColour(.5,.68,1) end
+        glow.Transform:SetPosition(0,C.glow_height,0)
+        if p.source_weapon=="nightstick" or p.source_weapon=="queen_torch" then glow.Light:SetColour(unpack(C.glow_colour)) end
     end
     local start,previous,seen=GetTime(),0,{}
     local worked=false
-    inst:DoPeriodicTask(2*FRAMES,function()
+    inst:DoPeriodicTask(C.step_frames*FRAMES,function()
         if not Effects.live(owner) then inst:Remove();return end
         if inst._nw_motion then
             local px,_,pz=inst.Transform:GetWorldPosition()
-            if p.source_weapon=="lighter" then require("nw/engraved_fire").absorb(owner,x,z,px,pz,p.reach) end
+            if p.source_weapon=="lighter" then require("nw/engraved_fire").absorb(owner,x,z,px,pz,p.reach,p) end
             x,z=px,pz
             dx,dz=inst._nw_motion.dx,inst._nw_motion.dz
         end
@@ -119,28 +120,25 @@ function M.launch(inst,owner,p,x,z,dx,dz,onremove)
             worked=true
             if p.source_weapon=="lighter" then
                 local fire=require("nw/engraved_fire")
-                fire.absorb(owner,x,z,x+dx*p.reach,z+dz*p.reach,p.reach)
-                fire.burst(inst,owner,x,z,p.reach)
+                fire.absorb(owner,x,z,x+dx*p.reach,z+dz*p.reach,p.reach,p)
+                fire.burst(inst,owner,x,z,p.reach,nil,p)
             end
             require("nw/weapon_work").strike(inst,owner,p,x,z,dx,dz)
         end
         if progress>previous then
-            local nearby=Effects.scan(x,z,p.reach+3.6,p.flags)
+            local nearby=Effects.scan(x,z,p.reach+C.query_padding,p.flags)
             for _,e in ipairs(nearby) do
-                local prop=require("nw/expanded_fields").can_break(e,owner)
-                    and (Target.egg(e) or not p.flags.targets or p.flags.targets.building)
-                if not seen[e] and (prop or Target.allowed(owner,e,p.flags) or Target.selected_object(owner,e,p.flags)) then
+                local prop=Target.selectable_prop(owner,e,p.flags)
+                if not seen[e] and (prop or Target.selected(owner,e,p.flags)) then
                     local tx,_,tz=e.Transform:GetWorldPosition()
                     local rx,rz=tx-x,tz-z
-                    -- Projectile sweep includes a .12 contact margin. Preserve
-                    -- that same contact when a payload spawns at the near edge.
-                    if M.contains(p,rx*dx+rz*dz,rz*dx-rx*dz,e:GetPhysicsRadius(.5)+.12,previous,progress)
+                    if M.contains(p,rx*dx+rz*dz,rz*dx-rx*dz,e:GetPhysicsRadius(Combat.collision_radius)+C.hit_padding,previous,progress)
                         and Effects.clear(x,z,tx,tz,nearby,e) then
                         seen[e]=true
                         local kx,kz=dx,dz
                         if not p.width then
                             local distance=math.sqrt(rx*rx+rz*rz)
-                            if distance>.001 then kx,kz=-rz/distance,rx/distance end
+                            if distance>Combat.direction_epsilon then kx,kz=-rz/distance,rx/distance end
                         end
                         local bonus=e._nw_melee_timeout and require("nw/expanded_hits").consume_melee(e)
                         if prop then e._nw_break(owner)

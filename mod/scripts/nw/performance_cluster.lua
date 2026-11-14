@@ -1,5 +1,5 @@
--- Runtime-only opt-in synchronization. The primary orders and relays edits;
--- opting out also protects the primary's own values without disabling relaying.
+local Request=require("nw/constants/performance").request
+local Protocol=require("nw/constants/protocol").performance
 local M={}
 function M.install(env,G,S)
     local C={}
@@ -18,7 +18,7 @@ function M.install(env,G,S)
         return table.concat(values,",")
     end
     local function decode(encoded)
-        if type(encoded)~="string" or #encoded>128 then return end
+        if type(encoded)~="string" or #encoded>Request.max_snapshot_length then return end
         local values,count={},0
         for token in encoded:gmatch("[^,]+") do
             count=count+1
@@ -54,16 +54,14 @@ function M.install(env,G,S)
     end
     local next_edit={}
     env.AddShardModRPCHandler("nw_weave","performance_edit",function(source,userid,id,key,index)
-        if not primary() or not connected(source) or type(userid)~="string" or #userid>128
+        if not primary() or not connected(source) or type(userid)~="string" or #userid>Protocol.max_userid_length
             or type(id)~="number" or id~=math.floor(id) or id<0 or id>2147483647 then return end
         local spec=type(key)=="string" and S.bykey[key]
         if not spec or key=="sync_performance" or type(index)~="number" or spec.options[index]==nil then return end
-        -- Only a server can send this RPC; it already checked its current player,
-        -- developer option, admin permission and opt-in switch before forwarding.
         local code
         if (next_edit[userid] or 0)>GetTime() then code="BUSY"
         else
-            next_edit[userid]=GetTime()+.1
+            next_edit[userid]=GetTime()+Request.interval
             relay(key,spec.options[index]);S.broadcast();code="OK"
         end
         publish(source,code=="OK" and {[key]=spec.options[index]} or {},userid,id,key,index,code)
@@ -72,7 +70,6 @@ function M.install(env,G,S)
         if primary() or tostring(source)~=masterid() or not connected(source) then return end
         local values=decode(encoded)
         if not values then return end
-        -- Opted-out worlds ignore every value, including delayed broadcasts.
         apply_shared(values)
         S.broadcast()
         if userid~="" then
@@ -81,8 +78,6 @@ function M.install(env,G,S)
             end
         end
     end)
-    -- No startup replay or saved snapshots: restarting a world restores its
-    -- configured values until a new runtime edit is received.
 
 end
 return M

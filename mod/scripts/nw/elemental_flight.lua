@@ -1,41 +1,17 @@
--- Local animated spell bodies and detached trails. Gameplay stays on nw_projectile.
+local C=require("nw/constants/native").elemental
+local Glow=require("nw/projectile_glow")
 local M={}
 local Budget=require("nw/trail_budget")
-local FRAME=1/30
-local CLIP_TIME=6*FRAME
-local BASE_TRAIL_LIFE=.2
-local MAX_SAMPLE_DT=.2
-local ARROW_SLOTS=128
-local MAX_PATH_BIRTHS=64
+local Limits=require("nw/spell_limits")
+local FRAME=1/C.frame_rate
+local CLIP_TIME=C.clip_frames*FRAME
+local BASE_TRAIL_LIFE=C.trail_life
+local MAX_SAMPLE_DT=C.max_sample_dt
+local ARROW_SLOTS=C.arrow_slots
+local MAX_PATH_BIRTHS=C.max_path_births
 local BANK="nw_elemental_flight"
-local profiles={
-    fire={drift=.12,offset=.24,rate=24},
-    frost={drift=0,offset=.20,rate=24},
-    arrow={drift=0,offset=.45,rate=30,life=.35,maxlife=.9,directions=128,motion_heading=true,spatial=true},
-    heavy={drift=.06,offset=.65,rate=12,head_playback=.5},
-    scatter={drift=.04,offset=.22,rate=20,life=.3,maxlife=.75,stagger=true},
-    -- Registered head/tail alpha bounds determine the new rear offsets. Keep
-    -- a visible overlap at the attachment.
-    gust={drift=.08,offset=.60,rate=24,life=.24,motion_heading=true},
-    spore_ball={drift=.03,offset=.50,rate=16,life=.32,maxlife=.8,motion_heading=true},
-    flint_lance={drift=0,offset=.50,rate=30,life=.35,maxlife=.9,directions=128,motion_heading=true,
-        spatial=true,spacing=.13,coverage=.28},
-    slime={drift=.08,offset=.60,rate=20,life=.3,maxlife=.75,motion_heading=true},
-    grow_orb={drift=.02,offset=.60,rate=24,life=.3,maxlife=.75,motion_heading=true},
-    heal_bolt={drift=.04,offset=.60,rate=24,life=.3,maxlife=.75,motion_heading=true},
-    star_vortex={drift=0,offset=.38,rate=24,life=.24,motion_heading=true,stagger=true},
-    glass_disc={drift=0,offset=.48,rate=24,life=.24,motion_heading=true},
-    -- The hook's head animation already includes its rope.
-    land_hook={drift=.01,offset=1.75,rate=24,life=.24,directions=64,motion_heading=true,trail=false},
-    tri_electric={drift=0,offset=.36,rate=30,life=.24,head_frames=12,motion_heading=true,stagger=true},
-    end_beam={drift=0,offset=.72,rate=60,life=.24,directions=128,motion_heading=true},
-    soundwave={drift=0,offset=.45,rate=24,life=.3,maxlife=.75,motion_heading=true},
-    bee_swarm={drift=.04,offset=.28,rate=20,life=.24,motion_heading=true,stagger=true},
-    fireflies={drift=.02,offset=.44,rate=24,life=.3,maxlife=.75,motion_heading=true,stagger=true},
-}
+local profiles=C.profiles
 
--- Keep card identity on the wire and in gameplay. Only ocarina projectiles
--- share the soundwave artwork; kantele notes are stationary fields.
 function M.resolve(id)
     if profiles[id] then return id end
     local note=id and require("nw/arsenal").notes[id]
@@ -51,37 +27,30 @@ end
 
 function M.head_period(id)
     local profile=profiles[M.resolve(id)]
-    return (profile and profile.head_frames or 6)*FRAME/(profile and profile.head_playback or 1)
+    return (profile and profile.head_frames or C.clip_frames)*FRAME/(profile and profile.head_playback or 1)
 end
 
--- The painted strip retains this conservative axial coverage at every age.
--- Less than half-length spacing also covers the unsampled gap at the body.
--- Omitted id preserves the accepted arrow spacing; the lance uses shorter art.
 function M.trail_spacing(scale,id)
     scale=math.max(1,scale)
     local profile=profiles[M.resolve(id)]
-    return (profile and profile.spacing or .19)*scale,(profile and profile.coverage or .4)*scale
+    return (profile and profile.spacing or C.spacing)*scale,(profile and profile.coverage or C.coverage)*scale
 end
 
 function M.trail_timing(scale,id)
     local profile=profiles[M.resolve(id)]
-    local rate=profile and profile.rate or 24
+    local rate=profile and profile.rate or C.rate
     local base=profile and profile.life or BASE_TRAIL_LIFE
-    local maximum=profile and profile.maxlife or .6
+    local maximum=profile and profile.maxlife or C.max_trail_life
     local lifetime=math.min(maximum,base*math.sqrt(math.max(1,scale)))
-    -- Spatial trails have no timer. This is a reference interval at speed 25;
-    -- runtime births are driven entirely by the sampled anchor's path length.
-    if profile and profile.spatial then return lifetime,M.trail_spacing(scale,id)/25 end
+    if profile and profile.spatial then return lifetime,M.trail_spacing(scale,id)/C.spatial_reference_speed end
     return lifetime,lifetime/(base*rate)
 end
 
 function M.direction_count(id)
     local profile=profiles[M.resolve(id)]
-    return profile and profile.directions or 32
+    return profile and profile.directions or C.directions
 end
 
--- World heading in radians, projected into the camera-facing sprite plane.
--- Impact visuals use the same mapping, including when the camera rotates.
 function M.direction(heading,id)
     local count=M.direction_count(id)
     if not TheCamera then return math.floor(heading/(2*math.pi)*count+.5)%count end
@@ -99,8 +68,6 @@ local function face_head(s,now,heading)
         s.direction=direction
         s.visual.AnimState:PlayAnimation(s.id.."_dir_"..direction,true)
         s.visual.AnimState:SetDeltaTimeMultiplier(s.head_playback)
-        -- Direction clips share the same timeline. Never restart a flame or
-        -- crystal shimmer when homing, bouncing, or rotating the camera.
         s.visual.AnimState:SetTime(((now-s.started)*s.head_playback+s.phase)%s.head_time)
     end
 end
@@ -140,9 +107,7 @@ local function emit(pool,s,born,now,x,y,z,dx,dz,dt,distance,anchored)
     if not Budget.can_emit(s.inst) then return end
     local profile=profiles[s.id]
     local part=s.parts[s.next]
-    -- A later size correction may increase the birth rate. Let older, larger
-    -- particles finish their original lifetime instead of cutting them short.
-    if part and now-part.born<part.lifetime-.00001 and not profile.spatial then return end
+    if part and now-part.born<part.lifetime-C.expiry_epsilon and not profile.spatial then return end
     if not part then
         part=new_segment()
         pool.count=pool.count+1
@@ -172,23 +137,19 @@ local function path_emit(pool,s,now,x,y,z,dx,dz,dt,distance)
     local spacing=M.trail_spacing(s.scale,s.id)
     local path=s.path
     if not path then
-        -- Start at the preceding rear anchor, never at an older visible
-        -- sample from before a teleport, hidden interval or size correction.
         path={x=s.x-offset*dx/distance,y=y,z=s.z-offset*dz/distance,time=s.time,carry=spacing}
         s.path=path
     end
     local px,pz=ax-path.x,az-path.z
     local length=math.sqrt(px*px+pz*pz)
-    if length>.000001 then
-        local births=math.floor((path.carry+length+.000001)/spacing)
+    if length>C.distance_epsilon then
+        local births=math.floor((path.carry+length+C.distance_epsilon)/spacing)
         if births>MAX_PATH_BIRTHS then
-            -- Never join a huge correction with a long straight streak.
-            -- One fresh segment marks the new front; the old trail fades out.
             emit(pool,s,now,now,ax,y,az,dx,dz,dt,distance,true)
             path.carry=0
         else
             local travelled=spacing-path.carry
-            while travelled<=length+.000001 do
+            while travelled<=length+C.distance_epsilon do
                 local fraction=math.max(0,math.min(1,travelled/length))
                 local born=path.time+(now-path.time)*fraction
                 emit(pool,s,born,now,path.x+px*fraction,path.y+(y-path.y)*fraction,
@@ -216,7 +177,6 @@ local function update(pool,s,now)
             local previous=s.interval
             s.scale=scale
             s.lifetime,s.interval=M.trail_timing(scale,s.id)
-            -- Preserve the fraction left before the next birth on a dirty update.
             s.next_emit=now+math.max(0,s.next_emit-now)*s.interval/previous
             s.path=nil
         end
@@ -225,22 +185,17 @@ local function update(pool,s,now)
         local dx,dz=x-s.x,z-s.z
         local distance=math.sqrt(dx*dx+dz*dz)
         local velocity=speed(inst)
-        -- Scale the discontinuity guard with physical/observed velocity so
-        -- legitimate speed modifiers do not lose their trails above 60 units/s.
         local expected=math.max(velocity,s.speed)
-        local continuous=dt>0 and dt<=MAX_SAMPLE_DT+.000001 and distance>.001
-            and distance<=math.max(60,expected)*dt*2+.1
-        -- Directional bodies face the segment actually travelled, just like
-        -- their new trails. Motor rotation may already describe the next turn.
+        local continuous=dt>0 and dt<=MAX_SAMPLE_DT+C.distance_epsilon and distance>C.min_distance
+            and distance<=math.max(Limits.max_speed,expected)*dt*C.continuity_speed_mult+C.continuity_padding
         if continuous then s.launch_heading=nil end
         face_head(s,now,profiles[s.id].motion_heading and continuous and math.atan2(dz,dx) or nil)
         if profiles[s.id].trail~=false and continuous and s.visual.entity:IsVisible() then
             if profiles[s.id].spatial then
                 path_emit(pool,s,now,x,inst._height:value(),z,dx,dz,dt,distance)
             else
-                -- Timed fragments keep their existing bounded birth schedule.
-                s.next_emit=math.max(s.next_emit,now-2*s.interval+.00001)
-                while s.next_emit<=now+.000001 do
+                s.next_emit=math.max(s.next_emit,now-C.catchup_intervals*s.interval+C.expiry_epsilon)
+                while s.next_emit<=now+C.distance_epsilon do
                     local age=math.max(0,now-s.next_emit)
                     emit(pool,s,s.next_emit,now,x-dx*age/dt,inst._height:value(),z-dz*age/dt,dx,dz,dt,distance)
                     s.next_emit=s.next_emit+s.interval
@@ -250,17 +205,17 @@ local function update(pool,s,now)
             s.next_emit=now+s.interval
             s.path=nil
         end
-        -- A correction must not inflate the next frame's displacement budget.
         s.speed=continuous and distance/dt or velocity
         s.x,s.z,s.time=x,z,now
     end
     local remaining=false
     for index,part in pairs(s.parts) do
         local age=now-part.born
-        if age>=part.lifetime-.00001 then
+        if age>=part.lifetime-C.expiry_epsilon then
             Budget.remove(part)
         else
             part.fx.Transform:SetPosition(part.x+age*part.vx,part.y,part.z+age*part.vz)
+            Glow.update(part.fx)
             face_segment(s,part,age,false)
             remaining=true
         end
@@ -305,15 +260,13 @@ function M.attach(inst,id)
     local lifetime,interval=M.trail_timing(scale,id)
     local profile=profiles[id]
     local s={inst=inst,visual=visual,id=id,x=x,z=z,time=now,started=now,
-        phase=((inst.GUID or 0)%(profile.head_frames or 6))*FRAME,speed=speed(inst),scale=scale,lifetime=lifetime,interval=interval,
-        head_playback=profile.head_playback or 1,head_time=(profile.head_frames or 6)*FRAME,
-        -- Per-shot reuse slots preserve the accepted lifetime/spacing. All
-        -- kinds now share the optional client-wide oldest-first budget.
+        phase=((inst.GUID or 0)%(profile.head_frames or C.clip_frames))*FRAME,speed=speed(inst),scale=scale,lifetime=lifetime,interval=interval,
+        head_playback=profile.head_playback or 1,head_time=(profile.head_frames or C.clip_frames)*FRAME,
         slots=profile.spatial and ARROW_SLOTS or math.ceil((profile.life or BASE_TRAIL_LIFE)*profile.rate),
-        next_emit=now+interval*(profile.stagger and ((inst.GUID or 0)%3+1)/3 or 1),next=1,parts={}}
+        next_emit=now+interval*(profile.stagger and ((inst.GUID or 0)%C.stagger_groups+1)/C.stagger_groups or 1),next=1,parts={}}
     inst._nw_elemental_flight=s
     if id=="land_hook" and inst._launch_heading and inst._launch_heading:value()~=0 then
-        s.launch_heading=inst._launch_heading:value()-4
+        s.launch_heading=inst._launch_heading:value()-C.launch_heading_offset
     end
     pool.shots[#pool.shots+1]=s
     face_head(s,now)

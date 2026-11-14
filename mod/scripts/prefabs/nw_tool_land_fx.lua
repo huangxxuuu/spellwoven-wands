@@ -1,4 +1,4 @@
--- Native dumbbell landing animation only; no item, damage or secondary effects.
+local C=require("nw/constants/prefabs").tool_land
 local out={}
 for _,bank in ipairs({"dumbbell","dumbbell_golden","dumbbell_marble","dumbbell_gem",
     "dumbbell_heat","dumbbell_redgem","dumbbell_bluegem"}) do
@@ -11,7 +11,7 @@ for _,bank in ipairs({"dumbbell","dumbbell_golden","dumbbell_marble","dumbbell_g
         inst.entity:SetPristine();inst.persists=false
         if not TheWorld.ismastersim then return inst end
         inst:ListenForEvent("animover",inst.Remove)
-        inst:DoTaskInTime(1,inst.Remove)
+        inst:DoTaskInTime(C.lifetime,inst.Remove)
         return inst
     end
     out[#out+1]=Prefab("nw_tool_land_"..bank,fn,{Asset("ANIM","anim/"..bank..".zip")})

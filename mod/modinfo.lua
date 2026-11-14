@@ -1,8 +1,8 @@
 local chinese = (locale and locale:lower():match("^zh") ~= nil) or locale == "chs" or locale == "cht"
 local function L(zh,en) return chinese and zh or en end
 name = L("织法之杖","Spellwoven Wands")
-version = "1.0.6"
-local release_date = "2026-11-14"
+version = "1.0.7"
+local release_date = "2026-11-15"
 description = L("版本：", "Version: ")..version..L(" · 更新：", " · Updated: ")..release_date.."\n\n"..L(
     "【从这里开始】\n靠近炼金引擎，在「原型工具和制作站」「魔法」分类或直接搜索建筑名。\n奥术台（先建）：木板×2、石砖×2、金块×4、紫宝石×2。研磨宝石、制作法杖和卡；靠近并装备法杖即可装卡、换卡。\n武器刻印台：木板×2、石砖×2、紫宝石×1。将配方指定的武器或工具刻成卡，回奥术台装杖。\n奥术分解炉：石砖×2、紫宝石×1、奥术粉尘×4。粉尘先在奥术台制作。废卡、废杖丢炉边，右键炉子回收；要保留的散卡先收好。\n\n先建奥术台，其余按需补建。科学机器旁用草×3、木板×1制作「法术测试拳击袋」。装备法杖，点编辑框右上角「？」打开资料站。\n\n自由排列法术卡，编织连招！灵感来自《Noita》，支持中文与 English。",
     "GETTING STARTED\nNear an Alchemy Engine, find these stations under Prototypers & Stations or Magic, or search by name.\nArcane Workbench (build first): 2 Boards, 2 Cut Stone, 4 Gold Nuggets, 2 Purple Gems. Grind gems and craft wands/cards. Equip a wand nearby to edit its cards.\nWeapon Engraving Table: 2 Boards, 2 Cut Stone, 1 Purple Gem. Engrave the recipe's weapons/tools into cards; install at the workbench.\nArcane Recycler: 2 Cut Stone, 1 Purple Gem, 4 Arcane Dust (craft dust at the workbench). Drop unwanted cards/wands nearby and right-click to recycle. Store cards you want to keep safely away.\n\nAdd the last two stations as needed. At a Science Machine, craft a Spell Test Punching Bag with 3 Cut Grass and 1 Board. Equip a wand and click the editor's top-right ? for the field guide.\n\nArrange spell cards and weave combos! Inspired by Noita. Chinese and English supported."
@@ -14,10 +14,8 @@ dst_compatible = true
 all_clients_require_mod = true
 server_only_mod = false
 client_only_mod = false
--- Frontend icons follow the game locale, before per-world mod settings load.
 icon_atlas = L("modicon.xml", "modicon_en.xml")
 icon = L("modicon.tex", "modicon_en.tex")
--- Keep normal load order; this mod does not require Smart Chest's priority override.
 priority = 0
 
 local payload_depth_options={{description=L("关闭（不限层数）","Off (unlimited depth)"),data=0,hover=L("不限制载荷嵌套层数。","No payload nesting depth limit.")}}
@@ -34,7 +32,6 @@ local function ModOptions(title, hover)
 end
 local function DropRateOptions()
     local options={{description=L("0 倍（关闭）","0x (Off)"),data=0}}
-    -- modinfo runs without standard globals such as ipairs and tostring.
     local multipliers={.5,1,2,3,5,10}
     for i=1,#multipliers do
         local multiplier=multipliers[i]
@@ -53,6 +50,9 @@ configuration_options = {
     {name="language",label="语言 / Language",default="auto",
       hover=L("仅影响本机显示；自动跟随游戏语言，中文环境使用中文，其余使用英文。更改后重新进入世界。", "Local display only. Auto uses Chinese for Chinese game locales, English otherwise. Rejoin the world after changing."),
       options={{description="自动 / Auto",data="auto",hover=L("跟随游戏语言：中文环境用中文，其余用英文。","Follow the game locale: Chinese for Chinese locales, English otherwise.")},{description="中文",data="zh",hover=L("本机界面使用中文。","Use Chinese for the local interface.")},{description="English",data="en",hover=L("本机界面使用英文。","Use English for the local interface.")}}},
+    { name="base_damage_multiplier",label=L("基础伤害倍率","Base damage multiplier"),default=1,
+      hover=L("调整法术卡的基础伤害，游戏内显示同步使用调整后的数值。", "Adjust spell cards' base damage; in-game displays use the adjusted values."),
+      options={{description=L("0.5 倍","0.5x"),data=0.5,hover=L("法术卡基础伤害及游戏内显示调整为0.5倍。","Set spell card base damage and its in-game display to 0.5x.")},{description=L("0.75 倍","0.75x"),data=0.75,hover=L("法术卡基础伤害及游戏内显示调整为0.75倍。","Set spell card base damage and its in-game display to 0.75x.")},{description=L("1 倍（默认）","1x (Default)"),data=1,hover=L("保留法术卡原有基础伤害及游戏内显示。","Keep the original spell card base damage and its in-game display.")},{description=L("1.25 倍","1.25x"),data=1.25,hover=L("法术卡基础伤害及游戏内显示调整为1.25倍。","Set spell card base damage and its in-game display to 1.25x.")},{description=L("1.5 倍","1.5x"),data=1.5,hover=L("法术卡基础伤害及游戏内显示调整为1.5倍。","Set spell card base damage and its in-game display to 1.5x.")}} },
     { name="world_difficulty",label=L("世界难度","World difficulty"),default="fun",
       hover=L("爽快保留原有规则。平衡：同次施法对同一目标伤害递减，最低20%，10秒未命中重置；心神消耗增加，SAN不足以饥饿补足，两者耗尽仍可施法；新法杖基础回充延长，配卡仍可降至0。平衡·掉落限定另禁用法术卡配方；材料配方保留；兜底散卡概率为5倍。各世界独立设置，可选择不同难度；重启对应世界后生效。", "Fun keeps the original rules. Balanced: repeated hits from one cast decay to 20%, resetting after 10 seconds without a hit; increased SAN cost, with hunger covering any shortfall; empty reserves do not block casting. New wands recharge more slowly, but cards can still reduce recharge to zero. Loot Only also disables spell card recipes; material recipes remain available. Fallback loose-card chance is multiplied by 5. Each world is configured independently and may use a different difficulty. Restart the corresponding world to apply."),
       options={{description=L("爽快","Fun"),data="fun",hover=L("保留原有伤害、心神消耗、回充与制作规则。","Keep the original damage, mental cost, recharge and crafting rules.")},{description=L("平衡","Balanced"),data="balanced",hover=L("启用连击伤害递减、更高心神消耗与更慢基础回充；保留制卡。","Enable repeated-hit damage decay, higher mental cost and slower base recharge; keep card crafting.")},{description=L("平衡·掉落限定","Balanced: Loot Only"),data="balanced_loot",hover=L("基于平衡，禁用法术卡配方；兜底散卡概率5倍。","Balanced rules; disable spell card recipes. Fallback loose-card chance is 5x.")}} },

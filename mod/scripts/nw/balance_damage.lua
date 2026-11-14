@@ -1,10 +1,5 @@
--- A cast's identity is independent of its current attacker and survives saved
--- placements. Hit history belongs only to the live target, never to templates.
-local M={timeout=10,floor=.2,decay=.9}
+local M=require("nw/util").copy(require("nw/constants/balance").repeated_hit)
 local function balanced() return require("nw/balance").is_balanced() end
--- previous_hits counts successful damage events from this cast on this target.
--- Ease toward the 20% floor: 100%, 92%, 84.8%, ... . Around 39 equal hits
--- retain 40% in total, without heavily penalizing the first few projectiles.
 function M.multiplier(previous_hits)
     return M.floor+(1-M.floor)*M.decay^previous_hits
 end
@@ -54,9 +49,6 @@ local function commit(inst,root)
     end
 end
 local function pack(...) return {n=select("#",...),...} end
--- Observe resolved health loss before combat's attacked/onhitother callbacks.
--- The token is consumed before DoDelta: retaliation and other nested damage
--- cannot accidentally inherit the enclosing spell's identity.
 local function wrap_health(health)
     if health._nw_balance_wrapped or not health.DoDelta then return end
     health._nw_balance_wrapped=true
@@ -81,7 +73,6 @@ local function resolve(inst,root,fn,...)
     local before=health.currenthealth
     local result=pack(pcall(fn,...))
     health._nw_balance_token=previous
-    -- A custom health implementation may bypass DoDelta entirely.
     if not token.observed and before and health.currenthealth<before then commit(inst,root) end
     if not result[1] then error(result[2],0) end
     return unpack(result,2,result.n)
@@ -97,9 +88,6 @@ function M.wrap_combat(combat)
         if pending and pending.attacker==attacker and pending.weapon==weapon then
             root=pending.root;self._nw_balance_pending=nil
         else root=weapon and weapon._nw_root or attacker and attacker._nw_root end
-        -- Native mounting/parrying forwards the already-scaled input and marks
-        -- its source with redirected_from. Undo only that upstream multiplier:
-        -- the entity which actually takes damage owns the hit history.
         local from=self.redirected_from
         local forwarded=from and from.components and from.components.combat
             and from.components.combat._nw_balance_forward
@@ -127,7 +115,6 @@ function M.wrap_combat(combat)
         return unpack(result,2,result.n)
     end
 end
--- Direct spell calls do not manufacture a weapon or tag a real player.
 function M.attack(p,owner,target,damage,weapon,stimuli,spdamage)
     local combat=target.components.combat
     local root=p and p._nw_root

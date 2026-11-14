@@ -1,17 +1,15 @@
--- Gameplay difficulty is a world setting, never a personal preference.
--- Stored wand rolls remain unchanged; callers apply only the requested rules.
-local M={mode="fun"}
+local C=require("nw/constants/balance")
+local Modifiers=require("nw/constants/modifiers")
+local M={mode=C.default_mode}
 
 local function valid(mode) return mode=="fun" or mode=="balanced" or mode=="balanced_loot" end
 function M.is_balanced() return M.mode=="balanced" or M.mode=="balanced_loot" end
 function M.is_loot_only() return M.mode=="balanced_loot" end
 function M.configure(mode)
-    local nextmode=valid(mode) and mode or "fun"
+    local nextmode=valid(mode) and mode or C.default_mode
     local changed=M.mode~=nextmode
     M.mode=nextmode
-    -- The compiler and all card stat panels share this definition. Updating the
-    -- existing table also handles clients receiving the joined world's mode.
-    require("nw/definitions").spells.mana_reduce.mana=M.is_balanced() and -20 or -30
+    require("nw/definitions").spells.mana_reduce.mana=M.is_balanced() and C.mana_reduce.balanced or Modifiers.cards.mana_reduce.mana
     return changed
 end
 
@@ -39,7 +37,5 @@ function M.install(env,G)
         player:ListenForEvent("playeractivated",query)
         player:DoTaskInTime(0,query)
     end)
-    -- Each shard reads its own startup configuration. Only players joining
-    -- this world receive its mode; difficulty is never shared between shards.
 end
 return M

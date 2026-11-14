@@ -1,7 +1,6 @@
-local M={pixels_per_unit=150,blast_pixels=256,arc_pixels=324,arc_thickness=1}
+local C=require("nw/constants/visuals/fx_layout")
+local M={pixels_per_unit=C.pixels_per_unit,blast_pixels=C.blast_pixels,arc_pixels=C.arc_pixels,arc_thickness=C.arc_thickness}
 
--- Local segments start at the first target and partition exactly the vector
--- to the second. Scaling uses the real bitmap width compiled by Klei.
 function M.arc(dx,dz)
     local length=math.sqrt(dx*dx+dz*dz)
     if length<.001 then return 0 end

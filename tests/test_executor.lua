@@ -50,3 +50,17 @@ p=assert(C.compile(w))
 assert(E.execute(p,owner,0,0,1,0,1.75,{x=30,z=0}))
 assert(tornado._shot.aim_distance==30 and tornado._shot.remaining==1.5)
 tornado.cleanup();assert(E.stats()==0)
+-- The detonation command ignores target selectors, including the executor's
+-- self-only placement convenience. Its aim must stay at the requested point.
+local command
+owner.Transform={GetWorldPosition=function() return 0,0,0 end}
+SpawnPrefab=function()
+    return {Launch=function(_,_,desc,x,z,_,_,cleanup)
+        command={x=x,z=z,flags=desc.flags};cleanup()
+    end}
+end
+w.cards={{card_uid="1",spell_id="target_self"},{card_uid="2",spell_id="detonate"}}
+w.runtime=C.initial(w.cards,w.stats,1)
+p=assert(C.compile(w))
+assert(E.execute(p,owner,0,0,1,0,1.75,{x=12,z=0}))
+assert(command.x==12 and command.z==0 and command.flags.targets.self and E.stats()==0)

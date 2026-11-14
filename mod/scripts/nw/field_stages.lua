@@ -1,21 +1,12 @@
--- Field animation phases follow gameplay callbacks. An ending effect never
--- keeps the original field, damage tasks or spell reservations alive.
+local C=require("nw/constants/visuals/field_stages")
 local Size=require("nw/projectile_size")
-local M={bank="nw_field_stages",spawn_time=.2,pulse_time=.2,end_time=.3,fall_time=.24}
--- Billboard art coordinates: the cloud and its lower billows were raised 35 px.
--- Keep the source inside the cloud; the foreground art hides the arc's top.
-M.storm_strike_pixels=345
-function M.storm_lift(p) return M.storm_strike_pixels/150*Size.factor(p) end
-M.phase={spawn=1,idle=2,pulse=3,finish=4,warning=5,fall=6}
-local profiles={crystal_mine=true,sleep_crystal=true,payload_egg=true,moon_fall=true,
-    delay_seal=true,detonate=true,rain_cloud=true,storm_cloud=true,guard_ring=true,
-    shock_ring=true,vortex=true,deer_decoy=true,vital_ring=true}
-local members={guard_ring=true,vital_ring=true}
--- Source widths are measured before camera projection.
--- The moon uses its solid rock width, excluding its long translucent tail.
--- Radius has already received giant modifiers; Transform applies size again
--- to the sprite, so divide it back out when fitting an actual footprint.
-local footprint={shock_ring=191,vortex=220,moon_fall=100}
+local M={bank=C.bank,spawn_time=C.spawn_time,pulse_time=C.pulse_time,end_time=C.end_time,fall_time=C.fall_time}
+M.storm_strike_pixels=C.storm_strike_pixels
+function M.storm_lift(p) return M.storm_strike_pixels/C.pixels_per_unit*Size.factor(p) end
+M.phase=C.phase
+local profiles=C.profiles
+local members=C.members
+local footprint=C.footprint
 function M.has(id) return profiles[id]==true end
 function M.members(id) return members[id]==true end
 function M.orientation(id)
@@ -23,29 +14,23 @@ function M.orientation(id)
 end
 function M.duration(id,phase)
     if id=="storm_cloud" then
-        -- Base timings; short-lived storms accelerate their live animations.
-        -- The dispersed tail always lives in a separate normal-speed prefab.
-        if phase=="spawn" then return .5 end
-        if phase=="warning" then return .3 end
-        if phase=="end" then return .8 end
+        if phase=="spawn" then return C.storm_spawn_time end
+        if phase=="warning" then return C.storm_warning_time end
+        if phase=="end" then return C.storm_end_time end
     end
-    if phase=="end" then return id=="deer_decoy" and .5 or M.end_time end
+    if phase=="end" then return id=="deer_decoy" and C.decoy_end_time or M.end_time end
     return phase=="spawn" and M.spawn_time or M.pulse_time
 end
 function M.storm_time_scale(p)
     local lifetime=p and p.field_lifetime_mult or 1
-    -- Preserve positive short lifetimes exactly: a minimum visual duration
-    -- could outlast the next strike when several short-life cards are stacked.
     return lifetime>0 and math.min(1,lifetime) or 1
 end
 local function fit(inst,id,size,radius)
     local width=footprint[id]
     if id=="deer_decoy" then
-        -- Body art is twice its previous base size. Keep the gameplay radius
-        -- and the root's single application of giant modifiers unchanged.
-        inst.AnimState:SetScale(2,2)
+        inst.AnimState:SetScale(C.decoy_scale,C.decoy_scale)
     elseif width then
-        local scale=2*radius*150/(width*size)*(id=="moon_fall" and .6 or 1)
+        local scale=2*radius*C.pixels_per_unit/(width*size)*(id=="moon_fall" and C.moon_radius_scale or 1)
         inst.AnimState:SetScale(scale,scale)
     end
 end
@@ -58,16 +43,14 @@ local function moon_shadow(inst)
     shadow.entity:SetParent(inst.entity)
     shadow.AnimState:SetBank("warning_shadow");shadow.AnimState:SetBuild("meteor_shadow")
     shadow.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-    shadow.AnimState:SetFinalOffset(-1)
+    shadow.AnimState:SetFinalOffset(C.shadow_offset)
     shadow.AnimState:PlayAnimation("idle",true)
-    shadow.AnimState:SetMultColour(1,1,1,.45)
-    -- The native shadow is an ellipse in an upright sprite; restore a disk
-    -- before letting the ground plane project it for the current camera.
-    shadow.AnimState:SetScale(1,609.30005/296.77435)
+    shadow.AnimState:SetMultColour(1,1,1,C.shadow_alpha)
+    shadow.AnimState:SetScale(1,C.shadow_width/C.shadow_height)
     local function refresh()
         local radius=inst._nw_moon_radius:value()
         if radius<=0 then shadow:Hide();return end
-        local scale=radius*2*.6*150/609.30005
+        local scale=radius*2*C.moon_radius_scale*C.pixels_per_unit/C.shadow_width
         shadow.Transform:SetScale(scale,scale,scale)
         shadow:Show()
     end
@@ -78,9 +61,6 @@ local function moon_shadow(inst)
     refresh()
 end
 
--- These few values only change on arrival, a real pulse, or shield consumption.
--- Local members use world positions, so neither parent scale nor rotation is
--- inherited a second time. Radius is already scaled by spell compilation.
 function M.netvars(inst)
     inst._nw_stage_phase=net_tinybyte(inst.GUID,"nw_field.phase","nw_field_stagedirty")
     inst._nw_stage_seq=net_ushortint(inst.GUID,"nw_field.seq","nw_field_stagedirty")
@@ -98,12 +78,11 @@ function M.setup(inst,id)
         inst._nw_moon_radius=net_float(inst.GUID,"nw_field.moonradius","nw_moonshadowdirty")
     end
     inst.AnimState:SetBank(M.bank);inst.AnimState:SetBuild(M.bank)
-    -- Circular field art lies on the ground; bodies and clouds stay upright.
     inst.AnimState:SetOrientation(M.orientation(id))
-    if id=="storm_cloud" then inst.AnimState:SetFinalOffset(4) end
+    if id=="storm_cloud" then inst.AnimState:SetFinalOffset(C.storm_offset) end
     inst.AnimState:PlayAnimation(id.."_idle",true)
     if members[id] then inst.AnimState:SetMultColour(1,1,1,0) end
-    if id=="deer_decoy" then inst.AnimState:SetLightOverride(.4) end
+    if id=="deer_decoy" then inst.AnimState:SetLightOverride(C.decoy_light) end
 end
 
 function M.attach(inst,id)
@@ -152,8 +131,6 @@ play=function(inst,phase,loop)
     else
         local suffix=""
         if s.id=="storm_cloud" then
-            -- Three strikes follow different buried lightning routes. The
-            -- body motion and gameplay clocks remain the same in every clip.
             if phase=="warning" then s.storm_cycle=(s.storm_cycle or 0)%3+1 end
             if phase~="spawn" and (s.storm_cycle or 1)>1 then suffix="_"..s.storm_cycle end
         end
@@ -186,7 +163,6 @@ function M.fall(inst)
     local s=inst._nw_field_stages
     if not s or s.finished or s.fallen then return end
     s.fallen=true;s.phase="fall"
-    -- Do not queue warning/idle: a long-life meteor only descends once.
     inst.AnimState:PlayAnimation(s.id.."_fall",false)
 end
 function M.finish(inst)
@@ -202,7 +178,6 @@ function M.guard(inst,left)
     else s.count=left;M.pulse(inst) end
 end
 
--- Used only by the independent, short-lived pure visual prefabs.
 function M.effect_state(inst,id,phase,size,radius,count,age,seed)
     inst._nw_field_stages={id=id,size=size or 1,radius=radius or 1,count=count or 1,
         started=GetTime()-(age or 0),seq=0,seed=seed or 1}
@@ -213,9 +188,9 @@ function M.effect_state(inst,id,phase,size,radius,count,age,seed)
         fit(inst,id,size or 1,radius or 1)
         if id=="storm_cloud" then
             inst.AnimState:SetDeltaTimeMultiplier(1)
-            inst.AnimState:SetFinalOffset(4)
+            inst.AnimState:SetFinalOffset(C.storm_offset)
         end
-        if id=="deer_decoy" then inst.AnimState:SetLightOverride(.4) end
+        if id=="deer_decoy" then inst.AnimState:SetLightOverride(C.decoy_light) end
         inst.AnimState:PlayAnimation(id.."_"..phase,false)
     end
 end

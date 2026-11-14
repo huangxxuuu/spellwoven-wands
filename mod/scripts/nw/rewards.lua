@@ -1,3 +1,4 @@
+local C=require("nw/constants/acquisition").rewards
 local Sources = require("nw/sources")
 local Catalog = require("nw/natural_loot")
 local M = {}
@@ -6,7 +7,6 @@ local exceptions={
     twinofterror1={event="loot"}, twinofterror2={event="loot"},
     sharkboi={event="minhealth"}, daywalker2={event="loot"}, wagdrone_rolling={event="loot"},
 }
--- These bodies are stages, props, or parts of another encounter.
 local excluded={}
 for id in ([[
     charlie_boss wagboss_robot wagboss_robot_leg stalker_npc alterguardian_phase1 alterguardian_phase2
@@ -43,8 +43,6 @@ local function natural_materials(inst,name)
     end
     if Catalog[name] and name~="shadowthrall_parasite" then return Catalog[name] end
     local loot=inst.components.lootdropper
-    -- For uncatalogued creatures, inspect the live table without invoking lootsetupfn
-    -- a second time, consuming its random rolls, or enumerating inventory contents.
     return loot and loot:GetAllPossibleLoot(false) or {}
 end
 local function eligible(inst, event)
@@ -62,15 +60,12 @@ local function eligible(inst, event)
         if inst.prefab == "bat_boss_shadow" then
             local twin = inst.components.entitytracker:GetEntity("clone")
             if twin and not twin.components.health:IsDead() then
-                -- This body is permanently spent even if the surviving twin
-                -- dies before another callback on this corpse.
                 inst:AddComponent("nw_rewarded")
                 return false
             end
         end
     elseif event == "loot" then
         if source_name(inst)=="twins" then
-            -- Vanilla's twinmanager grants this fixed loot only to the last defeated eye.
             for _,id in ipairs(inst.components.lootdropper.loot or {}) do
                 if id=="shieldofterror" then return inst.components.health:IsDead() end
             end
@@ -130,12 +125,11 @@ local function payout(inst, event)
         card.source = inst.prefab
         card:SetSpell(reward.card)
     end
-    -- Independent bonus, after normal card/wand selection and its one-card cap.
     require("nw/first_boss_reward").pay(inst,origin,drop,rule)
 end
 function M.install(env)
-    M.cardmult = env.GetModConfigData("card_drop_rate") or 1
-    M.wandmult = env.GetModConfigData("wand_drop_rate") or 1
+    M.cardmult = env.GetModConfigData("card_drop_rate") or C.default_card_rate
+    M.wandmult = env.GetModConfigData("wand_drop_rate") or C.default_wand_rate
     env.AddPrefabPostInit("world", function(world)
         if not world.ismastersim then return end
         world:AddComponent("nw_identity")
@@ -146,7 +140,6 @@ function M.install(env)
                 local wand=SpawnPrefab("nw_wand")
                 wand.components.nw_wand:InitializeNew(0,"starter")
                 player.components.inventory:GiveItem(wand)
-                -- The engine moves the player to the portal after this event.
                 if not wand.components.inventoryitem:IsHeld() then
                     player:DoTaskInTime(0,function()
                         if wand:IsValid() and not wand.components.inventoryitem:IsHeld() then

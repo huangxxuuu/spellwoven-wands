@@ -1,0 +1,119 @@
+{
+  "size": [
+    1536,
+    1024
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "alpha_zero_pixels": 1316546,
+  "alpha_255_pixels": 0,
+  "alpha_partial_pixels": 256318,
+  "bbox_by_alpha_greater_than": {
+    "0": [
+      0,
+      0,
+      1506,
+      1000
+    ],
+    "2": [
+      33,
+      376,
+      1504,
+      670
+    ],
+    "8": [
+      33,
+      377,
+      1503,
+      669
+    ],
+    "32": [
+      34,
+      378,
+      1503,
+      669
+    ],
+    "128": [
+      34,
+      378,
+      1503,
+      668
+    ],
+    "240": [
+      35,
+      379,
+      1501,
+      667
+    ]
+  },
+  "columns": [
+    {
+      "x": 62,
+      "fraction_of_bbox_width": 0.02,
+      "top": 381,
+      "bottom_inclusive": 668,
+      "height": 288,
+      "center_y": 524.5
+    },
+    {
+      "x": 180,
+      "fraction_of_bbox_width": 0.1,
+      "top": 381,
+      "bottom_inclusive": 661,
+      "height": 281,
+      "center_y": 521.0
+    },
+    {
+      "x": 327,
+      "fraction_of_bbox_width": 0.2,
+      "top": 381,
+      "bottom_inclusive": 657,
+      "height": 277,
+      "center_y": 519.0
+    },
+    {
+      "x": 621,
+      "fraction_of_bbox_width": 0.4,
+      "top": 436,
+      "bottom_inclusive": 612,
+      "height": 177,
+      "center_y": 524.0
+    },
+    {
+      "x": 914,
+      "fraction_of_bbox_width": 0.6,
+      "top": 466,
+      "bottom_inclusive": 588,
+      "height": 123,
+      "center_y": 527.0
+    },
+    {
+      "x": 1208,
+      "fraction_of_bbox_width": 0.8,
+      "top": 487,
+      "bottom_inclusive": 571,
+      "height": 85,
+      "center_y": 529.0
+    },
+    {
+      "x": 1429,
+      "fraction_of_bbox_width": 0.95,
+      "top": 518,
+      "bottom_inclusive": 540,
+      "height": 23,
+      "center_y": 529.0
+    },
+    {
+      "x": 1487,
+      "fraction_of_bbox_width": 0.99,
+      "top": 525,
+      "bottom_inclusive": 533,
+      "height": 9,
+      "center_y": 529.0
+    }
+  ],
+  "note": "Coordinates refer to original source; bbox xyxy right/bottom exclusive. No runtime validation."
+}

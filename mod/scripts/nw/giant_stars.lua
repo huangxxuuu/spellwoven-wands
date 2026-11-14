@@ -1,14 +1,9 @@
--- Native temperature/aura searches have fixed radii. Keep all native tags and
--- interactions; add only the contribution those searches cannot account for,
--- at distance / scale, without creating extra heater entities.
+local C=require("nw/constants/native_effects").stars
 local M={}
 local function stars() return TheWorld._nw_giant_stars end
 function M.pulse(inst)
-    -- The native factory creates one 0.1 s light pulse before our wrapper runs.
-    -- Keep that callback (including pulse-time synchronization) and scale its
-    -- output, on both server and client, without a competing timer.
     for task in pairs(inst.pendingtasks or {}) do
-        if task.period==.1 then
+        if task.period==C.light_period then
             local pulse=task.fn
             task.fn=function(e,...)
                 pulse(e,...)
@@ -47,7 +42,7 @@ function M.heat(c,item)
         or owner and (owner:HasTag("pocketdimension_container") or owner:HasTag("fridge") and not owner:HasTag("nocool")) then return 0,0 end
     local delta,power=0,0
     local current=item and c.temperature or c.current
-    local overheat=item and c.maxtemp-20 or c.overheattemp
+    local overheat=item and c.maxtemp-C.item_overheat_offset or c.overheattemp
     local ignored=item and {"heatrock","INLIMBO"} or c.ignoreheatertags
     for star in pairs(stars() or {}) do
         if available(star) and not star:HasAnyTag(unpack(ignored)) then
@@ -56,7 +51,7 @@ function M.heat(c,item)
             local heat=h:GetHeat(observer)
             if heat then
                 local function contribution(scale)
-                    local factor=1-d2/(100*scale^2)
+                    local factor=1-d2/(C.heat_radius^2*scale^2)
                     if factor<=0 then return 0,0 end
                     if observer:GetIsWet() and not (item and c.nowetpenalty) then
                         local wet=TUNING.WET_HEAT_FACTOR_PENALTY

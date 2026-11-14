@@ -1,5 +1,4 @@
--- Gunpowder-style damage/ignition without structural demolition or the global
--- explosion event (boat hulls and docks consume that event independently).
+local Modifier=require("nw/constants/modifiers")
 local M={}
 local function structure(e)
     local c=e.components
@@ -18,8 +17,8 @@ function M.hit(owner,p,x,z)
     require("nw/journal_damage").tag(bomb,owner,p)
     local explosive=bomb.components.explosive
     explosive:SetAttacker(owner)
-    local damage=modifier.explosion_damage or 25
-    local radius=(modifier.radius or 3)*require("nw/projectile_size").factor(p)
+    local damage=modifier.explosion_damage or Modifier.cards.explosion.explosion_damage
+    local radius=(modifier.radius or Modifier.cards.explosion.radius)*require("nw/projectile_size").factor(p)
     local fx=require("nw/spell_effects").fx("nw_blast_fx",x,z)
     if fx then fx:SetRadius(radius) end
     local workleft=TUNING.EXPLOSIVE_MAX_WORKABLE_INVENTORYITEMS
@@ -29,7 +28,7 @@ function M.hit(owner,p,x,z)
             local protected=structure(e)
             local mult=bomb.components.damagetypebonus and bomb.components.damagetypebonus:GetBonus(e) or 1
             if not protected and c.workable and c.workable:CanBeWorked() then
-                local work=10*mult
+                local work=Modifier.effects.explosion.work*mult
                 if c.inventoryitem then
                     if workleft>0 then
                         workleft=workleft-1
@@ -39,7 +38,6 @@ function M.hit(owner,p,x,z)
                 if work>0 then c.workable:WorkedBy(bomb,work) end
             end
             if e:IsValid() and not e:IsInLimbo() then
-                -- Structural protection does not grant fire immunity.
                 if not c.fueled and c.burnable and not c.burnable:IsBurning() and not e:HasTag("burnt") then
                     c.burnable:Ignite(true,owner)
                 end

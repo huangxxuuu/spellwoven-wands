@@ -1,4 +1,3 @@
--- Native inventory selection is the oracle: merging, overflow and full return.
 local M={}
 function M.run(x,z)
     local made={}
@@ -43,13 +42,11 @@ function M.run(x,z)
         "NW_TRANSFER: full destination lost source card")
     assert(not inv:GetActiveItem() and inv.ignorefull==previous,"NW_TRANSFER: failed shift changed cursor/flags")
 
-    -- A partial stack replacement returns the previous card using native merging.
     bagstack:SetSpell("frost");bagstack.components.stackable:SetStackSize(39)
     load("frost");local input=card("fire",2);inv:GiveActiveItem(input)
     assert(E.commit(player,wand,1,input,cmp.data.config_revision,true),"NW_TRANSFER: stacked cursor replacement failed")
     assert(cmp.data.cards[1].spell_id=="fire" and inv:GetActiveItem()==input and input.components.stackable:StackSize()==1
         and bagstack.components.stackable:StackSize()==40,"NW_TRANSFER: replacement split/merge lost cards")
-    -- Same replacement with no room must return the split card to the cursor stack.
     input.components.stackable:SetStackSize(2);original=load("frost");revision=cmp.data.config_revision
     ok,why=E.commit(player,wand,1,input,revision,true)
     assert(not ok and why=="INVENTORY_FULL" and cmp.data.cards[1]==original

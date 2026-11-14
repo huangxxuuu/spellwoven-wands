@@ -1,3 +1,4 @@
+local C=require("nw/constants/prefabs").materials
 local Rules = require("nw/acquisition")
 local assets = {Asset("ANIM","anim/nw_supplies.zip"), Asset("ATLAS",Rules.atlas),
     Asset("IMAGE","images/inventoryimages/nw_supplies.tex")}
@@ -6,14 +7,13 @@ local function material(id, spec)
         local inst = CreateEntity()
         inst.entity:AddTransform()
         inst.entity:AddAnimState()
-        -- Ground ink is baked into the sprite, like houndstooth and potions.
         inst.entity:AddNetwork()
         MakeInventoryPhysics(inst)
         inst.AnimState:SetBank("nw_supplies")
         inst.AnimState:SetBuild("nw_supplies")
         inst.AnimState:PlayAnimation(id)
         inst.AnimState:SetRayTestOnBB(true)
-        MakeInventoryFloatable(inst,"small",.1,.8)
+        MakeInventoryFloatable(inst,"small",C.float_offset,C.float_scale)
         inst.entity:SetPristine()
         if not TheWorld.ismastersim then return inst end
         inst:AddComponent("inventoryitem")

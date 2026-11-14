@@ -1,0 +1,53 @@
+{
+  "camera_pitch_degrees": 35,
+  "camera_heading_degrees": -90,
+  "pixels_per_world_unit": 120,
+  "projection": "nw/electric_visual.project mathematical projection",
+  "material": "compiled animation mip0 symbols, composed element/camera matrices, Pillow affine resampling",
+  "texture_mip_levels": {
+    "nw_end_beam": {
+      "atlas-0.tex": 1
+    },
+    "nw_end_beam_head": {
+      "atlas-0.tex": 1
+    }
+  },
+  "lower_mip_levels_removed": true,
+  "animation_time": "time + (now - timeset) * captured rate",
+  "star_rates": [
+    0.5
+  ],
+  "beam_clips": [
+    "beam_0_part_0",
+    "beam_0_part_1",
+    "beam_0_part_2",
+    "beam_0_part_3",
+    "beam_1_part_0",
+    "beam_1_part_1",
+    "beam_1_part_2",
+    "beam_1_part_3",
+    "beam_2_part_0",
+    "beam_2_part_1",
+    "beam_2_part_2",
+    "beam_2_part_3",
+    "beam_3_part_0",
+    "beam_3_part_1",
+    "beam_3_part_2",
+    "beam_3_part_3"
+  ],
+  "layer_order": "captured actual FinalOffset, then entity id",
+  "trace_frames": 262,
+  "scenarios": {
+    "straight": 61,
+    "corner": 61,
+    "terminal": 79,
+    "client-lag": 61
+  },
+  "engine_verified": false,
+  "limitations": [
+    "no GPU depth or world sorting / sortoffset simulation",
+    "no mip/LOD selection",
+    "no lighting",
+    "cannot establish short-span mip blur fix"
+  ]
+}

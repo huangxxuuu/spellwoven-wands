@@ -1,13 +1,15 @@
--- Client-only native tool artwork and a distance-sampled orange orb trail.
+local C=require("nw/constants/native").tool
+local Glow=require("nw/projectile_glow")
 local M={}
 local Budget=require("nw/trail_budget")
+local Limits=require("nw/spell_limits")
 local BANK="nw_tool_flight"
-local FRAME=1/30
+local FRAME=1/C.frame_rate
 local TAU=2*math.pi
-local DIRECTIONS=128
-local supported={fishingrod=true,oceanfishingrod=true,trident=true,farm_hoe=true,yoth_lance=true,orange_bolt=true}
-local animation_period={orange_bolt=.2,oceanfishingrod=8/30}
-local SHOT_PARTS,MAX_BIRTHS=128,32
+local DIRECTIONS=C.directions
+local supported=C.supported
+local animation_period={orange_bolt=C.animation_period.orange_bolt,oceanfishingrod=C.animation_period.oceanfishingrod_frames/C.frame_rate}
+local SHOT_PARTS,MAX_BIRTHS=C.shot_parts,C.max_births
 
 local function visible(inst)
     while inst do
@@ -19,8 +21,8 @@ end
 
 function M.resolve(id) return id=="orangestaff" and "orange_bolt" or id end
 function M.supports(id) return supported[M.resolve(id)]==true end
-function M.trail_timing(scale) return math.min(.85,.34*math.sqrt(math.max(1,scale))) end
-function M.trail_spacing(scale) return .14*math.max(1,scale) end
+function M.trail_timing(scale) return math.min(C.max_trail_life,C.trail_life*math.sqrt(math.max(1,scale))) end
+function M.trail_spacing(scale) return C.spacing*math.max(1,scale) end
 function M.project(dx,dy,dz,heading,pitch)
     local c,s=math.cos(heading),math.sin(heading)
     return math.atan2((dx*c+dz*s)*math.sin(pitch)-dy*math.cos(pitch),dz*c-dx*s)
@@ -30,7 +32,7 @@ function M.direction_bin(angle) return math.floor(angle/TAU*DIRECTIONS+.5)%DIREC
 local function direction(dx,dy,dz)
     local camera=TheCamera
     return M.direction_bin(M.project(dx,dy,dz,(camera and camera.heading or 0)*DEGREES,
-                                    (camera and camera.pitch or 35)*DEGREES))
+                                    (camera and camera.pitch or C.camera_pitch)*DEGREES))
 end
 local function position(inst)
     local x,y,z=inst.Transform:GetWorldPosition()
@@ -59,8 +61,8 @@ local function face_tail(part,now)
     if dir~=part.direction then
         part.direction=dir
         part.fx.AnimState:PlayAnimation("orange_bolt_tail_dir_"..dir,false)
-        part.fx.AnimState:SetTime(math.max(0,now-part.born)*.2/part.life)
-        part.fx.AnimState:SetDeltaTimeMultiplier(.2/part.life)
+        part.fx.AnimState:SetTime(math.max(0,now-part.born)*C.tail_clip_time/part.life)
+        part.fx.AnimState:SetDeltaTimeMultiplier(C.tail_clip_time/part.life)
     end
 end
 local function emit(pool,s,x,y,z,dx,dy,dz,born,now)
@@ -77,6 +79,7 @@ local function emit(pool,s,x,y,z,dx,dy,dz,born,now)
     end
     s.next=index%SHOT_PARTS+1
     part.fx.Transform:SetPosition(x,y,z)
+    Glow.update(part.fx)
     part.fx.Transform:SetScale(s.scale,s.scale,s.scale)
     part.dx,part.dy,part.dz=dx,dy,dz
     part.born,part.life,part.direction=born,M.trail_timing(s.scale),nil
@@ -85,7 +88,7 @@ local function emit(pool,s,x,y,z,dx,dy,dz,born,now)
     face_tail(part,now)
 end
 local function trail(pool,s,x,y,z,dx,dy,dz,distance,now)
-    local offset=.28*s.scale/distance
+    local offset=C.offset*s.scale/distance
     local ax,ay,az=x-dx*offset,y-dy*offset,z-dz*offset
     local spacing=M.trail_spacing(s.scale)
     local path=s.path
@@ -95,13 +98,13 @@ local function trail(pool,s,x,y,z,dx,dy,dz,distance,now)
     end
     local vx,vy,vz=ax-path.x,ay-path.y,az-path.z
     local length=math.sqrt(vx*vx+vy*vy+vz*vz)
-    if length>.000001 then
-        local count=math.floor((path.carry+length+.000001)/spacing)
+    if length>C.distance_epsilon then
+        local count=math.floor((path.carry+length+C.distance_epsilon)/spacing)
         if count>MAX_BIRTHS then
             emit(pool,s,ax,ay,az,dx,dy,dz,now,now);path.carry=0
         else
             local travelled=spacing-path.carry
-            while travelled<=length+.000001 do
+            while travelled<=length+C.distance_epsilon do
                 local t=math.max(0,math.min(1,travelled/length))
                 emit(pool,s,path.x+vx*t,path.y+vy*t,path.z+vz*t,vx,vy,vz,
                      path.time+(now-path.time)*t,now)
@@ -122,8 +125,8 @@ local function update(pool,s,now)
         local dx,dy,dz=x-s.x,y-s.y,z-s.z
         local distance=math.sqrt(dx*dx+dy*dy+dz*dz)
         local dt=now-s.time
-        local continuous=dt>0 and dt<=.25 and distance>.0001
-            and distance<=math.max(60,s.speed or 0)*dt*2+.1
+        local continuous=dt>0 and dt<=C.max_sample_dt and distance>C.min_distance
+            and distance<=math.max(Limits.max_speed,s.speed or 0)*dt*C.continuity_speed_mult+C.continuity_padding
         if continuous then
             s.dx,s.dy,s.dz=dx,dy,dz
             s.speed=distance/dt
@@ -133,7 +136,7 @@ local function update(pool,s,now)
             end
         else
             s.path=nil
-            if distance>1 then
+            if distance>C.heading_reset_distance then
                 local angle=-inst.Transform:GetRotation()*DEGREES
                 s.dx,s.dy,s.dz=math.cos(angle),0,math.sin(angle)
             end
@@ -144,8 +147,8 @@ local function update(pool,s,now)
     end
     local remaining=false
     for index,part in pairs(s.parts) do
-        if now-part.born>=part.life-.00001 or not part.fx:IsValid() then discard(pool,s,index)
-        else face_tail(part,now);remaining=true end
+        if now-part.born>=part.life-C.expiry_epsilon or not part.fx:IsValid() then discard(pool,s,index)
+        else Glow.update(part.fx);face_tail(part,now);remaining=true end
     end
     return alive or remaining
 end
@@ -212,7 +215,7 @@ function M.attach(inst,id)
     local angle=-inst.Transform:GetRotation()*DEGREES
     local now=GetTime()
     local s={inst=inst,visual=visual,id=id,pool=pool,x=x,y=y,z=z,dx=math.cos(angle),dy=0,dz=math.sin(angle),
-             time=now,started=now,phase=((inst.GUID or 0)%6)*FRAME,scale=math.max(1,inst._size:value()),
+             time=now,started=now,phase=((inst.GUID or 0)%C.phase_frames)*FRAME,scale=math.max(1,inst._size:value()),
              parts={},next=1}
     s.onremove=function() M.detach(inst) end
     inst:ListenForEvent("onremove",s.onremove)

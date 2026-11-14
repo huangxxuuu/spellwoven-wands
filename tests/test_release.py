@@ -102,6 +102,7 @@ class ReleaseTests(unittest.TestCase):
             (root / 'tools').mkdir()
             for name in ('.gitignore', '.gitattributes', 'AGENTS.md', 'README.md', 'LICENSE', 'THIRD_PARTY_NOTICES.txt', 'release.ps1'):
                 (root / name).touch()
+            (root / '.rgignore').write_text('/assets_src/\n', encoding='utf-8')
             script = root / 'tools/export_public_source.py'
             script.write_text((ROOT / 'tools/export_public_source.py').read_text(encoding='utf-8'), encoding='utf-8')
             art = root / 'assets_src/example'
@@ -117,6 +118,7 @@ class ReleaseTests(unittest.TestCase):
             subprocess.run([sys.executable, str(script), '--output', str(dest), '--prune'], check=True, capture_output=True)
             self.assertFalse((dest / 'obsolete.txt').exists())
             self.assertTrue((dest / 'unmanaged.txt').exists())
+            self.assertEqual((dest / '.rgignore').read_text(encoding='utf-8'), '/assets_src/\n')
             for name in ('prompt.txt', 'usage.json', 'image.png'):
                 self.assertTrue((dest / 'assets_src/example' / name).is_file())
             for name in ('run.log', 'run.stdout.json', 'run.stderr.txt'):

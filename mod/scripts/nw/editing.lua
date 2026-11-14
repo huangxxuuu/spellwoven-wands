@@ -1,9 +1,10 @@
 local C=require("nw/compiler")
+local Casting=require("nw/constants/casting")
 local U=require("nw/util")
 local M={}
 function M.near(player)
     local x,y,z=player.Transform:GetWorldPosition()
-    return #TheSim:FindEntities(x,y,z,4,{"nw_workbench"},{"INLIMBO"})>0
+    return #TheSim:FindEntities(x,y,z,Casting.edit_range,{"nw_workbench"},{"INLIMBO"})>0
 end
 function M.commit(player,wand,slot,source,revision,cursor)
     local cmp=wand.components.nw_wand
@@ -53,9 +54,6 @@ function M.commit(player,wand,slot,source,revision,cursor)
             inv:GiveActiveItem(item)
             return inv:GetActiveItem()==item
         end
-        -- Match native container-to-inventory transfers: GiveItem owns stack
-        -- merging and overflow selection. A full destination must return the
-        -- card to its source instead of dropping it or putting it on the cursor.
         local ignorefull=inv.ignorefull
         inv.ignorefull=true
         local accepted=outputinv:GiveItem(item,outputslot,nil,false)

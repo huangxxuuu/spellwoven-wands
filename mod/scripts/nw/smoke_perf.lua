@@ -5,7 +5,6 @@ function M.run(x,z,done)
     local wand=SpawnPrefab("nw_wand");owner:AddComponent("inventory")
     owner.components.inventory:GiveItem(wand);owner.components.inventory:Equip(wand)
     local cmp=wand.components.nw_wand;cmp:InitializePrototype()
-    -- Equivalent to repeated action-picker availability probes at full mana.
     local Compiler=require("nw/compiler");local compile=Compiler.compile;local calls=0
     Compiler.compile=function(...) calls=calls+1;return compile(...) end
     for i=1,1000 do assert(cmp:CanCast(owner)) end

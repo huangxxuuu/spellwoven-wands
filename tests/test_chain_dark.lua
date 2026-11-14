@@ -23,6 +23,7 @@ local function entity(x,z)
     function e:GetDistanceSqToPoint(x,_,z) return (self.x-x)^2+(self.z-z)^2 end
     e.Transform={GetWorldPosition=function() return e.x,0,e.z end}
     e.components.health={currenthealth=100,IsDead=function() return false end}
+    e.components.combat={}
     return e
 end
 local owner=entity(0,0)

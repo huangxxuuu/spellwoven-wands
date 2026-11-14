@@ -1,7 +1,6 @@
--- Server-only, transient control shared by every fog source in this world.
--- The manager supplies UNION coverage; no source owns an individual brain stop.
+local C=require("nw/constants/dark_fog").control
 local Profiles = require("nw/dark_fog_profiles")
-local M = { radius = 3, fear_time = 1, blind_time = .8, shadow_speed = 1.25 }
+local M = { radius = C.radius, fear_time = C.fear_time, blind_time = C.blind_time, shadow_speed = C.shadow_speed }
 local REASON = "nw_fog_control"
 local fear_cooldowns = setmetatable({}, { __mode = "k" })
 local lifecycle = { "onremove", "death", "entitysleep" }
@@ -32,7 +31,6 @@ local function busy(inst)
 end
 
 local function near(inst, target)
-    -- Only the proximity query sees a lost target, never the steering code.
     return target ~= nil and target:IsValid() and not target:HasTag("INLIMBO")
         and inst:IsNear(target, M.radius)
 end
@@ -64,8 +62,6 @@ end
 local function uninstall_filters(state)
     if state.hooks then
         for name, hook in pairs(state.hooks) do
-            -- Do not overwrite a later mod's wrapper. Ours becomes a passthrough
-            -- even if another mod retained it in its own closure.
             if state.combat[name] == hook.wrapper then
                 state.combat[name] = hook.original
             end
@@ -77,7 +73,7 @@ end
 local function clear_intent(inst, state)
     if busy(inst) then return false end
     local locomotor = inst.components.locomotor
-    locomotor:Stop() -- cancels destination/path, NOT buffered actions
+    locomotor:Stop()
     if locomotor.SetBufferedAction then locomotor:SetBufferedAction(nil) end
     if inst.ClearBufferedAction then inst:ClearBufferedAction() end
     state.moving = false
@@ -94,8 +90,6 @@ local function deactivate(inst, state)
         state.speed = nil
     end
     if state.stopped_brain then
-        -- EntityScript removes an entity from BrainManager before onremove.
-        -- Restarting here would reinsert a retiring brain into that manager.
         if live then inst:RestartBrain(REASON) end
         state.stopped_brain = nil
     end
@@ -153,14 +147,12 @@ local function enter(inst, kind, now)
         if now >= (fear_cooldowns[inst] or -math.huge) then
             state.phase = "fear_hold"
             state.until_time = now + M.fear_time
-            fear_cooldowns[inst] = now + 2
+            fear_cooldowns[inst] = now + C.fear_cooldown
         else
             state.phase = "blind_wander"
         end
     elseif kind == "normal" then
         local combat = inst.components.combat
-        -- A former near target is an existing hostility source, not a new enemy
-        -- invented by CanTarget. Drop it immediately; recheck on the next tick.
         state.candidate = combat and near(inst, combat.target) and combat.target or nil
     end
     inst._nw_dark_control = state
@@ -178,15 +170,13 @@ end
 local function safe_walk(inst, state, angle, duration)
     local loco = inst.components.locomotor
     local point = inst:GetPosition()
-    local speed = loco.GetWalkSpeed and loco:GetWalkSpeed() or 4
-    local distance = math.max(.5, speed * duration + .25)
+    local speed = loco.GetWalkSpeed and loco:GetWalkSpeed() or C.walk_speed
+    local distance = math.max(C.min_walk_distance, speed * duration + C.walk_padding)
     local aquatic = loco.IsAquatic and loco:IsAquatic()
     local finder = aquatic and FindSwimmableOffset or FindWalkableOffset
     if not finder then return false end
     local water = loco.CanPathfindOnWater and loco:CanPathfindOnWater() or false
-    -- One attempt preserves the remembered heading during blind_continue.
-    -- No wall-ignoring fallback and no land->ocean teleport.
-    local offset, heading = finder(point, angle, distance, 1, true, false, nil, water)
+    local offset, heading = finder(point, angle, distance, C.path_attempts, true, false, nil, water)
     if not offset then
         if state.moving then loco:Stop(); state.moving = false end
         return false
@@ -198,7 +188,7 @@ end
 
 local function wander(inst, state, now)
     if now < (state.next_turn or 0) then return end
-    local duration = .25 + math.random() * .25
+    local duration = C.wander_min_duration + math.random() * C.wander_duration_range
     state.next_turn = now + duration
     safe_walk(inst, state, math.random() * 2 * math.pi, duration)
 end
@@ -221,9 +211,7 @@ local function search(inst, state, now)
         if combat.target then return combat.target end
     end
     if now >= state.next_search then
-        state.next_search = now + .25
-        -- Native predicates see the CanTarget distance gate while selecting,
-        -- so hound/pigman searches skip far priority candidates and continue.
+        state.next_search = now + C.search_interval
         if combat.targetfn then
             local target = combat.targetfn(inst)
             if target and acceptable(combat, inst, target) then combat:SetTarget(target) end
@@ -264,7 +252,6 @@ function M.update(inst, now, covered)
     local combat = inst.components.combat
     local target = combat and combat.target
     if state.sensed_target and not near(inst, state.sensed_target) then
-        -- Deliberately retain ONLY the angle sampled while inside perception.
         state.sensed_target = nil
         state.candidate = nil
         state.phase = "blind_continue"
@@ -289,13 +276,12 @@ function M.update(inst, now, covered)
         state.sensed_target = target
         state.phase = "near_combat"
         if combat:TryAttack(target) then
-            -- Do not Stop locomotor after doattack: the native SG owns its move.
             state.moving = false
         else
-            safe_walk(inst, state, state.last_direction, .1)
+            safe_walk(inst, state, state.last_direction, C.chase_duration)
         end
     elseif state.phase == "blind_continue" and now < state.until_time then
-        if state.last_direction then safe_walk(inst, state, state.last_direction, .1) end
+        if state.last_direction then safe_walk(inst, state, state.last_direction, C.chase_duration) end
     else
         state.sensed_target = nil
         state.last_direction = nil

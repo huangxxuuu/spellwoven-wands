@@ -8,7 +8,7 @@ function M.run()
     assert(bag.components.trader and bag.components.inventory and bag.components.workable,"NW_BAG: native components")
     assert(bag.components.workable:GetWorkLeft()==6 and bag:HasTag("equipmentmodel"),"NW_BAG: native interactions")
     assert(AllRecipes.nw_spell_punchingbag and AllRecipes.nw_spell_punchingbag.placer=="nw_spell_punchingbag_placer")
-    require("nw/punchingbag").visual(bag) -- Exercise engine visual APIs even on the headless server.
+    require("nw/punchingbag").visual(bag)
     assert(bag._nw_spark_badge.AnimState:GetBuild()=="nw_objects")
     bag.components.combat:GetAttacked(a,18.5)
     bag.components.combat:GetAttacked(b,18.5)
@@ -32,7 +32,6 @@ function M.run()
     assert(require("nw/targeting").allowed(a,bag,{targets={hostile=true}}),"NW_BAG: hostile homing target")
     local Bonus=require("nw/first_boss_reward")
     assert(a.components.nw_firstboss and b.components.nw_firstboss)
-    -- The isolated server's spawned characters are real engine entities, used as two nearby players.
     local players=AllPlayers;AllPlayers={a,b}
     local boss=SpawnPrefab("deerclops");boss.Transform:SetPosition(0,0,0)
     boss.components.combat:SetTarget(nil)

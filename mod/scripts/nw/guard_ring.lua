@@ -1,3 +1,4 @@
+local C=require("nw/constants/field_runtime").guard
 local Geometry=require("nw/geometry")
 local M={}
 local function source(e)
@@ -10,7 +11,6 @@ local function source(e)
 end
 function M.accepts(e,owner)
     if not e:IsValid() or e==owner or e._nw_intercepted then return false end
-    -- A directed native visual and its swept controller are one projectile.
     if e._nw_controller and e._nw_controller:IsValid() then return false end
     local actor,p=source(e)
     if not (p or e._shot or e:HasTag("projectile") or e:HasTag("activeprojectile")) then return false end
@@ -24,8 +24,6 @@ function M.consume(ring,e)
     if not ring:IsValid() or ring._nw_guard_left<=0 then return false end
     ring._nw_guard_left=ring._nw_guard_left-1
     e._nw_intercepted=true
-    -- Raw removal only: never invoke Hit, Miss, Detonate, or carrier completion.
-    -- Our projectile onremove handler still releases its reservations/visuals.
     e:Remove()
     require("nw/field_stages").guard(ring,ring._nw_guard_left)
     if ring._nw_guard_left==0 then ring:Remove()
@@ -50,12 +48,12 @@ function M.start(inst,owner,p)
     TheWorld._nw_guards=TheWorld._nw_guards or {}
     TheWorld._nw_guards[inst]=true
     inst._nw_guard_owner=owner;inst._nw_guard_radius=p.radius
-    inst._nw_guard_left=2
+    inst._nw_guard_left=C.capacity
     inst:ListenForEvent("onremove",function() TheWorld._nw_guards[inst]=nil end)
     inst:DoPeriodicTask(FRAMES,function()
         if not owner:IsValid() then inst:Remove();return end
         local x,_,z=owner.Transform:GetWorldPosition()
-        for _,e in ipairs(TheSim:FindEntities(x,0,z,p.radius+3,nil,{"INLIMBO","DECOR"})) do
+        for _,e in ipairs(TheSim:FindEntities(x,0,z,p.radius+C.scan_padding,nil,{"INLIMBO","DECOR"})) do
             if M.accepts(e,owner) then
                 local ex,_,ez=e.Transform:GetWorldPosition()
                 local vx,vy,vz=0,0,0

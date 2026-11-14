@@ -1,0 +1,20 @@
+本轮确认与完成状态
+用户要求：终点聚爆束的基础外观宽度为此前2倍、星头线性大小为此前3倍；终点爆炸后星头保留到整条残留光束消失；终点/蘑菇孢球爆炸恢复3至5个小动画并只响一次，晶雷等多动画爆炸亦只响一次。
+用户随后修正发光方案为“先改为子弹自身不发光，我再测试一下”。此为最终采用方案，取消本轮亮度阈值渐变设计。
+
+实现
+mod/scripts/nw/beam_visual.lua：显示宽度乘2，星显示缩放乘3；连接同步加粗。保持原手绘材质、独立12帧星与16帧连接、原有命中半径与伤害不变。终点位置使用最后确认路径端点，星和连接保持至最后残留段消失；新加入的客户端也能重建终点星。活动弹头快照过期、大跳仍清理；最终残留不因快照重发延寿，世界/实体移除仍清理。
+mod/scripts/nw/projectile_glow.lua：清除LightOverride、Bloom、相关symbol自亮和旧透明遮罩；不再采样环境光，不按昼夜或亮度Hide，也不创建自发光定时器。子弹按游戏环境光正常显示；beam几何裁切显隐、原生Hide/Show语义与旧pool清理保留。原版亮茄弹继续沿用此前豁免，光/暗修饰的玩法逻辑不变。
+mod/scripts/nw/burst_visual.lua 与 prefabs/nw_spell_fx.lua：所有blast统一复制锚点与5个静音local小爆炸动画，锚点只播放1声blackpowder；孢球/聚爆束等soft音量保持.35，其余1。局部动画使用原版延迟一帧SetFromProxy初始化，明确BillBoard，不再给局部small动画设置四向Transform。锚点1秒，局部动画自行播完并移除。
+晶雷叠音根因已由本地原版explode_small.lua核实：旧5个原生prefab各自播放一声。缺图修复已恢复原版初始化顺序；离线验证不能证明引擎实机症状已完全消失，仍需用户重启游戏观察。
+
+验证
+201个Mod Lua文件语法检查、116组Lua回归通过，回执 test_reports/beam_burst_no_glow_2026-11-14_lua.txt。
+爆炸11组定向回归通过；已核实原版explode.zip bank/build=explode、small共28帧；host/client/dedicated、radius重复dirty、单声/五动画、伤害与目标选择回归通过。回执 test_reports/burst_visual_audio_2026-11-14.txt。
+真实Lua renderer导出201帧：直线61、转弯61、终点及残留79。连接位置、相位、截面，星保留与最终清理断言通过。预览 docs/previews/end-beam-width-star-v7/，不含游戏实际光照与爆炸渲染，不能作为实机截图。
+无新生图请求，无资源重绘，无API用量；仅调整运行显示缩放与生命周期。
+
+安装
+用户明确回复“已退出，可以安装”后，通过 tools/install_mod.py 安装至 E:/SteamLibrary/steamapps/common/Don't Starve Together/mods/nw_weave_dev。
+PASS: installed 1.0.6; verified 256 files; updated 4 files; removed 0 retired files.
+回执 test_reports/beam_burst_no_glow_install_2026-11-14.txt。未提升版本、未发布、未修改资料站；需重启游戏与世界加载，实机外观和声音待用户验证。

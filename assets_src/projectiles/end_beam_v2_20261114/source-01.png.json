@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-11-14T13:01:36.479254+00:00",
+  "action": "edit",
+  "request": {
+    "model": "gpt-image-2.6-sunburst",
+    "prompt": "Use case: stylized-concept, reference-guided game VFX sprite components.\nAsset type: Don't Starve Together in-world 2D spell laser VFX, transparent source sprites to be split and animated later, not a card illustration.\nReference image 1 is the approved end-beam identity and palette: a brilliant near-white core enclosed by large lavender and vivid violet stepped energy shapes, deep purple shadow planes, and a restrained dark ink perimeter, ending in an angular 5-point burst. Preserve that family of shapes and colors. Change its diagonal curved full-beam composition into the three separate horizontal production components below.\n\nCreate one 1024 x 1024 RGBA sheet with TRUE TRANSPARENT alpha background. Exactly three independent components in three horizontal rows. At least 80 pixels of completely empty transparency between the rows. No lines, labels, frame or grid. Components must be fully within the canvas with a safety margin.\nTOP ROW, centered near y=180, fitting x=70..954 and y=105..265: a long straight horizontal beam BODY SEGMENT, approximately 850 px long and 110 px thick. Nearly constant width, parallel centerline, no tapering projectile tip and no end star. Both ends have nearly the SAME blunt cross section so the central part can be tiled or extended. The core is a narrow white-lilac stream continuing horizontally through the segment. Around it, two or three broad, asymmetric lavender/violet ribbons and long pointed wedge-shaped energy streaks visibly flow to the RIGHT. Broad color planes, long quiet shapes and large changes in brightness provide a flowing-energy reading, not a frozen solid bar and not a fire plume. Mild rhythmic bends only within the outer constant-width corridor. Dark ink accent on selected outer edges, lighter internal boundaries.\nMIDDLE ROW, centered near x=512,y=485, fitting x=300..725,y=365..595: an independent compact RIGHTWARD LASER HEAD, a sharp asymmetric 5-point purple starburst with brilliant white core, 4 to 6 unequal angular spikes and a short broad beam inlet on its LEFT side. The longest forward spike points RIGHT. It must share the top row palette and ink style. No long tail, no circular ball.\nBOTTOM ROW, centered near x=512,y=835, fitting x=290..740,y=700..975: a separate larger ENDPOINT IMPACT BURST in the same shape family, brilliant white-lilac central jagged star with layered lavender and violet angular spikes, slightly asymmetric 5-6 large spikes, plus only 3 or 4 isolated purple wedge fragments close to the outer silhouette. No beam attached, no circular smoke cloud, no round explosion ring.\n\nStyle: authentic Don't Starve / Don't Starve Together 2D hand-drawn world animation asset. Clear silhouette first, purposeful asymmetry, rhythmic ink weight and sharp tapered corners. Use a small number of big clean flat color blocks and explicitly drawn white highlights. Slightly irregular handmade contours, but solid readable shapes. Violet energy is the material: sharp flowing planes, not gem facets or metal. Preserve reference's white-lilac, lavender, saturated purple, dark violet palette. Keep sparse restrained ink along outside turning points; no dense internal hatching. No baked lighting from a scene, no ground shadow, no background pixels. Transparent holes stay transparent.\nAvoid: red/orange/yellow fire; realistic flame tongues; photorealism; 3D rendering; smoky gradients; bloom haze; chromatic aberration; particle noise; dense tiny scratches; realistic lightning filaments; overly smooth vector geometry; black filled background; white filled background; checkerboard texture; paper texture; objects; scenery; card frame; text; numbers; watermarks. This is an editable sprite sheet of THREE distinct pieces, not a complete continuous illustration. Do not connect the rows.\n",
+    "n": 1,
+    "size": "1024x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\spell_card_subjects\\v3_full_catalog\\projectiles_controls\\end_beam.png"
+  ],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\projectiles\\end_beam_v2_20261114\\source-01.png"
+  ],
+  "usage": {
+    "input_tokens": 2322,
+    "input_tokens_details": {
+      "image_tokens": 1521,
+      "text_tokens": 801
+    },
+    "output_tokens": 1756,
+    "total_tokens": 4078,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_0413af1d2daf4d12af065967a21f6c9e",
+  "revised_prompts": [
+    null
+  ]
+}

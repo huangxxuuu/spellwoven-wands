@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui").performance_panel
 local M={}
 function M.attach(screen,label)
     local Settings=require("nw/performance_settings")
@@ -7,15 +8,15 @@ function M.attach(screen,label)
     local root=screen.proot
     local panel=root:AddChild(Widget("nw_performance"));panel:Hide()
     screen.performance=panel;panel.rows={};panel.page=1
-    panel.notice=label(panel,16,L("当前世界设置，仅管理员可修改（需开启开发者选项）。\n仅运行时生效，世界重启后恢复模组配置。",
-        "Current world settings. Only admins with developer mode can edit.\nRuntime only; restart restores mod configuration."),0,147,620,42)
-    local status=label(panel,16,"",0,-190,620,40)
+    panel.notice=label(panel,C.notice_size,L("当前世界设置，仅管理员可修改（需开启开发者选项）。\n仅运行时生效，世界重启后恢复模组配置。",
+        "Current world settings. Only admins with developer mode can edit.\nRuntime only; restart restores mod configuration."),0,C.notice_y,C.notice_width,C.notice_height)
+    local status=label(panel,C.notice_size,"",0,C.status_y,C.notice_width,C.status_height)
     local refresh
     for row=1,#Settings.specs do
-        local y=103-(row-1)*37
-        local title=label(panel,18,"",-150,y,310,36);title:SetHAlign(ANCHOR_LEFT)
-        local spinner=panel:AddChild(Spinner({{text="",data=1}},220,32,{font=UIFONT,size=18},false,nil,nil,true))
-        spinner:SetPosition(190,y);spinner:SetWrapEnabled(true)
+        local y=C.row_y-(row-1)*C.row_step
+        local title=label(panel,C.label_size,"",C.label_x,y,C.label_width,C.label_height);title:SetHAlign(ANCHOR_LEFT)
+        local spinner=panel:AddChild(Spinner({{text="",data=1}},C.spinner_width,C.spinner_height,{font=UIFONT,size=C.spinner_size},false,nil,nil,true))
+        spinner:SetPosition(C.spinner_x,y);spinner:SetWrapEnabled(true)
         panel.rows[row]={title=title,spinner=spinner}
         spinner:SetOnChangedFn(function(index)
             if panel.refreshing or not Settings.synced or not Settings.allowed then return end
@@ -41,7 +42,6 @@ function M.attach(screen,label)
             widgets.spinner:SetOptions(options)
             widgets.spinner:SetSelectedIndex(Settings.synced and Settings.index(spec,Settings.value(spec)) or 1)
             if Settings.synced and Settings.allowed and not Settings.pending then widgets.spinner:Enable() else widgets.spinner:Disable() end
-            -- Keep the authoritative value readable while the arrows are grey.
             widgets.spinner:SetTextColour(unpack(screen.text_colour))
             local tip=spec.tip and L(unpack(spec.tip)) or L("对后续施法或生成生效，已有实体不会因为调低上限被立即删除。",
                 "Applies to future casts or spawns. Lowering the limit does not immediately remove existing entities.")
@@ -60,7 +60,7 @@ function M.attach(screen,label)
     end
     panel.refresh=refresh
     local unsubscribe=Settings.subscribe(refresh)
-    local task=screen.inst:DoPeriodicTask(2,Settings.poll)
+    local task=screen.inst:DoPeriodicTask(C.poll_interval,Settings.poll)
     screen.inst:ListenForEvent("onremove",function() unsubscribe();task:Cancel() end)
     refresh()
     return panel

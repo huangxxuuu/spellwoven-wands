@@ -1,11 +1,9 @@
--- Server-owned trail of the moving beam front. The existing projectile keeps
--- its payload reservation until the last damaging segment has faded.
+local C=require("nw/constants/projectile_runtime")
 local Path=require("nw/beam_path")
 local Geometry=require("nw/geometry")
 local Size=require("nw/projectile_size")
 local Targeting=require("nw/targeting")
 local Effects=require("nw/spell_effects")
-local Fields=require("nw/expanded_fields")
 local M={}
 
 function M.is(p) return p and (p.base or p.id)=="end_beam" end
@@ -21,20 +19,18 @@ end
 
 function M.record(s,x1,z1,x2,z2,now)
     local beam=s.beam
-    if beam.ended or (x2-x1)^2+(z2-z1)^2<.00000001 then return end
+    if beam.ended or (x2-x1)^2+(z2-z1)^2<C.beam.min_segment_length_squared then return end
     beam.next_id=beam.next_id+1
     local segment={id=beam.next_id,x1=x1,z1=z1,x2=x2,z2=z2,born=now,radius=Size.radius(s.p,s.age)}
     beam.segments[#beam.segments+1]=segment
     return segment
 end
 
--- One clock for the entire beam: front, crossings, adjacent segments and
--- post-front residue can never multiply a target's half-second hit cadence.
 function M.claim(s,target,now)
-    if (s.beam.next_hit[target] or -math.huge)>now+.000001 then return false end
+    if (s.beam.next_hit[target] or -math.huge)>now+C.collision.time_epsilon then return false end
     s.beam.next_hit[target]=now+Path.interval
     s.hit=s.hit or {}
-    s.hit[target]=(s.age or 0)+Path.interval -- Flight.seek uses projectile age.
+    s.hit[target]=(s.age or 0)+Path.interval
     return true
 end
 
@@ -42,11 +38,10 @@ function M.classify(s,target)
     if not target:IsValid() or target:IsInLimbo() or target==s.owner and s.ignore_self then return end
     local flags=s.p.flags or {}
     if target:HasTag("wall") and flags.phase_wall then return end
-    local scope=flags.targets
-    if Fields.can_break(target,s.owner) and (Targeting.breakable(target) or not scope or scope.building) then return "prop" end
-    if flags.heal_ally and Effects.ally(s.owner,target)
+    if Targeting.selectable_prop(s.owner,target,flags) then return "prop" end
+    if flags.heal_ally and Effects.ally(s.owner,target,flags)
         and not (s.group and s.group.healed and s.group.healed[target]) then return "ally" end
-    if Targeting.selected_object(s.owner,target,flags) or Targeting.allowed(s.owner,target,flags) then return "target" end
+    if Targeting.selected(s.owner,target,flags) then return "target" end
 end
 
 function M.hit(inst,s,target,x,z,dx,dz,now,callback,kind)
@@ -74,13 +69,11 @@ function M.stop(inst,s,x,z,now)
     return true
 end
 
--- Called before the new front sweep, so old path contacts precede later path
--- contacts. Payloads may destroy a wall or the carrier during this traversal.
 function M.step(inst,s,now,cache,query,hit)
     if not Effects.live(s.owner) then inst:Remove();return false end
     local beam=s.beam
     for index=#beam.segments,1,-1 do
-        if now-beam.segments[index].born>=Path.lifetime-.000001 then table.remove(beam.segments,index) end
+        if now-beam.segments[index].born>=Path.lifetime-C.collision.time_epsilon then table.remove(beam.segments,index) end
     end
     for target,deadline in pairs(beam.next_hit) do
         if deadline<=now or not target:IsValid() then
@@ -92,13 +85,13 @@ function M.step(inst,s,now,cache,query,hit)
     for _,segment in ipairs(beam.segments) do
         local radius=segment.radius*Path.width(now-segment.born)
         local contacts={}
-        for _,target in ipairs(query(cache,segment.x1,segment.z1,segment.x2,segment.z2,s.p.flags.targets,radius)) do
-            if target~=inst and not seen[target] and (beam.next_hit[target] or -math.huge)<=now+.000001 then
+        for _,target in ipairs(query(cache,segment.x1,segment.z1,segment.x2,segment.z2,s.p.flags,radius)) do
+            if target~=inst and not seen[target] and (beam.next_hit[target] or -math.huge)<=now+C.collision.time_epsilon then
                 local kind=M.classify(s,target)
                 if kind then
                     local tx,_,tz=target.Transform:GetWorldPosition()
                     local t=Geometry.hit(segment.x1,segment.z1,segment.x2,segment.z2,tx,tz,
-                        math.min(3,target:GetPhysicsRadius(.5))+radius)
+                        math.min(C.collision.max_target_radius,target:GetPhysicsRadius(C.collision.target_radius))+radius)
                     if t then contacts[#contacts+1]={target=target,t=t,kind=kind};seen[target]=true end
                 end
             end
@@ -108,8 +101,6 @@ function M.step(inst,s,now,cache,query,hit)
         local length=math.sqrt(dx*dx+dz*dz)
         for _,contact in ipairs(contacts) do
             local target=contact.target
-            -- Recheck after earlier collision payloads, which may remove or
-            -- retarget an entity from this frame's cached candidate list.
             local kind=M.classify(s,target)
             if kind then
                 M.hit(inst,s,target,segment.x1+dx*contact.t,segment.z1+dz*contact.t,

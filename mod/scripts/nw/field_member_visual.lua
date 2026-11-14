@@ -1,5 +1,4 @@
--- Independent local mushrooms/shields, never a camera-facing painted group.
--- One shared render-frame update sets world coordinates; gameplay stays on the anchor.
+local C=require("nw/constants/visuals/field_member_visual")
 local Stages=require("nw/field_stages")
 local M={}
 local TAU=2*math.pi
@@ -38,8 +37,6 @@ local function sprite(kind,index)
     return {fx=fx,kind=kind,index=index,visible=false}
 end
 local function layout(s,seed)
-    -- A cast owns one replicated seed. Pulses, late joins and the separate
-    -- ending FX reuse it; no global gameplay RNG or per-frame jitter is used.
     local state=((seed+1)*69621)%2147483647
     local function random()
         state=(state*16807)%2147483647
@@ -54,20 +51,20 @@ local function layout(s,seed)
         local count=gap%2==0 and 2 or 1
         for n=1,count do
             local part=s.members[index];index=index+1
-            local fraction=count==1 and .34+.32*random() or .24+(n-1)*.38+.12*random()
+            local fraction=count==1 and C.single_gap_base+C.single_gap_spread*random() or C.double_gap_base+(n-1)*C.double_gap_step+C.double_gap_spread*random()
             part.angle=(gap+fraction)*TAU/8
-            part.radius=.83+.30*random()
-            part.artscale=.36+.26*random()
+            part.radius=C.vital_radius_base+C.vital_radius_spread*random()
+            part.artscale=C.vital_scale_base+C.vital_scale_spread*random()
         end
     end
     for i=21,26 do
         local part=s.members[i]
-        local angle,radius=random()*TAU,math.sqrt(random())*.88
+        local angle,radius=random()*TAU,math.sqrt(random())*C.mote_radius
         part.center_x,part.center_z=math.cos(angle)*radius,math.sin(angle)*radius
-        part.phase=random()*TAU;part.drift=.04+.05*random()
-        part.omega=(.45+.75*random())*(random()<.5 and -1 or 1)
-        part.height=.08+.28*random();part.bob=.04+.10*random();part.bobrate=1.2+1.6*random()
-        part.artscale=.7+.5*random()
+        part.phase=random()*TAU;part.drift=C.drift_base+C.drift_spread*random()
+        part.omega=(C.orbit_base+C.orbit_spread*random())*(random()<.5 and -1 or 1)
+        part.height=C.height_base+C.height_spread*random();part.bob=C.bob_base+C.bob_spread*random();part.bobrate=C.bob_rate_base+C.bob_rate_spread*random()
+        part.artscale=C.mote_scale_base+C.mote_scale_spread*random()
     end
     s.seed=seed
 end
@@ -77,7 +74,6 @@ local function refresh(s,now)
     if seq==0 or seq==s.seq then return end
     local first=s.seq==nil
     s.seq=seq;s.changed=now
-    -- A pulse/count update cannot restart the surviving shield's orbit.
     s.started=s.started or now-inst._nw_stage_age:value()
     s.phase=inst._nw_stage_phase:value()
     s.size=math.max(.01,inst._nw_stage_size:value())
@@ -106,13 +102,13 @@ local function animate(s,part,now)
     if clip~=part.animation or part.phase_seq~=phase_seq then
         part.animation=clip;part.phase_seq=phase_seq
         part.fx.AnimState:PlayAnimation(clip,phase=="idle" or part.kind=="mote" and phase~="pulse")
-        if phase=="idle" then part.fx.AnimState:SetTime((now-s.started+part.index*.137)%1.2) end
+        if phase=="idle" then part.fx.AnimState:SetTime((now-s.started+part.index*C.idle_phase_step)%C.idle_period) end
     end
     if part.kind=="mote" then
         local fade=ending and math.max(0,1-(now-ending)/Stages.end_time)
             or phase=="spawn" and math.min(1,elapsed/Stages.spawn_time) or 1
-        local pulse=phase=="pulse" and .25+.25*math.sin(math.pi*elapsed/Stages.pulse_time) or 0
-        part.fx.AnimState:SetMultColour(1,1,1,fade*math.min(1,.55+.25*math.sin((now-s.started)*part.bobrate+part.phase)+pulse))
+        local pulse=phase=="pulse" and C.pulse_alpha+C.pulse_alpha*math.sin(math.pi*elapsed/Stages.pulse_time) or 0
+        part.fx.AnimState:SetMultColour(1,1,1,fade*math.min(1,C.mote_alpha+C.alpha_bob*math.sin((now-s.started)*part.bobrate+part.phase)+pulse))
     end
 end
 local function update(s,now)
@@ -126,25 +122,25 @@ local function update(s,now)
         if part.fx:IsValid() then
             local ox,oz,height
             if part.kind=="guard" then
-                local angle=age*2.2+(part.index-1)*math.pi
+                local angle=age*C.guard_orbit_speed+(part.index-1)*math.pi
                 ox,oz=math.cos(angle)*s.radius,math.sin(angle)*s.radius
-                height=.95+.10*math.sin(age*2.8+part.index)
+                height=C.guard_height+C.guard_bob*math.sin(age*C.guard_bob_rate+part.index)
             elseif part.kind=="vital" then
                 ox,oz=math.cos(part.angle)*s.radius*part.radius,math.sin(part.angle)*s.radius*part.radius
                 height=0
             else
                 local angle=part.phase+age*part.omega
                 ox=s.radius*(part.center_x+part.drift*math.cos(angle))
-                oz=s.radius*(part.center_z+part.drift*.75*math.sin(angle*1.13+part.phase*.37))
+                oz=s.radius*(part.center_z+part.drift*C.drift_depth*math.sin(angle*C.drift_frequency+part.phase*C.drift_phase))
                 height=(part.height+part.bob*math.sin(age*part.bobrate+part.phase))*math.sqrt(s.size)
                 local elapsed=now-s.changed
                 if s.phase==Stages.phase.pulse and elapsed<Stages.pulse_time then
-                    height=height+.24*math.sin(math.pi*elapsed/Stages.pulse_time)
+                    height=height+C.pulse_height*math.sin(math.pi*elapsed/Stages.pulse_time)
                 end
             end
             part.x,part.y,part.z=x+ox,y+height,z+oz
             part.fx.Transform:SetPosition(part.x,part.y,part.z)
-            local scale=s.size*(part.kind=="guard" and 2 or part.artscale)
+            local scale=s.size*(part.kind=="guard" and C.guard_scale or part.artscale)
             if scale~=part.scale then part.scale=scale;part.fx.Transform:SetScale(scale,scale,scale) end
             if shown~=part.visible then
                 part.visible=shown
@@ -155,8 +151,6 @@ local function update(s,now)
 end
 local function tick(pool,dt)
     if pool.world._nw_field_members~=pool then return end
-    -- GetTime is quantized to simulation ticks. Use the native visual update
-    -- clock so orbiting members also move between ticks on faster displays.
     pool.clock=pool.clock+dt*TheSim:GetTimeScale()
     local now=pool.clock
     for i=#pool.fields,1,-1 do
@@ -190,7 +184,6 @@ function M.attach(inst,id)
         for i=21,26 do s.members[#s.members+1]=sprite("mote",i) end
     end
     s.onremove=function() remove(s) end
-    -- The shared tick sees a complete net update, after all dirty values arrive.
     s.dirty=function() end
     inst._nw_field_members=s;pool.fields[#pool.fields+1]=s
     inst:ListenForEvent("onremove",s.onremove)

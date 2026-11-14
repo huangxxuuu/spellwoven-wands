@@ -1,3 +1,4 @@
+local C=require("nw/constants/prefabs").dustbox
 local storage=require("nw/arcane_storage")
 local atlas=storage.atlas
 local assets={Asset("ANIM","anim/nw_dustbox.zip"),Asset("ANIM","anim/ui_chest_1x1.zip"),
@@ -18,13 +19,9 @@ local function refresh(inst,state)
     inst.components.inventoryitem:ChangeImageName(opened and "nw_dustbox_open_"..state or "nw_dustbox")
 
     if inst.components.inventoryitem.owner~=nil then
-        -- Inventory entities may sleep in limbo. Their UI changes immediately;
-        -- do not wait for an invisible animation before resolving the pose.
         inst._dustbox_phase=opened and "opened" or "closed"
         play(inst,inst._dustbox_phase.."_"..state,opened)
     elseif inst._dustbox_phase=="opening" or inst._dustbox_phase=="closing" then
-        -- Item/stack events only change the destination while the lid moves.
-        -- Likewise, a rapid reopen/close finishes this motion before reversing.
         return
     elseif opened and inst._dustbox_phase~="opened" then
         inst._dustbox_phase="opening"
@@ -45,14 +42,12 @@ local function onanimover(inst)
     else
         return
     end
-    -- Read the latest count and openers instead of queuing a stale idle pose.
     refresh(inst)
 end
 
 local function onwake(inst)
     if (inst._dustbox_phase=="opening" or inst._dustbox_phase=="closing")
         and inst.AnimState:AnimDone() then
-        -- A finished motion may have slept through its completion event.
         onanimover(inst)
     else
         refresh(inst)
@@ -86,7 +81,7 @@ local function fn()
     inst.AnimState:SetRayTestOnBB(true)
     inst:AddTag("portablestorage")
     inst:AddTag("fireimmune")
-    MakeInventoryFloatable(inst,"small",.15,.8*storage.DUSTBOX_SCALE)
+    MakeInventoryFloatable(inst,"small",C.float_offset,C.float_scale*storage.DUSTBOX_SCALE)
     inst.entity:SetPristine()
     if not TheWorld.ismastersim then return inst end
 
@@ -102,15 +97,12 @@ local function fn()
     box.onclosefn=onclose
     box.skipopensnd=true
     box.skipclosesnd=true
-    -- Native RUMMAGE + portablestorage handles inventory/backpack grand owners.
-    -- Retain its range/state auto-close and first-open/last-close semantics.
     box.droponopen=false
     inst._dustbox_phase="closed"
     inst._dustbox_animation="closed_empty"
     inst._dustbox_fill="empty"
     inst:ListenForEvent("animover",onanimover)
     inst.OnEntityWake=onwake
-    -- Native container save/load restores its stack before this deferred read.
     storage.Watch(inst,refresh)
     MakeHauntableLaunch(inst)
     return inst

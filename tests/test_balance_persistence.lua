@@ -70,6 +70,7 @@ local blasts={}
 require("nw/spell_effects").blast=function(owner,x,z,p) blasts[#blasts+1]={root=p._nw_root,owner=owner} end
 -- One detonation command must not merge pre-existing roots, including reloads.
 local command=entity()
+TheSim={FindEntities=function() return {first,second,third} end}
 require("nw/field_stages").pulse=function() end
 require("nw/expanded_fields").actions.detonate(command,a,{radius=4,aim_range=20},0,0)
 assert(#blasts==3)

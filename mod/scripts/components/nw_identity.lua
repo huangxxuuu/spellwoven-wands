@@ -1,4 +1,3 @@
--- Persisted per shard. Items retain their origin ID when moved between shards.
 local Identity = Class(function(self, inst)
     self.sequence = 0
 end)

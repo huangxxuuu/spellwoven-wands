@@ -1,4 +1,3 @@
--- Shared data for in-world signs, supply boxes and the manual test reference.
 local function wand(name,ids,capacity) return {name=name,wand=ids,capacity=capacity} end
 local function item(prefab,count) return {prefab=prefab,count=count or 1} end
 local function card(id) return {card=id} end

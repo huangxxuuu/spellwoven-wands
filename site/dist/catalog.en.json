@@ -1038,7 +1038,7 @@
         "explosive"
       ],
       "effect": "Fires a drifting spore ball that bursts to hurt nearby targets.",
-      "detailedEffect": "16 damage; lives for 2 seconds. May bounce; splits only once.",
+      "detailedEffect": "16 damage; lasts 2 seconds. Can be broken; its shatter effect is checked only once.",
       "mana": 14,
       "delay": 0,
       "recharge": 0,
@@ -1153,7 +1153,7 @@
         "pierce"
       ],
       "effect": "Throws a flint lance that pierces targets.",
-      "detailedEffect": "20 damage; speed 18; up to 2 hits; can cross coasts.",
+      "detailedEffect": "20 damage; innately pierces up to 2 enemies and can cross coastlines.",
       "mana": 19,
       "delay": 0,
       "recharge": 0,
@@ -1839,7 +1839,7 @@
         "recovery"
       ],
       "effect": "Creates a temporary healing area.",
-      "detailedEffect": "Each ring heals players and their followers inside it for 2 health per second, three times. Overlapping rings stack.",
+      "detailedEffect": "Each ring restores 2 health per second, three times. By default it heals players and their followers inside it; target cards instead select eligible recipients by category. Overlapping rings stack.",
       "mana": 30,
       "delay": 0.18,
       "recharge": 0,
@@ -2180,8 +2180,8 @@
         "area",
         "explosive"
       ],
-      "effect": "Detonates your crystals near the selected point.",
-      "detailedEffect": "Aim up to 20 units away; triggers your crystals within 4 units of the cast point.",
+      "effect": "Detonates all proximity mines and dormant crystals near the selected point, regardless of caster.",
+      "detailedEffect": "Aim up to 20 units away; detonates all proximity mines and dormant crystals within 4 units of the cast point, regardless of caster or target selection.",
       "mana": 6,
       "delay": 0.12,
       "recharge": 0,
@@ -2496,7 +2496,7 @@
         "element"
       ],
       "effect": "Summons a rain cloud that wets nearby targets and extinguishes fires.",
-      "detailedEffect": "Radius 2, lasts 3 seconds. Three local pulses wet targets and extinguish fires.",
+      "detailedEffect": "Radius 2, lasts 3 seconds. Two local pulses wet targets and extinguish fires.",
       "mana": 16,
       "delay": 0.12,
       "recharge": 0,
@@ -2920,7 +2920,7 @@
         "music"
       ],
       "effect": "Plays a lyre note that restores nearby players' sanity.\nBase note D4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
-      "detailedEffect": "Plays D at the release point. Nearby players regain 1 sanity, at most once every 3 seconds per player. Base note D4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
+      "detailedEffect": "Plays D at the release point, restoring 1 sanity at most once every 3 seconds per target. Affects nearby players by default; target cards instead select recipients with sanity by category. Base note D4; playable range C3–B5 (all semitones), shifted by at most one octave up or down. Default: one beat. Speed Up: half a beat; Slow Down: two beats. Modifiers cancel before clamping to these three lengths.",
       "mana": 10,
       "delay": 0.03,
       "recharge": 0,
@@ -6864,7 +6864,7 @@
       "tags": [],
       "tagIds": [],
       "effect": "Fires a spinning fan blade.",
-      "detailedEffect": "Spins kelp leaves around the body, dealing at most 5 damage per second.",
+      "detailedEffect": "Fires a spinning blade that deals 5 base damage.",
       "mana": 6,
       "delay": 0.1,
       "recharge": 0,
@@ -7098,7 +7098,7 @@
         "light"
       ],
       "effect": "Summons a dwarf star that provides light and warmth and can be moved by modifiers.",
-      "detailedEffect": "Creates a native Dwarf Star at the release point. Light, temperature and sanity effects match the native entity. Starts stationary; speed, homing and target modifiers can move it. Minimum cast cooldown: 240 seconds, including when used in a payload.",
+      "detailedEffect": "Creates a native Dwarf Star at the release point. Lifetime, light, temperature and sanity effects match the native entity. Has innate unlimited piercing. Starts stationary; speed, homing and target modifiers can move it. Ambient effects ignore target selection. Minimum cast cooldown: 240 seconds, including when used in a payload.",
       "mana": 18,
       "delay": 0,
       "recharge": 0,
@@ -7206,7 +7206,7 @@
         "light"
       ],
       "effect": "Summons a chilling lunar light that can be moved by modifiers.",
-      "detailedEffect": "Creates a native Polar Light at the release point. Light, temperature and sanity effects match the native entity. Starts stationary; speed, homing and target modifiers can move it. Minimum cast cooldown: 60 seconds, including when used in a payload.",
+      "detailedEffect": "Creates a native Polar Light at the release point. Lifetime, light, temperature and sanity effects match the native entity. Has innate unlimited piercing. Starts stationary; speed, homing and target modifiers can move it. Ambient effects ignore target selection. Minimum cast cooldown: 60 seconds, including when used in a payload.",
       "mana": 18,
       "delay": 0,
       "recharge": 0,
@@ -10451,7 +10451,7 @@
         "trajectory"
       ],
       "effect": "Fires a brightshade projectile that bounces between targets.",
-      "detailedEffect": "Landing triggers the native 10-point planar strike and creates chain lightning between eligible targets. With piercing, each impact can emit lightning.",
+      "detailedEffect": "On hit, deals the native Brightshade projectile's 10 base planar damage and bounces between eligible targets. Each hit while piercing can start a bounce chain.",
       "mana": 18,
       "delay": 0.12,
       "recharge": 0,
@@ -12400,7 +12400,7 @@
         "trajectory"
       ],
       "effect": "Fires a star vortex made of swirling projectiles.",
-      "detailedEffect": "Four shards, 6 damage each; at most one bounce. Counts toward the optional per-cast cap.",
+      "detailedEffect": "Four shards, 6 damage each, sharing a 1-second lifetime. Counts toward the optional per-cast cap.",
       "mana": 20,
       "delay": 0,
       "recharge": 0,
@@ -12477,7 +12477,7 @@
         "area"
       ],
       "effect": "Calls down a moon rock after a brief delay.",
-      "detailedEffect": "Marks the ground for 0.8 seconds, then drops a rock. Radius 2, damage 30; enemies only.",
+      "detailedEffect": "Marks the ground for 0.8 seconds, then drops a rock. Radius 2, damage 30; does not damage structures.",
       "mana": 28,
       "delay": 0.12,
       "recharge": 0,
@@ -12542,7 +12542,7 @@
       "tags": [],
       "tagIds": [],
       "effect": "Summons a swarm that briefly attacks nearby targets.",
-      "detailedEffect": "Up to three strikes, 6 damage each. One swarm will not focus repeatedly on the same target; not permanent.",
+      "detailedEffect": "Up to 3 strikes, 6 damage each, controlled by the same scheduler. Does not drop bee stingers.",
       "mana": 20,
       "delay": 0.12,
       "recharge": 0,
@@ -16015,7 +16015,7 @@
         "control"
       ],
       "effect": "Leaves brief fog that frightens or blinds creatures, speeds up shadow creatures, and does not affect players.",
-      "detailedEffect": "Projectiles and Chain Lightning leave fog along their paths and at lightning impact points for 3-5s. Base radius is 2; Giant Shot and Shrink Shot scale both coverage and visuals. Players are unaffected. Small creatures freeze in fear for 1s, then wander in panic. Other creatures are blinded, sensing their normal enemies only within 3 units and briefly moving blindly after losing them. Shadow creatures resist control and gain 25% speed. Supported giants prefer native area attacks to disperse fog and try available alternatives during cooldowns. If all are cooling down, they wander in panic while covered and keep retrying. After 1s their bodies clear fog along their path; leaving fog ends the panic. Native damage and effects are preserved. Overlaps do not stack.",
+      "detailedEffect": "Projectiles and Chain Lightning leave fog along their paths and at lightning impact points for 3-5s. Base radius is 2; Giant Shot and Shrink Shot scale both coverage and visuals. Players are unaffected. Small creatures freeze in fear for 1s, then wander in panic. Other creatures are blinded, sensing their normal enemies only within 3 units and briefly moving blindly after losing them. Shadow creatures resist control and gain 25% speed. Supported giants prefer native area attacks to disperse fog and try available alternatives during cooldowns. If all are cooling down, they wander in panic while covered and keep retrying. After 2s their bodies clear fog along their path; leaving fog ends the panic. Native damage and effects are preserved. Overlaps do not stack.",
       "mana": 2,
       "delay": 0,
       "recharge": 0,
@@ -16505,7 +16505,7 @@
         "target"
       ],
       "effect": "Lets this spell group target hostile creatures.",
-      "detailedEffect": "This cast group can hit hostile creatures. Selection cards combine; explicitly selecting other players allows hitting them.",
+      "detailedEffect": "Hits and support effects in this cast group target hostile creatures. Each effect must still meet its own requirements; explicitly exempt effects are unaffected. Selection cards combine; explicitly selecting other players allows hitting them.",
       "mana": 2,
       "delay": 0,
       "recharge": 0,
@@ -16599,7 +16599,7 @@
         "target"
       ],
       "effect": "Lets this spell group target neutral creatures.",
-      "detailedEffect": "This cast group can hit neutral creatures. Selection cards combine; explicitly selecting other players allows hitting them.",
+      "detailedEffect": "Hits and support effects in this cast group target neutral creatures. Each effect must still meet its own requirements; explicitly exempt effects are unaffected. Selection cards combine; explicitly selecting other players allows hitting them.",
       "mana": 2,
       "delay": 0,
       "recharge": 0,
@@ -16693,7 +16693,7 @@
         "target"
       ],
       "effect": "Lets this spell group target friendly creatures.",
-      "detailedEffect": "This cast group can hit friendly creatures. Selection cards combine; explicitly selecting other players allows hitting them.",
+      "detailedEffect": "Hits and support effects in this cast group target friendly creatures. Each effect must still meet its own requirements; explicitly exempt effects are unaffected. Selection cards combine; explicitly selecting other players allows hitting them.",
       "mana": 2,
       "delay": 0,
       "recharge": 0,
@@ -16787,7 +16787,7 @@
         "target"
       ],
       "effect": "Lets this spell group target structures.",
-      "detailedEffect": "This cast group can hit structures. Selection cards combine; explicitly selecting other players allows hitting them.",
+      "detailedEffect": "Hits and support effects in this cast group target structures. Each effect must still meet its own requirements; explicitly exempt effects are unaffected. Selection cards combine; explicitly selecting other players allows hitting them.",
       "mana": 2,
       "delay": 0,
       "recharge": 0,
@@ -16881,7 +16881,7 @@
         "target"
       ],
       "effect": "Lets this spell group target natural objects.",
-      "detailedEffect": "This cast group can hit natural objects. Selection cards combine; explicitly selecting other players allows hitting them.",
+      "detailedEffect": "Hits and support effects in this cast group target natural objects. Each effect must still meet its own requirements; explicitly exempt effects are unaffected. Selection cards combine; explicitly selecting other players allows hitting them.",
       "mana": 2,
       "delay": 0,
       "recharge": 0,
@@ -16975,7 +16975,7 @@
         "target"
       ],
       "effect": "Lets this spell group target other players.",
-      "detailedEffect": "This cast group can hit other players. Selection cards combine; explicitly selecting other players allows hitting them.",
+      "detailedEffect": "Hits and support effects in this cast group target other players. Each effect must still meet its own requirements; explicitly exempt effects are unaffected. Selection cards combine; explicitly selecting other players allows hitting them.",
       "mana": 2,
       "delay": 0,
       "recharge": 0,
@@ -17069,7 +17069,7 @@
         "target"
       ],
       "effect": "Lets this spell group target the caster.",
-      "detailedEffect": "This cast group can hit self. Selection cards combine; explicitly selecting other players allows hitting them.",
+      "detailedEffect": "Hits and support effects in this cast group target self. Each effect must still meet its own requirements; explicitly exempt effects are unaffected. Selection cards combine; explicitly selecting other players allows hitting them.",
       "mana": 2,
       "delay": 0,
       "recharge": 0,
@@ -17616,7 +17616,7 @@
         "recovery"
       ],
       "effect": "Lets projectiles heal wounded allies on contact.",
-      "detailedEffect": "Heals an injured teammate or player follower for 8 and consumes the projectile. Attacks enemies normally.",
+      "detailedEffect": "By default, heals an injured teammate or player follower for 8 and consumes the projectile; attacks enemies normally. Target cards instead select injured, healable recipients by category.",
       "mana": 14,
       "delay": 0.05,
       "recharge": 0,
@@ -18751,8 +18751,8 @@
       "tagIds": [
         "trigger"
       ],
-      "effect": "Adds an impact-triggered payload to the next ordinary projectile.",
-      "detailedEffect": "The next normal ranged projectile releases preloaded spells on each valid enemy or wall hit. If it never successfully releases its payload, normal expiry releases it once. No extra expiry release after success.",
+      "effect": "Adds an impact-triggered payload to the next ordinary projectile or Chain Lightning.",
+      "detailedEffect": "Adds an impact payload to the next normal ranged projectile or Chain Lightning. Normal projectiles release it on each valid target or wall hit, or once on normal expiry if never successfully released. Chain Lightning releases it on each landed hit, with no release on empty hops or completion.",
       "mana": 10,
       "delay": 0.03,
       "recharge": 0,

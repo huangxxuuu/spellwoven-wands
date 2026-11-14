@@ -1,7 +1,8 @@
+local C=require("nw/constants/projectile_runtime").size
 local M={}
 function M.factor(p) return p and p.size_mult or 1 end
 function M.radius(p,age)
-    return ((p and p.hit_radius or .12)+(p and p.id=="grow_orb" and .3*math.min(1,age or 0) or 0))*M.factor(p)
+    return ((p and p.hit_radius or C.hit_radius)+(p and p.id=="grow_orb" and C.grow_radius*math.min(C.grow_max_age,age or 0) or 0))*M.factor(p)
 end
 function M.visual(inst,scale)
     local old=inst._nw_size or 1
@@ -22,7 +23,7 @@ function M.field(inst,p)
     local scale=M.factor(p)
     M.visual(inst,scale)
     if scale~=1 and not inst._nw_body_scaled then
-        inst:SetPhysicsRadiusOverride(inst:GetPhysicsRadius(.1)*scale)
+        inst:SetPhysicsRadiusOverride(inst:GetPhysicsRadius(C.physics_radius)*scale)
         inst._nw_body_scaled=true
     end
 end

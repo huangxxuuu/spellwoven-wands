@@ -1,4 +1,4 @@
--- Server-owned, tester-scoped fixed windows. No trial state survives a world reload.
+local C=require("nw/constants/training").trial
 local M={}
 local active=setmetatable({},{__mode="k"})
 local L=require("nw/locale")
@@ -30,13 +30,11 @@ end
 function M.advance(s,now)
     if s.started and not s.finished and now>=s.started+s.duration then s.finished=true end
     local elapsed=s.started and math.min(s.duration,math.max(0,now-s.started)) or 0
-    s.dps=s.damage/math.max(1,elapsed)
+    s.dps=s.damage/math.max(C.min_dps_seconds,elapsed)
 end
 function M.cast(owner,spent,now)
     local bag=active[owner]
     local s=bag and bag._nw_trial
-    -- Casting is counted as soon as the tester arms the bag. Only damage starts
-    -- the 10/30-second clock; misses and the first projectile's cost still count.
     if s and not s.finished and (not s.started or now<s.started+s.duration)
         and type(spent)=="number" and spent>=0 and spent<math.huge then
         s.mana=s.mana+spent
@@ -45,7 +43,6 @@ function M.cast(owner,spent,now)
         M.refresh(bag)
     end
 end
--- Replicate data, never server-language prose. Each viewer formats their own label.
 local function text(s)
     local name=s.tester.GetDisplayName and s.tester:GetDisplayName() or "Tester"
     local elapsed=s.started and math.min(s.duration,math.max(0,GetTime()-s.started)) or 0
@@ -65,7 +62,7 @@ function M.display(raw)
 end
 function M.refresh(bag)
     local s=bag._nw_trial
-    local code=not s and 0 or (s.duration==10 and 1 or 2)+(s.finished and 4 or s.started and 2 or 0)
+    local code=not s and 0 or (s.duration==C.short_duration and 1 or 2)+(s.finished and 4 or s.started and 2 or 0)
     bag._nw_trial_mode:set(code)
     bag._nw_trial_text:set(s and text(s) or "")
     if bag._nw_combo_refresh then bag._nw_combo_refresh() end
@@ -75,15 +72,14 @@ local function release(bag)
     if s and active[s.tester]==bag then active[s.tester]=nil end
 end
 function M.select(bag,player)
-    if not valid(player) or bag:HasTag("burnt") or not player:IsNear(bag,4) then return false end
+    if not valid(player) or bag:HasTag("burnt") or not player:IsNear(bag,C.select_distance) then return false end
     local inv=player.components.inventory
     if inv and inv:GetEquippedItem(EQUIPSLOTS.HANDS) then return false end
     local old=bag._nw_trial
     if old and old.tester~=player and valid(old.tester) and not old.finished then return false end
     local duration=old and old.duration
-    if not old or old.tester~=player then duration=10
-    elseif not old.started then duration=old.duration==10 and 30 or nil end
-    -- A tester cannot silently have mana assigned to two bags.
+    if not old or old.tester~=player then duration=C.short_duration
+    elseif not old.started then duration=old.duration==C.short_duration and C.long_duration or nil end
     if duration and active[player] and active[player]~=bag and not active[player]._nw_trial.finished then return false end
     release(bag)
     bag._nw_trial=duration and M.new(duration,player) or nil
@@ -96,7 +92,6 @@ function M.hit(bag,owner,amount)
     if s and M.damage(s,owner,amount,GetTime()) then M.refresh(bag) end
 end
 function M.setup(bag)
-    -- Native continuation attackers/weapons carry their original mod caster.
     local combat=bag.components.combat
     if combat then
         local key=combat.GetAttacked_Internal and "GetAttacked_Internal" or "GetAttacked"
@@ -119,10 +114,10 @@ function M.setup(bag)
         bag._nw_health_owner=previous
         return result
     end
-    bag:DoPeriodicTask(.1,function()
+    bag:DoPeriodicTask(C.refresh_interval,function()
         local s=bag._nw_trial
         if not s then return end
-        if not valid(s.tester) or bag:HasTag("burnt") or s.tester:GetDistanceSqToInst(bag)>30*30 then
+        if not valid(s.tester) or bag:HasTag("burnt") or s.tester:GetDistanceSqToInst(bag)>C.max_distance*C.max_distance then
             release(bag);bag._nw_trial=nil;M.refresh(bag);return
         end
         if s.started and not s.finished then M.advance(s,GetTime());M.refresh(bag) end
@@ -130,7 +125,7 @@ function M.setup(bag)
     bag:ListenForEvent("onremove",function() release(bag) end)
 end
 function M.install(env)
-    local a=Action({priority=15,rmb=true,distance=3})
+    local a=Action({priority=C.action_priority,rmb=true,distance=C.action_distance})
     a.id="NW_DUMMY_TRIAL";a.str=L.t("10秒测试")
     a.strfn=function(act)
         local code=act.target and act.target._nw_trial_mode:value() or 0
@@ -140,8 +135,6 @@ function M.install(env)
     STRINGS.ACTIONS.NW_DUMMY_TRIAL={TEN=L.t("10秒测试"),THIRTY=L.t("30秒测试"),
         COMBO=L.t("连击"),RESET=L.t("重置")}
     a.fn=function(act) return act.target and act.target.prefab=="nw_spell_punchingbag" and M.select(act.target,act.doer) end
-    -- DST replaces collectors sharing a mod/type/component slot. Recycle owns
-    -- SCENE/inspectable; the native punching bag also replicates health actions.
     env.AddComponentAction("SCENE","health",function(target,doer,actions,right)
         local inv=doer.replica and doer.replica.inventory or doer.components and doer.components.inventory
         local hand=inv and inv:GetEquippedItem(EQUIPSLOTS.HANDS)

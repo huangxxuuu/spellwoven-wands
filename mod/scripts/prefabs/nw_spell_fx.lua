@@ -1,3 +1,5 @@
+local C=require("nw/constants/prefabs").spell_fx
+local Light=require("nw/constants/modifiers").cards.light
 local assets={Asset("ANIM","anim/shock_fx.zip"),Asset("ANIM","anim/nw_electric_arc.zip"),Asset("ANIM","anim/nw_objects.zip"),Asset("ANIM","anim/explode.zip"),Asset("ANIM","anim/swap_spear.zip"),
     Asset("ANIM","anim/swap_glasscutter.zip"),Asset("ANIM","anim/swap_axe.zip")}
 local layout=require("nw/fx_layout")
@@ -24,7 +26,6 @@ local function setup_arc(inst)
         end
     end
 end
--- Purely visual ground contact. Never starts electrocution or forks native damage.
 local function ground_shock()
     local inst=CreateEntity()
     inst.entity:AddTransform();inst.entity:AddAnimState();inst.entity:AddNetwork()
@@ -33,8 +34,8 @@ local function ground_shock()
     inst.entity:SetCanSleep(false)
     inst.AnimState:PlayAnimation(GetElectrocuteFxAnim("small"))
     inst.AnimState:PushAnimation(GetElectrocuteFxAnim("small").."_pst",false)
-    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-    inst.AnimState:SetFinalOffset(1)
+    inst.AnimState:SetFinalOffset(C.ground_shock_offset)
+    require("nw/projectile_glow").attach(inst)
     inst.entity:SetPristine()
     if TheWorld.ismastersim then
         inst.persists=false
@@ -42,8 +43,6 @@ local function ground_shock()
     end
     return inst
 end
--- Same proxy/local-animation layout as native explode_small, but without its
--- independent SoundEmitter. The owning soft burst supplies one quieter sound.
 local function silent_explosion()
     local inst=CreateEntity()
     inst.entity:AddTransform();inst.entity:AddNetwork()
@@ -62,25 +61,25 @@ local function silent_explosion()
     end
     inst.entity:SetPristine()
     if not TheWorld.ismastersim then return inst end
-    inst.persists=false;inst:DoTaskInTime(1,inst.Remove)
+    inst.persists=false;inst:DoTaskInTime(C.silent_lifetime,inst.Remove)
     return inst
 end
 local function effect(name,animation,seconds,light)
     return Prefab(name,function()
         local inst=CreateEntity()
         inst.entity:AddTransform()
-        if name=="nw_moon_impact_fx" or name=="nw_soft_blast_fx" then inst.entity:AddSoundEmitter() end
+        if name=="nw_moon_impact_fx" or animation=="blast" then inst.entity:AddSoundEmitter() end
         if animation then
             inst.entity:AddAnimState()
             inst.AnimState:SetBank("nw_objects");inst.AnimState:SetBuild("nw_objects")
             inst.AnimState:PlayAnimation(animation)
             inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-            inst.AnimState:SetLightOverride(.85);inst.AnimState:SetFinalOffset(3)
+            inst.AnimState:SetLightOverride(C.light_override);inst.AnimState:SetFinalOffset(C.final_offset)
         end
         if light then
             inst.entity:AddLight()
-            inst.Light:SetRadius(2);inst.Light:SetIntensity(.75);inst.Light:SetFalloff(.65)
-            inst.Light:SetColour(1,.85,.53);inst.Light:Enable(true)
+            inst.Light:SetRadius(Light.radius);inst.Light:SetIntensity(C.light_intensity);inst.Light:SetFalloff(C.light_falloff)
+            inst.Light:SetColour(unpack(C.light_colour));inst.Light:Enable(true)
         end
         inst.entity:AddNetwork();inst:AddTag("FX");inst:AddTag("NOCLICK")
         if name=="nw_arc_fx" then
@@ -90,15 +89,10 @@ local function effect(name,animation,seconds,light)
                 inst.SetRadius=function()
                     if inst._nw_burst_started then return end
                     inst._nw_burst_started=true
-                    -- The field's end animation supplies stone fragments.
-                    -- Native explode_small proxies each play their own sound;
-                    -- use one positioned meteor impact instead of five blasts.
                     inst.SoundEmitter:PlaySound("dontstarve/common/meteor_impact")
                 end
             end
         elseif animation=="blast" then
-            -- Explosion art never draws a gameplay radius guide. This runs on
-            -- both peers, including late-spawned replicated effects.
             inst.AnimState:Hide("blast_extent")
             inst.AnimState:Hide("blast_burst")
             inst._radius=net_float(inst.GUID,"nw_blast.radius","nw_blastradiusdirty")
@@ -106,29 +100,15 @@ local function effect(name,animation,seconds,light)
                 local scale=layout.blast_scale(inst._radius:value())
                 inst.AnimState:SetScale(scale,scale)
             end
-            local burst=name=="nw_soft_blast_fx" and require("nw/burst_visual").attach(inst) or nil
+            local burst=require("nw/burst_visual").attach(inst)
             if TheWorld.ismastersim then
                 inst.SetRadius=function(_,radius)
                     inst._radius:set(radius);resize()
                     if inst._nw_burst_started then return end
                     inst._nw_burst_started=true
-                    if name=="nw_soft_blast_fx" then
-                        if burst then burst() end
-                        inst.SoundEmitter:PlaySound("dontstarve/common/blackpowder_explo",nil,.35)
-                    else
-                        local x,_,z=inst.Transform:GetWorldPosition()
-                        -- Native billboards retain their individual explosion sounds.
-                        for i=0,4 do
-                            local a=i*2.399
-                            local fx=SpawnPrefab("explode_small")
-                            if fx then
-                                local r=i==0 and 0 or radius*.38
-                                fx.Transform:SetPosition(x+math.cos(a)*r,.15,z+math.sin(a)*r)
-                                local scale=math.max(.25,radius/3)*(i==0 and 1.1 or .65)
-                                fx.Transform:SetScale(scale,scale,scale)
-                            end
-                        end
-                    end
+                    if burst then burst() end
+                    inst.SoundEmitter:PlaySound("dontstarve/common/blackpowder_explo",nil,
+                        name=="nw_soft_blast_fx" and C.soft_blast_volume or 1)
                 end
             else
                 inst:ListenForEvent("nw_blastradiusdirty",resize)
@@ -144,16 +124,16 @@ local function effect(name,animation,seconds,light)
         end
         if seconds then inst:DoTaskInTime(seconds,inst.Remove) end
         return inst
-    end,assets,name=="nw_soft_blast_fx" and {"nw_silent_explode_small"} or {"explode_small"})
+    end,assets)
 end
 local weapon_fx=require("nw/weapon_visual")
 local effects={Prefab("nw_ground_shock_fx",ground_shock,assets),
     Prefab("nw_silent_explode_small",silent_explosion,assets),
-    effect("nw_arc_fx",nil,.22),effect("nw_heal_fx","heal",.3),
-    effect("nw_blast_fx","blast",.32),effect("nw_lighter_burst_fx","blast",.32),effect("nw_afterlight",nil,3,true),
-    effect("nw_moon_impact_fx",nil,.8),
-    effect("nw_soft_blast_fx","blast",1),
-    effect("nw_crystal_burst_fx","blast",.32),
+    effect("nw_arc_fx",nil,C.arc_lifetime),effect("nw_heal_fx","heal",C.heal_lifetime),
+    effect("nw_blast_fx","blast",C.blast_lifetime),effect("nw_lighter_burst_fx","blast",C.blast_lifetime),effect("nw_afterlight",nil,Light.duration,true),
+    effect("nw_moon_impact_fx",nil,C.moon_impact_lifetime),
+    effect("nw_soft_blast_fx","blast",C.blast_lifetime),
+    effect("nw_crystal_burst_fx","blast",C.blast_lifetime),
     effect("nw_flyinglight",nil,nil,true)}
 local function reel_fx(name,build,symbol,anim)
     return Prefab(name,function()

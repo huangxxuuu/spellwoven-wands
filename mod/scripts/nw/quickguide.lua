@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui").guide
 local M={}
 function M.open()
     local T=require("nw/locale").t
@@ -17,13 +18,13 @@ function M.open()
         {text=T("关闭"),cb=function() TheFrontEnd:PopScreen() end},
     },nil,nil,"dark")
     local root=screen.proot
-    local gold={.91,.75,.39,1}
-    local cream={.92,.89,.80,1}
-    screen.title:SetPosition(0,242);screen.title:SetSize(30);screen.title:SetColour(unpack(gold))
+    local gold=C.gold
+    local cream=C.cream
+    screen.title:SetPosition(0,C.title_y);screen.title:SetSize(C.title_size);screen.title:SetColour(unpack(gold))
     screen.bg:Kill()
     screen.bg=root:AddChild(require("widgets/nw_wandframe")())
-    screen.bg:SetSize(720,580);screen.bg:SetClickable(false);screen.bg:MoveToBack()
-    screen.menu:SetPosition(-100,-249)
+    screen.bg:SetSize(C.width,C.height);screen.bg:SetClickable(false);screen.bg:MoveToBack()
+    screen.menu:SetPosition(C.menu_x,C.menu_y)
     local function label(parent,size,value,x,y,width,height,colour)
         local text=parent:AddChild(Text(UIFONT,size,value))
         text:SetPosition(x,y);text:SetColour(unpack(colour or cream));text:SetClickable(false)
@@ -32,48 +33,45 @@ function M.open()
     end
     local function rule(parent,y,width)
         local image=parent:AddChild(Image("images/global.xml","square.tex"))
-        image:SetSize(width or 620,1);image:SetPosition(0,y);image:SetTint(.43,.34,.22,1);image:SetClickable(false)
+        image:SetSize(width or C.rule_width,C.rule_height);image:SetPosition(0,y);image:SetTint(unpack(C.rule_colour));image:SetClickable(false)
         return image
     end
-    -- Native Text hover buttons are sized once; resize after every choice change
-    -- and keep their hit area clear of both arrows (also for read-only spinners).
     screen.option_tip=function(spinner,tip)
-        spinner.text:SetHoverText(tip,{font=UIFONT,font_size=17,colour=cream,
-            region_w=460,region_h=160,wordwrap=true,offset_x=-150,offset_y=70})
+        spinner.text:SetHoverText(tip,{font=UIFONT,font_size=C.hover_font,colour=cream,
+            region_w=C.hover_width,region_h=C.hover_height,wordwrap=true,offset_x=C.hover_x,offset_y=C.hover_y})
         if spinner.text.hover then
             local w,h=spinner.text:GetRegionSize()
-            spinner.text.hover.image:ScaleToSize(math.min(w,spinner.width-2*spinner.height-12),h)
+            spinner.text.hover.image:ScaleToSize(math.min(w,spinner.width-2*spinner.height-C.hover_padding),h)
         end
     end
     screen.text_colour=cream
-    rule(root,174);rule(root,-215)
+    rule(root,C.top);rule(root,C.bottom)
     local guide=root:AddChild(Widget("nw_guide_content"))
     local personal=root:AddChild(Widget("nw_personal_settings"));personal:Hide()
     screen.guide,screen.personal=guide,personal
-    -- The introduction contains only the three buildings, with consistent rows.
     local rows={
         {"nw_workbench",T("奥术台"),L("制作法杖与法术卡，装配法术组合。\n在炼金引擎旁制作。","Craft wands and spell cards; assemble spell combinations.\nCraft beside an Alchemy Engine.")},
         {"nw_engraver",T("武器刻印台"),L("将武器和工具刻成对应法术卡。\n在炼金引擎旁制作。","Turn weapons and tools into matching spell cards.\nCraft beside an Alchemy Engine.")},
         {"nw_disassembler",T("奥术分解炉"),L("回收地面上的法术卡与法杖。\n在炼金引擎旁制作。","Recycle spell cards and wands placed on the ground.\nCraft beside an Alchemy Engine.")},
     }
     for i,row in ipairs(rows) do
-        local row_height=(174-(-215))/#rows
-        local y=174-(i-.5)*row_height
+        local row_height=(C.top-C.bottom)/#rows
+        local y=C.top-(i-.5)*row_height
         local pic=guide:AddChild(Image("images/nw_guide.xml",row[1]..".tex"))
-        pic:SetSize(84,84);pic:SetPosition(-266,y);pic:SetClickable(false)
-        label(guide,23,row[2],35,y+25,460,32,gold):SetHAlign(ANCHOR_LEFT)
-        label(guide,18,row[3],35,y-20,460,72):SetHAlign(ANCHOR_LEFT)
-        if i<3 then rule(guide,174-i*row_height) end
+        pic:SetSize(C.icon_size,C.icon_size);pic:SetPosition(C.icon_x,y);pic:SetClickable(false)
+        label(guide,C.row_title_size,row[2],C.row_title_x,y+C.row_title_y,C.row_title_width,C.row_title_height,gold):SetHAlign(ANCHOR_LEFT)
+        label(guide,C.row_body_size,row[3],C.row_title_x,y+C.row_body_y,C.row_title_width,C.row_body_height):SetHAlign(ANCHOR_LEFT)
+        if i<#rows then rule(guide,C.top-i*row_height) end
     end
 
-    label(personal,16,L("仅影响自己，自动保存到本机。","Only affects you. Preferences save on this device."),0,147,620,36)
-    local heading=label(personal,18,T("施法方向"),-150,97,310,34)
+    label(personal,C.notice_size,L("仅影响自己，自动保存到本机。","Only affects you. Preferences save on this device."),0,C.notice_y,C.notice_width,C.notice_height)
+    local heading=label(personal,C.label_size,T("施法方向"),C.label_x,C.direction_y,C.label_width,C.label_height)
     heading:SetHAlign(ANCHOR_LEFT)
     local direction=personal:AddChild(Spinner({
         {text=T("目标选择"),data="target"},
         {text=T("鼠标方向"),data="mouse"},
-    },250,34,{font=UIFONT,size=18},false,nil,nil,true))
-    direction:SetPosition(175,97);direction:SetTextColour(unpack(cream));direction:SetWrapEnabled(true)
+    },C.spinner_width,C.spinner_height,{font=UIFONT,size=C.spinner_size},false,nil,nil,true))
+    direction:SetPosition(C.spinner_x,C.direction_y);direction:SetTextColour(unpack(cream));direction:SetWrapEnabled(true)
     screen.direction=direction
     local descriptions={
         target=T("选中物体时，朝它脚下施法。\n指着 Boss 头部，也会瞄准脚下。\n无目标时，朝鼠标地面点施法。"),
@@ -88,12 +86,12 @@ function M.open()
     end
     direction:SetOnChangedFn(function(value) Direction.set(value);refresh_direction() end)
     local spec=Settings.trail_spec
-    local trail_heading=label(personal,18,L(spec.zh,spec.en),-150,43,310,34)
+    local trail_heading=label(personal,C.label_size,L(spec.zh,spec.en),C.label_x,C.trail_y,C.label_width,C.label_height)
     trail_heading:SetHAlign(ANCHOR_LEFT)
     local options={}
     for i,value in ipairs(spec.options) do options[i]={text=Settings.option_text(value),data=value} end
-    local trail=personal:AddChild(Spinner(options,250,34,{font=UIFONT,size=18},false,nil,nil,true))
-    trail:SetPosition(175,43);trail:SetTextColour(unpack(cream));trail:SetWrapEnabled(true)
+    local trail=personal:AddChild(Spinner(options,C.spinner_width,C.spinner_height,{font=UIFONT,size=C.spinner_size},false,nil,nil,true))
+    trail:SetPosition(C.spinner_x,C.trail_y);trail:SetTextColour(unpack(cream));trail:SetWrapEnabled(true)
     screen.trail_limit=trail
     local tip=L(unpack(spec.tip)).."\n"..L("立即生效，自动保存到本机。","Applies immediately and saves on this device.")
     local function refresh_trail()
@@ -104,9 +102,9 @@ function M.open()
     end
     trail:SetOnChangedFn(function(value) Trail.set(value);refresh_trail() end)
     refresh_trail();Trail.load(refresh_trail)
-    label(personal,18,L("限制触发时角色说话","Character speech on spell limits"),-150,-11,310,34):SetHAlign(ANCHOR_LEFT)
-    local speech=personal:AddChild(Spinner({{text=L("关闭","Off"),data=false},{text=L("开启","On"),data=true}},250,34,{font=UIFONT,size=18},false,nil,nil,true))
-    speech:SetPosition(175,-11);speech:SetTextColour(unpack(cream));speech:SetWrapEnabled(true)
+    label(personal,C.label_size,L("限制触发时角色说话","Character speech on spell limits"),C.label_x,C.speech_y,C.label_width,C.label_height):SetHAlign(ANCHOR_LEFT)
+    local speech=personal:AddChild(Spinner({{text=L("关闭","Off"),data=false},{text=L("开启","On"),data=true}},C.spinner_width,C.spinner_height,{font=UIFONT,size=C.spinner_size},false,nil,nil,true))
+    speech:SetPosition(C.spinner_x,C.speech_y);speech:SetTextColour(unpack(cream));speech:SetWrapEnabled(true)
     screen.limit_speech=speech
     local function refresh_speech()
         if screen.inst:IsValid() then speech:SetSelectedIndex(Feedback.enabled and 2 or 1) end
@@ -155,11 +153,11 @@ function M.open()
     end
     local titles={guide=L("向导","Guide"),personal=L("个人设置","Personal settings"),performance=L("全局性能设置","Global performance")}
     for i,key in ipairs(order) do
-        local x=(i-2)*214
-        local button=root:AddChild(Button());button:SetFont(UIFONT);button:SetTextSize(21)
-        button:SetText(titles[key]);button:SetPosition(x,198);button:SetOnClick(function() screen.select_page(key) end)
+        local x=(i-2)*C.tab_spacing
+        local button=root:AddChild(Button());button:SetFont(UIFONT);button:SetTextSize(C.tab_size)
+        button:SetText(titles[key]);button:SetPosition(x,C.tab_y);button:SetOnClick(function() screen.select_page(key) end)
         screen.tabs[key]=button
-        local mark=rule(root,174,180);mark:SetPosition(x,174);mark:SetTint(unpack(gold));marks[key]=mark
+        local mark=rule(root,C.top,C.tab_rule_width);mark:SetPosition(x,C.top);mark:SetTint(unpack(gold));marks[key]=mark
         if i>1 then
             button:SetFocusChangeDir(MOVE_LEFT,screen.tabs[order[i-1]])
             screen.tabs[order[i-1]]:SetFocusChangeDir(MOVE_RIGHT,button)

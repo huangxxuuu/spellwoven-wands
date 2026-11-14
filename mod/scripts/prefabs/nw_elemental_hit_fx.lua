@@ -1,16 +1,14 @@
--- A replicated contact cue only; damage and payloads remain on the projectile.
+local C=require("nw/constants/prefabs").elemental_hit
+local Elemental=require("nw/constants/native").elemental
 local Flight=require("nw/elemental_flight")
 local assets={Asset("ANIM","anim/nw_elemental_flight.zip")}
-local LIFETIME=6/30
+local LIFETIME=Elemental.clip_frames/Elemental.frame_rate
 local names={"fire","frost","arrow","heavy","scatter",
     "gust","spore_ball","flint_lance","slime","grow_orb","heal_bolt","star_vortex",
     "glass_disc","land_hook","tri_electric","end_beam","soundwave","bee_swarm","fireflies"}
 local codes={}
 for code,id in ipairs(names) do codes[id]=code end
-local scale={fire=.85,frost=.7,arrow=.7,heavy=.85,scatter=.55,
-    gust=.75,spore_ball=.85,flint_lance=.75,slime=.75,grow_orb=.85,heal_bolt=.75,
-    star_vortex=.7,glass_disc=.7,land_hook=.65,tri_electric=.7,end_beam=.6,
-    soundwave=.85,bee_swarm=.5,fireflies=.5}
+local scale=C.scale
 
 local function fn()
     local inst=CreateEntity()
@@ -29,11 +27,11 @@ local function fn()
     local function refresh()
         if TheNet:IsDedicated() then return end
         local id=names[inst._kind:value()]
-        if not id then return end -- Wait for the complete replicated cue.
+        if not id then return end
         local now=GetTime()
         started=started or now
         local age=math.max(0,now-started)
-        if age>=LIFETIME-.00001 then
+        if age>=LIFETIME-Elemental.expiry_epsilon then
             if visual then visual:Hide() end
             if task then task:Cancel();task=nil end
             return
@@ -48,7 +46,7 @@ local function fn()
             visual.AnimState:SetBuild("nw_elemental_flight")
             visual.AnimState:SetOrientation(ANIM_ORIENTATION.BillBoard)
             visual.AnimState:SetLightOverride(1)
-            task=inst:DoPeriodicTask(1/30,refresh)
+            task=inst:DoPeriodicTask(1/Elemental.frame_rate,refresh)
         end
         visual.Transform:SetPosition(0,inst._height:value(),0)
         local size=math.max(1,inst._size:value())*scale[id]
@@ -57,7 +55,6 @@ local function fn()
         if face~=direction or id~=animation then
             direction,animation=face,id
             visual.AnimState:PlayAnimation(id.."_hit_dir_"..face)
-            -- Camera changes and dirty packets must not replay a contact.
             visual.AnimState:SetTime(age)
         end
     end

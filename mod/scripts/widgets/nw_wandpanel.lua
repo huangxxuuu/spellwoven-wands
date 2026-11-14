@@ -1,3 +1,4 @@
+local C=require("nw/constants/ui").nw_wandpanel
 local Widget=require("widgets/widget")
 local Row=require("widgets/nw_slotrow")
 local Editing=require("nw/editing")
@@ -8,17 +9,17 @@ local Panel=Class(Widget,function(self,bar)
     Widget._ctor(self,"nw_wandpanel")
     self.bar=bar
     self.frame=self:AddChild(require("widgets/nw_wandframe")())
-    self.frame:SetPosition(0,16)
+    self.frame:SetPosition(unpack(C.frame_position))
     self.row=self:AddChild(Row(Layout.slot,function() end,Layout.slot_step))
     self.status=self:AddChild(require("widgets/nw_wandstatus")())
     local T=require("nw/locale").t
     self.manual=self:AddChild(require("widgets/textbutton")())
-    self.manual:SetFont(UIFONT);self.manual:SetTextSize(24);self.manual:SetText(T("向导"))
+    self.manual:SetFont(UIFONT);self.manual:SetTextSize(unpack(C.manual_text_size));self.manual:SetText(T("向导"))
     self.manual:SetHoverText(T("入门向导与个人设置"))
     self.manual:SetOnClick(function() require("nw/quickguide").open() end)
     self.count=2
     self:Hide()
-    self.inst:DoPeriodicTask(.10,function() self:Refresh() end)
+    self.inst:DoPeriodicTask(C.refresh_period,function() self:Refresh() end)
     Position.load(function(value)
         if self.inst:IsValid() and not self.position_touched then self.saved_position=value end
     end)
@@ -41,18 +42,18 @@ function Panel:Refresh()
     local count=#self.row.spells
     if self.count~=count or not self.frame_width then
         self.count=count;self.frame_width=Layout.frame_width(count)
-        self.frame:SetSize(self.frame_width,142)
-        self.manual:SetPosition(-self.frame_width/2+48,Layout.status_y)
+        self.frame:SetSize(self.frame_width,C.frame_height)
+        self.manual:SetPosition(-self.frame_width/2+C.manual_x_inset,Layout.status_y)
     end
     self:PlaceWindow()
     self.row:PlaceHover()
-    if not self.checked or GetTime()-self.checked>=.25 then
+    if not self.checked or GetTime()-self.checked>=C.near_check_period then
         self.near=Editing.near(p);self.checked=GetTime()
     end
     local request=p._nw_edit_request
     local hint
     if request and request.wand==require("nw/edit_protocol").id(w) and request.done and not request.ok
-        and GetTime()-request.time<2 then hint=require("nw/edit_protocol").messages[request.code] end
+        and GetTime()-request.time<C.hint_duration then hint=require("nw/edit_protocol").messages[request.code] end
     self.status:Refresh(w,self.near,hint)
 end
 
@@ -60,14 +61,14 @@ function Panel:PlaceWindow()
     local sw,sh=TheSim:GetScreenSize()
     local width,bottom,top=Layout.bounds(self.count)
     local parent_scale=self.parent:GetScale()
-    local fit=math.min(1,(sw-12)/(width*parent_scale.x),(sh-12)/((top-bottom)*parent_scale.y))
+    local fit=math.min(1,(sw-C.screen_margin)/(width*parent_scale.x),(sh-C.screen_margin)/((top-bottom)*parent_scale.y))
     if self.fit~=fit then self.fit=fit;self:SetScale(fit) end
     local scale=self:GetScale()
     local x,y
     if self.saved_position then x,y=self.saved_position.x*sw,self.saved_position.y*sh
     else
         local row_y=self.bar.toprow and self.bar.toprow:GetPosition().y or 0
-        self:SetPosition(0,row_y+100)
+        self:SetPosition(0,row_y+C.default_y_offset)
         local p=self:GetWorldPosition();x,y=p.x,p.y
     end
     x,y=Position.clamp(x,y,width*scale.x,bottom*scale.y,top*scale.y,sw,sh)
@@ -122,7 +123,7 @@ function Panel:OnUpdate(dt)
             or TheFrontEnd:GetActiveScreen()~=drag.owner.HUD then self:StopWindowDrag()
         else
             local p=TheInput:GetScreenPosition()
-            if GetTime()-drag.time>=.15 and (drag.moved or (p.x-drag.x)^2+(p.y-drag.y)^2>=9) then
+            if GetTime()-drag.time>=C.drag_delay and (drag.moved or (p.x-drag.x)^2+(p.y-drag.y)^2>=C.drag_distance_squared) then
                 local sw,sh=TheSim:GetScreenSize()
                 drag.moved=true;self.position_touched=true
                 self.saved_position={version=1,x=(p.x+drag.dx)/sw,y=(p.y+drag.dy)/sh}
