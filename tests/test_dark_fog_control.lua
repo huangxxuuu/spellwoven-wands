@@ -44,7 +44,8 @@ local function entity(kind, x, z)
     end
     function e:PushEvent(name, data)
         if name == "doattack" then self.attacks = self.attacks + 1 end
-        for fn in pairs(self.events[name] or {}) do fn(self, data) end
+        local copy = {}; for fn in pairs(self.events[name] or {}) do copy[#copy+1] = fn end
+        for _, fn in ipairs(copy) do fn(self, data) end
     end
     function e:StartUpdatingComponent() end
     function e:StopUpdatingComponent() end
@@ -123,7 +124,7 @@ assert(Control.classify(fixedboss) == "shadow")
 tick(fixedboss, 9); assert(fixedboss._nw_dark_control.speed_unavailable)
 Control.leave(fixedboss)
 
--- Continuous union coverage cannot renew fear; a quick edge crossing has cooldown.
+-- Continuous union coverage cannot renew fear; exit grants a fixed immunity.
 local rabbit = entity("rabbit"); rabbit.action = {}; rabbit.loco_action = {}
 tick(rabbit, 10); assert(rabbit._nw_dark_control.phase == "fear_hold")
 assert(rabbit.moves == 0 and rabbit.action == nil and rabbit.loco_action == nil)
@@ -131,8 +132,9 @@ tick(rabbit, 10.9); assert(rabbit.moves == 0)
 tick(rabbit, 11); assert(rabbit.moves == 1)
 tick(rabbit, 11.2); assert(rabbit._nw_dark_control.entered == 10)
 tick(rabbit, 11.3, false); assert(not rabbit._nw_dark_control and not next(rabbit.reasons))
-tick(rabbit, 11.4); assert(rabbit._nw_dark_control.phase == "blind_wander")
-Control.leave(rabbit); tick(rabbit, 13); assert(rabbit._nw_dark_control.phase == "fear_hold")
+tick(rabbit, 11.4); assert(not rabbit._nw_dark_control)
+Control.leave(rabbit); tick(rabbit, 21.29); assert(not rabbit._nw_dark_control)
+tick(rabbit, 21.3); assert(rabbit._nw_dark_control.phase == "fear_hold")
 Control.leave(rabbit); Control.leave(rabbit)
 
 local shadow = entity("crawlinghorror"); shadow.tags.epic = true
@@ -142,6 +144,9 @@ tick(shadow, 20); tick(shadow, 21)
 assert(shadow.speed == 1.25 and shadow.speed_calls == 1 and not next(shadow.reasons))
 assert(shadow.components.combat.target == player and shadow.components.combat.SetTarget == original_set)
 tick(shadow, 21.1, false); assert(not shadow.speed)
+tick(shadow, 30); assert(not shadow.speed and shadow.speed_calls == 1)
+tick(shadow, 31.1); assert(shadow.speed == 1.25 and shadow.speed_calls == 2)
+Control.leave(shadow)
 
 -- Near hostile candidate comes from the original targetfn, not CanTarget alone.
 local hound, far, close = entity(), entity("player", 9), entity("player", 2)
@@ -206,6 +211,9 @@ frozen.components.combat:SetTarget(far); assert(frozen.components.combat.target 
 local sleeping = entity(); tick(sleeping, 60)
 sleeping.asleep = true; sleeping:PushEvent("entitysleep")
 assert(not sleeping._nw_dark_control and not next(sleeping.reasons))
+sleeping.asleep = false; tick(sleeping, 69.9); assert(not sleeping._nw_dark_control)
+tick(sleeping, 70); assert(sleeping._nw_dark_control)
+Control.leave(sleeping)
 local removed = entity(); tick(removed, 60)
 removed.RestartBrain = function() error("retiring entity must not rejoin BrainManager") end
 removed.removed = true; removed:PushEvent("onremove")
@@ -216,6 +224,7 @@ removed_shadow.components.locomotor.RemoveExternalSpeedMultiplier = function()
 end
 removed_shadow:PushEvent("onremove")
 assert(not removed_shadow._nw_dark_control)
+assert(not require("nw/dark_fog_immunity").is_immune(removed_shadow), "onremove clears immunity even before IsValid flips")
 local dead = entity(); tick(dead, 60); dead.dead = true; dead:PushEvent("death")
 assert(not dead._nw_dark_control)
 
@@ -247,6 +256,80 @@ assert(boss.components.combat.SetTarget == boss_set)
 boss.components.combat:SetTarget(far); assert(boss.components.combat.target == far)
 Control.leave(boss); assert(not boss._nw_dark_control)
 package.loaded["nw/dark_fog_boss"] = previous_boss
+
+-- Real region/control integration: union exits, immediate expiry, rebuilt
+-- pools and periodic scanning all share the same per-creature deadline.
+local Fog = require("nw/dark_fog")
+local Immunity = require("nw/dark_fog_immunity")
+local world = entity("world"); world.ismastersim = true; TheWorld = world
+function world:DoPeriodicTask(_, fn)
+    return { fn = fn, Cancel = function(self) self.cancelled = true end }
+end
+local creatures = {}
+TheSim = { FindEntities = function() return creatures end }
+local function cloud(x, lifetime)
+    local source = entity("cloud", x)
+    function source:DoTaskInTime(delay, fn)
+        local task = { fn = function() fn(self) end, delay = delay,
+            Cancel = function(self) self.cancelled = true end }
+        return task
+    end
+    return Fog.register(source, { userid = "immunity-test" }, lifetime or 4)
+end
+local function scan(t) clock = t; Fog.refresh(world) end
+local union = entity("rabbit"); creatures = { union }
+clock = 100
+local left, right = cloud(-1), cloud(1)
+scan(100); assert(union._nw_dark_control)
+Fog.dissipate(left)
+assert(union._nw_dark_control and not Immunity.is_immune(union), "remaining overlap keeps one affected session")
+local old_task = world._nw_dark_fog.task
+clock = 101; Fog.dissipate(right)
+assert(not union._nw_dark_control and Immunity.is_immune(union) and not world._nw_dark_fog)
+assert(old_task.cancelled, "zero clouds release the shared scan while immunity survives")
+local replacement = cloud(0)
+scan(102); assert(Fog.contains(world, union) and not union._nw_dark_control)
+for _, t in ipairs({ 103, 105, 110.99 }) do
+    union.x = 20; scan(t); union.x = 0; scan(t)
+    assert(not union._nw_dark_control and Immunity.is_immune(union), "immune edge crossings never extend or remove the deadline")
+end
+clock = 111; world._nw_dark_fog.task.fn()
+assert(union._nw_dark_control and not Immunity.is_immune(union), "periodic scan reapplies at exactly ten seconds in existing fog")
+-- Trigger the actual source expiry callback, including zero-pool cleanup.
+clock = 112; replacement._nw_dark_expiry.fn()
+assert(Immunity.is_immune(union) and not union._nw_dark_control and not world._nw_dark_fog)
+clock = 122; assert(not Immunity.is_immune(union))
+replacement = cloud(0); union.x = 20; scan(122)
+assert(not union._nw_dark_control)
+union.x = 0; scan(123); assert(union._nw_dark_control, "entry after expiry applies immediately")
+clock = 124; Fog.dissipate(replacement)
+
+-- Never-affected entities do not get an exit cooldown. Deferred disabled
+-- control and unsupported bosses must remain eligible when they can act.
+local deferred = entity("rabbit")
+deferred.components.freezable = { IsFrozen = function() return true end }
+creatures = { deferred }; replacement = cloud(0); scan(130)
+assert(deferred._nw_dark_control and not deferred._nw_dark_control.active)
+Fog.dissipate(replacement); assert(not Immunity.is_immune(deferred))
+deferred.components.freezable = nil; replacement = cloud(0); scan(130.1)
+assert(deferred._nw_dark_control.active)
+deferred.components.freezable = { IsFrozen = function() return true end }; scan(130.2)
+assert(not deferred._nw_dark_control.active and not Immunity.is_immune(deferred))
+deferred.components.freezable = nil; scan(130.3)
+assert(deferred._nw_dark_control.active and not Immunity.is_immune(deferred), "temporary suspension retains the covered session")
+deferred.tags.shadow = true; scan(130.4)
+assert(not deferred._nw_dark_control and not deferred.speed and Immunity.is_immune(deferred), "classification change cannot bypass new immunity in the same tick")
+Fog.dissipate(replacement)
+local fresh, unsupported = entity(), entity("unadapted_boss"); unsupported.tags.epic = true
+creatures = { fresh, unsupported }; replacement = cloud(0); scan(140)
+assert(fresh._nw_dark_control and not unsupported._nw_fog_boss_wait)
+Fog.dissipate(replacement)
+assert(not Immunity.is_immune(unsupported))
+fresh.dead = true; fresh:PushEvent("death")
+assert(not Immunity.is_immune(fresh), "dead creatures cannot retain effective immunity")
+local removed_immune = entity(); tick(removed_immune, 150); tick(removed_immune, 151, false)
+removed_immune.removed = true; removed_immune:PushEvent("onremove")
+assert(not Immunity.is_immune(removed_immune))
 
 -- Expose fixtures only to the optional authoritative combat/retarget runner.
 if NativeCombat then

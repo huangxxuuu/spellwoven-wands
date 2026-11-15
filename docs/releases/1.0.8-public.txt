@@ -1,0 +1,15 @@
+织法之杖 1.0.8
+
+暗雾的效果看起来有些过强，这次稍作调整：
+
+1. 法力消耗：2 → 25。
+2. 持续时间：3～5 秒 → 2～4 秒。
+3. 增加 10 秒的暗雾影响冷却：生物摆脱暗雾影响后的 10 秒内，不会再次受到影响。
+
+Spellwoven Wands 1.0.8
+
+Dark Fog seems a bit too strong, so we're tuning it down slightly:
+
+1. Mana cost: 2 → 25.
+2. Duration: 3–5 seconds → 2–4 seconds.
+3. Adds a 10-second cooldown before creatures can be affected again: after Dark Fog's effects end, creatures are immune to them for 10 seconds.

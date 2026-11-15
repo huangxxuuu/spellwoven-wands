@@ -1,0 +1,35 @@
+Release v1.0.8
+
+基线与对外说明
+- 相对最近成功正式版1.0.7冻结包整理；发布前Mod玩法差异新增1、修改9、删除0，共307文件。正式准备另同步modinfo.lua版本与日期至1.0.8。
+- 2026-11-15用户明确给出本轮对外说明：暗雾略作削弱，耗蓝2→25、寿命3～5→2～4秒，生物摆脱影响后10秒内不再受影响。中英文正文见1.0.8-public.txt。
+- 用户已确认对外说明并要求发布1.0.8。本文件记录完整改动与开发验收；正式prepare、commit、publish状态及冻结检查结果以发布回执为准。
+
+完整改动
+- 同步暗雾卡牌与实际雾区寿命常量，耗蓝25、雾团随机持续2～4秒。
+- 新增dark_fog_immunity.lua，普通生物、暗影加速和Boss共用脱离后的10秒免疫。重复进出不延期，到期仍在雾中由共享扫描重新生效；覆盖并集未退出不计离雾，未受影响实体不凭空获得免疫，雾池重建保留截止。
+- Boss主动调度、自然攻击接入和延迟命中批次激活均检查免疫。等待转施法不触发免疫；已提交原生攻击及已启动有限身体扫雾沿原生命周期结算。
+- 实体休眠解除效果后开始免疫，唤醒不重置；冻结等临时保护保留当前会话。死亡/移除清理，包括onremove时IsValid仍为真的边界。
+- 免疫使用服务端弱键临时记录和游戏时间，无额外逐生物计时任务，不存档。
+- 更新中英文简述与详细说明；详细说明引用control.exit_immunity，简述遵守无数字约定。同步本地双语图鉴、导出参数、开发导航、实现与未发布记录；README版本/下载链接和资料站中英文更新记录同步1.0.8已确认说明。
+- 补齐普通控场、Boss、覆盖并集、周期到期、生命周期及参数说明回归；实服新增兔子与独眼巨鹿真实10秒免疫场景，区分新雾与合并旧雾的寿命，并核验Boss驱雾早于自然到期。
+
+- 一并纳入此前未发布的开发工具改动：tools/run_tests.py新增--syntax-only，可选择mod/tests精确Lua文件、只编译不执行，支持去重/--list/路径边界检查并保持静默总结；tests/test_run_tests.py补充对应CLI回归。AGENTS.md、开发导航、验证安装及子代理规范同步按批次测试与共享回执的节奏。
+- 纳入1.0.7发布准备记录归档，更新当前发布状态与完整清单；参数文档适用版本同步1.0.8。
+- 按用户本轮另行明确要求，在工坊中英文描述最开头增加普通正文声明：本模组会极大幅度降低战斗难度，可通过mod设置调整难度与伤害数值以适配个人体验。该描述已通过独立metadata工具发布并回读核验，未改变标题、封面、可见性或内容文件。
+
+已有开发验收
+- 252个Lua文件语法、120项Lua全量通过：test_reports/lua-tests-jhkrqh1k/output.log。
+- 1项Python常量检查通过：test_reports/python_tests_20261115_184715_0b66ffe08a92429f9eb68cefd7f7cb3a.log。
+- 913翻译词条、占位符、玩法/编号语言一致性、188双语卡、154配方、3难度、224图集格通过：test_reports/quiet-check-ar7v_vtp.log。
+- 普通生物原版控制、247组Boss原生伤害/时序对照、28项guard通过：test_reports/quiet-check-_j7xydp6.log、test_reports/dark_fog_native_lua.json。
+- 隔离专服163.266秒内输出NW_DARK_FOG_PASS；兔子与Boss免疫返雾抑制、到期留雾自动恢复、真实驱雾、已有Boss/身体扫雾/延迟攻击与fallback回归通过：test_reports/dark_fog_immunity_server.log。
+- 最终烟测脚本语法通过：test_reports/lua-tests-78kqbbmz/output.log。10个暗雾相关Lua与隔离测试安装哈希一致：test_reports/dark_fog_immunity_runtime_hashes.json。
+- 首次全量的简述数字约定失败已修复并重跑通过；首次专服的合并旧雾寿命fixture失败已修复，最终专服通过，失败日志保留于test_reports/server_smoke_dark_fog_failure_merged_deadline.log。
+
+验证边界
+- 测试工具Python回归14项通过：test_reports/python_tests_20261115_190455_1068870f1b424254967eb98a8d934e9e.log。
+- 工坊描述独立发布通过：test_reports/2026-11-15-workshop-combat-disclaimer.json；中英文完整文本匹配，普通正文前置，其他元数据/内容保留。
+- 开发回执按测试节奏复用；正式prepare独立执行Lua、资源、本地化、站点、打包及发布流程检查。
+- 未同步常用游戏安装；图形客户端、远端联机、跨世界及高弹幕性能未重新验收。
+- 本轮代码发布同步GitHub、Steam内容/更新记录/版本标签及公开资料站；工坊封面、标题、描述与可见性保持不变。

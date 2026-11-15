@@ -1,4 +1,5 @@
 local C=require("nw/constants/fog_boss").wait
+local Immunity=require("nw/dark_fog_immunity")
 local M = { reason = "nw_fog_boss_wait", interval = C.interval, body_delay = C.body_delay, body_duration = C.body_duration }
 local runners={bearger=true,mutatedbearger=true,warg=true,mutatedwarg=true,daywalker2=true,spat=true}
 local function other_action(inst)
@@ -83,6 +84,7 @@ local function start_body(inst, now, x, z)
     tick()
 end
 function M.leave(inst)
+    Immunity.leave(inst)
     M.stop(inst)
 end
 local function walk(inst,state,now)
@@ -124,7 +126,8 @@ function M.prune_target(inst)
     end
 end
 function M.start(inst, now, poll)
-    if inst._nw_fog_boss_wait or not inst.components.locomotor then return false end
+    if inst._nw_fog_boss_wait or not inst.components.locomotor or Immunity.is_immune(inst, now) then return false end
+    Immunity.mark(inst, now)
     local x,z=position(inst)
     local state={started=now,x=x,z=z,events={}}
     inst._nw_fog_boss_wait=state
@@ -141,7 +144,7 @@ function M.start(inst, now, poll)
         local time=GetTime()
         if incapacitated(inst) then M.stop(inst);return end
         local Fog=require("nw/dark_fog")
-        if not Fog.contains(TheWorld,inst) then M.stop(inst);return end
+        if not Fog.contains(TheWorld,inst) then M.leave(inst);return end
         if M.can_move(inst) then M.prune_target(inst) end
         if poll(inst,time) or inst._nw_fog_boss_wait~=state then
             state.suspended=true

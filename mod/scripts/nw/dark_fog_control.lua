@@ -1,5 +1,6 @@
 local C=require("nw/constants/dark_fog").control
 local Profiles = require("nw/dark_fog_profiles")
+local Immunity = require("nw/dark_fog_immunity")
 local M = { radius = C.radius, fear_time = C.fear_time, blind_time = C.blind_time, shadow_speed = C.shadow_speed }
 local REASON = "nw_fog_control"
 local fear_cooldowns = setmetatable({}, { __mode = "k" })
@@ -97,6 +98,7 @@ end
 
 function M.leave(inst)
     if not inst then return end
+    Immunity.leave(inst)
     local state = inst._nw_dark_control
     if not state then
         if inst._nw_fog_boss_covered or inst._nw_fog_boss_cast or inst._nw_fog_boss_wait then
@@ -125,6 +127,7 @@ local function activate(inst, state)
     if state.kind == "shadow" then
         local loco = inst.components.locomotor
         if loco then
+            Immunity.mark(inst)
             loco:SetExternalSpeedMultiplier(inst, REASON, M.shadow_speed)
             state.speed = true
         else
@@ -132,6 +135,7 @@ local function activate(inst, state)
         end
         return
     end
+    Immunity.mark(inst)
     inst:StopBrain(REASON)
     state.stopped_brain = true
     install_filters(inst, state)
@@ -157,7 +161,13 @@ local function enter(inst, kind, now)
     end
     inst._nw_dark_control = state
     state.onleave = function() M.leave(inst) end
-    state.onremove = function() state.removing = true; M.leave(inst) end
+    state.onremove = function()
+        state.removing = true
+        -- onremove can run while IsValid() is still true; cleanup must not
+        -- manufacture an immunity record for the retiring entity.
+        Immunity.clear(inst)
+        M.leave(inst)
+    end
     if inst.ListenForEvent then
         for _, event in ipairs(lifecycle) do
             inst:ListenForEvent(event, event == "onremove" and state.onremove or state.onleave)
@@ -228,10 +238,14 @@ end
 function M.update(inst, now, covered)
     if TheWorld and not TheWorld.ismastersim then return end
     if not covered then M.leave(inst); return end
+    if Immunity.is_immune(inst, now) then return end
     local kind = M.classify(inst)
     if not kind then M.leave(inst); return end
     local state = inst._nw_dark_control
-    if state and state.kind ~= kind then M.leave(inst); state = nil end
+    if state and state.kind ~= kind then
+        M.leave(inst); state = nil
+        if Immunity.is_immune(inst, now) then return end
+    end
     if kind == "large" then
         require("nw/dark_fog_boss").update(inst, now, covered)
         return

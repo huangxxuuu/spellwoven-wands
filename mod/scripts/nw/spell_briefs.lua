@@ -1,6 +1,6 @@
 local M={}
 local text={
-dark={"沿途留下短暂黑雾，使生物恐惧或目盲；暗影生物加速，玩家不受影响。","Leaves brief fog that frightens or blinds creatures, speeds up shadow creatures, and does not affect players."},
+dark={"沿途留下短暂黑雾，使生物恐惧或目盲；暗影生物加速，玩家不受影响。生物（含巨兽）脱离影响后短暂免疫。","Leaves brief fog that frightens or blinds creatures, speeds up shadow creatures, and does not affect players. Creatures, including bosses, gain brief immunity after the effects end."},
 pitch_octave_up={"将同组乐器音升高一个八度；升降先抵消，最终最多升降一个八度。","Raises this group's notes by an octave; shifts cancel before clamping to one octave up or down."},
 pitch_octave_down={"将同组乐器音降低一个八度；升降先抵消，最终最多升降一个八度。","Lowers this group's notes by an octave; shifts cancel before clamping to one octave up or down."},
 pitch_semitone_up={"将同组乐器音升高一个半音；升降先抵消，最终最多升降一个八度。","Raises this group's notes by a semitone; shifts cancel before clamping to one octave up or down."},

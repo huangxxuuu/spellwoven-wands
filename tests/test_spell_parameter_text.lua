@@ -6,6 +6,7 @@ local Modifiers=require("nw/constants/modifiers")
 local Projectiles=require("nw/constants/projectiles")
 local Runtime=require("nw/constants/projectile_runtime")
 local Fields=require("nw/constants/field_runtime")
+local Dark=require("nw/constants/dark_fog")
 local Info=require("nw/spell_info")
 local function contains(text,fragment) assert(text:find(fragment,1,true),text.." missing "..fragment) end
 for _,language in ipairs({"zh","en"}) do
@@ -46,6 +47,13 @@ for _,language in ipairs({"zh","en"}) do
     text=P.effect("edge_yoth_lance",D.spells.edge_yoth_lance)
     contains(text,language=="zh" and "三个目标" or "three targets")
     Projectiles.engraved_special.lance_hits=hits
+    local immunity=Dark.control.exit_immunity
+    Dark.control.exit_immunity=13
+    text=P.effect("dark",D.spells.dark)
+    contains(text,language=="zh" and "脱离暗雾影响后免疫 13 秒" or "immune for 13s")
+    contains(text,language=="zh" and "到期仍在雾中或再次入雾" or "being inside fog or entering it")
+    contains(Info.brief("dark"),language=="zh" and "脱离影响后短暂免疫" or "gain brief immunity after the effects end")
+    Dark.control.exit_immunity=immunity
     assert(not pcall(P.format,"{missing}",{}))
     local near=Copy(D.spells.near_homing)
     near.radius,near.acceleration,near.damping,near.turn_rate=9,30,2,180

@@ -1,4 +1,4 @@
-"""Execute pure rules with Lua 5.1, not Python reimplementations."""
+"""Check Lua 5.1 syntax or execute pure rules without Python reimplementations."""
 import argparse
 import json
 import os
@@ -41,7 +41,34 @@ def select_tests(names, root=ROOT):
     return result
 
 
-def _execute_tests(paths, result_path):
+def select_syntax_files(names, root=ROOT):
+    """Select Lua sources under mod/ or tests/ without requiring test entries."""
+    root = root.resolve()
+
+    def allowed(path):
+        try:
+            relative = path.relative_to(root)
+        except ValueError:
+            return False
+        return (len(relative.parts) > 1 and relative.parts[0] in ("mod", "tests") and path.suffix == ".lua"
+                and path.is_file() and path.resolve() == path)
+
+    selected = []
+    for name in names:
+        relative = Path(name)
+        if relative.anchor or ".." in relative.parts or not allowed(root / relative):
+            raise ValueError(f"Invalid Lua syntax target: {name}; expected an existing mod/ or tests/ .lua file")
+        path = root / relative
+        if path not in selected:
+            selected.append(path)
+    if not names:
+        selected = sorted(path for path in (root / "mod").rglob("*.lua") if allowed(path))
+    if not selected:
+        raise ValueError("No Lua syntax targets found (expected mod/**/*.lua)")
+    return selected
+
+
+def _execute_tests(paths, result_path, syntax_only=False):
     """Child process: keep native Lua stdout/stderr inside the parent's log."""
     result = {"syntax": 0, "passed": 0, "failed": 0}
     phase = "Lua 5.1 runtime initialization"
@@ -49,13 +76,13 @@ def _execute_tests(paths, result_path):
     try:
         lua = runtime()
         syntax = lua.eval("function(source, name) local fn, err = loadstring(source, name); assert(fn, err); return true end")
-        files = sorted((ROOT / "mod").rglob("*.lua"))
+        files = paths if syntax_only else sorted((ROOT / "mod").rglob("*.lua"))
         for path in files:
             phase = f"syntax {path.relative_to(ROOT).as_posix()}"
             syntax(path.read_text(encoding="utf-8"), str(path))
             result["syntax"] += 1
         print(f"Lua 5.1 syntax: {len(files)} files OK", flush=True)
-        for path in paths:
+        for path in (() if syntax_only else paths):
             phase = path.relative_to(ROOT).as_posix()
             marker = f"--- RUN {phase} ---"
             print(marker, flush=True)
@@ -89,7 +116,7 @@ def _summarize_traceback(detail, log_path, limit=8000):
     return detail[:head] + notice + detail[-(budget - head):]
 
 
-def run_tests(paths, verbose=False):
+def run_tests(paths, verbose=False, syntax_only=False):
     """Capture in a subprocess so Lua C stdio cannot bypass Python redirection."""
     started = time.perf_counter()
     reports = ROOT / "test_reports"
@@ -100,6 +127,8 @@ def run_tests(paths, verbose=False):
     result_path = report_dir / "result.json"
     command = [sys.executable, str(Path(__file__).resolve()), "--_worker",
                "--_root", str(ROOT), "--_result", str(result_path)]
+    if syntax_only:
+        command.append("--syntax-only")
     command.extend(path.relative_to(ROOT).as_posix() for path in paths)
     child_env = os.environ.copy()
     child_env.update(PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
@@ -128,7 +157,8 @@ def run_tests(paths, verbose=False):
         detail = result.get("traceback", "Worker failed; see full log.")
         print(_summarize_traceback(detail, log_path), file=sys.stderr)
     sys.stderr.flush()
-    print(f"Lua 5.1: syntax={result['syntax']} passed={result['passed']} "
+    label = "Lua 5.1 syntax-only" if syntax_only else "Lua 5.1"
+    print(f"{label}: syntax={result['syntax']} passed={result['passed']} "
           f"failed={max(result['failed'], int(failed))} elapsed={time.perf_counter() - started:.2f}s "
           f"log={log_path}", flush=True)
     return int(failed)
@@ -137,9 +167,11 @@ def run_tests(paths, verbose=False):
 def main(argv=None):
     global ROOT
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("tests", nargs="*", metavar="tests/test_NAME.lua",
-                        help="exact repository-relative test paths; default: all Lua tests")
-    parser.add_argument("--list", action="store_true", help="list selected tests without executing checks")
+    parser.add_argument("tests", nargs="*", metavar="PATH",
+                        help="exact repository-relative Lua paths; default: all tests (mod/**/*.lua with --syntax-only)")
+    parser.add_argument("--syntax-only", action="store_true",
+                        help="compile Lua sources without executing them; accepts mod/ or tests/ .lua paths")
+    parser.add_argument("--list", action="store_true", help="list selected targets without executing checks")
     parser.add_argument("--verbose", action="store_true", help="show complete test output (default: summary and failures only)")
     parser.add_argument("--_worker", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--_root", type=Path, help=argparse.SUPPRESS)
@@ -148,7 +180,8 @@ def main(argv=None):
     if args._root is not None:
         ROOT = args._root.resolve()
     try:
-        paths = select_tests(args.tests, ROOT)
+        paths = (select_syntax_files(args.tests, ROOT) if args.syntax_only
+                 else select_tests(args.tests, ROOT))
     except ValueError as exc:
         parser.error(str(exc))
     if args.list:
@@ -156,8 +189,8 @@ def main(argv=None):
             print(path.relative_to(ROOT).as_posix())
         return 0
     if args._worker:
-        return _execute_tests(paths, args._result)
-    return run_tests(paths, verbose=args.verbose)
+        return _execute_tests(paths, args._result, syntax_only=args.syntax_only)
+    return run_tests(paths, verbose=args.verbose, syntax_only=args.syntax_only)
 
 
 if __name__ == "__main__":

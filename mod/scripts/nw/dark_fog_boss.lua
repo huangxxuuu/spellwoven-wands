@@ -1,5 +1,6 @@
 local C=require("nw/constants/dark_fog").boss
 local M = {}
+local Immunity = require("nw/dark_fog_immunity")
 local REASON = "nw_fog_boss"
 local Wait = require("nw/dark_fog_boss_wait")
 local Extra = require("nw/dark_fog_boss_extra")
@@ -50,7 +51,9 @@ local function ready(token)
     local Fog=require("nw/dark_fog")
     if token.pending_coverage then
         local owner=token.owner
-        if not (owner and owner:IsValid() and Fog.contains(token.world,owner)) then return false end
+        if not (owner and owner:IsValid() and not Immunity.is_immune(owner)
+            and Fog.contains(token.world,owner)) then return false end
+        Immunity.mark(owner)
         token.pending_coverage=nil
     end
     return true
@@ -69,6 +72,7 @@ local function finish(inst, token)
 end
 
 local function begin(inst, spec, now, brain_owned, move)
+    Immunity.mark(inst, now)
     local token=inst._nw_fog_boss_pending
     if not token or token.spec~=spec then token={spec=spec,move=move or spec,world=TheWorld} end
     token.pending_coverage=nil
@@ -107,7 +111,7 @@ local function active_token(inst, state)
     local sg, spec = inst.sg, specs[inst.prefab]
     if not (sg and spec and (state == nil or sg.currentstate.name == state)) then return nil end
     if not token and M.supports(inst) and TheWorld and TheWorld.ismastersim
-        and require("nw/dark_fog").contains(TheWorld, inst) then
+        and not Immunity.is_immune(inst) and require("nw/dark_fog").contains(TheWorld, inst) then
         local move = state_move(spec, sg.currentstate.name)
         if move then
             token = begin(inst, spec, GetTime(), nil, move)
@@ -168,7 +172,7 @@ local function install_combat(self)
         self.SetTarget = function(component, target, ...)
             local inst = component.inst
             local cast = inst._nw_fog_boss_cast
-            if target and (inst._nw_fog_boss_wait or cast and cast.brain_owned)
+            if target and not Immunity.is_immune(inst) and (inst._nw_fog_boss_wait or cast and cast.brain_owned)
                 and not Wait.target_in_range(inst, target) then return end
             return settarget(component, target, ...)
         end
@@ -527,7 +531,7 @@ local function install_graph(name, graph)
             if spec and accepted[spec] and spec.states[name_here] then
                 local native_move=state_move(spec,name_here)
                 if not token and native_move and TheWorld and TheWorld.ismastersim and M.supports(inst)
-                    and require("nw/dark_fog").contains(TheWorld,inst) then
+                    and not Immunity.is_immune(inst) and require("nw/dark_fog").contains(TheWorld,inst) then
                     token=begin(inst,spec,GetTime(),nil,native_move)
                 end
                 if token and token.spec==spec then inst.sg.statemem._nw_fog_boss_token=token end
@@ -609,6 +613,7 @@ end
 
 function M.leave(inst)
     if inst then
+        Immunity.leave(inst)
         inst._nw_fog_boss_covered = nil
         Wait.leave(inst)
     end
@@ -631,6 +636,7 @@ end
 
 function M.update(inst, now, covered)
     if not covered then M.leave(inst); return false end
+    if Immunity.is_immune(inst, now) then return false end
     if not (TheWorld and TheWorld.ismastersim and M.supports(inst)) then return false end
     if inst._nw_fog_boss_cast then return false end
     if inst._nw_fog_boss_wait then return false end

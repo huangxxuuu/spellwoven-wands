@@ -108,6 +108,69 @@ class RunTestsTests(unittest.TestCase):
         self.assertIn("stack traceback", failed.stderr)
         self.assertIn("passed=1 failed=1", failed.stdout)
 
+    def syntax_cli(self, *args):
+        script = self.root / "tools/run_tests.py"
+        if not script.exists():
+            script.parent.mkdir()
+            shutil.copy2(ROOT / "tools/run_tests.py", script)
+        return subprocess.run([sys.executable, str(script), "--syntax-only", *args],
+                              cwd=self.root.parent, capture_output=True, text=True)
+
+    def test_syntax_only_cli_default_compiles_nested_mod_without_tests_or_execution(self):
+        shutil.rmtree(self.root / "tests")
+        (self.root / "mod/scripts").mkdir()
+        sentinel = self.root / "executed.txt"
+        (self.root / "mod/scripts/source.lua").write_text(
+            f"local f = assert(io.open([[{sentinel.as_posix()}]], 'w')); f:write('executed'); "
+            "error('source executed')", encoding="utf-8")
+        (self.root / "mod/second.lua").write_text("assert(_VERSION == 'Lua 5.1')", encoding="utf-8")
+        result = self.syntax_cli()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(len(result.stdout.splitlines()), 1)
+        self.assertIn("Lua 5.1 syntax-only: syntax=2 passed=0 failed=0", result.stdout)
+        self.assertEqual(result.stderr, "")
+        self.assertFalse(sentinel.exists())
+        log = Path(result.stdout.strip().split("log=", 1)[1]).read_text(encoding="utf-8")
+        self.assertIn("Lua 5.1 syntax: 2 files OK", log)
+        self.assertNotIn("--- RUN", log)
+
+    def test_syntax_only_cli_selection_dedup_list_and_lua51_errors(self):
+        (self.root / "mod/broken.lua").write_text("goto label", encoding="utf-8")
+        (self.root / "tests/helper.lua").write_text("error('helper executed')", encoding="utf-8")
+        selected = self.syntax_cli("tests/helper.lua", "tests/helper.lua")
+        self.assertEqual(selected.returncode, 0, selected.stderr)
+        self.assertIn("syntax-only: syntax=1 passed=0 failed=0", selected.stdout)
+        listed = self.syntax_cli("mod/broken.lua", "tests/helper.lua", "mod/broken.lua", "--list")
+        self.assertEqual(listed.returncode, 0, listed.stderr)
+        self.assertEqual(listed.stdout.splitlines(), ["mod/broken.lua", "tests/helper.lua"])
+        default_list = self.syntax_cli("--list")
+        self.assertEqual(default_list.returncode, 0, default_list.stderr)
+        self.assertEqual(default_list.stdout.strip(), "mod/broken.lua")
+        self.assertEqual(len(list((self.root / "test_reports").iterdir())), 1)
+        failed = self.syntax_cli()
+        self.assertEqual(failed.returncode, 1)
+        self.assertIn("syntax mod/broken.lua", failed.stderr)
+        self.assertIn("LuaError", failed.stderr)
+        self.assertIn("syntax-only: syntax=0 passed=0 failed=1", failed.stdout)
+        self.assertLess(len(failed.stdout) + len(failed.stderr), 17000)
+        verbose = self.syntax_cli("--verbose")
+        self.assertEqual(verbose.returncode, 1)
+        self.assertIn("Traceback", verbose.stdout)
+
+    def test_syntax_only_cli_rejects_invalid_paths(self):
+        (self.root / "mod/not_lua.txt").write_text("", encoding="utf-8")
+        (self.root / "outside.lua").write_text("", encoding="utf-8")
+        empty = self.syntax_cli()
+        self.assertEqual(empty.returncode, 2, empty.stderr)
+        self.assertIn("No Lua syntax targets", empty.stderr)
+        for name in ("mod/missing.lua", "mod/not_lua.txt", "outside.lua", "../outside.lua",
+                     str(self.root / "tests/helper.lua"), "mod", ".", "mod/*.lua"):
+            with self.subTest(name=name):
+                result = self.syntax_cli(name)
+                self.assertEqual(result.returncode, 2, result.stderr)
+                self.assertIn("Invalid Lua syntax target", result.stderr)
+                self.assertNotIn("Traceback", result.stderr)
+
 
     def test_native_output_is_quiet_logged_and_verbose_is_complete(self):
         (self.root / "tools").mkdir()

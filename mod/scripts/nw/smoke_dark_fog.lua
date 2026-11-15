@@ -30,10 +30,13 @@ function M.run()
     end
     local function wait(seconds) coroutine.yield(seconds or .1) end
     local function cloud(owner, px, pz)
-        local e = remember(Fog.leave(owner, px, pz))
+        local e = Fog.leave(owner, px, pz)
+        local reused = seen[e]
+        remember(e)
         local record = assert(TheWorld._nw_dark_fog.sources[e], "registered fog")
         local remaining = record.expires - GetTime()
-        assert(remaining >= 3 - FRAMES and remaining <= 5 + FRAMES, "server lifetime 3-5 seconds")
+        assert(remaining >= (reused and .5 or 2) - FRAMES and remaining <= 4 + FRAMES,
+            "new server lifetime 2-4 seconds; merged cloud retains its original deadline")
         assert(not record.parent and e.entity:GetParent() == nil, "fixed ground fog has no carrier")
         assert(not e.persists and not e.Light and e._nw_dark_dissipating, "transient network region without light")
         return e, record
@@ -103,6 +106,33 @@ function M.run()
             for key, value in pairs(grue.immunity) do assert(immunity[key] == value, "fog adds no grue immunity") end
             assert(not player._nw_dark_control and not grue._nw_dark_fog, "player excluded from fog control")
         end
+        local Immunity = require("nw/dark_fog_immunity")
+        local function immune_return(e, px, pz, exited, label, is_boss)
+            assert(Immunity.is_immune(e), label.." gains immunity on exit")
+            position(e, px, pz)
+            local next_cloud = 0
+            while GetTime() < exited + 9.8 do
+                position(e, px, pz)
+                if GetTime() >= next_cloud then cloud(player, px, pz); next_cloud = GetTime() + .5 end
+                wait(.1)
+                assert(Fog.contains(TheWorld, e), label.." remains physically inside renewed fog")
+                assert(Immunity.is_immune(e) and not e._nw_dark_control
+                    and not e._nw_fog_boss_cast and not e._nw_fog_boss_wait,
+                    label.." ignores fog throughout ten-second immunity")
+            end
+            if is_boss then e:RestartBrain("nw_dark_smoke") end
+            cloud(player, px, pz)
+            local deadline = exited + 10.5
+            local function controlled()
+                return is_boss and (e._nw_fog_boss_cast or e._nw_fog_boss_wait) or e._nw_dark_control
+            end
+            repeat
+                position(e, px, pz)
+                wait(FRAMES)
+            until controlled() or GetTime() >= deadline
+            assert(not Immunity.is_immune(e) and controlled(),
+                label.." periodic refresh reapplies control after ten seconds without another entry")
+        end
 
         local rabbit = spawn("rabbit", x + 1, z)
         idle_fixture(rabbit)
@@ -140,8 +170,10 @@ function M.run()
         Fog.refresh(TheWorld)
         assert(not rabbit._nw_dark_control and not (rabbit._brainstopped and rabbit._brainstopped.nw_fog_control), "exit removes own brain reason")
         assert(rabbit._brainstopped and rabbit._brainstopped.nw_dark_smoke, "independent brain stop survives")
+        immune_return(rabbit, x + 2, z, GetTime(), "rabbit")
         rabbit:Remove(); second:Remove(); player_unchanged()
-        print("NW_DARK_FOG_STAGE: rabbit passed")
+        clear_fog()
+        print("NW_DARK_FOG_STAGE: rabbit fear, exit immunity, return immunity and timed reentry passed")
 
         local sx, sz, dx, dz = lane()
         local hound = spawn("hound", sx, sz)
@@ -225,7 +257,7 @@ function M.run()
                 and e.entity:GetParent() == nil, "trail regions remain fixed on ground")
             local previous = sampled[e]
             if previous then assert(math.abs(ex-previous.x) < .01 and math.abs(ez-previous.z) < .01, "old region does not follow shot") end
-            assert(record.expires - GetTime() <= 5, "no twelve-second terminal region")
+            assert(record.expires - GetTime() <= 4, "no twelve-second terminal region")
             local along = (ex-sx)*dx + (ez-sz)*dz
             minalong, maxalong = math.min(minalong, along), math.max(maxalong, along)
         end
@@ -246,6 +278,10 @@ function M.run()
             and not queue_boss._nw_fog_boss_wait,"fog must not cancel native non-combat travel")
         clear_fog();loco:SetBufferedAction(nil)
         assert(failed==1,"native travel failure callback fixture")
+        queue_boss:Remove()
+        queue_boss=spawn("bearger",sx,sz)
+        wait(.3);queue_boss.sg:GoToState("idle")
+        loco=queue_boss.components.locomotor
         local chase=BufferedAction(queue_boss,player,ACTIONS.ATTACK)
         chase:AddFailAction(function() failed=failed+1 end)
         loco:SetBufferedAction(chase)
@@ -348,13 +384,16 @@ function M.run()
         dragon.components.combat:StartAttack()
         dragon.sg:GoToState("walk")
         assert(dragon.components.combat:InCooldown(), "ordinary swing cooldown fixture")
-        local df = cloud(player, sx + dx * 5, sz + dz * 5)
+        local df = spawn("nw_dark_fog", sx + dx * 5, sz + dz * 5)
+        Fog.register(df, player, 4)
+        local df_expires = TheWorld._nw_dark_fog.sources[df].expires
         Fog.refresh(TheWorld)
         assert(dragon._nw_fog_boss_cast and dragon.sg.currentstate.name == "pound_pre",
             "pursuing dragonfly starts defensive pound despite ordinary swing cooldown")
         local dragon_deadline = GetTime() + 2.8
         while df:IsValid() and not df._nw_dark_inactive and GetTime() < dragon_deadline do wait(.1) end
         assert(df._nw_dark_inactive, "native dragonfly damage rings disperse fog before expiry")
+        assert(GetTime() < df_expires, "dragonfly dispersal precedes natural expiry")
         dragon_deadline = GetTime() + 4
         while dragon._nw_fog_boss_cast and GetTime() < dragon_deadline do wait(.1) end
         assert(not dragon._nw_fog_boss_cast and not (dragon._brainstopped and dragon._brainstopped.nw_fog_boss),
@@ -373,15 +412,25 @@ function M.run()
         boss.Transform:SetRotation(-math.atan2(dz, dx) / DEGREES)
         boss.components.combat:SetTarget(nil)
         boss.components.combat:ResetCooldown()
-        local bf = cloud(player, sx + dx * 7.5, sz + dz * 7.5)
+        local bf = spawn("nw_dark_fog", sx + dx * 7.5, sz + dz * 7.5)
+        Fog.register(bf, player, 4)
+        local bf_expires = TheWorld._nw_dark_fog.sources[bf].expires
         Fog.refresh(TheWorld)
         assert(boss._nw_fog_boss_cast and boss.sg.currentstate.name == "attack", "native deerclops fog attack starts")
         local deadline = GetTime() + 2.8
         while bf:IsValid() and not bf._nw_dark_inactive and GetTime() < deadline do wait(.1) end
         assert(bf._nw_dark_inactive, "native delayed ice hit dissipates before natural expiry")
+        assert(GetTime() < bf_expires, "deerclops native hit precedes natural expiry")
         if bf:IsValid() then assert(bf._nw_dark_dissipating:value(), "boss hit synchronizes fade flag") end
+        local boss_exit = GetTime()
+        assert(Immunity.is_immune(boss), "native boss fog dispel grants immunity")
+        boss:StopBrain("nw_dark_smoke")
+        deadline = GetTime() + 4
+        while boss._nw_fog_boss_cast and GetTime() < deadline do wait(FRAMES) end
+        assert(not boss._nw_fog_boss_cast, "native committed ice attack completes during immunity")
+        immune_return(boss, sx + dx * 6, sz + dz * 6, boss_exit, "deerclops", true)
         boss:Remove(); clear_fog()
-        print("NW_DARK_FOG_STAGE: boss passed")
+        print("NW_DARK_FOG_STAGE: native boss dispel, return immunity and timed reentry passed")
 
         local lifetimes, low, high, expires = {}, math.huge, 0, 0
         for i = 1, 6 do
@@ -678,7 +727,7 @@ function M.run()
         elseif coroutine.status(thread) == "dead" then
             cleanup()
             assert(not TheWorld._nw_dark_fog, "fog cleanup")
-            print("NW_DARK_FOG_PASS: player/grue exclusion, rabbit fear/overlap/exit, hound perception, shadow speed, static projectile trail, dragonfly pursuit/cooldown/pound, native boss ice hit, 3-5s lifetimes/net fade, card 224 save/recipe; client appearance not asserted")
+            print("NW_DARK_FOG_PASS: player/grue exclusion, rabbit and Boss ten-second exit immunity/return/periodic expiry, hound perception, shadow speed, static projectile trail, dragonfly pursuit/cooldown/pound, native boss ice hit, 2-4s lifetimes/net fade, card 224 save/recipe; client appearance not asserted")
         else
             TheWorld:DoTaskInTime(delay, resume)
         end

@@ -20,7 +20,7 @@ local function entity()
     function e:GetPhysicsRadius() return 1.5 end
     function e:ListenForEvent(event,fn)
         self.listeners[event]=self.listeners[event] or {};self.listeners[event][fn]=true
-        self.events[event]=function() local copy={};for f in pairs(self.listeners[event] or {}) do copy[#copy+1]=f end;for _,f in ipairs(copy) do f() end end
+        self.events[event]=function() local copy={};for f in pairs(self.listeners[event] or {}) do copy[#copy+1]=f end;for _,f in ipairs(copy) do f(self) end end
     end
     function e:RemoveEventCallback(event,fn)
         local list=self.listeners[event];if list then list[fn]=nil;if not next(list) then self.events[event]=nil end end
@@ -68,13 +68,15 @@ end))
 ready=true;tick(e,.4,1)
 assert(not e._nw_fog_boss_wait and e._brainstopped.cast and not e._brainstopped[Wait.reason] and e.restarts==0,
     "ready skill takes ownership before releasing waiting brain reason")
+assert(not require("nw/dark_fog_immunity").is_immune(e), "waiting-to-cast ownership transfer is not an exit")
 
 e=entity();Wait.start(e,0,no_move);e.inside=false;Wait.leave(e)
 assert(not e._nw_fog_boss_wait and e.restarts==1)
 e=entity();Wait.start(e,0,no_move);tick(e,1.8)
 assert(e._nw_fog_boss_wait,"ordinary panic remains coverage driven")
 e.inside=false;Wait.leave(e);assert(not e._nw_fog_boss_wait)
-e.inside=true;assert(Wait.start(e,3.3,no_move),"reentry may start waiting again");Wait.stop(e)
+e.inside=true;assert(not Wait.start(e,3.3,no_move),"immune reentry cannot restart waiting")
+time=11.8;assert(Wait.start(e,time,no_move),"reentry may start waiting again after immunity");Wait.stop(e)
 
 e=entity();Wait.start(e,0,no_move);local count=#paths;tick(e,2.1,100)
 assert(#paths==count+1 and paths[#paths][1]==100 and paths[#paths][3]==100,"teleport never sweeps intervening world")
@@ -97,6 +99,7 @@ e=entity();Wait.start(e,0,no_move);e.stopped=false
 local travel={};e.components.locomotor.bufferedaction=travel;local walks=e.walks;tick(e,.6)
 assert(not e._nw_fog_boss_wait and e.components.locomotor.bufferedaction==travel
     and e.walks==walks and not e.stopped,"preserve an external locomotor travel action")
+assert(not require("nw/dark_fog_immunity").is_immune(e), "temporary yielding inside fog does not create exit immunity")
 -- Fully committed native actions remain protected even after their tags
 -- disappear, including an idle-tagged minotaur charge recovery.
 for _,name in ipairs({"attack","chomp","run_stop","hit","talk"}) do

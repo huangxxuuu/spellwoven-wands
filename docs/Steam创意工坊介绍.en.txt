@@ -1,3 +1,5 @@
+This mod dramatically reduces the difficulty of combat. You can adjust the difficulty and damage values in the mod settings to create a combat experience that suits you.
+
 [h1]Spellwoven Wands: Weave Your Next Spell[/h1]
 [b]Version 1.0.0 is out now[/b]
 [url=https://huangxxuuu.github.io/spellwoven-wands/en/]English field guide & full spell catalog[/url] | [url=https://github.com/huangxxuuu/spellwoven-wands/issues]Report an issue[/url]

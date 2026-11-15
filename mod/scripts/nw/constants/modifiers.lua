@@ -28,7 +28,7 @@ return {
         giant_shot={flag="giant",mana=16,delay=0.05},
         short_life={lifetime_mult=0.5,mana=6,delay=0},
         homing_rotate={flag="homing_rotate",radius=8,turn_rate=360,mana=8,delay=0.02},
-        dark={flag="dark",radius=2,duration_min=3,duration=5,mana=2,delay=0},
+        dark={flag="dark",radius=2,duration_min=2,duration=4,mana=25,delay=0},
         shrink_shot={flag="shrink",mana=16,delay=0.05},
         wild_charge={recharge=-0.18,tier=1,spread_add=10,mana=4},
         long_life={lifetime_mult=1.35,tier=2,mana=8},

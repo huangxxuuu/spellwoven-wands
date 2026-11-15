@@ -17,7 +17,17 @@ local function entity(prefab)
     function e:IsValid() return not self.removed end
     function e:IsInLimbo() return self.limbo end
     function e:IsAsleep() return self.asleep end
-    function e:ListenForEvent(name, fn) self.events[name] = fn end
+    e.listeners = {}
+    function e:ListenForEvent(name, fn)
+        self.listeners[name] = self.listeners[name] or {}; self.listeners[name][fn] = true
+        self.events[name] = function(owner, data)
+            local copy = {}; for callback in pairs(self.listeners[name]) do copy[#copy+1] = callback end
+            for _, callback in ipairs(copy) do callback(owner, data) end
+        end
+    end
+    function e:RemoveEventCallback(name, fn)
+        if self.listeners[name] then self.listeners[name][fn] = nil end
+    end
     function e:StopBrain(reason) self.stops = self.stops + 1; self._brainstopped = self._brainstopped or {}; self._brainstopped[reason] = true end
     function e:RestartBrain(reason)
         self.restarts = self.restarts + 1
@@ -96,12 +106,14 @@ gp:DestroyRing(ordinary.pt, 1, {}, true, true, false, false, false, ordinary.hit
 assert(gp.damage == 2 and #notifications == 1, "ordinary attacks retain damage without clearing fog")
 e._brainstopped = nil; e.sg:GoToState("idle")
 e.timer="GroundPound"
-assert(Boss.update(e, 1, true) and e.sg.currentstate.name=="attack", "native skill cooldown does not block another usable move")
+clock=10
+assert(Boss.update(e, 10, true) and e.sg.currentstate.name=="attack", "native skill cooldown does not block another usable move after immunity")
 e.timer=nil
-e.sg:GoToState("idle");clock=9
-assert(Boss.update(e, 9, true))
+e.sg:GoToState("idle");clock=19
+assert(Boss.update(e, 19, true))
 e.sg:GoToState("idle");clock=99;assert(Boss.update(e, 99, true), "continuous coverage remains responsive")
-e.sg:GoToState("idle");Boss.leave(e);clock=100;assert(Boss.update(e, 100, true));clock=0
+e.sg:GoToState("idle");Boss.leave(e);clock=100;assert(not Boss.update(e, 100, true))
+clock=109;assert(Boss.update(e, 109, true));clock=0
 e.events.entitysleep(e); assert(not e._nw_fog_boss_cast and not e._brainstopped)
 
 local d, dg = entity("dragonfly")
@@ -164,7 +176,10 @@ for _,prefab in ipairs({"bearger","moose"}) do
     local first=prefab=="bearger" and "pound" or "disarm"
     local native=entity(prefab);native._brainstopped={other_mod=true}
     assert(Boss.supports(native))
+    TheWorld._nw_dark_fog = { members = {} }
     native.sg:GoToState(first)
+    assert(TheWorld._nw_dark_fog.members[native], "native activation before scan participates in immediate union exit cleanup")
+    TheWorld._nw_dark_fog = nil
     assert(native._nw_fog_boss_cast and not native._nw_fog_boss_cast.brain_owned)
     assert(not native._nw_fog_boss_covered and native.stops==0)
     assert(not Boss.update(native,0,true) and native._nw_fog_boss_cast)
@@ -173,7 +188,10 @@ for _,prefab in ipairs({"bearger","moose"}) do
     assert(not native._nw_fog_boss_cast and not native._nw_fog_boss_covered)
     assert(native.stops==0 and native.restarts==0 and native._brainstopped.other_mod)
     native.fog_inside=true;native.sg:GoToState(first)
-    assert(native._nw_fog_boss_cast,"already-started native entry is marked regardless of scheduler cooldown")
+    assert(not native._nw_fog_boss_cast,"immune native entry retains its attack without acquiring fog provenance")
+    native.sg:GoToState("idle");clock=10;native.sg:GoToState(first)
+    assert(native._nw_fog_boss_cast,"native entry can mark again at the immunity deadline")
+    clock=0
 
     local early=entity(prefab);early.sg:GoToState(first)
     early.fog_inside=false;early.sg:GoToState("idle")
@@ -193,7 +211,9 @@ for _,prefab in ipairs({"bearger","moose"}) do
     continuous.sg:GoToState("idle");clock=9;continuous.sg:GoToState(first)
     assert(continuous._nw_fog_boss_cast,"every native entry in continuous coverage remains marked")
     Boss.leave(continuous);continuous.sg:GoToState("idle");continuous.sg:GoToState(first)
-    assert(continuous._nw_fog_boss_cast,"leaving releases only the coverage gate")
+    assert(not continuous._nw_fog_boss_cast,"leaving grants immunity even to subsequent native entries")
+    continuous.sg:GoToState("idle");clock=19;continuous.sg:GoToState(first)
+    assert(continuous._nw_fog_boss_cast,"continuous physical reentry recovers at the fixed deadline")
     clock=0
 end
 -- Moose honk clears fog once at its original disarm callback, preserving it.
@@ -297,6 +317,32 @@ assert(#notifications==n+1 and not late._nw_fog_boss_cast and late.stops==0,
 late.fog_inside=false
 lg:DestroyRing(pulse.pt,5,{},true,true,false,false,false,pulse.hits)
 assert(#notifications==n+2 and lg.damage==3,"later committed rings survive self-clear and retain all damage")
+
+-- Immunity suppresses new native batches and late activation, without
+-- removing any native hit or cancelling batches activated before the exit.
+local Immunity = require("nw/dark_fog_immunity")
+clock = 200
+local immune, ig = entity("bearger")
+immune.sg:GoToState("pound"); ig:GroundPound()
+local committed_pulse = ig.queued[1]
+Boss.leave(immune); immune.sg:GoToState("idle")
+assert(Immunity.is_immune(immune))
+clock = 201; immune.sg:GoToState("pound"); ig:GroundPound()
+local immune_pulse = ig.queued[2]
+immune.sg:GoToState("idle")
+local before_immune = #notifications
+ig:DestroyRing(immune_pulse.pt, 1, {}, true, true, false, false, false, immune_pulse.hits)
+assert(#notifications == before_immune and ig.damage == 1 and not immune._nw_fog_boss_cast)
+ig:DestroyRing(committed_pulse.pt, 3, {}, true, true, false, false, false, committed_pulse.hits)
+assert(#notifications == before_immune + 1 and ig.damage == 2, "already committed fog batch survives immunity")
+clock = 209.99
+ig:DestroyRing(immune_pulse.pt, 3, {}, true, true, false, false, false, immune_pulse.hits)
+assert(#notifications == before_immune + 1 and ig.damage == 3)
+clock = 210
+ig:DestroyRing(immune_pulse.pt, 5, {}, true, true, false, false, false, immune_pulse.hits)
+assert(#notifications == before_immune + 2 and ig.damage == 4, "late batch can activate after immunity in continuous physical coverage")
+Boss.leave(immune); assert(Immunity.is_immune(immune))
+clock = 0
 
 -- Observation of an externally committed attack must never call Wait.stop
 -- and briefly restart a pursuing brain.

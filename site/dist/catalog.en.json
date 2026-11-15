@@ -16014,24 +16014,24 @@
         "area",
         "control"
       ],
-      "effect": "Leaves brief fog that frightens or blinds creatures, speeds up shadow creatures, and does not affect players.",
-      "detailedEffect": "Projectiles and Chain Lightning leave fog along their paths and at lightning impact points for 3-5s. Base radius is 2; Giant Shot and Shrink Shot scale both coverage and visuals. Players are unaffected. Small creatures freeze in fear for 1s, then wander in panic. Other creatures are blinded, sensing their normal enemies only within 3 units and briefly moving blindly after losing them. Shadow creatures resist control and gain 25% speed. Supported giants prefer native area attacks to disperse fog and try available alternatives during cooldowns. If all are cooling down, they wander in panic while covered and keep retrying. After 2s their bodies clear fog along their path; leaving fog ends the panic. Native damage and effects are preserved. Overlaps do not stack.",
-      "mana": 2,
+      "effect": "Leaves brief fog that frightens or blinds creatures, speeds up shadow creatures, and does not affect players. Creatures, including bosses, gain brief immunity after the effects end.",
+      "detailedEffect": "Projectiles and Chain Lightning leave fog along their paths and at lightning impact points for 2-4s. Base radius is 2; Giant Shot and Shrink Shot scale both coverage and visuals. Players are unaffected. Small creatures freeze in fear for 1s, then wander in panic. Other creatures are blinded, sensing their normal enemies only within 3 units and briefly moving blindly after losing them. Shadow creatures resist control and gain 25% speed. Supported giants prefer native area attacks to disperse fog and try available alternatives during cooldowns. If all are cooling down, they wander in panic while covered and keep retrying. After 2s their bodies clear fog along their path; leaving fog ends the panic. Native damage and effects are preserved. Creatures, including bosses, are immune for 10s after the fog's effects end; once immunity expires, being inside fog or entering it applies the effects again. Overlaps do not stack.",
+      "mana": 25,
       "delay": 0,
       "recharge": 0,
       "modeValues": {
         "fun": {
-          "mana": 2,
+          "mana": 25,
           "delay": 0,
           "recharge": 0
         },
         "balanced": {
-          "mana": 2,
+          "mana": 25,
           "delay": 0,
           "recharge": 0
         },
         "balanced_loot": {
-          "mana": 2,
+          "mana": 25,
           "delay": 0,
           "recharge": 0
         }
@@ -16077,7 +16077,7 @@
       "fields": [
         [
           "Mana cost",
-          "2"
+          "25"
         ],
         [
           "Cast modifier",
