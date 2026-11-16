@@ -1,0 +1,112 @@
+{
+  "status": "concept_for_user_review",
+  "date": "2026-11-16",
+  "candidate": "pose_sheet_v3.png",
+  "scope": "Five side-view key poses only. No game code, animation bank, installation, or gameplay tests changed in this task.",
+  "tool": "D:/Projects/AI/open_xiaoai/local-imagegen/imagegen.py",
+  "model": "gpt-image-2.6-sunburst",
+  "quality": "medium",
+  "background": "opaque",
+  "references": [
+    {
+      "file": "reference_native_idle.png",
+      "role": "Character/style and current long modular wand identity. Rendered from native player_idles/wilson and mod/anim/nw_parts.zip, Visual.parts(18)."
+    },
+    {
+      "file": "reference_user_gesture.png",
+      "role": "User gesture reference; body remains over feet; vertical wand becomes forward pointing."
+    }
+  ],
+  "poses": [
+    "standing",
+    "extending",
+    "steady_aim",
+    "recoil_peak",
+    "retracting"
+  ],
+  "revisions": [
+    "v1: initial five poses; aim tilted too high.",
+    "v2: targeted correction to poses 03/04; other poses retained.",
+    "v3: only pose 04 raises the wand more clearly, approximately 20–25 degrees; body/feet and remaining poses retained."
+  ],
+  "visual_review": {
+    "result": "Pose 04 now has clearly stronger upward recoil, with both hands following the wand and the body remaining planted.",
+    "limits": [
+      "This is a visual concept sheet, not a production animation with precisely aligned pivots."
+    ],
+    "wand_head_alignment": "Not an acceptance criterion per latest user direction."
+  },
+  "requests": [
+    {
+      "image": "pose_sheet_v1.png",
+      "prompt": "pose_sheet_v1.prompt.txt",
+      "metadata": "pose_sheet_v1.png.json",
+      "size": [
+        3200,
+        1280
+      ],
+      "mode": "RGB",
+      "usage": {
+        "input_tokens": 3590,
+        "input_tokens_details": {
+          "image_tokens": 1408,
+          "text_tokens": 2182
+        },
+        "output_tokens": 1208,
+        "total_tokens": 4798,
+        "output_tokens_details": {
+          "image_tokens": 1208,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "image": "pose_sheet_v2.png",
+      "prompt": "pose_sheet_v2.prompt.txt",
+      "metadata": "pose_sheet_v2.png.json",
+      "size": [
+        3200,
+        1280
+      ],
+      "mode": "RGB",
+      "usage": {
+        "input_tokens": 2736,
+        "input_tokens_details": {
+          "image_tokens": 1440,
+          "text_tokens": 1296
+        },
+        "output_tokens": 1208,
+        "total_tokens": 3944,
+        "output_tokens_details": {
+          "image_tokens": 1208,
+          "text_tokens": 0
+        }
+      }
+    },
+    {
+      "image": "pose_sheet_v3.png",
+      "prompt": "pose_sheet_v3.prompt.txt",
+      "metadata": "pose_sheet_v3.png.json",
+      "size": [
+        3200,
+        1280
+      ],
+      "mode": "RGB",
+      "usage": {
+        "input_tokens": 2688,
+        "input_tokens_details": {
+          "image_tokens": 1440,
+          "text_tokens": 1248
+        },
+        "output_tokens": 1208,
+        "total_tokens": 3896,
+        "output_tokens_details": {
+          "image_tokens": 1208,
+          "text_tokens": 0
+        }
+      }
+    }
+  ],
+  "total_tokens": 12638,
+  "latest_user_direction": "Increase the upward angle of recoil peak (pose 04); wand-head alignment is not important for this schematic."
+}

@@ -3,11 +3,13 @@ import importlib.util
 import json
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tools'))
 spec = importlib.util.spec_from_file_location('release', ROOT / 'tools/release.py')
 release = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(release)
@@ -43,6 +45,11 @@ class ReleaseTests(unittest.TestCase):
                           (root / 'mod/modinfo.lua').read_text(encoding='utf-8'))
             self.assertIn('历史 0.25.5', (root / 'README.md').read_text(encoding='utf-8'))
             self.assertIn('-- old 0.25.5', (root / 'mod/modinfo.lua').read_text(encoding='utf-8'))
+            (root / 'README.md').write_text('**正式版 0.25.6 · 2026-01-01**\n历史 0.25.5。', encoding='utf-8')
+            release.update_version(root, '0.25.7')
+            self.assertIn(f'**正式版 0.25.7 · {release.date.today().isoformat()}**',
+                          (root / 'README.md').read_text(encoding='utf-8'))
+            self.assertIn('历史 0.25.5', (root / 'README.md').read_text(encoding='utf-8'))
 
     def test_code_vdf_never_contains_presentation_fields(self):
         config = dict(app_id=322330, publishedfileid='3834454416', title='title', preview='cover', description='intro')
@@ -175,10 +182,12 @@ class ReleaseTests(unittest.TestCase):
             {'sha': 'abc'},
             [{'databaseId': 10}],
             [{'databaseId': 10, 'status': 'completed', 'conclusion': 'success'}],
-            [{'databaseId': 11, 'status': 'completed', 'conclusion': 'success'}],
+            [{'databaseId': 11, 'status': 'completed', 'conclusion': 'success', 'displayTitle': 'Field guide fixed'}],
+            {'jobs': [{'name': 'deploy', 'status': 'completed', 'conclusion': 'success'}]},
         ]
         with patch.object(release, 'gh_json', side_effect=responses), patch.object(release, 'run'), \
-             patch.object(release.time, 'sleep'):
+             patch.object(release.time, 'sleep'), \
+             patch.object(release.uuid, 'uuid4', return_value=type('Id', (), {'hex': 'fixed'})()):
             self.assertEqual(release.pages_deploy({'repository': 'owner/repo', 'branch': 'main'}, 'abc'), 11)
 
     def test_pages_refuses_to_deploy_a_different_commit(self):

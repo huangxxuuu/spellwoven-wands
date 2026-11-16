@@ -1,0 +1,101 @@
+{
+  "rig": "assets_src/player_hold_cast/rig.json",
+  "source_sha256": {
+    "player_idles": "c71a7ba1f4b3487380fef009e45d2e6003884f5ffe0d095281d85c47300ab3d2",
+    "player_attacks": "38f47678eee7af679f6b5e1fd9ec2d84052f44e60fae2190505913bb05e7caf9",
+    "player_parryblock": "132d7ba026dcb0e88b55dd8dd21a42bac1379feb7a2c0f564ae95de75d9b227a",
+    "player_channelcast_basic": "762ea4f418d419cd86ec063d0357bab73b2f4baa3ff9de2a3e2eefd3dd4fa2f2"
+  },
+  "bank": "wilson",
+  "fps": 30,
+  "facings": [
+    2,
+    5,
+    8
+  ],
+  "frames": {
+    "pre": 11,
+    "loop": 36,
+    "pst": 11
+  },
+  "recoil_levels": 12,
+  "rig_parameters": {
+    "schema": 2,
+    "description": "Braced two-hand cast with native parry leg shapes and channelcast breathing; screen coordinates have +Y down.",
+    "reference": "concepts_20261116/pose_sheet_v3.png",
+    "frames": 11,
+    "cycle_frames": 36,
+    "recoil_levels": 12,
+    "crouch_pixels": 14,
+    "breath_pixels": 4,
+    "recoil_body_pixels": 3,
+    "recoil_vibration_pixels": 1.1,
+    "object_scale": 0.95,
+    "grips": {
+      "near": 28,
+      "far": -28
+    },
+    "facings": {
+      "5": {
+        "anchor": [
+          66,
+          -79
+        ],
+        "aim_degrees": 5,
+        "recoil_degrees": -26,
+        "kickback": 13,
+        "lean_degrees": 3.5,
+        "hip_shift": -5,
+        "foot_shift": [
+          -11,
+          11
+        ]
+      },
+      "8": {
+        "anchor": [
+          6,
+          -90
+        ],
+        "aim_degrees": 55,
+        "recoil_degrees": -19,
+        "kickback": 10,
+        "longitudinal_scale": 0.35,
+        "lean_degrees": 0,
+        "hip_shift": 0,
+        "foot_shift": [
+          9,
+          -9
+        ],
+        "grips": {
+          "near": 25,
+          "far": -12
+        }
+      },
+      "2": {
+        "anchor": [
+          -14,
+          -87
+        ],
+        "aim_degrees": -111,
+        "recoil_degrees": -17,
+        "kickback": 9,
+        "longitudinal_scale": 0.3,
+        "lean_degrees": 0,
+        "hip_shift": 0,
+        "foot_shift": [
+          -3,
+          6
+        ],
+        "leg_stance": [
+          "idle",
+          "parry"
+        ],
+        "elbow_bend": {
+          "near": 1
+        }
+      }
+    }
+  },
+  "output_sha256": "759d992f09f18e3e6f0243e0c33ed4fdf0777c330a3ddfe07402eef34d27c857",
+  "notes": "Braced native leg cels, planted stance, channelcast breath and full-body recoil; shared loop phase, no textures/events."
+}

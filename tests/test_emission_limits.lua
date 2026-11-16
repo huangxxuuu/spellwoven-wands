@@ -56,12 +56,19 @@ assert(E.execute(p,owner,0,0,1,0) and #shots==25);clear()
 cast({"repeat_3","repeat_3","repeat_3","spark"})
 local other={userid="KU_owner",GUID=2}
 assert(E.execute(assert(C.compile(wand({"spark"}))),other,0,0,1,0) and #shots==25)
+local stranger={userid="KU_other",GUID=3}
+assert(E.execute(assert(C.compile(wand({"spark"}))),stranger,0,0,1,0) and #shots==25,
+    "all players share the shard's live projectile limit")
+shots[1]:Remove()
+assert(E.execute(assert(C.compile(wand({"spark"}))),stranger,0,0,1,0) and #shots==26)
+assert(E.owner_used(owner)==24 and E.owner_used(stranger)==1 and E.stats()==25,
+    "shared capacity must retain actual owner counts for neutral caster lifetimes")
 local Effects=require("nw/spell_effects")
 local oldblast,blasts=Effects.blast,0
 Effects.blast=function() blasts=blasts+1 end
 assert(E.execute({projectile_count=1,next_state={rng_state=1},blocks={{projectiles={
     {id="explosion",kind="instant",flags={},spread=0}}}}},owner,0,0,1,0))
-assert(blasts==1 and #shots==25 and E.stats()==25,"instant actions and burst effects have no new projectile cap")
+assert(blasts==1 and #shots==26 and E.stats()==25,"instant actions and burst effects have no new projectile cap")
 Effects.blast=oldblast
 E.set_projectile_limit(0);clear()
 -- Depth is checked when a child fires, including changes after the carrier launched.

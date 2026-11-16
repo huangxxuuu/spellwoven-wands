@@ -6,7 +6,13 @@ local Copy=require("nw/util").copy
 DEGREES=math.pi/180;FRAMES=1/30
 local now=0
 GetTime=function() return now end
-TheWorld={};AllPlayers={}
+Class=function(ctor)
+    local cls={};cls.__index=cls
+    return setmetatable(cls,{__call=function(_,...) local o=setmetatable({},cls);ctor(o,...);return o end})
+end
+TheNet={GetSessionIdentifier=function() return "emission-test" end}
+TheShard={GetShardId=function() return "1" end}
+TheWorld={components={nw_identity=require("components/nw_identity")({})}};AllPlayers={}
 TheSim={FindEntities=function() return {} end}
 local guid=0
 local function entity(userid)
@@ -218,4 +224,42 @@ assert(math.abs(loaded.scale-.4)<1e-9 and math.abs(loaded.body-.04)<1e-9)
 assert(loaded._nw_stored.p.radius==.72 and loaded._nw_stored.p.size_mult==.4)
 assert(not loaded._nw_stored.payload.blocks[1].projectiles[1].size_mult)
 loaded:Remove()
+-- Same-cast eggs retain one cumulative allowance across save/load and new owners.
+owner=third;AllPlayers={owner}
+Live.configure("permanent_fields",25)
+local egg_plan={{copies=2,projectiles={shot("payload_egg",2)}},
+    {copies=20,projectiles={shot("sleep_crystal")}}}
+local begin=#placed;execute(egg_plan)
+local egg_a,egg_b=placed[begin+1],placed[begin+2]
+assert(egg_a._nw_cast_emissions==egg_b._nw_cast_emissions)
+local save_a,save_b={},{}
+egg_a:OnSave(save_a);egg_b:OnSave(save_b)
+assert(save_a.placement.cast_emissions.id==save_b.placement.cast_emissions.id)
+assert(save_a.placement.cast_emissions.permanent_spawned==2)
+serializable(save_a)
+egg_a:Remove();egg_b:Remove()
+-- Simulate a new world runtime without retaining any old context registry.
+TheWorld._nw_cast_emissions=nil
+TheWorld.components.nw_identity=require("components/nw_identity")({})
+local restored_b,restored_a=entity(),entity()
+Stored.install(restored_b);restored_b:OnLoad(Copy(save_b))
+Stored.install(restored_a);restored_a:OnLoad(Copy(save_a))
+assert(restored_a._nw_cast_emissions==restored_b._nw_cast_emissions)
+assert(TheWorld.components.nw_identity.sequence>=tonumber(save_a.placement.cast_emissions.id:match("(%d+)$")))
+local before_children=#placed
+restored_b._nw_break(owner)
+assert(#placed==before_children+20)
+for i=before_children+1,#placed do placed[i]:Remove() end
+restored_a._nw_break(owner)
+assert(#placed==before_children+23,"only three creations remain after two eggs and twenty children")
+assert(restored_a._nw_cast_emissions.permanent_spawned==25)
+for i=before_children+21,#placed do placed[i]:Remove() end
+-- Legacy eggs without metadata start independent compatible groups.
+local legacy_save=Copy(save_a);legacy_save.placement.cast_emissions=nil
+local legacy=entity();Stored.install(legacy);legacy:OnLoad(legacy_save)
+assert(legacy._nw_cast_emissions.permanent_spawned==0)
+legacy._nw_break(owner)
+assert(#placed==before_children+43)
+for i=before_children+24,#placed do placed[i]:Remove() end
+Live.configure("permanent_fields",0)
 print("persistent fields: expiry, ghost/offline, reconnect, save/load, caps, motion, nested payloads, spread and budget retry")

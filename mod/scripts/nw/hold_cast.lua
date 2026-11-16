@@ -1,5 +1,7 @@
 local C=require("nw/constants/casting")
 local Cast = require("nw/cast_action")
+local Mode = require("nw/cast_mode")
+local Pose = require("nw/hold_pose")
 local M = {}
 
 local function world_input(pc)
@@ -25,35 +27,64 @@ end
 
 function M.install(pc)
     local click, update = pc.OnRightClick, pc.OnUpdate
-    local held, retry_at
+    local held, retry_at, instant_tick
+
+    local function update_pose()
+        local p = pc.inst
+        local w = Mode.enabled() and held or nil
+        if w and (moving(pc) or pc:IsBusy() or p:GetBufferedAction()
+            or (pc.locomotor and pc.locomotor.bufferedaction)) then w = nil end
+        local pos
+        if w then
+            local act = pc:GetRightMouseAction()
+            if act and (act.action ~= ACTIONS.NW_CAST or act.invobject ~= w) then
+                w = nil
+            else
+                -- Even an empty/cooling wand has a hold pose and an aim point.
+                pos = act and Cast.aim_point(act) or TheInput:GetWorldPosition()
+            end
+        end
+        Pose.update(pc,w,pos)
+    end
 
     local function try_cast()
         local w, p = held, pc.inst
-        if state_tag(p,"attack") or not w._nw_cancast:value() then
+        local instant = Mode.enabled()
+        if state_tag(p,"attack") or (not instant and not w._nw_cancast:value()) then
             retry_at = nil
             return
         end
         if moving(pc) or pc:IsBusy() or p:GetBufferedAction()
             or (pc.locomotor and pc.locomotor.bufferedaction) then return end
-        if retry_at and GetTime() < retry_at then return end
+        if instant then
+            -- Readiness replication is not a per-shot acknowledgement. Keep
+            -- requests bounded even when zero-cooldown casts never toggle it.
+            if instant_tick == GetTick() then return end
+        elseif retry_at and GetTime() < retry_at then return end
         local act = pc:GetRightMouseAction()
         if not act or act.action ~= ACTIONS.NW_CAST or act.invobject ~= w then return end
         if not Cast.available(w,p,Cast.aim_point(act)) then return end
-        retry_at = GetTime() + C.hold_retry_delay + (pc.ismastersim and 0 or math.max(0,TheNet:GetAveragePing()) * C.ping_retry_factor)
+        if instant then
+            instant_tick = GetTick()
+        else
+            retry_at = GetTime() + C.hold_retry_delay + (pc.ismastersim and 0 or math.max(0,TheNet:GetAveragePing()) * C.ping_retry_factor)
+        end
         click(pc,true)
     end
 
     pc.OnRightClick = function(self,down)
         held, retry_at = nil, nil
-        if self.inst._nw_hud_dragging then return end
+        if self.inst._nw_hud_dragging then Pose.update(self,nil);return end
         if down and world_input(self) then
             local w, act = Cast.hand(self.inst), self:GetRightMouseAction()
             if w and (not act or (act.action == ACTIONS.NW_CAST and act.invobject == w)) then
                 held = w
+                update_pose()
                 try_cast()
                 return
             end
         end
+        Pose.update(self,nil)
         return click(self,down)
     end
 
@@ -63,8 +94,10 @@ function M.install(pc)
         if not TheInput:IsControlPressed(CONTROL_SECONDARY) or not world_input(self)
             or not held:IsValid() or Cast.hand(self.inst) ~= held then
             held, retry_at = nil, nil
+            Pose.update(self,nil)
             return
         end
+        update_pose()
         try_cast()
     end
 end

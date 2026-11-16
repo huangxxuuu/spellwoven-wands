@@ -62,7 +62,7 @@ local function sentry(inst,owner,p,x,z)
                     if length<Runtime.distance_epsilon then dx,dz=1,0 else dx,dz=dx/length,dz/length end
                     local thorn=require("nw/field_effects").shot(p,"spore_sentry",C.spore_sentry.speed,C.spore_sentry.shot_lifetime)
                     local fired=require("nw/executor").execute({root_block=1,projectile_count=1,
-                        next_state={rng_state=1},blocks={{projectiles={thorn}}}},owner,x,z,dx,dz,C.spore_sentry.muzzle_height,nil,p._nw_root)
+                        next_state={rng_state=1},blocks={{projectiles={thorn}}}},owner,x,z,dx,dz,C.spore_sentry.muzzle_height,nil,p._nw_root,inst._nw_cast_emissions)
                     if fired then
                         shots=shots+1
                         local combat=e.components.combat

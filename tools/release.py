@@ -17,7 +17,10 @@ import shutil
 import subprocess
 import sys
 import time
+import uuid
 import zipfile
+
+from release_console import set_stage
 
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = re.compile(r'^version\s*=\s*"(\d+\.\d+\.\d+)"', re.M)
@@ -48,13 +51,18 @@ def release_lock(root):
         path.unlink()
 
 
-def run(args, cwd=ROOT, capture=False, check=True):
+def run(args, cwd=ROOT, capture=False, check=True, interactive=False):
     args = [str(x) for x in args]
     print('>', subprocess.list2cmdline(args), flush=True)
     result = subprocess.run(args, cwd=cwd, text=True, encoding='utf-8',
-                            errors='replace', capture_output=capture)
+                            errors='replace', capture_output=not interactive)
+    if not capture and not interactive:
+        if result.stdout:
+            print(result.stdout, end='', flush=True)
+        if result.stderr:
+            print(result.stderr, end='', file=sys.stderr, flush=True)
     if check and result.returncode:
-        raise ReleaseError(f'Command failed ({result.returncode}): {args[0]}\n'
+        raise ReleaseError(f'Command failed ({result.returncode}): {subprocess.list2cmdline(args)}\n'
                            + (result.stderr or '') + (result.stdout or ''))
     return result
 
@@ -114,6 +122,8 @@ def update_version(root, version):
     text = readme.read_text(encoding='utf-8')
     text = re.sub(r'(当前测试版为 \*\*)\d+\.\d+\.\d+(\*\*)',
                   lambda m: m[1] + version + m[2], text)
+    text = re.sub(r'^\*\*正式版 \d+\.\d+\.\d+ · \d{4}-\d{2}-\d{2}\*\*',
+                  f'**正式版 {version} · {date.today().isoformat()}**', text, count=1, flags=re.M)
     readme.write_text(text, encoding='utf-8')
     # Historical documents and the last-upload receipt intentionally keep their versions.
 
@@ -172,6 +182,7 @@ def validate_checkout(checkout, config):
 
 
 def prepare(root, config, version, audience, visibility, notes, commit_notes, notes_approved=False):
+    set_stage('prepare/preflight')
     require(notes_approved and notes.strip(), 'Human approval of public notes is required before preparation.')
     require(commit_notes.startswith(f'Release v{version}\n\n') and commit_notes.split('\n\n', 1)[1].strip(),
             'Full commit record must begin with Release vVERSION, a blank line and the complete changes.')
@@ -193,6 +204,7 @@ def prepare(root, config, version, audience, visibility, notes, commit_notes, no
     git(checkout, 'fetch', 'origin', config['branch'])
     require(git(checkout, 'rev-parse', 'HEAD') == git(checkout, 'rev-parse', f'origin/{config["branch"]}'),
             'Release checkout must match origin. Review/pull it first.')
+    set_stage('prepare/version-and-export')
     update_version(root, version)
     run([sys.executable, 'site/build_catalog.py'], root)
     run([sys.executable, 'tools/export_public_source.py', '--output', checkout, '--prune'], root)
@@ -200,11 +212,14 @@ def prepare(root, config, version, audience, visibility, notes, commit_notes, no
                           ('tools/check_localization.py', []), ('site/build_catalog.py', ['--pages']),
                           ('tools/check_site_links.py', ['--directory', 'site/public']),
                           ('tools/build_package.py', [])]:
+        set_stage('prepare/' + script)
         if script.startswith('tools/check_'):
             run([sys.executable, 'tools/quiet_check.py', script, *extra], checkout)
         else:
             run([sys.executable, script, *extra], checkout)
-    run([sys.executable, 'tools/run_python_tests.py', '-p', 'test_release*.py'], checkout)
+    set_stage('prepare/python-tests')
+    run([sys.executable, 'tools/run_python_tests.py'], checkout)
+    set_stage('prepare/freeze')
     directory.mkdir(parents=True)
     shutil.copytree(checkout / 'mod', directory / 'content')
     package = directory / f'spellwoven-wands-{version}.zip'
@@ -239,7 +254,8 @@ def steam_upload(executable, username, directory, config, visibility):
     (directory / 'workshop.vdf').write_text(make_vdf(config, directory,
         (directory / 'notes.txt').read_text(encoding='utf-8')), encoding='utf-8')
     # Inherit stdin/stdout. Never capture the password/Steam Guard conversation.
-    run([executable, '+login', username, '+workshop_build_item', directory / 'workshop.vdf', '+quit'], directory)
+    run([executable, '+login', username, '+workshop_build_item', directory / 'workshop.vdf', '+quit'], directory,
+        interactive=True)
     require(log.exists(), f'No Steam upload log found: {log}. Upload remains unconfirmed.')
     with log.open('rb') as stream:
         stream.seek(offset if log.stat().st_size >= offset else 0)
@@ -252,28 +268,59 @@ def steam_upload(executable, username, directory, config, visibility):
     require(ids == [str(config['publishedfileid'])], 'Unexpected Workshop ID after upload.')
 
 
-def pages_deploy(config, commit, deadline_seconds=900):
+def pages_deploy(config, commit, deadline_seconds=900, journal=None, state_path=None):
     repo = config['repository']
-    head = gh_json('api', f'repos/{repo}/commits/{config["branch"]}')['sha']
-    require(head == commit, 'Remote branch changed before Pages deployment.')
-    prior_ids = {r['databaseId'] for r in gh_json('run', 'list', '--repo', repo, '--workflow', 'pages.yml',
-                 '--event', 'workflow_dispatch', '--commit', commit, '--limit', '30', '--json', 'databaseId')}
-    run(['gh', 'workflow', 'run', 'pages.yml', '--repo', repo, '--ref', config['branch'],
-         '-f', 'deploy_public=true'])
+    def persist():
+        if journal is not None and state_path is not None:
+            save(state_path, journal)
+
+    pending = journal.setdefault('pending', {}) if journal is not None else {}
+    dispatch = pending.get('pages')
+    if dispatch is None:
+        head = gh_json('api', f'repos/{repo}/commits/{config["branch"]}')['sha']
+        require(head == commit, 'Remote branch changed before Pages deployment.')
+        prior_ids = {r['databaseId'] for r in gh_json('run', 'list', '--repo', repo, '--workflow', 'pages.yml',
+                     '--event', 'workflow_dispatch', '--commit', commit, '--limit', '30', '--json', 'databaseId')}
+        dispatch = dict(commit=commit, prior_ids=sorted(prior_ids), run_id=None, release_id=uuid.uuid4().hex)
+        pending['pages'] = dispatch
+        # Persist intent before dispatch: an ambiguous timeout must not launch a second workflow.
+        persist()
+        run(['gh', 'workflow', 'run', 'pages.yml', '--repo', repo, '--ref', config['branch'],
+             '-f', 'deploy_public=true', '-f', f'expected_commit={commit}',
+             '-f', f'release_id={dispatch["release_id"]}'])
+    require(dispatch['commit'] == commit, 'Pending Pages deployment belongs to another commit.')
+    prior_ids = set(dispatch['prior_ids'])
     deadline = time.monotonic() + deadline_seconds
-    run_id = None
+    run_id = dispatch.get('run_id')
     while time.monotonic() < deadline:
         runs = gh_json('run', 'list', '--repo', repo, '--workflow', 'pages.yml', '--event', 'workflow_dispatch',
-                       '--commit', commit, '--limit', '10', '--json', 'databaseId,status,conclusion')
-        runs = [r for r in runs if r['databaseId'] not in prior_ids]
+                       '--commit', commit, '--limit', '30', '--json', 'databaseId,status,conclusion,displayTitle')
+        runs = [r for r in runs if r['databaseId'] not in prior_ids
+                and (run_id is None or r['databaseId'] == run_id)
+                and (not dispatch.get('release_id')
+                     or r.get('displayTitle') == 'Field guide ' + dispatch['release_id'])]
         if runs:
             run_id = runs[0]['databaseId']
+            dispatch['run_id'] = run_id
+            persist()
             if runs[0]['status'] == 'completed':
+                if runs[0]['conclusion'] != 'success':
+                    pending.pop('pages', None)
+                    persist()
                 require(runs[0]['conclusion'] == 'success', f'Pages workflow failed: {run_id}')
+                jobs = gh_json('api', f'repos/{repo}/actions/runs/{run_id}/jobs?per_page=100').get('jobs', [])
+                deployed = any(job.get('name') == 'deploy' and job.get('status') == 'completed'
+                               and job.get('conclusion') == 'success' for job in jobs)
+                if not deployed:
+                    pending.pop('pages', None)
+                    persist()
+                require(deployed, f'Pages workflow {run_id} did not successfully execute its deploy job.')
                 return run_id
         print(f'Waiting for Pages workflow ({run_id or "queued"})...', flush=True)
         time.sleep(10)
-    raise ReleaseError(f'Pages timeout; inspect gh run view {run_id}. The release journal retains earlier successes.')
+    raise ReleaseError(f'Pages timeout; inspect gh run view {run_id or "(dispatch outcome unknown)"}. '
+                       'Resume waits for this dispatch without starting another. '
+                       'If no run was created, verify that on GitHub before clearing pending.pages in state.json.')
 
 
 def validate_release(directory, state):
@@ -295,6 +342,7 @@ def validate_release(directory, state):
 
 
 def commit_release(directory, state):
+    set_stage('commit')
     validate_release(directory, state)
     checkout = Path(state['checkout'])
     expected = (directory / 'commit.txt').read_text(encoding='utf-8').strip()
@@ -317,6 +365,7 @@ def commit_release(directory, state):
 
 
 def publish(directory, state, args):
+    set_stage('publish/preflight')
     validate_release(directory, state)
     require(state['steps'].get('commit'), 'Commit the prepared release with --mode commit before publishing.')
     config, checkout = state['config'], Path(state['checkout'])
@@ -338,8 +387,11 @@ def publish(directory, state, args):
         require(pages.get('build_type') == 'workflow', 'Configure GitHub Pages to use GitHub Actions first.')
 
     def step(name, action):
+        set_stage('publish/' + name)
         if name not in state['steps']:
             state['steps'][name] = action() or True
+            if name == 'pages':
+                state.get('pending', {}).pop('pages', None)
             save(state_path, state)
 
     require(git(checkout, 'rev-parse', 'HEAD') == state['steps']['commit'], 'Checkout no longer matches the release commit.')
@@ -373,7 +425,7 @@ def publish(directory, state, args):
     else:
         step('steam', lambda: steam_upload(executable, args.steam_user, directory, config, state['steam_visibility']))
     if state['audience'] == 'public':
-        step('pages', lambda: pages_deploy(config, state['steps']['commit']))
+        step('pages', lambda: pages_deploy(config, state['steps']['commit'], journal=state, state_path=state_path))
     else:
         step('pages', lambda: 'Private mode: website ZIP attached to private GitHub release; no Pages deployment.')
     step('github_release', lambda: run(['gh', 'release', 'edit', tag, '--repo', repo, '--draft=false',
@@ -383,6 +435,18 @@ def publish(directory, state, args):
 
 
 def native_upload(directory, dll=None):
+    state = read_json(directory / 'state.json')
+    # Recover a completed native upload if the coordinator stopped before saving its step.
+    for path in sorted(directory.glob('steam-api-upload-*.json'), reverse=True):
+        receipt = read_json(path)
+        if (receipt.get('complete') is True and receipt.get('result') == 'OK'
+                and receipt.get('version') == state['version']
+                and str(receipt.get('item_id')) == str(state['config']['publishedfileid'])
+                and receipt.get('artifact_hashes') == state['artifact_hashes']
+                and receipt.get('approved_notes_sha256') == state['approved_notes_sha256']):
+            verify_hashes(directory, state['artifact_hashes'])
+            print(f'Reusing confirmed Steam upload receipt: {path}', flush=True)
+            return True
     command = [sys.executable, ROOT / 'tools/steam_workshop_upload.py', '--directory', directory]
     if dll:
         command += ['--steam-api-dll', dll]
@@ -413,9 +477,32 @@ def github_auth():
         os.environ.pop('GH_TOKEN', None)
 
 
+def validate_release_documents(root, version, config):
+    """All-mode requires reviewed presentation to be ready before version mutation."""
+    readme = (root / 'README.md').read_text(encoding='utf-8')
+    require(f'https://github.com/{config["repository"]}/releases/tag/v{version}' in readme,
+            f'README download link is not ready for v{version}; prepare the approved release material first.')
+    updates = (root / 'site/dist/updates.html').read_text(encoding='utf-8')
+    versions = re.findall(r'data-release-version\s*=\s*[\"\']([^\"\']+)', updates)
+    require(versions and versions[0] == version,
+            f'The latest site update record must be v{version}; prepare its approved Chinese/English text first.')
+
+
+def finish_all(directory, state, args):
+    commit_release(directory, state)
+    publish(directory, state, args)
+    set_stage('verify/GitHub-and-Pages')
+    from release_verify import verify_remote
+    evidence = verify_remote(directory, state, gh_json)
+    state['steps']['verified'] = evidence
+    save(directory / 'state.json', state)
+    return dict(mode='all', version=state['version'], resume=bool(args.resume))
+
+
 def main(argv=None):
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--mode', choices=['plan', 'prepare', 'commit', 'publish'], default='plan')
+    parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
+    parser.add_argument('--mode', choices=['plan', 'all', 'prepare', 'commit', 'publish'], default='plan',
+                        help='all runs the reviewed release end to end with only a final console result')
     versions = parser.add_mutually_exclusive_group()
     versions.add_argument('--version')
     versions.add_argument('--bump', choices=['patch', 'minor', 'major'])
@@ -430,19 +517,36 @@ def main(argv=None):
     parser.add_argument('--notes-approved', action='store_true',
                         help='Only set after the user explicitly approves the public notes in this release.')
     args = parser.parse_args(argv)
+    set_stage('preflight')
+    if args.mode == 'all':
+        require(args.steam_backend == 'native',
+                'Silent all-mode requires --steam-backend native and an already logged-in Steam client. '
+                'Interactive SteamCMD authentication is only supported by the separate legacy publish mode.')
     with (nullcontext() if args.mode == 'plan' else release_lock(ROOT)):
-        execute(args)
+        try:
+            return execute(args)
+        except Exception as exc:
+            if args.mode != 'all':
+                raise
+            version = args.resume or args.version or current_version(ROOT)
+            frozen = (bool(re.fullmatch(r'\d+\.\d+\.\d+', version))
+                      and (ROOT / 'dist/releases' / version / 'state.json').is_file())
+            hint = (f'Resume: release.ps1 --mode all --resume {version} --audience {args.audience}' if frozen else
+                    'No frozen state exists for this attempt. Inspect the log and local version/export changes '
+                    'before retrying preparation; --resume is not available and no reset/clean was performed.')
+            raise ReleaseError(f'{exc}\n{hint}') from exc
 
 
 def execute(args):
     config = read_json(ROOT / 'tools/release_config.json')
     if args.resume:
         require(re.fullmatch(r'\d+\.\d+\.\d+', args.resume), 'Invalid resume version.')
-        require(args.mode in ('plan', 'commit', 'publish'), '--resume is for plan, commit or publish.')
+        require(args.mode in ('plan', 'all', 'commit', 'publish'), '--resume is for plan, all, commit or publish.')
         require(not (args.notes_file or args.commit_file or args.notes_approved),
                 'Resume uses frozen notes and approval; do not supply replacements.')
         directory = ROOT / 'dist/releases' / args.resume
         state = read_json(directory / 'state.json')
+        require(state['version'] == args.resume, 'Frozen state version differs from the requested resume version.')
         if args.mode == 'plan':
             print(json.dumps({k: state[k] for k in ('version', 'audience', 'steps')}, ensure_ascii=False, indent=2))
             return
@@ -450,14 +554,18 @@ def execute(args):
         if args.mode == 'commit':
             commit_release(directory, state)
         else:
+            set_stage('authentication/GitHub')
             with github_auth():
+                if args.mode == 'all':
+                    return finish_all(directory, state, args)
                 publish(directory, state, args)
         return
-    require(args.mode in ('plan', 'prepare'), 'Commit/publish requires --resume VERSION after preparation.')
+    require(args.mode in ('plan', 'all', 'prepare'), 'Commit/publish requires --resume VERSION after preparation.')
     version = next_version(current_version(ROOT), args.version, args.bump)
     if args.mode == 'plan':
         print(f'PLAN {current_version(ROOT)} -> {version}; {args.audience}\n'
               'Review complete changes -> user approves public notes -> prepare version/files/tests -> commit full record -> publish\n'
+              'After approval, --mode all runs these stages and verifies the final GitHub/Pages result.\n'
               'Publish: Git push/tag + GitHub Release + Steam content/changenote/version tag + Pages (public only).\n'
               'Workshop preview, title, description and visibility are preserved. No files or services changed.')
         return
@@ -465,17 +573,16 @@ def execute(args):
             'After human confirmation, supply --notes-approved, --notes-file and --commit-file.')
     notes = args.notes_file.read_text(encoding='utf-8-sig')
     commit_notes = args.commit_file.read_text(encoding='utf-8-sig')
+    if args.mode == 'all':
+        validate_release_documents(ROOT, version, config)
+    set_stage('authentication/GitHub')
     with github_auth():
         check_audience(args.audience, 'preserve', gh_json('repo', 'view', config['repository'], '--json', 'visibility'))
-        prepare(ROOT, config, version, args.audience, 'preserve', notes, commit_notes, notes_approved=True)
+        directory, state = prepare(ROOT, config, version, args.audience, 'preserve', notes, commit_notes, notes_approved=True)
+        if args.mode == 'all':
+            return finish_all(directory, state, args)
 
 
 if __name__ == '__main__':
-    try:
-        main()
-    except (ReleaseError, OSError, ValueError, KeyError) as error:
-        print(f'RELEASE STOPPED: {error}', file=sys.stderr)
-        sys.exit(1)
-    except KeyboardInterrupt:
-        print('Interrupted. Completed stages are retained for --resume.', file=sys.stderr)
-        sys.exit(130)
+    from release_console import entrypoint
+    sys.exit(entrypoint(main, ROOT))

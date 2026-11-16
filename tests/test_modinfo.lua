@@ -18,7 +18,7 @@ for i=1,#locales+1 do
         file:close()
     end
     local rows=env.configuration_options
-    assert(#rows==23 and rows[1].name=="language" and rows[2].name=="base_damage_multiplier" and rows[3].name=="world_difficulty")
+    assert(#rows==24 and rows[1].name=="language" and rows[2].name=="base_damage_multiplier" and rows[3].name=="world_difficulty")
     for _,row in ipairs(rows) do
         if no_hover[row.name] then assert(row.hover==nil,"removed setting hover: "..row.name) end
         for _,option in ipairs(row.options) do
@@ -40,6 +40,10 @@ for i=1,#locales+1 do
     assert(loot.data=="balanced_loot" and loot.description==(chinese and "平衡·掉落限定" or "Balanced: Loot Only"))
     assert(loot.hover:find(chinese and "5倍" or "5x",1,true))
     assert(loot.hover:find(chinese and "禁用法术卡配方" or "disable spell card recipes",1,true))
+    local instant=table.remove(rows,2)
+    assert(instant.name=="instant_cast" and instant.default==false)
+    assert(instant.label==(chinese and "瞬发施法" or "Instant casting"))
+    assert(#instant.options==2 and instant.options[1].data==false and instant.options[2].data==true)
     assert(rows[2].name=="starting_wand")
     assert(rows[6].name==(chinese and "兼容性" or "Compatibility"))
     assert(rows[7].name=="disable_crafting_filter" and rows[7].default==false)

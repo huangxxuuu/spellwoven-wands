@@ -80,6 +80,6 @@ guide.direction.changed("mouse");assert(mode=="mouse","existing personal prefere
 guide.onremove();assert(unsubscribed and guide.cancelled)
 require("nw/locale").configure("en","en")
 local english=require("nw/quickguide").open();Settings.allowed=true;listener()
-assert(english.performance.rows[1].title.text=="Live projectiles per player" and english.trail_limit.selected==5)
+assert(english.performance.rows[1].title.text=="Live projectiles per world" and english.trail_limit.selected==5)
 english.onremove()
 print("performance guide: three separate tabs, public read-only performance, server values and syncing placeholder, independent personal trails, all depths, pending disable, permission revocation, existing preference, English and teardown")

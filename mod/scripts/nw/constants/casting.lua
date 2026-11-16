@@ -6,5 +6,12 @@ return {
     ping_retry_factor=.002,
     direction_sync_interval=60,
     direction_change_delay=1,
+    mode={retry_delay=1,max_request=2147483647},
+    pose={heartbeat=.25,lease=1.5,max_serial=2147483647,direction_epsilon_squared=.000001,
+        idle_states={idle=true,funnyidle=true,wes_funnyidle=true,wx78_funnyidle=true,
+            waxwell_funnyidle=true,nw_hold_pose=true},
+        mounted_idle_states={mounted_idle=true,graze=true,graze_empty=true,bellow=true,
+            shake=true,shake_woby=true,alert_woby=true,bark_woby=true},
+        recoil_levels=12,recoil_kick=.35,recoil_decay=2.5,recoil_release_decay=8},
     edit_range=4,
 }

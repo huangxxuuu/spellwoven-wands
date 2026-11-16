@@ -112,6 +112,87 @@ class InstallModTests(unittest.TestCase):
                 self.assertEqual((target / '.nw_workspace').read_bytes(), marker_before)
                 self.assertEqual(sorted(p.name for p in target.iterdir()), ['.nw_workspace', 'modinfo.lua'])
 
+    def write_lua(self, base, name, content):
+        path = base / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding='utf8')
+        return path
+
+    def test_missing_selected_dependency_rejects_before_any_write(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            workspace, game, target = self.prepare(Path(tmp))
+            component = 'scripts/components/nw_wand.lua'
+            self.write_lua(workspace / 'mod', component, 'return require("nw/wand_recharge")')
+            # Its presence in the workspace must not make an unselected helper available.
+            self.write_lua(workspace / 'mod', 'scripts/nw/wand_recharge.lua', 'return {}')
+            before = {p.relative_to(target): p.read_bytes() for p in target.rglob('*') if p.is_file()}
+            with patch.object(install_mod, 'ROOT', workspace), \
+                 patch.object(install_mod, 'copy_atomic', side_effect=AssertionError('dependency failure wrote a file')):
+                with self.assertRaisesRegex(SystemExit, 'nw_wand.lua -> scripts/nw/wand_recharge.lua'):
+                    install_mod.install(game, ['modinfo.lua', component])
+            self.assertEqual(before, {p.relative_to(target): p.read_bytes()
+                                      for p in target.rglob('*') if p.is_file()})
+
+    def test_selected_dependencies_install_without_syncing_unrelated_workspace(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            workspace, game, target = self.prepare(Path(tmp))
+            component, helper = 'scripts/components/nw_wand.lua', 'scripts/nw/wand_recharge.lua'
+            self.write_lua(workspace / 'mod', component, "return require('nw/wand_recharge')")
+            self.write_lua(workspace / 'mod', helper, 'return {}')
+            self.write_lua(target, helper, 'require("nw/retired_dependency")')
+            self.write_lua(workspace / 'mod', 'scripts/nw/unrelated.lua', 'require("nw/missing")')
+            with patch.object(install_mod, 'ROOT', workspace), \
+                 patch.object(install_mod, 'running_game_processes', return_value=[]), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                install_mod.install(game, [component, helper])
+            self.assertEqual((target / component).read_bytes(), (workspace / 'mod' / component).read_bytes())
+            self.assertEqual((target / helper).read_text(), 'return {}')
+            self.assertFalse((target / 'scripts/nw/unrelated.lua').exists())
+
+    def test_unselected_dependency_uses_installed_content_and_checks_recursively(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            workspace, game, target = self.prepare(Path(tmp))
+            component = 'scripts/components/nw_wand.lua'
+            helper, leaf = 'scripts/nw/helper.lua', 'scripts/nw/installed_leaf.lua'
+            self.write_lua(workspace / 'mod', component, 'require("nw/helper")')
+            # Workspace helper has a different graph; only the installed version will run.
+            self.write_lua(workspace / 'mod', helper, 'require("nw/workspace_only")')
+            installed_helper = self.write_lua(target, helper, 'require("nw/installed_leaf")')
+            with patch.object(install_mod, 'ROOT', workspace), \
+                 patch.object(install_mod, 'copy_atomic', side_effect=AssertionError('recursive failure wrote a file')):
+                with self.assertRaisesRegex(SystemExit, 'nw_wand.lua -> scripts/nw/helper.lua -> scripts/nw/installed_leaf.lua'):
+                    install_mod.install(game, [component])
+            self.assertFalse((target / component).exists())
+            self.write_lua(target, leaf, 'return {}')
+            with patch.object(install_mod, 'ROOT', workspace), \
+                 patch.object(install_mod, 'running_game_processes', return_value=[]), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                install_mod.install(game, [component])
+            self.assertEqual(installed_helper.read_text(), 'require("nw/installed_leaf")')
+            self.assertFalse((target / 'scripts/nw/workspace_only.lua').exists())
+
+    def test_require_cycles_terminate_and_comments_strings_and_game_modules_are_ignored(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            workspace, game, target = self.prepare(Path(tmp))
+            component = 'scripts/components/nw_wand.lua'
+            self.write_lua(workspace / 'mod', component, '''
+-- require("nw/missing_line")
+--[=[ require('nw/missing_block')
+require("nw/still_in_block") ]=]
+local text = "require('nw/in_string')"
+local long_text = [==[ require("nw/in_long_string") ]==]
+require("components/inventory")
+require -- comment between call tokens
+    ("nw/helper")
+''')
+            self.write_lua(target, 'scripts/nw/helper.lua', "require 'nw/cycle'")
+            self.write_lua(target, 'scripts/nw/cycle.lua', 'require("nw/helper")')
+            with patch.object(install_mod, 'ROOT', workspace), \
+                 patch.object(install_mod, 'running_game_processes', return_value=[]), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                install_mod.install(game, [component])
+            self.assertTrue((target / component).is_file())
+
     def test_selected_symlink_escapes_are_rejected_before_writing(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

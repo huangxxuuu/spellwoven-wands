@@ -14,7 +14,7 @@ function M.owner_used(owner) return Budget.owner_used(owner) end
 
 M.store_payload=Templates.snapshot
 
-function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
+function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root,emissions)
     if plan.projectile_count==0 then return true end
     local blocks=plan.blocks
     local sizes,invalid=Templates.sizes(blocks)
@@ -23,6 +23,8 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
     local root=Damage.root(inherited_root)
     local rooted={}
     local cast_context={arcs={},side_left=math.huge}
+    -- Shared by this cast and its delayed descendants; removals never refund it.
+    emissions=emissions or require("nw/cast_emissions").new()
     local draw_rng=RNG.new(plan.next_state.rng_state)
     local rng=draw_rng:fork()
     local launch
@@ -49,6 +51,10 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
                 end
                 for k=1,p.suppress_support and 0 or p.count or 1 do
                     local category=Budget.category(p)
+                    if category=="permanent_fields" and Budget.permanent_fields>0
+                        and emissions.permanent_spawned>=Budget.permanent_fields then
+                        require("nw/limit_feedback").limited(owner);break
+                    end
                     local release=p.kind=="instant" and no_release or Budget.acquire(owner,category)
                     if not release then break end
                     emitted=emitted+1
@@ -80,6 +86,8 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
                         end
                     end
                     if e then
+                        if category=="permanent_fields" then emissions.permanent_spawned=emissions.permanent_spawned+1 end
+                        e._nw_cast_emissions=emissions
                         Damage.tag(e,p)
                         Budget.bind(e,release);bound=e.ListenForEvent~=nil
                     end
@@ -144,7 +152,10 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root)
                             else cast_context.unpaired_field=v.entity end
                         end
                     end
-                    if v.entity._shot then v.entity._shot.context=cast_context end
+                    if v.entity._shot then
+                        v.entity._shot.context=cast_context
+                        v.entity._shot._nw_cast_emissions=emissions
+                    end
                     local s=v.entity._shot
                     if s then
                         if p.ballistic and index==1 and aim then

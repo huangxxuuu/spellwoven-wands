@@ -1,10 +1,10 @@
 # 织法之杖 · Spellwoven Wands
 
-**正式版 1.0.8 · 2026-11-15**
+**正式版 1.0.9 · 2026-11-17**
 
-[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.8)
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.9)
 
-收集随机法杖，自由编排法术卡，将战斗、工具与乐器组合进同一套玩法。支持中文与 English；房主启用，参与玩家安装。1.0.8 调整暗雾：法力消耗由 2 提高到 25，持续时间由 3～5 秒缩短为 2～4 秒；生物脱离影响后的 10 秒内不会再次受到影响。[本版说明](docs/releases/1.0.8-public.txt) · [完整发布记录](docs/releases/1.0.8-commit.txt)
+收集随机法杖，自由编排法术卡，将战斗、工具与乐器组合进同一套玩法。支持中文与 English；房主启用，参与玩家安装。1.0.9 增加设置项“瞬发施法”。为施法制作了一个新的动作，跳过了原版动作的强制间隔，从而允许实现机枪杖。默认关闭。[本版说明](docs/releases/1.0.9-public.txt) · [完整发布记录](docs/releases/1.0.9-commit.txt)
 
 Collect randomized wands and arrange spell cards to create your own attacks in Don't Starve Together. Inspired by Noita. Chinese and English are supported.
 

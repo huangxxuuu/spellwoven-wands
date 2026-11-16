@@ -1,7 +1,8 @@
 local B=require("nw/balance");B.configure("balanced")
 local sequence=0
 GetTime=function() return 0 end
-TheWorld={components={nw_identity={Next=function() sequence=sequence+1;return "persist-root:"..sequence end}},events={}}
+TheWorld={components={nw_identity={Next=function() sequence=sequence+1;return "persist-root:"..sequence end,
+    Observe=function(_,id) sequence=math.max(sequence,tonumber(id:match("(%d+)$")) or 0) end}},events={}}
 AllPlayers={};DEGREES=math.pi/180
 package.loaded["nw/field_motion"]={start=function() return true end}
 package.loaded["nw/field_stages"]={start=function() end,finish=function() end}

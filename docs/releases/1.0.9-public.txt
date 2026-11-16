@@ -1,0 +1,7 @@
+织法之杖 1.0.9
+
+1. 增加设置项“瞬发施法”。为施法制作了一个新的动作，跳过了原版动作的强制间隔，从而允许实现机枪杖。默认关闭。
+
+Spellwoven Wands 1.0.9
+
+1. Added an “Instant casting” setting. A new casting animation bypasses the original animation's forced interval, making machine-gun wands possible. Disabled by default.

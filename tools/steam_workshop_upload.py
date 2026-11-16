@@ -38,6 +38,8 @@ def upload(directory, dll=None):
         receipt_path = directory / ('steam-api-upload-' + datetime.now().strftime('%Y%m%d-%H%M%S-%f') + '.json')
         receipt = dict(version=state['version'], item_id=item, complete=False, before=before,
                        before_localized=before_localized,
+                       artifact_hashes=state['artifact_hashes'],
+                       approved_notes_sha256=state['approved_notes_sha256'],
                        time_utc=datetime.now(timezone.utc).isoformat())
         save(receipt_path, receipt)
         handle = api.ugc('StartItemUpdate', U64, U32, U64)(api.app_id, item)

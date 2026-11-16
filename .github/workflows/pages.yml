@@ -1,4 +1,5 @@
 name: Validate and publish field guide
+run-name: Field guide ${{ inputs.release_id || github.sha }}
 
 on:
   push:
@@ -12,6 +13,16 @@ on:
         type: boolean
         required: true
         default: false
+      expected_commit:
+        description: 'Frozen release commit SHA (required for public deployment)'
+        type: string
+        required: false
+        default: ''
+      release_id:
+        description: 'Unique coordinator dispatch ID'
+        type: string
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -22,6 +33,21 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.inputs.expected_commit || github.sha }}
+      - name: Verify frozen deployment commit
+        if: github.event_name == 'workflow_dispatch' && inputs.deploy_public
+        env:
+          EXPECTED_COMMIT: ${{ inputs.expected_commit }}
+          EVENT_COMMIT: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import os, re, subprocess
+          expected = os.environ['EXPECTED_COMMIT']
+          assert re.fullmatch(r'[0-9a-f]{40}', expected), 'Supply the frozen release commit SHA'
+          assert expected == os.environ['EVENT_COMMIT'], 'Branch changed before deployment dispatch'
+          assert subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip() == expected
+          PY
       - name: Set up Python
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:

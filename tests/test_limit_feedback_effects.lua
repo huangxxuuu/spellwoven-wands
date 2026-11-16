@@ -3,16 +3,18 @@ local reports={}
 require("nw/limit_feedback").limited=function(owner) reports[#reports+1]=owner end
 TheWorld={}
 local a={userid="KU_a"}
+local b={userid="KU_b"}
 Limits.configure("permanent_fields",25)
 local fields={}
 for i=1,26 do
     local inst={ListenForEvent=function(self,event,fn) self.onremove=fn end}
     function inst:Remove() self.removed=true;self.onremove() end
-    local release=assert(Limits.acquire(a,"permanent_fields"))
+    local caster=i==26 and b or a
+    local release=assert(Limits.acquire(caster,"permanent_fields"))
     Limits.bind(inst,release);fields[i]=inst
     assert(#reports==(i==26 and 1 or 0),"only actual eviction reports a limit")
 end
-assert(fields[1].removed and reports[1]==a)
+assert(fields[1].removed and reports[1]==b,"global eviction reports the new caster, not the evicted owner")
 -- Save restoration may exceed the current cap but is not a new limit effect.
 Limits.restore_field({ListenForEvent=function() end},"KU_a","permanent_fields",100)
 assert(#reports==1)

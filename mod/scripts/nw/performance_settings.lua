@@ -10,12 +10,12 @@ local live_options=require("nw/util").copy(C.live_options)
 M.trail_spec={key="client_trail_limit",zh="客户端尾焰总上限",en="Client trail segment limit",options=Trail.options,
         tip={"默认1700。仅本机；他人达到总额的75%时跳过，自己达到总额时跳过。已有尾段自然消散。", "Default: 1700. This client only. Others stop at 75% of the shared total; you stop at 100%. Existing tails fade naturally."}}
 M.specs={
-    {key="limit_projectiles",zh="玩家活动弹体上限",en="Live projectiles per player",options=live_options,
-        tip={"默认600。每次实际生成前检查，满额则跳过该实体；不预留载荷、不禁止整次施法，无额外固定分片上限。", "Default: 600. Checks each actual emission; skips that entity at capacity. No payload reservations, whole-cast rejection or extra fixed shard cap."}},
+    {key="limit_projectiles",zh="世界活动弹体上限",en="Live projectiles per world",options=live_options,
+        tip={"默认600。当前世界所有施法共用额度，地面与洞穴分别计数。实际生成前检查，满额跳过新增；不预留载荷、不禁止整次施法。", "Default: 600. All casts share the current world's budget; surface and caves count separately. Checks actual emissions and skips new entities at capacity, without payload reservations or whole-cast rejection."}},
     {key="limit_fields",zh="玩家限时驻留实体上限",en="Timed spell entities per player",options=live_options,
         tip={"默认200。哨株、雷云、残光、星体等限时驻留法术共享额度。满额跳过新增，已有实体自然结束。", "Default: 200. Sentries, clouds, lingering lights, stars and other timed placements share a budget. Skip new spawns at capacity; existing entities expire normally."}},
-    {key="limit_permanent_fields",zh="玩家不限时驻留实体上限",en="Permanent spell entities per player",options=live_options,
-        tip={"默认100。晶体和载荷卵共用独立额度。满额后静默移除该玩家最早创建的实体，再生成新的；不引爆、不释放载荷。读档保留创建顺序。", "Default: 100. Crystals and payload eggs share a separate budget. At capacity, silently remove this player's oldest placement before spawning a new one, without detonation or payload release. Saves retain creation order."}},
+    {key="limit_permanent_fields",zh="世界不限时驻留实体上限",en="Permanent spell entities per world",options=live_options,
+        tip={"默认100。当前世界晶体与载荷卵共用；同次施法及其载荷累计生成达到上限后跳过新增。本次未满但世界已满时，静默替换世界最旧实体，不引爆、不释放载荷。地面与洞穴分别计数，读档保留顺序。", "Default: 100. Crystals and payload eggs share a world budget; each cast and its payloads stop creating placements after reaching the same cumulative limit. If only the world is full, silently replace its oldest placement without detonation or payload release. Surface and caves count separately; saves retain order."}},
     {key="limit_range",zh="子弹累计射程限制",en="Projectile travel limit",options=require("nw/util").copy(C.range_options),
         tip={"下一次弹体更新起生效；累计路程超限的弹体按原规则结束。旧30单位设置迁移为60。", "Effective on the next projectile update; projectiles over the travel limit end normally. Legacy 30 migrates to 60."}},
     {key="limit_depth",zh="载荷嵌套层数限制",en="Payload nesting limit",options=depth,

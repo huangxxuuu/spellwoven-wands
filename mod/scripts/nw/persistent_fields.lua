@@ -56,6 +56,11 @@ end
 function M.start(inst,data,owner,loading)
     inst._nw_stored=Copy(data)
     data=inst._nw_stored
+    if data.p.id=="payload_egg" then
+        -- Only the small emission ledger is persisted, never closures or entities.
+        inst._nw_cast_emissions=inst._nw_cast_emissions or require("nw/cast_emissions").restore(data.cast_emissions)
+        data.cast_emissions=nil
+    end
     data.p._nw_root=require("nw/balance_damage").root(data.p._nw_root)
     require("nw/balance_damage").tag(inst,data.p)
     require("nw/entity_limits").restore_field(inst,data.userid or data.owner_key,"permanent_fields",data.order)
@@ -86,7 +91,7 @@ function M.start(inst,data,owner,loading)
         else caster=M.owner(inst) end
         if not caster then return false end
         if not data.payload then return true end
-        return require("nw/executor").execute(Copy(data.payload),caster,x,z,dx,dz,data.height,nil,data.p._nw_root)
+        return require("nw/executor").execute(Copy(data.payload),caster,x,z,dx,dz,data.height,nil,data.p._nw_root,inst._nw_cast_emissions)
     end
     local x,_,z=inst.Transform:GetWorldPosition()
     if require("nw/field_motion").start(inst,owner,data.p,data.dx,data.dz,data.age,data.motion)==false then return end
@@ -97,6 +102,7 @@ function M.install(inst)
     inst.OnSave=function(self,data)
         if not self._nw_stored or self._nw_spent then return end
         local saved=Copy(self._nw_stored)
+        if saved.p.id=="payload_egg" then saved.cast_emissions=require("nw/cast_emissions").save(self._nw_cast_emissions) end
         saved.cleanup_absent=require("nw/permanent_motion_cleanup").elapsed(self)
         local motion=self._nw_motion
         if motion then

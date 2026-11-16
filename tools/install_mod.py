@@ -94,6 +94,58 @@ def install_files(source, target, selected):
     return files
 
 
+LUA_TOKENS = re.compile(
+    r'(?P<comment>--\[(?P<comment_equals>=*)\[.*?\](?P=comment_equals)\]|--[^\r\n]*)'
+    r'|(?P<long_string>\[(?P<string_equals>=*)\[.*?\](?P=string_equals)\])'
+    r'|(?P<string>"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\')'
+    r'|(?P<identifier>[A-Za-z_][A-Za-z_0-9]*)|(?P<symbol>[^\s])',
+    re.S,
+)
+
+
+def local_requires(path):
+    """Read literal nw requires, ignoring Lua comments and string contents."""
+    tokens = [(match.lastgroup, match.group()) for match in
+              LUA_TOKENS.finditer(path.read_text(encoding='utf-8-sig'))
+              if match.lastgroup != 'comment']
+    for index, token in enumerate(tokens):
+        if token != ('identifier', 'require') or (index and tokens[index - 1][1] in ('.', ':')):
+            continue
+        arguments = tokens[index + 1:index + 4]
+        if len(arguments) == 3 and arguments[0][1] == '(' and arguments[2][1] == ')':
+            literal = arguments[1]
+        elif arguments:
+            literal = arguments[0]  # Lua also permits require "nw/module".
+        else:
+            continue
+        if literal[0] == 'string' and literal[1][1:-1].startswith('nw/'):
+            yield literal[1][1:-1]
+
+
+def validate_local_requires(source, target, files):
+    """Check the planned mixed installation, without expanding its copy scope."""
+    planned = {path.relative_to(source): path for path in files}
+    checked = set()
+
+    def visit(relative, chain):
+        if relative in checked:
+            return
+        path = planned.get(relative, target / relative)
+        base = source if relative in planned else target
+        if not path.resolve().is_relative_to(base.resolve()) or not path.is_file():
+            dependency_chain = ' -> '.join(p.as_posix() for p in [*chain, relative])
+            raise SystemExit(f'Refusing installation: missing or redirected local require dependency: '
+                             f'{dependency_chain}. Include the missing file with --file: {relative.as_posix()}; '
+                             'no installed files were changed.')
+        checked.add(relative)  # Mark before recursion so cyclic requires terminate.
+        for module in local_requires(path):
+            visit(Path('scripts') / (module + '.lua'), [*chain, relative])
+
+    for relative in planned:
+        if relative.suffix.lower() == '.lua':
+            visit(relative, [])
+
+
 def install(game, files=None):
     game = Path(game)
     target = game.resolve() / 'mods' / 'nw_weave_dev'
@@ -107,6 +159,7 @@ def install(game, files=None):
     source = ROOT / 'mod'
     selected = files is not None
     files = install_files(source, target, files)
+    validate_local_requires(source, target, files)
     # Validate all selected archives before touching the owned installation.
     archives = [path for path in files if path.suffix.lower() == '.zip'
                 and path.relative_to(source).parts[0] == 'anim']

@@ -6,7 +6,7 @@ GLOBAL.require("nw/trail_budget").install(env,GLOBAL)
 GLOBAL.require("nw/limit_feedback").install(env,GLOBAL)
 GLOBAL.require("nw/dummy_trials").install(env)
 PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_fx", "nw_tool_land_fx", "nw_field_stage_fx", "nw_target_dummy", "nw_spell_punchingbag", "nw_spellcard", "nw_spellpile", "nw_workbench", "nw_disassembler", "nw_materials", "nw_dustbox", "nw_emberlamp", "nw_spell_fx", "nw_garden", "nw_expansion_fx", "nw_staff_stars", "nw_native_projectiles", "nw_gunpowder", "nw_dark_fog" }
-Assets={Asset("ATLAS","images/nw_guide.xml"),Asset("IMAGE","images/nw_guide.tex"),Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
+Assets={Asset("ANIM","anim/nw_hold_cast.zip"),Asset("ATLAS","images/nw_guide.xml"),Asset("IMAGE","images/nw_guide.tex"),Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
     Asset("SOUNDPACKAGE","sound/nw_instruments.fev"),Asset("SOUND","sound/nw_instruments.fsb"),
     Asset("ATLAS","images/nw_hud.xml"),Asset("IMAGE","images/nw_hud.tex"),
     Asset("ATLAS","images/nw_frame.xml"),Asset("IMAGE","images/nw_frame.tex")}
@@ -91,6 +91,8 @@ local cast=GLOBAL.Action({priority=10,rmb=true,distance=GLOBAL.math.huge,
 cast.id="NW_CAST";cast.str=T("施法")
 cast.fn=CastAction.perform;cast.pre_action_cb=CastAction.prepare;cast.validfn=CastAction.valid
 AddAction(cast)
+GLOBAL.require("nw/cast_mode").install(env,GLOBAL,cast)
+GLOBAL.require("nw/hold_pose").install(env,GLOBAL)
 AddComponentAction("POINT","nw_wand",CastAction.point)
 AddComponentAction("EQUIPPED","nw_wand",CastAction.equipped)
 AddStategraphActionHandler("wilson",GLOBAL.ActionHandler(cast,CastAction.server_state))

@@ -144,9 +144,10 @@ for i,obj in ipairs(objects) do if i~=2 then obj:Remove() end end
 assert(E.stats()==0)
 objects={}
 local single=compile({"spark"})
+E.set_projectile_limit(200)
 for i=1,200 do assert(E.execute(single,{GUID=math.ceil(i/25)},0,0,1,0)) end
 assert(E.stats()==200,"no hidden 160-entity shard cap")
-assert(E.execute(single,{GUID=1},0,0,1,0) and E.stats()==200,"full player skips rather than rejecting cast")
+assert(E.execute(single,{GUID=1},0,0,1,0) and E.stats()==200,"full world skips rather than rejecting cast")
 E.set_projectile_limit(0)
 assert(E.execute(single,{GUID=1},0,0,1,0) and E.stats()==201)
 for _,obj in ipairs(objects) do obj:Remove() end

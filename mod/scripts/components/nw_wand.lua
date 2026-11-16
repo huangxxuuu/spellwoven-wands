@@ -43,6 +43,9 @@ function Wand:Sync()
     self.inst._nw_capacity:set(self.data.stats.capacity)
     require("nw/wand_container").sync(self.inst)
     self.inst._nw_mana:set(math.floor(self.data.runtime.mana))
+    local remaining=math.max(self.data.runtime.remaining_cast,self.data.runtime.remaining_recharge)
+    self.cool_total=math.max(self.cool_total or 0,remaining)
+    require("nw/wand_recharge").sync(self)
     if self.inst._nw_cards then
         if self._synced_data~=self.data or self._synced_revision~=self.data.config_revision then
             self.inst._nw_cards:set(require("nw/cards").encode(self.data.cards,self.data.stats.capacity))
@@ -51,8 +54,6 @@ function Wand:Sync()
         end
         self.inst._nw_revision:set(self.data.config_revision or 1)
         self.inst._nw_maxmana:set(self.data.stats.mana_max)
-        local remaining=math.max(self.data.runtime.remaining_cast,self.data.runtime.remaining_recharge)
-        self.cool_total=math.max(self.cool_total or 0,remaining)
         self.inst._nw_cooldown:set(math.min(C.network.max_cooldown,math.ceil(remaining*C.network.cooldown_units)))
         self.inst._nw_cooltotal:set(math.min(C.network.max_cooldown,math.ceil((self.cool_total or 0)*C.network.cooldown_units)))
     end
@@ -146,7 +147,15 @@ function Wand:Cast(doer,pos,prepared)
     if length<C.cast.min_aim_distance or length>C.cast.max_aim_distance then return false,"OUT_OF_RANGE" end
     dx,dz=dx/length,dz/length
     plan.next_state.mana=math.min(self.data.stats.mana_max,self.data.runtime.mana-plan.mana_spent)
-    local mx,my,mz=require("nw/muzzle").origin(doer,self.data.stats.capacity,dx,dz,length)
+    local mx,my,mz,source=require("nw/muzzle").origin(doer,self.data.stats.capacity,dx,dz,length,require("nw/cast_mode").enabled())
+    if source=="tip" then
+        -- The sampled tip can move sideways every animation frame. Aim from
+        -- its cleared origin before executor adds spread/formation angles.
+        -- Collision uses XZ; my remains the visual/ballistic launch height.
+        local tx,tz=pos.x-mx,pos.z-mz
+        local distance=math.sqrt(tx*tx+tz*tz)
+        if distance>0 then dx,dz=tx/distance,tz/distance end
+    end
     local result,why=require("nw/executor").execute(plan,doer,mx,mz,dx,dz,my,pos)
     if not result then self.data.runtime.remaining_cast=C.cast.failure_cooldown;return false,why end
     local journal=doer.components.nw_spelljournal

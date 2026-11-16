@@ -1,4 +1,50 @@
 local M={}
+local function recharge_probe()
+    local wand=SpawnPrefab("nw_wand")
+    local cmp=wand.components.nw_wand
+    cmp:InitializePrototype()
+    local recharge=wand.components.rechargeable
+    local net=wand.replica.inventoryitem.classified
+    assert(wand:HasTag("rechargeable") and recharge:IsCharged() and net.recharge:value()==180)
+    local discharged=0
+    wand:ListenForEvent("rechargechange",function(_,data)
+        if data.percent<1 then discharged=discharged+1 end
+    end)
+    for i=1,10 do cmp:Sync() end
+    assert(discharged==0 and not recharge.updating,"NW_RECHARGE: zero cooldown discharged")
+    cmp.data.runtime.remaining_cast=.02;cmp.data.runtime.remaining_recharge=.04
+    cmp.cool_total=.04;cmp.last_time=GetTime();cmp:Sync()
+    assert(not recharge:IsCharged() and math.abs(recharge:GetTimeToCharge()-.04)<.00001)
+    recharge:OnUpdate(99);recharge:LongUpdate(99)
+    assert(cmp.data.runtime.remaining_recharge==.04 and not recharge.updating)
+
+    local saved=cmp:OnSave()
+    saved.wand.runtime.remaining_cast=3;saved.wand.runtime.remaining_recharge=4
+    local cooling=SpawnPrefab("nw_wand")
+    cooling.components.nw_wand:OnLoad(saved)
+    local record=cooling:GetSaveRecord()
+    assert(record.data.rechargeable==nil,"NW_RECHARGE: second cooldown save owner")
+    local restored=SpawnSaveRecord(record)
+    cooling:Remove()
+    local copy=restored.components.rechargeable
+    assert(math.abs(copy:GetTimeToCharge()-4)<.00001 and not copy.updating)
+    assert(restored.replica.inventoryitem.classified.recharge:value()==0)
+    copy:SetChargeTimeMod(restored,"probe",2)
+    assert(copy:GetRechargeTime()==4,"NW_RECHARGE: native modifier changed display speed")
+    copy:OnUpdate(99)
+    copy:OnLoad({chargetime=99,charge=copy.total})
+    assert(copy:GetRechargeTime()==4 and not copy:IsCharged() and not copy.updating)
+    return function()
+        cmp:UpdateTime()
+        assert(recharge:IsCharged() and net.recharge:value()==180)
+        restored.components.nw_wand:UpdateTime()
+        local runtime=restored.components.nw_wand.data.runtime
+        assert(runtime.remaining_recharge<4 and runtime.remaining_recharge>3)
+        assert(math.abs(copy:GetTimeToCharge()-runtime.remaining_recharge)<.00001)
+        wand:Remove();restored:Remove()
+        print("NW_WAND_RECHARGE_PASS: native component/classified, zero/short cooldown, save/load, one clock and ignored native modifiers")
+    end
+end
 function M.run()
     local x,z=0,0
     for _,e in pairs(Ents) do if e:HasTag("multiplayer_portal") then x,_,z=e.Transform:GetWorldPosition();break end end
@@ -91,7 +137,9 @@ function M.run()
         assert(copy.components.nw_wand.data.generator_version==version)
         retained[#retained+1]={copy,copy._nw_stats:value()};old:Remove()
     end
+    local check_recharge=recharge_probe()
     TheWorld:DoTaskInTime(.2,function()
+        check_recharge()
         for _,row in ipairs(retained) do
             assert(row[1]._nw_stats:value()==row[2],"NW_WAND: deferred starter overwrote crafted stats")
             row[1]:Remove()

@@ -123,7 +123,7 @@ local function swarm(inst,owner,p,x,z)
             if length<C.distance_epsilon then dx,dz=1,0 else dx,dz=dx/length,dz/length end
             local shot=require("nw/field_effects").shot(p,p.id,C.swarm.speed,C.swarm.lifetime)
             require("nw/executor").execute({next_state={rng_state=1},root_block=1,projectile_count=1,
-                blocks={{projectiles={shot}}}},owner,sx,sz,dx,dz,C.swarm.muzzle_height,nil,p._nw_root)
+                blocks={{projectiles={shot}}}},owner,sx,sz,dx,dz,C.swarm.muzzle_height,nil,p._nw_root,inst._nw_cast_emissions)
         end
     end) end
     stop(inst,Field.time(p,C.swarm.finish_delay+(count-1)*C.swarm.interval))

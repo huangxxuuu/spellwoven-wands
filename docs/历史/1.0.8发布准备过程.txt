@@ -1,0 +1,55 @@
+1.0.8发布准备过程（发布完成后归档）
+归档日期：2026-11-15
+正式提交：dd16cf14d6320de6a41290efca9cc9bc82015eb9
+
+以下为发布前完整清单，历史时态保留。最终发布与线上核验全部成功，见 test_reports/2026-11-15-release-108-published-verification.json。
+首个未提交快照及stash因补充内部工具记录和用户新增工坊声明而保留，随后由正式入口重新prepare；相关回执 test_reports/release_108_refreeze_preparation.json。
+
+当前未发布改动
+核对日期：2026-11-15（暗雾参数与脱离后免疫调整）
+
+正式基线：1.0.7，dist/releases/1.0.7/content。
+正式提交：a7db6092c31ccd96a7db9ffe38569fefa61dcf03
+commit、push、GitHub草稿/附件、Steam、Pages（43628837336）和GitHub正式Release已完成。
+Steam上传回执为complete=true/result=OK，version:1.0.7；工坊封面、标题、描述与可见性保持原值。GitHub非草稿；在线中英文页面与同一提交的冻结资料站一致。
+
+一、当前差异
+本轮运行 tools/context.py --release-diff 核对：当前Mod共307文件，相对1.0.7冻结包新增1、修改9、删除0。游戏行为差异为以下暗雾调整。
+
+1. 暗雾法术卡基础法力消耗由2点提高至25点。
+   文件：mod/scripts/nw/constants/modifiers.lua。
+2. 暗雾每团持续时间整体缩短1秒，由随机3～5秒调整为随机2～4秒，沿途与终点雾均适用。
+   卡牌参数和运行时雾区寿命同步调整：mod/scripts/nw/constants/modifiers.lua、mod/scripts/nw/constants/dark_fog.lua。
+   中英文游戏说明通过现有参数模板自动读取新寿命；原有0.4秒视觉淡出不变。
+3. 新增生物脱离暗雾影响后的10秒免疫，普通生物、暗影生物和Boss共用同一规则。
+   从实际受影响后退出开始计时，免疫内进出或持续处在雾中均不刷新截止；到期仍在雾中自动重新受影响。覆盖并集未退出不触发，未受影响生物不凭空获得免疫，新雾/不同施法者/雾池重建不能绕过免疫。
+   Boss主动调度、自然攻击接入与延迟命中批次激活均受免疫约束；已经提交的原生攻击及已启动的有限身体扫雾继续结算。等待与施法正常交接不算脱离。
+   新模块：mod/scripts/nw/dark_fog_immunity.lua；接入 dark_fog_control.lua、dark_fog_boss.lua、dark_fog_boss_wait.lua，常量 control.exit_immunity=10。免疫为服务端临时状态，无额外逐生物计时任务，不存档。
+4. 配套同步：普通控场/Boss/覆盖并集的规则测试、真实引擎暗雾场景、中英文简述与参数化详细说明、导出参数文档及本地中英文图鉴数据。简述沿用无数字约定，详细说明显示10秒。开发导航、机制文档、当前状态和本清单一并更新。
+
+5. 本轮源码一并包含此前未发布的syntax-only测试工具与CLI回归、按批次测试/回执复用规范，以及1.0.7发布准备记录归档；属于内部工具与文档调整，不增加对外玩法条目。测试工具Python回归14项通过，日志 test_reports/python_tests_20261115_190455_1068870f1b424254967eb98a8d934e9e.log。
+6. 用户另行要求工坊描述顶部增加普通正文战斗难度声明。中英文源说明已同步，独立metadata发布与回读通过；回执 test_reports/2026-11-15-workshop-combat-disclaimer.json。该动作独立于代码上传，标题/封面/可见性及原有正文均保留。
+
+用户已确认的对外说明（2026-11-15）：
+暗雾的效果看起来有些过强，这次稍作调整：
+1. 法力消耗：2 → 25。
+2. 持续时间：3～5 秒 → 2～4 秒。
+3. 增加 10 秒的暗雾影响冷却：生物摆脱暗雾影响后的 10 秒内，不会再次受到影响。
+中英文对外文案：docs/releases/1.0.8-public.txt；完整改动与验证记录：docs/releases/1.0.8-commit.txt。1.0.8为下一版本文案编号，当前Mod版本尚未提升。
+
+当前仍为开发改动，版本保持1.0.7；未准备新正式快照、提交或上传。本地 site/dist/catalog.json、catalog.en.json 已同步，公开资料站未发布。
+
+二、1.0.7已发布内容与证据
+1.0.7对外3条：伤害倍率设置、目标选择系列优化与修复、速度上限95。
+完整内部变化（包括另一对话的注释清理、47个常量模块及说明参数化）已随1.0.7发布，见docs/releases/1.0.7-commit.txt。
+原内部清单已归档docs/历史/1.0.7发布准备过程.txt，对外记录见docs/releases/1.0.7-public.txt。
+正式prepare的251语法/120Lua、资源、本地化913词条/188卡/154配方/3模式、双语构建/链接、306文件打包和29项发布流程回归通过。
+完整上传及线上核验：test_reports/2026-11-15-release-107-published-verification.json。站点英文与Release正文有两处大小写/简写差异，均对应同一已确认含义；线上页面与冻结站点一致。跨平台文本只存在预期换行差异，双语图鉴数据一致。
+
+三、验证与后续发布边界
+当前实现（耗蓝25点、持续2～4秒、脱离后免疫10秒）通过252个Lua文件语法及120项Lua全量回归。日志：test_reports/lua-tests-jhkrqh1k/output.log。
+常量纯数据依赖Python检查1项通过：test_reports/python_tests_20261115_184715_0b66ffe08a92429f9eb68cefd7f7cb3a.log。
+本地化与图鉴一致性通过：913词条、占位符、玩法/编号语言一致性、188张双语卡、154配方、3难度、224图集格。日志：test_reports/quiet-check-ar7v_vtp.log。
+原版Lua对照通过：普通生物感知/敌我判定、176+71组Boss攻击伤害/时序及28项guard。日志：test_reports/quiet-check-_j7xydp6.log，汇总 test_reports/dark_fog_native_lua.json。
+隔离专服通过：兔子和独眼巨鹿真实10秒免疫、免疫期返雾不受影响、持续留雾到期自动恢复；Boss实际攻击驱雾先于自然到期，原有自然AI/延迟攻击/身体驱雾/扩展Boss与fallback回归通过。163.266秒内输出 NW_DARK_FOG_PASS，日志 test_reports/dark_fog_immunity_server.log。最终烟测脚本语法通过：test_reports/lua-tests-78kqbbmz/output.log；10个暗雾相关源码与隔离安装哈希一致，见 test_reports/dark_fog_immunity_runtime_hashes.json。未同步常用游戏安装；客户端画面、联机/跨世界和高弹幕性能等人工边界仍见完整发布记录。
+本轮对外说明已由用户明确给出并保存；后续发布沿用上述已确认条目，新增实质对外内容需另行确认。当前尚未执行新版本发布。

@@ -9,7 +9,11 @@ GetTime=function() return now end
 local function world(time)
     now=time or 0;tasks={};cancelled=0;AllPlayers={}
     probes={};active_region=function() return false end
-    TheWorld={events={}}
+    local sequence=0
+    TheWorld={events={},components={nw_identity={
+        Next=function() sequence=sequence+1;return "cleanup-test:"..sequence end,
+        Observe=function(_,id) sequence=math.max(sequence,tonumber(id:match("(%d+)$")) or 0) end,
+    }}}
     function TheWorld:DoPeriodicTask(period,fn)
         local task={period=period,fn=fn,Cancel=function(self) self.cancelled=true;cancelled=cancelled+1 end}
         tasks[#tasks+1]=task;return task
@@ -46,6 +50,7 @@ local function entity(id,speed,absent)
     if id then
         e._nw_stored={p={id=id,speed=speed or 0,flags={},field_drive=true},dx=1,dz=0,order=guid,
             owner_key="fixture",cleanup_absent=absent}
+        if id=="payload_egg" then e._nw_cast_emissions=require("nw/cast_emissions").new() end
     end
     e.Transform={GetWorldPosition=function() return e.x,0,e.z end,SetRotation=function() end}
     e.Physics={Stop=function() end,ClearCollisionMask=function() end,SetMotorVel=function() end}

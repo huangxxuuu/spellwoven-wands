@@ -142,7 +142,7 @@ local function side_shot(s,angle)
     local damage=type(modifier)=="table" and modifier.effect_damage or Modifier.cards.side_embers.effect_damage
     local p={id="fire",journal_id=s.p.journal_id or s.p.id,kind="projectile",speed=Modifier.effects.side_embers.speed,lifetime=Modifier.effects.side_embers.lifetime,damage=damage*(s.p.effect_scale or 1),spread=0,flags={targets=s.p.flags.targets},size_mult=s.p.size_mult}
     return require("nw/executor").execute({next_state={rng_state=1},root_block=1,
-        projectile_count=1,blocks={{projectiles={p}}}},s.owner,s.x,s.z,s.dx*co-s.dz*si,s.dx*si+s.dz*co,s.height,nil,s.p._nw_root)
+        projectile_count=1,blocks={{projectiles={p}}}},s.owner,s.x,s.z,s.dx*co-s.dz*si,s.dx*si+s.dz*co,s.height,nil,s.p._nw_root,s._nw_cast_emissions)
 end
 function M.step(s,now)
     local f,ctx=s.p.flags,s.context

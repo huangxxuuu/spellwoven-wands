@@ -1,0 +1,24 @@
+{
+  "schema": 2,
+  "description": "Braced two-hand cast with native parry leg shapes and channelcast breathing; screen coordinates have +Y down.",
+  "reference": "concepts_20261116/pose_sheet_v3.png",
+  "frames": 11,
+  "cycle_frames": 36,
+  "recoil_levels": 12,
+  "crouch_pixels": 14,
+  "breath_pixels": 4,
+  "recoil_body_pixels": 3,
+  "recoil_vibration_pixels": 1.1,
+  "object_scale": 0.95,
+  "grips": {"near": 28, "far": -28},
+  "facings": {
+    "5": {"anchor": [66, -79], "aim_degrees": 5, "recoil_degrees": -26, "kickback": 13,
+          "lean_degrees": 3.5, "hip_shift": -5, "foot_shift": [-11, 11]},
+    "8": {"anchor": [6, -90], "aim_degrees": 55, "recoil_degrees": -19, "kickback": 10, "longitudinal_scale": 0.35,
+          "lean_degrees": 0, "hip_shift": 0, "foot_shift": [9, -9],
+          "grips": {"near": 25, "far": -12}},
+    "2": {"anchor": [-14, -87], "aim_degrees": -111, "recoil_degrees": -17, "kickback": 9, "longitudinal_scale": 0.3,
+          "lean_degrees": 0, "hip_shift": 0, "foot_shift": [-3, 6],
+          "leg_stance": ["idle", "parry"], "elbow_bend": {"near": 1}}
+  }
+}
