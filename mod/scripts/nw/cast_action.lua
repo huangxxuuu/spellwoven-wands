@@ -3,6 +3,7 @@ local POSE=require("nw/constants/casting").pose
 local U=require("nw/util")
 local Direction=require("nw/cast_direction")
 local Mode=require("nw/cast_mode")
+local Binding=require("nw/cast_binding")
 local M={}
 local INSTANT_BLOCKED_TAGS={"busy","attack","moving","sleeping","frozen","dead","nointerrupt","playerghost"}
 function M.pose_state(player)
@@ -64,8 +65,29 @@ function M.available(wand,player,pos)
     end
     return wand._nw_ready:value() and (Mode.enabled() or wand._nw_cancast:value())
 end
+function M.input_allowed(player)
+    if player._nw_cast_pick then return player._nw_cast_pick=="cast" end
+    -- Native RPC validation explicitly requests the same action selected locally.
+    if TheWorld.ismastersim and CLIENT_REQUESTED_ACTION~=nil then return CLIENT_REQUESTED_ACTION==ACTIONS.NW_CAST end
+    local pc=player.components and player.components.playercontroller
+    if player._nw_cast_mouse_input==false
+        or (player==ThePlayer and pc and pc.UsingMouse and not pc:UsingMouse()) then return true end
+    return Binding.get(player)=="mouse:1001"
+end
 function M.point(wand,player,pos,actions,right)
-    if right and M.available(wand,player,pos) and TheWorld.Map:IsPassableAtPoint(pos.x,0,pos.z,true) then actions[#actions+1]=ACTIONS.NW_CAST end
+    if right and M.input_allowed(player) and M.available(wand,player,pos)
+        and TheWorld.Map:IsPassableAtPoint(pos.x,0,pos.z,true) then actions[#actions+1]=ACTIONS.NW_CAST end
+end
+function M.input_action(player,native)
+    local picker=player.components.playeractionpicker
+    local previous=player._nw_cast_pick
+    player._nw_cast_pick=native and "native" or "cast"
+    -- Omitted coordinates select the native local-input path, including its
+    -- visibility checks. Explicit coordinates are reserved for remote RPCs.
+    local ok,_,action=pcall(picker.DoGetMouseActions,picker)
+    player._nw_cast_pick=previous
+    if not ok then error(_,0) end
+    return action
 end
 function M.equipped(wand,player,target,actions,right)
     if Direction.uses_mouse(player) then return end
@@ -81,7 +103,7 @@ function M.install_picker(picker)
             local actions,usedefault=previous(player,target,position)
             if not usedefault or (actions and #actions>0) then return actions,usedefault end
         end
-        if not Direction.uses_mouse(player) or not target then return nil,true end
+        if not M.input_allowed(player) or not Direction.uses_mouse(player) or not target then return nil,true end
         local wand=M.hand(player)
         local inv=player.replica and player.replica.inventory
         if not wand or not inv or inv:GetActiveItem() or picker.containers[target]
@@ -92,6 +114,7 @@ function M.install_picker(picker)
         if special then return special,false end
         local actions={}
         M.point(wand,player,position,actions,true)
+        if #actions==0 then return nil,true end
         return picker:SortActionList(actions,position,wand),false
     end
     picker.rightclickoverride=picker._nw_direction_callback

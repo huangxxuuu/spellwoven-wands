@@ -296,5 +296,11 @@
   "法力消耗：2 → 25。": "Mana cost: 2 → 25.",
   "持续时间：3～5 秒 → 2～4 秒。": "Duration: 3–5 seconds → 2–4 seconds.",
   "增加 10 秒的暗雾影响冷却：生物摆脱暗雾影响后的 10 秒内，不会再次受到影响。": "Adds a 10-second cooldown before creatures can be affected again: after Dark Fog’s effects end, creatures are immune to them for 10 seconds.",
-  "下载 1.0.8 与离线资料站": "Download 1.0.8 and the offline field guide"
+  "下载 1.0.8 与离线资料站": "Download 1.0.8 and the offline field guide",
+  "2026-11-17 · v1.0.10": "2026-11-17 · v1.0.10",
+  "1.0.10 · 施法按键设置": "1.0.10 · Cast Key Setting",
+  "增加施法按键设置。游戏内 → 法杖（左上角）→ 向导 → 个人设置 → 施法按键。": "Added a cast key setting. In game → Wand (top left) → Guide → Personal Settings → Cast Key.",
+  "个人设置中的「施法按键」设置界面": "The Cast Key setting in Personal Settings",
+  "右键灵魂跳跃、中键施法的提示示例": "Example prompts for right-click Soul Hop and middle-click casting",
+  "下载 1.0.10 与离线资料站": "Download 1.0.10 and the offline field guide"
 }

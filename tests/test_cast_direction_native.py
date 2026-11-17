@@ -15,7 +15,7 @@ def main():
         for cls, filename, methods in (
             ('PlayerController','playercontroller',('OnRightClick','DoAction','OnRemoteRightClick')),
             ('PlayerActionPicker','playeractionpicker',('SortActionList','GetEquippedItemActions',
-                'GetPointActions','GetRightClickActions','DoGetMouseActions')),
+                'GetPointActions','GetPointSpecialActions','GetRightClickActions','DoGetMouseActions')),
         ):
             source=archive.read(f'scripts/components/{filename}.lua').decode()
             vm.execute(f'{cls}={{}}')
@@ -23,6 +23,13 @@ def main():
                 start=source.index(f'function {cls}:{name}(')
                 end=re.search(rf'^function {cls}:|^return {cls}',source[start+1:],re.M)
                 vm.execute(source[start:start+1+end.start()])
+        # Keep Wortox's real point-action callback and its prerequisites together.
+        source=archive.read('scripts/prefabs/wortox.lua').decode()
+        start=source.index('local function IsNotBlocked(')
+        end=source.index('\nend',source.index('local function OnSetOwner(',start))+4
+        vm.execute(source[start:end]+'''
+Wortox={CanBlinkTo=CanBlinkTo,CanSoulhop=CanSoulhop,OnSetOwner=OnSetOwner}
+''')
     vm.execute('''
 EQUIPSLOTS={HANDS="hands"};CONTROL_SECONDARY="right"
 ACTIONS={NW_CAST={code=123,mod_name="nw_test",invalid_hold_action=true,priority=10},WALKTO={},ATTACK={}}
@@ -48,6 +55,8 @@ TheInput={GetWorldPosition=function() return ground end,
     GetHUDEntityUnderMouse=function() end,IsControlPressed=function() return true end}
 local Direction=require("nw/cast_direction")
 local A=require("nw/cast_action")
+local selected_key="mouse:1001"
+require("nw/cast_binding").get=function() return selected_key end
 ACTIONS.NW_CAST.pre_action_cb=A.prepare
 local plan={}
 local landed
@@ -88,13 +97,16 @@ local function picker(p)
     local pick=setmetatable({inst=p,map=TheWorld.Map,containers={},
         GetLeftClickActions=function() return {} end,
         GetSteeringActions=function() end,GetCannonAimActions=function() end,GetGolfAimActions=function() end,
-        GetSceneActions=function() return {} end,GetPointSpecialActions=function() return {} end},
+        GetSceneActions=function() return {} end},
         {__index=PlayerActionPicker})
     p.components.playeractionpicker=pick
     A.install_picker(pick)
     return pick
 end
-SetClientRequestedAction=function() end;ClearClientRequestedAction=function() end
+SetClientRequestedAction=function(code) CLIENT_REQUESTED_ACTION=code==123 and ACTIONS.NW_CAST or ACTIONS.BLINK end
+ClearClientRequestedAction=function() CLIENT_REQUESTED_ACTION=nil end
+for _,key in ipairs({"mouse:1001","mouse:1002","mouse:1005","key:107"}) do
+selected_key=key
 for _,path in ipairs({"host","predicted","unpredicted"}) do
     for _,mode in ipairs({"target","mouse"}) do
         TheWorld={ismastersim=path=="host",Map={IsPassableAtPoint=function() return true end}}
@@ -104,7 +116,10 @@ for _,path in ipairs({"host","predicted","unpredicted"}) do
         local pick=picker(p)
         Direction.receive(p,mode,true)
         local original=pc.DoAction
-        pc.act=pick:GetRightClickActions(ground,target)[1]
+        if key~="mouse:1001" then
+            assert(#pick:GetRightClickActions(ground,target)==0,"custom cast key leaked into secondary actions")
+        end
+        pc.act=A.input_action(p)
         assert(pc.act and pc.DoAction==original and pc.OnRightClick==PlayerController.OnRightClick)
         -- Native entity sorting really discards the cursor position. Our supported
         -- picker callback must supply a point action only for mouse mode.
@@ -133,6 +148,8 @@ for _,path in ipairs({"host","predicted","unpredicted"}) do
         assert(landed==(mode=="target" and feet or ground),path.."/"..mode.." landed at wrong point")
     end
 end
+end
+selected_key="mouse:1001"
 -- Server records, not the listen host's local setting, decide the same request.
 TheWorld.ismastersim=true;Direction.set("target");ThePlayer=player()
 local remote=player();local server=controller(remote,true);local pick=picker(remote)
@@ -165,7 +182,72 @@ assert(#pick:GetRightClickActions(Vector3(40,0,0),target)==0,"mouse mode validat
 local oldfeet=feet;feet=Vector3(40,0,0)
 assert(#pick:GetRightClickActions(ground,target)==1,"distant hovered tree blocked a valid ground shot")
 feet=oldfeet
+-- Reported Wortox conflict: unavailable wand actions fall through to soul hop.
+-- Run the native character callback, rather than replacing special actions by {}.
+ACTIONS.BLINK={priority=10}
+IsTeleportingPermittedFromPointToPoint=function() return true end
+local ready=true
+wand.components.nw_wand.CanCast=function() return ready,nil,plan end
+wand._nw_cancast.value=function() return ready end
+for _,master in ipairs({true,false}) do
+    TheWorld={ismastersim=master,Map={IsPassableAtPoint=function() return true end,
+        IsGroundTargetBlocked=function() return false end}}
+    for _,mode in ipairs({"target","mouse"}) do
+        Direction.set(mode)
+        local p=player();ThePlayer=p;controller(p,master)
+        local pick=picker(p)
+        Direction.receive(p,mode,true)
+        p.CanBlinkTo=Wortox.CanBlinkTo;p.CanSoulhop=Wortox.CanSoulhop
+        p.replica.inventory.Has=function(_,prefab) return prefab=="wortox_soul" end
+        Wortox.OnSetOwner(p)
+        ready=true
+        assert(pick:GetRightClickActions(ground,nil)[1].action==ACTIONS.NW_CAST,
+            "ready wand must take precedence over soul hop")
+        ready=false
+        assert(pick:GetRightClickActions(ground,nil)[1].action==ACTIONS.BLINK,
+            "native ground-action fallback must reproduce the reported soul-hop conflict")
+        ready=true
+        assert(pick:GetRightClickActions(ground,nil)[1].action==ACTIONS.NW_CAST,
+            "soul-hop fallback must not permanently suppress a recovered wand")
+        selected_key="mouse:1002"
+        assert(pick:GetRightClickActions(ground,nil)[1].action==ACTIONS.BLINK,
+            "secondary must retain soul hop even while a custom-key wand is ready")
+        -- Mouse input at the ground; use the native picker for dedicated input.
+        local oldtarget=TheInput.GetWorldEntityUnderMouse
+        TheInput.GetWorldEntityUnderMouse=function() end
+        assert(A.input_action(p).action==ACTIONS.NW_CAST)
+        selected_key="mouse:1001"
+        assert(A.input_action(p,true).action==ACTIONS.BLINK,
+            "a remapped native secondary must remain independent of physical RMB casting")
+        if master then
+            CLIENT_REQUESTED_ACTION=ACTIONS.BLINK
+            assert(pick:GetRightClickActions(ground,nil)[1].action==ACTIONS.BLINK,
+                "server must validate requested native fallback instead of replacing it with a ready cast")
+            CLIENT_REQUESTED_ACTION=ACTIONS.NW_CAST
+            selected_key="mouse:1002"
+            assert(pick:GetRightClickActions(ground,nil)[1].action==ACTIONS.NW_CAST)
+            CLIENT_REQUESTED_ACTION=nil
+        end
+        selected_key="mouse:1001"
+        TheInput.GetWorldEntityUnderMouse=oldtarget
+    end
+end
+-- Dedicated keys use the same local visibility checks as native mouse input.
+TheWorld.ismastersim=true
+local darkplayer=player();ThePlayer=darkplayer;controller(darkplayer,true);picker(darkplayer)
+selected_key="mouse:1002"
+CanEntitySeePoint=function() return false end;CanEntitySeeTarget=function() return false end
+assert(A.input_action(darkplayer)==nil,"dedicated cast bypassed native darkness filtering")
+assert(A.input_action(darkplayer,true)==nil,"native secondary bypassed darkness filtering")
+assert(darkplayer._nw_cast_pick==nil,"picker scope leaked after selection")
+CanEntitySeePoint=function() return true end;CanEntitySeeTarget=function() return true end
+assert(A.input_action(darkplayer).action==ACTIONS.NW_CAST)
+local oldpicker=darkplayer.components.playeractionpicker.DoGetMouseActions
+darkplayer.components.playeractionpicker.DoGetMouseActions=function() error("picker test failure") end
+assert(not pcall(A.input_action,darkplayer) and darkplayer._nw_cast_pick==nil,"picker exception leaked input scope")
+darkplayer.components.playeractionpicker.DoGetMouseActions=oldpicker
 print("PASS unmodified native controller + real action picker: both coordinates sent, both modes, host/prediction paths, per-player authority, filters and priorities")
+print("PASS native Wortox: ready wand precedes soul hop; unavailable wand falls back; readiness restores casting on host/client in both aim modes")
 ''')
 
 

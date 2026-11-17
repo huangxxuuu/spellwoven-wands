@@ -1,12 +1,12 @@
 # 织法之杖 · Spellwoven Wands
 
-**正式版 1.0.9 · 2026-11-17**
+**正式版 1.0.10 · 2026-11-17**
 
-[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.9)
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.10)
 
-收集随机法杖，自由编排法术卡，将战斗、工具与乐器组合进同一套玩法。支持中文与 English；房主启用，参与玩家安装。1.0.9 增加设置项“瞬发施法”。为施法制作了一个新的动作，跳过了原版动作的强制间隔，从而允许实现机枪杖。默认关闭。[本版说明](docs/releases/1.0.9-public.txt) · [完整发布记录](docs/releases/1.0.9-commit.txt)
+收集随机法杖，自由编排法术卡，将战斗、工具与乐器组合进同一套玩法。支持中文与 English；房主启用，参与玩家安装。1.0.10 增加施法按键设置。游戏内 → 法杖（左上角）→ 向导 → 个人设置 → 施法按键。[本版说明](docs/releases/1.0.10-public.txt) · [完整发布记录](docs/releases/1.0.10-commit.txt)
 
-Collect randomized wands and arrange spell cards to create your own attacks in Don't Starve Together. Inspired by Noita. Chinese and English are supported.
+Collect randomized wands and arrange spell cards to create your own attacks in Don't Starve Together. Inspired by Noita. Chinese and English are supported. 1.0.10 adds a cast key setting: In game → Wand (top left) → Guide → Personal Settings → Cast Key.
 
 ## 开发入口
 
@@ -34,7 +34,7 @@ Collect randomized wands and arrange spell cards to create your own attacks in D
 
 新图、改图及 Prompt 先读[美术任务流程](docs/art/00_美术任务流程.md)；只构建已有资源时按资源索引选择脚本。源图、候选与游戏资源各自保留身份。
 
-发布前读[版本发布约定](docs/协作/版本发布约定.md)及[发布流程](docs/发布流程.txt)。使用独立发布 checkout 和正式脚本，先确认对外说明，再执行 `prepare → commit → publish`；普通本地构建不部署，不修改工坊元数据。
+发布前读[版本发布约定](docs/协作/版本发布约定.md)及[发布流程](docs/发布流程.txt)。用户确认本次对外说明并要求发布后，由 agent 在独立发布 checkout 中执行正式脚本，负责恢复、重试和最终回读核验直到完成；用户明确要求自行执行时，才交付完整命令。普通本地构建不部署，不修改工坊元数据。
 
 ## 历史与许可
 

@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-11-17T05:14:48.309300+00:00",
+  "action": "generate",
+  "request": {
+    "model": "gpt-image-2.6-flare",
+    "prompt": "Create a set of exactly THREE blank mechanical keyboard keycaps of different widths, illustrated in a naive, slightly imperfect hand-drawn doodle style, closely matching the appearance of simple hand-drawn computer mouse icons in a minimalist 2D indie game.\n\nKeycap Variations — Extremely Important\n\nGenerate exactly three individual keycaps arranged horizontally from left to right, with progressively increasing widths.\n\nKeycap 1 — Standard Width (1U):\n\n* A standard square mechanical keyboard keycap.\n* Designed to accommodate a single uppercase letter, such as “A”.\n* Compact, nearly square top surface.\n\nKeycap 2 — Medium Width (1.5U):\n\n* A horizontally elongated mechanical keyboard keycap.\n* Designed to accommodate a single English word, such as “Tab”.\n* Approximately 1.5 times the width of the first keycap.\n\nKeycap 3 — Wide Width (1.75U):\n\n* A wider mechanical keyboard keycap.\n* Designed to accommodate two English words, such as “Caps Lock”.\n* Approximately 1.75 times the width of the first keycap.\n\nThese are examples of the intended keycap dimensions only.\n\nAll three keycap surfaces must remain completely blank. Do not draw the example letters or words.\n\nThe three keycaps must have identical height, vertical proportions, side-wall thickness, perspective, and artistic style.\n\nOnly the horizontal width should differ.\n\nKeycap Shape and Structure\n\nEach keycap follows an OEM / Cherry profile, with a gently concave top surface, a simple stepped trapezoidal body, and softly rounded chamfered corners.\n\nAll three keycaps should be viewed from the same subtle elevated three-quarter angle, with the front and right side walls visible.\n\nMaintain consistent perspective and orientation across all three objects.\n\nThe overall silhouette should feel compact, softly rounded, slightly asymmetrical, and naturally hand-drawn.\n\nThe wider keycaps must be horizontally stretched versions of the standard keycap, not enlarged versions with increased height or thickness.\n\nLine Art and Outline Style — Extremely Important\n\nUse a distinctive black–white–black triple-layer outline structure, closely matching the original hand-drawn computer mouse icons.\n\nEvery prominent white contour stroke must have thin black borders on BOTH sides.\n\nEach black border should be approximately HALF the thickness of the central white stroke.\n\nApply this black–white–black outline structure consistently to:\n\n* The outer silhouette of each keycap.\n* The boundary between the top surface and front face.\n* The boundary between the top surface and right side face.\n* The structural edges separating the front and side faces.\n\nThe white strokes should be moderately thick, smooth, and softly rounded.\n\nThe black borders should remain noticeably thinner and evenly balanced.\n\nUse smooth but subtly imperfect hand-drawn curves, resembling casual mouse-drawn illustrations created using a simple digital drawing tool.\n\nAllow gentle organic irregularities, slight asymmetry, and subtle variations in line curvature.\n\nAvoid exaggerated wobbliness, excessively thick black borders, rough sketch marks, or perfectly geometric vector outlines.\n\nAll three keycaps must share the same outline thickness and visual line weight, regardless of their width.\n\nColors and Transparency — Extremely Important\n\nThe entire image background must be genuinely transparent, using an alpha channel.\n\nEvery empty region inside the keycap outlines must also be fully transparent, including:\n\n* The top surface.\n* The front face.\n* The right side face.\n\nDo not fill any of these regions with gray, black, white, or any other solid color.\n\nOnly the black-and-white contour strokes should remain visible.\n\nUse solid black or near-black for the thin borders and solid white or slightly warm off-white for the central contour strokes.\n\nNo shading, gradients, highlights, textures, reflections, or shadows.\n\nBlank Keycap Surfaces\n\nAll three top surfaces must be completely blank.\n\nNo letters, numbers, words, symbols, icons, patterns, legends, or markings.\n\nThe blank surfaces must be large and unobstructed enough to allow game developers to overlay text dynamically.\n\nMaintain natural proportions and adequate visible top-surface area for each keycap width.\n\nComposition and Layout\n\nArrange exactly three separate keycaps in one horizontal row.\n\nOrder from left to right:\n\n1. Standard 1U keycap.\n2. Medium 1.5U keycap.\n3. Wide 1.75U keycap.\n\nAll three keycaps must:\n\n* Share the same bottom baseline.\n* Have consistent vertical height.\n* Use the exact same perspective angle.\n* Have identical outline thickness.\n* Maintain equal visual styling.\n* Be separated by clear, consistent spacing.\n\nKeep all three objects fully visible and evenly distributed across the canvas.\n\nUse a wide horizontal composition suitable for a 2D game asset sheet.\n\nDo not overlap or connect the keycaps.\n\nNo labels, captions, numbers, or annotations outside the keycaps.\n\nNegative Style Constraints\n\nNo text, no letters, no words, no symbols, no markings.\n\nNo solid background, no gray background, no painted checkerboard pattern, no filled keycap surfaces.\n\nNo excessively thick black outlines, no sticker-like appearance, no polished vector precision, no photorealism, no realistic textures, no gradients, no lighting, no shadows, no excessive 3D depth.\n\nNo inconsistent perspective, no different keycap heights, no different outline thicknesses.\n\nDo not generate more or fewer than three keycaps.\n\nFinal Artistic Direction\n\nCreate exactly three blank mechanical keyboard keycaps with progressively increasing widths, visually matching the original naive hand-drawn computer mouse icon style.\n\nPrioritize consistent black–white–black contour lines, with black borders approximately half the white stroke thickness, slightly imperfect organic curves, identical vertical dimensions, correct relative widths of 1U / 1.5U / 1.75U, completely blank top surfaces, and genuine transparency throughout the entire image.\n",
+    "n": 1,
+    "size": "1536x1024",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png"
+  },
+  "reference_images": [],
+  "mask": null,
+  "files": [
+    "D:\\Projects\\AI\\dst_mod\\assets_src\\ui\\keycap\\v5\\keycaps_v5.png"
+  ],
+  "usage": {
+    "input_tokens": 1170,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 1170
+    },
+    "output_tokens": 1353,
+    "total_tokens": 2523,
+    "output_tokens_details": {
+      "image_tokens": 1353,
+      "text_tokens": 0
+    }
+  },
+  "request_id": "req_42589aeb1b2c4538872c18d942a79b7b",
+  "revised_prompts": [
+    null
+  ]
+}

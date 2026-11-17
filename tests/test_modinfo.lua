@@ -18,7 +18,7 @@ for i=1,#locales+1 do
         file:close()
     end
     local rows=env.configuration_options
-    assert(#rows==24 and rows[1].name=="language" and rows[2].name=="base_damage_multiplier" and rows[3].name=="world_difficulty")
+    assert(#rows==25 and rows[1].name=="language" and rows[2].name=="base_damage_multiplier" and rows[3].name=="world_difficulty")
     for _,row in ipairs(rows) do
         if no_hover[row.name] then assert(row.hover==nil,"removed setting hover: "..row.name) end
         for _,option in ipairs(row.options) do
@@ -44,6 +44,10 @@ for i=1,#locales+1 do
     assert(instant.name=="instant_cast" and instant.default==false)
     assert(instant.label==(chinese and "瞬发施法" or "Instant casting"))
     assert(#instant.options==2 and instant.options[1].data==false and instant.options[2].data==true)
+    local binding=table.remove(rows,2)
+    assert(binding.name=="cast_key" and binding.default=="mouse:1001")
+    assert(binding.label==(chinese and "默认施法按键" or "Default cast key"))
+    assert(#binding.options==2 and binding.options[1].data=="mouse:1001" and binding.options[2].data=="mouse:1002")
     assert(rows[2].name=="starting_wand")
     assert(rows[6].name==(chinese and "兼容性" or "Compatibility"))
     assert(rows[7].name=="disable_crafting_filter" and rows[7].default==false)

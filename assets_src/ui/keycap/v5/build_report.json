@@ -1,0 +1,111 @@
+{
+  "source": "assets_src/ui/keycap/v5/keycaps_v5.png",
+  "source_sha256": "00e059eea745327eab152596872a64e63acbb42488c64541f548819ff4069285",
+  "atlas_size": [
+    512,
+    512
+  ],
+  "source_height": 128,
+  "left_width": 32,
+  "right_width": 48,
+  "profiles": [
+    {
+      "name": "small",
+      "source_crop": [
+        44,
+        363,
+        399,
+        641
+      ],
+      "runtime_size": [
+        164,
+        128
+      ],
+      "display_width_ratio": 1,
+      "atlas_position": [
+        4,
+        4
+      ],
+      "face_samples": [
+        [
+          76,
+          44
+        ],
+        [
+          76,
+          103
+        ],
+        [
+          146,
+          66
+        ]
+      ]
+    },
+    {
+      "name": "medium",
+      "source_crop": [
+        421,
+        363,
+        856,
+        641
+      ],
+      "runtime_size": [
+        200,
+        128
+      ],
+      "display_width_ratio": 1.5,
+      "atlas_position": [
+        4,
+        140
+      ],
+      "face_samples": [
+        [
+          95,
+          180
+        ],
+        [
+          95,
+          240
+        ],
+        [
+          183,
+          203
+        ]
+      ]
+    },
+    {
+      "name": "wide",
+      "source_crop": [
+        892,
+        363,
+        1477,
+        641
+      ],
+      "runtime_size": [
+        269,
+        128
+      ],
+      "display_width_ratio": 1.75,
+      "atlas_position": [
+        4,
+        276
+      ],
+      "face_samples": [
+        [
+          123,
+          316
+        ],
+        [
+          146,
+          376
+        ],
+        [
+          251,
+          339
+        ]
+      ]
+    }
+  ],
+  "compiled_sha256": "4645a969a255f15db2d8f2fb37f1e3584fe2b6dd7901c214981389124c7eaacd",
+  "note": "Source widths differ from requested proportions. UI centre stretching supplies 1/1.5/1.75 base widths; ends keep their stroke scale."
+}

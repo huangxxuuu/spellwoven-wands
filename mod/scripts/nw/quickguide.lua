@@ -64,7 +64,7 @@ function M.open()
         if i<#rows then rule(guide,C.top-i*row_height) end
     end
 
-    label(personal,C.notice_size,L("仅影响自己，自动保存到本机。","Only affects you. Preferences save on this device."),0,C.notice_y,C.notice_width,C.notice_height)
+    label(personal,C.notice_size,L("仅影响自己。施法按键随玩家存档，其余设置保存到本机。","Only affects you. Cast keys save with your character; other preferences save on this device."),0,C.notice_y,C.notice_width,C.notice_height)
     local heading=label(personal,C.label_size,T("施法方向"),C.label_x,C.direction_y,C.label_width,C.label_height)
     heading:SetHAlign(ANCHOR_LEFT)
     local direction=personal:AddChild(Spinner({
@@ -125,7 +125,7 @@ function M.open()
     local pages={guide=guide,personal=personal}
     local order={"guide","personal","performance"}
     local function focus_target(key)
-        if key=="personal" then return direction,speech end
+        if key=="personal" then return direction,screen.cast_key_reset or speech end
         if key=="performance" and Settings.synced and Settings.allowed and not Settings.pending then
             return screen.performance.rows[1].spinner,screen.performance.rows[#Settings.specs].spinner
         end
@@ -141,6 +141,7 @@ function M.open()
     end
     screen.select_page=function(key)
         if not pages[key] then return end
+        if screen.binding_panel then screen.binding_panel.cancel() end
         screen.active_page=key
         for _,id in ipairs(order) do
             local active=id==key
@@ -150,6 +151,7 @@ function M.open()
         screen.performance.active=key=="performance"
         screen.refresh_navigation()
         if key=="performance" then Settings.query() end
+        if key=="personal" then require("nw/cast_binding").query() end
     end
     local titles={guide=L("向导","Guide"),personal=L("个人设置","Personal settings"),performance=L("全局性能设置","Global performance")}
     for i,key in ipairs(order) do
@@ -165,6 +167,7 @@ function M.open()
     end
     screen.performance_tab=screen.tabs.performance
     pages.performance=require("nw/performance_panel").attach(screen,label)
+    require("nw/cast_key_panel").attach(screen,label)
     direction:SetFocusChangeDir(MOVE_UP,screen.tabs.personal)
     screen.select_page("guide")
     TheFrontEnd:PushScreen(screen)

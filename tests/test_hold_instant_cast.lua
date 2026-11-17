@@ -19,6 +19,7 @@ local hud,screen={},nil
 TheFrontEnd={GetActiveScreen=function() return screen end}
 local hud_item
 TheInput={IsControlPressed=function(_,key) return keys[key] end,
+    IsMouseDown=function(_,button) return button==1001 and keys.right end,
     GetHUDEntityUnderMouse=function() return hud_item end,
     GetWorldPosition=function() return {x=7,z=0} end}
 local valid=true
@@ -37,6 +38,7 @@ local pc={inst=p,handler={},ismastersim=false,
     IsBusy=function() return busy end,IsAOETargeting=function() return false end,
     GetRightMouseAction=function(self) return self.act end}
 p.components.playercontroller=pc
+Cast.input_action=function() return pc.act end -- picker is covered by native integration
 function pc:OnUpdate()
     local pos={x=4,z=0}
     self.act={action=self.other and ACTIONS.OTHER or ACTIONS.NW_CAST,invobject=w,doer=p,
@@ -49,8 +51,8 @@ function pc:OnRightClick(down)
 end
 Hold.install(pc)
 local function frame() tick=tick+1;pc:OnUpdate(1/30) end
-local function press() keys.right=true;pc:OnRightClick(true) end
-local function release() keys.right=nil;pc:OnRightClick(false) end
+local function press() keys.right=true;pc:_nw_cast_key_event(true) end
+local function release() keys.right=nil;pc:_nw_cast_key_event(false) end
 frame();press();assert(requests==1 and pose_wand==w and pose_point.x==4)
 pc:OnUpdate(0);release();press();assert(requests==1,"same-tick re-press must not duplicate a request")
 for i=1,30 do frame() end

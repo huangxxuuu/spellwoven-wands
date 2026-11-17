@@ -1,0 +1,11 @@
+织法之杖 1.0.10
+
+1. 增加施法按键设置。游戏内 → 法杖（左上角）→ 向导 → 个人设置 → 施法按键。
+
+Spellwoven Wands 1.0.10
+
+1. Added a cast key setting. In game → Wand (top left) → Guide → Personal Settings → Cast Key.
+
+![施法按键设置 / Cast key settings](https://raw.githubusercontent.com/huangxxuuu/spellwoven-wands/v1.0.10/site/dist/assets/releases/1.0.10/cast-key-settings.png)
+
+![右键灵魂跳跃、中键施法 / Right-click Soul Hop, middle-click Cast](https://raw.githubusercontent.com/huangxxuuu/spellwoven-wands/v1.0.10/site/dist/assets/releases/1.0.10/cast-key-hover.png)

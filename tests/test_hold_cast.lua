@@ -1,6 +1,7 @@
 -- Exercise the local input adapter on both native click paths. The real SG
 -- and server-side interrupted/successful launches are covered by smoke_input.
 local Hold=require("nw/hold_cast")
+local Cast=require("nw/cast_action")
 local Direction=require("nw/cast_direction")
 TheSim={SetPersistentString=function(_,_,_,_,cb) cb() end}
 EQUIPSLOTS={HANDS="hands"}
@@ -9,6 +10,7 @@ CONTROL_SECONDARY,CONTROL_PRIMARY="right","left"
 CONTROL_MOVE_UP,CONTROL_MOVE_DOWN,CONTROL_MOVE_LEFT,CONTROL_MOVE_RIGHT="up","down","a","d"
 local keys,now,ready,screen,hud_item={},0,true
 TheInput={IsControlPressed=function(_,k) return keys[k] end,
+    IsMouseDown=function(_,button) return button==1001 and keys.right end,
     GetHUDEntityUnderMouse=function() return hud_item end}
 TheNet={GetAveragePing=function() return 150 end}
 TheFrontEnd={GetActiveScreen=function() return screen end}
@@ -33,6 +35,7 @@ for _,mode in ipairs({"target","mouse"}) do
         IsAOETargeting=function() return false end,UsingMouse=function() return true end,
         GetRightMouseAction=function(self) return self.act end}
     p.components={playercontroller=pc}
+    Cast.input_action=function() return pc.act end -- picker is covered by native integration
     Direction.receive(p,mode,true)
     TheInput.GetWorldPosition=function() return {x=mouse,z=0} end
     local tree={IsValid=function() return true end,GetPosition=function() return {x=40,z=0} end}
@@ -50,8 +53,8 @@ for _,mode in ipairs({"target","mouse"}) do
     end
     Hold.install(pc)
     local function frame() now=now+1/30;pc:OnUpdate(1/30) end
-    local function press() keys.right=true;pc:OnRightClick(true) end
-    local function release() keys.right=nil;pc:OnRightClick(false) end
+    local function press() keys.right=true;pc:_nw_cast_key_event(true) end
+    local function release() keys.right=nil;pc:_nw_cast_key_event(false) end
     frame();press();assert(#shots==1 and shots[1]==4)
     for i=1,9 do frame() end
     assert(#shots==1,"unconfirmed native click was sent twice")

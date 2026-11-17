@@ -10,7 +10,12 @@ from native_animation import GAME, texture
 ROOT = Path(__file__).resolve().parents[1]
 
 BACKEND = '''
-UIFONT="ui";MOVE_LEFT=1;MOVE_RIGHT=2;MOVE_UP=3;MOVE_DOWN=4;ANCHOR_LEFT=1
+UIFONT="ui";DIALOGFONT="dialog";MOVE_LEFT=1;MOVE_RIGHT=2;MOVE_UP=3;MOVE_DOWN=4;ANCHOR_LEFT=1;ANCHOR_MIDDLE=0;ANCHOR_RIGHT=2
+_preview_tasks={}
+function preview_tick()
+    local tasks=_preview_tasks;_preview_tasks={}
+    for _,task in ipairs(tasks) do if not task.cancelled then task.fn() end end
+end
 Class=function(base,ctor)
     local c={_ctor=ctor};c.__index=c
     return setmetatable(c,{__index=base,__call=function(cls,...)
@@ -26,19 +31,35 @@ local function widget(kind)
     function w:Enable() self.enabled=true end
     function w:Disable() self.enabled=false end
     w.inst.DoPeriodicTask=function() return {Cancel=function() end} end
+    w.inst.DoTaskInTime=function(_,_,fn)
+        local task={fn=fn,Cancel=function(self) self.cancelled=true end}
+        _preview_tasks[#_preview_tasks+1]=task;return task
+    end
     w.inst.ListenForEvent=function() end
     function w:MoveToBack()
         for i,child in ipairs(self.parent.children) do if child==self then table.remove(self.parent.children,i);break end end
         table.insert(self.parent.children,1,self)
     end
-    function w:SetPosition(x,y) self.x=x;self.y=y end
+    function w:SetPosition(x,y) self.x=type(x)=="table" and x.x or x;self.y=type(x)=="table" and x.y or y end
     function w:GetPosition() return {x=self.x,y=self.y} end
-    function w:SetScale() end
+    function w:SetScale(x,y,z) self.scale={x=x,y=y or x,z=z or x} end
+    function w:GetScale() return self.scale or {x=1,y=1,z=1} end
+    function w:IsVisible() return not self.hidden end
     function w:SetSize(width,height) if self.kind=="text" then self.fontsize=width else self.w=width;self.h=height end end
     function w:SetRegionSize(width,height) self.w=width;self.h=height end
     function w:SetTint(...) self.tint={...} end
     w.SetColour=w.SetTint
     function w:SetString(value) self.text=value end
+    function w:GetString() return self.text or "" end
+    function w:GetRegionSize()
+        if self.kind=="text" then
+            if _measure_text then return _measure_text(self.text or "",self.fontsize or 18,self.font or "ui") end
+            return #(self.text or "")*(self.fontsize or 18)*.55,(self.fontsize or 18)*1.2
+        end
+        return self.w or 0,self.h or 0
+    end
+    function w:SetFont(font) self.font=font end
+    function w:SetTexture(atlas,name) self.atlas=atlas;self.texture=name end
     function w:SetHAlign(value) self.halign=value end
     function w:SetClickable() end
     function w:SetHoverText(text,params) self.tip=text;self.tipparams=params end
@@ -60,7 +81,7 @@ package.loaded["widgets/imagebutton"]=function(atlas,name)
     local w=widget("button");w.image=w:AddChild(require("widgets/image")(atlas,name));return w
 end
 package.loaded["widgets/text"]=function(font,size,text)
-    local w=widget("text");w.fontsize=size;w.text=text;return w
+    local w=widget("text");w.font=font;w.fontsize=size;w.text=text;return w
 end
 package.loaded["widgets/textbutton"]=function()
     local w=widget("text");w.fontsize=21
@@ -93,10 +114,11 @@ package.loaded["widgets/spinner"]=function(options,width,height,textinfo)
     end
     return w
 end
-package.loaded["screens/popupdialog"]=function(title,_,buttons)
+package.loaded["screens/popupdialog"]=function(title,body,buttons)
     local w=widget("screen");w.proot=w:AddChild(widget("root"))
     w.bg=w.proot:AddChild(require("widgets/image")("images/fepanels.xml","wideframe.tex"))
     w.title=w.proot:AddChild(require("widgets/text")(UIFONT,32,title))
+    w.text=w.proot:AddChild(require("widgets/text")(UIFONT,22,body or ""))
     w.menu=w.proot:AddChild(widget("menu"))
     for i,button in ipairs(buttons) do
         local item=w.menu:AddChild(require("widgets/imagebutton")("images/frontend.xml","button_long.tex"))

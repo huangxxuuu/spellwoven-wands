@@ -4,7 +4,10 @@ local function widget()
     local w={children={},shown=true,pos={x=0,y=0},enabled=true}
     w.inst={IsValid=function() return not w.dead end,
         DoPeriodicTask=function(_,dt,fn) w.tick=fn;return {Cancel=function() w.cancelled=true end} end,
-        ListenForEvent=function(_,event,fn) w[event]=fn end}
+        ListenForEvent=function(_,event,fn)
+            local previous=w[event]
+            w[event]=function(...) if previous then previous(...) end;fn(...) end
+        end}
     function w:AddChild(c) self.children[#self.children+1]=c;return c end
     function w:SetPosition(x,y) self.pos={x=x,y=y} end
     function w:GetPosition() return self.pos end
@@ -40,6 +43,10 @@ package.loaded["screens/popupdialog"]=function()
 end
 local mode="target"
 package.loaded["nw/cast_direction"]={get=function() return mode end,set=function(v) mode=v end,load=function(fn) fn() end}
+package.loaded["nw/cast_binding"]={ready=function() return true end,pending=function() return false end,
+    get=function() return "mouse:1001" end,get_override=function() end,get_default=function() return "mouse:1001" end,
+    subscribe=function() return function() end end,query=function() end}
+package.loaded["nw/cast_key"]={label=function(value) return value end}
 TheSim={GetPersistentString=function(_,_,cb) cb(false,"") end,SetPersistentString=function(_,_,_,_,cb) cb() end}
 TheFrontEnd={PushScreen=function(_,screen) TheFrontEnd.screen=screen end,PopScreen=function() end}
 local Settings=require("nw/performance_settings")
@@ -75,7 +82,7 @@ Settings.pending={};panel.refresh();assert(not panel.rows[5].spinner.enabled)
 Settings.pending=nil;Settings.allowed=false;Settings.client_values.limit_projectiles=800;listener()
 assert(panel.shown and guide.performance_tab.shown and not panel.rows[1].spinner.enabled)
 assert(panel.rows[1].spinner.selected==11,"permission revocation keeps the latest server value visible")
-guide.tabs.personal.click();assert(not panel.shown and guide.menu.focus[MOVE_UP]==guide.limit_speech)
+guide.tabs.personal.click();assert(not panel.shown and guide.menu.focus[MOVE_UP]==guide.cast_key_reset)
 guide.direction.changed("mouse");assert(mode=="mouse","existing personal preference must still work")
 guide.onremove();assert(unsubscribed and guide.cancelled)
 require("nw/locale").configure("en","en")

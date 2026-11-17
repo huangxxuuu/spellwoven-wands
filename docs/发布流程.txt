@@ -1,5 +1,7 @@
 织法之杖：代码版本发布流程
-更新日期：2026-11-15
+更新日期：2026-11-17
+
+执行分工：用户确认本次对外说明并要求发布后，agent 完成必要资料准备并直接执行正式发布脚本 `release.ps1 --mode all` 或等价的 `tools/release.py`；负责恢复、重试和最终回读核验，直到流程完成。仅当用户明确要求自行执行时，才交付完整命令由用户运行。脚本内置的发布检查随正式流程执行，不提前重复。日常功能开发的测试限制仍按 AGENTS.md 执行；正式发布检查与 CI 保留。
 
 一、每次发布必须遵循的顺序
 
@@ -22,12 +24,12 @@
 英文翻译与中文条目一一对应，不擅自添加宣传承诺。
 更新 site/dist/updates.html，添加对应 data-release-version 的新记录，并更新 site/page_translations.en.json；英文页面由构建脚本生成。
 更新 README 的当前版本、下载链接和本轮简介，保留历史版本记录。
-材料准备好后执行 --mode all。脚本先检查目标版本的 README 下载链接和资料站最新更新记录，再更新 mod/modinfo.lua 的版本和日期、导出源码、运行完整本地检查、打包并冻结文件。
+材料准备好且用户要求发布后，agent 执行 --mode all 正式流程。脚本先检查目标版本的 README 下载链接和资料站最新更新记录，再更新 mod/modinfo.lua 的版本和日期、导出源码、运行发布流程内置检查、打包并冻结文件。
 冻结后自动校验源码与制品哈希，只在独立发布 checkout 中提交完整改动。
 版本和文案进入同一个发布 commit；内部顺序仍是 prepare → commit → publish → 最终回读核验，无需逐段手工调用。
 
-4. 执行代码发布脚本
-一键模式自动接续已经冻结并提交的同一版本，不跳过前两步临时打包发布。
+4. Agent 执行代码发布脚本
+用户确认本次对外说明并要求发布后，agent 运行一键模式；它自动接续已经冻结并提交的同一版本，不跳过前两步临时打包发布。若用户明确要求自行执行，agent 才提供实际命令。
 它依次执行：Git main 与版本标签原子推送 → GitHub 草稿及附件 → Steam Mod 内容更新 → 公开资料站部署 → GitHub 正式 Release → 最终回读核验。
 Steam 原生上传要求成功回执及元数据回读；最后核验 GitHub 标签提交、非草稿状态和附件大小/可用哈希，并核对公开资料站中英文首页、更新页、图鉴共六页与冻结 ZIP 的全文 SHA256 一致。页面比较只统一 Windows CRLF 与 Linux LF 换行，其余字节差异仍视为失败；附件哈希不做换行转换。全部适用阶段通过才输出 SUCCESS。
 随后将本轮已发布的内部清单归档，以新冻结包重新核对并更新 docs/当前状态.md 与 docs/未发布改动.txt；保留发布后新增的工作区差异，不直接清空未发布清单。版本、成功状态和差异可用 tools/context.py --release-diff 只读核对。
@@ -42,7 +44,7 @@ Steam 原生上传要求成功回执及元数据回读；最后核验 GitHub 标
 只看计划：
   .\release.ps1 --version X.Y.Z --audience public
 
-用户确认对外内容且发布材料已准备好后，一条命令执行全流程：
+用户确认对外内容并要求发布、且材料已准备好后，agent 执行以下全流程命令；若用户明确要求自行执行，才将填好实际参数的完整命令交付给用户：
   .\release.ps1 --mode all --version X.Y.Z --audience public --notes-file docs/releases/X.Y.Z-public.txt --commit-file docs/releases/X.Y.Z-commit.txt --notes-approved
 
 等价 Python 入口：
@@ -129,4 +131,4 @@ Pages 传入 expected_commit 并检出/校验冻结 SHA。部署意图、已发�
 准备阶段失败且尚无 state.json 时，保留现场；先检查版本和独立checkout改动，再修复，不自动reset/clean或改用新版本掩盖失败。
 此时脚本明确提示尚未冻结，不能使用 --resume；不要为了继续执行而绕过脏 checkout 或伪造 state.json。最终回读核验失败时，外部发布可能已经完成；用同版本恢复重新核验，不另建版本或重新上传已完成步骤。
 旧版全量发布快照缺少 release_kind=code 和说明确认记录，新脚本拒绝继续上传；可以用 plan 查看历史。确需恢复旧的未完成发布，先明确审核旧流程和剩余动作。
-脚本测试必须使用临时仓库、假 Steam/GitHub 接口，不为验证流程实际发布一个新版本。
+失败且尚未冻结时保留独立发布 checkout 和现场目录，不自动 reset/clean、不切换新版本掩盖失败；修复后按正式脚本的门禁恢复或重试。脚本测试必须使用临时仓库、假 Steam/GitHub 接口，不为验证流程实际发布一个新版本。

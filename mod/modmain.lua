@@ -9,7 +9,8 @@ PrefabFiles = { "nw_wand", "nw_wand_visual", "nw_projectile", "nw_elemental_hit_
 Assets={Asset("ANIM","anim/nw_hold_cast.zip"),Asset("ATLAS","images/nw_guide.xml"),Asset("IMAGE","images/nw_guide.tex"),Asset("ATLAS","images/inventoryimages/nw_stations.xml"),Asset("IMAGE","images/inventoryimages/nw_stations.tex"),
     Asset("SOUNDPACKAGE","sound/nw_instruments.fev"),Asset("SOUND","sound/nw_instruments.fsb"),
     Asset("ATLAS","images/nw_hud.xml"),Asset("IMAGE","images/nw_hud.tex"),
-    Asset("ATLAS","images/nw_frame.xml"),Asset("IMAGE","images/nw_frame.tex")}
+    Asset("ATLAS","images/nw_frame.xml"),Asset("IMAGE","images/nw_frame.tex"),
+    Asset("ATLAS","images/nw_keycap.xml"),Asset("IMAGE","images/nw_keycap.tex")}
 local limits=GLOBAL.require("nw/spell_limits")
 for _,key in GLOBAL.ipairs({"range","depth"}) do
     limits[key]=GetModConfigData("limit_"..key) or 0
@@ -85,6 +86,7 @@ if GetModConfigData("developer_options") == true then
     end)
 end
 local CastAction=GLOBAL.require("nw/cast_action")
+GLOBAL.require("nw/cast_binding").install(env,GLOBAL)
 GLOBAL.require("nw/cast_direction").install(env,GLOBAL)
 local cast=GLOBAL.Action({priority=10,rmb=true,distance=GLOBAL.math.huge,
     mount_valid=true,invalid_hold_action=true,silent_fail=true})
@@ -93,6 +95,7 @@ cast.fn=CastAction.perform;cast.pre_action_cb=CastAction.prepare;cast.validfn=Ca
 AddAction(cast)
 GLOBAL.require("nw/cast_mode").install(env,GLOBAL,cast)
 GLOBAL.require("nw/hold_pose").install(env,GLOBAL)
+GLOBAL.require("nw/cast_input").install(env,GLOBAL)
 AddComponentAction("POINT","nw_wand",CastAction.point)
 AddComponentAction("EQUIPPED","nw_wand",CastAction.equipped)
 AddStategraphActionHandler("wilson",GLOBAL.ActionHandler(cast,CastAction.server_state))
@@ -114,6 +117,7 @@ if not GLOBAL.TheNet:IsDedicated() then
     GLOBAL.require("nw/crafting_filter").install(env,GLOBAL)
     AddComponentPostInit("playercontroller",GLOBAL.require("nw/hold_cast").install)
     AddClassPostConstruct("widgets/itemtile",GLOBAL.require("nw/client").tile)
+    AddClassPostConstruct("widgets/hoverer",GLOBAL.require("nw/cast_hover").install)
     AddClassPostConstruct("widgets/controls",function(self)
         self.nw_wandpanel=self.inv.root:AddChild(GLOBAL.require("widgets/nw_wandpanel")(self.inv))
     end)

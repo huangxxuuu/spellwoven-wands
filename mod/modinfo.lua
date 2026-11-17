@@ -1,7 +1,7 @@
 local chinese = (locale and locale:lower():match("^zh") ~= nil) or locale == "chs" or locale == "cht"
 local function L(zh,en) return chinese and zh or en end
 name = L("织法之杖","Spellwoven Wands")
-version = "1.0.9"
+version = "1.0.10"
 local release_date = "2026-11-17"
 description = L("版本：", "Version: ")..version..L(" · 更新：", " · Updated: ")..release_date.."\n\n"..L(
     "【从这里开始】\n靠近炼金引擎，在「原型工具和制作站」「魔法」分类或直接搜索建筑名。\n奥术台（先建）：木板×2、石砖×2、金块×4、紫宝石×2。研磨宝石、制作法杖和卡；靠近并装备法杖即可装卡、换卡。\n武器刻印台：木板×2、石砖×2、紫宝石×1。将配方指定的武器或工具刻成卡，回奥术台装杖。\n奥术分解炉：石砖×2、紫宝石×1、奥术粉尘×4。粉尘先在奥术台制作。废卡、废杖丢炉边，右键炉子回收；要保留的散卡先收好。\n\n先建奥术台，其余按需补建。科学机器旁用草×3、木板×1制作「法术测试拳击袋」。装备法杖，点编辑框右上角「？」打开资料站。\n\n自由排列法术卡，编织连招！灵感来自《Noita》，支持中文与 English。",
@@ -57,8 +57,11 @@ configuration_options = {
       hover=L("爽快保留原有规则。平衡：同次施法对同一目标伤害递减，最低20%，10秒未命中重置；心神消耗增加，SAN不足以饥饿补足，两者耗尽仍可施法；新法杖基础回充延长，配卡仍可降至0。平衡·掉落限定另禁用法术卡配方；材料配方保留；兜底散卡概率为5倍。各世界独立设置，可选择不同难度；重启对应世界后生效。", "Fun keeps the original rules. Balanced: repeated hits from one cast decay to 20%, resetting after 10 seconds without a hit; increased SAN cost, with hunger covering any shortfall; empty reserves do not block casting. New wands recharge more slowly, but cards can still reduce recharge to zero. Loot Only also disables spell card recipes; material recipes remain available. Fallback loose-card chance is multiplied by 5. Each world is configured independently and may use a different difficulty. Restart the corresponding world to apply."),
       options={{description=L("爽快","Fun"),data="fun",hover=L("保留原有伤害、心神消耗、回充与制作规则。","Keep the original damage, mental cost, recharge and crafting rules.")},{description=L("平衡","Balanced"),data="balanced",hover=L("启用连击伤害递减、更高心神消耗与更慢基础回充；保留制卡。","Enable repeated-hit damage decay, higher mental cost and slower base recharge; keep card crafting.")},{description=L("平衡·掉落限定","Balanced: Loot Only"),data="balanced_loot",hover=L("基于平衡，禁用法术卡配方；兜底散卡概率5倍。","Balanced rules; disable spell card recipes. Fallback loose-card chance is 5x.")}} },
     { name="instant_cast",label=L("瞬发施法","Instant casting"),default=false,
-      hover=L("开启后右键立即施法，按住可连续施法，不播放攻击动作。仍受法力、施法间隔和回充限制；移动时暂停，站定后续发。每逻辑帧最多施法一次。由所在世界决定，重启世界后生效。", "Right-click to cast immediately without an attack animation; hold to repeat. Mana, cast delay and recharge still apply. Moving pauses casting; stopping resumes it. At most one cast per simulation tick. Controlled by the current world; restart the world to apply."),
+      hover=L("开启后按施法键立即施法，按住可连续施法，不播放攻击动作。仍受法力、施法间隔和回充限制；移动时暂停，站定后续发。每逻辑帧最多施法一次。由所在世界决定，重启世界后生效。", "Press the cast key to cast immediately without an attack animation; hold to repeat. Mana, cast delay and recharge still apply. Moving pauses casting; stopping resumes it. At most one cast per simulation tick. Controlled by the current world; restart the world to apply."),
       options={{description=L("关闭","Off"),data=false,hover=L("保留原有攻击动作与施法节奏。","Keep the original attack animation and casting timing.")},{description=L("开启","On"),data=true,hover=L("跳过攻击动作，按法杖冷却连续施法。","Skip the attack animation and repeat according to wand cooldowns.")}} },
+    { name="cast_key",label=L("默认施法按键","Default cast key"),default="mouse:1001",
+      hover=L("世界默认施法按键。玩家可在游戏内向导的个人设置中覆盖，个人选择随玩家存档保存。独立于原版操作绑定。","World default cast key. Players can override it in the field guide's personal settings; their choice saves with their character. Independent of base game bindings."),
+      options={{description=L("鼠标右键","Right mouse button"),data="mouse:1001",hover=L("默认用鼠标右键施法，玩家可自行覆盖。","Cast with the right mouse button by default; players may override it.")},{description=L("鼠标中键","Middle mouse button"),data="mouse:1002",hover=L("默认用鼠标中键施法，原版次要动作保持独立。","Cast with the middle mouse button by default; the native secondary action stays independent.")}} },
     { name="starting_wand",label=L("给予出门法杖","Starting wand"),default=true,
       hover=L("玩家首次进入这个世界时，获得一把已装有火花弹的两槽入门法杖。","Gives each player a two-slot Starter Wand with a Spark Bolt when they first enter this world."),
       options={{description=L("开启","On"),data=true,hover=L("首次入世时给予已装火花弹的入门法杖。","Give a Starter Wand with Spark Bolt on first entering this world.")},{description=L("关闭","Off"),data=false,hover=L("首次入世时不赠送法杖。","Do not give a wand on first entering this world.")}} },

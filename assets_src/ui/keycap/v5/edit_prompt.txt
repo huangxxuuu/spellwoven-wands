@@ -1,0 +1,146 @@
+Create a set of exactly THREE blank mechanical keyboard keycaps of different widths, illustrated in a naive, slightly imperfect hand-drawn doodle style, closely matching the appearance of simple hand-drawn computer mouse icons in a minimalist 2D indie game.
+
+Keycap Variations — Extremely Important
+
+Generate exactly three individual keycaps arranged horizontally from left to right, with progressively increasing widths.
+
+Keycap 1 — Standard Width (1U):
+
+* A standard square mechanical keyboard keycap.
+* Designed to accommodate a single uppercase letter, such as “A”.
+* Compact, nearly square top surface.
+
+Keycap 2 — Medium Width (1.5U):
+
+* A horizontally elongated mechanical keyboard keycap.
+* Designed to accommodate a single English word, such as “Tab”.
+* Approximately 1.5 times the width of the first keycap.
+
+Keycap 3 — Wide Width (1.75U):
+
+* A wider mechanical keyboard keycap.
+* Designed to accommodate two English words, such as “Caps Lock”.
+* Approximately 1.75 times the width of the first keycap.
+
+These are examples of the intended keycap dimensions only.
+
+All three keycap surfaces must remain completely blank. Do not draw the example letters or words.
+
+The three keycaps must have identical height, vertical proportions, side-wall thickness, perspective, and artistic style.
+
+Only the horizontal width should differ.
+
+Keycap Shape and Structure
+
+Each keycap follows an OEM / Cherry profile, with a gently concave top surface, a simple stepped trapezoidal body, and softly rounded chamfered corners.
+
+All three keycaps should be viewed from the same subtle elevated three-quarter angle, with the front and right side walls visible.
+
+Maintain consistent perspective and orientation across all three objects.
+
+The overall silhouette should feel compact, softly rounded, slightly asymmetrical, and naturally hand-drawn.
+
+The wider keycaps must be horizontally stretched versions of the standard keycap, not enlarged versions with increased height or thickness.
+
+Line Art and Outline Style — Extremely Important
+
+Use a distinctive black–white–black triple-layer outline structure, closely matching the original hand-drawn computer mouse icons.
+
+Every prominent white contour stroke must have thin black borders on BOTH sides.
+
+Each black border should be approximately HALF the thickness of the central white stroke.
+
+Apply this black–white–black outline structure consistently to:
+
+* The outer silhouette of each keycap.
+* The boundary between the top surface and front face.
+* The boundary between the top surface and right side face.
+* The structural edges separating the front and side faces.
+
+The white strokes should be moderately thick, smooth, and softly rounded.
+
+The black borders should remain noticeably thinner and evenly balanced.
+
+Use smooth but subtly imperfect hand-drawn curves, resembling casual mouse-drawn illustrations created using a simple digital drawing tool.
+
+Allow gentle organic irregularities, slight asymmetry, and subtle variations in line curvature.
+
+Avoid exaggerated wobbliness, excessively thick black borders, rough sketch marks, or perfectly geometric vector outlines.
+
+All three keycaps must share the same outline thickness and visual line weight, regardless of their width.
+
+Colors and Transparency — Extremely Important
+
+The entire image background must be genuinely transparent, using an alpha channel.
+
+Every empty region inside the keycap outlines must also be fully transparent, including:
+
+* The top surface.
+* The front face.
+* The right side face.
+
+Do not fill any of these regions with gray, black, white, or any other solid color.
+
+Only the black-and-white contour strokes should remain visible.
+
+Use solid black or near-black for the thin borders and solid white or slightly warm off-white for the central contour strokes.
+
+No shading, gradients, highlights, textures, reflections, or shadows.
+
+Blank Keycap Surfaces
+
+All three top surfaces must be completely blank.
+
+No letters, numbers, words, symbols, icons, patterns, legends, or markings.
+
+The blank surfaces must be large and unobstructed enough to allow game developers to overlay text dynamically.
+
+Maintain natural proportions and adequate visible top-surface area for each keycap width.
+
+Composition and Layout
+
+Arrange exactly three separate keycaps in one horizontal row.
+
+Order from left to right:
+
+1. Standard 1U keycap.
+2. Medium 1.5U keycap.
+3. Wide 1.75U keycap.
+
+All three keycaps must:
+
+* Share the same bottom baseline.
+* Have consistent vertical height.
+* Use the exact same perspective angle.
+* Have identical outline thickness.
+* Maintain equal visual styling.
+* Be separated by clear, consistent spacing.
+
+Keep all three objects fully visible and evenly distributed across the canvas.
+
+Use a wide horizontal composition suitable for a 2D game asset sheet.
+
+Do not overlap or connect the keycaps.
+
+No labels, captions, numbers, or annotations outside the keycaps.
+
+Negative Style Constraints
+
+No text, no letters, no words, no symbols, no markings.
+
+No solid background, no gray background, no painted checkerboard pattern, no filled keycap surfaces.
+
+No excessively thick black outlines, no sticker-like appearance, no polished vector precision, no photorealism, no realistic textures, no gradients, no lighting, no shadows, no excessive 3D depth.
+
+No inconsistent perspective, no different keycap heights, no different outline thicknesses.
+
+Do not generate more or fewer than three keycaps.
+
+Final Artistic Direction
+
+Create exactly three blank mechanical keyboard keycaps with progressively increasing widths, visually matching the original naive hand-drawn computer mouse icon style.
+
+Prioritize consistent black–white–black contour lines, with black borders approximately half the white stroke thickness, slightly imperfect organic curves, identical vertical dimensions, correct relative widths of 1U / 1.5U / 1.75U, completely blank top surfaces, and genuine transparency throughout the entire image.
+
+TARGETED EDIT TO THE PROVIDED IMAGE:
+Preserve the first keycap's shape, all three keycaps' original style, black–white–black strokes, transparent interiors and transparent background, identical heights, perspective and bottom baseline. Correct only horizontal widths: make the second keycap approximately 1.5 times the first keycap's overall width and the third approximately 1.75 times the first keycap's overall width. Extend their straight middle sections, maintaining the original end shapes and stroke thickness; do not stretch vertical edges or add decoration. Keep exactly three separate blank keycaps.
