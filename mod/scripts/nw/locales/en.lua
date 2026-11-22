@@ -354,7 +354,7 @@ return {
     ["朝施放方向发射原版火魔杖弹，命中时引燃。"]="Fires a native Fire Staff projectile in the cast direction; ignites on hit.",
     ["朝施放方向发射原版冰魔杖弹，命中时灭火、施加寒冷。"]="Fires a native Ice Staff projectile in the cast direction; extinguishes and applies cold on hit.",
     ["命中造成原版亮茄弹的 10 点基础位面伤害，并在合格目标间反弹。穿透时每次命中均可发起一条反弹链。"]="On hit, deals the native Brightshade projectile's 10 base planar damage and bounces between eligible targets. Each hit while piercing can start a bounce chain.",
-    ["龙卷风先朝瞄准点前进，随后在附近游荡并破坏。触发释放时先沿弹道前进。"]="The Weather Pain tornado travels forward, then wanders near its destination to attack and destroy objects. Trigger payloads release at that point.",
+    ["龙卷风先朝瞄准点前进，随后在附近游荡并破坏。触发释放时直接在触发点附近游荡并破坏。"]="The tornado travels toward the aim point, then roams nearby to attack and destroy objects. When triggered, it starts roaming at the trigger point.",
     ["阴郁回旋镖"]="Gloomerang",
     ["火魔杖"]="Fire Staff",
     ["冰魔杖"]="Ice Staff",

@@ -1,12 +1,12 @@
 # 织法之杖 · Spellwoven Wands
 
-**正式版 1.0.10 · 2026-11-17**
+**正式版 1.0.11 · 2026-11-22**
 
-[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.10)
+[Steam 创意工坊订阅](https://steamcommunity.com/sharedfiles/filedetails/?id=3834454416) · [中文资料站](https://huangxxuuu.github.io/spellwoven-wands/) · [English field guide](https://huangxxuuu.github.io/spellwoven-wands/en/) · [下载正式版](https://github.com/huangxxuuu/spellwoven-wands/releases/tag/v1.0.11)
 
-收集随机法杖，自由编排法术卡，将战斗、工具与乐器组合进同一套玩法。支持中文与 English；房主启用，参与玩家安装。1.0.10 增加施法按键设置。游戏内 → 法杖（左上角）→ 向导 → 个人设置 → 施法按键。[本版说明](docs/releases/1.0.10-public.txt) · [完整发布记录](docs/releases/1.0.10-commit.txt)
+收集随机法杖，自由编排法术卡，将战斗、工具与乐器组合进同一套玩法。支持中文与 English；房主启用，参与玩家安装。1.0.11 调整了天气风向标。被触发时，旋风会直接在触发点附近游荡并破坏。[本版说明](docs/releases/1.0.11-public.txt) · [完整发布记录](docs/releases/1.0.11-commit.txt)
 
-Collect randomized wands and arrange spell cards to create your own attacks in Don't Starve Together. Inspired by Noita. Chinese and English are supported. 1.0.10 adds a cast key setting: In game → Wand (top left) → Guide → Personal Settings → Cast Key.
+Collect randomized wands and arrange spell cards to create your own attacks in Don't Starve Together. Inspired by Noita. Chinese and English are supported. In 1.0.11, when Weather Pain is triggered, its tornado immediately starts roaming and destroying objects around the trigger point.
 
 ## 开发入口
 

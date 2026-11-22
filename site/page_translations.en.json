@@ -302,5 +302,9 @@
   "增加施法按键设置。游戏内 → 法杖（左上角）→ 向导 → 个人设置 → 施法按键。": "Added a cast key setting. In game → Wand (top left) → Guide → Personal Settings → Cast Key.",
   "个人设置中的「施法按键」设置界面": "The Cast Key setting in Personal Settings",
   "右键灵魂跳跃、中键施法的提示示例": "Example prompts for right-click Soul Hop and middle-click casting",
-  "下载 1.0.10 与离线资料站": "Download 1.0.10 and the offline field guide"
+  "下载 1.0.10 与离线资料站": "Download 1.0.10 and the offline field guide",
+  "2026-11-22 · v1.0.11": "2026-11-22 · v1.0.11",
+  "1.0.11 · 天气风向标": "1.0.11 · Weather Pain",
+  "天气风向标被触发时，旋风会直接在触发点附近游荡并破坏。": "When Weather Pain is triggered, its tornado immediately starts roaming and destroying objects around the trigger point.",
+  "下载 1.0.11 与离线资料站": "Download 1.0.11 and the offline field guide"
 }

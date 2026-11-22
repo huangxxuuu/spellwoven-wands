@@ -1,96 +1,23 @@
 当前未发布改动
-整理日期：2026-11-17（独立施法按键与键帽提示）。
+整理日期：2026-11-22。
+正式基线：1.0.10，dist/releases/1.0.10/content。
+基线提交：21aaf58ed9c812e70ee3462f65bc9467d5de1650。
 
-正式基线：最近成功公开正式版1.0.9，dist/releases/1.0.9/content。
-正式提交：67daf109aa595aa2a1bd8aa89d58c5070c4ac236。
-目标版本1.0.10，最近成功正式版仍为1.0.9。用户已于2026-11-17指定本次唯一对外条目并要求发布；首次准备在Lua回归失败，第二次重试在网络克隆中断，均未冻结。用户现明确授权本次及后续由agent执行发布，并要求修改本地规则；已保留现场并从本地仓库恢复干净checkout，继续同版本正式流程。正文与配图如下，其余内容保留在完整内部清单中。
+游戏改动
+- 天气风向标作为命中、定时或保存载荷释放时，以触发坐标为旋风的游荡目标。触发生成的载体和原生旋风在这个坐标停止飞行，随后交给原生旋风行为处理。
+- 直接瞄准施放沿用原有的瞄准距离和飞行寿命计算。
+- 更新游戏内中英文简述和详细说明，以及随 Mod 下载包附带的参数表。
+- Mod 文件相对冻结内容新增 0、修改 4、删除 0。4 个文件为 executor.lua、engraved_spells.lua、locales/en.lua 和 spell_briefs.lua。
 
-已确认的对外更新记录
-1. 增加施法按键设置。游戏内 → 法杖（左上角）→ 向导 → 个人设置 → 施法按键。
+源码差异
+- test_projectile_triggers.lua 补天气风向标触发坐标回归。07_法术说明与参数.md 同步效果说明。
+- 正式导出还包含 1.0.10 发布准备过程归档及发布后的当前状态、文档索引、未发布清单和子智能体分工记录。资源、构建工具和 CI 未变化。
 
-对应英文
-1. Added a cast key setting. In game → Wand (top left) → Guide → Personal Settings → Cast Key.
+验证
+- 定向 Lua 回归通过 3 项，覆盖直接施放、触发和原生刻印效果。新增回归检查命中、定时及保存载荷的触发坐标、载体与原生旋风的停止和原生游荡目标。264 个 Mod Lua 文件语法通过。
+- 定向日志：test_reports/lua-tests-_qz1buql/output.log。
+- 客户端和专服实机未测。全量检查随正式发布流程执行。
 
-用户提供的配图（原图保存，按提供顺序）：
-  docs/releases/images/cast-key-settings.png：个人设置中的施法按键入口。
-  docs/releases/images/cast-key-hover.png：灵魂跳跃与施法分别使用右键、中键的提示示例。
-配图说明用于对应素材，不另增对外更新条目；图片不作为其他操作、联机或存档项目已通过验收的证明。
-
-一、差异范围
-- 游戏文件：当前Mod共322文件，相对1.0.9冻结内容新增10、修改6、删除0。
-- 正式导出范围的源码：以1.0.9 state.json的source_hashes为基线，完整改动整理时10303项，原10265项，新增38、修改20、删除0；本次另保存用户提供的2张对外配图后为10305项，新增40、修改20、删除0。其中Mod新增10/修改6，键帽美术源新增19，测试文件新增6/修改5，工具新增2/修改1，文档、配图与协作规范新增3/修改8。
-- 上述计数截至完整改动整理与原始配图保存，包含本文件和当前状态文档；不包含随后准备的1.0.10正式记录、网站配图以及README/资料站/记录索引修订。最终导出清单由正式发布脚本生成。不使用开发目录旧Git HEAD的累计改动作为本轮基线，不包含outputs等非导出目录。
-- 瞬发施法、持杖/杖尖修复、原生冷却、世界共享额度及一键发布工具已进入1.0.9，本轮不重复列为新增。
-
-二、新增：独立施法按键与个人设置
-- 新增房主配置“默认施法按键”（cast_key），可选鼠标右键或中键，默认右键。瞬发施法仍默认关闭，其操作说明由“右键”改为“施法键”。
-- 向导 → 个人设置新增“施法按键”，显示实际生效的按键，使用“修改”按钮录入，下方可“恢复房主默认”；该行不使用左右箭头。设置页和录入提示保持纯文字，并适配面板焦点导航。
-- 录入时按下并松开目标键后提交，Esc取消；支持右键、中键、引擎上报的鼠标侧键及普通键盘键，左键、滚轮、单独修饰键和控制台键不作为施法绑定。原版明确提供鼠标4/5键编码，更多鼠标专用键能否使用取决于引擎上报。
-- 同步中或等待保存确认时禁用修改；服务器确认后才显示新绑定。切换页面、关闭向导、失焦等情况清理录入状态，打开按钮本身的点击不被误录。
-- 个人施法键随当前存档的玩家资料保存，支持地表/洞穴迁移、重登和角色重选；独立存档互不继承。瞄准、尾焰、限制提示等原有个人设置仍保存在本机。
-- 新增nw_castbinding玩家组件，保存首次初始化的主分片默认、个人覆盖与修订号；恢复默认移除个人覆盖。旧档玩家首次位于洞穴时向主分片查询默认，不直接使用可能不一致的洞穴配置。
-- 客户端入世只查询服务器，不把本机旧值自动写回；修改请求携带生命周期标识、实体token及修订号，拒绝过期请求。超时后重新查询实际状态，不自动重发修改。
-
-三、调整与修复：施法输入及原生动作
-- 施法键独立于原版“次要动作”，不改写游戏按键表。例如可中键施法、右键灵魂跳跃；选右键施法时，可施法则优先施法，缺蓝或冷却等不可施法状态仍由原生动作选择处理，保留小恶魔灵魂跳跃回退。
-- 按住连发读取独立绑定的物理状态；原始按键事件与控制事件不会重复触发同一次施法。按键被法杖占用时，屏蔽对应原生控制事件及轮询；收杖、进入聊天或UI后恢复原版输入。
-- 保留原生Action/RPC、动作可见性和黑暗过滤、冷却与移动优先规则。打开面板、修改绑定、换杖及失焦取消连发；漏掉松键事件时仍能通过物理状态停止，下一次新按下可重新开始。
-- 修复新增输入比较在玩家载入时触发的C++断言“NumControls > controlId”：物品栏会轮询虚拟控制编号，现先调用ResolveVirtualControls，再限制为有效原生控制范围，避免越界编号进入GetLocalizedControl。该修复不修改存档或绑定数据。
-- 先前“小恶魔改回右键后持续失效”的排查未复现永久失效原因；本轮新增独立绑定及虚拟控制修复，不据此宣称已定位该反馈的所有成因。
-
-四、新增：鼠标旁施法提示与键帽
-- 在原版hoverer中补充当前实际施法键及“施法”提示，保留灵魂跳跃等原生动作行。已有相同按键施法提示时去重；同一物理键只显示实际会执行的动作，原版次要动作改键后按实际物理键标示。
-- 只在当前能够执行独立施法时显示额外提示；无杖、冷却/缺蓝、UI、录入、编辑、拖动、手柄模式或绑定未同步时隐藏。提示只读取候选动作，不发送输入或修改绑定；新增提示参与HUD缩放和屏幕边缘约束。
-- 鼠标沿用原版按键图标，缺少原版图标的侧键使用名称；键盘使用v5透明键帽，仅用于鼠标旁施法提示。
-- 键帽分窄、中、宽三档，以DIALOGFONT实际文字宽度加留白选择可容纳的最窄档，语言切换重新测量；超过最大档时只扩展中段，不缩小文字或拉伸端部。键名主色为原版鼠标右键高亮色#CEA273。
-- 新增nw_keyhint控件、nw_keycap.xml/.tex及样式常量；素材来源、生成参数、用量与原图宽比偏差见assets_src/ui/keycap/设计记录.md。现用v5首稿，另存的宽度修正版未采用。
-
-五、工具、资源、测试文件与文档
-- 新增tools/build_keycap.py：从v5透明源图裁切三档键帽，统一高度128，端部左32/右48；每档拆为左/中/右，共9个图集元素，生成512×512图集、游戏XML/TEX、预览及构建报告。脚本包含透明度与编译纹理检查逻辑，本次整理未执行该脚本。
-- 新增tools/preview_keycap.py：使用实际Lua控件和编译纹理生成中英文、深浅背景的键帽/鼠标提示及个人设置页离线预览；中文使用替代字体，结果不作为实机截图。
-- 调整tools/preview_quickguide.py的离线后端，支持DIALOG字体、文字测量、纹理/缩放/锚点、定时任务与录入弹窗，供新控件预览使用。
-- assets_src/ui/keycap新增19个源文件，包括提示词、首稿与未采用的宽度修正版、参数记录、三档运行切片、图集/预览、构建报告和设计记录。
-- 新增6份测试文件：test_cast_binding.lua、test_cast_binding_native.py、test_cast_input_native.py、test_cast_hover_native.py、test_cast_key_panel.lua、test_keyhint.lua。内容涉及保存迁移、请求隔离、输入分发、虚拟控制边界、提示布局、录入交互和键帽测量。
-- 修改5份测试文件：test_cast_direction_native.py补原版小恶魔回退、独立绑定及黑暗过滤；test_hold_cast.lua、test_hold_instant_cast.lua适配独立绑定；test_modinfo.lua适配配置；test_performance_panel.lua适配个人页焦点导航。以上仅登记已有文件，本次未新增或运行测试。
-- 更新开发导航、法术卡测试指南及美术资源索引，新增docs/历史/1.0.9发布准备过程.txt；本次同步更新未发布清单与当前状态。
-- 协作规范新增明确边界：只做当前要求；未经用户明确要求不创建或执行额外测试；美术任务只出提示词与图片，成图审计确认后才能接入。按用户最新要求，说明确认并要求发布后由agent直接执行正式发布、恢复/重试与最终回读，内置检查随脚本完成，不提前重复。
-- 本次对外说明已由用户指定为“增加施法按键设置”及操作路径，配图已原样保存。发布材料为docs/releases/1.0.10-public.txt和1.0.10-commit.txt；README、资料站中英文更新记录和文档索引按1.0.10准备。两图原样复制到site/dist/assets/releases/1.0.10，发布说明使用v1.0.10标签下的固定图片链接；网站使用本地资源路径。
-
-六、已有回执与未完成边界
-以下转录docs/11_法术卡测试指南.md中的既有开发记录，本次没有重新执行测试、预览、安装或发布，也不将旧回执表述为对当前全部文件的重新验收。
-- 键帽阶段记录264个Mod Lua文件语法、128项Lua回归通过：test_reports/lua-tests-0hgd8__1/output.log。原版输入/悬停17项通过：test_reports/python_tests_20261117_132236_48c1f78ed5fe480da734be9107272859.log。
-- 最终按实测字宽选档与字体调整后，记录补测键帽1项、悬停6项通过：test_reports/lua-tests-7fgd0810/output.log；test_reports/python_tests_20261117_132656_feb7e94f5c6a4055b9fa02bd98dace18.log。
-- 虚拟控制越界修复记录输入专项11项通过，随后对实际安装模块执行输入/悬停16项通过：test_reports/python_tests_20261117_121134_dadff006ecdd446a8c31d09901dd178a.log；test_reports/python_tests_20261117_121216_ba7cf9033bf44b9399789be037738eff.log。
-- 既有安装记录为定向同步至E:\SteamLibrary\steamapps\common\Don't Starve Together\mods\nw_weave_dev：独立按键阶段13文件，崩溃修复阶段1文件，键帽阶段选中8/更新7；键帽安装后输入/悬停17项通过，回执test_reports/python_tests_20261117_132857_a62a03e9d3cb4add8e3f4b8ddb05b3d7.log。之后键帽文字颜色常量有1文件定向重装记录。
-- 真实房主/客机按键录入、鼠标驱动映射、小恶魔缺蓝/冷却时回退、聊天/失焦停止、修改后立即进洞/重登/换角色，以及修复后客户端重载原世界，仍保留实机待确认边界。原版Lua离线回归中的输入、网络及磁盘存档含模拟，不能等同于实机通过。
-- 键帽真实字体/中文显示、其他悬停Mod叠加和客户端视觉仍待实机确认；离线替代字体和布局预览不能替代这些结果。1.0.9既有姿态/皮肤、远客/跨分片及实体额度存档等未测边界继续以其完整发布记录为准。
-
-七、逐文件游戏差异
-新增10个：
-  mod/images/nw_keycap.tex
-  mod/images/nw_keycap.xml
-  mod/scripts/components/nw_castbinding.lua
-  mod/scripts/nw/cast_binding.lua
-  mod/scripts/nw/cast_hover.lua
-  mod/scripts/nw/cast_input.lua
-  mod/scripts/nw/cast_key.lua
-  mod/scripts/nw/cast_key_panel.lua
-  mod/scripts/nw/constants/cast_binding.lua
-  mod/scripts/widgets/nw_keyhint.lua
-修改6个：
-  mod/modinfo.lua
-  mod/modmain.lua
-  mod/scripts/nw/cast_action.lua
-  mod/scripts/nw/constants/ui.lua
-  mod/scripts/nw/hold_cast.lua
-  mod/scripts/nw/quickguide.lua
-
-八、正式基线与后续
-- 1.0.9对外记录：docs/releases/1.0.9-public.txt；完整记录及既有边界：docs/releases/1.0.9-commit.txt；准备过程：docs/历史/1.0.9发布准备过程.txt。
-- 1.0.9已完成Steam、GitHub正式Release、Pages（43919873191）及最终回读。发布报告test_reports/2026-11-17-release-109-published-verification.json；流程结果test_reports/release-77y3l0td/result.json；Steam回执dist/releases/1.0.9/steam-api-upload-20261117-013444-914433.json。
-- 用户在确认唯一对外条目及两图后明确要求“发布吧”，随后明确要求agent接手本次及后续发布。本次1.0.10说明已获确认，正式执行命令使用--notes-approved；实际状态以冻结state.json及日志为准。
-- 首次准备失败：test_reports/release-mzromakh/result.json，阶段prepare/tools/run_tests.py；264个Lua文件语法、72项通过、1项失败，具体为tests/test_keyhint.lua:65。完整失败断言见dist/github-public/test_reports/lua-tests-516jow8u/output.log。尚未产生1.0.10冻结目录，未提交或上传。
-- 失败原因：当前键帽已采用key_size_ratio=.7425、chinese_key_size_scale=.9和key_x_ratio=-.04，旧测试仍固定-.07的位置、.56的字号及中文字使用中档的预期，且test_keyhint.lua的Text桩缺少更新字号的SetSize。已调整两份现有测试test_keyhint.lua与test_cast_hover_native.py的预期和桩，保留当前游戏代码与资源；本轮未创建或执行测试，等待用户重试时的正式检查。
-- 导出现场排查时，除本轮修订的两份测试外，所有Git所列改动均与工作区对应文件一致，没有发现仅在导出目录的源码改动。导出HEAD仍为1.0.9正式提交。保留原目录及日志，由用户将dist/github-public完整改名至dist/github-public-prefreeze-1.0.10-mzromakh，仅将mod/modinfo.lua的版本字段从1.0.10恢复为1.0.9，再执行同一个1.0.10发布命令。新导出仍经原有干净checkout、origin与HEAD门禁，不reset/clean、不伪造state，也不改发1.0.11。
-- PowerShell策略禁止执行.ps1时，使用等价Python入口。工作目录D:\Projects\AI\dst_mod；在完成上述保留现场恢复后执行：.\.venv\Scripts\python.exe tools/release.py --mode all --version 1.0.10 --audience public --notes-file docs/releases/1.0.10-public.txt --commit-file docs/releases/1.0.10-commit.txt --notes-approved。不能在当前未恢复状态直接重跑，也不能使用--resume。
-- 接手恢复：用户第二次重试已完成版本字段恢复，但网络克隆缓慢；关闭前台后仍留子进程。agent确认并停止该次进程树，确认锁持有者结束后移除遗留锁；克隆现场保留到dist/github-public-interrupted-clone-1.0.10-ke4a8j2q。已从本地1.0.9完整仓库建立新的干净checkout并恢复GitHub origin与归属标记，避免重新网络克隆；将由agent运行上述Python正式入口，不改用1.0.11、不跳过检查。
+1.0.11 对外说明已获用户确认
+- 天气风向标被触发时，旋风会直接在触发点附近游荡并破坏。
+- When Weather Pain is triggered, its tornado immediately starts roaming and destroying objects around the trigger point.

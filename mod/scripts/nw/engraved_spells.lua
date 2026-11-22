@@ -31,7 +31,7 @@ local shots={
     firestaff={Shots.firestaff.speed,Shots.firestaff.lifetime,Shots.firestaff.damage,T("朝施放方向发射原版火魔杖弹，命中时引燃。")},
     icestaff={Shots.icestaff.speed,Shots.icestaff.lifetime,Shots.icestaff.damage,T("朝施放方向发射原版冰魔杖弹，命中时灭火、施加寒冷。")},
     staff_lunarplant={Shots.staff_lunarplant.speed,Shots.staff_lunarplant.lifetime,Shots.staff_lunarplant.damage,P.effect("edge_staff_lunarplant",Shots.staff_lunarplant)},
-    staff_tornado={Shots.staff_tornado.speed,Shots.staff_tornado.lifetime,Shots.staff_tornado.damage,T("龙卷风先朝瞄准点前进，随后在附近游荡并破坏。触发释放时先沿弹道前进。")},
+    staff_tornado={Shots.staff_tornado.speed,Shots.staff_tornado.lifetime,Shots.staff_tornado.damage,T("龙卷风先朝瞄准点前进，随后在附近游荡并破坏。触发释放时直接在触发点附近游荡并破坏。")},
 }
 M.extra={{"voidcloth_boomerang",T("阴郁回旋镖")},
     {"firestaff",T("火魔杖")},{"icestaff",T("冰魔杖")},{"staff_lunarplant",T("亮茄魔杖")},{"staff_tornado",T("天气风向标")},

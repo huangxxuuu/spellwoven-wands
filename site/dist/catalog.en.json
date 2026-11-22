@@ -10568,8 +10568,8 @@
         "tool",
         "trajectory"
       ],
-      "effect": "Releases a tornado that advances toward the aim point, then roams and destroys.",
-      "detailedEffect": "The Weather Pain tornado travels forward, then wanders near its destination to attack and destroy objects. Trigger payloads release at that point.",
+      "effect": "Releases a tornado that roams and destroys near the aim point or trigger point.",
+      "detailedEffect": "The tornado travels toward the aim point, then roams nearby to attack and destroy objects. When triggered, it starts roaming at the trigger point.",
       "mana": 18,
       "delay": 0.12,
       "recharge": 0,

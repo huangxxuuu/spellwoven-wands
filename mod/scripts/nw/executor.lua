@@ -161,9 +161,15 @@ function M.execute(plan,owner,x,z,dx,dz,height,aim,inherited_root,emissions)
                         if p.ballistic and index==1 and aim then
                             require("nw/engraved_flight").aim_ground(v.entity,s,math.sqrt((aim.x-fx)^2+(aim.z-fz)^2))
                         end
-                        if p.engraving=="staff_tornado" and index==1 and aim then
-                            s.aim_distance=math.sqrt((aim.x-fx)^2+(aim.z-fz)^2)
-                            s.remaining=math.max(s.remaining,s.aim_distance/s.speed*(p.flight_lifetime_mult or 1))
+                        if p.engraving=="staff_tornado" then
+                            if index~=1 or plan.payload_root then
+                                s.aim_distance=0
+                                v.entity.Physics:SetMotorVel(0,0,0)
+                                require("nw/engraved_flight").sync_native(v.entity,s)
+                            elseif aim then
+                                s.aim_distance=math.sqrt((aim.x-fx)^2+(aim.z-fz)^2)
+                                s.remaining=math.max(s.remaining,s.aim_distance/s.speed*(p.flight_lifetime_mult or 1))
+                            end
                         end
                         s.fire=group.fire;s.group=group
                         if p.flags.twin_arc then

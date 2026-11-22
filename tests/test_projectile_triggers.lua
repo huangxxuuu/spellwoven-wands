@@ -37,8 +37,9 @@ local function cast(...)
     local w=require("nw/generator").starter();w.stats.mana_max=2000;w.stats.spread=0;w.cards={}
     for i,id in ipairs({...}) do w.cards[i]={spell_id=id,card_uid=tostring(i)} end
     w.runtime=C.initial(w.cards,w.stats,51)
-    assert(E.execute(assert(C.compile(w)),owner,0,0,1,0))
-    return objects[1]
+    local plan=assert(C.compile(w))
+    assert(E.execute(plan,owner,0,0,1,0))
+    return objects[1],plan
 end
 local function target(x)
     local e={GUID=991,components={health={currenthealth=1000,IsDead=function() return false end},combat={GetAttacked=function() end}}}
@@ -209,4 +210,56 @@ assert(E.stats()==1 and #blasts==3,"late trail entrants must retain the collisio
 now=1.6;P.step(beam,now,{})
 assert(not beam.valid and E.stats()==0 and endpoint==1 and #blasts==3)
 SpawnPrefab=previous_spawn;Effects.blast=previous_blast
+
+-- Triggered weather vanes stop at the release point and pass it to the native brain.
+local previous_vector,previous_tuning=Vector3,TUNING
+Vector3=function(x,y,z) return {x=x,y=y,z=z} end
+TUNING={TORNADO_LIFETIME=20}
+SpawnPrefab=function(name)
+    local obj=previous_spawn(name)
+    if name~="nw_projectile" then return obj end
+    local launch=obj.Launch
+    function obj:Launch(caster,p,x,z,dx,dz,cleanup)
+        launch(self,caster,p,x,z,dx,dz,cleanup)
+        if p.engraving~="staff_tornado" then return end
+        local native={prefab="tornado",_nw_controller=self,motor=p.speed}
+        native.Transform={GetScale=function() return 1 end,SetRotation=function() end}
+        native.Physics={
+            SetMotorVel=function(_,speed) native.motor=speed end,
+            Teleport=function(_,nx,_,nz) native.x,native.z=nx,nz end,
+        }
+        native.components={locomotor={walkspeed=1,runspeed=2},knownlocations={
+            RememberLocation=function(_,name,point) assert(name=="target");native.target=point end,
+        }}
+        native.sg={GoToState=function(_,state) assert(state=="idle") end}
+        function native:IsValid() return true end
+        function native:SetDuration(duration) self.duration=duration end
+        function native:RestartBrain(reason) assert(reason=="nw_directed");self.roaming=true end
+        self.motor=p.speed
+        self.Physics.SetMotorVel=function(_,speed) self.motor=speed end
+        self.Physics.GetMotorVel=function() return self.motor,0,0 end
+        self.Transform.GetRotation=function() return 0 end
+        self._shot.native,self._shot.native_height=native,0
+    end
+    return obj
+end
+local function assert_tornado_target(obj,x,z)
+    local native=obj._shot.native
+    assert(obj.x==x and obj.z==z and obj.motor==0 and native.motor==0,"no flight from the trigger point")
+    P.step(obj,.1,{})
+    assert(not obj.valid and native.roaming and native._nw_controller==nil)
+    assert(native.x==x and native.z==z and native.target.x==x and native.target.z==z,
+        "roaming target must be the original trigger point")
+end
+e=cast("arrow_hit","edge_staff_tornado")
+T.hit(e._shot,target(7),7,4)
+assert_tornado_target(objects[2],7,4)
+local carrier,tornado_plan=cast("arrow_timer","edge_staff_tornado")
+T.timer(carrier._shot,-6,3)
+assert_tornado_target(objects[2],-6,3)
+local stored=E.store_payload(tornado_plan.blocks,carrier._shot.p.payload,1,false,51)
+assert(E.execute(stored,owner,2,-8,0,1))
+assert_tornado_target(objects[3],2,-8)
+carrier:Remove();assert(E.stats()==0)
+SpawnPrefab=previous_spawn;Vector3=previous_vector;TUNING=previous_tuning
 print("projectile triggers: piercing replay, timer/end rules, lingering-beam payload reservations and final ledger cleanup")

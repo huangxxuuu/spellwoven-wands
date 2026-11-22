@@ -1,0 +1,7 @@
+织法之杖 1.0.11
+
+1. 天气风向标被触发时，旋风会直接在触发点附近游荡并破坏。
+
+Spellwoven Wands 1.0.11
+
+1. When Weather Pain is triggered, its tornado immediately starts roaming and destroying objects around the trigger point.
